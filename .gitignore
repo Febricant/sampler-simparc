@@ -1,0 +1,5 @@
+# Ignore everything in 'data' folder
+data/*
+
+# Except for 'BayesianNetwork'
+!data/BayesianNetwork/

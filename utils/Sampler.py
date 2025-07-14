@@ -53,6 +53,32 @@ class MapHPXML:
         #Initialisation avec les valeurs à ne pas parser
         dct_HPXML = {k: dct_args[k] for k in dct_args.keys() if k in self.HPXMLArg.arguments.keys()} 
         
+        #_______________________________________________________________
+        #weather_station_epw_filepath
+        #Type de Logement
+        arg = "Territoire_HQ"
+        argHPXML = "weather_station_epw_filepath"
+        if (argHPXML not in dct_HPXML.keys()):
+            if (arg in dct_args.keys()):
+                if dct_args[arg] in ["Est et Nord du Québec"]:
+                    dct_HPXML[argHPXML] = "2020s_CAN_QC_Saguenay-Bagotville.AP-CFB.Bagotville.717270_CWEC2016.epw"
+
+                elif dct_args[arg] == "Laurentides":
+                    dct_HPXML[argHPXML] = "2020s_CAN_QC_Montreal-McTavish.716120_CWEC2016.epw"
+
+                elif dct_args[arg] == "Montmorency":
+                    dct_HPXML[argHPXML] = "2050s_CAN_QC_Quebec-Lesage.Intl.AP.717140_CWEC2016.epw"
+                    #dct_HPXML[argHPXML] = 'manufactured home' never create
+                elif dct_args[arg] == "Montréal":
+                    dct_HPXML[argHPXML] = "2020s_CAN_QC_Montreal-McTavish.716120_CWEC2016.epw"
+                elif dct_args[arg] == "Richelieu":
+                    dct_HPXML[argHPXML] = "2020s_CAN_QC_Montreal-McTavish.716120_CWEC2016.epw"
+            else:
+                if self.HPXMLArg.arguments[argHPXML].get("Default Value", "Defaut_Not_Existing")!="Defaut_Not_Existing":
+                    dct_HPXML[argHPXML] = self.HPXMLArg.arguments[argHPXML].get("Default Value")
+                else:
+                    dct_HPXML[argHPXML] = "2020s_CAN_QC_Montreal-McTavish.716120_CWEC2016.epw"
+
         #________________________________________________________________
         #Type de Logement
         arg = "Type_Logement"

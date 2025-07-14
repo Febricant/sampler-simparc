@@ -62,12 +62,10 @@ class MapHPXML:
             if (arg in dct_args.keys()):
                 if dct_args[arg] in ["Est et Nord du Québec"]:
                     dct_HPXML[argHPXML] = "2020s_CAN_QC_Saguenay-Bagotville.AP-CFB.Bagotville.717270_CWEC2016.epw"
-
                 elif dct_args[arg] == "Laurentides":
                     dct_HPXML[argHPXML] = "2020s_CAN_QC_Montreal-McTavish.716120_CWEC2016.epw"
-
                 elif dct_args[arg] == "Montmorency":
-                    dct_HPXML[argHPXML] = "2050s_CAN_QC_Quebec-Lesage.Intl.AP.717140_CWEC2016.epw"
+                    dct_HPXML[argHPXML] = "2020s_CAN_QC_Quebec-Lesage.Intl.AP.717140_CWEC2016.epw"
                     #dct_HPXML[argHPXML] = 'manufactured home' never create
                 elif dct_args[arg] == "Montréal":
                     dct_HPXML[argHPXML] = "2020s_CAN_QC_Montreal-McTavish.716120_CWEC2016.epw"

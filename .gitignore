@@ -3,3 +3,4 @@ data/*
 
 # Except for 'BayesianNetwork'
 !data/BayesianNetwork/
+!data/housing_characteristics/

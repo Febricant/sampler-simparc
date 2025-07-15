@@ -12,6 +12,8 @@ python 3.11
 import os
 import sys
 import yaml
+import numpy as np
+import pandas as pd
 
 FILE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_DIR = os.path.abspath(FILE_DIR+ "/../")  # répertoire supérieur
@@ -39,6 +41,87 @@ class Sampler(Master_genereBN):
         with open(path, 'r') as file:
             lst_NOEUD, LIST_Dict = yaml.safe_load(file)
         return lst_NOEUD, LIST_Dict
+
+class BuildstockBachArguments():
+    def __init__(self):
+        self.randGenerator = np.random.default_rng(seed=0)
+        self.dct_housing_characteristics = self.csv_to_dict()
+
+    def csv_to_dict(self, path = PROJECT_DIR+"/data/housing_characteristics/"):
+        """
+        Convert a CSV file to a dictionary.
+        
+        :param path: Path to the CSV file.
+        :return: Dictionary with column names as keys and lists of column values as values.
+        """
+        dct_housing_characteristics = {}
+        for file in os.listdir(path):
+            if file.endswith(".csv"):
+                pathcsv = os.path.join(path, file)
+                name = file.split(".")[0]
+                dct_housing_characteristics[name] = {}
+                dct_housing_characteristics[name]["Table"] = pd.read_csv(pathcsv, sep=";")
+                dct_housing_characteristics[name]["Dependency"] = {c: c.split("Dependency=")[-1] for c in dct_housing_characteristics[name]["Table"].columns if "Dependency=" in c}
+                dct_housing_characteristics[name]["Option"] = {c: c.split("Option=")[-1] for c in dct_housing_characteristics[name]["Table"].columns if "Option=" in c}
+        return dct_housing_characteristics
+    
+    def sampling(self, lst_dct_args={}):
+        """
+        Generate a sample of Buildstock Bach arguments based on the provided evidence.
+        
+        :param evs: Dictionary containing evidence for the sampling.
+        :return: dictionarie representing the sampled arguments.
+        """
+        # Implement the sampling logic here
+        listAttributs = ["geometry_foundation_type"]
+                        #"Geometry Attic Type",
+                        # "Geometry Building Horizontal Location MF",
+                        # "Geometry Building Horizontal Location SFA",
+                        # "Geometry Building Level MF",
+                        # "Geometry Building Number Units MF",
+                        # "Geometry Building Number Units SFA",
+                        # "Geometry Building Type ACS",
+                        # "Geometry Building Type Height",
+                        # "Geometry Building Type RECS",
+                        # "Geometry Floor Area Bin",
+                        # "Geometry Floor Area",
+                        # "Geometry Foundation Type",
+                        # "Geometry Garage",
+                        # "Geometry Space Combination",
+                        # "Geometry Stories Low Rise",
+                        # "Geometry Stories",
+                        # "Geometry Story Bin",
+                        # "Geometry Wall Exterior Finish",
+                        # "Geometry Wall Type"]
+        lst_dct_args2 = []
+        for dctSampler in lst_dct_args:
+            dct_args2 = {}
+            for Attributs in listAttributs:
+                #for csv file (ne charger qu'une fois) et creer une structure
+                dct_dependancy = self.dct_housing_characteristics[Attributs]["Dependency"]
+                dct_option = self.dct_housing_characteristics[Attributs]["Option"]
+                df = self.dct_housing_characteristics[Attributs]["Table"]
+
+
+                if len(dct_dependancy) == 0:
+                    # If there are no dependencies, sample directly from the options
+                    filtered_df = df
+                else:
+                    filter_dict = {key:dctSampler[value] for key, value in dct_dependancy.items()}
+                    # Dynamic filtering based on the dictionary
+                    filtered_df = df[
+                        df[list(filter_dict.keys())].isin(filter_dict.values()).all(axis=1)
+                    ]
+
+                sumlst = sum(filtered_df[dct_option.keys()].values.tolist()[0])
+                listProb = [k/sumlst for k in filtered_df[dct_option.keys()].values.tolist()[0]]
+
+                choiceStr = self.randGenerator.choice(list(dct_option.keys()),p=listProb)
+                if "Option=" in str(choiceStr):
+                    dct_args2[Attributs] = choiceStr.split("Option=")[-1]
+            
+            lst_dct_args2.append(dct_args2)
+        return lst_dct_args2
 
 class MapHPXML:
     def __init__(self):
@@ -76,6 +159,17 @@ class MapHPXML:
                     dct_HPXML[argHPXML] = self.HPXMLArg.arguments[argHPXML].get("Default Value")
                 else:
                     dct_HPXML[argHPXML] = "2020s_CAN_QC_Montreal-McTavish.716120_CWEC2016.epw"
+
+        #simulation_control_daylight_saving_enabled
+        argHPXML = "simulation_control_daylight_saving_enabled"
+        if (argHPXML not in dct_HPXML.keys()):
+            dct_HPXML[argHPXML] = True
+        
+        #site_time_zone_utc_offset
+        argHPXML = "site_time_zone_utc_offset"
+        if (argHPXML not in dct_HPXML.keys()):
+            dct_HPXML[argHPXML] = True
+        dct_HPXML[argHPXML]=-5
 
         #________________________________________________________________
         #Type de Logement
@@ -328,6 +422,31 @@ class MapHPXML:
                 else:
                     dct_HPXML[argHPXML] = 1
 
+        #____________________________________________________________
+        #Corridor #source : fichier corridor.tsv 
+        if (dct_HPXML.get("geometry_unit_type") in ["Duplex", "Triplex", "Collective"]):
+            Corridor = "Double-Loaded Interior"
+        else:
+            Corridor = "Not Applicable"
+
+        #source : mesure.rb resstockargument
+        if Corridor == "Double Exterior":
+            geometry_corridor_position = "Double Exterior"
+            geometry_corridor_width = 10
+        elif Corridor == "Double-Loaded Interior":
+            geometry_corridor_position = "Double-Loaded Interior"
+            geometry_corridor_width = 10
+        elif Corridor == "None":
+            geometry_corridor_position = "None"
+            geometry_corridor_width = 0
+        elif Corridor == "Not Applicable":
+            geometry_corridor_position = "None"
+            geometry_corridor_width = 0
+        elif Corridor == "Single Exterior Front":
+            geometry_corridor_position = "Single Exterior (Front)"
+            geometry_corridor_width = 10
+
+
 #corridor_position
 
  #FAIRE Les murs adiabatiques
@@ -390,8 +509,8 @@ if __name__ == "__main__":
     #gnb.showInference(InsClsSampler.bn,evs={},size = '30')
 
     Nombre_de_Samples = 10
-    Evidence = {"Type_Logement": "Collective",
-                "Nombre_Pieces": "1"}#{"Mode_Occupation": "Proprietaire"}
+    Evidence = {}#"Type_Logement": "Collective",
+                #"Nombre_Pieces": "1"}#{"Mode_Occupation": "Proprietaire"}
 
     # Fait un échantillonage - Avant enregistrement
     df1 = InsClsSampler.do_Sampling(Nombre_de_Samples, evs = Evidence)
@@ -401,8 +520,16 @@ if __name__ == "__main__":
     #s.getBNStructure()
     #print(s.lst_NOEUD, s.LIST_Dict)
 
+    #Ajout de varaible hors BN
+    Bba = BuildstockBachArguments()
+    lst_dct_args2 = Bba.sampling( lst_dct_args)
+
+    lst_dct_args = [ d2 | d1 for d1, d2 in zip(lst_dct_args, lst_dct_args2)]#lst_dct_args prioritaire
+
     MapSample = MapHPXML()
     lst_dct_HPXML = MapSample.run(lst_dct_args)
     
     print("Nombre d'attributs HPXML: ", len(lst_dct_HPXML[0].keys()))
     pd.DataFrame(lst_dct_HPXML)
+
+

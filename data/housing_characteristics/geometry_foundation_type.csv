@@ -1,6 +1,0 @@
-Dependency=Type_Logement;Option=Ambient;Option=Heated Basement;Option=Slab;Option=Unheated Basement;Option=Unvented Crawlspace;Option=Vented Crawlspace
-Duplex;0;0.0;0.91;0;0.01;0.05
-Triplex;0;0.0;0.91;0;0.01;0.05
-Collective;0;0.0;0.91;0;0.01;0.05
-Maison en rangee;0;0.84;0.07;0;0.01;0.05
-Maison individuelle;0;0.84;0.07;0;0.01;0.05

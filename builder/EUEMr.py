@@ -1223,6 +1223,12 @@ class FormatageEUEMr:
                                                         "3 et plus" :[3, 4, 5,
                                                                        7]}
 
+        # no MAPPING ; fOR CSV STATS
+        self.Mapping["Nombre_Logement"] = {}
+        self.Mapping["Nombre_Logement"]["ColSrc"] = "QA4M"
+        self.Mapping["Nombre_Logement"]["typeMapping"] = "no"
+        self.Mapping["Nombre_Logement"]["Mmapping"] = {}
+
         # QBM2R : Nombre de congélateurs distinct dans la résidence
     
         # QB1A1 : Présence de cuisinières (Oui/Non)
@@ -1298,6 +1304,11 @@ class FormatageEUEMr:
                                         "IdLabel": [str(i) for i in range(len(dictMap["Mmapping"]))],
                                         "Description": Attribut_EUEMr.__dict__[dictMap["ColSrc"]]["Description"],
                                         "Type": "discrete"}
+                elif dictMap["typeMapping"] == "no":
+                    Metadata[keyMap] = {"Label": [],
+                                        "IdLabel": [],
+                                        "Description": Attribut_EUEMr.__dict__[dictMap["ColSrc"]]["Description"],
+                                        "Type": ""}
             except KeyError as e:
                 print(f"Error processing mapping for key: {keyMap} : {e}")
                 
@@ -1328,7 +1339,10 @@ class FormatageEUEMr:
         try:
             if ColName in self.Mapping:
                 
-                if self.Mapping[ColName]["typeMapping"] == "list":
+                if self.Mapping[ColName]["typeMapping"] == "no":
+                    return self.dfEUEMrSrc[self.Mapping[ColName]["ColSrc"]].rename(ColName)
+                
+                elif self.Mapping[ColName]["typeMapping"] == "list":
                     dct_replace = {}
                     for k, v in self.Mapping[ColName]["Mmapping"].items():
                         for val in v:
@@ -1489,53 +1503,135 @@ class EUEMr(Master_genereBN):
         # Ajout des tables conditionnelles
         diCPT = {}
         for k in diDep :
-             if len(diDep[k]) == 0 :  # Aucune dépendance
-                 ind = [0]
-                 liInd = [0]
-             elif len(diDep[k]) == 1 :  # 1 dépendance
-                 ind = pd.Index(diEUEMr[diDep[k][0]].values(), name = diDep[k][0]) # # diEUEMr[k].keys()
-                 liInd = self.dfcsv[diDep[k][0]]
-             else: 
-                 iterables = [diEUEMr[j].values() for j in diDep[k]] # # diEUEMr[k].keys()
-                 ind = pd.MultiIndex.from_product(iterables, names = diDep[k])
-                 liInd = [self.dfcsv[ele] for ele in diDep[k]]
-             
-             #Créer un fataframe vide avec tous les champs des dépendant   
-             diCPT[k] = pd.DataFrame(index = ind, columns = diEUEMr[k].values()).astype(float).fillna(0)#.fillna(0) # diEUEMr[k].keys()
-             
-             # Updater le DataFrame avec l'occurance d'individu par dépendances
-  
-             diCPT[k].update(pd.crosstab(liInd,
-                                         self.dfcsv[k],
-                                        values=self.dfcsv["POND1"], # Pondération
-                                        aggfunc="sum"))
-             #diCPT[k] = diCPT[k].astype('double')#int64
+            if len(diDep[k]) == 0 :  # Aucune dépendance
+                ind = [0]
+                liInd = [0]
+            elif len(diDep[k]) == 1 :  # 1 dépendance
+                ind = pd.Index(diEUEMr[diDep[k][0]].values(), name = diDep[k][0]) # # diEUEMr[k].keys()
+                liInd = self.dfcsv[diDep[k][0]]
+            else: 
+                iterables = [diEUEMr[j].values() for j in diDep[k]] # # diEUEMr[k].keys()
+                ind = pd.MultiIndex.from_product(iterables, names = diDep[k])
+                liInd = [self.dfcsv[ele] for ele in diDep[k]]
 
-        #    # Mettre les prob associées à la 1ère dépendance [diDEP[k][0]] si le nombre d'individu par Bin est =< à NbMaxBin 
-             nbIndMin = -1 #   -1 bipass # 5
-             maskIndMin = diCPT[k].sum(axis=1) <= nbIndMin
-             if maskIndMin.sum() > 0 :
-                 liLevel0 = list(diCPT[k].loc[maskIndMin].index.get_level_values(0).unique())
-                 for i in liLevel0:
-                     maskLevel0 = diCPT[k].index.get_level_values(0) == i
-                     maskTot =  maskIndMin & maskLevel0
-                     liOccSum = pd.crosstab(self.dfcsv[diDep[k][0]],
-                                            self.dfcsv[k],
-                                            values=self.dfcsv["POND1"], # Pondération
-                                            aggfunc="sum").loc[i].tolist()
-                     intNbCat = len(diCPT[k].loc[maskTot].index)
-                     liOcc =[liOccSum for j in range(intNbCat)] 
-                     diCPT[k].loc[maskTot,:] = liOcc
+            #Créer un fataframe vide avec tous les champs des dépendant   
+            diCPT[k] = pd.DataFrame(index = ind, columns = diEUEMr[k].values()).astype(float).fillna(0)#.fillna(0) # diEUEMr[k].keys()
+            
+            # Updater le DataFrame avec l'occurance d'individu par dépendances
+
+            diCPT[k].update(pd.crosstab(liInd,
+                                        self.dfcsv[k],
+                                    values=self.dfcsv["POND1"], # Pondération
+                                    aggfunc="sum"))
+            #diCPT[k] = diCPT[k].astype('double')#int64
+
+    #    # Mettre les prob associées à la 1ère dépendance [diDEP[k][0]] si le nombre d'individu par Bin est =< à NbMaxBin 
+            nbIndMin = -1 #   -1 bipass # 5
+            maskIndMin = diCPT[k].sum(axis=1) <= nbIndMin
+            if maskIndMin.sum() > 0 :
+                liLevel0 = list(diCPT[k].loc[maskIndMin].index.get_level_values(0).unique())
+                for i in liLevel0:
+                    maskLevel0 = diCPT[k].index.get_level_values(0) == i
+                    maskTot =  maskIndMin & maskLevel0
+                    liOccSum = pd.crosstab(self.dfcsv[diDep[k][0]],
+                                        self.dfcsv[k],
+                                        values=self.dfcsv["POND1"], # Pondération
+                                        aggfunc="sum").loc[i].tolist()
+                    intNbCat = len(diCPT[k].loc[maskTot].index)
+                    liOcc =[liOccSum for j in range(intNbCat)] 
+                    diCPT[k].loc[maskTot,:] = liOcc
                      
-             # Normaliser le DataFrame
-             dfCPT = diCPT[k].apply(lambda x: (x/x.sum()), axis = 1).fillna(0)        
-             
-             # Définir la dimension du de la table d'occurence   
-             liShape = [len(diEUEMr[ele]) for ele in diDep[k]]
-             liShape.append(len(diEUEMr[k]))  
-             
-             # Affecter le table d'occurence au réseau
-             arPCT  = np.reshape(dfCPT.values,tuple(liShape))                
-             self.bn.cpt(k)[:] = arPCT   
+            # Normaliser le DataFrame
+            dfCPT = diCPT[k].apply(lambda x: (x/x.sum()), axis = 1).fillna(0)        
+            
+            # Définir la dimension de la table d'occurence   
+            liShape = [len(diEUEMr[ele]) for ele in diDep[k]]
+            liShape.append(len(diEUEMr[k]))  
+            
+            # Affecter le table d'occurence au réseau
+            arPCT  = np.reshape(dfCPT.values,tuple(liShape))                
+            self.bn.cpt(k)[:] = arPCT   
            
         #gnb.showBN(self.bn,size = '30')
+    
+    
+    def Make_csv(self):
+        
+        absolute_path = self.fileEUEMr
+        self.Load_csv(absolute_path)#self.dfcsv
+        self.dfcsv = self.dfcsv[self.dfcsv["POND1"].notnull()]  # Filtrer les lignes où POND1 est supérieur à 0 (enleve logement spécifique aux nouvelle constructions)
+
+        # Assigner les information de la structure des variable
+        diEUEMr = self.LIST_Dict
+
+        for col in ["POND1", "POND2x", "POND1_POP", "POND2x_POP"]:
+            self.dfcsv[col] = pd.to_numeric(self.dfcsv[col], errors='coerce')  # Convert to numeric, coercing errors to NaN
+
+        # QA4M : Nombre de logements dans l'immeuble
+        dct_MetaStats = {"Nombre_Logement" : {"Csv_name": "Geometry Building Number Units.csv",
+                                              "dropvalues" : [".", "NSP/NRP"],
+                                              "Dependancy": ["Type_Logement"]}}
+
+        csvName = PROJECT_DIR+"//data//housing_characteristics//"+dct_MetaStats["Nombre_Logement"]["Csv_name"]
+        
+
+                # Ajout des tables conditionnelles
+        for Name, dct_val in dct_MetaStats.items():
+            lstDep = dct_val["Dependancy"]
+            diCPT = {}
+            #for k in diDep :
+            if len(lstDep) == 0 :  # Aucune dépendance
+                ind = [0]
+                liInd = [0]
+            elif len(lstDep) == 1 :  # 1 dépendance
+                ind = pd.Index(diEUEMr[lstDep[0]].values(), name = lstDep[0]) # # diEUEMr[k].keys()
+                liInd = self.dfcsv[lstDep[0]]
+            else: 
+                iterables = [diEUEMr[j].values() for j in lstDep] # # diEUEMr[k].keys()
+                ind = pd.MultiIndex.from_product(iterables, names = lstDep)
+                liInd = [self.dfcsv[ele] for ele in lstDep]
+            
+            #Créer un fataframe vide avec tous les champs des dépendant  
+            colval = self.dfcsv[Name].drop_duplicates()
+            maskvalues = colval.isin(dct_val["dropvalues"]).values
+            colVal_f = colval[~maskvalues].values
+             
+            diCPT = pd.DataFrame(index = ind, columns = colVal_f).astype(float).fillna(0)#.fillna(0) # diEUEMr[k].keys()
+            #diCPT = diCPT.sort_index(axis=1) # sort column
+            # Updater le DataFrame avec l'occurance d'individu par dépendances
+
+            diCPT.update(pd.crosstab(liInd,
+                                    self.dfcsv[Name],
+                                    values=self.dfcsv["POND1"], # Pondération
+                                    aggfunc="sum"))
+
+
+            #Correction manuelle pour certains cas
+            #Nombre_Logement
+            if Name == "Nombre_Logement":
+                if "1" not in diCPT.columns:
+                    diCPT["1"] = 0
+                if "2" not in diCPT.columns:
+                    diCPT["2"] = 0
+                if "3" not in diCPT.columns:
+                    diCPT["3"] = 0
+                
+                diCPT.loc["Triplex"] = 0
+                diCPT.loc["Triplex", "3"] = 1
+                diCPT.loc["Duplex"] = 0
+                diCPT.loc["Duplex", "2"] = 1
+                diCPT.loc["Maison en rangee"] = 0
+                diCPT.loc["Maison en rangee", "1"] = 1
+                diCPT.loc["Maison individuelle"] = 0
+                diCPT.loc["Maison individuelle", "1"] = 1
+            
+            # Normaliser le DataFrame
+            dfCPT = diCPT.apply(lambda x: (x/x.sum()), axis = 1).fillna(0) 
+            #Changement des noms
+            dfCPTf = dfCPT.reset_index()
+            
+            rename = {i: "Dependency="+str(i) for i in lstDep} | {col: "Option="+str(col) for col in dfCPTf.columns if col not in lstDep}
+            dfCPTf = dfCPTf.rename(columns=rename)
+            #Enregistrement des donnes
+            dfCPTf.to_csv(csvName, index=False, header=True, sep=";")
+

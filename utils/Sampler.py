@@ -54,11 +54,13 @@ class BuildstockBachArguments():
         :param path: Path to the CSV file.
         :return: Dictionary with column names as keys and lists of column values as values.
         """
+        dct_name = {"Geometry Building Number Units.csv": "geometry_building_num_units"}
+
         dct_housing_characteristics = {}
         for file in os.listdir(path):
-            if file.endswith(".csv"):
+            if ((file.endswith(".csv")) and (file in dct_name.keys())):
                 pathcsv = os.path.join(path, file)
-                name = file.split(".")[0]
+                name = dct_name[file]#file.split(".")[0]
                 dct_housing_characteristics[name] = {}
                 dct_housing_characteristics[name]["Table"] = pd.read_csv(pathcsv, sep=";")
                 dct_housing_characteristics[name]["Dependency"] = {c: c.split("Dependency=")[-1] for c in dct_housing_characteristics[name]["Table"].columns if "Dependency=" in c}
@@ -73,7 +75,7 @@ class BuildstockBachArguments():
         :return: dictionarie representing the sampled arguments.
         """
         # Implement the sampling logic here
-        listAttributs = ["geometry_foundation_type"]
+        listAttributs = ["geometry_building_num_units"]
                         #"Geometry Attic Type",
                         # "Geometry Building Horizontal Location MF",
                         # "Geometry Building Horizontal Location SFA",
@@ -85,7 +87,7 @@ class BuildstockBachArguments():
                         # "Geometry Building Type RECS",
                         # "Geometry Floor Area Bin",
                         # "Geometry Floor Area",
-                        # "Geometry Foundation Type",
+                        # "Geometry Foundation Type", # FAIT "PRESENCESOUSOL"
                         # "Geometry Garage",
                         # "Geometry Space Combination",
                         # "Geometry Stories Low Rise",
@@ -132,7 +134,7 @@ class MapHPXML:
     #    self.ListDictArgs = parse_xml_file(path)
     
     def doMapping(self, dct_args):
-        
+
         #Initialisation avec les valeurs à ne pas parser
         dct_HPXML = {k: dct_args[k] for k in dct_args.keys() if k in self.HPXMLArg.arguments.keys()} 
         
@@ -422,6 +424,139 @@ class MapHPXML:
                 else:
                     dct_HPXML[argHPXML] = 1
 
+        #________________________________________________________________
+        #Geometry Foundation Type
+        arg = "Presence_SousSol"
+        args = "geometry_foundation_type"
+        if (args not in dct_HPXML.keys()):
+            if (arg in dct_args.keys()):
+                if (dct_HPXML.get("geometry_unit_type") in ["apartment unit"]):
+                    if dct_args[arg] == "Sous sol 6 pied":
+                        dct_HPXML[args] = "UnconditionedBasement"
+                    elif dct_args[arg] == "Vide sanitaire moins 6 pieds":
+                        dct_HPXML[args] = "UnventedCrawlspace" #
+                    elif dct_args[arg] == "Aucun Sous-sol ou vide sanitaire":
+                        dct_HPXML[args] = "SlabOnGrade"
+                    elif dct_args[arg] == "Sous-sol et vide sanitaire":
+                        dct_HPXML[args] = "UnventedCrawlspace"
+                else:
+                    if dct_args[arg] == "Sous sol 6 pied":
+                        dct_HPXML[args] = "ConditionedBasement"
+                    elif dct_args[arg] == "Vide sanitaire moins 6 pieds":
+                        dct_HPXML[args] = "UnventedCrawlspace" #"ConditionedCrawlspace"
+                    elif dct_args[arg] == "Aucun Sous-sol ou vide sanitaire":
+                        dct_HPXML[args] = "SlabOnGrade"
+                    elif dct_args[arg] == "Sous-sol et vide sanitaire":
+                        dct_HPXML[args] = "UnventedCrawlspace"
+            else:
+                if self.HPXMLArg.arguments[args].get("Default Value", "Defaut_Not_Existing")!="Defaut_Not_Existing":
+                    dct_HPXML[args] = self.HPXMLArg.arguments[args].get("Default Value")
+                else:
+                    if (dct_HPXML.get("geometry_unit_type") in ["apartment unit"]):
+                        dct_HPXML[args] = "UnconditionedBasement"
+                    else:
+                        dct_HPXML[args] = "ConditionedBasement"
+
+        #geometry_foundation_height
+        arg = "Presence_SousSol"
+        args = "geometry_foundation_height"
+        if (args not in dct_HPXML.keys()):
+            if (arg in dct_args.keys()):
+                if (dct_HPXML.get("geometry_unit_type") in ["apartment unit"]):
+                    if dct_args[arg] == "Sous sol 6 pied":
+                        dct_HPXML[args] = 8
+                    elif dct_args[arg] == "Vide sanitaire moins 6 pieds":
+                        dct_HPXML[args] = 4
+                    elif dct_args[arg] == "Aucun Sous-sol ou vide sanitaire":
+                        dct_HPXML[args] = 0
+                    elif dct_args[arg] == "Sous-sol et vide sanitaire":
+                        dct_HPXML[args] = 4
+                else:
+                    if dct_args[arg] == "Sous sol 6 pied":
+                        dct_HPXML[args] = 8
+                    elif dct_args[arg] == "Vide sanitaire moins 6 pieds":
+                        dct_HPXML[args] = 4
+                    elif dct_args[arg] == "Aucun Sous-sol ou vide sanitaire":
+                        dct_HPXML[args] = 0
+                    elif dct_args[arg] == "Sous-sol et vide sanitaire":
+                        dct_HPXML[args] = 4
+            else:
+                if self.HPXMLArg.arguments[args].get("Default Value", "Defaut_Not_Existing")!="Defaut_Not_Existing":
+                    dct_HPXML[args] = self.HPXMLArg.arguments[args].get("Default Value")
+                else:
+                    if (dct_HPXML.get("geometry_unit_type") in ["apartment unit"]):
+                        dct_HPXML[args] = 8
+                    else:
+                        dct_HPXML[args] = 8
+
+        #geometry_foundation_height_above_grade
+        arg = "Presence_SousSol"
+        args = "geometry_foundation_height_above_grade"
+        if (args not in dct_HPXML.keys()):
+            if (arg in dct_args.keys()):
+                if (dct_HPXML.get("geometry_unit_type") in ["apartment unit"]):
+                    if dct_args[arg] == "Sous sol 6 pied":
+                        dct_HPXML[args] = 1
+                    elif dct_args[arg] == "Vide sanitaire moins 6 pieds":
+                        dct_HPXML[args] = 1
+                    elif dct_args[arg] == "Aucun Sous-sol ou vide sanitaire":
+                        dct_HPXML[args] = 0
+                    elif dct_args[arg] == "Sous-sol et vide sanitaire":
+                        dct_HPXML[args] = 1
+                else:
+                    if dct_args[arg] == "Sous sol 6 pied":
+                        dct_HPXML[args] = 1
+                    elif dct_args[arg] == "Vide sanitaire moins 6 pieds":
+                        dct_HPXML[args] = 1
+                    elif dct_args[arg] == "Aucun Sous-sol ou vide sanitaire":
+                        dct_HPXML[args] = 0
+                    elif dct_args[arg] == "Sous-sol et vide sanitaire":
+                        dct_HPXML[args] = 1
+            else:
+                if self.HPXMLArg.arguments[args].get("Default Value", "Defaut_Not_Existing")!="Defaut_Not_Existing":
+                    dct_HPXML[args] = self.HPXMLArg.arguments[args].get("Default Value")
+                else:
+                    if (dct_HPXML.get("geometry_unit_type") in ["apartment unit"]):
+                        dct_HPXML[args] = 1
+                    else:
+                        dct_HPXML[args] = 1
+
+        #geometry_rim_joist_height
+        args = "geometry_rim_joist_height"
+        if (args not in dct_HPXML.keys()):
+            if (arg in dct_args.keys()):
+                if (dct_HPXML.get("geometry_unit_type") in ["apartment unit"]):
+                    if dct_args[arg] == "Sous sol 6 pied":
+                        dct_HPXML[args] = 9.25
+                    elif dct_args[arg] == "Vide sanitaire moins 6 pieds":
+                        dct_HPXML[args] = 9.25
+                    elif dct_args[arg] == "Aucun Sous-sol ou vide sanitaire":
+                        dct_HPXML[args] = 0
+                    elif dct_args[arg] == "Sous-sol et vide sanitaire":
+                        dct_HPXML[args] = 9.25
+                else:
+                    if dct_args[arg] == "Sous sol 6 pied":
+                        dct_HPXML[args] = 9.25
+                    elif dct_args[arg] == "Vide sanitaire moins 6 pieds":
+                        dct_HPXML[args] = 9.25
+                    elif dct_args[arg] == "Aucun Sous-sol ou vide sanitaire":
+                        dct_HPXML[args] = 0
+                    elif dct_args[arg] == "Sous-sol et vide sanitaire":
+                        dct_HPXML[args] = 9.25
+            else:
+                if self.HPXMLArg.arguments[args].get("Default Value", "Defaut_Not_Existing")!="Defaut_Not_Existing":
+                    dct_HPXML[args] = self.HPXMLArg.arguments[args].get("Default Value")
+                else:
+                    if (dct_HPXML.get("geometry_unit_type") in ["apartment unit"]):
+                        dct_HPXML[args] = 9.25
+                    else:
+                        dct_HPXML[args] = 9.25
+
+
+
+
+
+
         #____________________________________________________________
         #Corridor #source : fichier corridor.tsv 
         if (dct_HPXML.get("geometry_unit_type") in ["Duplex", "Triplex", "Collective"]):
@@ -447,6 +582,9 @@ class MapHPXML:
             geometry_corridor_width = 10
 
 
+    #________________________________________________________________
+    #geometry_corridor_position
+
 #corridor_position
 
  #FAIRE Les murs adiabatiques
@@ -456,7 +594,7 @@ class MapHPXML:
                 #FAIT "Nombre_Pieces",
                 #FAIT "Nombre_Etages",
                 #FAIT # "Superficie_Totale",
-                # "Presence_SousSol",
+                #FAIT "Presence_SousSol",
                 #FAIT "Nombre_Personnes",
                 #FAIT "Presence_Garage",
                 # "Mode_Occupation",

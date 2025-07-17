@@ -1,6 +1,6 @@
 # Ignore everything in 'data' folder
 data/*
 
-# Except for 'BayesianNetwork'
+# Except for 'sampler'
 !data/BayesianNetwork/
 !data/housing_characteristics/

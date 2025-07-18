@@ -399,7 +399,7 @@ class MapHPXML:
                 if (dct_args[arg] in ["Garage non chauffé",
                                       "Garage chauffé à électricité",
                                       "Garage chauffé à autre source"]):
-                    if (dct_HPXML.get("geometry_unit_type") in ["single-family detached", "single-family attached"]):
+                    if (dct_HPXML.get("geometry_unit_type") in ["single-family detached"]):#, "single-family attached"]): Pas supporté pour les attached
                         dct_HPXML[argHPXML] = 24 #12 / 24 / 36 taille du garage
                     else:
                         dct_HPXML[argHPXML] = 0 #Pas de garage pour les plex/appartemnt
@@ -1194,7 +1194,7 @@ class MapHPXML:
 
             rim_joist_assembly_r = assembly_exterior_r + assembly_interior_r
             dct_HPXML["rim_joist_assembly_r"] = rim_joist_assembly_r
-            
+
         #_________________________________________________________________
         #__________________________________________________________________
 
@@ -1268,7 +1268,12 @@ class MapHPXML:
 
         dct_HPXML = {**dct_HPXML, **dct_HPXML_missing}
         # ne pas traiter les variables exclues (cf. MapHPXML.py)  
-        Exclude = ["air_leakage_leakiness_description"]
+        Exclude = ["air_leakage_leakiness_description",
+                   "ceiling_insulation_r",
+                   "rim_joist_continuous_exterior_r",
+                   "rim_joist_continuous_interior_r",
+                   "rim_joist_assembly_interior_r",
+                   "exterior_finish_r"]
         dct_HPXML = {k: v for k, v in dct_HPXML.items() if k not in Exclude}
         return dct_HPXML
     def run(self, lst_dct_args):
@@ -1313,5 +1318,3 @@ if __name__ == "__main__":
     
     print("Nombre d'attributs HPXML: ", len(lst_dct_HPXML[0].keys()))
     pd.DataFrame(lst_dct_HPXML)
-
-

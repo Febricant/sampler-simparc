@@ -1229,6 +1229,20 @@ class FormatageEUEMr:
         self.Mapping["Nombre_Logement"]["typeMapping"] = "no"
         self.Mapping["Nombre_Logement"]["Mmapping"] = {}
 
+        #QD11BM1 type de climatisation
+        #Ne sait pas/Ne répond pas ; Aucune de ces réponses
+
+        self.Mapping["Climatisation"] = {}
+        self.Mapping["Climatisation"]["ColSrc"] = "QD11BM1"
+        self.Mapping["Climatisation"]["typeMapping"] = "list"
+        self.Mapping["Climatisation"]["Mmapping"] = {"Aucune": ["."],
+                                                     "Fenêtre, mobile, portable": ["Climatiseur de fenêtre",
+                                                                                   "Climatiseur mobile / portable"],
+                                                     "Murale": ["Climatiseur mural ou bibloc (mini-split)","Thermopompe murale"],
+                                                     "Centrale": ["Thermopompe centrale", "Thermopompe géothermique","Climatiseur central autre qu'une thermopompe"]}
+
+
+
         # QBM2R : Nombre de congélateurs distinct dans la résidence
     
         # QB1A1 : Présence de cuisinières (Oui/Non)
@@ -1414,6 +1428,7 @@ class EUEMr(Master_genereBN):
                  "Mode_Occupation",
                  #"ConsoElecAn",
                  "An_Construction",
+                 "Climatisation",
                  "Source_Energie_Chauf"]
     
 #    ["QA4", # De quel genre d'habitation s'agit-il?
@@ -1490,6 +1505,7 @@ class EUEMr(Master_genereBN):
         diDep["Nombre_Personnes"] = ["Nombre_Pieces"]#["Type_Logement", "Nombre_Pieces","Territoire_HQ"]
         diDep["Mode_Occupation"] = ["Type_Logement"]
         diDep["An_Construction"] = ["Type_Logement"]
+        diDep["Climatisation"] = ["Type_Logement"]
         diDep["Source_Energie_Chauf"] = ["An_Construction", "Type_Logement"]
 
         #diDep["ConsoElecAn"] = ["AnConstruction", "TypeLogement", "SourceEnerChauf"]
@@ -1572,11 +1588,11 @@ class EUEMr(Master_genereBN):
                                               "dropvalues" : [".", "NSP/NRP"],
                                               "Dependancy": ["Type_Logement"]}}
 
-        csvName = PROJECT_DIR+"//data//housing_characteristics//"+dct_MetaStats["Nombre_Logement"]["Csv_name"]
+        #csvName = PROJECT_DIR+"//data//housing_characteristics//"+dct_MetaStats["Nombre_Logement"]["Csv_name"]
         
-
                 # Ajout des tables conditionnelles
         for Name, dct_val in dct_MetaStats.items():
+            csvName = PROJECT_DIR+"//data//housing_characteristics//"+dct_val["Csv_name"]
             lstDep = dct_val["Dependancy"]
             diCPT = {}
             #for k in diDep :

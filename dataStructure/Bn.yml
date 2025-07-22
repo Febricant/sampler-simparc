@@ -1,4 +1,6 @@
 - An_Construction: "Ann\xE9e de construction de l'habitation"
+  Climatisation: Parmi les appareils suivants, lesquels utilisez-vous pour climatiser
+    votre habitation? (Ensemble des mentions)
   Mode_Occupation: "Quel est votre lien avec ce logement ? En \xEAtes-vous..."
   Nombre_Etages: "Nombre d'\xE9tages habitables dans la r\xE9sidence (incluant le\
     \ sous-sol et le garage)"
@@ -23,6 +25,11 @@
     '6': '[2000 - 2010)'
     '7': '[2010 - 2020)'
     '8': '>= 2020'
+  Climatisation:
+    '0': Aucune
+    '1': "Fen\xEAtre, mobile, portable"
+    '2': Murale
+    '3': Centrale
   Mode_Occupation:
     '0': Locataire
     '1': Proprietaire

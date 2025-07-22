@@ -1201,8 +1201,10 @@ class MapHPXML:
 
         #____________________________________________________________
         #Corridor #source : fichier corridor.tsv 
-        if (dct_HPXML.get("geometry_unit_type") in ["Duplex", "Triplex", "Collective"]):
+        if (dct_HPXML.get("geometry_unit_type") in ["Collective"]):
             Corridor = "Double-Loaded Interior"
+        elif (dct_HPXML.get("geometry_unit_type") in ["Duplex", "Triplex"]):
+            Corridor = "Single Exterior Front"
         else:
             Corridor = "Not Applicable"
 
@@ -1223,6 +1225,33 @@ class MapHPXML:
             geometry_corridor_position = "Single Exterior (Front)"
             geometry_corridor_width = 10
    
+        # Adiabatic Walls
+        #simplification de measure.rb
+        dct_HPXML["geometry_unit_left_wall_is_adiabatic"] = False
+        dct_HPXML["geometry_unit_right_wall_is_adiabatic"] = False
+        dct_HPXML["geometry_unit_front_wall_is_adiabatic"] = False
+        dct_HPXML["geometry_unit_back_wall_is_adiabatic"] = False
+        if geometry_corridor_position == "Double Exterior":
+            dct_HPXML["geometry_unit_back_wall_is_adiabatic"] = True
+        elif geometry_corridor_position == "Double-Loaded Interior":
+            dct_HPXML["geometry_unit_front_wall_is_adiabatic"] = True
+        elif geometry_corridor_position == "Single Exterior (Front)":
+            dct_HPXML["geometry_unit_front_wall_is_adiabatic"] = False
+        else:
+            pass
+
+        # Model exterior corridors as overhangs
+        if (("Exterior" in geometry_corridor_position) and (geometry_corridor_width > 0)):
+            dct_HPXML["overhangs_front_depth"] = geometry_corridor_width
+            dct_HPXML["overhangs_front_distance_to_top_of_window"] = 1
+        
+        # Infiltration adjustment for SFA/MF units
+        # Calculate exposed wall area ratio for the unit (unit exposed wall area
+        # divided by average unit exposed wall area)
+
+        ##A FAIRE
+
+ 
 
     #________________________________________________________________
     #geometry_corridor_position
@@ -1259,8 +1288,64 @@ class MapHPXML:
         #conversion format des variable (str double...)
 
 
+        #_________________________________________________________________
+        #climatisation
+        arg = "Climatisation"
+        args = "cooling_system_type"
+        args2 = "cooling_system_cooling_compressor_type"
+        if (args not in dct_HPXML.keys()):
+            if (arg in dct_args.keys()):
+                if dct_args[arg] in ["Centrale"]:
+                    dct_HPXML[args] = 'central air conditioner'
+                    dct_HPXML[args2] = 'single stage'
+                elif dct_args[arg] in ["Murale"]:
+                    dct_HPXML[args] = "mini-split"
+                    dct_HPXML[args2] = 'variable speed'
+                elif dct_args[arg] in ["Fenetre, mobile, portable"]:
+                    dct_HPXML[args] = "room air conditioner"
+                    dct_HPXML[args2] = 'single stage'
+                elif dct_args[arg] in ["Aucune"]:
+                    dct_HPXML[args] = 'none'
+                else:
+                    if self.HPXMLArg.arguments[args].get("Default Value", "Defaut_Not_Existing")!="Defaut_Not_Existing":
+                        dct_HPXML[args] = self.HPXMLArg.arguments[args].get("Default Value")
+                        dct_HPXML[args2] = 'single stage'
+                    else:
+                        dct_HPXML[args] = 'none'
+            else:
+                if self.HPXMLArg.arguments[args].get("Default Value", "Defaut_Not_Existing")!="Defaut_Not_Existing":
+                    dct_HPXML[args] = self.HPXMLArg.arguments[args].get("Default Value")
+                    dct_HPXML[args2] = 'single stage'
+                else:
+                    dct_HPXML[args] = 'none'
 
+        arg = "Climatisation"
+        args = "cooling_system_cooling_compressor_type"
 
+        if (args not in dct_HPXML.keys()):
+            dct_HPXML[args] = 'single stage' #defaut
+            if (arg in dct_args.keys()):
+                if dct_args[arg] in ["Centrale"]:
+                    dct_HPXML[args] = 'single stage'
+                elif dct_args[arg] in ["Murale"]:
+                    dct_HPXML[args] = 'variable speed'
+                elif dct_args[arg] in ["Fenetre, mobile, portable"]:
+                    dct_HPXML[args] = 'single stage'
+                elif dct_args[arg] in ["Aucune"]:
+                    pass#dct_HPXML[args] = 'none'
+                else:
+                    pass
+                    #if self.HPXMLArg.arguments[args].get("Default Value", "Defaut_Not_Existing")!="Defaut_Not_Existing":
+                    #    dct_HPXML[args] = self.HPXMLArg.arguments[args].get("Default Value")
+                    #else:
+                    #    pass#    dct_HPXML[args] = 'none'
+            else:
+                pass
+                #if self.HPXMLArg.arguments[args].get("Default Value", "Defaut_Not_Existing")!="Defaut_Not_Existing":
+                #    dct_HPXML[args] = self.HPXMLArg.arguments[args].get("Default Value")
+                #    dct_HPXML[args2] = 'single stage'
+                #else:
+                #    dct_HPXML[args] = 'none'
 
         # ajout des Valeurs par défaut du HPXML si cle n'existe pas
         k_missing = list(set(self.HPXMLArg.arguments.keys()) - set(dct_HPXML.keys()))

@@ -20,6 +20,14 @@
       <parents>Territoire_HQ</parents>
       <probabilities>0.130654 0.0155502 0.047154 0.021564 0.785078 0.199846 0.0499972 0.0545909 0.0166265 0.67894 0.250078 0.0357956 0.0791344 0.0162977 0.618694 0.472674 0.126095 0.183059 0.0308201 0.187352 0.248618 0.0463721 0.0682466 0.0125838 0.62418</probabilities>
     </cpt>
+    <cpt id="Climatisation">
+      <state id="Aucune" />
+      <state id="Fenêtre, mobile, portable" />
+      <state id="Murale" />
+      <state id="Centrale" />
+      <parents>Type_Logement</parents>
+      <probabilities>0.304422 0.37901 0.23816 0.0784078 0.325499 0.412851 0.225265 0.0363843 0.313328 0.383614 0.239295 0.0637634 0.248977 0.174972 0.404838 0.171214 0.26033 0.155298 0.369145 0.215226</probabilities>
+    </cpt>
     <cpt id="Presence_Garage">
       <state id="Pas de Garage" />
       <state id="Garage non chauffé" />
@@ -123,6 +131,9 @@
       </node>
       <node id="Type_Logement">
         <name>Type_Logement</name>
+      </node>
+      <node id="Climatisation">
+        <name>Climatisation</name>
       </node>
       <node id="Presence_Garage">
         <name>Presence_Garage</name>

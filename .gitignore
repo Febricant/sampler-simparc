@@ -4,9 +4,3 @@ data/*
 # Except for 'sampler'
 !data/BayesianNetwork/
 !data/housing_characteristics/
-
-# Ignore __pycache__ directories
-__pycache__/
-
-# Ignore compiled Python bytecode files
-*.pyc

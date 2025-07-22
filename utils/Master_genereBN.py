@@ -16,11 +16,11 @@ os.environ["PATH"] = current_path + ";C:\\Brice\\Graphviz2.38\\bin"
 
 import pandas as pd
 
-import pyAgrum as gum
+import pyagrum as gum
 try:
-    import pyAgrum.lib.ipython as gnb
+    import pyagrum.lib.ipython as gnb
 except:
-    import pyAgrum.lib.notebook as gnb
+    import pyagrum.lib.notebook as gnb
 
 
 FILE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -93,7 +93,7 @@ if __name__ == "__main__":
     #run in interactive windows
     
     bnM = Master_genereBN()
-    import pyAgrum as gum
+    import pyagrum as gum
     import matplotlib
     matplotlib.use('TkAgg')
 

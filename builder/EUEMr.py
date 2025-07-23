@@ -21,7 +21,7 @@ from datetime import timedelta
 import matplotlib.pyplot as plt
 from utils.Master_genereBN import Master_genereBN
 
-import pyAgrum as gum
+import pyagrum as gum
 
 #import json
 
@@ -1214,6 +1214,26 @@ class FormatageEUEMr:
                                                         "Garage chauffé à autre source":None}
                                                         
 
+        #Type de chauffage
+        self.Mapping["Chauffage_Logement"] = {}
+        self.Mapping["Chauffage_Logement"]["ColSrc"] = "SYSTEM1R" # seulement pour la méthode get_Mettadata
+        self.Mapping["Chauffage_Logement"]["typeMapping"] = "custom"
+        self.Mapping["Chauffage_Logement"]["Mmapping"] = {"Plinthes électriques":None,
+                                                        "Unités convecteurs, plancher ou plafond radiant":None,
+                                                        "Thermopompe":None,
+                                                        "Système central à air chaud":None,
+                                                        "Système central à eau chaude":None,
+                                                        "Fournaise ou poêle à bois":None,
+                                                        "Fournaise murale ou de plancher":None,
+                                                        "Fournaise ou poêle à bois et Plinthes électriques":None,
+                                                        "Fournaise ou poêle à bois et Unités convecteurs, plancher ou plafond radiant":None,
+                                                        "Fournaise ou poêle à bois et Thermopompe":None,
+                                                        "Fournaise ou poêle à bois et Système central à air chaud":None,
+                                                        "Fournaise ou poêle à bois et Système central à eau chaude":None,
+                                                        "Fournaise ou poêle à bois et Fournaise murale ou de plancher":None}#,
+                                                        #"Autres":None,
+                                                        #"Pas de système principal (chalet)":None,}
+
         # QB2I1 : Nombre de réfrigérateurs dans la résidence
         self.Mapping["Nombre_Refrigerateur"] = {}
         self.Mapping["Nombre_Refrigerateur"]["ColSrc"] = "QB2I1"
@@ -1378,8 +1398,22 @@ class FormatageEUEMr:
                                                                  else ("Garage non chauffé" if row["QM1AA"]=="Non" \
                                                                  else ("Garage chauffé à électricité" if row["QM1B"]=="Oui"\
                                                                  else ("Garage chauffé à autre source" if row["QM1A"]=="Oui" else ""))), axis=1).rename(ColName)
-                
-                
+                    
+                    if ColName == "Chauffage_Logement":
+                        return self.dfEUEMrSrc.apply(lambda row: "Plinthes électriques" if row["SYSTEM1R"] in ["Plinthes électriques"]\
+                                                                else ("Fournaise ou poêle à bois et Plinthes électriques" if (((row["SYSTEM1R"] in ["Fournaise ou poêle à bois"]) or (row["SYSTEM1"] in ["Chaudière à eau chaude chauffée au bois"])) and (row["SYSTEM2R"] in ["Plinthes électriques"]))\
+                                                                else ("Fournaise ou poêle à bois et Unités convecteurs, plancher ou plafond radiant" if (((row["SYSTEM1R"] in ["Fournaise ou poêle à bois"])or (row["SYSTEM1"] in ["Chaudière à eau chaude chauffée au bois"])) and (row["SYSTEM2R"] in ["Unités convecteurs, plancher ou plafond radiant"]))\
+                                                                else ("Fournaise ou poêle à bois et Thermopompe" if (((row["SYSTEM1R"] in ["Fournaise ou poêle à bois"]) or (row["SYSTEM1"] in ["Chaudière à eau chaude chauffée au bois"])) and (row["SYSTEM2R"] in ["Thermopompe"]))\
+                                                                else ("Fournaise ou poêle à bois et Système central à air chaud" if (((row["SYSTEM1R"] in ["Fournaise ou poêle à bois"]) or (row["SYSTEM1"] in ["Chaudière à eau chaude chauffée au bois"])) and (row["SYSTEM2R"] in ["Système central à air chaud"]))\
+                                                                else ("Fournaise ou poêle à bois et Système central à eau chaude" if (((row["SYSTEM1R"] in ["Fournaise ou poêle à bois"]) or (row["SYSTEM1"] in ["Chaudière à eau chaude chauffée au bois"])) and (row["SYSTEM2R"] in ["Système central à eau chaude"]))\
+                                                                else ("Fournaise ou poêle à bois et Fournaise murale ou de plancher" if (((row["SYSTEM1R"] in ["Fournaise ou poêle à bois"]) or (row["SYSTEM1"] in ["Chaudière à eau chaude chauffée au bois"])) and (row["SYSTEM2R"] in ["Fournaise murale ou de plancher"]))\
+                                                                else ("Fournaise ou poêle à bois" if ((row["SYSTEM1R"] in ["Fournaise ou poêle à bois"]) or (row["SYSTEM1"] in ["Chaudière à eau chaude chauffée au bois"]))\
+                                                                else ("Unités convecteurs, plancher ou plafond radiant" if row["SYSTEM1R"] in ["Unités convecteurs, plancher ou plafond radiant"]\
+                                                                else ("Thermopompe" if row["SYSTEM1R"] in ["Thermopompe"]\
+                                                                else ("Système central à air chaud" if row["SYSTEM1R"] in ["Système central à air chaud"]\
+                                                                else ("Système central à eau chaude" if row["SYSTEM1R"] in ["Système central à eau chaude"]\
+                                                                else ("Fournaise murale ou de plancher" if row["SYSTEM1R"] in ["Fournaise murale ou de plancher"]\
+                                                                else None)))))))))))), axis=1).rename(ColName)
                 else:
                     raise ValueError(f"Unknown mapping type for column '{ColName}'.")
             else:
@@ -1429,7 +1463,8 @@ class EUEMr(Master_genereBN):
                  #"ConsoElecAn",
                  "An_Construction",
                  "Climatisation",
-                 "Source_Energie_Chauf"]
+                 "Source_Energie_Chauf",
+                 "Chauffage_Logement"]
     
 #    ["QA4", # De quel genre d'habitation s'agit-il?
 #                 "QA1", # Quel est votre lien avec ce logement ?
@@ -1505,8 +1540,10 @@ class EUEMr(Master_genereBN):
         diDep["Nombre_Personnes"] = ["Nombre_Pieces"]#["Type_Logement", "Nombre_Pieces","Territoire_HQ"]
         diDep["Mode_Occupation"] = ["Type_Logement"]
         diDep["An_Construction"] = ["Type_Logement"]
-        diDep["Climatisation"] = ["Type_Logement"]
         diDep["Source_Energie_Chauf"] = ["An_Construction", "Type_Logement"]
+        diDep["Chauffage_Logement"] = ["Type_Logement", "Source_Energie_Chauf"]
+        diDep["Climatisation"] = ["Type_Logement"]
+        
 
         #diDep["ConsoElecAn"] = ["AnConstruction", "TypeLogement", "SourceEnerChauf"]
 

@@ -1,4 +1,5 @@
 - An_Construction: "Ann\xE9e de construction de l'habitation"
+  Chauffage_Logement: "Syst\xE8me principal de chauffage"
   Climatisation: Parmi les appareils suivants, lesquels utilisez-vous pour climatiser
     votre habitation? (Ensemble des mentions)
   Mode_Occupation: "Quel est votre lien avec ce logement ? En \xEAtes-vous..."
@@ -25,6 +26,21 @@
     '6': '[2000 - 2010)'
     '7': '[2010 - 2020)'
     '8': '>= 2020'
+  Chauffage_Logement:
+    '0': "Plinthes \xE9lectriques"
+    '1': "Unit\xE9s convecteurs, plancher ou plafond radiant"
+    '10': "Fournaise ou po\xEAle \xE0 bois et Syst\xE8me central \xE0 air chaud"
+    '11': "Fournaise ou po\xEAle \xE0 bois et Syst\xE8me central \xE0 eau chaude"
+    '12': "Fournaise ou po\xEAle \xE0 bois et Fournaise murale ou de plancher"
+    '2': Thermopompe
+    '3': "Syst\xE8me central \xE0 air chaud"
+    '4': "Syst\xE8me central \xE0 eau chaude"
+    '5': "Fournaise ou po\xEAle \xE0 bois"
+    '6': Fournaise murale ou de plancher
+    '7': "Fournaise ou po\xEAle \xE0 bois et Plinthes \xE9lectriques"
+    '8': "Fournaise ou po\xEAle \xE0 bois et Unit\xE9s convecteurs, plancher ou plafond\
+      \ radiant"
+    '9': "Fournaise ou po\xEAle \xE0 bois et Thermopompe"
   Climatisation:
     '0': Aucune
     '1': "Fen\xEAtre, mobile, portable"

@@ -57,12 +57,13 @@ class BuildstockBachArguments():
         dct_name = {"Geometry Building Number Units.csv": "geometry_building_num_units",
                     "Infiltration.csv" : "Infiltration",
                     "Windows.csv" : "Windows",
-                    "Insulation Wall.csv" : "Insulation_Wall",
-                    "Insulation Ceiling.csv" : "Insulation_Ceiling",
-                    "Insulation Foundation Wall.csv": "Insulation_Foundation_Wall",
-                    "Geometry Wall Exterior Finish.csv" : "Geometry_Wall_Exterior_Finish",
+                    "Insulation Wall.csv" : "Insulation Wall",
+                    "Insulation Ceiling.csv" : "Insulation Ceiling",
+                    "Insulation Foundation Wall.csv": "Insulation Foundation Wall",
+                    "Geometry Wall Exterior Finish.csv" : "Geometry Wall Exterior Finish",
                     "Geometry Attic Type.csv": "geometry attic type",
-                    "HVAC Has Shared System.csv": "HVAC_Has_Shared_System"}
+                    "HVAC Has Shared System.csv": "HVAC Has Shared System",
+                    "HVAC Heating Efficiency.csv": "HVAC Heating Efficiency"}
 
         dct_housing_characteristics = {}
         for file in os.listdir(path):
@@ -86,12 +87,13 @@ class BuildstockBachArguments():
         listAttributs = ["geometry_building_num_units",
                          "Infiltration",
                         "Windows",
-                        "Insulation_Wall",
-                        "Insulation_Ceiling",
-                        "Insulation_Foundation_Wall",
-                        "Geometry_Wall_Exterior_Finish",
+                        "Insulation Wall",
+                        "Insulation Ceiling",
+                        "Insulation Foundation Wall",
+                        "Geometry Wall Exterior Finish",
                         "geometry attic type",
-                        "HVAC_Has_Shared_System"]
+                        "HVAC Has Shared System",
+                        "HVAC Heating Efficiency"]
                         
                         
                         #"Geometry Attic Type",
@@ -829,7 +831,7 @@ class MapHPXML:
         dct_Insulation_Wall["QC_WoodStud-R20.7"]={"wall_type":"WoodStud", "wall_assembly_r":16.09}
         dct_Insulation_Wall["QC_WoodStud-R24.5"]={"wall_type":"WoodStud", "wall_assembly_r":17.63}
         
-        arg = "Insulation_Wall"
+        arg = "Insulation Wall"
         
         if (arg in dct_args.keys()):
             for args in dct_Insulation_Wall[dct_args[arg]]:
@@ -859,14 +861,14 @@ class MapHPXML:
         dct_Insulation_Ceiling["None"] = {"ceiling_assembly_r":0, "ceiling_insulation_r":0} #defaut
 
         #defaut
-        arg = "Insulation_Ceiling"
+        arg = "Insulation Ceiling"
        
         if (arg in dct_args.keys()):
             for args in dct_Insulation_Ceiling["None"]:
                 if ((args not in dct_HPXML.keys()) & (dct_Insulation_Ceiling["None"][args]!="auto")):
                     dct_HPXML[args] = dct_Insulation_Ceiling["None"][args]
 
-        arg = "Insulation_Ceiling"
+        arg = "Insulation Ceiling"
         if (arg in dct_args.keys()):
             for args in dct_Insulation_Ceiling[dct_args[arg]]:
                 if ((args not in dct_HPXML.keys()) & (dct_Insulation_Ceiling[dct_args[arg]][args]!="auto")):
@@ -1010,13 +1012,13 @@ class MapHPXML:
                                                                  "rim_joist_assembly_r":"auto"}
         
         #defaut
-        arg = "Insulation_Foundation_Wall"
+        arg = "Insulation Foundation Wall"
         if (arg in dct_args.keys()):
             for args in dct_Insulation_Foundation_Wall["None"]:
                 if ((args not in dct_HPXML.keys()) & (dct_Insulation_Foundation_Wall["None"][args]!="auto")):
                     dct_HPXML[args] = dct_Insulation_Foundation_Wall["None"][args]
 
-        arg = "Insulation_Foundation_Wall"
+        arg = "Insulation Foundation Wall"
         if (arg in dct_args.keys()):
             for args in dct_Insulation_Foundation_Wall[dct_args[arg]]:
                 if ((args not in dct_HPXML.keys()) & (dct_Insulation_Foundation_Wall[dct_args[arg]][args]!="auto")):
@@ -1040,12 +1042,12 @@ class MapHPXML:
         dct_Geometry_Wall_Exterior_Finish["None"] = {"wall_siding_type":"none", "wall_color":"medium", "exterior_finish_r":0}  # defaut
 
         #defaut
-        arg = "Geometry_Wall_Exterior_Finish"
+        arg = "Geometry Wall Exterior Finish"
         if (arg in dct_args.keys()):
             for args in dct_Geometry_Wall_Exterior_Finish["None"]:
                 if ((args not in dct_HPXML.keys()) & (dct_Geometry_Wall_Exterior_Finish["None"][args]!="auto")):
                     dct_HPXML[args] = dct_Geometry_Wall_Exterior_Finish["None"][args]
-        arg = "Geometry_Wall_Exterior_Finish"
+        arg = "Geometry Wall Exterior Finish"
         if (arg in dct_args.keys()):
             for args in dct_Geometry_Wall_Exterior_Finish[dct_args[arg]]:
                 if ((args not in dct_HPXML.keys()) & (dct_Geometry_Wall_Exterior_Finish[dct_args[arg]][args]!="auto")):
@@ -1452,7 +1454,41 @@ class MapHPXML:
                                                             "heat_pump_heating_capacity_retention_fraction":0.25, "heat_pump_heating_capacity_retention_temp":-5, "heat_pump_is_ducted":False, "heat_pump_backup_heating_lockout_temp":"auto", "heat_pump_compressor_lockout_temp":"auto", "heat_pump_cooling_compressor_type":"auto", "heat_pump_cooling_sensible_heat_fraction":"auto", "heat_pump_crankcase_heater_watts":"auto", "geothermal_loop_configuration":"none", "geothermal_loop_borefield_configuration":"auto", "geothermal_loop_loop_flow":"auto", "geothermal_loop_boreholes_count":"auto", "geothermal_loop_boreholes_length":"auto",
                                                             "geothermal_loop_boreholes_spacing":"auto", "geothermal_loop_boreholes_diameter":"auto", "geothermal_loop_grout_type":"auto", "geothermal_loop_pipe_type":"auto", "geothermal_loop_pipe_diameter":"auto", "hvac_perf_data_capacity_type":"auto", "hvac_perf_data_heating_outdoor_temperatures":"auto", "hvac_perf_data_heating_min_speed_capacities":"auto",
                                                             "hvac_perf_data_heating_max_speed_capacities":"auto", "hvac_perf_data_heating_min_speed_cops":"auto", "hvac_perf_data_heating_max_speed_cops":"auto", "hvac_perf_data_cooling_outdoor_temperatures":"auto", "hvac_perf_data_cooling_min_speed_capacities":"auto", "hvac_perf_data_cooling_max_speed_capacities":"auto", "hvac_perf_data_cooling_min_speed_cops":"auto", "hvac_perf_data_cooling_max_speed_cops":"auto"}
+        #bois  #TODO: ajouter les autres types de chauffage
+        dct_HVAC_Heating["Fuel Boiler, 72% AFUE & Electric Baseboard, 100% Efficiency"] = dct_HVAC_Heating["Fuel Boiler, 72% AFUE"].copy()
+        dct_HVAC_Heating["Fuel Boiler, 72% AFUE & Electric Wall Furnace, 100% AFUE"] = dct_HVAC_Heating["Fuel Boiler, 72% AFUE"].copy()
+        dct_HVAC_Heating["Fuel Boiler, 72% AFUE & ASHP, SEER 15, 8.5 HSPF"] = dct_HVAC_Heating["Fuel Boiler, 72% AFUE"].copy()
+        dct_HVAC_Heating["Fuel Boiler, 72% AFUE & Electric Furnace, 100% AFUE"] = dct_HVAC_Heating["Fuel Boiler, 72% AFUE"].copy()
+        dct_HVAC_Heating["Fuel Boiler, 72% AFUE & Electric Boiler, 100% AFUE"] = dct_HVAC_Heating["Fuel Boiler, 72% AFUE"].copy()
+        dct_HVAC_Heating["Fuel Boiler, 72% AFUE & Electric Wall Furnace, 100% AFUE.1"] = dct_HVAC_Heating["Fuel Boiler, 72% AFUE"].copy()
+        dct_HVAC_Heating["Fuel Boiler, 72% AFUE & Fuel Furnace, 80% AFUE"] = dct_HVAC_Heating["Fuel Boiler, 72% AFUE"].copy()
+        dct_HVAC_Heating["Fuel Boiler, 72% AFUE & Fuel Boiler, 80% AFUE"] = dct_HVAC_Heating["Fuel Boiler, 72% AFUE"].copy()
+
+        # bienergie PAC + Gz ou mazout app
+        dct_HVAC_Heating["Fuel Furnace, 80% AFUE & ASHP, SEER 15, 8.5 HSPF"] = dct_HVAC_Heating["ASHP, SEER 15, 8.5 HSPF"].copy()
+        dct_HVAC_Heating["Fuel Furnace, 80% AFUE & ASHP, SEER 15, 8.5 HSPF"]["heat_pump_type"] = "air-to-air"
+        dct_HVAC_Heating["Fuel Furnace, 80% AFUE & ASHP, SEER 15, 8.5 HSPF"]["heat_pump_compressor_lockout_temp"] = 10.4 #F =-12C
+        dct_HVAC_Heating["Fuel Furnace, 80% AFUE & ASHP, SEER 15, 8.5 HSPF"]["heat_pump_backup_type"] = "separate"
+        dct_HVAC_Heating["Fuel Furnace, 80% AFUE & ASHP, SEER 15, 8.5 HSPF"]["heat_pump_backup_fuel"] = "fuel oil"
+        dct_HVAC_Heating["Fuel Furnace, 80% AFUE & ASHP, SEER 15, 8.5 HSPF"]["heat_pump_backup_heating_efficiency"] = 0.8
+        dct_HVAC_Heating["Fuel Furnace, 80% AFUE & ASHP, SEER 15, 8.5 HSPF"]["heat_pump_backup_heating_capacity"] = "auto"
+
+        # bienergie Élec+Mazout/Gaz (air) #TODO : ajouter les autres types de chauffage
+        dct_HVAC_Heating["Electric Furnace, 100% AFUE & Fuel Furnace, 80% AFUE"] = dct_HVAC_Heating["Electric Furnace, 100% AFUE"].copy()
         
+        # bienergie Élec+Mazout/Gaz (eau) #TODO : ajouter les autres types de chauffage
+        dct_HVAC_Heating["Electric Boiler, 100% AFUE & Fuel Boiler, 80% AFUE"] = dct_HVAC_Heating["Electric Boiler, 100% AFUE"].copy()
+        
+                #windows
+        arg = "HVAC Heating Efficiency"
+        if (arg in dct_args.keys()):
+            for args in dct_HVAC_Heating[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) & (dct_HVAC_Heating[dct_args[arg]][args]!="auto")):
+                    dct_HPXML[args] = dct_HVAC_Heating[dct_args[arg]][args]
+        #
+        #bienergie : 90% à 95.6% au Mazout+elec
+        #Bois en combinaison : 
+
         #arg = "Chauffage_Logement"
         #if (arg in dct_args.keys()):
         #    if dct_args[arg] in ["  "]:
@@ -1483,6 +1519,9 @@ class MapHPXML:
 
         #_________________________________________________________________
         #climatisation
+        # TODO Vérification si il y a une thermopompe
+
+
         arg = "Climatisation"
         args = "cooling_system_type"
         args2 = "cooling_system_cooling_compressor_type"
@@ -1573,7 +1612,7 @@ if __name__ == "__main__":
     # Display the Bayesian Network - Avant enregistrement
     #gnb.showInference(InsClsSampler.bn,evs={},size = '30')
 
-    Nombre_de_Samples = 10
+    Nombre_de_Samples = 100
     Evidence = {}#"Type_Logement": "Collective",
                 #"Nombre_Pieces": "1"}#{"Mode_Occupation": "Proprietaire"}
 

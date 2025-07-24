@@ -10,3 +10,6 @@ __pycache__/
 
 # Ignore compiled Python bytecode files
 *.pyc
+
+# .vscode folder
+.vscode/

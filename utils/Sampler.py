@@ -1430,7 +1430,9 @@ class MapHPXML:
         #_________________________________________________________________
         #climatisation
         # TODO Vérification si il y a une thermopompe
-        if dct_HPXML.get("heat_pump_cooling_compressor_type") == None:
+        if dct_HPXML.get("heat_pump_cooling_compressor_type") != None:
+            dct_HPXML["cooling_system_type"] = 'none'
+        else:
             arg = "Climatisation"
             args = "cooling_system_type"
             args2 = "cooling_system_cooling_compressor_type"

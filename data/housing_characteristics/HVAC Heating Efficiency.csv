@@ -15,7 +15,7 @@ Bois;Fournaise ou poêle à bois;0;0;0;0;0;0;0;0;1;0;0;0;0;0.0;0.0;0.0;0.0;0.0;0
 Bois;Fournaise ou poêle à bois et Plinthes électriques;0;0;0;0;0;0;0;0;0;0;1;0;0;0.0;0.0;0.0;0.0;0.0;0;0;0
 Bois;Fournaise ou poêle à bois et Unités convecteurs, plancher ou plafond radiant;0;0;0;0;0;0;0;0;0;0;0;1;0;0.0;0.0;0.0;0.0;0.0;0;0;0
 Bois;Fournaise ou poêle à bois et Thermopompe;0;0;0;0;0;0;0;0;0;0;0;0;1;0.0;0.0;0.0;0.0;0.0;0;0;0
-Bois;Fournaise ou poêle à bois et Système central à air chaud;0;0;0;0;0;0;0;0;0;0;0;0;0;0.63;0.0;0.0;0.37;;0;0;0
+Bois;Fournaise ou poêle à bois et Système central à air chaud;0;0;0;0;0;0;0;0;0;0;0;0;0;0.63;0.0;0.0;0.37;0.0;0;0;0
 Bois;Fournaise ou poêle à bois et Système central à eau chaude;0;0;0;0;0;0;0;0;0;0;0;0;0;0.0;0.9;0.0;0.0;0.1;0;0;0
 Bois;Fournaise ou poêle à bois et Fournaise murale ou de plancher;0;0;0;0;0;0;0;0;0;0;0;0;0;0.0;0.0;0.71;0.29;0.0;0;0;0
 Bi-energie;Thermopompe;0;0;0;1;0;0;0;0;0;0;0;0;0;0.0;0.0;0.0;0.0;0.0;1;0;0

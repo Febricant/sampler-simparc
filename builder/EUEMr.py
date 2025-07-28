@@ -1542,7 +1542,7 @@ class EUEMr(Master_genereBN):
         diDep["An_Construction"] = ["Type_Logement"]
         diDep["Source_Energie_Chauf"] = ["An_Construction", "Type_Logement"]
         diDep["Chauffage_Logement"] = ["Type_Logement", "Source_Energie_Chauf"]
-        diDep["Climatisation"] = ["Type_Logement"]
+        diDep["Climatisation"] = ["Type_Logement","Chauffage_Logement"]
         
 
         #diDep["ConsoElecAn"] = ["AnConstruction", "TypeLogement", "SourceEnerChauf"]

@@ -29,7 +29,7 @@ PROJECT_DIR = os.path.abspath(FILE_DIR+ "/../")  # répertoire supérieur
 #PACKAGE_DIR = os.path.abspath(PROJECT_DIR)#+ "/../")
 sys.path.append(os.path.join(PROJECT_DIR))
 
-from utils.Sampler import Sampler,  BuildstockBachArguments, MapHPXML
+from utils.Sampler import Sampler,  BuildstockBatchArguments, MapHPXML
 
 import pyagrum.lib.image as gimg
 #try:
@@ -119,7 +119,7 @@ def DashBoard():
             #lst_dct_HPXML = MapSample.run(lst_dct_args)
             
             #Ajout de varaible hors BN
-            Bba = BuildstockBachArguments()
+            Bba = BuildstockBatchArguments()
             lst_dct_args2 = Bba.sampling( lst_dct_args)
 
             lst_dct_args = [ d2 | d1 for d1, d2 in zip(lst_dct_args, lst_dct_args2)]#lst_dct_args prioritaire

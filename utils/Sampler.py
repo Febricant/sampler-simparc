@@ -42,7 +42,7 @@ class Sampler(Master_genereBN):
             lst_NOEUD, LIST_Dict = yaml.safe_load(file)
         return lst_NOEUD, LIST_Dict
 
-class BuildstockBachArguments():
+class BuildstockBatchArguments():
     def __init__(self):
         self.randGenerator = np.random.default_rng(seed=0)
         self.dct_housing_characteristics = self.csv_to_dict()
@@ -1535,7 +1535,7 @@ if __name__ == "__main__":
     #print(s.lst_NOEUD, s.LIST_Dict)
 
     #Ajout de varaible hors BN
-    Bba = BuildstockBachArguments()
+    Bba = BuildstockBatchArguments()
     lst_dct_args2 = Bba.sampling( lst_dct_args)
 
     lst_dct_args = [ d2 | d1 for d1, d2 in zip(lst_dct_args, lst_dct_args2)]#lst_dct_args prioritaire

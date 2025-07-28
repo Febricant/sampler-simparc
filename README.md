@@ -2,10 +2,10 @@
 Sampler for residential
 
 
-## Installation dans un ordinateur bur :
+## Installation dans un ordinateur bur
 setting (pour permettre l'installation de package): 
 
-    "http.proxy": "http://proxysg.hydro.qc.ca:8080"
+    "http.proxy": "http://bpbqvsg600.ireq.ca:8080"
 
 s'assurer d'être connecté à artifactory
 
@@ -41,10 +41,13 @@ Lancer la tache :
 
     Menu Terminal - Run Task - choisir la tâche 
 
+## Lancer le tableau de bord
+    python -m streamlit run "./ui/Dashboard.py"
+
 ## Mise à jour de la listes des packages requise dans un env situé dans un autre répertoire que le projet :
 setting (pour permettre la connection à pypi): 
 
-    "http.proxy": "http://proxysg.hydro.qc.ca:8080"
+    "http.proxy": "http://bpbqvsg600.ireq.ca:8080"
 
 Commandes à exécuter à partir de l'env, en se plaçant dans le répertoire du projet :
 

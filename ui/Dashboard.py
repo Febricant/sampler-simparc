@@ -3,7 +3,7 @@
 Created on 26-06-2025
 
 @author: cv1751 - Brice Le Lostec
-@description: Class for generating Bayesian Networks (BN) using pyAgrum.
+@description: Class for generating Bayesian Networks (BN) using pyagrum.
 @note: This class provides methods to save, load, plot Bayesian Networks and load CSV files.
 @version: 1.0
 python 3.11
@@ -29,15 +29,15 @@ PROJECT_DIR = os.path.abspath(FILE_DIR+ "/../")  # répertoire supérieur
 #PACKAGE_DIR = os.path.abspath(PROJECT_DIR)#+ "/../")
 sys.path.append(os.path.join(PROJECT_DIR))
 
-from utils.Sampler import Sampler, MapHPXML
+from utils.Sampler import Sampler,  BuildstockBachArguments, MapHPXML
 
-import pyAgrum.lib.image as gimg
+import pyagrum.lib.image as gimg
 #try:
-#    import pyAgrum.lib.ipython as gnb
+#    import pyagrum.lib.ipython as gnb
 #except:
-#    import pyAgrum.lib.notebook as gnb
+#    import pyagrum.lib.notebook as gnb
 
-import pyAgrum as gum
+import pyagrum as gum
 
 import json
 
@@ -115,8 +115,18 @@ def DashBoard():
             df = InsClsSampler.do_Sampling(Nombre_de_Samples, evs = settings)
 
             lst_dct_args = df.to_dict(orient='records')
+            #MapSample = MapHPXML()
+            #lst_dct_HPXML = MapSample.run(lst_dct_args)
+            
+            #Ajout de varaible hors BN
+            Bba = BuildstockBachArguments()
+            lst_dct_args2 = Bba.sampling( lst_dct_args)
+
+            lst_dct_args = [ d2 | d1 for d1, d2 in zip(lst_dct_args, lst_dct_args2)]#lst_dct_args prioritaire
+
             MapSample = MapHPXML()
             lst_dct_HPXML = MapSample.run(lst_dct_args)
+
             df2 = pd.DataFrame(lst_dct_HPXML)
             #g=gum.BNDatabaseGenerator(InsClsSampler.bn)
             #g.setRandomVarOrder()

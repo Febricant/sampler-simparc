@@ -422,6 +422,36 @@ class MapHPXML:
         #Plex : Ne pas ajouter de de garage
         #geometry_garage_depth
 
+        #building size (based on buildresidentialhpxml - geometry.rb)
+        # calculate the dimensions of the building
+        # we have: (1) aspect_ratio = fb / lr, and (2) footprint = fb * lr
+        
+        fb = (dct_HPXML["geometry_unit_cfa"] *dct_HPXML["geometry_unit_aspect_ratio"])**0.5
+        lr = dct_HPXML["geometry_unit_cfa"] / fb
+        length = fb
+        width = lr
+
+        max_garage_depth = length -1
+        max_garage_width =  width / (1.0 - dct_HPXML["geometry_garage_protrusion"]) -1
+        if max_garage_depth>24:
+            garage_depth = 24 #12 / 24 / 36 taille du garage
+        else:
+            garage_depth = max_garage_depth
+
+        #if max_garage_width>36:
+        #    garage_width = 36 #12 / 24 / 36 taille du garage
+        if max_garage_width>24:
+            garage_width = 24
+        elif max_garage_width>12:
+            garage_width = 12
+        else:
+            garage_width = max_garage_width
+
+        if dct_HPXML["geometry_unit_cfa"] <=2000:
+            if garage_depth>12:
+                garage_depth =12
+            if garage_width>20:
+                garage_width =20
 
         arg = "Presence_Garage"
         argHPXML = "geometry_garage_width"
@@ -431,12 +461,9 @@ class MapHPXML:
                                       "Garage chauffé à électricité",
                                       "Garage chauffé à autre source"]):
                     if (dct_HPXML.get("geometry_unit_type") in ["single-family detached"]):#, "single-family attached"]): Pas supporté pour les attached
-                        if dct_HPXML.get("geometry_unit_cfa") < 750:
-                            dct_HPXML[argHPXML] = 12 #12 / 24 / 36 taille du garage
-                        else:
-                            dct_HPXML[argHPXML] = 24 #12 / 24 / 36 taille du garage
+                        dct_HPXML[argHPXML] = garage_width #12 / 24 / 36 taille du garage
                         #geometry_garage_depth
-                        dct_HPXML["geometry_garage_depth"] = 24
+                        dct_HPXML["geometry_garage_depth"] = garage_depth
                         #geometry_garage_position
                         dct_HPXML["geometry_garage_position"] = "Right"
                     else:

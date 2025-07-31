@@ -1459,7 +1459,7 @@ class MapHPXML:
         dct_HVAC_Heating["Fuel Furnace, 80% AFUE & ASHP, SEER 15, 8.5 HSPF"] = dct_HVAC_Heating["ASHP, SEER 15, 8.5 HSPF"].copy()
         dct_HVAC_Heating["Fuel Furnace, 80% AFUE & ASHP, SEER 15, 8.5 HSPF"]["heat_pump_type"] = "air-to-air"
         dct_HVAC_Heating["Fuel Furnace, 80% AFUE & ASHP, SEER 15, 8.5 HSPF"]["heat_pump_compressor_lockout_temp"] = 10.4 #F =-12C
-        dct_HVAC_Heating["Fuel Furnace, 80% AFUE & ASHP, SEER 15, 8.5 HSPF"]["heat_pump_backup_type"] = "separate"
+        dct_HVAC_Heating["Fuel Furnace, 80% AFUE & ASHP, SEER 15, 8.5 HSPF"]["heat_pump_backup_type"] = "integrated"
         dct_HVAC_Heating["Fuel Furnace, 80% AFUE & ASHP, SEER 15, 8.5 HSPF"]["heat_pump_backup_fuel"] = "fuel oil"
         dct_HVAC_Heating["Fuel Furnace, 80% AFUE & ASHP, SEER 15, 8.5 HSPF"]["heat_pump_backup_heating_efficiency"] = 0.8
         dct_HVAC_Heating["Fuel Furnace, 80% AFUE & ASHP, SEER 15, 8.5 HSPF"]["heat_pump_backup_heating_capacity"] = "auto"

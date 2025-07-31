@@ -420,6 +420,8 @@ class MapHPXML:
         #geometry_garage_width
         #The width of the garage. Enter zero for no garage. Only applies to single-family detached units.	
         #Plex : Ne pas ajouter de de garage
+        #geometry_garage_depth
+
 
         arg = "Presence_Garage"
         argHPXML = "geometry_garage_width"
@@ -430,21 +432,33 @@ class MapHPXML:
                                       "Garage chauffé à autre source"]):
                     if (dct_HPXML.get("geometry_unit_type") in ["single-family detached"]):#, "single-family attached"]): Pas supporté pour les attached
                         dct_HPXML[argHPXML] = 24 #12 / 24 / 36 taille du garage
+                        #geometry_garage_depth
+                        dct_HPXML["geometry_garage_depth"] = 24
+                        #geometry_garage_position
+                        dct_HPXML["geometry_garage_position"] = "Right"
                     else:
                         dct_HPXML[argHPXML] = 0 #Pas de garage pour les plex/appartemnt
+                        dct_HPXML["geometry_garage_depth"] = 0
+                        #geometry_garage_position
+                        dct_HPXML["geometry_garage_position"] = "Right"
                 else:
                     dct_HPXML[argHPXML] = 0
+                    dct_HPXML["geometry_garage_depth"] = 0
+                    #geometry_garage_position
+                    dct_HPXML["geometry_garage_position"] = "Right"
             else:
                 if self.HPXMLArg.arguments[argHPXML].get("Default Value", "Defaut_Not_Existing")!="Defaut_Not_Existing":
                     dct_HPXML[argHPXML] = self.HPXMLArg.arguments[argHPXML].get("Default Value")
+                    dct_HPXML["geometry_garage_depth"] = 0
+                    #geometry_garage_position
+                    dct_HPXML["geometry_garage_position"] = "Right"
                 else:
                     dct_HPXML[argHPXML] = 0 #No garage
+                    dct_HPXML["geometry_garage_depth"] = 0
+                    #geometry_garage_position
+                    dct_HPXML["geometry_garage_position"] = "Right"
 
-        #geometry_garage_depth
-        dct_HPXML["geometry_garage_depth"] = 24
-        
-        #geometry_garage_position
-        dct_HPXML["geometry_garage_position"] = "Right"
+
 
         #_____________________________________________________________
         #geometry_unit_num_floors_above_grade

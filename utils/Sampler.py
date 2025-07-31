@@ -431,7 +431,10 @@ class MapHPXML:
                                       "Garage chauffé à électricité",
                                       "Garage chauffé à autre source"]):
                     if (dct_HPXML.get("geometry_unit_type") in ["single-family detached"]):#, "single-family attached"]): Pas supporté pour les attached
-                        dct_HPXML[argHPXML] = 24 #12 / 24 / 36 taille du garage
+                        if dct_HPXML.get("geometry_unit_cfa") < 750:
+                            dct_HPXML[argHPXML] = 12 #12 / 24 / 36 taille du garage
+                        else:
+                            dct_HPXML[argHPXML] = 24 #12 / 24 / 36 taille du garage
                         #geometry_garage_depth
                         dct_HPXML["geometry_garage_depth"] = 24
                         #geometry_garage_position

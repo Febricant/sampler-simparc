@@ -215,6 +215,13 @@ class MapHPXML:
 
         #________________________________________________________________
         #Type de Logement
+        arg = "Geometry Building Number Units"
+        argHPXML = "geometry_building_num_units"
+        if (argHPXML not in dct_HPXML.keys()):
+            if (arg in dct_args.keys()):
+                dct_HPXML[argHPXML] = dct_args[arg]
+        #________________________________________________________________
+        #Type de Logement
         arg = "Type_Logement"
         argHPXML = "geometry_unit_type"
         if (argHPXML not in dct_HPXML.keys()):

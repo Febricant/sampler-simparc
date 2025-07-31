@@ -1097,7 +1097,7 @@ class FormatageEUEMr:
         self.Mapping["Type_Logement"] = {
                                 "ColSrc" : "QA4",
                                 "typeMapping" : "list",
-                                "Mmapping" : {"Collective" :["Immeuble de 4 à 8 appartements",
+                                "Mapping" : {"Collective" :["Immeuble de 4 à 8 appartements",
                                                             "Immeuble de 9 à 19 appartements",
                                                             "Immeuble de 50 appartements ou plus",
                                                             "Immeuble de 20 à 49 appartements",
@@ -1118,7 +1118,7 @@ class FormatageEUEMr:
         self.Mapping["Mode_Occupation"] = {
                                 "ColSrc" : "QA1",
                                 "typeMapping" : "list",
-                                "Mmapping" : {"Locataire" :["Le locataire / Co-locataire"],
+                                "Mapping" : {"Locataire" :["Le locataire / Co-locataire"],
                                             "Proprietaire" : ["Le propriétaire / Co-propriétaire"]}}
         
         ConsoElecAn_kmax = 45000
@@ -1129,7 +1129,7 @@ class FormatageEUEMr:
         self.Mapping["Consommation_Elec_An"] = {
                                 "ColSrc" : "CONS_AN",
                                 "typeMapping" : "bin",
-                                "Mmapping" : {"labels" : ConsoElecAn_labels,
+                                "Mapping" : {"labels" : ConsoElecAn_labels,
                                               "bins" : ConsoElecAn_bins}}
         
         AnConstruction_kmax = 2020
@@ -1140,13 +1140,13 @@ class FormatageEUEMr:
         self.Mapping["An_Construction"] = {
                                 "ColSrc" : "QA6M",
                                 "typeMapping" : "bin",
-                                "Mmapping" : {"labels" : AnConstruction_labels,
+                                "Mapping" : {"labels" : AnConstruction_labels,
                                             "bins" : AnConstruction_bins}}
 
         self.Mapping["Source_Energie_Chauf"] = {
                                 "ColSrc" : "QC1R",
                                 "typeMapping" : "list",
-                                "Mmapping" : {"Electricite" :["Électricité"],
+                                "Mapping" : {"Electricite" :["Électricité"],
                                             "Mazout" : ["Mazout"],
                                             "Gaz naturel" : ["Gaz naturel"],
                                             "Bi-energie" : ["Bi-énergie"],
@@ -1155,7 +1155,7 @@ class FormatageEUEMr:
         self.Mapping["Territoire_HQ"] = {}
         self.Mapping["Territoire_HQ"]["ColSrc"] = "TERR_HQ"
         self.Mapping["Territoire_HQ"]["typeMapping"] = "list"
-        self.Mapping["Territoire_HQ"]["Mmapping"] = {"Est et Nord du Québec" : ["Est et nord du Québec"],
+        self.Mapping["Territoire_HQ"]["Mapping"] = {"Est et Nord du Québec" : ["Est et nord du Québec"],
                                                      "Laurentides": ["Laurentides"],
                                                      "Montmorency": ["Montmorency"],
                                                      "Montréal": ["Montréal"],
@@ -1164,13 +1164,13 @@ class FormatageEUEMr:
         self.Mapping["Nombre_Pieces"] = {}
         self.Mapping["Nombre_Pieces"]["ColSrc"] = "QH1"
         self.Mapping["Nombre_Pieces"]["typeMapping"] = "list"
-        self.Mapping["Nombre_Pieces"]["Mmapping"] = {str(i): [i] for i in range(1,14+1)}
-        self.Mapping["Nombre_Pieces"]["Mmapping"]["15 et plus"] = [str(i) for i in range(15,20+1)]
+        self.Mapping["Nombre_Pieces"]["Mapping"] = {str(i): [i] for i in range(1,14+1)}
+        self.Mapping["Nombre_Pieces"]["Mapping"]["15 et plus"] = [str(i) for i in range(15,20+1)]
 
         self.Mapping["Nombre_Etages"] = {}
         self.Mapping["Nombre_Etages"]["ColSrc"] = "QH2"
         self.Mapping["Nombre_Etages"]["typeMapping"] = "list"
-        self.Mapping["Nombre_Etages"]["Mmapping"] = {"Un étage": ["Un étage", "1.5 étages"],#trop peu de "1.5 étages"
+        self.Mapping["Nombre_Etages"]["Mapping"] = {"Un étage": ["Un étage", "1.5 étages"],#trop peu de "1.5 étages"
                                                      "Deux étages": ["Deux étages", "2 ½étages"],#trop peu de "2 ½étages"
                                                         "Trois étages et plus": ["Trois étages", "3½ étages", "Quatre étages", "4½ étages", "5 étages"]}
 
@@ -1182,14 +1182,14 @@ class FormatageEUEMr:
         self.Mapping["Superficie_Totale"] = {}
         self.Mapping["Superficie_Totale"]["ColSrc"] = "SUPERTOT"
         self.Mapping["Superficie_Totale"]["typeMapping"] = "bin"
-        self.Mapping["Superficie_Totale"]["Mmapping"] = {"labels" : Superficie_Totale_labels,
+        self.Mapping["Superficie_Totale"]["Mapping"] = {"labels" : Superficie_Totale_labels,
                                     "bins" : Superficie_Totale_bins}
 
 
         self.Mapping["Presence_SousSol"] = {}
         self.Mapping["Presence_SousSol"]["ColSrc"] = "QH4"
         self.Mapping["Presence_SousSol"]["typeMapping"] = "list"# ne s'applique qu'au maison
-        self.Mapping["Presence_SousSol"]["Mmapping"] = {"Sous sol 6 pied":["Un sous-sol d'une hauteur de 6 ou 7 pieds avec murs & planchers en béton (inclus les demis sous-sol)"],
+        self.Mapping["Presence_SousSol"]["Mapping"] = {"Sous sol 6 pied":["Un sous-sol d'une hauteur de 6 ou 7 pieds avec murs & planchers en béton (inclus les demis sous-sol)"],
                                                         "Vide sanitaire moins 6 pieds" :["Un vide sanitaire d'une hauteur inférieure à 7 pieds avec plancher en terre"],
                                                         "Aucun Sous-sol ou vide sanitaire" :[".", "Ne comporte ni sous-sol, ni vide sanitaire"],
                                                         "Sous-sol et vide sanitaire" :["Un sous-sol et un vide sanitaire"]}
@@ -1197,7 +1197,7 @@ class FormatageEUEMr:
         self.Mapping["Nombre_Personnes"] = {}
         self.Mapping["Nombre_Personnes"]["ColSrc"] = "QL1"
         self.Mapping["Nombre_Personnes"]["typeMapping"] = "list"
-        self.Mapping["Nombre_Personnes"]["Mmapping"] = {"1":[1],
+        self.Mapping["Nombre_Personnes"]["Mapping"] = {"1":[1],
                                                         "2" :[2],
                                                         "3" :[3],
                                                         "4" :[4],
@@ -1208,7 +1208,7 @@ class FormatageEUEMr:
         self.Mapping["Presence_Garage"] = {}
         self.Mapping["Presence_Garage"]["ColSrc"] = "QM1A" # seulement pour la méthode get_Mettadata
         self.Mapping["Presence_Garage"]["typeMapping"] = "custom"
-        self.Mapping["Presence_Garage"]["Mmapping"] = {"Pas de Garage":None,
+        self.Mapping["Presence_Garage"]["Mapping"] = {"Pas de Garage":None,
                                                         "Garage non chauffé":None,
                                                         "Garage chauffé à électricité":None,
                                                         "Garage chauffé à autre source":None}
@@ -1218,7 +1218,7 @@ class FormatageEUEMr:
         self.Mapping["Chauffage_Logement"] = {}
         self.Mapping["Chauffage_Logement"]["ColSrc"] = "SYSTEM1R" # seulement pour la méthode get_Mettadata
         self.Mapping["Chauffage_Logement"]["typeMapping"] = "custom"
-        self.Mapping["Chauffage_Logement"]["Mmapping"] = {"Plinthes électriques":None,
+        self.Mapping["Chauffage_Logement"]["Mapping"] = {"Plinthes électriques":None,
                                                         "Unités convecteurs, plancher ou plafond radiant":None,
                                                         "Thermopompe":None,
                                                         "Système central à air chaud":None,
@@ -1238,7 +1238,7 @@ class FormatageEUEMr:
         self.Mapping["Nombre_Refrigerateur"] = {}
         self.Mapping["Nombre_Refrigerateur"]["ColSrc"] = "QB2I1"
         self.Mapping["Nombre_Refrigerateur"]["typeMapping"] = "list"
-        self.Mapping["Nombre_Refrigerateur"]["Mmapping"] = {"1":[1],
+        self.Mapping["Nombre_Refrigerateur"]["Mapping"] = {"1":[1],
                                                         "2" :[2],
                                                         "3 et plus" :[3, 4, 5,
                                                                        7]}
@@ -1247,7 +1247,7 @@ class FormatageEUEMr:
         self.Mapping["Nombre_Logement"] = {}
         self.Mapping["Nombre_Logement"]["ColSrc"] = "QA4M"
         self.Mapping["Nombre_Logement"]["typeMapping"] = "no"
-        self.Mapping["Nombre_Logement"]["Mmapping"] = {}
+        self.Mapping["Nombre_Logement"]["Mapping"] = {}
 
         #QD11BM1 type de climatisation
         #Ne sait pas/Ne répond pas ; Aucune de ces réponses
@@ -1255,7 +1255,7 @@ class FormatageEUEMr:
         self.Mapping["Climatisation"] = {}
         self.Mapping["Climatisation"]["ColSrc"] = "QD11BM1"
         self.Mapping["Climatisation"]["typeMapping"] = "list"
-        self.Mapping["Climatisation"]["Mmapping"] = {"Aucune": ["."],
+        self.Mapping["Climatisation"]["Mapping"] = {"Aucune": ["."],
                                                      "Fenêtre, mobile, portable": ["Climatiseur de fenêtre",
                                                                                    "Climatiseur mobile / portable"],
                                                      "Murale": ["Climatiseur mural ou bibloc (mini-split)","Thermopompe murale"],
@@ -1324,18 +1324,18 @@ class FormatageEUEMr:
         for keyMap, dictMap in self.Mapping.items():
             try:
                 if dictMap["typeMapping"] == "list":
-                    Metadata[keyMap] = {"Label": list(dictMap["Mmapping"].keys()),
-                                        "IdLabel": [str(i) for i in range(len(dictMap["Mmapping"]))],
+                    Metadata[keyMap] = {"Label": list(dictMap["Mapping"].keys()),
+                                        "IdLabel": [str(i) for i in range(len(dictMap["Mapping"]))],
                                         "Description": Attribut_EUEMr.__dict__[dictMap["ColSrc"]]["Description"],
                                         "Type": "discrete"}
                 elif dictMap["typeMapping"] == "bin":
-                    Metadata[keyMap] = {"Label": dictMap["Mmapping"]["labels"],
-                                        "IdLabel": [str(i) for i in range(len(dictMap["Mmapping"]["labels"]))],
+                    Metadata[keyMap] = {"Label": dictMap["Mapping"]["labels"],
+                                        "IdLabel": [str(i) for i in range(len(dictMap["Mapping"]["labels"]))],
                                         "Description": Attribut_EUEMr.__dict__[dictMap["ColSrc"]]["Description"],
                                         "Type": "discrete"}
                 elif dictMap["typeMapping"] == "custom":
-                    Metadata[keyMap] = {"Label": dictMap["Mmapping"].keys(),
-                                        "IdLabel": [str(i) for i in range(len(dictMap["Mmapping"]))],
+                    Metadata[keyMap] = {"Label": dictMap["Mapping"].keys(),
+                                        "IdLabel": [str(i) for i in range(len(dictMap["Mapping"]))],
                                         "Description": Attribut_EUEMr.__dict__[dictMap["ColSrc"]]["Description"],
                                         "Type": "discrete"}
                 elif dictMap["typeMapping"] == "no":
@@ -1346,8 +1346,8 @@ class FormatageEUEMr:
             except KeyError as e:
                 print(f"Error processing mapping for key: {keyMap} : {e}")
                 
-            #Metadata[keyMap] = {"Label": list(dictMap["Mmapping"].keys()),
-            #                    "IdLabel": [str(i) for i in range(len(dictMap["Mmapping"]))],
+            #Metadata[keyMap] = {"Label": list(dictMap["Mapping"].keys()),
+            #                    "IdLabel": [str(i) for i in range(len(dictMap["Mapping"]))],
             #                    "Description": Attribut_EUEMr.__dict__[dictMap["ColSrc"]]["Description"],
             #                   "Type": "discrete"}
         return Metadata
@@ -1378,7 +1378,7 @@ class FormatageEUEMr:
                 
                 elif self.Mapping[ColName]["typeMapping"] == "list":
                     dct_replace = {}
-                    for k, v in self.Mapping[ColName]["Mmapping"].items():
+                    for k, v in self.Mapping[ColName]["Mapping"].items():
                         for val in v:
                             dct_replace[val] = k
                     tempoSeries = self.dfEUEMrSrc[self.Mapping[ColName]["ColSrc"]].replace(dct_replace).rename(ColName)
@@ -1388,8 +1388,8 @@ class FormatageEUEMr:
                 elif self.Mapping[ColName]["typeMapping"] == "bin":
 
                     return pd.cut(self.dfEUEMrSrc[self.Mapping[ColName]["ColSrc"]],
-                                bins=self.Mapping[ColName]["Mmapping"]["bins"],
-                                labels=self.Mapping[ColName]["Mmapping"]["labels"],
+                                bins=self.Mapping[ColName]["Mapping"]["bins"],
+                                labels=self.Mapping[ColName]["Mapping"]["labels"],
                                 right=False).rename(ColName)                
                 
                 elif self.Mapping[ColName]["typeMapping"] == "custom":#type de Mapping (plus complexe)

@@ -54,7 +54,9 @@ class BuildstockBatchArguments():
         :param path: Path to the CSV file.
         :return: Dictionary with column names as keys and lists of column values as values.
         """
-        dct_name = {"Geometry Building Number Units.csv": "geometry_building_num_units",
+        dct_name = {"Geometry Stories.csv": "Geometry Stories",
+                    "Geometry Building Number Units.csv": "Geometry Building Number Units",
+                    "Geometry Building Horizontal Location.csv": "Geometry Building Horizontal Location",
                     "Infiltration.csv" : "Infiltration",
                     "Windows.csv" : "Windows",
                     "Insulation Wall.csv" : "Insulation Wall",
@@ -66,8 +68,8 @@ class BuildstockBatchArguments():
                     "HVAC Heating Efficiency.csv": "HVAC Heating Efficiency"}
 
         dct_housing_characteristics = {}
-        for file in os.listdir(path):
-            if ((file.endswith(".csv")) and (file in dct_name.keys())):
+        for file in dct_name.keys():
+            if (file in os.listdir(path)):
                 pathcsv = os.path.join(path, file)
                 name = dct_name[file]#file.split(".")[0]
                 dct_housing_characteristics[name] = {}
@@ -84,7 +86,9 @@ class BuildstockBatchArguments():
         :return: dictionarie representing the sampled arguments.
         """
         # Implement the sampling logic here
-        listAttributs = ["geometry_building_num_units",
+        listAttributs = ["Geometry Stories",
+                         "Geometry Building Number Units",
+                         "Geometry Building Horizontal Location",
                          "Infiltration",
                         "Windows",
                         "Insulation Wall",
@@ -129,11 +133,24 @@ class BuildstockBatchArguments():
                     # If there are no dependencies, sample directly from the options
                     filtered_df = df
                 else:
-                    filter_dict = {key:dctSampler[value] for key, value in dct_dependancy.items()}
+                    filter_dict = {key:{**dctSampler, **dct_args2}[value] for key, value in dct_dependancy.items()}
                     # Dynamic filtering based on the dictionary
-                    filtered_df = df[
-                        df[list(filter_dict.keys())].isin(filter_dict.values()).all(axis=1)
-                    ]
+                    
+                    # Initialize a boolean index
+                    filtered_index = pd.Series([True] * len(df), index=df.index)
+                    # Loop through filters and update the index
+                    for col, values in filter_dict.items():
+                        if isinstance(values, list):
+                            filtered_index = filtered_index & (df[col].isin(values))
+                        else:
+                            filtered_index = filtered_index & (df[col] == values)
+
+                    # Apply the filtered index to the DataFrame
+                    filtered_df = df[filtered_index]
+
+                    #filtered_df = df[
+                    #    df[list(filter_dict.keys())].isin(filter_dict.values()).all(axis=1)
+                    #]
 
                 sumlst = sum(filtered_df[dct_option.keys()].values.tolist()[0])
                 listProb = [k/sumlst for k in filtered_df[dct_option.keys()].values.tolist()[0]]
@@ -141,6 +158,9 @@ class BuildstockBatchArguments():
                 choiceStr = self.randGenerator.choice(list(dct_option.keys()),p=listProb)
                 if "Option=" in str(choiceStr):
                     dct_args2[Attributs] = choiceStr.split("Option=")[-1]
+                    if Attributs in ["Geometry Stories",
+                                     "Geometry Building Number Units"]:
+                        dct_args2[Attributs] = int(dct_args2[Attributs])
             
             lst_dct_args2.append(dct_args2)
         return lst_dct_args2
@@ -426,7 +446,7 @@ class MapHPXML:
         # Attic type ConditionedAttic is included. 
         # Assumed to be 1 for apartment units.
         arg = "Nombre_Etages"
-        argHPXML = "geometry_unit_num_floors_above_grade"
+        argHPXML = "geometry_unit_num_floors_above_grade"# du logement et non de l'immeuble
         if (argHPXML not in dct_HPXML.keys()):
             if (arg in dct_args.keys()):
                 if (dct_HPXML.get("geometry_unit_type") in ["single-family detached", "single-family attached"]):
@@ -1203,9 +1223,9 @@ class MapHPXML:
 
         #____________________________________________________________
         #Corridor #source : fichier corridor.tsv 
-        if (dct_HPXML.get("geometry_unit_type") in ["Collective"]):
+        if (dct_args["Type_Logement"] in ["Collective"]):
             Corridor = "Double-Loaded Interior"
-        elif (dct_HPXML.get("geometry_unit_type") in ["Duplex", "Triplex"]):
+        elif (dct_args["Type_Logement"] in ["Duplex", "Triplex"]):
             Corridor = "Single Exterior Front"
         else:
             Corridor = "Not Applicable"
@@ -1229,23 +1249,77 @@ class MapHPXML:
    
         # Adiabatic Walls
         #simplification de measure.rb
+        
         dct_HPXML["geometry_unit_left_wall_is_adiabatic"] = False
         dct_HPXML["geometry_unit_right_wall_is_adiabatic"] = False
         dct_HPXML["geometry_unit_front_wall_is_adiabatic"] = False
         dct_HPXML["geometry_unit_back_wall_is_adiabatic"] = False
-        if geometry_corridor_position == "Double Exterior":
-            dct_HPXML["geometry_unit_back_wall_is_adiabatic"] = True
-        elif geometry_corridor_position == "Double-Loaded Interior":
-            dct_HPXML["geometry_unit_front_wall_is_adiabatic"] = True
-        elif geometry_corridor_position == "Single Exterior (Front)":
-            dct_HPXML["geometry_unit_front_wall_is_adiabatic"] = False
-        else:
-            pass
 
-        # Model exterior corridors as overhangs
-        if (("Exterior" in geometry_corridor_position) and (geometry_corridor_width > 0)):
-            dct_HPXML["overhangs_front_depth"] = geometry_corridor_width
-            dct_HPXML["overhangs_front_distance_to_top_of_window"] = 1
+        #old version
+        #if (dct_HPXML.get("geometry_unit_type") in ["Collective"]):
+        #    if geometry_corridor_position == "Double Exterior":
+        #        dct_HPXML["geometry_unit_back_wall_is_adiabatic"] = True
+        #    elif geometry_corridor_position == "Double-Loaded Interior":
+        #        dct_HPXML["geometry_unit_front_wall_is_adiabatic"] = True
+        #    elif geometry_corridor_position == "Single Exterior (Front)":
+        #        dct_HPXML["geometry_unit_front_wall_is_adiabatic"] = False
+        #    else:
+        #        pass
+        # afinir
+        
+        if dct_HPXML.get("geometry_unit_type") in ["apartment unit", "single-family attached" ]:#["Collective", "Triplex", "Duplex", "Maison en rangee"]:
+            n_floors = dct_args["Geometry Stories"]
+            n_units = dct_args["Geometry Building Number Units"]
+            horiz_location = dct_args["Geometry Building Horizontal Location"]
+
+            if (dct_HPXML.get("geometry_unit_type") in ["apartment unit"]):# ["Collective", "Triplex", "Duplex"]):
+                n_units_per_floor = n_units / n_floors
+                if ((n_units_per_floor >= 4) & ((geometry_corridor_position == 'Double Exterior') | (geometry_corridor_position == 'None'))):
+                    has_rear_units = True
+                    dct_HPXML["geometry_unit_back_wall_is_adiabatic"] = True
+                elif ((n_units_per_floor >= 4) & (geometry_corridor_position == 'Double-Loaded Interior')):
+                    has_rear_units = True
+                    dct_HPXML["geometry_unit_front_wall_is_adiabatic"] = True
+                elif ((n_units_per_floor == 2) & (horiz_location == 'None') & ((geometry_corridor_position == 'Double Exterior') | (geometry_corridor_position == 'None'))):
+                    has_rear_units = True
+                    dct_HPXML["geometry_unit_back_wall_is_adiabatic"] = True
+                elif ((n_units_per_floor == 2) & (horiz_location == 'None') & (geometry_corridor_position == 'Double-Loaded Interior')):
+                    has_rear_units = True
+                    dct_HPXML["geometry_unit_front_wall_is_adiabatic"] = True
+                elif (geometry_corridor_position == 'Single Exterior (Front)'):
+                    has_rear_units = False
+                    dct_HPXML["geometry_unit_front_wall_is_adiabatic"] = False
+                else:
+                    has_rear_units = False
+                    dct_HPXML["geometry_unit_front_wall_is_adiabatic"] = False
+
+                # Model exterior corridors as overhangs
+                if (("Exterior" in geometry_corridor_position) and (geometry_corridor_width > 0)):
+                    dct_HPXML["overhangs_front_depth"] = geometry_corridor_width
+                    dct_HPXML["overhangs_front_distance_to_top_of_window"] = 1
+
+            elif dct_HPXML.get("geometry_unit_type") in ["single-family attached"]:#["Maison en rangee"]:
+                n_units_per_floor = n_units #n_units / n_floors
+                has_rear_units = False
+            else:
+                pass
+            if has_rear_units:
+                unit_width = n_units_per_floor / 2
+            else:
+                unit_width = n_units_per_floor
+            
+            if (unit_width <= 1) & (horiz_location != 'None'):
+                #runner.registerWarning("No #{horiz_location} location exists, setting horizontal location to 'None'")
+                horiz_location = 'None'
+            
+            if horiz_location == 'Left':
+                dct_HPXML["geometry_unit_right_wall_is_adiabatic"] = True
+            elif horiz_location == 'Middle':
+                dct_HPXML["geometry_unit_left_wall_is_adiabatic"]  = True
+                dct_HPXML["geometry_unit_right_wall_is_adiabatic"] = True
+            elif horiz_location == 'Right':
+                dct_HPXML["geometry_unit_left_wall_is_adiabatic"]  = True
+            
         
         # Infiltration adjustment for SFA/MF units
         # Calculate exposed wall area ratio for the unit (unit exposed wall area

@@ -139,6 +139,16 @@ def DashBoard():
         st.dataframe(df)   	
         st.dataframe(df2) 
 
+        st.markdown("## Étape 4 - Téléchargement des résultats")
+        st.markdown("Les résultats sont disponibles au format CSV. " \
+		"Attention: le fichier ne devrait pas être trop volumineux (< 100 Mo).")
+        st.download_button(
+			label="Télécharger les résultats",
+			data=df2.to_csv(index=False).encode('utf-8'),
+			file_name='resultats.csv',
+			mime='text/csv'
+		)
+
         ## Perform inference
         #ie = gum.LazyPropagation(InsClsSampler.bn)
         #ie.setEvidence(settings)

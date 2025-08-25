@@ -1362,7 +1362,46 @@ class MapHPXML:
             if (unit_width <= 1) & (horiz_location != 'None'):
                 #runner.registerWarning("No #{horiz_location} location exists, setting horizontal location to 'None'")
                 horiz_location = 'None'
-            
+
+            # Infiltration adjustment for SFA/MF units
+            # Calculate exposed wall area ratio for the unit (unit exposed wall area
+            # divided by average unit exposed wall area)
+
+            ##A FAIRE
+            if (n_units_per_floor <= 2) | (n_units_per_floor == 4 & has_rear_units): # No middle unit(s)
+                exposed_wall_area_ratio = 1.0 # all units have same exterior wall area
+            else: # Has middle unit(s)
+                if has_rear_units:
+                    n_end_units = 4 * n_floors
+                    n_mid_units = n_units - n_end_units
+                    n_bldg_fronts_backs = n_end_units + n_mid_units
+                    n_bldg_sides = n_end_units
+                else:
+                    n_end_units = 2 * n_floors
+                    n_mid_units = n_units - n_end_units
+                    n_bldg_fronts_backs = n_end_units * 2 + n_mid_units * 2
+                    n_bldg_sides = n_end_units
+                
+                if has_rear_units:
+                    n_unit_fronts_backs = 1
+                else:
+                    n_unit_fronts_backs = 2
+                
+                if horiz_location in ['Middle']:
+                    n_unit_sides = 0
+                elif horiz_location in ['Left', 'Right']:
+                    n_unit_sides = 1
+                
+                n_bldg_sides_equivalent = n_bldg_sides + n_bldg_fronts_backs * dct_HPXML["geometry_unit_aspect_ratio"]
+                n_unit_sides_equivalent = n_unit_sides + n_unit_fronts_backs * dct_HPXML["geometry_unit_aspect_ratio"]
+                exposed_wall_area_ratio = n_unit_sides_equivalent / (n_bldg_sides_equivalent / n_units)
+
+            # Apply adjustment to infiltration value
+            args = "air_leakage_value"
+            if args in dct_HPXML.keys():
+                dct_HPXML[args] = dct_HPXML[args] * exposed_wall_area_ratio
+
+
             if horiz_location == 'Left':
                 dct_HPXML["geometry_unit_right_wall_is_adiabatic"] = True
             elif horiz_location == 'Middle':
@@ -1371,14 +1410,10 @@ class MapHPXML:
             elif horiz_location == 'Right':
                 dct_HPXML["geometry_unit_left_wall_is_adiabatic"]  = True
             
-        
-        # Infiltration adjustment for SFA/MF units
-        # Calculate exposed wall area ratio for the unit (unit exposed wall area
-        # divided by average unit exposed wall area)
-
-        ##A FAIRE
-
- 
+            # Infiltration Reduction
+            if "air_leakage_percent_reduction" in dct_HPXML.keys():
+                if "air_leakage_value" in dct_HPXML.keys():
+                    dct_HPXML["air_leakage_value"] = dct_HPXML["air_leakage_value"] * (1.0 - dct_HPXML["air_leakage_percent_reduction"] / 100.0)
 
     #________________________________________________________________
     #geometry_corridor_position

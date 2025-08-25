@@ -1112,17 +1112,17 @@ class MapHPXML:
         dct_Geometry_Wall_Exterior_Finish["Wood, Medium/Dark"] = {"wall_siding_type":"wood siding", "wall_color":"medium dark", "exterior_finish_r":1.4}
         dct_Geometry_Wall_Exterior_Finish["None"] = {"wall_siding_type":"none", "wall_color":"medium", "exterior_finish_r":0}  # defaut
 
+        arg = "Geometry Wall Exterior Finish"
+        if (arg in dct_args.keys()):
+            for args in dct_Geometry_Wall_Exterior_Finish[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) & (dct_Geometry_Wall_Exterior_Finish[dct_args[arg]][args]!="auto")):
+                    dct_HPXML[args] = dct_Geometry_Wall_Exterior_Finish[dct_args[arg]][args]
         #defaut
         arg = "Geometry Wall Exterior Finish"
         if (arg in dct_args.keys()):
             for args in dct_Geometry_Wall_Exterior_Finish["None"]:
                 if ((args not in dct_HPXML.keys()) & (dct_Geometry_Wall_Exterior_Finish["None"][args]!="auto")):
                     dct_HPXML[args] = dct_Geometry_Wall_Exterior_Finish["None"][args]
-        arg = "Geometry Wall Exterior Finish"
-        if (arg in dct_args.keys()):
-            for args in dct_Geometry_Wall_Exterior_Finish[dct_args[arg]]:
-                if ((args not in dct_HPXML.keys()) & (dct_Geometry_Wall_Exterior_Finish[dct_args[arg]][args]!="auto")):
-                    dct_HPXML[args] = dct_Geometry_Wall_Exterior_Finish[dct_args[arg]][args]
         #_________________________________________________________________
         #Geometry Attic Type
         dct_Geometry_Attic_Type = {}

@@ -1,0 +1,91 @@
+Dependency=Type_Logement;Dependency=Geometry Stories;Option=Bottom;Option=Middle;Option=None;Option=Top
+Maison individuelle;1;0.0;0.0;1;0.0
+Maison individuelle;2;0.0;0.0;1;0.0
+Maison individuelle;3;0.0;0.0;1;0.0
+Maison individuelle;4;0.0;0.0;1;0.0
+Maison individuelle;5;0.0;0.0;1;0.0
+Maison individuelle;6;0.0;0.0;1;0.0
+Maison individuelle;7;0.0;0.0;1;0.0
+Maison individuelle;8;0.0;0.0;1;0.0
+Maison individuelle;9;0.0;0.0;1;0.0
+Maison individuelle;10;0.0;0.0;1;0.0
+Maison individuelle;11;0.0;0.0;1;0.0
+Maison individuelle;12;0.0;0.0;1;0.0
+Maison individuelle;13;0.0;0.0;1;0.0
+Maison individuelle;14;0.0;0.0;1;0.0
+Maison individuelle;15;0.0;0.0;1;0.0
+Maison individuelle;20;0.0;0.0;1;0.0
+Maison individuelle;21;0.0;0.0;1;0.0
+Maison individuelle;35;0.0;0.0;1;0.0
+Collective;1;1.0;0.0;0;0.0
+Collective;2;0.5;0.0;0;0.5
+Collective;3;0.333333;0.333333;0;0.333333
+Collective;4;0.25;0.5;0;0.25
+Collective;5;0.2;0.6;0;0.2
+Collective;6;0.166667;0.666667;0;0.166667
+Collective;7;0.142857;0.714286;0;0.142857
+Collective;8;0.125;0.75;0;0.125
+Collective;9;0.111111;0.777778;0;0.111111
+Collective;10;0.1;0.8;0;0.1
+Collective;11;0.0909091;0.818182;0;0.0909091
+Collective;12;0.0833333;0.833333;0;0.0833333
+Collective;13;0.0769231;0.846154;0;0.0769231
+Collective;14;0.0714286;0.857143;0;0.0714286
+Collective;15;0.0666667;0.866667;0;0.0666667
+Collective;20;0.05;0.9;0;0.05
+Collective;21;0.047619;0.904762;0;0.047619
+Collective;35;0.0285714;0.942857;0;0.0285714
+Maison en rangee;1;0.0;0.0;1;0.0
+Maison en rangee;2;0.0;0.0;1;0.0
+Maison en rangee;3;0.0;0.0;1;0.0
+Maison en rangee;4;0.0;0.0;1;0.0
+Maison en rangee;5;0.0;0.0;1;0.0
+Maison en rangee;6;0.0;0.0;1;0.0
+Maison en rangee;7;0.0;0.0;1;0.0
+Maison en rangee;8;0.0;0.0;1;0.0
+Maison en rangee;9;0.0;0.0;1;0.0
+Maison en rangee;10;0.0;0.0;1;0.0
+Maison en rangee;11;0.0;0.0;1;0.0
+Maison en rangee;12;0.0;0.0;1;0.0
+Maison en rangee;13;0.0;0.0;1;0.0
+Maison en rangee;14;0.0;0.0;1;0.0
+Maison en rangee;15;0.0;0.0;1;0.0
+Maison en rangee;20;0.0;0.0;1;0.0
+Maison en rangee;21;0.0;0.0;1;0.0
+Maison en rangee;35;0.0;0.0;1;0.0
+Duplex;1;1.0;0.0;0;0.0
+Duplex;2;0.5;0.0;0;0.5
+Duplex;3;0.333333;0.333333;0;0.333333
+Duplex;4;0.25;0.5;0;0.25
+Duplex;5;0.2;0.6;0;0.2
+Duplex;6;0.166667;0.666667;0;0.166667
+Duplex;7;0.142857;0.714286;0;0.142857
+Duplex;8;0.125;0.75;0;0.125
+Duplex;9;0.111111;0.777778;0;0.111111
+Duplex;10;0.1;0.8;0;0.1
+Duplex;11;0.0909091;0.818182;0;0.0909091
+Duplex;12;0.0833333;0.833333;0;0.0833333
+Duplex;13;0.0769231;0.846154;0;0.0769231
+Duplex;14;0.0714286;0.857143;0;0.0714286
+Duplex;15;0.0666667;0.866667;0;0.0666667
+Duplex;20;0.05;0.9;0;0.05
+Duplex;21;0.047619;0.904762;0;0.047619
+Duplex;35;0.0285714;0.942857;0;0.0285714
+Triplex;1;1.0;0.0;0;0.0
+Triplex;2;0.5;0.0;0;0.5
+Triplex;3;0.333333;0.333333;0;0.333333
+Triplex;4;0.25;0.5;0;0.25
+Triplex;5;0.2;0.6;0;0.2
+Triplex;6;0.166667;0.666667;0;0.166667
+Triplex;7;0.142857;0.714286;0;0.142857
+Triplex;8;0.125;0.75;0;0.125
+Triplex;9;0.111111;0.777778;0;0.111111
+Triplex;10;0.1;0.8;0;0.1
+Triplex;11;0.0909091;0.818182;0;0.0909091
+Triplex;12;0.0833333;0.833333;0;0.0833333
+Triplex;13;0.0769231;0.846154;0;0.0769231
+Triplex;14;0.0714286;0.857143;0;0.0714286
+Triplex;15;0.0666667;0.866667;0;0.0666667
+Triplex;20;0.05;0.9;0;0.05
+Triplex;21;0.047619;0.904762;0;0.047619
+Triplex;35;0.0285714;0.942857;0;0.0285714

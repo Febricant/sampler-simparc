@@ -57,6 +57,7 @@ class BuildstockBatchArguments():
         dct_name = {"Geometry Stories.csv": "Geometry Stories",
                     "Geometry Building Number Units.csv": "Geometry Building Number Units",
                     "Geometry Building Horizontal Location.csv": "Geometry Building Horizontal Location",
+                    "Geometry Building Level.csv" : "Geometry Building Level",
                     "Infiltration.csv" : "Infiltration",
                     "Windows.csv" : "Windows",
                     "Insulation Wall.csv" : "Insulation Wall",
@@ -89,6 +90,7 @@ class BuildstockBatchArguments():
         listAttributs = ["Geometry Stories",
                          "Geometry Building Number Units",
                          "Geometry Building Horizontal Location",
+                         "Geometry Building Level",
                          "Infiltration",
                         "Windows",
                         "Insulation Wall",
@@ -1410,10 +1412,35 @@ class MapHPXML:
             elif horiz_location == 'Right':
                 dct_HPXML["geometry_unit_left_wall_is_adiabatic"]  = True
             
-            # Infiltration Reduction
-            if "air_leakage_percent_reduction" in dct_HPXML.keys():
-                if "air_leakage_value" in dct_HPXML.keys():
-                    dct_HPXML["air_leakage_value"] = dct_HPXML["air_leakage_value"] * (1.0 - dct_HPXML["air_leakage_percent_reduction"] / 100.0)
+        # Infiltration Reduction
+        if "air_leakage_percent_reduction" in dct_HPXML.keys():
+            if "air_leakage_value" in dct_HPXML.keys():
+                dct_HPXML["air_leakage_value"] = dct_HPXML["air_leakage_value"] * (1.0 - dct_HPXML["air_leakage_percent_reduction"] / 100.0)
+        
+        
+        # Adiabatic Floor/Ceiling
+        #site_shielding_of_home
+        arg = "Geometry Building Level"
+        args = "geometry_unit_level"
+        if (args not in dct_HPXML.keys()):
+            if (arg in dct_args.keys()):
+                if dct_args[arg] in ["Bottom"]:
+                    dct_HPXML[args] = 'Bottom'
+                elif dct_args[arg] in ["Top"]:
+                    dct_HPXML[args] = 'Top'
+                elif dct_args[arg] in ["Middle"]:
+                    dct_HPXML[args] = 'Middle'
+                else:
+                    pass
+
+        if dct_HPXML.get("geometry_unit_level") == 'Bottom':
+            if dct_HPXML.get("geometry_unit_num_floors_above_grade") > 1: # this could be "bottom" of a 1-story building
+                dct_HPXML["geometry_attic_type"] = "BelowApartment"
+        elif dct_HPXML.get("geometry_unit_level") == 'Middle':
+            dct_HPXML["geometry_foundation_type"] = "AboveApartment"
+            dct_HPXML["geometry_attic_type"] = "BelowApartment"
+        elif dct_HPXML.get("geometry_unit_level") == 'Top':
+            dct_HPXML["geometry_foundation_type"] = "AboveApartment"
 
     #________________________________________________________________
     #geometry_corridor_position

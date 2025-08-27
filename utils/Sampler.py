@@ -1420,26 +1420,26 @@ class MapHPXML:
         
         # Adiabatic Floor/Ceiling
         #site_shielding_of_home
+        #arg = "Geometry Building Level"
+        #args = "geometry_unit_level"
+        #if (args not in dct_HPXML.keys()):
+        #    if (arg in dct_args.keys()):
+        #        if dct_args[arg] in ["Bottom"]:
+        #            dct_HPXML[args] = 'Bottom'
+        #        elif dct_args[arg] in ["Top"]:
+        #            dct_HPXML[args] = 'Top'
+        #        elif dct_args[arg] in ["Middle"]:
+        #            dct_HPXML[args] = 'Middle'
+        #        else:
+        #            pass
         arg = "Geometry Building Level"
-        args = "geometry_unit_level"
-        if (args not in dct_HPXML.keys()):
-            if (arg in dct_args.keys()):
-                if dct_args[arg] in ["Bottom"]:
-                    dct_HPXML[args] = 'Bottom'
-                elif dct_args[arg] in ["Top"]:
-                    dct_HPXML[args] = 'Top'
-                elif dct_args[arg] in ["Middle"]:
-                    dct_HPXML[args] = 'Middle'
-                else:
-                    pass
-
-        if dct_HPXML.get("geometry_unit_level") == 'Bottom':
+        if dct_args.get(arg) == 'Bottom':
             if dct_HPXML.get("geometry_unit_num_floors_above_grade") > 1: # this could be "bottom" of a 1-story building
                 dct_HPXML["geometry_attic_type"] = "BelowApartment"
-        elif dct_HPXML.get("geometry_unit_level") == 'Middle':
+        elif dct_args.get(arg) == 'Middle':
             dct_HPXML["geometry_foundation_type"] = "AboveApartment"
             dct_HPXML["geometry_attic_type"] = "BelowApartment"
-        elif dct_HPXML.get("geometry_unit_level") == 'Top':
+        elif dct_args.get(arg) == 'Top':
             dct_HPXML["geometry_foundation_type"] = "AboveApartment"
 
     #________________________________________________________________

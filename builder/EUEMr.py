@@ -1300,7 +1300,23 @@ class FormatageEUEMr:
                                                 "Printemps_Automne_Hiver":None,
                                                 "Ete_Automne_Hiver":None,
                                                     }
+        self.Mapping["Spa_Utilisation_SaisonChaude"] = {}
+        self.Mapping["Spa_Utilisation_SaisonChaude"]["ColSrc"] = "QS3AA"
+        self.Mapping["Spa_Utilisation_SaisonChaude"]["typeMapping"] = "list"
+        self.Mapping["Spa_Utilisation_SaisonChaude"]["Mapping"] = {"Aucun": ["."],
+                                                            "Ne sais pas":["Ne sait pas/Ne répond pas"],
+                                                    "Constant":["Je maintenais la température de mon spa constante"],
+                                                   "Augmentation":["J’augmentais la température pour les périodes de baignade"]}
         
+        self.Mapping["Spa_Utilisation_SaisonFroide"] = {}
+        self.Mapping["Spa_Utilisation_SaisonFroide"]["ColSrc"] = "QS3BB"
+        self.Mapping["Spa_Utilisation_SaisonFroide"]["typeMapping"] = "list"
+        self.Mapping["Spa_Utilisation_SaisonFroide"]["Mapping"] = {"Aucun": ["."],
+                                                            "Ne sais pas":["Ne sait pas/Ne répond pas"],
+                                                    "Constant":["Je maintenais la température de mon spa constante"],
+                                                   "Augmentation":["J’augmentais la température pour les périodes de baignade"]}
+
+
         # piscine
         self.Mapping["Piscine_Presence"] = {}
         self.Mapping["Piscine_Presence"]["ColSrc"] = "QG1"
@@ -1567,6 +1583,8 @@ class EUEMr(Master_genereBN):
                  "Spa_Presence",
                  "Spa_Logement",
                 "Spa_Saison",
+                "Spa_Utilisation_SaisonChaude",
+                "Spa_Utilisation_SaisonFroide",
                  "Piscine_Presence",
                 "Piscine_Type",
                 "Piscine_Minuterie",
@@ -1656,14 +1674,14 @@ class EUEMr(Master_genereBN):
         diDep["Spa_Presence"] = ["Territoire_HQ","Type_Logement"]
         diDep["Spa_Logement"] = ["Spa_Presence", "Type_Logement"]
         diDep["Spa_Saison"] = ["Spa_Presence", "Spa_Logement"]
+        diDep["Spa_Utilisation_SaisonChaude"] = ["Spa_Saison"]
+        diDep["Spa_Utilisation_SaisonFroide"] = ["Spa_Saison"]
         diDep["Piscine_Presence"] = ["Territoire_HQ","Type_Logement"]
         diDep["Piscine_Type"] = ["Piscine_Presence", "Type_Logement"]
         diDep["Piscine_Minuterie"] = ["Piscine_Type"]
         diDep["Piscine_Toile"] = ["Piscine_Type"]
         diDep["Piscine_Chauffee"] = ["Piscine_Type"]
         diDep["Piscine_ChaufType"] = ["Piscine_Chauffee"]
-
-
 
         #diDep["ConsoElecAn"] = ["AnConstruction", "TypeLogement", "SourceEnerChauf"]
 

@@ -25,6 +25,12 @@
   Spa_Presence: "Avez-vous un spa \xE0 votre r\xE9sidence?"
   Spa_Saison: "Avez-vous utilis\xE9 votre spa\u2026? (Printemps, \xE9t\xE9, automne,\
     \ hiver, pas utilis\xE9)"
+  Spa_Utilisation_SaisonChaude: "Lequel des deux \xE9nonc\xE9s suivants correspond\
+    \ le mieux \xE0 vos habitudes durant les mois froids de la derni\xE8re ann\xE9\
+    e?"
+  Spa_Utilisation_SaisonFroide: "Lequel des deux \xE9nonc\xE9s suivants correspond\
+    \ le mieux \xE0 vos habitudes durant les mois chauds de la derni\xE8re ann\xE9\
+    e?"
   Superficie_Totale: "Quelle est la superficie TOTALE habitable de votre r\xE9sidence\
     \ incluant le sous-sol et le garage?"
   Territoire_HQ: Territoire HQ
@@ -159,6 +165,16 @@
     '7': Hiver
     '8': Printemps_Ete
     '9': Printemps_Automne
+  Spa_Utilisation_SaisonChaude:
+    '0': Aucun
+    '1': Ne sais pas
+    '2': Constant
+    '3': Augmentation
+  Spa_Utilisation_SaisonFroide:
+    '0': Aucun
+    '1': Ne sais pas
+    '2': Constant
+    '3': Augmentation
   Superficie_Totale:
     '0': '[1 - 500)'
     '1': '[500 - 1000)'

@@ -153,9 +153,13 @@ class BuildstockBatchArguments():
                     #filtered_df = df[
                     #    df[list(filter_dict.keys())].isin(filter_dict.values()).all(axis=1)
                     #]
-
+                
+                #try:
                 sumlst = sum(filtered_df[dct_option.keys()].values.tolist()[0])
                 listProb = [k/sumlst for k in filtered_df[dct_option.keys()].values.tolist()[0]]
+                #except:
+                #    pass
+                
 
                 choiceStr = self.randGenerator.choice(list(dct_option.keys()),p=listProb)
                 if "Option=" in str(choiceStr):

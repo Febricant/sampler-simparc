@@ -20,7 +20,7 @@
       <parents>Territoire_HQ</parents>
       <probabilities>0.130654 0.0155502 0.047154 0.021564 0.785078 0.199846 0.0499972 0.0545909 0.0166265 0.67894 0.250078 0.0357956 0.0791344 0.0162977 0.618694 0.472674 0.126095 0.183059 0.0308201 0.187352 0.248618 0.0463721 0.0682466 0.0125838 0.62418</probabilities>
     </cpt>
-    <cpt id="Presence_Spa">
+    <cpt id="Spa_Presence">
       <state id="Oui" />
       <state id="Non" />
       <parents>Type_Logement Territoire_HQ</parents>
@@ -81,11 +81,53 @@
       <parents>Chauffage_Logement Type_Logement</parents>
       <probabilities>0.296056 0.396342 0.242554 0.0650484 0.321985 0.269281 0.339378 0.0693556 0.111265 0.00965299 0.555237 0.323845 0.404747 0.293682 0.0828756 0.218695 0.389233 0.5084 0.0818148 0.0205524 0 1 0 0 0.399506 0.32772 0.272774 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35202 0.44936 0.178739 0.0198805 0.156398 0.430298 0.413304 0 0.0323514 0.0791669 0.689012 0.19947 0.269862 0.523311 0.114971 0.0918553 0.261007 0.237045 0.398755 0.103193 1 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0.313784 0.458704 0.196098 0.0314142 0.485676 0.250304 0.243825 0.0201945 0.071212 0 0.616625 0.312163 0.297992 0.306054 0.228858 0.167095 0.276663 0.381139 0.309632 0.0325663 0.309288 0 0.396447 0.294265 0.682862 0 0.317138 0 0.807684 0.192316 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 1 0 0 0.328634 0.167862 0.444708 0.0587953 0.230626 0 0.6028 0.166574 0 0 0.430677 0.569323 0.150656 0.365542 0.101545 0.382258 0 0.437315 0.366788 0.195897 1 0 0 0 0 0.247412 0.752588 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0.311281 0.205614 0.423898 0.059207 0.298042 0.195378 0.435514 0.0710666 0.042938 0.00161387 0.389171 0.566277 0.270581 0.192088 0.185428 0.351903 0.303302 0.220337 0.380499 0.095862 0.464748 0.258956 0.223186 0.0531095 0.244834 0.237545 0.340183 0.177438 0.551294 0.188949 0.216055 0.0437024 0.466735 0.35822 0.124864 0.0501809 0.0615593 0 0.938441 0 0.577543 0.184 0.139052 0.0994047 0.567973 0.397137 0.0348897 0 0.559577 0 0.152585 0.287838</probabilities>
     </cpt>
-    <cpt id="Mode_Occupation">
-      <state id="Locataire" />
-      <state id="Proprietaire" />
-      <parents>Type_Logement</parents>
-      <probabilities>0.765147 0.234853 0.732427 0.267573 0.570618 0.429382 0.279108 0.720892 0.0838671 0.916133</probabilities>
+    <cpt id="Piscine_Presence">
+      <state id="Oui" />
+      <state id="Non" />
+      <parents>Type_Logement Territoire_HQ</parents>
+      <probabilities>0 1 0 1 0.0365028 0.963497 0.0364865 0.963514 0.0725681 0.927432 0.0505733 0.949427 0.0264365 0.973564 0.102995 0.897005 0.0785102 0.92149 0.304505 0.695495 0.0847144 0.915286 0.0502977 0.949702 0.112916 0.887084 0.0660512 0.933949 0.267005 0.732995 0.0613806 0.938619 0.0268825 0.973118 0.0384713 0.961529 0.0149093 0.985091 0.209617 0.790383 0.036659 0.963341 0.0470069 0.952993 0.0967378 0.903262 0.0749867 0.925013 0.348828 0.651172</probabilities>
+    </cpt>
+    <cpt id="Piscine_Type">
+      <state id="Aucun" />
+      <state id="Hors_Terre" />
+      <state id="Creusee_Exterieur" />
+      <state id="Creusee_Interieur" />
+      <parents>Type_Logement Piscine_Presence</parents>
+      <probabilities>0 0.028254 0.641926 0.32982 0 0.779207 0.220793 0 0 0.834877 0.165123 0 0 0.885782 0.114218 0 0 0.67935 0.314001 0.00664854 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0</probabilities>
+    </cpt>
+    <cpt id="Piscine_Chauffee">
+      <state id="Aucun" />
+      <state id="Oui" />
+      <state id="Non" />
+      <parents>Piscine_Type</parents>
+      <probabilities>0.99009 0.000441501 0.00946844 0 0.443128 0.556872 0 0.66239 0.33761 0 0.602383 0.397617</probabilities>
+    </cpt>
+    <cpt id="Piscine_ChaufType">
+      <state id="Aucun" />
+      <state id="Ne sait pas" />
+      <state id="Thermopompe" />
+      <state id="Electrique" />
+      <state id="Capteur Solaire" />
+      <state id="Propane" />
+      <state id="Gaz Naturel" />
+      <state id="Bois" />
+      <state id="Mazout" />
+      <parents>Piscine_Chauffee</parents>
+      <probabilities>1 0 0 0 0 0 0 0 0 0 0.0604444 0.676763 0.149858 0.041953 0.0441688 0.018445 0.00462835 0.00373915 1 0 0 0 0 0 0 0 0</probabilities>
+    </cpt>
+    <cpt id="Piscine_Toile">
+      <state id="Aucun" />
+      <state id="Oui" />
+      <state id="Non" />
+      <parents>Piscine_Type</parents>
+      <probabilities>0.99009 0.00426412 0.00564582 0 0.436836 0.563164 0 0.279767 0.720233 1 0 0</probabilities>
+    </cpt>
+    <cpt id="Piscine_Minuterie">
+      <state id="Aucun" />
+      <state id="Oui" />
+      <state id="Non" />
+      <parents>Piscine_Type</parents>
+      <probabilities>0.99009 0.00168926 0.00822068 0 0.395573 0.604427 0 0.335552 0.664448 0 0.0924254 0.907575</probabilities>
     </cpt>
     <cpt id="Nombre_Etages">
       <state id="Un étage" />
@@ -145,6 +187,12 @@
       <parents>Nombre_Pieces</parents>
       <probabilities>0.726671 0.223013 0.032191 0.0181246 0 0.624643 0.27093 0.057472 0.037057 0.00989779 0.566843 0.30721 0.0729518 0.030829 0.022167 0.423203 0.364514 0.12127 0.063297 0.0277152 0.26 0.409426 0.166229 0.11363 0.0507155 0.209527 0.445615 0.152859 0.129666 0.0623324 0.14542 0.408095 0.17589 0.177609 0.0929866 0.131162 0.41473 0.171357 0.189128 0.0936247 0.0978913 0.37612 0.19035 0.210571 0.125069 0.111937 0.363658 0.152745 0.202342 0.169317 0.0917335 0.343467 0.144321 0.245134 0.175345 0.0936075 0.35819 0.144972 0.241578 0.161653 0.0358725 0.361634 0.121357 0.304692 0.176444 0.0902642 0.219748 0.16122 0.204613 0.324156 0 0 0 0 0</probabilities>
     </cpt>
+    <cpt id="Mode_Occupation">
+      <state id="Locataire" />
+      <state id="Proprietaire" />
+      <parents>Type_Logement</parents>
+      <probabilities>0.765147 0.234853 0.732427 0.267573 0.570618 0.429382 0.279108 0.720892 0.0838671 0.916133</probabilities>
+    </cpt>
   </nodes>
 
   <extensions>
@@ -155,8 +203,8 @@
       <node id="Type_Logement">
         <name>Type_Logement</name>
       </node>
-      <node id="Presence_Spa">
-        <name>Presence_Spa</name>
+      <node id="Spa_Presence">
+        <name>Spa_Presence</name>
       </node>
       <node id="Presence_Garage">
         <name>Presence_Garage</name>
@@ -173,8 +221,23 @@
       <node id="Climatisation">
         <name>Climatisation</name>
       </node>
-      <node id="Mode_Occupation">
-        <name>Mode_Occupation</name>
+      <node id="Piscine_Presence">
+        <name>Piscine_Presence</name>
+      </node>
+      <node id="Piscine_Type">
+        <name>Piscine_Type</name>
+      </node>
+      <node id="Piscine_Chauffee">
+        <name>Piscine_Chauffee</name>
+      </node>
+      <node id="Piscine_ChaufType">
+        <name>Piscine_ChaufType</name>
+      </node>
+      <node id="Piscine_Toile">
+        <name>Piscine_Toile</name>
+      </node>
+      <node id="Piscine_Minuterie">
+        <name>Piscine_Minuterie</name>
       </node>
       <node id="Nombre_Etages">
         <name>Nombre_Etages</name>
@@ -190,6 +253,9 @@
       </node>
       <node id="Nombre_Personnes">
         <name>Nombre_Personnes</name>
+      </node>
+      <node id="Mode_Occupation">
+        <name>Mode_Occupation</name>
       </node>
     </genie>
   </extensions>

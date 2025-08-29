@@ -8,11 +8,19 @@
   Nombre_Personnes: En vous incluant, combien de personnes habitent ce logement?
   Nombre_Pieces: "Nombre de pi\xE8ces dans la r\xE9sidence (incluant les pi\xE8ces\
     \ du sous-sol et le garage, excluant les salles de bain et les couloirs)"
+  Piscine_ChaufType: "De quelle fa\xE7on est-elle chauff\xE9e? (Ensemble des mentions)"
+  Piscine_Chauffee: "Votre piscine est-elle chauff\xE9e (autrement que par une toile\
+    \ solaire)?"
+  Piscine_Minuterie: "Votre filtreur est-il \xE9quip\xE9 d'une minuterie?"
+  Piscine_Presence: "Avez-vous une piscine install\xE9e en permanence, qu'elle soit\
+    \ creus\xE9e ou hors-terre?"
+  Piscine_Toile: "Poss\xE9dez-vous une toile solaire?"
+  Piscine_Type: De quel type de piscine s'agit-il?
   Presence_Garage: Avez-vous un garage?
   Presence_SousSol: "Votre r\xE9sidence comporte-elle un sous-sol ou vide sanitaire?"
-  Presence_Spa: "Avez-vous un spa \xE0 votre r\xE9sidence?"
   Source_Energie_Chauf: "Principale source d'\xE9nergie utilis\xE9e pour le chauffage\
     \ de l'habitation"
+  Spa_Presence: "Avez-vous un spa \xE0 votre r\xE9sidence?"
   Superficie_Totale: "Quelle est la superficie TOTALE habitable de votre r\xE9sidence\
     \ incluant le sous-sol et le garage?"
   Territoire_HQ: Territoire HQ
@@ -76,6 +84,36 @@
     '7': '8'
     '8': '9'
     '9': '10'
+  Piscine_ChaufType:
+    '0': Aucun
+    '1': Ne sait pas
+    '2': Thermopompe
+    '3': Electrique
+    '4': Capteur Solaire
+    '5': Propane
+    '6': Gaz Naturel
+    '7': Bois
+    '8': Mazout
+  Piscine_Chauffee:
+    '0': Aucun
+    '1': Oui
+    '2': Non
+  Piscine_Minuterie:
+    '0': Aucun
+    '1': Oui
+    '2': Non
+  Piscine_Presence:
+    '0': Oui
+    '1': Non
+  Piscine_Toile:
+    '0': Aucun
+    '1': Oui
+    '2': Non
+  Piscine_Type:
+    '0': Aucun
+    '1': Hors_Terre
+    '2': Creusee_Exterieur
+    '3': Creusee_Interieur
   Presence_Garage:
     '0': Pas de Garage
     '1': "Garage non chauff\xE9"
@@ -86,15 +124,15 @@
     '1': Vide sanitaire moins 6 pieds
     '2': Aucun Sous-sol ou vide sanitaire
     '3': Sous-sol et vide sanitaire
-  Presence_Spa:
-    '0': Oui
-    '1': Non
   Source_Energie_Chauf:
     '0': Electricite
     '1': Mazout
     '2': Gaz naturel
     '3': Bi-energie
     '4': Bois
+  Spa_Presence:
+    '0': Oui
+    '1': Non
   Superficie_Totale:
     '0': '[1 - 500)'
     '1': '[500 - 1000)'

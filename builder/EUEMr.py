@@ -1212,8 +1212,7 @@ class FormatageEUEMr:
                                                         "Garage non chauffé":None,
                                                         "Garage chauffé à électricité":None,
                                                         "Garage chauffé à autre source":None}
-                                                        
-
+                                        
         #Type de chauffage
         self.Mapping["Chauffage_Logement"] = {}
         self.Mapping["Chauffage_Logement"]["ColSrc"] = "SYSTEM1R" # seulement pour la méthode get_Mettadata
@@ -1261,14 +1260,65 @@ class FormatageEUEMr:
                                                      "Murale": ["Climatiseur mural ou bibloc (mini-split)","Thermopompe murale"],
                                                      "Centrale": ["Thermopompe centrale", "Thermopompe géothermique","Climatiseur central autre qu'une thermopompe"]}
 
-        #presence garage et chauffé et type chauffage
-        self.Mapping["Presence_Spa"] = {}
-        self.Mapping["Presence_Spa"]["ColSrc"] = "QB1M"
-        self.Mapping["Presence_Spa"]["typeMapping"] = "list"
-        self.Mapping["Presence_Spa"]["Mapping"] = {"Oui":["Oui"],
+        #presence spa
+        # spa (oui, non, oui+type)
+        # spa utilisation (saison)
+        # spa utilisation (habitude Temperature)
+        self.Mapping["Spa_Presence"] = {}
+        self.Mapping["Spa_Presence"]["ColSrc"] = "QB1M"
+        self.Mapping["Spa_Presence"]["typeMapping"] = "list"
+        self.Mapping["Spa_Presence"]["Mapping"] = {"Oui":["Oui"],
                                                    "Non":["Non", "Ne sait pas/Ne répond pas"]}
-         
 
+        # piscine
+        self.Mapping["Piscine_Presence"] = {}
+        self.Mapping["Piscine_Presence"]["ColSrc"] = "QG1"
+        self.Mapping["Piscine_Presence"]["typeMapping"] = "list"
+        self.Mapping["Piscine_Presence"]["Mapping"] = {"Oui":["Oui"],
+                                                       "Non":["Non", "Ne sait pas/Ne répond pas"]}
+        self.Mapping["Piscine_Type"] = {}
+        self.Mapping["Piscine_Type"]["ColSrc"] = "QG2"
+        self.Mapping["Piscine_Type"]["typeMapping"] = "list"
+        self.Mapping["Piscine_Type"]["Mapping"] = {"Aucun":["."],
+                                                    "Hors_Terre":["Une piscine hors-terre / semi-creusée",
+                                                                  "Une piscine hors-terre gonflable"],
+                                                    "Creusee_Exterieur":["Une piscine creusée extérieure"],
+                                                    "Creusee_Interieur":["Une piscine creusée intérieure"]}
+        
+        self.Mapping["Piscine_Minuterie"] = {}
+        self.Mapping["Piscine_Minuterie"]["ColSrc"] = "QG3"
+        self.Mapping["Piscine_Minuterie"]["typeMapping"] = "list"
+        self.Mapping["Piscine_Minuterie"]["Mapping"] = {"Aucun": ["."],
+                                                        "Oui":["Oui"],
+                                                       "Non":["Non", "Ne sait pas/Ne répond pas"]}
+        
+        self.Mapping["Piscine_Toile"] = {}
+        self.Mapping["Piscine_Toile"]["ColSrc"] = "QG5"
+        self.Mapping["Piscine_Toile"]["typeMapping"] = "list"
+        self.Mapping["Piscine_Toile"]["Mapping"] = {"Aucun": ["."],
+                                                    "Oui":["Oui"],
+                                                       "Non":["Non", "Ne sait pas/Ne répond pas"]}
+
+        self.Mapping["Piscine_Chauffee"] = {}
+        self.Mapping["Piscine_Chauffee"]["ColSrc"] = "QG7"
+        self.Mapping["Piscine_Chauffee"]["typeMapping"] = "list"
+        self.Mapping["Piscine_Chauffee"]["Mapping"] = {"Aucun": ["."],
+                                                       "Oui":["Oui"],
+                                                       "Non":["Non", "Ne sait pas/Ne répond pas"]}
+        
+        self.Mapping["Piscine_ChaufType"] = {}
+        self.Mapping["Piscine_ChaufType"]["ColSrc"] = "QG8M1"
+        self.Mapping["Piscine_ChaufType"]["typeMapping"] = "list"
+        self.Mapping["Piscine_ChaufType"]["Mapping"] = {"Aucun":["."],
+                                                       "Ne sait pas":["Ne sait pas/Ne répond pas"],
+                                                       "Thermopompe": ["Une thermopompe de piscine"],
+                                                       "Electrique": ["Un chauffe-piscine électrique (qui n’est pas une thermopompe)"],
+                                                       "Capteur Solaire": ["Un capteur solaire"],
+                                                       "Propane": ["Un chauffe-piscine au propane"],
+                                                        "Gaz Naturel": ["Un chauffe-piscine au gaz naturel"],
+                                                        "Bois": ["Un chauffe-piscine au bois"],
+                                                        "Mazout": ["Un chauffe-piscine à l’huile/mazout"]}
+    
         # QBM2R : Nombre de congélateurs distinct dans la résidence
     
         # QB1A1 : Présence de cuisinières (Oui/Non)
@@ -1312,15 +1362,6 @@ class FormatageEUEMr:
 
         ## QF1 : À quelle source d'énergie votre chauffe-eau fonctionne-t-il?
         ## a voir si pertinent # # QF3 : Quelle est la capacité du chauffe-eau?
-
-        # piscine Non ; Oui+type
-        # chauffgae pisine (oui+type)
-        #minuterie pompe
-        #toile solaire
-
-        # spa (oui, non, oui+type)
-        # spa utilisation (saison)
-        # spa utilisation (habitude Temperature)
 
         #Nombre de VE et Hybride en 1 variable
 
@@ -1471,8 +1512,16 @@ class EUEMr(Master_genereBN):
                  "Climatisation",
                  "Source_Energie_Chauf",
                  "Chauffage_Logement",
-                 "Presence_Spa"]
+                 "Spa_Presence",
+                 "Piscine_Presence",
+                "Piscine_Type",
+                "Piscine_Minuterie",
+                "Piscine_Toile",
+                "Piscine_Chauffee",
+                "Piscine_ChaufType"]
     
+                
+        
 #    ["QA4", # De quel genre d'habitation s'agit-il?
 #                 "QA1", # Quel est votre lien avec ce logement ?
 #                 "QC1R", # Principale source d'énergie utilisée pour le chauffage du domicile
@@ -1550,8 +1599,13 @@ class EUEMr(Master_genereBN):
         diDep["Source_Energie_Chauf"] = ["An_Construction", "Type_Logement"]
         diDep["Chauffage_Logement"] = ["Type_Logement", "Source_Energie_Chauf"]
         diDep["Climatisation"] = ["Type_Logement","Chauffage_Logement"]
-        diDep["Presence_Spa"] = ["Territoire_HQ","Type_Logement"]
-        
+        diDep["Spa_Presence"] = ["Territoire_HQ","Type_Logement"]
+        diDep["Piscine_Presence"] = ["Territoire_HQ","Type_Logement"]
+        diDep["Piscine_Type"] = ["Piscine_Presence", "Type_Logement"]
+        diDep["Piscine_Minuterie"] = ["Piscine_Type"]
+        diDep["Piscine_Toile"] = ["Piscine_Type"]
+        diDep["Piscine_Chauffee"] = ["Piscine_Type"]
+        diDep["Piscine_ChaufType"] = ["Piscine_Chauffee"]
 
         #diDep["ConsoElecAn"] = ["AnConstruction", "TypeLogement", "SourceEnerChauf"]
 

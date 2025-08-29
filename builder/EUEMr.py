@@ -1301,7 +1301,7 @@ class FormatageEUEMr:
                                                 "Ete_Automne_Hiver":None,
                                                     }
         self.Mapping["Spa_Utilisation_SaisonChaude"] = {}
-        self.Mapping["Spa_Utilisation_SaisonChaude"]["ColSrc"] = "QS3AA"
+        self.Mapping["Spa_Utilisation_SaisonChaude"]["ColSrc"] = "QS3BB"
         self.Mapping["Spa_Utilisation_SaisonChaude"]["typeMapping"] = "list"
         self.Mapping["Spa_Utilisation_SaisonChaude"]["Mapping"] = {"Aucun": ["."],
                                                             "Ne sais pas":["Ne sait pas/Ne répond pas"],
@@ -1309,7 +1309,7 @@ class FormatageEUEMr:
                                                    "Augmentation":["J’augmentais la température pour les périodes de baignade"]}
         
         self.Mapping["Spa_Utilisation_SaisonFroide"] = {}
-        self.Mapping["Spa_Utilisation_SaisonFroide"]["ColSrc"] = "QS3BB"
+        self.Mapping["Spa_Utilisation_SaisonFroide"]["ColSrc"] = "QS3AA"
         self.Mapping["Spa_Utilisation_SaisonFroide"]["typeMapping"] = "list"
         self.Mapping["Spa_Utilisation_SaisonFroide"]["Mapping"] = {"Aucun": ["."],
                                                             "Ne sais pas":["Ne sait pas/Ne répond pas"],

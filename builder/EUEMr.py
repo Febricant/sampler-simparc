@@ -1270,6 +1270,37 @@ class FormatageEUEMr:
         self.Mapping["Spa_Presence"]["Mapping"] = {"Oui":["Oui"],
                                                    "Non":["Non", "Ne sait pas/Ne répond pas"]}
 
+        self.Mapping["Spa_Logement"] = {}
+        self.Mapping["Spa_Logement"]["ColSrc"] = "QB1M3"
+        self.Mapping["Spa_Logement"]["typeMapping"] = "list"
+        self.Mapping["Spa_Logement"]["Mapping"] = {"Aucun": ["."],
+                                                    "Exterieur":["Extérieur", "Ne sait pas/Ne répond pas"],
+                                                   "Interieur":["Intérieur"]}
+
+                #Spa_Saison
+        self.Mapping["Spa_Saison"] = {}
+        self.Mapping["Spa_Saison"]["ColSrc"] = "QS2M1R" # seulement pour la méthode get_Mettadata
+        self.Mapping["Spa_Saison"]["typeMapping"] = "custom"
+        self.Mapping["Spa_Saison"]["Mapping"] = {"Aucun": None,
+                                                 "Pas utilisé":None,
+                                                 "Ne sait pas": None,
+                                                 "Toute_Saison": None,
+                                                 "Printemps": None,
+                                                 "Ete": None,
+                                                 "Automne": None,
+                                                 "Hiver": None,
+                                                 "Printemps_Ete": None,
+                                                 "Printemps_Automne": None,
+                                                 "Printemps_Hiver":None,
+                                                 "Ete_Automne":None,
+                                                 "Ete_Hiver":None,
+                                                "Automne_Hiver":None,
+                                                "Printemps_Ete_Automne":None,
+                                                #"Printemps_Ete_Hiver":None,
+                                                "Printemps_Automne_Hiver":None,
+                                                "Ete_Automne_Hiver":None,
+                                                    }
+        
         # piscine
         self.Mapping["Piscine_Presence"] = {}
         self.Mapping["Piscine_Presence"]["ColSrc"] = "QG1"
@@ -1461,6 +1492,27 @@ class FormatageEUEMr:
                                                                 else ("Système central à eau chaude" if row["SYSTEM1R"] in ["Système central à eau chaude"]\
                                                                 else ("Fournaise murale ou de plancher" if row["SYSTEM1R"] in ["Fournaise murale ou de plancher"]\
                                                                 else None)))))))))))), axis=1).rename(ColName)
+                    if ColName == "Spa_Saison":
+                        return self.dfEUEMrSrc.apply(lambda row: "Aucun" if row["QB1M"] in ["Non"]\
+                                                                else ("Pas utilisé" if row["QS1"] in ["Pas du tout"]\
+                                                                else ("Ne sait pas" if row["QS2M1R"] in ["Ne sait pas"]\
+                                                                else ("Toute_Saison" if row["QS1"] in ["Toute l’année"]\
+                                                                else ("Printemps" if sorted([row["QS2M1R"], row["QS2M2R"], row["QS2M3R"], row["QS2M4R"]])== sorted(["Le printemps",".",".", "."])\
+                                                                else ("Ete" if sorted([row["QS2M1R"], row["QS2M2R"], row["QS2M3R"], row["QS2M4R"]])== sorted(["L'été",".",".", "."])\
+                                                                else ("Automne" if sorted([row["QS2M1R"], row["QS2M2R"], row["QS2M3R"], row["QS2M4R"]])== sorted(["L'automne",".",".", "."])\
+                                                                else ("Hiver" if sorted([row["QS2M1R"], row["QS2M2R"], row["QS2M3R"], row["QS2M4R"]])== sorted(["L'hiver",".",".", "."])\
+                                                                else ("Printemps_Ete" if sorted([row["QS2M1R"], row["QS2M2R"], row["QS2M3R"], row["QS2M4R"]])== sorted(["Le printemps","L'été",".", "."])\
+                                                                else ("Printemps_Automne" if sorted([row["QS2M1R"], row["QS2M2R"], row["QS2M3R"], row["QS2M4R"]])== sorted(["Le printemps","L'automne",".", "."])\
+                                                                else ("Printemps_Hiver" if sorted([row["QS2M1R"], row["QS2M2R"], row["QS2M3R"], row["QS2M4R"]])== sorted(["Le printemps","L'hiver",".", "."])\
+                                                                else ("Ete_Automne" if sorted([row["QS2M1R"], row["QS2M2R"], row["QS2M3R"], row["QS2M4R"]])== sorted(["L'été","L'automne",".", "."])\
+                                                                else ("Ete_Hiver" if sorted([row["QS2M1R"], row["QS2M2R"], row["QS2M3R"], row["QS2M4R"]])== sorted(["L'été","L'hiver",".", "."])\
+                                                                else ("Automne_Hiver" if sorted([row["QS2M1R"], row["QS2M2R"], row["QS2M3R"], row["QS2M4R"]])== sorted(["L'automne","L'hiver",".", "."])\
+                                                                else ("Printemps_Ete_Automne" if sorted([row["QS2M1R"], row["QS2M2R"], row["QS2M3R"], row["QS2M4R"]])== sorted(["Le printemps","L'été","L'automne", "."])\
+                                                                else ("Printemps_Automne_Hiver" if sorted([row["QS2M1R"], row["QS2M2R"], row["QS2M3R"], row["QS2M4R"]])== sorted(["Le printemps","L'automne","L'hiver", "."])\
+                                                                else ("Ete_Automne_Hiver" if sorted([row["QS2M1R"], row["QS2M2R"], row["QS2M3R"], row["QS2M4R"]])== sorted(["L'été","L'automne","L'hiver", "."])\
+                                                                else None)))))))))))))))), axis=1).rename(ColName)
+                        #else ("Printemps_Ete_Hiver" if sorted([row["QS2M1R"], row["QS2M2R"], row["QS2M3R"], row["QS2M4R"]])== sorted(["Le printemps","L'été","L'hiver", "."])\
+                                                                
                 else:
                     raise ValueError(f"Unknown mapping type for column '{ColName}'.")
             else:
@@ -1513,6 +1565,8 @@ class EUEMr(Master_genereBN):
                  "Source_Energie_Chauf",
                  "Chauffage_Logement",
                  "Spa_Presence",
+                 "Spa_Logement",
+                "Spa_Saison",
                  "Piscine_Presence",
                 "Piscine_Type",
                 "Piscine_Minuterie",
@@ -1600,12 +1654,16 @@ class EUEMr(Master_genereBN):
         diDep["Chauffage_Logement"] = ["Type_Logement", "Source_Energie_Chauf"]
         diDep["Climatisation"] = ["Type_Logement","Chauffage_Logement"]
         diDep["Spa_Presence"] = ["Territoire_HQ","Type_Logement"]
+        diDep["Spa_Logement"] = ["Spa_Presence", "Type_Logement"]
+        diDep["Spa_Saison"] = ["Spa_Presence", "Spa_Logement"]
         diDep["Piscine_Presence"] = ["Territoire_HQ","Type_Logement"]
         diDep["Piscine_Type"] = ["Piscine_Presence", "Type_Logement"]
         diDep["Piscine_Minuterie"] = ["Piscine_Type"]
         diDep["Piscine_Toile"] = ["Piscine_Type"]
         diDep["Piscine_Chauffee"] = ["Piscine_Type"]
         diDep["Piscine_ChaufType"] = ["Piscine_Chauffee"]
+
+
 
         #diDep["ConsoElecAn"] = ["AnConstruction", "TypeLogement", "SourceEnerChauf"]
 

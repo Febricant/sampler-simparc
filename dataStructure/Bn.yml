@@ -20,7 +20,11 @@
   Presence_SousSol: "Votre r\xE9sidence comporte-elle un sous-sol ou vide sanitaire?"
   Source_Energie_Chauf: "Principale source d'\xE9nergie utilis\xE9e pour le chauffage\
     \ de l'habitation"
+  Spa_Logement: "Le spa est-il \xE0 l'int\xE9rieur ou \xE0 l'ext\xE9rieur de la r\xE9\
+    sidence?"
   Spa_Presence: "Avez-vous un spa \xE0 votre r\xE9sidence?"
+  Spa_Saison: "Avez-vous utilis\xE9 votre spa\u2026? (Printemps, \xE9t\xE9, automne,\
+    \ hiver, pas utilis\xE9)"
   Superficie_Totale: "Quelle est la superficie TOTALE habitable de votre r\xE9sidence\
     \ incluant le sous-sol et le garage?"
   Territoire_HQ: Territoire HQ
@@ -130,9 +134,31 @@
     '2': Gaz naturel
     '3': Bi-energie
     '4': Bois
+  Spa_Logement:
+    '0': Aucun
+    '1': Exterieur
+    '2': Interieur
   Spa_Presence:
     '0': Oui
     '1': Non
+  Spa_Saison:
+    '0': Aucun
+    '1': "Pas utilis\xE9"
+    '10': Printemps_Hiver
+    '11': Ete_Automne
+    '12': Ete_Hiver
+    '13': Automne_Hiver
+    '14': Printemps_Ete_Automne
+    '15': Printemps_Automne_Hiver
+    '16': Ete_Automne_Hiver
+    '2': Ne sait pas
+    '3': Toute_Saison
+    '4': Printemps
+    '5': Ete
+    '6': Automne
+    '7': Hiver
+    '8': Printemps_Ete
+    '9': Printemps_Automne
   Superficie_Totale:
     '0': '[1 - 500)'
     '1': '[500 - 1000)'

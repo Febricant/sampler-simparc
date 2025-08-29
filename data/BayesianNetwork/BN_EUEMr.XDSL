@@ -20,6 +20,12 @@
       <parents>Territoire_HQ</parents>
       <probabilities>0.130654 0.0155502 0.047154 0.021564 0.785078 0.199846 0.0499972 0.0545909 0.0166265 0.67894 0.250078 0.0357956 0.0791344 0.0162977 0.618694 0.472674 0.126095 0.183059 0.0308201 0.187352 0.248618 0.0463721 0.0682466 0.0125838 0.62418</probabilities>
     </cpt>
+    <cpt id="Presence_Spa">
+      <state id="Oui" />
+      <state id="Non" />
+      <parents>Type_Logement Territoire_HQ</parents>
+      <probabilities>0 1 0 1 0.0495416 0.950458 0.0374022 0.962598 0.0675364 0.932464 0.00990079 0.990099 0.0230893 0.976911 0.0241663 0.975834 0.0468301 0.95317 0.101818 0.898182 0.0148483 0.985152 0 1 0.0431175 0.956883 0.0876253 0.912375 0.104997 0.895003 0.0135287 0.986471 0.00707588 0.992924 0.025826 0.974174 0.0149093 0.985091 0.0548607 0.945139 0.00669238 0.993308 0 1 0.0341545 0.965845 0 1 0.107065 0.892935</probabilities>
+    </cpt>
     <cpt id="Presence_Garage">
       <state id="Pas de Garage" />
       <state id="Garage non chauffé" />
@@ -148,6 +154,9 @@
       </node>
       <node id="Type_Logement">
         <name>Type_Logement</name>
+      </node>
+      <node id="Presence_Spa">
+        <name>Presence_Spa</name>
       </node>
       <node id="Presence_Garage">
         <name>Presence_Garage</name>

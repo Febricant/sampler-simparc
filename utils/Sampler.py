@@ -1417,7 +1417,7 @@ class MapHPXML:
             if "air_leakage_value" in dct_HPXML.keys():
                 dct_HPXML["air_leakage_value"] = dct_HPXML["air_leakage_value"] * (1.0 - dct_HPXML["air_leakage_percent_reduction"] / 100.0)
         
-        
+        #geometry_unit_level n'est pas dans le HPXML. variable intermédiaire
         # Adiabatic Floor/Ceiling
         #site_shielding_of_home
         #arg = "Geometry Building Level"
@@ -1432,6 +1432,7 @@ class MapHPXML:
         #            dct_HPXML[args] = 'Middle'
         #        else:
         #            pass
+        #remplace dct_HPXML["geometry_unit_level"] par dct_args.get(arg)
         arg = "Geometry Building Level"
         if dct_args.get(arg) == 'Bottom':
             if dct_HPXML.get("geometry_unit_num_floors_above_grade") > 1: # this could be "bottom" of a 1-story building

@@ -10,6 +10,7 @@
     \ du sous-sol et le garage, excluant les salles de bain et les couloirs)"
   Presence_Garage: Avez-vous un garage?
   Presence_SousSol: "Votre r\xE9sidence comporte-elle un sous-sol ou vide sanitaire?"
+  Presence_Spa: "Avez-vous un spa \xE0 votre r\xE9sidence?"
   Source_Energie_Chauf: "Principale source d'\xE9nergie utilis\xE9e pour le chauffage\
     \ de l'habitation"
   Superficie_Totale: "Quelle est la superficie TOTALE habitable de votre r\xE9sidence\
@@ -85,6 +86,9 @@
     '1': Vide sanitaire moins 6 pieds
     '2': Aucun Sous-sol ou vide sanitaire
     '3': Sous-sol et vide sanitaire
+  Presence_Spa:
+    '0': Oui
+    '1': Non
   Source_Energie_Chauf:
     '0': Electricite
     '1': Mazout

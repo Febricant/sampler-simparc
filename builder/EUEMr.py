@@ -1261,7 +1261,13 @@ class FormatageEUEMr:
                                                      "Murale": ["Climatiseur mural ou bibloc (mini-split)","Thermopompe murale"],
                                                      "Centrale": ["Thermopompe centrale", "Thermopompe géothermique","Climatiseur central autre qu'une thermopompe"]}
 
-
+        #presence garage et chauffé et type chauffage
+        self.Mapping["Presence_Spa"] = {}
+        self.Mapping["Presence_Spa"]["ColSrc"] = "QB1M"
+        self.Mapping["Presence_Spa"]["typeMapping"] = "list"
+        self.Mapping["Presence_Spa"]["Mapping"] = {"Oui":["Oui"],
+                                                   "Non":["Non", "Ne sait pas/Ne répond pas"]}
+         
 
         # QBM2R : Nombre de congélateurs distinct dans la résidence
     
@@ -1464,7 +1470,8 @@ class EUEMr(Master_genereBN):
                  "An_Construction",
                  "Climatisation",
                  "Source_Energie_Chauf",
-                 "Chauffage_Logement"]
+                 "Chauffage_Logement",
+                 "Presence_Spa"]
     
 #    ["QA4", # De quel genre d'habitation s'agit-il?
 #                 "QA1", # Quel est votre lien avec ce logement ?
@@ -1543,6 +1550,7 @@ class EUEMr(Master_genereBN):
         diDep["Source_Energie_Chauf"] = ["An_Construction", "Type_Logement"]
         diDep["Chauffage_Logement"] = ["Type_Logement", "Source_Energie_Chauf"]
         diDep["Climatisation"] = ["Type_Logement","Chauffage_Logement"]
+        diDep["Presence_Spa"] = ["Territoire_HQ","Type_Logement"]
         
 
         #diDep["ConsoElecAn"] = ["AnConstruction", "TypeLogement", "SourceEnerChauf"]

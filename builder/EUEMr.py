@@ -1654,7 +1654,8 @@ class EUEMr(Master_genereBN):
         for k in diEUEMr :
             #self.bn.add(k, len(diEUEMr[k]))   # par id [0,1,2] 
             #self.bn.add(gum.LabelizedVariable(k,k,[str(i) for i in diEUEMr[k].keys()]))   # par key [1,2,99]
-            self.bn.add(gum.LabelizedVariable(k,k,[str(i) for i in diEUEMr[k].values()]))   # par key [1,2,99]
+            #Description : self.NOEUD_EUEMr[k]
+            self.bn.add(gum.LabelizedVariable(k,self.NOEUD_EUEMr[k],[str(i) for i in diEUEMr[k].values()]))   # par key [1,2,99]
 
         # Imposition des dépendances
         diDep = {ele : [] for ele in diEUEMr} # Par défaut, ne mettre aucune dépendance à toutes les variables => list vide

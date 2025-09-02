@@ -39,7 +39,7 @@ class Sampler(Master_genereBN):
 
     def getBNStructure(self, path=PROJECT_DIR+"/dataStructure/Bn.yml",):
         with open(path, 'r') as file:
-            lst_NOEUD, LIST_Dict = yaml.safe_load(file)
+            lst_NOEUD, LIST_Dict, dict_info = yaml.safe_load(file)
         return lst_NOEUD, LIST_Dict
 
 class BuildstockBatchArguments():

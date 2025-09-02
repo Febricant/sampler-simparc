@@ -54,29 +54,73 @@ class BuildstockBatchArguments():
         :param path: Path to the CSV file.
         :return: Dictionary with column names as keys and lists of column values as values.
         """
-        dct_name = {"Geometry Stories.csv": "Geometry Stories",
-                    "Geometry Building Number Units.csv": "Geometry Building Number Units",
-                    "Geometry Building Horizontal Location.csv": "Geometry Building Horizontal Location",
-                    "Geometry Building Level.csv" : "Geometry Building Level",
-                    "Infiltration.csv" : "Infiltration",
-                    "Windows.csv" : "Windows",
-                    "Insulation Wall.csv" : "Insulation Wall",
-                    "Insulation Ceiling.csv" : "Insulation Ceiling",
-                    "Insulation Foundation Wall.csv": "Insulation Foundation Wall",
-                    "Geometry Wall Exterior Finish.csv" : "Geometry Wall Exterior Finish",
-                    "Geometry Attic Type.csv": "geometry attic type",
-                    "HVAC Has Shared System.csv": "HVAC Has Shared System",
-                    "HVAC Heating Efficiency.csv": "HVAC Heating Efficiency"}
+        #dct_name = {"Geometry Stories.csv": "Geometry Stories",
+        #            "Geometry Building Number Units.csv": "Geometry Building Number Units",
+        #            "Geometry Building Horizontal Location.csv": "Geometry Building Horizontal Location",
+        #            "Geometry Building Level.csv" : "Geometry Building Level",
+        #            "Infiltration.csv" : "Infiltration",
+        #            "Windows.csv" : "Windows",
+        #            "Insulation Wall.csv" : "Insulation Wall",
+        #            "Insulation Ceiling.csv" : "Insulation Ceiling",
+        #            "Insulation Foundation Wall.csv": "Insulation Foundation Wall",
+        #            "Geometry Wall Exterior Finish.csv" : "Geometry Wall Exterior Finish",
+        #            "Geometry Attic Type.csv": "geometry attic type",
+        #            "HVAC Has Shared System.csv": "HVAC Has Shared System",
+        #            "HVAC Heating Efficiency.csv": "HVAC Heating Efficiency"}
+        dct_housing_characteristics_csv= {}
+        dct_housing_characteristics_csv["Geometry Stories.csv"] = {"Name": "Geometry Stories",
+                                                   "Description": "Geometry Stories",
+                                                   "Source":""}
+        dct_housing_characteristics_csv["Geometry Building Number Units.csv"] = {"Name": "Geometry Building Number Units",
+                                                   "Description": "Nombre d'unité d'habitation",
+                                                   "Source":""}
+        dct_housing_characteristics_csv["Geometry Building Horizontal Location.csv"] = {"Name": "Geometry Building Horizontal Location",
+                                                   "Description": "Position horizontale de l'habitation",
+                                                   "Source":""}
+        dct_housing_characteristics_csv["Geometry Building Level.csv"] = {"Name": "Geometry Building Level",
+                                                    "Description": "Position verticale de l'habitation",
+                                                    "Source":""}
+        dct_housing_characteristics_csv["Infiltration.csv"] = {"Name": "Infiltration",
+                                                    "Description": "Taux d'infiltration d'air",
+                                                    "Source":""}
+        dct_housing_characteristics_csv["Windows.csv"] = {"Name": "Windows",
+                                                    "Description": "Type de fenêtre",
+                                                    "Source":""}
+        dct_housing_characteristics_csv["Insulation Wall.csv"] = {"Name": "Insulation Wall",
+                                                    "Description": "Type d'isolation des murs",
+                                                    "Source":""}
+        dct_housing_characteristics_csv["Insulation Ceiling.csv"] = {"Name": "Insulation Ceiling",
+                                                    "Description": "Type d'isolation du plafond",
+                                                    "Source":""}
+        dct_housing_characteristics_csv["Insulation Foundation Wall.csv"] = {"Name": "Insulation Foundation Wall",
+                                                    "Description": "Type d'isolation du mur de fondation",
+                                                    "Source":""}
+        dct_housing_characteristics_csv["Geometry Wall Exterior Finish.csv"] = {"Name": "Geometry Wall Exterior Finish",
+                                                    "Description": "Type de revêtement extérieur des murs",
+                                                    "Source":""}
+        dct_housing_characteristics_csv["Geometry Attic Type.csv"] = {"Name": "geometry attic type",
+                                                    "Description": "Type de grenier",
+                                                    "Source":""}
+        dct_housing_characteristics_csv["HVAC Has Shared System.csv"] = {"Name": "HVAC Has Shared System",
+                                                    "Description": "Système de chauffage partagé",
+                                                    "Source":""}
+        dct_housing_characteristics_csv["HVAC Heating Efficiency.csv"] = {"Name": "HVAC Heating Efficiency",
+                                                    "Description": "Efficacité du système de chauffage",
+                                                    "Source":""}
+        
 
         dct_housing_characteristics = {}
-        for file in dct_name.keys():
+        for file in dct_housing_characteristics_csv.keys():
             if (file in os.listdir(path)):
                 pathcsv = os.path.join(path, file)
-                name = dct_name[file]#file.split(".")[0]
+                name = dct_housing_characteristics_csv[file]["Name"]#file.split(".")[0]
                 dct_housing_characteristics[name] = {}
+                dct_housing_characteristics[name]["Description"] = dct_housing_characteristics_csv[file]["Description"]
+                dct_housing_characteristics[name]["Source"] = dct_housing_characteristics_csv[file]["Source"]
                 dct_housing_characteristics[name]["Table"] = pd.read_csv(pathcsv, sep=";")
                 dct_housing_characteristics[name]["Dependency"] = {c: c.split("Dependency=")[-1] for c in dct_housing_characteristics[name]["Table"].columns if "Dependency=" in c}
                 dct_housing_characteristics[name]["Option"] = {c: c.split("Option=")[-1] for c in dct_housing_characteristics[name]["Table"].columns if "Option=" in c}
+        
         return dct_housing_characteristics
     
     def sampling(self, lst_dct_args={}):

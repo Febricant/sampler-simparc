@@ -122,12 +122,13 @@ def DashBoard():
             Bba = BuildstockBatchArguments()
             lst_dct_args2 = Bba.sampling( lst_dct_args)
 
-            lst_dct_args = [ d2 | d1 for d1, d2 in zip(lst_dct_args, lst_dct_args2)]#lst_dct_args prioritaire
+            lst_dct_args = [ d1 | d2 for d1, d2 in zip(lst_dct_args, lst_dct_args2)]
 
             MapSample = MapHPXML()
             lst_dct_HPXML = MapSample.run(lst_dct_args)
-
-            df2 = pd.DataFrame(lst_dct_HPXML)
+            dfargs = pd.DataFrame(lst_dct_args)
+            dfHPXML = pd.DataFrame(lst_dct_HPXML)
+            #df2 = pd.DataFrame(lst_dct_HPXML)
             #g=gum.BNDatabaseGenerator(InsClsSampler.bn)
             #g.setRandomVarOrder()
             ##g.setDiscretizedLabelModeRandom()
@@ -136,15 +137,15 @@ def DashBoard():
             st.write("Calcul terminé.")  
 
         st.markdown("## Étape 3 - Résultats")   
-        st.dataframe(df)   	
-        st.dataframe(df2) 
+        st.dataframe(dfargs)   	
+        st.dataframe(dfHPXML) 
 
         st.markdown("## Étape 4 - Téléchargement des résultats")
         st.markdown("Les résultats sont disponibles au format CSV. " \
 		"Attention: le fichier ne devrait pas être trop volumineux (< 100 Mo).")
         st.download_button(
 			label="Télécharger les résultats",
-			data=df2.to_csv(index=False).encode('utf-8'),
+			data=dfHPXML.to_csv(index=False).encode('utf-8'),
 			file_name='resultats.csv',
 			mime='text/csv'
 		)

@@ -1725,6 +1725,69 @@ class MapHPXML:
                     #else:
                     #    dct_HPXML[args] = 'none'
 
+        #_____________________________________________________________
+        #misc_plug_loads_vehicle_present      
+        arg = "Vehicule_Presence"
+        argHPXML = "misc_plug_loads_vehicle_present"# du logement et non de l'immeuble
+        ConsoVE = 3274 #kWh/an Provient du modèle de l'OPE
+        ConsoVHR = 2248 #kWh/an Provient du modèle de l'OPE
+
+
+        if (argHPXML not in dct_HPXML.keys()):
+            if (arg in dct_args.keys()):
+                if dct_args[arg] == "Aucune_VE_Aucune_VHR":
+                    dct_HPXML[argHPXML] = False
+                else:
+                    dct_HPXML[argHPXML] = True
+                    if dct_args[arg] == "Une_VE_Aucune_VHR":
+                        dct_HPXML["misc_plug_loads_vehicle_annual_kwh"] = ConsoVE
+                        dct_HPXML["misc_plug_loads_vehicle_usage_multiplier"]=1
+                        misc_plug_loads_vehicle_2_usage_multiplier = 1
+                    elif dct_args[arg] == "Deux_VE_Aucune_VHR":
+                        dct_HPXML["misc_plug_loads_vehicle_annual_kwh"] = ConsoVE
+                        dct_HPXML["misc_plug_loads_vehicle_usage_multiplier"]=1
+                        misc_plug_loads_vehicle_2_usage_multiplier = 1
+                    elif dct_args[arg] == "Trois_VE_Aucune_VHR":
+                        dct_HPXML["misc_plug_loads_vehicle_annual_kwh"] = ConsoVE
+                        dct_HPXML["misc_plug_loads_vehicle_usage_multiplier"]=1
+                        misc_plug_loads_vehicle_2_usage_multiplier = 1
+                    elif dct_args[arg] == "Aucune_VE_Une_VHR":
+                        dct_HPXML["misc_plug_loads_vehicle_annual_kwh"] = ConsoVHR
+                        dct_HPXML["misc_plug_loads_vehicle_usage_multiplier"]=1
+                        misc_plug_loads_vehicle_2_usage_multiplier = 1
+                    elif dct_args[arg] == "Une_VE_Une_VHR":
+                        dct_HPXML["misc_plug_loads_vehicle_annual_kwh"] = ConsoVE
+                        dct_HPXML["misc_plug_loads_vehicle_usage_multiplier"]=1
+                        misc_plug_loads_vehicle_2_usage_multiplier = 1
+                    elif dct_args[arg] == "Deux_VE_Une_VHR":
+                        dct_HPXML["misc_plug_loads_vehicle_annual_kwh"] = ConsoVE
+                        dct_HPXML["misc_plug_loads_vehicle_usage_multiplier"]=1
+                        misc_plug_loads_vehicle_2_usage_multiplier = 1
+                    elif dct_args[arg] == "Trois_VE_Une_VHR":
+                        dct_HPXML["misc_plug_loads_vehicle_annual_kwh"] = ConsoVE
+                        dct_HPXML["misc_plug_loads_vehicle_usage_multiplier"]=1
+                        misc_plug_loads_vehicle_2_usage_multiplier = 1
+                    elif dct_args[arg] == "Aucune_VE_Deux_VHR":
+                        dct_HPXML["misc_plug_loads_vehicle_annual_kwh"] = ConsoVHR
+                        dct_HPXML["misc_plug_loads_vehicle_usage_multiplier"]=1
+                        misc_plug_loads_vehicle_2_usage_multiplier = 1
+                    elif dct_args[arg] == "Une_VE_Deux_VHR":
+                        dct_HPXML["misc_plug_loads_vehicle_annual_kwh"] = ConsoVE
+                        dct_HPXML["misc_plug_loads_vehicle_usage_multiplier"]=1
+                        misc_plug_loads_vehicle_2_usage_multiplier = 1
+                    elif dct_args[arg] == "Deux_VE_Deux_VHR":
+                        dct_HPXML["misc_plug_loads_vehicle_annual_kwh"] = ConsoVE
+                        dct_HPXML["misc_plug_loads_vehicle_usage_multiplier"]=1
+                        misc_plug_loads_vehicle_2_usage_multiplier = 1
+                    elif dct_args[arg] == "Trois_VE_Deux_VHR":
+                        dct_HPXML["misc_plug_loads_vehicle_annual_kwh"] = ConsoVE
+                        dct_HPXML["misc_plug_loads_vehicle_usage_multiplier"]=1
+                        misc_plug_loads_vehicle_2_usage_multiplier = 1
+
+                    dct_HPXML["misc_plug_loads_vehicle_usage_multiplier"]=dct_HPXML["misc_plug_loads_vehicle_usage_multiplier"] * misc_plug_loads_vehicle_2_usage_multiplier
+            else:
+                dct_HPXML[argHPXML] = False
+
         # ajout des Valeurs par défaut du HPXML si cle n'existe pas
         k_missing = list(set(self.HPXMLArg.arguments.keys()) - set(dct_HPXML.keys()))
         dct_HPXML_missing ={}# {k: self.HPXMLArg.arguments[k].get("Default Value", None) for k in k_missing if self.HPXMLArg.arguments[k].get("Default Value", "Defaut_Not_Existing")!="Defaut_Not_Existing"} 

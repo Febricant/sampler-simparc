@@ -35,6 +35,9 @@
     \ incluant le sous-sol et le garage?"
   Territoire_HQ: Territoire HQ
   Type_Logement: De quel genre d'habitation s'agit-il?
+  Vehicule_BornePresence: "Disposez-vous d'une borne de recharge reli\xE9e \xE0 votre\
+    \ compteur d'\xE9lectricit\xE9?"
+  Vehicule_Presence: "Voiture(s) \xE9lectrique? (Base totale)"
 - An_Construction:
     '0': < 1950
     '1': '[1950 - 1960)'
@@ -199,6 +202,20 @@
     '2': Duplex
     '3': Maison en rangee
     '4': Maison individuelle
+  Vehicule_BornePresence:
+    '0': Aucun
+    '1': Oui
+    '2': Non
+  Vehicule_Presence:
+    '0': Aucune_VE_Aucune_VHR
+    '1': Une_VE_Aucune_VHR
+    '2': Aucune_VE_Une_VHR
+    '3': Deux_VE_Aucune_VHR
+    '4': Une_VE_Une_VHR
+    '5': Deux_VE_Une_VHR
+    '6': Trois_VE_Aucune_VHR
+    '7': Deux_VE_Deux_VHR
+    '8': Aucune_VE_Deux_VHR
 - An_Construction:
     Description: "Ann\xE9e de construction de l'habitation"
     "D\xE9pendance (enfants)":
@@ -593,9 +610,10 @@
     Description: Territoire HQ
     "D\xE9pendance (enfants)":
     - Type_Logement
-    - Piscine_Presence
     - Nombre_Etages
     - Spa_Presence
+    - Piscine_Presence
+    - Vehicule_Presence
     "D\xE9pendance (parents)": []
     Nom: Territoire_HQ
     Source: "EUEMR modifi\xE9"
@@ -624,6 +642,8 @@
     - Spa_Logement
     - Piscine_Presence
     - Piscine_Type
+    - Vehicule_Presence
+    - Vehicule_BornePresence
     "D\xE9pendance (parents)":
     - Territoire_HQ
     Nom: Type_Logement
@@ -635,4 +655,40 @@
     - Maison en rangee
     - Maison individuelle
     id: 1
+    "\xC9chantillonneur": "R\xE9seau Bayesien"
+  Vehicule_BornePresence:
+    Description: "Disposez-vous d'une borne de recharge reli\xE9e \xE0 votre compteur\
+      \ d'\xE9lectricit\xE9?"
+    "D\xE9pendance (enfants)": []
+    "D\xE9pendance (parents)":
+    - Vehicule_Presence
+    - Type_Logement
+    Nom: Vehicule_BornePresence
+    Source: "EUEMR modifi\xE9"
+    Valeurs:
+    - Aucun
+    - Oui
+    - Non
+    id: 25
+    "\xC9chantillonneur": "R\xE9seau Bayesien"
+  Vehicule_Presence:
+    Description: "Voiture(s) \xE9lectrique? (Base totale)"
+    "D\xE9pendance (enfants)":
+    - Vehicule_BornePresence
+    "D\xE9pendance (parents)":
+    - Territoire_HQ
+    - Type_Logement
+    Nom: Vehicule_Presence
+    Source: "EUEMR modifi\xE9"
+    Valeurs:
+    - Aucune_VE_Aucune_VHR
+    - Une_VE_Aucune_VHR
+    - Aucune_VE_Une_VHR
+    - Deux_VE_Aucune_VHR
+    - Une_VE_Une_VHR
+    - Deux_VE_Une_VHR
+    - Trois_VE_Aucune_VHR
+    - Deux_VE_Deux_VHR
+    - Aucune_VE_Deux_VHR
+    id: 24
     "\xC9chantillonneur": "R\xE9seau Bayesien"

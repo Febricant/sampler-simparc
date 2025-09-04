@@ -1366,6 +1366,28 @@ class FormatageEUEMr:
                                                         "Bois": ["Un chauffe-piscine au bois"],
                                                         "Mazout": ["Un chauffe-piscine à l’huile/mazout"]}
     
+        #Nombre de VE et Hybride en 1 variable
+        self.Mapping["Vehicule_Presence"] = {}
+        self.Mapping["Vehicule_Presence"]["ColSrc"] = "QT2T3" # seulement pour la méthode get_Mettadata
+        self.Mapping["Vehicule_Presence"]["typeMapping"] = "custom"
+        self.Mapping["Vehicule_Presence"]["Mapping"] = {"Aucune_VE_Aucune_VHR": None,
+                                                 "Une_VE_Aucune_VHR":None,
+                                                 "Aucune_VE_Une_VHR":None,
+                                                "Deux_VE_Aucune_VHR":None,
+                                                "Une_VE_Une_VHR":None,
+                                                "Deux_VE_Une_VHR":None,
+                                                "Trois_VE_Aucune_VHR":None,
+                                                "Deux_VE_Deux_VHR":None,
+                                                "Aucune_VE_Deux_VHR":None,
+                                                    }
+        
+        self.Mapping["Vehicule_BornePresence"] = {}
+        self.Mapping["Vehicule_BornePresence"]["ColSrc"] = "QT4"
+        self.Mapping["Vehicule_BornePresence"]["typeMapping"] = "list"
+        self.Mapping["Vehicule_BornePresence"]["Mapping"] = {"Aucun": ["."],
+                                                       "Oui":["Oui"],
+                                                       "Non":["Non", "Ne sait pas/Ne répond pas"]}
+        
         # QBM2R : Nombre de congélateurs distinct dans la résidence
     
         # QB1A1 : Présence de cuisinières (Oui/Non)
@@ -1410,7 +1432,6 @@ class FormatageEUEMr:
         ## QF1 : À quelle source d'énergie votre chauffe-eau fonctionne-t-il?
         ## a voir si pertinent # # QF3 : Quelle est la capacité du chauffe-eau?
 
-        #Nombre de VE et Hybride en 1 variable
 
 
     def get_Mettadata(self):
@@ -1528,7 +1549,20 @@ class FormatageEUEMr:
                                                                 else ("Ete_Automne_Hiver" if sorted([row["QS2M1R"], row["QS2M2R"], row["QS2M3R"], row["QS2M4R"]])== sorted(["L'été","L'automne","L'hiver", "."])\
                                                                 else None)))))))))))))))), axis=1).rename(ColName)
                         #else ("Printemps_Ete_Hiver" if sorted([row["QS2M1R"], row["QS2M2R"], row["QS2M3R"], row["QS2M4R"]])== sorted(["Le printemps","L'été","L'hiver", "."])\
-                                                                
+                    if ColName == "Vehicule_Presence":
+                        return self.dfEUEMrSrc.apply(lambda row: "Aucune_VE_Aucune_VHR" if ((row["QT2R"] in ["Aucune"]) and (row["QT3R"] in ["Aucune"]))\
+                                                                else ("Une_VE_Aucune_VHR" if ((row["QT2R"] in ["Une"]) and (row["QT3R"] in ["Aucune"]))\
+                                                                else ("Deux_VE_Aucune_VHR" if ((row["QT2R"] in ["Deux"]) and (row["QT3R"] in ["Aucune"]))\
+                                                                else ("Trois_VE_Aucune_VHR" if ((row["QT2R"] in ["Trois"]) and (row["QT3R"] in ["Aucune"]))\
+                                                                else ("Aucune_VE_Une_VHR" if ((row["QT2R"] in ["Aucune"]) and (row["QT3R"] in ["Une"]))\
+                                                                else ("Une_VE_Une_VHR" if ((row["QT2R"] in ["Une"]) and (row["QT3R"] in ["Une"]))\
+                                                                else ("Deux_VE_Une_VHR" if ((row["QT2R"] in ["Deux"]) and (row["QT3R"] in ["Une"]))\
+                                                                else ("Trois_VE_Une_VHR" if ((row["QT2R"] in ["Trois"]) and (row["QT3R"] in ["Une"]))\
+                                                                else ("Aucune_VE_Deux_VHR" if ((row["QT2R"] in ["Aucune"]) and (row["QT3R"] in ["Deux"]))\
+                                                                else ("Une_VE_Deux_VHR" if ((row["QT2R"] in ["Une"]) and (row["QT3R"] in ["Deux"]))\
+                                                                else ("Deux_VE_Deux_VHR" if ((row["QT2R"] in ["Deux"]) and (row["QT3R"] in ["Deux"]))\
+                                                                else ("Trois_VE_Deux_VHR" if ((row["QT2R"] in ["Trois"]) and (row["QT3R"] in ["Deux"]))\
+                                                                else None))))))))))), axis=1).rename(ColName)
                 else:
                     raise ValueError(f"Unknown mapping type for column '{ColName}'.")
             else:
@@ -1590,7 +1624,9 @@ class EUEMr(Master_genereBN):
                 "Piscine_Minuterie",
                 "Piscine_Toile",
                 "Piscine_Chauffee",
-                "Piscine_ChaufType"]
+                "Piscine_ChaufType",
+                "Vehicule_Presence",
+                "Vehicule_BornePresence"]
     
                 
         
@@ -1683,6 +1719,8 @@ class EUEMr(Master_genereBN):
         diDep["Piscine_Toile"] = ["Piscine_Type"]
         diDep["Piscine_Chauffee"] = ["Piscine_Type"]
         diDep["Piscine_ChaufType"] = ["Piscine_Chauffee"]
+        diDep["Vehicule_Presence"] = ["Territoire_HQ","Type_Logement"]
+        diDep["Vehicule_BornePresence"] = ["Vehicule_Presence","Type_Logement"]
 
         #diDep["ConsoElecAn"] = ["AnConstruction", "TypeLogement", "SourceEnerChauf"]
 

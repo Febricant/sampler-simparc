@@ -1,4 +1,8 @@
 - An_Construction: "Ann\xE9e de construction de l'habitation"
+  ChaufEau_ChaufType: "\xC0 quelle source d'\xE9nergie votre chauffe-eau fonctionne-t-il?"
+  ChaufEau_Presence: "Le chauffe-eau est central ou uniquement pour le lieu de r\xE9\
+    sidence (Base totale)"
+  ChaufEau_Type: "Quelle est la capacit\xE9 du chauffe-eau?"
   Chauffage_Logement: "Syst\xE8me principal de chauffage"
   Climatisation: Parmi les appareils suivants, lesquels utilisez-vous pour climatiser
     votre habitation? (Ensemble des mentions)
@@ -48,6 +52,29 @@
     '6': '[2000 - 2010)'
     '7': '[2010 - 2020)'
     '8': '>= 2020'
+  ChaufEau_ChaufType:
+    '0': Aucun
+    '1': Ne sait pas
+    '2': Electrique
+    '3': Propane
+    '4': Gaz Naturel
+    '5': Bois
+    '6': Mazout
+  ChaufEau_Presence:
+    '0': Aucun
+    '1': Logement
+    '2': Central
+  ChaufEau_Type:
+    '0': Non definit
+    '1': Ne sait pas
+    '2': "Chauffe-eau sans r\xE9servoir"
+    '3': Moins de 22 gallons
+    '4': 22 gallons
+    '5': 23-40 gallons
+    '6': 40 gallons
+    '7': 41-59 gallons
+    '8': 60 gallons
+    '9': 60 et plus gallons
   Chauffage_Logement:
     '0': "Plinthes \xE9lectriques"
     '1': "Unit\xE9s convecteurs, plancher ou plafond radiant"
@@ -235,6 +262,62 @@
     - '[2010 - 2020)'
     - '>= 2020'
     id: 9
+    "\xC9chantillonneur": "R\xE9seau Bayesien"
+  ChaufEau_ChaufType:
+    Description: "\xC0 quelle source d'\xE9nergie votre chauffe-eau fonctionne-t-il?"
+    "D\xE9pendance (enfants)": []
+    "D\xE9pendance (parents)":
+    - Type_Logement
+    - Source_Energie_Chauf
+    - ChaufEau_Presence
+    Nom: ChaufEau_ChaufType
+    Source: "EUEMR modifi\xE9"
+    Valeurs:
+    - Aucun
+    - Ne sait pas
+    - Electrique
+    - Propane
+    - Gaz Naturel
+    - Bois
+    - Mazout
+    id: 26
+    "\xC9chantillonneur": "R\xE9seau Bayesien"
+  ChaufEau_Presence:
+    Description: "Le chauffe-eau est central ou uniquement pour le lieu de r\xE9sidence\
+      \ (Base totale)"
+    "D\xE9pendance (enfants)":
+    - ChaufEau_ChaufType
+    - ChaufEau_Type
+    "D\xE9pendance (parents)":
+    - Type_Logement
+    Nom: ChaufEau_Presence
+    Source: "EUEMR modifi\xE9"
+    Valeurs:
+    - Aucun
+    - Logement
+    - Central
+    id: 28
+    "\xC9chantillonneur": "R\xE9seau Bayesien"
+  ChaufEau_Type:
+    Description: "Quelle est la capacit\xE9 du chauffe-eau?"
+    "D\xE9pendance (enfants)": []
+    "D\xE9pendance (parents)":
+    - Type_Logement
+    - ChaufEau_Presence
+    Nom: ChaufEau_Type
+    Source: "EUEMR modifi\xE9"
+    Valeurs:
+    - Non definit
+    - Ne sait pas
+    - "Chauffe-eau sans r\xE9servoir"
+    - Moins de 22 gallons
+    - 22 gallons
+    - 23-40 gallons
+    - 40 gallons
+    - 41-59 gallons
+    - 60 gallons
+    - 60 et plus gallons
+    id: 27
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Chauffage_Logement:
     Description: "Syst\xE8me principal de chauffage"
@@ -477,6 +560,7 @@
     Description: "Principale source d'\xE9nergie utilis\xE9e pour le chauffage de\
       \ l'habitation"
     "D\xE9pendance (enfants)":
+    - ChaufEau_ChaufType
     - Chauffage_Logement
     "D\xE9pendance (parents)":
     - Type_Logement
@@ -644,6 +728,9 @@
     - Piscine_Type
     - Vehicule_Presence
     - Vehicule_BornePresence
+    - ChaufEau_ChaufType
+    - ChaufEau_Type
+    - ChaufEau_Presence
     "D\xE9pendance (parents)":
     - Territoire_HQ
     Nom: Type_Logement

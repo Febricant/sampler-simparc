@@ -110,6 +110,12 @@ class BuildstockBatchArguments():
         dct_housing_characteristics_csv["Spa ChaufType.csv"] = {"Name": "Spa ChaufType",
                                                     "Description": "Type de chauffage du spa",
                                                     "Source":""}
+        #dct_housing_characteristics_csv["Water Heater in Unit.csv"] = {"Name": "Water Heater in Unit",
+        #                                            "Description": "Chauffeau dans le logement",
+        #                                            "Source":""}
+        #dct_housing_characteristics_csv["Water Heater Location.csv"] = {"Name": "Water Heater Location",
+        #                                            "Description": "Position du chauffe-eau dans le logement",
+        #                                            "Source":""}
         
         
 
@@ -1885,6 +1891,124 @@ class MapHPXML:
                     dct_HPXML[argHPXML] = 1
             else:
                 dct_HPXML[argHPXML] = 1
+
+        #_____________________________________________________________
+        #Water Heater
+        #water_heater_type
+        #water_heater_fuel_type
+        #water_heater_location
+        #water_heater_tank_volume
+
+        arg = "ChaufEau_ChaufType"
+        argHPXML = "water_heater_fuel_type"# du logement et non de l'immeuble
+        if (argHPXML not in dct_HPXML.keys()):
+            if (arg in dct_args.keys()):
+                if dct_args[arg] in ["Electrique"]:
+                    dct_HPXML[argHPXML] = "electricity"
+                    dct_HPXML["water_heater_efficiency_type"]="EnergyFactor"
+                    if dct_args["ChaufEau_Type"]=="Chauffe-eau sans réservoir":
+                        dct_HPXML["water_heater_efficiency"]=0.99
+                    else:
+                        dct_HPXML["water_heater_efficiency"]=0.92
+                    dct_HPXML["water_heater_recovery_efficiency"]=0
+                    dct_HPXML["water_heater_standby_loss"]=0
+                    dct_HPXML["water_heater_jacket_rvalue"]=0
+                    dct_HPXML["water_heater_setpoint_temperature"]=125
+                elif dct_args[arg] in ["Propane"]:
+                    dct_HPXML[argHPXML] = "propane"
+                    dct_HPXML["water_heater_efficiency_type"]="EnergyFactor"
+                    dct_HPXML["water_heater_efficiency"]=0.59
+                    dct_HPXML["water_heater_recovery_efficiency"]=0.76
+                    dct_HPXML["water_heater_standby_loss"]=0
+                    dct_HPXML["water_heater_jacket_rvalue"]=0
+                    dct_HPXML["water_heater_setpoint_temperature"]=125
+                elif dct_args[arg] in ["Gaz Naturel"]:
+                    dct_HPXML[argHPXML] = "natural gas"
+                    dct_HPXML["water_heater_efficiency_type"]="EnergyFactor"
+                    dct_HPXML["water_heater_efficiency"]=0.59
+                    dct_HPXML["water_heater_recovery_efficiency"]=0.76
+                    dct_HPXML["water_heater_standby_loss"]=0
+                    dct_HPXML["water_heater_jacket_rvalue"]=0
+                    dct_HPXML["water_heater_setpoint_temperature"]=125
+                elif dct_args[arg] in ["Mazout"]:
+                    dct_HPXML[argHPXML] = "fuel oil"
+                    dct_HPXML["water_heater_efficiency_type"]="EnergyFactor"
+                    dct_HPXML["water_heater_efficiency"]=0.62
+                    dct_HPXML["water_heater_recovery_efficiency"]=0.78
+                    dct_HPXML["water_heater_standby_loss"]=0
+                    dct_HPXML["water_heater_jacket_rvalue"]=0
+                    dct_HPXML["water_heater_setpoint_temperature"]=125
+                elif dct_args[arg] in ["wood"]:
+                    dct_HPXML[argHPXML] = "Bois"
+                    dct_HPXML["water_heater_efficiency_type"]="EnergyFactor"
+                    dct_HPXML["water_heater_efficiency"]=0.59
+                    dct_HPXML["water_heater_recovery_efficiency"]=0.76
+                    dct_HPXML["water_heater_standby_loss"]=0
+                    dct_HPXML["water_heater_jacket_rvalue"]=0
+                    dct_HPXML["water_heater_setpoint_temperature"]=125
+                else:
+                    dct_HPXML[argHPXML] = "electricity"
+                    if dct_args["ChaufEau_Type"]=="Chauffe-eau sans réservoir":
+                        dct_HPXML["water_heater_efficiency"]=0.99
+                    else:
+                        dct_HPXML["water_heater_efficiency"]=0.92
+                    dct_HPXML["water_heater_recovery_efficiency"]=0
+                    dct_HPXML["water_heater_standby_loss"]=0
+                    dct_HPXML["water_heater_jacket_rvalue"]=0
+                    dct_HPXML["water_heater_setpoint_temperature"]=125
+            else:
+                dct_HPXML[argHPXML] = 1
+        
+        arg = "ChaufEau_Type"
+        argHPXML = "water_heater_type"# du logement et non de l'immeuble
+        if (argHPXML not in dct_HPXML.keys()):
+            if (arg in dct_args.keys()):
+                if dct_args[arg] in ["Non definit","Ne sait pas"]:
+                    if dct_args["ChaufEau_Presence"] == "Aucun":
+                        dct_HPXML[argHPXML] = None
+                    elif dct_args["ChaufEau_Presence"] == "Central":
+                        dct_HPXML[argHPXML] = "storage water heater"
+                    else: #elif dct_args["ChaufEau_Presence"] == "Logement":
+                        dct_HPXML[argHPXML] = "storage water heater"
+                elif dct_args[arg] in ["Chauffe-eau sans réservoir"]:
+                    dct_HPXML[argHPXML] = "instantaneous water heater"
+                else:
+                    dct_HPXML[argHPXML] = "storage water heater"
+            else:
+                dct_HPXML[argHPXML] = "storage water heater"
+
+
+        arg = "ChaufEau_Presence"
+        argHPXML = "water_heater_location"# du logement et non de l'immeuble
+        if (argHPXML not in dct_HPXML.keys()):
+            if (arg in dct_args.keys()):
+                if dct_args[arg] in ["Logement"]:
+                    dct_HPXML[argHPXML] = "conditioned space"
+                elif dct_args[arg] in ["Central"]:
+                    dct_HPXML[argHPXML] = "other multifamily buffer space"
+                else:
+                    dct_HPXML[argHPXML] = None
+
+        arg = "ChaufEau_Type"
+        argHPXML = "water_heater_tank_volume"# du logement et non de l'immeuble
+        if (argHPXML not in dct_HPXML.keys()):
+            if (arg in dct_args.keys()):
+                if dct_args[arg] in ["Moins de 22 gallons"]:
+                    dct_HPXML[argHPXML] = 15 #gallons
+                elif dct_args[arg] in ["22 gallons"]:
+                    dct_HPXML[argHPXML] = 22
+                elif dct_args[arg] in ["23-40 gallons"]:
+                    dct_HPXML[argHPXML] = 26
+                elif dct_args[arg] in ["40 gallons"]:
+                    dct_HPXML[argHPXML] = 40
+                elif dct_args[arg] in ["41-59 gallons"]:
+                    dct_HPXML[argHPXML] = 50
+                elif dct_args[arg] in ["60 gallons"]:
+                    dct_HPXML[argHPXML] = 60
+                elif dct_args[arg] in ["60 et plus gallons"]:
+                    dct_HPXML[argHPXML] = 70
+                elif dct_args[arg] in ["Chauffe-eau sans réservoi"]:
+                    dct_HPXML[argHPXML] = 0
 
         # ajout des Valeurs par défaut du HPXML si cle n'existe pas
         k_missing = list(set(self.HPXMLArg.arguments.keys()) - set(dct_HPXML.keys()))

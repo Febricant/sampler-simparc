@@ -1388,6 +1388,41 @@ class FormatageEUEMr:
                                                        "Oui":["Oui"],
                                                        "Non":["Non", "Ne sait pas/Ne répond pas"]}
         
+
+        # Chauffe eau
+        self.Mapping["ChaufEau_Presence"] = {}
+        self.Mapping["ChaufEau_Presence"]["ColSrc"] = "QF2R"
+        self.Mapping["ChaufEau_Presence"]["typeMapping"] = "list"
+        self.Mapping["ChaufEau_Presence"]["Mapping"] = {"Aucun":["Pas de chauffe-eau"],
+                                                       "Logement":["Uniquement pour la résidence", "NSP/NRP"],
+                                                       "Central": ["Central, soit pour plusieurs logements"]}
+
+                # Chauffe eau
+        self.Mapping["ChaufEau_ChaufType"] = {}
+        self.Mapping["ChaufEau_ChaufType"]["ColSrc"] = "QF1"
+        self.Mapping["ChaufEau_ChaufType"]["typeMapping"] = "list"
+        self.Mapping["ChaufEau_ChaufType"]["Mapping"] = {"Aucun":["Pas de chauffe-eau"],
+                                                       "Ne sait pas":["Ne sait pas/Ne répond pas"],
+                                                       "Electrique": ["À l'électricité"],
+                                                        "Propane": ["Au propane"],
+                                                        "Gaz Naturel": ["Au gaz naturel"],
+                                                        "Bois": ["Au bois"],
+                                                        "Mazout": ["À l'huile/au mazout"]}
+        # Chauffe eau
+        self.Mapping["ChaufEau_Type"] = {}
+        self.Mapping["ChaufEau_Type"]["ColSrc"] = "QF3"
+        self.Mapping["ChaufEau_Type"]["typeMapping"] = "list"
+        self.Mapping["ChaufEau_Type"]["Mapping"] = {"Non definit":["."],
+                                                       "Ne sait pas":["Ne sait pas/Ne répond pas"],
+                                                       "Chauffe-eau sans réservoir": ["Chauffe-eau sans réservoir"],
+                                                       "Moins de 22 gallons": ["Moins de 22 gallons (97 litres)"],
+                                                       "22 gallons" : ["22 gallons (97 litres)"],
+                                                       "23-40 gallons": ["Entre 23 et 39 gallons (100 et 172 litres)"],
+                                                       "40 gallons": ["40 gallons (176 litres)"],
+                                                       "41-59 gallons": ["41 à 59 gallons (180 à 260 litres)"],
+                                                       "60 gallons": ["60 gallons (264 litres)"],
+                                                       "60 et plus gallons": ["Plus de 60 gallons (264 litres)"]}
+
         # QBM2R : Nombre de congélateurs distinct dans la résidence
     
         # QB1A1 : Présence de cuisinières (Oui/Non)
@@ -1626,7 +1661,10 @@ class EUEMr(Master_genereBN):
                 "Piscine_Chauffee",
                 "Piscine_ChaufType",
                 "Vehicule_Presence",
-                "Vehicule_BornePresence"]
+                "Vehicule_BornePresence",
+                "ChaufEau_ChaufType",
+                "ChaufEau_Type",
+                "ChaufEau_Presence"]
     
                 
         
@@ -1721,7 +1759,9 @@ class EUEMr(Master_genereBN):
         diDep["Piscine_ChaufType"] = ["Piscine_Chauffee"]
         diDep["Vehicule_Presence"] = ["Territoire_HQ","Type_Logement"]
         diDep["Vehicule_BornePresence"] = ["Vehicule_Presence","Type_Logement"]
-
+        diDep["ChaufEau_Presence"] = ["Type_Logement"]
+        diDep["ChaufEau_Type"] = ["ChaufEau_Presence", "Type_Logement"]
+        diDep["ChaufEau_ChaufType"] = ["ChaufEau_Presence","Type_Logement", "Source_Energie_Chauf"]
         #diDep["ConsoElecAn"] = ["AnConstruction", "TypeLogement", "SourceEnerChauf"]
 
         # Ajout des Arcs

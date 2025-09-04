@@ -107,6 +107,10 @@ class BuildstockBatchArguments():
         dct_housing_characteristics_csv["HVAC Heating Efficiency.csv"] = {"Name": "HVAC Heating Efficiency",
                                                     "Description": "Efficacité du système de chauffage",
                                                     "Source":""}
+        dct_housing_characteristics_csv["Spa ChaufType.csv"] = {"Name": "Spa ChaufType",
+                                                    "Description": "Type de chauffage du spa",
+                                                    "Source":""}
+        
         
 
         dct_housing_characteristics = {}
@@ -143,7 +147,8 @@ class BuildstockBatchArguments():
                         "Geometry Wall Exterior Finish",
                         "geometry attic type",
                         "HVAC Has Shared System",
-                        "HVAC Heating Efficiency"]
+                        "HVAC Heating Efficiency",
+                        "Spa ChaufType"]
                         
                         
                         #"Geometry Attic Type",
@@ -1787,6 +1792,99 @@ class MapHPXML:
                     dct_HPXML["misc_plug_loads_vehicle_usage_multiplier"]=dct_HPXML["misc_plug_loads_vehicle_usage_multiplier"] * misc_plug_loads_vehicle_2_usage_multiplier
             else:
                 dct_HPXML[argHPXML] = False
+
+       #_____________________________________________________________
+        #permanent_spa_present      
+        arg = "Spa_Presence"
+        argHPXML = "permanent_spa_present"# du logement et non de l'immeuble
+        #permanent_spa_present=True
+        #permanent_spa_pump_annual_kwh=auto
+        #permanent_spa_pump_usage_multiplier=1.0
+        #permanent_spa_heater_type=electric resistance
+        #permanent_spa_heater_annual_kwh=auto
+        #permanent_spa_heater_annual_therm=0
+        #permanent_spa_heater_usage_multiplier=1.0#permanent_spa_pump_annual_kwh = "auto"
+        #permanent_spa_pump_usage_multiplier=1.0
+        
+        if (argHPXML not in dct_HPXML.keys()):
+            if (arg in dct_args.keys()):
+                if dct_args[arg] == "Oui":
+                    dct_HPXML[argHPXML] = True
+                else:
+                    dct_HPXML[argHPXML] = False
+            else:
+                dct_HPXML[argHPXML] = False
+                #permanent_spa_present      
+        
+        arg = "Spa ChaufType"
+        argHPXML = "permanent_spa_heater_type"# du logement et non de l'immeuble
+        if (argHPXML not in dct_HPXML.keys()):
+            if (arg in dct_args.keys()):
+                dct_HPXML[argHPXML] = dct_args[arg]
+            else:
+                dct_HPXML[argHPXML] = None
+
+        #_____________________________________________________________
+        #pool_present
+        arg = "Piscine_Presence"
+        argHPXML = "pool_present"# du logement et non de l'immeuble
+        if (argHPXML not in dct_HPXML.keys()):
+            if (arg in dct_args.keys()):
+                if dct_args[arg] == "Oui":
+                    dct_HPXML[argHPXML] = True
+                else:
+                    dct_HPXML[argHPXML] = False
+            else:
+                dct_HPXML[argHPXML] = False
+
+        #_____________________________________________________________
+        #pool_heater_type
+        #pool_heater_annual_kwh=auto
+        #pool_heater_annual_therm=0
+        #pool_heater_usage_multiplier=0.8
+        arg = "Piscine_ChaufType"
+        argHPXML = "pool_heater_type"# du logement et non de l'immeuble
+        if (argHPXML not in dct_HPXML.keys()):
+            if (arg in dct_args.keys()):
+                if dct_args[arg] in ["Electrique"]:
+                    dct_HPXML[argHPXML] = "electric resistance"
+                elif dct_args[arg] in ["Gaz Naturel", "Propane"]:
+                    dct_HPXML[argHPXML] = "gas fired"
+                elif dct_args[arg] in ["Thermopompe"]:
+                    dct_HPXML[argHPXML] = "heat pump"
+                elif dct_args[arg] in ["Aucun", "Ne sait pas", "Capteur Solaire", "Bois", "Mazout"]:
+                    dct_HPXML[argHPXML] = None
+            else:
+                dct_HPXML[argHPXML] = None
+        #_____________________________________________________________
+        #Piscine_Toile
+        arg = "Piscine_Toile"
+        argHPXML = "pool_heater_usage_multiplier"# du logement et non de l'immeuble
+        if (argHPXML not in dct_HPXML.keys()):
+            if (arg in dct_args.keys()):
+                if dct_args[arg] in ["Oui"]:
+                    dct_HPXML[argHPXML] = 0.3
+                elif dct_args[arg] in ["Non"]:
+                    dct_HPXML[argHPXML] = 1
+                else:
+                    dct_HPXML[argHPXML] = 1
+            else:
+                dct_HPXML[argHPXML] = 1
+
+        #_____________________________________________________________
+        #Piscine_Minuterie
+        arg = "Piscine_Minuterie"
+        argHPXML = "pool_pump_usage_multiplier"# du logement et non de l'immeuble
+        if (argHPXML not in dct_HPXML.keys()):
+            if (arg in dct_args.keys()):
+                if dct_args[arg] in ["Oui"]:
+                    dct_HPXML[argHPXML] = 0.45 # site web hq 2025-09-04
+                elif dct_args[arg] in ["Non"]:
+                    dct_HPXML[argHPXML] = 1
+                else:
+                    dct_HPXML[argHPXML] = 1
+            else:
+                dct_HPXML[argHPXML] = 1
 
         # ajout des Valeurs par défaut du HPXML si cle n'existe pas
         k_missing = list(set(self.HPXMLArg.arguments.keys()) - set(dct_HPXML.keys()))

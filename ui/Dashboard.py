@@ -19,7 +19,10 @@ import random
 from datetime import datetime
 from datetime import timedelta
 import matplotlib.pyplot as plt
-
+import dtale
+from dtale.views import startup
+from dtale.app import get_instance
+import streamlit.components.v1 as components
 #current_dir = os.getcwd()
 #parent_dir = os.path.dirname(current_dir)
 #sys.path.append(parent_dir)
@@ -44,7 +47,7 @@ import json
 import streamlit as st
 
 import plotly.graph_objects as go
-
+from dtale.views import startup
 import warnings
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
 
@@ -103,7 +106,6 @@ def DashBoard():
     #on = st.toggle(label="Simuler", value=False)
     #ajouter d'un bouton push
     on = st.button("Simuler")
-    
     if on:
         with st.status("Calcul en cours..."):
             st.write(settings)
@@ -137,8 +139,17 @@ def DashBoard():
             st.write("Calcul terminé.")  
 
         st.markdown("## Étape 3 - Résultats")   
-        st.dataframe(dfargs)   	
-        st.dataframe(dfHPXML) 
+       
+        instance1 = startup(data_id="1", data=dfargs)
+        instance2 = startup(data_id = "2", data=dfHPXML)
+        #Dtdfargs = get_instance("1").data
+        #DtdfHPXML = get_instance("2").data
+
+        st.html("""<a href="/dtale/main/1" target="_blank">Exploration de l'échantillonnage</a>""")
+        st.dataframe(dfargs)
+        
+        st.html("""<a href="/dtale/main/2" target="_blank">Exploration du HPXML</a>""")
+        st.dataframe(dfHPXML)
 
         st.markdown("## Étape 4 - Téléchargement des résultats")
         st.markdown("Les résultats sont disponibles au format CSV. " \
@@ -168,5 +179,6 @@ def DashBoard():
 
 if "__main__" == __name__:
     #python -m streamlit run "ui/Dashboard.py"
+    #dtale-streamlit run "ui/Dashboard.py"
     DashBoard()
-    
+    #documentation

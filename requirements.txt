@@ -10,22 +10,37 @@ attrs==25.3.0
     # via
     #   jsonschema
     #   referencing
+beautifulsoup4==4.13.5
+    # via dtale
 blinker==1.9.0
-    # via streamlit
+    # via
+    #   flask
+    #   streamlit
 bokeh==3.7.3
     # via dask
+brotli==1.1.0 ; platform_python_implementation != 'PyPy'
+    # via flask-compress
+brotlicffi==1.1.0.0 ; platform_python_implementation == 'PyPy'
+    # via flask-compress
 cachetools==6.1.0
     # via streamlit
 certifi==2025.7.14
-    # via requests
-cffi==1.17.1 ; implementation_name == 'pypy'
-    # via pyzmq
+    # via
+    #   dtale
+    #   requests
+cffi==1.17.1 ; implementation_name == 'pypy' or platform_python_implementation == 'PyPy'
+    # via
+    #   brotlicffi
+    #   pyzmq
 charset-normalizer==3.4.2
     # via requests
+choreographer==1.0.10
+    # via kaleido
 click==8.2.1
     # via
     #   dask
     #   distributed
+    #   flask
     #   streamlit
 cloudpickle==3.1.1
     # via
@@ -42,7 +57,24 @@ contourpy==1.3.2
     #   bokeh
     #   matplotlib
 cycler==0.12.1
-    # via matplotlib
+    # via
+    #   dtale
+    #   matplotlib
+dash==2.18.2
+    # via
+    #   dash-bootstrap-components
+    #   dash-daq
+    #   dtale
+dash-bootstrap-components==1.7.1
+    # via dtale
+dash-core-components==2.0.0
+    # via dash
+dash-daq==0.5.0
+    # via dtale
+dash-html-components==2.0.0
+    # via dash
+dash-table==5.0.0
+    # via dash
 dask==2025.7.0
     # via
     #   distributed
@@ -53,28 +85,47 @@ decorator==5.2.1
     # via ipython
 distributed==2025.7.0
     # via dask
+dtale==3.18.2
+    # via lte-sampler-residential
 et-xmlfile==2.0.0
-    # via openpyxl
+    # via
+    #   dtale
+    #   openpyxl
 executing==2.2.0
     # via stack-data
+flask==3.0.3
+    # via
+    #   dash
+    #   dtale
+    #   flask-compress
+flask-compress==1.18
+    # via dtale
 fonttools==4.59.0
     # via matplotlib
 fsspec==2025.7.0
     # via dask
+future==1.0.0
+    # via dtale
 gitdb==4.0.12
     # via gitpython
 gitpython==3.1.45
     # via streamlit
 idna==3.10
     # via requests
-importlib-metadata==8.7.0 ; python_full_version < '3.12'
-    # via dask
+importlib-metadata==8.7.0
+    # via
+    #   dash
+    #   dask
 ipykernel==6.30.0
     # via lte-sampler-residential
 ipython==9.4.0
     # via ipykernel
 ipython-pygments-lexers==1.1.1
     # via ipython
+itsdangerous==2.2.0
+    # via
+    #   dtale
+    #   flask
 jedi==0.19.2
     # via ipython
 jinja2==3.1.6
@@ -83,7 +134,10 @@ jinja2==3.1.6
     #   bokeh
     #   dask
     #   distributed
+    #   flask
     #   pydeck
+joblib==1.5.2
+    # via scikit-learn
 jsonschema==4.25.0
     # via altair
 jsonschema-specifications==2025.4.1
@@ -94,22 +148,38 @@ jupyter-core==5.8.1
     # via
     #   ipykernel
     #   jupyter-client
+kaleido==1.0.0
+    # via dtale
 kiwisolver==1.4.8
     # via matplotlib
 locket==1.0.0
     # via
     #   distributed
     #   partd
+logistro==1.1.0
+    # via
+    #   choreographer
+    #   kaleido
 lz4==4.4.4
-    # via dask
+    # via
+    #   dask
+    #   dtale
 markupsafe==3.0.2
-    # via jinja2
+    # via
+    #   jinja2
+    #   werkzeug
 matplotlib==3.10.3
-    # via pyagrum
+    # via
+    #   dtale
+    #   missingno
+    #   pyagrum
+    #   seaborn
 matplotlib-inline==0.1.7
     # via
     #   ipykernel
     #   ipython
+missingno==0.5.2
+    # via dtale
 msgpack==1.1.1
     # via distributed
 narwhals==1.48.0
@@ -118,39 +188,65 @@ narwhals==1.48.0
     #   bokeh
     #   plotly
 nest-asyncio==1.6.0
-    # via ipykernel
+    # via
+    #   dash
+    #   ipykernel
+networkx==3.5
+    # via dtale
 numpy==2.3.1
     # via
     #   bokeh
     #   contourpy
     #   dask
+    #   dtale
     #   matplotlib
+    #   missingno
     #   pandas
+    #   patsy
     #   pyagrum
     #   pydeck
+    #   scikit-learn
+    #   scipy
+    #   seaborn
+    #   statsmodels
     #   streamlit
+    #   xarray
 openpyxl==3.1.5
-    # via lte-sampler-residential
+    # via
+    #   dtale
+    #   lte-sampler-residential
+orjson==3.11.3
+    # via kaleido
 packaging==25.0
     # via
     #   altair
     #   bokeh
     #   dask
     #   distributed
+    #   dtale
     #   ipykernel
+    #   kaleido
     #   matplotlib
     #   plotly
+    #   statsmodels
     #   streamlit
+    #   xarray
 pandas==2.3.1
     # via
     #   bokeh
     #   dask
+    #   dtale
     #   lte-sampler-residential
+    #   seaborn
+    #   statsmodels
     #   streamlit
+    #   xarray
 parso==0.8.4
     # via jedi
 partd==1.4.2
     # via dask
+patsy==1.0.1
+    # via statsmodels
 pexpect==4.9.0 ; sys_platform != 'emscripten' and sys_platform != 'win32'
     # via ipython
 pillow==11.3.0
@@ -158,10 +254,15 @@ pillow==11.3.0
     #   bokeh
     #   matplotlib
     #   streamlit
+pkginfo==1.12.1.2
+    # via dtale
 platformdirs==4.3.8
     # via jupyter-core
 plotly==6.2.0
-    # via lte-sampler-residential
+    # via
+    #   dash
+    #   dtale
+    #   lte-sampler-residential
 prompt-toolkit==3.0.51
     # via ipython
 protobuf==6.31.1
@@ -181,7 +282,7 @@ pyarrow==21.0.0
     #   dask
     #   lte-sampler-residential
     #   streamlit
-pycparser==2.22 ; implementation_name == 'pypy'
+pycparser==2.22 ; implementation_name == 'pypy' or platform_python_implementation == 'PyPy'
     # via cffi
 pydeck==0.9.1
     # via streamlit
@@ -213,30 +314,67 @@ pyzmq==27.0.0
     # via
     #   ipykernel
     #   jupyter-client
+pyzstd==0.17.0 ; python_full_version < '3.14'
+    # via flask-compress
 referencing==0.36.2
     # via
     #   jsonschema
     #   jsonschema-specifications
 requests==2.32.4
-    # via streamlit
+    # via
+    #   dash
+    #   dtale
+    #   streamlit
+retrying==1.4.2
+    # via dash
 rpds-py==0.26.0
     # via
     #   jsonschema
     #   referencing
+scikit-learn==1.7.1
+    # via dtale
+scipy==1.15.3
+    # via
+    #   dtale
+    #   missingno
+    #   scikit-learn
+    #   statsmodels
+seaborn==0.13.2
+    # via
+    #   dtale
+    #   missingno
+setuptools==80.9.0
+    # via dash
+simplejson==3.20.1
+    # via choreographer
 six==1.17.0
-    # via python-dateutil
+    # via
+    #   dtale
+    #   python-dateutil
 smmap==5.0.2
     # via gitdb
 sortedcontainers==2.4.0
     # via distributed
+soupsieve==2.8
+    # via beautifulsoup4
+squarify==0.4.4
+    # via dtale
 stack-data==0.6.3
     # via ipython
+statsmodels==0.14.5
+    # via dtale
 streamlit==1.47.1
-    # via lte-sampler-residential
+    # via
+    #   dtale
+    #   lte-sampler-residential
+strsimpy==0.2.1
+    # via dtale
 tblib==3.1.0
     # via distributed
 tenacity==9.1.2
     # via streamlit
+threadpoolctl==3.6.0
+    # via scikit-learn
 toml==0.10.2
     # via streamlit
 toolz==1.0.0
@@ -262,7 +400,10 @@ traitlets==5.14.3
 typing-extensions==4.14.1
     # via
     #   altair
+    #   beautifulsoup4
+    #   dash
     #   ipython
+    #   pyzstd
     #   referencing
     #   streamlit
 tzdata==2025.2
@@ -277,9 +418,18 @@ watchdog==6.0.0 ; sys_platform != 'darwin'
     # via streamlit
 wcwidth==0.2.13
     # via prompt-toolkit
+werkzeug==3.0.6
+    # via
+    #   dash
+    #   dtale
+    #   flask
+xarray==2025.9.0
+    # via dtale
+xlrd==2.0.2
+    # via dtale
 xyzservices==2025.4.0
     # via bokeh
 zict==3.0.0
     # via distributed
-zipp==3.23.0 ; python_full_version < '3.12'
+zipp==3.23.0
     # via importlib-metadata

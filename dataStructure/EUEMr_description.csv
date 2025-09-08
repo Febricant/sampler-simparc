@@ -28,8 +28,8 @@ QBM1,Avez-vous un congélateur distinct de votre réfrigérateur?,"['Oui', 'Non'
 QBM2,Combien de congélateurs distincts avez-vous dans votre résidence?,"['Aucun', '1', '2', '3', '4', '5', '6']","['0', '1', '2', '3', '4', '5', '6']",discrete
 QB1A1,Avez-vous une cuisinière?,"['Oui', 'Non']","['0', '1']",discrete
 QB1RR,Combien d'appareils de cuisson avez-vous dans votre résidence?,"['Aucun', '1', '2', '3']","['0', '1', '2', '3']",discrete
-QB1A3,Possédez-vous un four encastré électrique?,"['Électricité', 'Gaz propane ou gaz naturel', 'Autre']","['0', '1', '2']",discrete
-QB1C1,,"['Oui', 'Non']","['0', '1']",
+QB1A3,Quelle est la source d'énergie de votre cuisinière?,"['Électricité', 'Gaz propane ou gaz naturel', 'Autre']","['0', '1', '2']",discrete
+QB1C1,Possédez-vous un four encastré électrique?,"['Oui', 'Non']","['0', '1']",discrete
 QB1D1,Avez-vous une plaque de cuisson avec des ronds de cuisson indépendante de la cuisinière (de type Jen Air)?,"['Oui', 'Non']","['0', '1']",discrete
 QB1D2,Quelle est la source d'énergie de votre plaque de cuisson?,"['Électricité', 'Gaz propane ou gaz naturel']","['0', '1']",discrete
 QB1E1,Avez-vous une hotte ou un ventilateur de cuisine?,"['Oui', 'Non']","['0', '1']",discrete

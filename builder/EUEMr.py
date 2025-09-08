@@ -327,8 +327,8 @@ class Attribut_EUEMr(object):
     QB1C1 = {}
     QB1C1["Label"] = ["Oui", "Non"]
     QB1C1["IdLabel"] = ["0", "1"]
-    QB1A3["Description"] = "Possédez-vous un four encastré électrique?"
-    QB1A3["Type"] = "discrete"
+    QB1C1["Description"] = "Possédez-vous un four encastré électrique?"
+    QB1C1["Type"] = "discrete"
 
     # QB1D1 : Présence de plaque avec des ronds de cuisson indépendante de la cuisinière (de type Jen Air) (Oui/Non)
     QB1D1 = {}

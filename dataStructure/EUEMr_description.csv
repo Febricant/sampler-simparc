@@ -1,0 +1,118 @@
+Code,Description,Label,IdLabel,Type
+QA1,Quel est votre lien avec ce logement ? En êtes-vous...,"['Le propriétaire / Co-propriétaire', 'Le locataire / Co-locataire']","['0', '1']",discrete
+QA4,De quel genre d'habitation s'agit-il?,"['Immeuble de 4 à 8 appartements', 'Immeuble de 9 à 19 appartements', 'Immeuble de 20 à 49 appartements', 'Immeuble de 50 appartements ou plus', 'Immeuble à appartement (sans précision)', 'Maison mobile/roulotte', 'Maison individuelle détachée/unifamiliale', 'Maison individuelle en rangée attachée des 2 côtés', 'Maison individuelle en rangée (sans précisions)', 'Maison jumelée/bout de rangée attachée 1 côté/semi-détaché', 'Duplex détaché', 'Duplex en milieu de rangée attaché 2 côtés', 'Duplex jumelé/en bout de rangée attaché 1 seul côté', 'Duplex (sans précision)', 'Triplex milieu de rangée attaché 2 côtés', 'Triplex jumelé/en bout de rangée attaché 1 seul côté', 'Triplex (sans précision)', 'Triplex détaché']","['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13']",discrete
+QC1R,Principale source d'énergie utilisée pour le chauffage de l'habitation,"['Électricité', 'Gaz naturel', 'Mazout', 'Bois seul ou en combinaison', 'Bi-énergie', 'Autres']","['0', '1', '2', '3', '4', '5']",discrete
+CONS_AN,Consommation annuelle d'électricité en kWh,,,Double
+QA6M,Année de construction de l'habitation,,,Entier
+TERR_HQ,Territoire HQ,"['Est et nord du Québec', 'Laurentides', 'Montmorency', 'Montréal', 'Richelieu']","['0', '1', '2', '3', '4']",discrete
+QA4R,Type d'habitation,"['Uni', 'Plex', 'Multi']","['0', '1', '2']",discrete
+QA4M,Nombre de logements dans l'immeuble,,,Entier
+QA6RR,Décennie de construction de l'habitation,"['Avant 1900', 'Entre 1900 et 1950', 'Dans les années 50', 'Dans les années 60', 'Dans les années 70', 'Dans les années 80', 'Dans les années 90', 'Entre 2000 et 2009', 'Entre 2010 et 2013', 'Entre 2014 et 2017', ""Entre 2018 et aujourd'hui""]","['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']",discrete
+QA2,est-ce votre résidence principale ou secondaire?,"['Résidence principale', 'Résidence secondaire']","['0', '1']",discrete
+QH1,"Nombre de pièces dans la résidence (incluant les pièces du sous-sol et le garage, excluant les salles de bain et les couloirs)","['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']","['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']",discrete
+QH2,Nombre d'étages habitables dans la résidence (incluant le sous-sol et le garage),"['Un étage', '1½ étages', 'Deux étages', '2 ½étages', 'Trois étages', '3½ étages', 'Quatre étages', '4½ étages', '5 étages']","['0', '1', '2', '3', '4', '5', '6', '7', '8']",discrete
+ETAGE,Nombre d'étages habitables dans la résidence (incluant le sous-sol et le garage) (MÉTRIQUE),"['1.0', '1.5', '2.0', '2.5', '3.0', '3.5', '4.0', '4.5', '5.0']","['0', '1', '2', '3', '4', '5', '6', '7', '8']",discrete
+SUPERTOT,Quelle est la superficie TOTALE habitable de votre résidence incluant le sous-sol et le garage?,"(None,)",,Double
+QH4,Votre résidence comporte-elle un sous-sol ou vide sanitaire?,"[""Un sous-sol d'une hauteur de 6 ou 7 pied"", ""Un vide sanitaire d'une hauteur inférieure à 6 pieds"", 'Ne comporte ni sous-sol, ni vide sanitaire', 'Un sous-sol et un vide sanitaire']","['0', '1', '2', '3']",discrete
+QM1A,Avez-vous un garage?,"['Oui', 'Non']","['0', '1']",discrete
+QM1AA,Est-ce que votre garage est chauffé?,"['Oui', 'Non']","['0', '1']",discrete
+QM1B,Est-ce que votre garage est chauffé à l'électricité?,"['Oui', 'Non']","['0', '1']",discrete
+QL1,"En vous incluant, combien de personnes habitent ce logement?","['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '15', '25']","['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13']",discrete
+QL3A,Quel est votre âge?,"['18-24 ans', '25-34 ans', '35-44 ans', '45-54 ans', '55-64 ans', '65 ans et plus']","['0', '1', '2', '3', '4', '5']",discrete
+QL4A,Quel est le dernier niveau de scolarité que vous avez complété?,"['Primaire (0 à 7 ans)', 'Secondaire (8 à 12 ans)', 'CEGEP/techniques (13 à 15 ans)', 'Université (16 ans et plus)']","['0', '1', '2', '3']",discrete
+QL5A,Quelle est la valeur approximative de votre résidence incluant le terrain?,"['Moins de 100  000 $', '100 000 à 199 999 $', '200 000 $ à 299 999 $', '300 000 $ à 399 999 $', '400 000 $ à 499 999 $', '500 000 $ à 599 999 $', '600 000 $ à 699 999 $', '700 000 $ à 799 999 $', '800 000 $ à 899 999 $', '900 000 $ à 999 999 $', '1 million $ ou plus']","['0', '1', '2', '3', '4', '5', '6', '7', '8']",discrete
+QL5BA,Quel est le revenu total de votre ménage (avant impôts incluant les revenus de toutes provenances et de tous les membres du ménage)?,"['Moins de 20 000 $', '20 000 $ à 39 999 $', '40 000 $ à 59 999 $', '60 000 $ à 79 999 $', '80 000 $ à 99 999 $', '100 000 $ à 119 999 $', '120 000 $ à 199 999 $', '200 000 $ à 299 999 $', '300 000 $ ou plus']","['0', '1', '2', '3', '4', '5', '6', '7', '8']",discrete
+QB2I1,Combien de réfrigérateurs avez-vous dans votre résidence?,"['0', '1', '2', '3', '4', '5', '7']","['0', '1', '2', '3', '4', '5', '6']",discrete
+QB2I2,Quel est l'âge de votre réfrigérateur principal?,"['Moins de 1 an', '1 à 5 ans', '6 à 10 ans', '11 à 15 ans', '16 à 20 ans', '21 à 25 ans', 'Plus de 25 ans']","['0', '1', '2', '3', '4', '5', '6']",discrete
+QBM1,Avez-vous un congélateur distinct de votre réfrigérateur?,"['Oui', 'Non']","['0', '1']",discrete
+QBM2,Combien de congélateurs distincts avez-vous dans votre résidence?,"['Aucun', '1', '2', '3', '4', '5', '6']","['0', '1', '2', '3', '4', '5', '6']",discrete
+QB1A1,Avez-vous une cuisinière?,"['Oui', 'Non']","['0', '1']",discrete
+QB1RR,Combien d'appareils de cuisson avez-vous dans votre résidence?,"['Aucun', '1', '2', '3']","['0', '1', '2', '3']",discrete
+QB1A3,Possédez-vous un four encastré électrique?,"['Électricité', 'Gaz propane ou gaz naturel', 'Autre']","['0', '1', '2']",discrete
+QB1C1,,"['Oui', 'Non']","['0', '1']",
+QB1D1,Avez-vous une plaque de cuisson avec des ronds de cuisson indépendante de la cuisinière (de type Jen Air)?,"['Oui', 'Non']","['0', '1']",discrete
+QB1D2,Quelle est la source d'énergie de votre plaque de cuisson?,"['Électricité', 'Gaz propane ou gaz naturel']","['0', '1']",discrete
+QB1E1,Avez-vous une hotte ou un ventilateur de cuisine?,"['Oui', 'Non']","['0', '1']",discrete
+QB1F,Avez-vous un micro-ondes?,"['Oui', 'Non']","['0', '1']",discrete
+QB1G,Avez-vous un lave-vaisselle?,"['Oui', 'Non']","['0', '1']",discrete
+QB1H,Avez-vous une sécheuse à linge électrique?,"['Oui', 'Non']","['0', '1']",discrete
+QB1I,Avez-vous une machine à laver le linge?,"['Oui', 'Non']","['0', '1']",discrete
+QB1I1,Votre machine à laver le linge est-elle à chargement frontal?,"['Oui', 'Non']","['0', '1']",discrete
+QB1S,Avez-vous un cellier avec système de réfrigération?,"['Oui', 'Non']","['0', '1']",discrete
+QB1N,Avez-vous un sauna?,"['Oui', 'Non']","['0', '1']",discrete
+QB2,Combien de téléviseurs avez-vous dans votre résidence?,"['0', '1', '2', '3', '4', '5', '6', '7', '8', '10']","['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']",discrete
+B2A3,Quel est le type de votre téléviseur principal?,"['Conventionnel', 'Écran 3D ACL', 'Écran 3D DEL', 'Écran 3D sans précision', 'Écran DEL', 'Écran DLP', 'Écran OLED', 'Écran plat ACL', 'Écran plat plasma', 'Écran plat sans précision (plasma /ACL)', 'Projecteur', 'Télévision 4K, 8K ou 16k (Utra HD)']","['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']",discrete
+B3A2R,Quelle est la taille de votre téléviseur principal?,"['Moins de 30 pouces', 'De 30 à 45 pouces', 'De 46 à 65 pouces', 'Plus de 65 pouces']","['0', '1', '2', '3']",discrete
+QB2C1,Avez-vous un ordinateur?,"['Oui', 'Non']","['0', '1']",discrete
+B2C2R,Combien d'ordinateurs avez-vous dans votre résidence?,"['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']","['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']",discrete
+B2C2BR,Combien d'ordinateurs portables avez-vous dans votre résidence?,"['0', '1', '2', '3', '4', '5', '6', '7', '8']","['0', '1', '2', '3', '4', '5', '6', '7', '8']",discrete
+B2C2AR,Combien d'ordinateurs de bureau avez-vous dans votre résidence?,"['0', '1', '2', '3', '4', '5', '6']","['0', '1', '2', '3', '4', '5', '6']",discrete
+QB2D1,Avez-vous accès à Internet?,"['Oui', 'Non']","['0', '1']",discrete
+QB2D1R,Avez-vous accès à Internet avec un ordinateur?,"['Oui', 'Non']","['0', '1']",discrete
+QB2X6,Avez-vous de l'éclairage à DEL dans votre résidence?,"['Oui', 'Non']","['0', '1']",discrete
+QB2X8R,Quel pourcentage de votre éclairage est à DEL?,"['0%', '1 à 24 %', '25 à 50 %', 'Plus de 50 %']","['0', '1', '2', '3']",discrete
+SOURC,Principale source d'énergie utilisée pour le chauffage de l'habitation - détail,"[""L'électricité"", 'Le gaz naturel', 'Le propane', 'Le mazout (huile)', 'Le bois (ou granule)', ""L'électricité et le gaz naturel"", ""L'électricité et le propane"", ""L'électricité et le mazout"", 'Le bois (ou granules) ET électricité', 'Le bois ET mazout (huile)', 'Bi-énergie (sans précision)']","['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']",discrete
+CENTRAL2,Possédez-vous un système central?,"['Oui', 'Non']","['0', '1']",discrete
+SYSTEM1R,Système principal de chauffage,"['Plinthes électriques', 'Unités convecteurs, plancher ou plafond radiant', 'Thermopompe', 'Autres', 'Système central à air chaud', 'Système central à eau chaude', 'Fournaise ou poêle à bois', 'Fournaise murale ou de plancher']","['0', '1', '2', '3', '4', '5', '6', '7']",discrete
+SYSTEM2,Système principal de chauffage en combinaison,"['Thermopompe', 'Plinthes électriques', 'Système central à air chaud', 'Unités convecteurs, plancher ou plafond radiant', 'Fournaise murale ou de plancher', 'Système central à eau chaude']","['0', '1', '2', '3', '4', '5', '6', '7', '8']",discrete
+SYSTEM2R,Système principal de chauffage en combinaison,,"['0', '1', '2', '3', '4', '5']",discrete
+QC9A,Avec quel autre système votre thermopompe (pompe à chaleur) est-elle combinée?,"['Plinthes', 'Convecteurs', 'Plinthes et convecteurs', 'Radiants de plancher', 'Bouilloire électrique', 'Fournaise électrique à air chaud', 'Fournaise au gaz naturel à air chaud', 'Fournaise au propane à air chaud', 'Fournaise au mazout à air chaud', 'Pas de système de relève']","['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']",discrete
+QC7A,Votre thermopompe est-elle de type « climat froid » ou « basse température »?,"['Oui', 'Non']","['0', '1']",discrete
+QC21A,En quelle année votre thermopompe a-t-elle été installée?,,,Entier
+APPOINT,Combien de systèmes d'appoint possédez-vous?,"['0', '1', '2', '3', '4', '5', '6']","['0', '1', '2', '3', '4', '5', '6']",discrete
+QD1A,Utilisez-vous comme chauffage d'appoint des chaufferettes (radiateurs électriques portatifs)?,"['Oui', 'Non']","['0', '1']",discrete
+QD1B,Utilisez-vous comme chauffage d'appoint des plinthes électriques fixes?,"['Oui', 'Non']","['0', '1']",discrete
+QD1C,Utilisez-vous comme chauffage d'appoint des unités convecteurs?,"['Oui', 'Non']","['0', '1']",discrete
+QD1D,Utilisez-vous comme chauffage d'appoint un poêle à combustion lente (hermétique)?,"['Oui', 'Non']","['0', '1']",discrete
+QD1E,Utilisez-vous un poêle à bois à combustion lente ou conventionnel comme chauffage d'appoint?,"['Oui', 'Non']","['0', '1']",discrete
+QD1F,Utilisez-vous comme chauffage d'appoint un foyer?,"['Oui', 'Non']","['0', '1']",discrete
+QD2F2,Quelle source d'énergie utilisez-vous pour ce foyer?,"['Électricité', 'Gaz naturel', 'Gaz propane', 'Mazout', 'Bois']","['0', '1', '2', '3', '4']",discrete
+QD1J,Utilisez-vous comme chauffage d'appoint un système radiant à rayonnement dans le plancher ou le plafond?,"['Oui', 'Non']","['0', '1']",discrete
+QD1G,Utilisez-vous comme chauffage d'appoint une fournaise individuelle murale ou de plancher?,"['Oui', 'Non']","['0', '1']",discrete
+QD2G,Quelle source d'énergie utilisez-vous pour cette fournaise?,"['Électricité', 'Gaz naturel', 'Gaz propane', 'Mazout', 'Bois']","['0', '1', '2', '3']",discrete
+QD1H,Utilisez-vous comme chauffage d'appoint une fournaise centrale à air chaud (avec bouches de chaleur)?,"['Oui', 'Non']","['0', '1']",discrete
+QD2H,Quelle source d'énergie utilisez-vous pour cette fournaise?,"['Électricité', 'Gaz naturel', 'Gaz propane', 'Mazout', 'Bois']","['0', '1', '2', '3']",discrete
+QD1I,Utilisez-vous comme chauffage d'appoint une chaudière centrale à eau chaude (avec calorifères)?,"['Oui', 'Non']","['0', '1']",discrete
+QD2I,Quelle source d'énergie utilisez-vous pour cette chaudière?,"['Électricité', 'Gaz naturel', 'Gaz propane', 'Mazout', 'Bois']","['0', '1', '2', '3']",discrete
+QD4A,"Utilisez-vous un thermostat central, c'est-à-dire celui de votre système central qui contrôle la température de plusieurs pièces en même temps?","['Oui', 'Non']","['0', '1']",discrete
+QD4C,"Votre thermostat central est-il programmable, c'est-à-dire qui vous permet de programmer à l'avance des hausses et des baisses automatiques de la température à heures fixes sans autre intervention de votre part?","['Oui', 'Non']","['0', '1']",discrete
+QD4C1,"Habituellement, programmez-vous à l'avance des hausses et des baisses automatiques de la température à heures fixes à l'aide de votre thermostat central programmable?","['Oui', 'Non']","['0', '1']",discrete
+QD6A,Utilisez-vous un ou des thermostat(s) placé(s) sur le mur et qui contrôle(nt) le chauffage d'une seule ou plusieurs pièces à la fois? (thermostats muraux),"['Oui', 'Non']","['0', '1']",discrete
+QD6,Combien avez-vous de thermostats muraux? (thermostats placé(s) sur le mur et qui contrôle(nt) le chauffage d'une seule pièce à la fois),"['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18']","['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17']",discrete
+QD6B,"En avez-vous qui sont électroniques, c est-à-dire qu il y a un écran qui affiche la température?","['Oui', 'Non']","['0', '1']",discrete
+QD6C,"Combien avez-vous de thermostats électroniques programmables, c'est-à-dire qui vous permet de programmer à l'avance des hausses et des baisses automatiques de la température à heures fixes sans autre intervention de votre part?","['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18']","['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17']",discrete
+QD6C1,"Habituellement, programmez-vous à l'avance des hausses et des baisses automatiques de la température à heures fixes à l'aide de votre ou vos thermostats muraux programmables?","['Oui', 'Non']","['0', '1']",discrete
+QD11A,"Climatisez-vous votre habitation, que ce soit une seule pièce ou l'ensemble des pièces?","['Oui', 'Non']","['0', '1']",discrete
+QD11BM1,"Parmi les appareils suivants, lesquels utilisez-vous pour climatiser votre habitation? (Ensemble des mentions)","[""Climatiseur central autre qu'une thermopompe"", 'Climatiseur de fenêtre', 'Climatiseur mobile / portable', 'Climatiseur mural ou bibloc (mini-split)', 'Thermopompe murale', 'Thermopompe centrale', 'Thermopompe géothermique']","['0', '1', '2', '3', '4', '5', '6']",discrete
+QD11BM1R,"Parmi les appareils suivants, lesquels utilisez-vous pour climatiser votre habitation? (Ensemble des mentions) (Base totale)","['Central autre que thermopompe', 'Climatiseur de fenêtre', 'Climatiseur mobile', 'Climatiseur mural ou bibloc', 'Thermopompe murale', 'Thermopompe centrale', 'Thermopompe géothermique']","['0', '1', '2', '3', '4', '5', '6']",discrete
+D11B8,En quelle année votre climatiseur a-t-il été installé?,,,Entier
+QD7F1,Utilisez-vous un échangeur d'air?,"['Oui', 'Non']","['0', '1']",discrete
+QD7G1,S'agit-il d'un échangeur d'air avec ou sans récupérateur de chaleur?,"['Avec récupérateur de chaleur', 'Sans récupérateur de chaleur']","['0', '1']",discrete
+QD7H3,Arrêtez-vous votre échangeur d'air en période de grands froids (-20 et plus froid)?,"['Oui', 'Non']","['0', '1']",discrete
+QF1,À quelle source d'énergie votre chauffe-eau fonctionne-t-il?,"[""À l'électricité"", 'Au gaz naturel', ""À l'huile/au mazout"", 'Au propane', 'Au bois', 'Pas de chauffe-eau']","['0', '1', '2', '3', '4', '5']",discrete
+QF2,"Est-ce que votre chauffe-eau est central, c'est-à-dire commun à deux ou plusieurs logements ou est-ce un chauffe-eau uniquement pour votre résidence?","['Central, soit pour plusieurs logements', 'Uniquement pour la résidence']","['0', '1']",discrete
+QF2R,Le chauffe-eau est central ou uniquement pour le lieu de résidence (Base totale),"['Central, soit pour plusieurs logements', 'Uniquement pour la résidence', 'Pas de chauffe-eau']","['0', '1', '2']",discrete
+QF3,Quelle est la capacité du chauffe-eau?,"['Chauffe-eau sans réservoir', 'Moins de 22 gallons (97 litres)', '22 gallons (97 litres)', 'Entre 23 et 39 gallons (100 et 172 litres)', '40 gallons (176 litres)', '41 à 59 gallons (180 à 260 litres)', '60 gallons (264 litres)', 'Plus de 60 gallons (264 litres)']","['0', '1', '2', '3', '4', '5', '6', '7']",discrete
+QG1,"Avez-vous une piscine installée en permanence, qu'elle soit creusée ou hors-terre?","['Oui', 'Non']","['0', '1']",discrete
+QG1A,Avez-vous une piscine gonflable?,"['Oui', 'Non']","['0', '1']",discrete
+QG2,De quel type de piscine s'agit-il?,"['Une piscine hors-terre / semi-creusée', 'Une piscine creusée extérieure', 'Une piscine creusée intérieure', 'Une piscine hors-terre gonflable']","['0', '1', '2', '3']",discrete
+QG3,Votre filtreur est-il équipé d'une minuterie?,"['Oui', 'Non']","['0', '1']",discrete
+QG5,Possédez-vous une toile solaire?,"['Oui', 'Non']","['0', '1']",discrete
+QG7,Votre piscine est-elle chauffée (autrement que par une toile solaire)?,"['Oui', 'Non']","['0', '1']",discrete
+QG8M1,De quelle façon est-elle chauffée? (Ensemble des mentions),"['Une thermopompe de piscine', 'Un chauffe-piscine électrique (qui n’est pas une thermopompe)', 'Un capteur solaire', 'Un chauffe-piscine au propane', 'Un chauffe-piscine au gaz naturel', 'Un chauffe-piscine au bois', 'Un chauffe-piscine à l’huile/mazout']","['0', '1', '2', '3', '4', '5', '6']",discrete
+QB1M,Avez-vous un spa à votre résidence?,"['Oui', 'Non']","['0', '1']",discrete
+QB1M3,Le spa est-il à l'intérieur ou à l'extérieur de la résidence?,"['Intérieur', 'Extérieur']","['0', '1']",discrete
+QS1,"Au cours des 12 derniers mois, avez-vous utilisé votre spa…?","['Oui', 'Non']","['0', '1']",discrete
+QS2M1R,"Avez-vous utilisé votre spa…? (Printemps, été, automne, hiver, pas utilisé)","['Le printemps', ""L'été"", ""L'automne"", ""L'hiver"", 'Pas utilisé']","['0', '1', '2', '3', '4']",discrete
+QS2M2R,"Avez-vous utilisé votre spa…? (Printemps, été, automne, hiver)","['Le printemps', ""L'été"", ""L'automne"", ""L'hiver""]","['0', '1', '2', '3']",discrete
+QS2M3R,"Avez-vous utilisé votre spa…? (Printemps, été, automne, hiver)","['Le printemps', ""L'été"", ""L'automne"", ""L'hiver""]","['0', '1', '2', '3']",discrete
+QS2M4R,"Avez-vous utilisé votre spa…? (Printemps, été, automne, hiver)","['Le printemps', ""L'été"", ""L'automne"", ""L'hiver""]","['0', '1', '2', '3']",discrete
+QS3AA,Lequel des deux énoncés suivants correspond le mieux à vos habitudes durant les mois froids de la dernière année?,"['Je maintenais la température de mon spa constante', 'J’augmentais la température pour les périodes de baignade']","['0', '1']",discrete
+QS3BB,Lequel des deux énoncés suivants correspond le mieux à vos habitudes durant les mois chauds de la dernière année?,"['Je maintenais la température de mon spa constante', 'J’augmentais la température pour les périodes de baignade']","['0', '1']",discrete
+QT1,"Utilisez-vous une ou des voiture(s) électrique(s) rechargeable(s), qu'elle soit 100 % électrique ou hybride rechargeable, qu'elle soit achetée ou louée?","['Oui', 'Non']","['0', '1']",discrete
+QT2,Combien avez-vous de voiture(s) 100 % électrique?,"['Aucune', 'Une', 'Deux', 'Trois']","['0', '1', '2', '3']",discrete
+QT2R,Combien avez-vous de voiture(s) 100 % électrique? (Base totale),"['Aucune', 'Une', 'Deux', 'Trois']","['0', '1', '2', '3']",discrete
+QT3,Combien avez-vous de voiture(s) électrique(s) hybride rechargeable?,"['Aucune', 'Une', 'Deux']","['0', '1', '2']",discrete
+QT3R,Combien avez-vous de voiture(s) électrique(s) hybride rechargeable? (Base totale),"['Aucune', 'Une', 'Deux']","['0', '1', '2']",discrete
+QT2T3,Voiture(s) électrique? (Base totale),"['Ne possède aucune voiture électrique', 'Possède une ou plusieurs voitures 100 % électriques', 'Possède une ou plusieurs voitures électriques hybrides', 'Possède les deux types de voitures']","['0', '1', '2', '3']",discrete
+QT4,Disposez-vous d'une borne de recharge reliée à votre compteur d'électricité?,"['Oui', 'Non']","['0', '1']",discrete

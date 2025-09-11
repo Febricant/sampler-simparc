@@ -22,6 +22,7 @@
   Piscine_Type: De quel type de piscine s'agit-il?
   Presence_Garage: Avez-vous un garage?
   Presence_SousSol: "Votre r\xE9sidence comporte-elle un sous-sol ou vide sanitaire?"
+  Region_Administrative: "Zone du Qu\xE9bec"
   Source_Energie_Chauf: "Principale source d'\xE9nergie utilis\xE9e pour le chauffage\
     \ de l'habitation"
   Spa_Logement: "Le spa est-il \xE0 l'int\xE9rieur ou \xE0 l'ext\xE9rieur de la r\xE9\
@@ -164,6 +165,22 @@
     '1': Vide sanitaire moins 6 pieds
     '2': Aucun Sous-sol ou vide sanitaire
     '3': Sous-sol et vide sanitaire
+  Region_Administrative:
+    '0': Bas-Saint-Laurent
+    '1': Capitale-Nationale
+    '10': Mauricie
+    '11': "Mont\xE9r\xE9gie"
+    '12': "Montr\xE9al"
+    '13': Outaouais
+    '14': Saguenay-Lac-Saint-Jean
+    '2': "Centre-du-Qu\xE9bec"
+    '3': "Chaudi\xE8re-Appalaches"
+    '4': "C\xF4te-Nord"
+    '5': Estrie
+    '6': "Gasp\xE9sie-\xCEles-de-la-Madeleine"
+    '7': "Lanaudi\xE8re"
+    '8': Laurentides
+    '9': Laval
   Source_Energie_Chauf:
     '0': Electricite
     '1': Mazout
@@ -261,13 +278,12 @@
     - '[2000 - 2010)'
     - '[2010 - 2020)'
     - '>= 2020'
-    id: 9
+    id: 10
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   ChaufEau_ChaufType:
     Description: "\xC0 quelle source d'\xE9nergie votre chauffe-eau fonctionne-t-il?"
     "D\xE9pendance (enfants)": []
     "D\xE9pendance (parents)":
-    - Type_Logement
     - Source_Energie_Chauf
     - ChaufEau_Presence
     Nom: ChaufEau_ChaufType
@@ -280,7 +296,7 @@
     - Gaz Naturel
     - Bois
     - Mazout
-    id: 26
+    id: 27
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   ChaufEau_Presence:
     Description: "Le chauffe-eau est central ou uniquement pour le lieu de r\xE9sidence\
@@ -296,7 +312,7 @@
     - Aucun
     - Logement
     - Central
-    id: 28
+    id: 29
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   ChaufEau_Type:
     Description: "Quelle est la capacit\xE9 du chauffe-eau?"
@@ -317,7 +333,7 @@
     - 41-59 gallons
     - 60 gallons
     - 60 et plus gallons
-    id: 27
+    id: 28
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Chauffage_Logement:
     Description: "Syst\xE8me principal de chauffage"
@@ -343,7 +359,7 @@
     - "Fournaise ou po\xEAle \xE0 bois et Syst\xE8me central \xE0 air chaud"
     - "Fournaise ou po\xEAle \xE0 bois et Syst\xE8me central \xE0 eau chaude"
     - "Fournaise ou po\xEAle \xE0 bois et Fournaise murale ou de plancher"
-    id: 12
+    id: 13
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Climatisation:
     Description: Parmi les appareils suivants, lesquels utilisez-vous pour climatiser
@@ -359,7 +375,7 @@
     - "Fen\xEAtre, mobile, portable"
     - Murale
     - Centrale
-    id: 10
+    id: 11
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Mode_Occupation:
     Description: "Quel est votre lien avec ce logement ? En \xEAtes-vous..."
@@ -371,7 +387,7 @@
     Valeurs:
     - Locataire
     - Proprietaire
-    id: 8
+    id: 9
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Nombre_Etages:
     Description: "Nombre d'\xE9tages habitables dans la r\xE9sidence (incluant le\
@@ -380,7 +396,7 @@
     - Nombre_Pieces
     - Presence_SousSol
     "D\xE9pendance (parents)":
-    - Territoire_HQ
+    - Region_Administrative
     - Type_Logement
     Nom: Nombre_Etages
     Source: "EUEMR modifi\xE9"
@@ -403,7 +419,7 @@
     - '3'
     - '4'
     - 5 et plus
-    id: 6
+    id: 7
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Nombre_Pieces:
     Description: "Nombre de pi\xE8ces dans la r\xE9sidence (incluant les pi\xE8ces\
@@ -432,7 +448,7 @@
     - '13'
     - '14'
     - 15 et plus
-    id: 2
+    id: 4
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Piscine_ChaufType:
     Description: "De quelle fa\xE7on est-elle chauff\xE9e? (Ensemble des mentions)"
@@ -451,7 +467,7 @@
     - Gaz Naturel
     - Bois
     - Mazout
-    id: 23
+    id: 24
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Piscine_Chauffee:
     Description: "Votre piscine est-elle chauff\xE9e (autrement que par une toile\
@@ -466,7 +482,7 @@
     - Aucun
     - Oui
     - Non
-    id: 22
+    id: 23
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Piscine_Minuterie:
     Description: "Votre filtreur est-il \xE9quip\xE9 d'une minuterie?"
@@ -479,7 +495,7 @@
     - Aucun
     - Oui
     - Non
-    id: 20
+    id: 21
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Piscine_Presence:
     Description: "Avez-vous une piscine install\xE9e en permanence, qu'elle soit creus\xE9\
@@ -487,14 +503,14 @@
     "D\xE9pendance (enfants)":
     - Piscine_Type
     "D\xE9pendance (parents)":
-    - Territoire_HQ
+    - Region_Administrative
     - Type_Logement
     Nom: Piscine_Presence
     Source: "EUEMR modifi\xE9"
     Valeurs:
     - Oui
     - Non
-    id: 18
+    id: 19
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Piscine_Toile:
     Description: "Poss\xE9dez-vous une toile solaire?"
@@ -507,7 +523,7 @@
     - Aucun
     - Oui
     - Non
-    id: 21
+    id: 22
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Piscine_Type:
     Description: De quel type de piscine s'agit-il?
@@ -525,7 +541,7 @@
     - Hors_Terre
     - Creusee_Exterieur
     - Creusee_Interieur
-    id: 19
+    id: 20
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Presence_Garage:
     Description: Avez-vous un garage?
@@ -539,7 +555,7 @@
     - "Garage non chauff\xE9"
     - "Garage chauff\xE9 \xE0 \xE9lectricit\xE9"
     - "Garage chauff\xE9 \xE0 autre source"
-    id: 7
+    id: 8
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Presence_SousSol:
     Description: "Votre r\xE9sidence comporte-elle un sous-sol ou vide sanitaire?"
@@ -554,7 +570,37 @@
     - Vide sanitaire moins 6 pieds
     - Aucun Sous-sol ou vide sanitaire
     - Sous-sol et vide sanitaire
-    id: 5
+    id: 6
+    "\xC9chantillonneur": "R\xE9seau Bayesien"
+  Region_Administrative:
+    Description: "Zone du Qu\xE9bec"
+    "D\xE9pendance (enfants)":
+    - Type_Logement
+    - Nombre_Etages
+    - Spa_Presence
+    - Piscine_Presence
+    - Vehicule_Presence
+    "D\xE9pendance (parents)":
+    - Territoire_HQ
+    Nom: Region_Administrative
+    Source: "EUEMR modifi\xE9"
+    Valeurs:
+    - Bas-Saint-Laurent
+    - Capitale-Nationale
+    - "Centre-du-Qu\xE9bec"
+    - "Chaudi\xE8re-Appalaches"
+    - "C\xF4te-Nord"
+    - Estrie
+    - "Gasp\xE9sie-\xCEles-de-la-Madeleine"
+    - "Lanaudi\xE8re"
+    - Laurentides
+    - Laval
+    - Mauricie
+    - "Mont\xE9r\xE9gie"
+    - "Montr\xE9al"
+    - Outaouais
+    - Saguenay-Lac-Saint-Jean
+    id: 1
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Source_Energie_Chauf:
     Description: "Principale source d'\xE9nergie utilis\xE9e pour le chauffage de\
@@ -563,8 +609,8 @@
     - ChaufEau_ChaufType
     - Chauffage_Logement
     "D\xE9pendance (parents)":
-    - Type_Logement
     - An_Construction
+    - Type_Logement
     Nom: Source_Energie_Chauf
     Source: "EUEMR modifi\xE9"
     Valeurs:
@@ -573,7 +619,7 @@
     - Gaz naturel
     - Bi-energie
     - Bois
-    id: 11
+    id: 12
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Spa_Logement:
     Description: "Le spa est-il \xE0 l'int\xE9rieur ou \xE0 l'ext\xE9rieur de la r\xE9\
@@ -589,22 +635,22 @@
     - Aucun
     - Exterieur
     - Interieur
-    id: 14
+    id: 15
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Spa_Presence:
     Description: "Avez-vous un spa \xE0 votre r\xE9sidence?"
     "D\xE9pendance (enfants)":
-    - Spa_Logement
     - Spa_Saison
+    - Spa_Logement
     "D\xE9pendance (parents)":
-    - Territoire_HQ
+    - Region_Administrative
     - Type_Logement
     Nom: Spa_Presence
     Source: "EUEMR modifi\xE9"
     Valeurs:
     - Oui
     - Non
-    id: 13
+    id: 14
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Spa_Saison:
     Description: "Avez-vous utilis\xE9 votre spa\u2026? (Printemps, \xE9t\xE9, automne,\
@@ -635,7 +681,7 @@
     - Printemps_Ete_Automne
     - Printemps_Automne_Hiver
     - Ete_Automne_Hiver
-    id: 15
+    id: 16
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Spa_Utilisation_SaisonChaude:
     Description: "Lequel des deux \xE9nonc\xE9s suivants correspond le mieux \xE0\
@@ -650,7 +696,7 @@
     - Ne sais pas
     - Constant
     - Augmentation
-    id: 16
+    id: 17
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Spa_Utilisation_SaisonFroide:
     Description: "Lequel des deux \xE9nonc\xE9s suivants correspond le mieux \xE0\
@@ -665,14 +711,13 @@
     - Ne sais pas
     - Constant
     - Augmentation
-    id: 17
+    id: 18
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Superficie_Totale:
     Description: "Quelle est la superficie TOTALE habitable de votre r\xE9sidence\
       \ incluant le sous-sol et le garage?"
     "D\xE9pendance (enfants)": []
     "D\xE9pendance (parents)":
-    - Type_Logement
     - Nombre_Pieces
     Nom: Superficie_Totale
     Source: "EUEMR modifi\xE9"
@@ -688,16 +733,12 @@
     - '[4000 - 4500)'
     - '[4500 - 5000)'
     - '>= 5000'
-    id: 4
+    id: 5
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Territoire_HQ:
     Description: Territoire HQ
     "D\xE9pendance (enfants)":
-    - Type_Logement
-    - Nombre_Etages
-    - Spa_Presence
-    - Piscine_Presence
-    - Vehicule_Presence
+    - Region_Administrative
     "D\xE9pendance (parents)": []
     Nom: Territoire_HQ
     Source: "EUEMR modifi\xE9"
@@ -712,9 +753,8 @@
   Type_Logement:
     Description: De quel genre d'habitation s'agit-il?
     "D\xE9pendance (enfants)":
-    - Nombre_Pieces
     - Nombre_Etages
-    - Superficie_Totale
+    - Nombre_Pieces
     - Presence_SousSol
     - Presence_Garage
     - Mode_Occupation
@@ -728,11 +768,10 @@
     - Piscine_Type
     - Vehicule_Presence
     - Vehicule_BornePresence
-    - ChaufEau_ChaufType
     - ChaufEau_Type
     - ChaufEau_Presence
     "D\xE9pendance (parents)":
-    - Territoire_HQ
+    - Region_Administrative
     Nom: Type_Logement
     Source: "EUEMR modifi\xE9"
     Valeurs:
@@ -741,7 +780,7 @@
     - Duplex
     - Maison en rangee
     - Maison individuelle
-    id: 1
+    id: 2
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Vehicule_BornePresence:
     Description: "Disposez-vous d'une borne de recharge reli\xE9e \xE0 votre compteur\
@@ -756,14 +795,14 @@
     - Aucun
     - Oui
     - Non
-    id: 25
+    id: 26
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Vehicule_Presence:
     Description: "Voiture(s) \xE9lectrique? (Base totale)"
     "D\xE9pendance (enfants)":
     - Vehicule_BornePresence
     "D\xE9pendance (parents)":
-    - Territoire_HQ
+    - Region_Administrative
     - Type_Logement
     Nom: Vehicule_Presence
     Source: "EUEMR modifi\xE9"
@@ -777,5 +816,5 @@
     - Trois_VE_Aucune_VHR
     - Deux_VE_Deux_VHR
     - Aucune_VE_Deux_VHR
-    id: 24
+    id: 25
     "\xC9chantillonneur": "R\xE9seau Bayesien"

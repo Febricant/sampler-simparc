@@ -106,6 +106,40 @@ class Attribut_EUEMr(object):
     TERR_HQ["Description"] = "Territoire HQ"
     TERR_HQ["Type"] = "discrete"
 
+    ZONE = {}
+    ZONE["Label"] = ["Outaouais rural",
+                     "Milles-Îles",
+                     "IDM Est",
+                     "IDM Nord",
+                     "CUQ",
+                     "CUO",
+                     "St-Maurice",
+                     "Côte-Nord",
+                     "Le Noroit",
+                     "IDM Ouest",
+                     "Chateauguay-Vaudreuil",
+                     "Des Cantons",
+                     "Sorel-Victoriaville",
+                     "Drummonville",
+                     "Lévis",
+                     "IDM Sud",
+                     "Laval",
+                     "Montmorency-nord",
+                     "Saguenay",
+                     "Le Haut St-Laurent",
+                     "Bas St-Laurent",
+                     "Gaspésie",
+                     "Appalaches",
+                     "Antoine-Labelle",
+                     "Des Seigneuries",
+                     "Lanaudière",
+                     "Ozias-Leduc"]
+    ZONE["IdLabel"] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+                        "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+                          "21", "22", "23", "24", "25", "26"]
+    ZONE["Description"] = "Zone du Québec"
+    ZONE["Type"] = "discrete"
+
     # QA4R : Type d'habitation (code : Multi, Uni, Plex)
     QA4R = {}
     QA4R["Label"] = ["Uni", "Plex", "Multi"]
@@ -1160,7 +1194,27 @@ class FormatageEUEMr:
                                                      "Montmorency": ["Montmorency"],
                                                      "Montréal": ["Montréal"],
                                                      "Richelieu": ["Richelieu"]}
-        
+        self.Mapping["Region_Administrative"] = {}
+        self.Mapping["Region_Administrative"]["ColSrc"] = "ZONE"
+        self.Mapping["Region_Administrative"]["typeMapping"] = "custom"
+        self.Mapping["Region_Administrative"]["Mapping"] = {"Bas-Saint-Laurent":None,
+                                                            "Capitale-Nationale":None,
+                                                            "Centre-du-Québec":None,
+                                                            "Chaudière-Appalaches":None,
+                                                            "Côte-Nord":None,
+                                                            "Estrie":None,
+                                                            "Gaspésie-Îles-de-la-Madeleine":None,
+                                                            "Lanaudière":None,
+                                                            "Laurentides":None,
+                                                            "Laval":None,
+                                                            "Mauricie":None,
+                                                            "Montérégie":None,
+                                                            "Montréal":None,
+                                                            "Outaouais":None,
+                                                            "Saguenay-Lac-Saint-Jean":None}
+        #"Abitibi-Témiscamingue":None,
+        #Nord-du-Québec":None,
+
         self.Mapping["Nombre_Pieces"] = {}
         self.Mapping["Nombre_Pieces"]["ColSrc"] = "QH1"
         self.Mapping["Nombre_Pieces"]["typeMapping"] = "list"
@@ -1598,6 +1652,23 @@ class FormatageEUEMr:
                                                                 else ("Deux_VE_Deux_VHR" if ((row["QT2R"] in ["Deux"]) and (row["QT3R"] in ["Deux"]))\
                                                                 else ("Trois_VE_Deux_VHR" if ((row["QT2R"] in ["Trois"]) and (row["QT3R"] in ["Deux"]))\
                                                                 else None))))))))))), axis=1).rename(ColName)
+                    if ColName == "Region_Administrative":
+                        return self.dfEUEMrSrc.apply(lambda row: "Outaouais" if ((row["ZONE"] in ["Outaouais rural", "CUO"]))\
+                                                                else("Laurentides" if ((row["ZONE"] in ["Milles-Îles", "Antoine-Labelle", "Le Noroit"]))\
+                                                                else("Montréal" if ((row["ZONE"] in ["IDM Est", "IDM Nord", "IDM Ouest", "IDM Sud"]))\
+                                                                else("Capitale-Nationale" if ((row["ZONE"] in ["CUQ", "Montmorency-nord", "Appalaches"]))\
+                                                                else("Mauricie" if ((row["ZONE"] in ["St-Maurice"]))\
+                                                                else("Côte-Nord" if ((row["ZONE"] in ["Côte-Nord"]))\
+                                                                else("Chaudière-Appalaches" if ((row["ZONE"] in ["Lévis", "Appalaches"]))\
+                                                                else("Montérégie" if ((row["ZONE"] in ["Chateauguay-Vaudreuil", "Le Haut St-Laurent", "Des Seigneuries", "Drummonville", "Ozias-Leduc"]) or ((row["ZONE"] in ["Sorel-Victoriaville"]) and (row["MONTREAL_RMR"] in ["Montréal RMR"])))\
+                                                                else("Estrie" if ((row["ZONE"] in ["Des Cantons"]))\
+                                                                else("Centre-du-Québec" if ((row["ZONE"] in ["Drummonville"]) or ((row["ZONE"] in ["Sorel-Victoriaville"]) and (row["MONTREAL_RMR"] in ["Pas Montréal RMR"])))\
+                                                                else("Laval" if ((row["ZONE"] in ["Laval"]))\
+                                                                else("Lanaudière" if ((row["ZONE"] in ["Lanaudière"]))\
+                                                                else("Saguenay-Lac-Saint-Jean" if ((row["ZONE"] in ["Saguenay"]))\
+                                                                else("Bas-Saint-Laurent" if ((row["ZONE"] in ["Bas St-Laurent"]))\
+                                                                else("Gaspésie-Îles-de-la-Madeleine" if ((row["ZONE"] in ["Gaspésie"]))\
+                                                                else None)))))))))))))), axis=1).rename(ColName)
                 else:
                     raise ValueError(f"Unknown mapping type for column '{ColName}'.")
             else:
@@ -1636,37 +1707,37 @@ class EUEMr(Master_genereBN):
     Class qui permet de générer un réseau bayésien à partir des données EUEMr.
     '''
     lst_NOEUD = ["Territoire_HQ",
+                 "Region_Administrative",
                  "Type_Logement",
-                 "Nombre_Pieces",
                  "Nombre_Etages",
+                 "Nombre_Pieces",
                  "Superficie_Totale",
                  "Presence_SousSol",
                  "Nombre_Personnes",
                  "Presence_Garage",
                  "Mode_Occupation",
-                 #"ConsoElecAn",
+                 ##"ConsoElecAn",
                  "An_Construction",
                  "Climatisation",
                  "Source_Energie_Chauf",
                  "Chauffage_Logement",
                  "Spa_Presence",
                  "Spa_Logement",
-                "Spa_Saison",
-                "Spa_Utilisation_SaisonChaude",
-                "Spa_Utilisation_SaisonFroide",
+                 "Spa_Saison",
+                 "Spa_Utilisation_SaisonChaude",
+                 "Spa_Utilisation_SaisonFroide",
                  "Piscine_Presence",
-                "Piscine_Type",
-                "Piscine_Minuterie",
-                "Piscine_Toile",
-                "Piscine_Chauffee",
-                "Piscine_ChaufType",
+                 "Piscine_Type",
+                 "Piscine_Minuterie",
+                 "Piscine_Toile",
+                 "Piscine_Chauffee",
+                 "Piscine_ChaufType",
                 "Vehicule_Presence",
                 "Vehicule_BornePresence",
                 "ChaufEau_ChaufType",
                 "ChaufEau_Type",
                 "ChaufEau_Presence"]
-    
-                
+                    
         
 #    ["QA4", # De quel genre d'habitation s'agit-il?
 #                 "QA1", # Quel est votre lien avec ce logement ?
@@ -1734,34 +1805,35 @@ class EUEMr(Master_genereBN):
         # Imposition des dépendances
         diDep = {ele : [] for ele in diEUEMr} # Par défaut, ne mettre aucune dépendance à toutes les variables => list vide
         diDep['Territoire_HQ'] = []
-        diDep['Type_Logement'] = ["Territoire_HQ"]
-        diDep["Nombre_Etages"] = ["Type_Logement", "Territoire_HQ"]
+        diDep['Region_Administrative'] = ["Territoire_HQ"]
+        diDep['Type_Logement'] = ["Region_Administrative"]
+        diDep["Nombre_Etages"] = ["Type_Logement", "Region_Administrative"]
         diDep["Nombre_Pieces"] = ["Type_Logement", "Nombre_Etages"]
-        diDep["Superficie_Totale"] = ["Type_Logement", "Nombre_Pieces"]
+        diDep["Superficie_Totale"] = ["Nombre_Pieces"]
         diDep["Presence_SousSol"] = ["Type_Logement", "Nombre_Etages"]
-        diDep["Presence_Garage"] = ["Type_Logement"]#, "Territoire_HQ"]
-        diDep["Nombre_Personnes"] = ["Nombre_Pieces"]#["Type_Logement", "Nombre_Pieces","Territoire_HQ"]
+        diDep["Presence_Garage"] = ["Type_Logement"]#, "Region_Administrative"]
+        diDep["Nombre_Personnes"] = ["Nombre_Pieces"]#["Type_Logement", "Nombre_Pieces","Region_Administrative"]
         diDep["Mode_Occupation"] = ["Type_Logement"]
         diDep["An_Construction"] = ["Type_Logement"]
-        diDep["Source_Energie_Chauf"] = ["An_Construction", "Type_Logement"]
+        diDep["Source_Energie_Chauf"] = ["Type_Logement","An_Construction"]
         diDep["Chauffage_Logement"] = ["Type_Logement", "Source_Energie_Chauf"]
         diDep["Climatisation"] = ["Type_Logement","Chauffage_Logement"]
-        diDep["Spa_Presence"] = ["Territoire_HQ","Type_Logement"]
+        diDep["Spa_Presence"] = ["Region_Administrative","Type_Logement"]
         diDep["Spa_Logement"] = ["Spa_Presence", "Type_Logement"]
         diDep["Spa_Saison"] = ["Spa_Presence", "Spa_Logement"]
         diDep["Spa_Utilisation_SaisonChaude"] = ["Spa_Saison"]
         diDep["Spa_Utilisation_SaisonFroide"] = ["Spa_Saison"]
-        diDep["Piscine_Presence"] = ["Territoire_HQ","Type_Logement"]
+        diDep["Piscine_Presence"] = ["Region_Administrative","Type_Logement"]
         diDep["Piscine_Type"] = ["Piscine_Presence", "Type_Logement"]
         diDep["Piscine_Minuterie"] = ["Piscine_Type"]
         diDep["Piscine_Toile"] = ["Piscine_Type"]
         diDep["Piscine_Chauffee"] = ["Piscine_Type"]
         diDep["Piscine_ChaufType"] = ["Piscine_Chauffee"]
-        diDep["Vehicule_Presence"] = ["Territoire_HQ","Type_Logement"]
+        diDep["Vehicule_Presence"] = ["Region_Administrative","Type_Logement"]
         diDep["Vehicule_BornePresence"] = ["Vehicule_Presence","Type_Logement"]
         diDep["ChaufEau_Presence"] = ["Type_Logement"]
         diDep["ChaufEau_Type"] = ["ChaufEau_Presence", "Type_Logement"]
-        diDep["ChaufEau_ChaufType"] = ["ChaufEau_Presence","Type_Logement", "Source_Energie_Chauf"]
+        diDep["ChaufEau_ChaufType"] = ["ChaufEau_Presence","Source_Energie_Chauf"]
         #diDep["ConsoElecAn"] = ["AnConstruction", "TypeLogement", "SourceEnerChauf"]
 
         # Ajout des Arcs
@@ -1806,14 +1878,15 @@ class EUEMr(Master_genereBN):
                     liOccSum = pd.crosstab(self.dfcsv[diDep[k][0]],
                                         self.dfcsv[k],
                                         values=self.dfcsv["POND1"], # Pondération
-                                        aggfunc="sum").loc[i].tolist()
+                                        aggfunc="sum").fillna(0).loc[i].tolist()
                     intNbCat = len(diCPT[k].loc[maskTot].index)
                     liOcc =[liOccSum for j in range(intNbCat)] 
                     diCPT[k].loc[maskTot,:] = liOcc
                      
             # Normaliser le DataFrame
-            dfCPT = diCPT[k].apply(lambda x: (x/x.sum()), axis = 1).fillna(0)        
-            
+            dfCPT = diCPT[k].apply(lambda x: (x/x.sum()), axis = 1).fillna(0)#(0.000000000001)        
+            #dfCPT = diCPT[k].apply(lambda x: (x/x.sum()), axis = 1).fillna(0)
+
             # Définir la dimension de la table d'occurence   
             liShape = [len(diEUEMr[ele]) for ele in diDep[k]]
             liShape.append(len(diEUEMr[k]))  

@@ -1611,24 +1611,38 @@ class MapHPXML:
         dct_HVAC_Heating["None"] = {"heating_system_type": "none", "heating_system_heating_efficiency": 0.0, "heating_system_heating_capacity": "auto", "heating_system_heating_autosizing_limit": "auto", "heating_system_fraction_heat_load_served": 1.0, "heating_system_has_flue_or_chimney": "auto", "heat_pump_type": "none", "heat_pump_heating_efficiency_type": "HSPF", "heat_pump_heating_efficiency": 6.2, "heat_pump_cooling_efficiency_type": "SEER", "heat_pump_cooling_efficiency": 10.0, "heat_pump_sizing_methodology": "ACCA", "heat_pump_sizing_is_duct_limited": "false", "heat_pump_backup_sizing_methodology": "auto", "heat_pump_heating_capacity": "auto", "heat_pump_heating_autosizing_limit": "auto", "heat_pump_fraction_heat_load_served": 1.0, "heat_pump_cooling_capacity": "auto", "heat_pump_cooling_autosizing_limit": "auto", "heat_pump_fraction_cool_load_served": 1.0, "heat_pump_backup_use_existing_system": "false", "heat_pump_backup_type": "none", "heat_pump_backup_fuel": "electricity", "heat_pump_backup_heating_efficiency": 1.0, "heat_pump_backup_heating_capacity": "auto", "heat_pump_backup_heating_autosizing_limit": "auto", "geothermal_loop_configuration": "none", "geothermal_loop_borefield_configuration": "auto", "geothermal_loop_loop_flow": "auto", "geothermal_loop_boreholes_count": "auto", "geothermal_loop_boreholes_length": "auto", "geothermal_loop_boreholes_spacing": "auto", "geothermal_loop_boreholes_diameter": "auto", "geothermal_loop_grout_type": "auto", "geothermal_loop_pipe_type": "auto", "geothermal_loop_pipe_diameter": "auto"}
         dct_HVAC_Heating["Shared Heating"] = {}
         dct_HVAC_Heating["Void"] = {}
+        
         #bois  #TODO: ajouter les autres types de chauffage
         dct_HVAC_Heating["Fuel Boiler, 72% AFUE & Electric Baseboard, 100% Efficiency"] = dct_HVAC_Heating["Fuel Boiler, 72% AFUE"].copy()
         dct_HVAC_Heating["Fuel Boiler, 72% AFUE & Electric Wall Furnace, 100% AFUE"] = dct_HVAC_Heating["Fuel Boiler, 72% AFUE"].copy()
-        dct_HVAC_Heating["Fuel Boiler, 72% AFUE & ASHP, SEER 15, 8.5 HSPF"] = dct_HVAC_Heating["Fuel Boiler, 72% AFUE"].copy()
         dct_HVAC_Heating["Fuel Boiler, 72% AFUE & Electric Furnace, 100% AFUE"] = dct_HVAC_Heating["Fuel Boiler, 72% AFUE"].copy()
         dct_HVAC_Heating["Fuel Boiler, 72% AFUE & Electric Boiler, 100% AFUE"] = dct_HVAC_Heating["Fuel Boiler, 72% AFUE"].copy()
         dct_HVAC_Heating["Fuel Boiler, 72% AFUE & Electric Wall Furnace, 100% AFUE.1"] = dct_HVAC_Heating["Fuel Boiler, 72% AFUE"].copy()
         dct_HVAC_Heating["Fuel Boiler, 72% AFUE & Fuel Furnace, 80% AFUE"] = dct_HVAC_Heating["Fuel Boiler, 72% AFUE"].copy()
         dct_HVAC_Heating["Fuel Boiler, 72% AFUE & Fuel Boiler, 80% AFUE"] = dct_HVAC_Heating["Fuel Boiler, 72% AFUE"].copy()
 
-        # bienergie PAC + Gz ou mazout app
-        dct_HVAC_Heating["Fuel Furnace, 80% AFUE & ASHP, SEER 15, 8.5 HSPF"] = dct_HVAC_Heating["ASHP, SEER 15, 8.5 HSPF"].copy()
-        dct_HVAC_Heating["Fuel Furnace, 80% AFUE & ASHP, SEER 15, 8.5 HSPF"]["heat_pump_type"] = "air-to-air"
-        dct_HVAC_Heating["Fuel Furnace, 80% AFUE & ASHP, SEER 15, 8.5 HSPF"]["heat_pump_compressor_lockout_temp"] = 10.4 #F =-12C
-        dct_HVAC_Heating["Fuel Furnace, 80% AFUE & ASHP, SEER 15, 8.5 HSPF"]["heat_pump_backup_type"] = "integrated"
-        dct_HVAC_Heating["Fuel Furnace, 80% AFUE & ASHP, SEER 15, 8.5 HSPF"]["heat_pump_backup_fuel"] = "fuel oil"
-        dct_HVAC_Heating["Fuel Furnace, 80% AFUE & ASHP, SEER 15, 8.5 HSPF"]["heat_pump_backup_heating_efficiency"] = 0.8
-        dct_HVAC_Heating["Fuel Furnace, 80% AFUE & ASHP, SEER 15, 8.5 HSPF"]["heat_pump_backup_heating_capacity"] = "auto"
+        for key_syst in ["ASHP, SEER 10, 6.2 HSPF",
+                        "ASHP, SEER 10.3, 7.0 HSPF",
+                        "ASHP, SEER 11.5, 7.5 HSPF",
+                        "ASHP, SEER 13, 7.7 HSPF",
+                        "ASHP, SEER 13, 8.0 HSPF",
+                        "ASHP, SEER 14, 8.2 HSPF",
+                        "ASHP, SEER 14.3, 8.5 HSPF",
+                        "ASHP, SEER 15, 8.5 HSPF",
+                        "ASHP, SEER 15, 9.0 HSPF",
+                        "ASHP, SEER 16, 9.0 HSPF",
+                        "ASHP, SEER 16, 9.2 HSPF"]:
+            #TODO : add heat pump
+            dct_HVAC_Heating["Fuel Boiler, 72% AFUE & "+key_syst] = dct_HVAC_Heating["Fuel Boiler, 72% AFUE"].copy()
+
+            # bienergie PAC + Gz ou mazout app
+            dct_HVAC_Heating["Fuel Furnace, 80% AFUE & "+key_syst] = dct_HVAC_Heating[key_syst].copy()
+            dct_HVAC_Heating["Fuel Furnace, 80% AFUE & "+key_syst]["heat_pump_type"] = "air-to-air"
+            dct_HVAC_Heating["Fuel Furnace, 80% AFUE & "+key_syst]["heat_pump_compressor_lockout_temp"] = 10.4 #F =-12C
+            dct_HVAC_Heating["Fuel Furnace, 80% AFUE & "+key_syst]["heat_pump_backup_type"] = "integrated"
+            dct_HVAC_Heating["Fuel Furnace, 80% AFUE & "+key_syst]["heat_pump_backup_fuel"] = "fuel oil"
+            dct_HVAC_Heating["Fuel Furnace, 80% AFUE & "+key_syst]["heat_pump_backup_heating_efficiency"] = 0.8
+            dct_HVAC_Heating["Fuel Furnace, 80% AFUE & "+key_syst]["heat_pump_backup_heating_capacity"] = "auto"
 
         # bienergie Élec+Mazout/Gaz (air) #TODO : ajouter les autres types de chauffage
         dct_HVAC_Heating["Electric Furnace, 100% AFUE & Fuel Furnace, 80% AFUE"] = dct_HVAC_Heating["Electric Furnace, 100% AFUE"].copy()

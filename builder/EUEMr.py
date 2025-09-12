@@ -1185,6 +1185,15 @@ class FormatageEUEMr:
                                 "Mapping" : {"labels" : AnConstruction_labels,
                                             "bins" : AnConstruction_bins}}
 
+        AnConstructionCode_bins = [1946-1000, 1946, 1984, 2011, 2011+1000]
+        AnConstructionCode_labels = ["< 1946", "[1946 - 1984)", "[1984 - 2011)", ">= 2011"]
+        self.Mapping["An_ConstructionCode"] = {
+                                "ColSrc" : "QA6M",
+                                "typeMapping" : "bin",
+                                "Mapping" : {"labels" : AnConstructionCode_labels,
+                                            "bins" : AnConstructionCode_bins}}
+        AnConstruction_bins = [1946 - 1000]+[1960, 1983, 2011]+[2011+1000]; 
+
         self.Mapping["Source_Energie_Chauf"] = {
                                 "ColSrc" : "QC1R",
                                 "typeMapping" : "list",
@@ -1740,6 +1749,7 @@ class EUEMr(Master_genereBN):
                  "Mode_Occupation",
                  ##"ConsoElecAn",
                  "An_Construction",
+                 "An_ConstructionCode",
                  "Climatisation",
                  "Source_Energie_Chauf",
                  "Chauffage_Logement",
@@ -1838,7 +1848,9 @@ class EUEMr(Master_genereBN):
         diDep["Nombre_Personnes"] = ["Nombre_Pieces"]#["Type_Logement", "Nombre_Pieces","Region_Administrative"]
         diDep["Mode_Occupation"] = ["Type_Logement"]
         diDep["An_Construction"] = ["Type_Logement"]
-        diDep["Source_Energie_Chauf"] = ["Type_Logement","An_Construction"]
+        diDep["An_ConstructionCode"] = ["An_Construction"]
+        #diDep["Source_Energie_Chauf"] = ["Type_Logement","An_Construction"]
+        diDep["Source_Energie_Chauf"] = ["Territoire_HQ","Type_Batiment" , "An_ConstructionCode"]
         diDep["Chauffage_Logement"] = ["Type_Logement", "Source_Energie_Chauf"]
         diDep["Climatisation"] = ["Type_Logement","Chauffage_Logement"]
         diDep["Spa_Presence"] = ["Region_Administrative","Type_Logement"]

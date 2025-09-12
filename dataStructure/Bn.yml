@@ -7,6 +7,12 @@
   Chauffage_Logement: "Syst\xE8me principal de chauffage"
   Climatisation: Parmi les appareils suivants, lesquels utilisez-vous pour climatiser
     votre habitation? (Ensemble des mentions)
+  Congelateur_Nombre: "Combien de cong\xE9lateurs distincts avez-vous dans votre r\xE9\
+    sidence?"
+  Cuisiniere_Energie: "Quelle est la source d'\xE9nergie de votre cuisini\xE8re?"
+  Cuisiniere_Presence: "Avez-vous une cuisini\xE8re?"
+  LaveLinge_Type: "Quel type de machine \xE0 laver le linge avez-vous?"
+  LaveVaisselle_Presence: Avez-vous un lave-vaisselle?
   Mode_Occupation: "Quel est votre lien avec ce logement ? En \xEAtes-vous..."
   Nombre_Etages: "Nombre d'\xE9tages habitables dans la r\xE9sidence (incluant le\
     \ sous-sol et le garage)"
@@ -23,7 +29,10 @@
   Piscine_Type: De quel type de piscine s'agit-il?
   Presence_Garage: Avez-vous un garage?
   Presence_SousSol: "Votre r\xE9sidence comporte-elle un sous-sol ou vide sanitaire?"
+  Refrigerateur_Nombre: "Combien de r\xE9frig\xE9rateurs avez-vous dans votre r\xE9\
+    sidence?"
   Region_Administrative: "Zone du Qu\xE9bec"
+  SecheLinge_Presence: "Avez-vous une s\xE9cheuse \xE0 linge \xE9lectrique?"
   Source_Energie_Chauf: "Principale source d'\xE9nergie utilis\xE9e pour le chauffage\
     \ de l'habitation"
   Spa_Logement: "Le spa est-il \xE0 l'int\xE9rieur ou \xE0 l'ext\xE9rieur de la r\xE9\
@@ -103,6 +112,30 @@
     '1': "Fen\xEAtre, mobile, portable"
     '2': Murale
     '3': Centrale
+  Congelateur_Nombre:
+    '0': Aucun
+    '1': '1'
+    '2': '2'
+    '3': '3'
+    '4': '4'
+    '5': '5'
+    '6': '6'
+  Cuisiniere_Energie:
+    '0': Aucun
+    '1': Ne sait pas
+    '2': Electrique
+    '3': Gaz
+    '4': Autre
+  Cuisiniere_Presence:
+    '0': Oui
+    '1': Non
+  LaveLinge_Type:
+    '0': Aucun
+    '1': Frontale
+    '2': Traditionnelle
+  LaveVaisselle_Presence:
+    '0': Aucun
+    '1': Non
   Mode_Occupation:
     '0': Locataire
     '1': Proprietaire
@@ -172,6 +205,12 @@
     '1': Vide sanitaire moins 6 pieds
     '2': Aucun Sous-sol ou vide sanitaire
     '3': Sous-sol et vide sanitaire
+  Refrigerateur_Nombre:
+    '0': Aucun
+    '1': '1'
+    '2': '2'
+    '3': '3'
+    '4': 4 et plus
   Region_Administrative:
     '0': Bas-Saint-Laurent
     '1': Capitale-Nationale
@@ -188,6 +227,9 @@
     '7': "Lanaudi\xE8re"
     '8': Laurentides
     '9': Laval
+  SecheLinge_Presence:
+    '0': Aucun
+    '1': Non
   Source_Energie_Chauf:
     '0': Electricite
     '1': Mazout
@@ -403,6 +445,82 @@
     - Centrale
     id: 13
     "\xC9chantillonneur": "R\xE9seau Bayesien"
+  Congelateur_Nombre:
+    Description: "Combien de cong\xE9lateurs distincts avez-vous dans votre r\xE9\
+      sidence?"
+    "D\xE9pendance (enfants)": []
+    "D\xE9pendance (parents)":
+    - Nombre_Personnes
+    - Type_Logement
+    Nom: Congelateur_Nombre
+    Source: "EUEMR modifi\xE9"
+    Valeurs:
+    - Aucun
+    - '1'
+    - '2'
+    - '3'
+    - '4'
+    - '5'
+    - '6'
+    id: 32
+    "\xC9chantillonneur": "R\xE9seau Bayesien"
+  Cuisiniere_Energie:
+    Description: "Quelle est la source d'\xE9nergie de votre cuisini\xE8re?"
+    "D\xE9pendance (enfants)": []
+    "D\xE9pendance (parents)":
+    - Cuisiniere_Presence
+    - Source_Energie_Chauf
+    Nom: Cuisiniere_Energie
+    Source: "EUEMR modifi\xE9"
+    Valeurs:
+    - Aucun
+    - Ne sait pas
+    - Electrique
+    - Gaz
+    - Autre
+    id: 38
+    "\xC9chantillonneur": "R\xE9seau Bayesien"
+  Cuisiniere_Presence:
+    Description: "Avez-vous une cuisini\xE8re?"
+    "D\xE9pendance (enfants)":
+    - Cuisiniere_Energie
+    "D\xE9pendance (parents)":
+    - Nombre_Personnes
+    - Type_Logement
+    Nom: Cuisiniere_Presence
+    Source: "EUEMR modifi\xE9"
+    Valeurs:
+    - Oui
+    - Non
+    id: 37
+    "\xC9chantillonneur": "R\xE9seau Bayesien"
+  LaveLinge_Type:
+    Description: "Quel type de machine \xE0 laver le linge avez-vous?"
+    "D\xE9pendance (enfants)": []
+    "D\xE9pendance (parents)":
+    - Nombre_Personnes
+    - Type_Logement
+    Nom: LaveLinge_Type
+    Source: "EUEMR modifi\xE9"
+    Valeurs:
+    - Aucun
+    - Frontale
+    - Traditionnelle
+    id: 34
+    "\xC9chantillonneur": "R\xE9seau Bayesien"
+  LaveVaisselle_Presence:
+    Description: Avez-vous un lave-vaisselle?
+    "D\xE9pendance (enfants)": []
+    "D\xE9pendance (parents)":
+    - Nombre_Personnes
+    - Type_Logement
+    Nom: LaveVaisselle_Presence
+    Source: "EUEMR modifi\xE9"
+    Valeurs:
+    - Aucun
+    - Non
+    id: 36
+    "\xC9chantillonneur": "R\xE9seau Bayesien"
   Mode_Occupation:
     Description: "Quel est votre lien avec ce logement ? En \xEAtes-vous..."
     "D\xE9pendance (enfants)": []
@@ -434,7 +552,13 @@
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Nombre_Personnes:
     Description: En vous incluant, combien de personnes habitent ce logement?
-    "D\xE9pendance (enfants)": []
+    "D\xE9pendance (enfants)":
+    - Congelateur_Nombre
+    - Refrigerateur_Nombre
+    - LaveLinge_Type
+    - SecheLinge_Presence
+    - LaveVaisselle_Presence
+    - Cuisiniere_Presence
     "D\xE9pendance (parents)":
     - Nombre_Pieces
     Nom: Nombre_Personnes
@@ -598,6 +722,22 @@
     - Sous-sol et vide sanitaire
     id: 7
     "\xC9chantillonneur": "R\xE9seau Bayesien"
+  Refrigerateur_Nombre:
+    Description: "Combien de r\xE9frig\xE9rateurs avez-vous dans votre r\xE9sidence?"
+    "D\xE9pendance (enfants)": []
+    "D\xE9pendance (parents)":
+    - Nombre_Personnes
+    - Type_Logement
+    Nom: Refrigerateur_Nombre
+    Source: "EUEMR modifi\xE9"
+    Valeurs:
+    - Aucun
+    - '1'
+    - '2'
+    - '3'
+    - 4 et plus
+    id: 33
+    "\xC9chantillonneur": "R\xE9seau Bayesien"
   Region_Administrative:
     Description: "Zone du Qu\xE9bec"
     "D\xE9pendance (enfants)":
@@ -628,11 +768,25 @@
     - Saguenay-Lac-Saint-Jean
     id: 1
     "\xC9chantillonneur": "R\xE9seau Bayesien"
+  SecheLinge_Presence:
+    Description: "Avez-vous une s\xE9cheuse \xE0 linge \xE9lectrique?"
+    "D\xE9pendance (enfants)": []
+    "D\xE9pendance (parents)":
+    - Nombre_Personnes
+    - Type_Logement
+    Nom: SecheLinge_Presence
+    Source: "EUEMR modifi\xE9"
+    Valeurs:
+    - Aucun
+    - Non
+    id: 35
+    "\xC9chantillonneur": "R\xE9seau Bayesien"
   Source_Energie_Chauf:
     Description: "Principale source d'\xE9nergie utilis\xE9e pour le chauffage de\
       \ l'habitation"
     "D\xE9pendance (enfants)":
     - ChaufEau_ChaufType
+    - Cuisiniere_Energie
     - Chauffage_Logement
     "D\xE9pendance (parents)":
     - Territoire_HQ
@@ -812,6 +966,12 @@
     - Vehicule_BornePresence
     - ChaufEau_Type
     - ChaufEau_Presence
+    - Congelateur_Nombre
+    - Refrigerateur_Nombre
+    - LaveLinge_Type
+    - SecheLinge_Presence
+    - LaveVaisselle_Presence
+    - Cuisiniere_Presence
     "D\xE9pendance (parents)":
     - Region_Administrative
     Nom: Type_Logement

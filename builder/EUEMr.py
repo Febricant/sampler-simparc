@@ -327,12 +327,12 @@ class Attribut_EUEMr(object):
     QBM1["Description"] = "Avez-vous un congélateur distinct de votre réfrigérateur?"
     QBM1["Type"] = "discrete"
     
-    # QBM2R : Nombre de congélateurs distinct dans la résidence
-    QBM2 = {}
-    QBM2["Label"] = ["Aucun", "1", "2", "3", "4", "5", "6"]
-    QBM2["IdLabel"] = ["0", "1", "2", "3", "4", "5", "6"]
-    QBM2["Description"] = "Combien de congélateurs distincts avez-vous dans votre résidence?"
-    QBM2["Type"] = "discrete"
+    # QB2M2R : Nombre de congélateurs distinct dans la résidence
+    QB2M2R = {}
+    QB2M2R["Label"] = ["Aucun", "1", "2", "3", "4", "5", "6"]
+    QB2M2R["IdLabel"] = ["0", "1", "2", "3", "4", "5", "6"]
+    QB2M2R["Description"] = "Combien de congélateurs distincts avez-vous dans votre résidence?"
+    QB2M2R["Type"] = "discrete"
 
     # QB1A1 : Présence de cuisinières (Oui/Non)
     QB1A1 = {}
@@ -420,6 +420,15 @@ class Attribut_EUEMr(object):
     QB1I1["IdLabel"] = ["0", "1"]
     QB1I1["Description"] = "Votre machine à laver le linge est-elle à chargement frontal?"
     QB1I1["Type"] = "discrete"
+
+    #QB1I1R : Type de machines à laver (Base totale)
+    QB1I1R = {}
+    QB1I1R["Label"] = ["N'a pas de machine à laver le linge",
+                       "Machine traditionnelle",
+                       "Machine à chargement frontal"]
+    QB1I1R["IdLabel"] = ["0", "1", "2"]
+    QB1I1R["Description"] = "Quel type de machine à laver le linge avez-vous?"
+    QB1I1R["Type"] = "discrete"
 
     # QB1S : Présence de cellier avec système de réfrigération (Oui/Non)
     QB1S = {}
@@ -1494,8 +1503,66 @@ class FormatageEUEMr:
                                                        "60 gallons": ["60 gallons (264 litres)"],
                                                        "60 et plus gallons": ["Plus de 60 gallons (264 litres)"]}
 
-        # QBM2R : Nombre de congélateurs distinct dans la résidence
-    
+        # QB2M2R : Nombre de congélateurs distinct dans la résidence
+        self.Mapping["Congelateur_Nombre"] = {}
+        self.Mapping["Congelateur_Nombre"]["ColSrc"] = "QB2M2R"
+        self.Mapping["Congelateur_Nombre"]["typeMapping"] = "list"
+        self.Mapping["Congelateur_Nombre"]["Mapping"] = {"Aucun":["Aucun", "NSP/NRP"],
+                                                       "1":[1],
+                                                       "2": [2],
+                                                       "3": [3],
+                                                       "4": [4],
+                                                       "5": [5],
+                                                       "6": [6]}
+
+        # QB2I1 : Nombre de réfrigérateurs dans la résidence
+        self.Mapping["Refrigerateur_Nombre"] = {}
+        self.Mapping["Refrigerateur_Nombre"]["ColSrc"] = "QB2I1"
+        self.Mapping["Refrigerateur_Nombre"]["typeMapping"] = "list"
+        self.Mapping["Refrigerateur_Nombre"]["Mapping"] = {"Aucun":["Aucun", "NSP/NRP"],
+                                                         "1":[1],
+                                                         "2": [2],
+                                                         "3": [3],
+                                                         "4 et plus": [4,5,6,7]}
+
+        #QB1I : Presence machine a laver
+        self.Mapping["LaveLinge_Type"] = {}
+        self.Mapping["LaveLinge_Type"]["ColSrc"] = "QB1I1R"
+        self.Mapping["LaveLinge_Type"]["typeMapping"] = "list"
+        self.Mapping["LaveLinge_Type"]["Mapping"] = {"Aucun":["N'a pas de machine à laver le linge", "NSP/NRP"],
+                                                      "Frontale":["Machine à chargement frontal"],
+                                                      "Traditionnelle": ["Machine traditionnelle"]}
+
+        #QB1H : Type de machines à laver (Base totale)
+        self.Mapping["SecheLinge_Presence"] = {}
+        self.Mapping["SecheLinge_Presence"]["ColSrc"] = "QB1H"
+        self.Mapping["SecheLinge_Presence"]["typeMapping"] = "list"
+        self.Mapping["SecheLinge_Presence"]["Mapping"] = {"Aucun":["Oui"],
+                                                            "Non":["Non", "Ne sait pas/Ne répond pas"]}
+
+        #QB1G : Type de lave-vaisselle (Base totale)
+        self.Mapping["LaveVaisselle_Presence"] = {}
+        self.Mapping["LaveVaisselle_Presence"]["ColSrc"] = "QB1G"
+        self.Mapping["LaveVaisselle_Presence"]["typeMapping"] = "list"
+        self.Mapping["LaveVaisselle_Presence"]["Mapping"] = {"Aucun":["Oui"],
+                                                            "Non":["Non"]}
+        
+        #QB1A1 : Présence de cuisinières (Oui/Non)
+        self.Mapping["Cuisiniere_Presence"] = {}
+        self.Mapping["Cuisiniere_Presence"]["ColSrc"] = "QB1A1"
+        self.Mapping["Cuisiniere_Presence"]["typeMapping"] = "list"
+        self.Mapping["Cuisiniere_Presence"]["Mapping"] = {"Oui":["Oui"],
+                                                            "Non":["Non", "Ne sait pas/Ne répond pas"]}
+        #QB1A3 : Source d'énergie de la cuisinière
+        self.Mapping["Cuisiniere_Energie"] = {}
+        self.Mapping["Cuisiniere_Energie"]["ColSrc"] = "QB1A3"
+        self.Mapping["Cuisiniere_Energie"]["typeMapping"] = "list"
+        self.Mapping["Cuisiniere_Energie"]["Mapping"] = {"Aucun":["."],
+                                                        "Ne sait pas":["Ne sait pas/Ne répond pas"],
+                                                        "Electrique": ["Électricité"],
+                                                        "Gaz": ["Gaz propane ou gaz naturel"],
+                                                        "Autre": ["Autre"]}        
+
         # QB1A1 : Présence de cuisinières (Oui/Non)
         # QB1A3 : Source d'énergie de la cuisinière
         # Faire 1 Variable : 1 = Non ; 2+=Oui+source
@@ -1768,7 +1835,14 @@ class EUEMr(Master_genereBN):
                 "Vehicule_BornePresence",
                 "ChaufEau_ChaufType",
                 "ChaufEau_Type",
-                "ChaufEau_Presence"]
+                "ChaufEau_Presence",
+                "Congelateur_Nombre",
+                "Refrigerateur_Nombre",
+                "LaveLinge_Type",
+                "SecheLinge_Presence",
+                "LaveVaisselle_Presence",
+                "Cuisiniere_Presence",
+                "Cuisiniere_Energie"]
                     
         
 #    ["QA4", # De quel genre d'habitation s'agit-il?
@@ -1869,6 +1943,14 @@ class EUEMr(Master_genereBN):
         diDep["ChaufEau_Presence"] = ["Type_Logement"]
         diDep["ChaufEau_Type"] = ["ChaufEau_Presence", "Type_Logement"]
         diDep["ChaufEau_ChaufType"] = ["ChaufEau_Presence","Source_Energie_Chauf"]
+        diDep["Congelateur_Nombre"] = ["Type_Logement","Nombre_Personnes"]
+        diDep["Refrigerateur_Nombre"] = ["Type_Logement","Nombre_Personnes"]
+        diDep["LaveLinge_Type"] = ["Type_Logement","Nombre_Personnes"]
+        diDep["SecheLinge_Presence"] = ["Type_Logement","Nombre_Personnes"]
+        diDep["LaveVaisselle_Presence"] = ["Type_Logement","Nombre_Personnes"]
+        diDep["Cuisiniere_Presence"] = ["Type_Logement","Nombre_Personnes"]
+        diDep["Cuisiniere_Energie"] = ["Cuisiniere_Presence","Source_Energie_Chauf"]
+
         #diDep["ConsoElecAn"] = ["AnConstruction", "TypeLogement", "SourceEnerChauf"]
 
         # Ajout des Arcs

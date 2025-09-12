@@ -5,6 +5,7 @@ QC1R,Principale source d'énergie utilisée pour le chauffage de l'habitation,"[
 CONS_AN,Consommation annuelle d'électricité en kWh,,,Double
 QA6M,Année de construction de l'habitation,,,Entier
 TERR_HQ,Territoire HQ,"['Est et nord du Québec', 'Laurentides', 'Montmorency', 'Montréal', 'Richelieu']","['0', '1', '2', '3', '4']",discrete
+ZONE,Zone du Québec,"['Outaouais rural', 'Milles-Îles', 'IDM Est', 'IDM Nord', 'CUQ', 'CUO', 'St-Maurice', 'Côte-Nord', 'Le Noroit', 'IDM Ouest', 'Chateauguay-Vaudreuil', 'Des Cantons', 'Sorel-Victoriaville', 'Drummonville', 'Lévis', 'IDM Sud', 'Laval', 'Montmorency-nord', 'Saguenay', 'Le Haut St-Laurent', 'Bas St-Laurent', 'Gaspésie', 'Appalaches', 'Antoine-Labelle', 'Des Seigneuries', 'Lanaudière', 'Ozias-Leduc']","['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26']",discrete
 QA4R,Type d'habitation,"['Uni', 'Plex', 'Multi']","['0', '1', '2']",discrete
 QA4M,Nombre de logements dans l'immeuble,,,Entier
 QA6RR,Décennie de construction de l'habitation,"['Avant 1900', 'Entre 1900 et 1950', 'Dans les années 50', 'Dans les années 60', 'Dans les années 70', 'Dans les années 80', 'Dans les années 90', 'Entre 2000 et 2009', 'Entre 2010 et 2013', 'Entre 2014 et 2017', ""Entre 2018 et aujourd'hui""]","['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']",discrete

@@ -1149,6 +1149,14 @@ class FormatageEUEMr:
                                             "Maison individuelle" : ['Maison individuelle détachée/unifamiliale',
                                                                     "Maison jumelée/bout de rangée attachée 1 côté/semi-détaché",
                                                                     "Maison mobile/roulotte"]}}
+        
+        self.Mapping["Type_Batiment"] = {
+                                "ColSrc" : "Type_Logement",
+                                "typeMapping" : "list",
+                                "Mapping" : {"Collective" :["Collective"],
+                                            "Plex" : ["Triplex", "Duplex"],
+                                            "Maison" : ["Maison en rangee", "Maison individuelle"]}}
+        
         self.Mapping["Mode_Occupation"] = {
                                 "ColSrc" : "QA1",
                                 "typeMapping" : "list",
@@ -1521,31 +1529,37 @@ class FormatageEUEMr:
         ## QF1 : À quelle source d'énergie votre chauffe-eau fonctionne-t-il?
         ## a voir si pertinent # # QF3 : Quelle est la capacité du chauffe-eau?
 
+    def get_Mapping_Colsrc(self, colName):
+        if colName in Attribut_EUEMr.__dict__.keys():
+            return colName
+        elif colName in self.Mapping.keys():
+            return self.get_Mapping_Colsrc(self.Mapping[colName]["ColSrc"])#recursif
 
 
     def get_Mettadata(self):
         Metadata = {}
         for keyMap, dictMap in self.Mapping.items():
             try:
+                ColSrc = self.get_Mapping_Colsrc(dictMap["ColSrc"])
                 if dictMap["typeMapping"] == "list":
                     Metadata[keyMap] = {"Label": list(dictMap["Mapping"].keys()),
                                         "IdLabel": [str(i) for i in range(len(dictMap["Mapping"]))],
-                                        "Description": Attribut_EUEMr.__dict__[dictMap["ColSrc"]]["Description"],
+                                        "Description": Attribut_EUEMr.__dict__[ColSrc]["Description"],
                                         "Type": "discrete"}
                 elif dictMap["typeMapping"] == "bin":
                     Metadata[keyMap] = {"Label": dictMap["Mapping"]["labels"],
                                         "IdLabel": [str(i) for i in range(len(dictMap["Mapping"]["labels"]))],
-                                        "Description": Attribut_EUEMr.__dict__[dictMap["ColSrc"]]["Description"],
+                                        "Description": Attribut_EUEMr.__dict__[ColSrc]["Description"],
                                         "Type": "discrete"}
                 elif dictMap["typeMapping"] == "custom":
                     Metadata[keyMap] = {"Label": dictMap["Mapping"].keys(),
                                         "IdLabel": [str(i) for i in range(len(dictMap["Mapping"]))],
-                                        "Description": Attribut_EUEMr.__dict__[dictMap["ColSrc"]]["Description"],
+                                        "Description": Attribut_EUEMr.__dict__[ColSrc]["Description"],
                                         "Type": "discrete"}
                 elif dictMap["typeMapping"] == "no":
                     Metadata[keyMap] = {"Label": [],
                                         "IdLabel": [],
-                                        "Description": Attribut_EUEMr.__dict__[dictMap["ColSrc"]]["Description"],
+                                        "Description": Attribut_EUEMr.__dict__[ColSrc]["Description"],
                                         "Type": ""}
             except KeyError as e:
                 print(f"Error processing mapping for key: {keyMap} : {e}")
@@ -1576,35 +1590,41 @@ class FormatageEUEMr:
         """
         try:
             if ColName in self.Mapping:
+                if self.Mapping[ColName]["ColSrc"] in self.dfEUEMrSrc.columns:
+                    dfEUEMrSrc_ColName = self.dfEUEMrSrc
+                elif self.Mapping[ColName]["ColSrc"] in  self.dfEUEMr_new.columns:
+                    dfEUEMrSrc_ColName = self.dfEUEMr_new
+                else:
+                    raise ValueError(f"Unknown mapping source for column '{ColName}'.")
                 
                 if self.Mapping[ColName]["typeMapping"] == "no":
-                    return self.dfEUEMrSrc[self.Mapping[ColName]["ColSrc"]].rename(ColName)
+                    return dfEUEMrSrc_ColName[self.Mapping[ColName]["ColSrc"]].rename(ColName)
                 
                 elif self.Mapping[ColName]["typeMapping"] == "list":
                     dct_replace = {}
                     for k, v in self.Mapping[ColName]["Mapping"].items():
                         for val in v:
                             dct_replace[val] = k
-                    tempoSeries = self.dfEUEMrSrc[self.Mapping[ColName]["ColSrc"]].replace(dct_replace).rename(ColName)
+                    tempoSeries = dfEUEMrSrc_ColName[self.Mapping[ColName]["ColSrc"]].replace(dct_replace).rename(ColName)
                     tempoSeries[~tempoSeries.isin(list(set(dct_replace.values())))] = None
                     return tempoSeries
 
                 elif self.Mapping[ColName]["typeMapping"] == "bin":
 
-                    return pd.cut(self.dfEUEMrSrc[self.Mapping[ColName]["ColSrc"]],
+                    return pd.cut(dfEUEMrSrc_ColName[self.Mapping[ColName]["ColSrc"]],
                                 bins=self.Mapping[ColName]["Mapping"]["bins"],
                                 labels=self.Mapping[ColName]["Mapping"]["labels"],
                                 right=False).rename(ColName)                
                 
                 elif self.Mapping[ColName]["typeMapping"] == "custom":#type de Mapping (plus complexe)
                     if ColName == "Presence_Garage":
-                        return self.dfEUEMrSrc.apply(lambda row: "Pas de Garage" if row["QM1A"] in ["Non", "."]\
+                        return dfEUEMrSrc_ColName.apply(lambda row: "Pas de Garage" if row["QM1A"] in ["Non", "."]\
                                                                  else ("Garage non chauffé" if row["QM1AA"]=="Non" \
                                                                  else ("Garage chauffé à électricité" if row["QM1B"]=="Oui"\
                                                                  else ("Garage chauffé à autre source" if row["QM1A"]=="Oui" else ""))), axis=1).rename(ColName)
                     
                     if ColName == "Chauffage_Logement":
-                        return self.dfEUEMrSrc.apply(lambda row: "Plinthes électriques" if row["SYSTEM1R"] in ["Plinthes électriques"]\
+                        return dfEUEMrSrc_ColName.apply(lambda row: "Plinthes électriques" if row["SYSTEM1R"] in ["Plinthes électriques"]\
                                                                 else ("Fournaise ou poêle à bois et Plinthes électriques" if (((row["SYSTEM1R"] in ["Fournaise ou poêle à bois"]) or (row["SYSTEM1"] in ["Chaudière à eau chaude chauffée au bois"])) and (row["SYSTEM2R"] in ["Plinthes électriques"]))\
                                                                 else ("Fournaise ou poêle à bois et Unités convecteurs, plancher ou plafond radiant" if (((row["SYSTEM1R"] in ["Fournaise ou poêle à bois"])or (row["SYSTEM1"] in ["Chaudière à eau chaude chauffée au bois"])) and (row["SYSTEM2R"] in ["Unités convecteurs, plancher ou plafond radiant"]))\
                                                                 else ("Fournaise ou poêle à bois et Thermopompe" if (((row["SYSTEM1R"] in ["Fournaise ou poêle à bois"]) or (row["SYSTEM1"] in ["Chaudière à eau chaude chauffée au bois"])) and (row["SYSTEM2R"] in ["Thermopompe"]))\
@@ -1619,7 +1639,7 @@ class FormatageEUEMr:
                                                                 else ("Fournaise murale ou de plancher" if row["SYSTEM1R"] in ["Fournaise murale ou de plancher"]\
                                                                 else None)))))))))))), axis=1).rename(ColName)
                     if ColName == "Spa_Saison":
-                        return self.dfEUEMrSrc.apply(lambda row: "Aucun" if row["QB1M"] in ["Non"]\
+                        return dfEUEMrSrc_ColName.apply(lambda row: "Aucun" if row["QB1M"] in ["Non"]\
                                                                 else ("Pas utilisé" if row["QS1"] in ["Pas du tout"]\
                                                                 else ("Ne sait pas" if row["QS2M1R"] in ["Ne sait pas"]\
                                                                 else ("Toute_Saison" if row["QS1"] in ["Toute l’année"]\
@@ -1639,7 +1659,7 @@ class FormatageEUEMr:
                                                                 else None)))))))))))))))), axis=1).rename(ColName)
                         #else ("Printemps_Ete_Hiver" if sorted([row["QS2M1R"], row["QS2M2R"], row["QS2M3R"], row["QS2M4R"]])== sorted(["Le printemps","L'été","L'hiver", "."])\
                     if ColName == "Vehicule_Presence":
-                        return self.dfEUEMrSrc.apply(lambda row: "Aucune_VE_Aucune_VHR" if ((row["QT2R"] in ["Aucune"]) and (row["QT3R"] in ["Aucune"]))\
+                        return dfEUEMrSrc_ColName.apply(lambda row: "Aucune_VE_Aucune_VHR" if ((row["QT2R"] in ["Aucune"]) and (row["QT3R"] in ["Aucune"]))\
                                                                 else ("Une_VE_Aucune_VHR" if ((row["QT2R"] in ["Une"]) and (row["QT3R"] in ["Aucune"]))\
                                                                 else ("Deux_VE_Aucune_VHR" if ((row["QT2R"] in ["Deux"]) and (row["QT3R"] in ["Aucune"]))\
                                                                 else ("Trois_VE_Aucune_VHR" if ((row["QT2R"] in ["Trois"]) and (row["QT3R"] in ["Aucune"]))\
@@ -1653,7 +1673,7 @@ class FormatageEUEMr:
                                                                 else ("Trois_VE_Deux_VHR" if ((row["QT2R"] in ["Trois"]) and (row["QT3R"] in ["Deux"]))\
                                                                 else None))))))))))), axis=1).rename(ColName)
                     if ColName == "Region_Administrative":
-                        return self.dfEUEMrSrc.apply(lambda row: "Outaouais" if ((row["ZONE"] in ["Outaouais rural", "CUO"]))\
+                        return dfEUEMrSrc_ColName.apply(lambda row: "Outaouais" if ((row["ZONE"] in ["Outaouais rural", "CUO"]))\
                                                                 else("Laurentides" if ((row["ZONE"] in ["Milles-Îles", "Antoine-Labelle", "Le Noroit"]))\
                                                                 else("Montréal" if ((row["ZONE"] in ["IDM Est", "IDM Nord", "IDM Ouest", "IDM Sud"]))\
                                                                 else("Capitale-Nationale" if ((row["ZONE"] in ["CUQ", "Montmorency-nord", "Appalaches"]))\
@@ -1680,14 +1700,14 @@ class FormatageEUEMr:
         """
         Applique tous les mappings définis dans la classe.
         """
-        dfEUEMr_new = pd.DataFrame()
+        self.dfEUEMr_new = pd.DataFrame()
         for c in ["POND1","POND2x","POND1_POP","POND2x_POP"]:
-            dfEUEMr_new[c] = self.dfEUEMrSrc[c]
+            self.dfEUEMr_new[c] = self.dfEUEMrSrc[c]
 
         for ColName in self.Mapping:
-            dfEUEMr_new = pd.concat([dfEUEMr_new, self.DoMapping(ColName)], axis=1)
+            self.dfEUEMr_new = pd.concat([self.dfEUEMr_new, self.DoMapping(ColName)], axis=1)
         
-        return dfEUEMr_new
+        return self.dfEUEMr_new
 
     def Main(self):
         """
@@ -1697,10 +1717,11 @@ class FormatageEUEMr:
         sheet_name = "Data"
 
         self.Load_excel(stFileName, sheet_name)
-        dfEUEMr_new = self.DoAllMapping()
+        #dfEUEMr_new = self.DoAllMapping()
+        self.DoAllMapping()
 
         output_file = PROJECT_DIR+"//data//EUEMr//2022//sondage_residentiel_version_finale_formatted.csv"
-        self.SaveToCSV(dfEUEMr_new, output_file)
+        self.SaveToCSV(self.dfEUEMr_new, output_file)
 
 class EUEMr(Master_genereBN):
     '''
@@ -1709,6 +1730,7 @@ class EUEMr(Master_genereBN):
     lst_NOEUD = ["Territoire_HQ",
                  "Region_Administrative",
                  "Type_Logement",
+                 "Type_Batiment",
                  "Nombre_Etages",
                  "Nombre_Pieces",
                  "Superficie_Totale",
@@ -1807,6 +1829,7 @@ class EUEMr(Master_genereBN):
         diDep['Territoire_HQ'] = []
         diDep['Region_Administrative'] = ["Territoire_HQ"]
         diDep['Type_Logement'] = ["Region_Administrative"]
+        diDep["Type_Batiment"] = ["Type_Logement"]
         diDep["Nombre_Etages"] = ["Type_Logement", "Region_Administrative"]
         diDep["Nombre_Pieces"] = ["Type_Logement", "Nombre_Etages"]
         diDep["Superficie_Totale"] = ["Nombre_Pieces"]

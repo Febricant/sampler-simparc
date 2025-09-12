@@ -1537,14 +1537,14 @@ class FormatageEUEMr:
         self.Mapping["SecheLinge_Presence"] = {}
         self.Mapping["SecheLinge_Presence"]["ColSrc"] = "QB1H"
         self.Mapping["SecheLinge_Presence"]["typeMapping"] = "list"
-        self.Mapping["SecheLinge_Presence"]["Mapping"] = {"Aucun":["Oui"],
+        self.Mapping["SecheLinge_Presence"]["Mapping"] = {"Oui":["Oui"],
                                                             "Non":["Non", "Ne sait pas/Ne répond pas"]}
 
         #QB1G : Type de lave-vaisselle (Base totale)
         self.Mapping["LaveVaisselle_Presence"] = {}
         self.Mapping["LaveVaisselle_Presence"]["ColSrc"] = "QB1G"
         self.Mapping["LaveVaisselle_Presence"]["typeMapping"] = "list"
-        self.Mapping["LaveVaisselle_Presence"]["Mapping"] = {"Aucun":["Oui"],
+        self.Mapping["LaveVaisselle_Presence"]["Mapping"] = {"Oui":["Oui"],
                                                             "Non":["Non"]}
         
         #QB1A1 : Présence de cuisinières (Oui/Non)

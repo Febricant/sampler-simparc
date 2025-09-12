@@ -134,7 +134,7 @@
     '1': Frontale
     '2': Traditionnelle
   LaveVaisselle_Presence:
-    '0': Aucun
+    '0': Oui
     '1': Non
   Mode_Occupation:
     '0': Locataire
@@ -228,7 +228,7 @@
     '8': Laurentides
     '9': Laval
   SecheLinge_Presence:
-    '0': Aucun
+    '0': Oui
     '1': Non
   Source_Energie_Chauf:
     '0': Electricite
@@ -517,7 +517,7 @@
     Nom: LaveVaisselle_Presence
     Source: "EUEMR modifi\xE9"
     Valeurs:
-    - Aucun
+    - Oui
     - Non
     id: 36
     "\xC9chantillonneur": "R\xE9seau Bayesien"
@@ -777,7 +777,7 @@
     Nom: SecheLinge_Presence
     Source: "EUEMR modifi\xE9"
     Valeurs:
-    - Aucun
+    - Oui
     - Non
     id: 35
     "\xC9chantillonneur": "R\xE9seau Bayesien"

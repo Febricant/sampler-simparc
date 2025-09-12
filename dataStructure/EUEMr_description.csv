@@ -26,7 +26,7 @@ QL5BA,Quel est le revenu total de votre ménage (avant impôts incluant les reve
 QB2I1,Combien de réfrigérateurs avez-vous dans votre résidence?,"['0', '1', '2', '3', '4', '5', '7']","['0', '1', '2', '3', '4', '5', '6']",discrete
 QB2I2,Quel est l'âge de votre réfrigérateur principal?,"['Moins de 1 an', '1 à 5 ans', '6 à 10 ans', '11 à 15 ans', '16 à 20 ans', '21 à 25 ans', 'Plus de 25 ans']","['0', '1', '2', '3', '4', '5', '6']",discrete
 QBM1,Avez-vous un congélateur distinct de votre réfrigérateur?,"['Oui', 'Non']","['0', '1']",discrete
-QBM2,Combien de congélateurs distincts avez-vous dans votre résidence?,"['Aucun', '1', '2', '3', '4', '5', '6']","['0', '1', '2', '3', '4', '5', '6']",discrete
+QB2M2R,Combien de congélateurs distincts avez-vous dans votre résidence?,"['Aucun', '1', '2', '3', '4', '5', '6']","['0', '1', '2', '3', '4', '5', '6']",discrete
 QB1A1,Avez-vous une cuisinière?,"['Oui', 'Non']","['0', '1']",discrete
 QB1RR,Combien d'appareils de cuisson avez-vous dans votre résidence?,"['Aucun', '1', '2', '3']","['0', '1', '2', '3']",discrete
 QB1A3,Quelle est la source d'énergie de votre cuisinière?,"['Électricité', 'Gaz propane ou gaz naturel', 'Autre']","['0', '1', '2']",discrete
@@ -39,6 +39,7 @@ QB1G,Avez-vous un lave-vaisselle?,"['Oui', 'Non']","['0', '1']",discrete
 QB1H,Avez-vous une sécheuse à linge électrique?,"['Oui', 'Non']","['0', '1']",discrete
 QB1I,Avez-vous une machine à laver le linge?,"['Oui', 'Non']","['0', '1']",discrete
 QB1I1,Votre machine à laver le linge est-elle à chargement frontal?,"['Oui', 'Non']","['0', '1']",discrete
+QB1I1R,Quel type de machine à laver le linge avez-vous?,"[""N'a pas de machine à laver le linge"", 'Machine traditionnelle', 'Machine à chargement frontal']","['0', '1', '2']",discrete
 QB1S,Avez-vous un cellier avec système de réfrigération?,"['Oui', 'Non']","['0', '1']",discrete
 QB1N,Avez-vous un sauna?,"['Oui', 'Non']","['0', '1']",discrete
 QB2,Combien de téléviseurs avez-vous dans votre résidence?,"['0', '1', '2', '3', '4', '5', '6', '7', '8', '10']","['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']",discrete

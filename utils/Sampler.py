@@ -110,6 +110,27 @@ class BuildstockBatchArguments():
         dct_housing_characteristics_csv["Spa ChaufType.csv"] = {"Name": "Spa ChaufType",
                                                     "Description": "Type de chauffage du spa",
                                                     "Source":""}
+        dct_housing_characteristics_csv["Usage Level.csv"] = {"Name": "Usage Level",
+                                                    "Description": "Usage of major appliances relative to the USA average.",
+                                                    "Source":"ResStock"}
+        dct_housing_characteristics_csv["Cooking Range Usage Level.csv"] = {"Name": "Cooking Range Usage Level",
+                                                    "Description": "Cooking Range energy usage level multiplier.",
+                                                    "Source":"ResStock"}
+        dct_housing_characteristics_csv["Clothes Washer Usage Level.csv"] = {"Name": "Clothes Washer Usage Level",
+                                                    "Description": "Clothes Washer energy usage level multiplier.",
+                                                    "Source":"ResStock"}
+        dct_housing_characteristics_csv["Clothes Dryer Usage Level.csv"] = {"Name": "Clothes Dryer Usage Level",
+                                                    "Description": "Clothes Dryer energy usage level multiplier.",
+                                                    "Source":"ResStock"}
+        dct_housing_characteristics_csv["Refrigerator Usage Level.csv"] = {"Name": "Refrigerator Usage Level",
+                                                    "Description": "Refrigerator energy usage level multiplier.",
+                                                    "Source":"ResStock"}
+        dct_housing_characteristics_csv["Dishwasher Energy.csv"] = {"Name": "Dishwasher Energy",
+                                                    "Description": "Dishwasher energy.",
+                                                    "Source":"ResStock"}
+        dct_housing_characteristics_csv["Diswasher Usage Level.csv"] = {"Name": "Diswasher Usage Level",
+                                                    "Description": "Dishwasher energy usage level multiplier.",
+                                                    "Source":"ResStock"}
         #dct_housing_characteristics_csv["Water Heater in Unit.csv"] = {"Name": "Water Heater in Unit",
         #                                            "Description": "Chauffeau dans le logement",
         #                                            "Source":""}
@@ -154,7 +175,14 @@ class BuildstockBatchArguments():
                         "geometry attic type",
                         "HVAC Has Shared System",
                         "HVAC Heating Efficiency",
-                        "Spa ChaufType"]
+                        "Spa ChaufType",
+                        "Usage Level",
+                        "Cooking Range Usage Level",
+                        "Clothes Washer Usage Level",
+                        "Clothes Dryer Usage Level",
+                        "Refrigerator Usage Level",
+                        "Dishwasher Energy",
+                        "Diswasher Usage Level"]
                         
                         
                         #"Geometry Attic Type",
@@ -213,7 +241,7 @@ class BuildstockBatchArguments():
                 sumlst = sum(filtered_df[dct_option.keys()].values.tolist()[0])
                 listProb = [k/sumlst for k in filtered_df[dct_option.keys()].values.tolist()[0]]
                 #except:
-                #    pass
+                #    print("Error in sampling for attribute:", Attributs)
                 
 
                 choiceStr = self.randGenerator.choice(list(dct_option.keys()),p=listProb)
@@ -2023,6 +2051,145 @@ class MapHPXML:
                     dct_HPXML[argHPXML] = 70
                 elif dct_args[arg] in ["Chauffe-eau sans réservoi"]:
                     dct_HPXML[argHPXML] = 0
+
+        # Clothes dryer
+        #Make dict only based on data - from code parse option_lookup
+        dct_ClothesDryer = {}
+        dct_ClothesDryer["Electric, Heat Pump, Ventless"] = {"clothes_dryer_present": True, "clothes_dryer_location": "auto", "clothes_dryer_fuel_type": "electricity", "clothes_dryer_efficiency_type": "CombinedEnergyFactor", "clothes_dryer_efficiency": 4.5, "clothes_dryer_vented_flow_rate": 0}
+        dct_ClothesDryer["Electric, Premium"] = {"clothes_dryer_present": True, "clothes_dryer_location": "auto", "clothes_dryer_fuel_type": "electricity", "clothes_dryer_efficiency_type": "CombinedEnergyFactor", "clothes_dryer_efficiency": 3.42, "clothes_dryer_vented_flow_rate": "auto"}
+        dct_ClothesDryer["Electric, Premium, EnergyStar"] = {"clothes_dryer_present": True, "clothes_dryer_location": "auto", "clothes_dryer_fuel_type": "electricity", "clothes_dryer_efficiency_type": "CombinedEnergyFactor", "clothes_dryer_efficiency": 3.93, "clothes_dryer_vented_flow_rate": "auto"}
+        dct_ClothesDryer["Electric, Premium, Heat Pump, Ventless"] = {"clothes_dryer_present": True, "clothes_dryer_location": "auto", "clothes_dryer_fuel_type": "electricity", "clothes_dryer_efficiency_type": "CombinedEnergyFactor", "clothes_dryer_efficiency": 5.2, "clothes_dryer_vented_flow_rate": 0}
+        dct_ClothesDryer["Gas, Premium"] = {"clothes_dryer_present": True, "clothes_dryer_location": "auto", "clothes_dryer_fuel_type": "natural gas", "clothes_dryer_efficiency_type": "CombinedEnergyFactor", "clothes_dryer_efficiency": 3.03, "clothes_dryer_vented_flow_rate": "auto"}
+        dct_ClothesDryer["Electric"] = {"clothes_dryer_present": True, "clothes_dryer_location": "auto", "clothes_dryer_fuel_type": "electricity", "clothes_dryer_efficiency_type": "CombinedEnergyFactor", "clothes_dryer_efficiency": 2.70, "clothes_dryer_vented_flow_rate": "auto"}
+        dct_ClothesDryer["Gas"] = {"clothes_dryer_present": True, "clothes_dryer_location": "auto", "clothes_dryer_fuel_type": "natural gas", "clothes_dryer_efficiency_type": "CombinedEnergyFactor", "clothes_dryer_efficiency": 2.39, "clothes_dryer_vented_flow_rate": "auto"}
+        dct_ClothesDryer["None"] = {"clothes_dryer_present": False, "clothes_dryer_location": "auto", "clothes_dryer_fuel_type": "natural gas", "clothes_dryer_efficiency_type": "CombinedEnergyFactor", "clothes_dryer_efficiency": 2.70, "clothes_dryer_vented_flow_rate": "auto"}
+        dct_ClothesDryer["Propane"] = {"clothes_dryer_present": True, "clothes_dryer_location": "auto", "clothes_dryer_fuel_type": "propane", "clothes_dryer_efficiency_type": "CombinedEnergyFactor", "clothes_dryer_efficiency": 2.39, "clothes_dryer_vented_flow_rate": "auto"}
+        #dct_ClothesDryer["Void"] = {}
+        
+        arg = "SecheLinge_Presence"
+        if (arg in dct_args.keys()):
+            if dct_args[arg] in ["oui"]:
+                args_value = "Electric"
+            else:
+                args_value = "None"
+            for args in dct_ClothesDryer[args_value]:
+                if ((args not in dct_HPXML.keys()) & (dct_ClothesDryer[args_value][args]!="auto")):
+                    dct_HPXML[args] = dct_ClothesDryer[args_value][args]
+
+        dct_ClothesDryer_Usage = {}
+        dct_ClothesDryer_Usage["100% Usage"] = {"clothes_dryer_usage_multiplier": 1.0}
+        dct_ClothesDryer_Usage["120% Usage"] = {"clothes_dryer_usage_multiplier": 1.2}
+        dct_ClothesDryer_Usage["80% Usage"] = {"clothes_dryer_usage_multiplier": 0.8}
+        arg = "Clothes Dryer Usage Level"
+        for args in dct_ClothesDryer_Usage[dct_args[arg]]:
+            if ((args not in dct_HPXML.keys()) & (dct_ClothesDryer_Usage[dct_args[arg]][args]!="auto")):
+                dct_HPXML[args] = dct_ClothesDryer_Usage[dct_args[arg]][args]
+
+
+        dct_ClothesWasher = {}
+        dct_ClothesWasher["EnergyStar, Cold Only"] = {"clothes_washer_location": "auto", "clothes_washer_efficiency_type": "IntegratedModifiedEnergyFactor", "clothes_washer_efficiency": 2.07, "clothes_washer_rated_annual_kwh": 123, "clothes_washer_label_electric_rate": 0.1065, "clothes_washer_label_gas_rate": 1.218, "clothes_washer_label_annual_gas_cost": 9, "clothes_washer_label_usage": 7.538462, "clothes_washer_capacity": 3.68}
+        dct_ClothesWasher["CEE Advanced Tier"] = {"clothes_washer_location": "auto", "clothes_washer_efficiency_type": "IntegratedModifiedEnergyFactor", "clothes_washer_efficiency": 3.1, "clothes_washer_rated_annual_kwh": 120, "clothes_washer_label_electric_rate": 0.121, "clothes_washer_label_gas_rate": 1.087, "clothes_washer_label_annual_gas_cost": 14, "clothes_washer_label_usage": 7.538462, "clothes_washer_capacity": 5.8}
+        dct_ClothesWasher["EnergyStar"] = {"clothes_washer_location": "auto", "clothes_washer_efficiency_type": "IntegratedModifiedEnergyFactor", "clothes_washer_efficiency": 2.07, "clothes_washer_rated_annual_kwh": 123, "clothes_washer_label_electric_rate": 0.1065, "clothes_washer_label_gas_rate": 1.218, "clothes_washer_label_annual_gas_cost": 9, "clothes_washer_label_usage": 7.538462, "clothes_washer_capacity": 3.68}
+        dct_ClothesWasher["EnergyStar More Efficient"] = {"clothes_washer_location": "auto", "clothes_washer_efficiency_type": "IntegratedModifiedEnergyFactor", "clothes_washer_efficiency": 2.83, "clothes_washer_rated_annual_kwh": 90, "clothes_washer_label_electric_rate": 0.121, "clothes_washer_label_gas_rate": 1.087, "clothes_washer_label_annual_gas_cost": 8, "clothes_washer_label_usage": 7.538462, "clothes_washer_capacity": 4.5}
+        dct_ClothesWasher["EnergyStar Most Efficient"] = {"clothes_washer_location": "auto", "clothes_washer_efficiency_type": "IntegratedModifiedEnergyFactor", "clothes_washer_efficiency": 2.92, "clothes_washer_rated_annual_kwh": 75, "clothes_washer_label_electric_rate": 0.121, "clothes_washer_label_gas_rate": 1.087, "clothes_washer_label_annual_gas_cost": 7, "clothes_washer_label_usage": 7.538462, "clothes_washer_capacity": 4.5}
+        dct_ClothesWasher["None"] = {"clothes_washer_location": "auto", "clothes_washer_efficiency_type": "IntegratedModifiedEnergyFactor", "clothes_washer_efficiency": 0, "clothes_washer_rated_annual_kwh": 0, "clothes_washer_label_electric_rate": 0, "clothes_washer_label_gas_rate": 0, "clothes_washer_label_annual_gas_cost": 0, "clothes_washer_label_usage": 0, "clothes_washer_capacity": 0}
+        dct_ClothesWasher["Standard"] = {"clothes_washer_location": "auto", "clothes_washer_efficiency_type": "IntegratedModifiedEnergyFactor", "clothes_washer_efficiency": 0.95, "clothes_washer_rated_annual_kwh": 387, "clothes_washer_label_electric_rate": 0.1065, "clothes_washer_label_gas_rate": 1.218, "clothes_washer_label_annual_gas_cost": 24, "clothes_washer_label_usage": 7.538462, "clothes_washer_capacity": 3.5}
+        #dct_ClothesWasher["Void"] = {}
+        arg = "LaveLinge_Type"
+        if (arg in dct_args.keys()):
+            if dct_args[arg] in ["Aucun"]:
+                args_value = "None"
+            elif dct_args[arg] in ["Traditionnelle", "Frontale"]:
+                args_value = "Standard"
+            for args in dct_ClothesWasher[args_value]:
+                if ((args not in dct_HPXML.keys()) & (dct_ClothesWasher[args_value][args]!="auto")):
+                    dct_HPXML[args] = dct_ClothesWasher[args_value][args]
+
+        dct_ClothesWasher_Present = {}
+        dct_ClothesWasher_Present["None"] = {"clothes_washer_present": False}
+        dct_ClothesWasher_Present["Void"] = {}
+        dct_ClothesWasher_Present["Yes"] = {"clothes_washer_present": True}
+        arg = "LaveLinge_Type"
+        if (arg in dct_args.keys()):
+            if dct_args[arg] in ["Aucun"]:
+                args_value = "None"
+            elif dct_args[arg] in ["Traditionnelle", "Frontale"]:
+                args_value = "Yes"
+            for args in dct_ClothesWasher_Present[args_value]:
+                if ((args not in dct_HPXML.keys()) & (dct_ClothesWasher_Present[args_value][args]!="auto")):
+                    dct_HPXML[args] = dct_ClothesWasher_Present[args_value][args]
+
+        dct_ClothesWasher_Usage = {}
+        dct_ClothesWasher_Usage["100% Usage"] = {"clothes_washer_usage_multiplier": 1.0}
+        dct_ClothesWasher_Usage["120% Usage"] = {"clothes_washer_usage_multiplier": 1.2}
+        dct_ClothesWasher_Usage["80% Usage"] = {"clothes_washer_usage_multiplier": 0.8}
+        arg = "Clothes Washer Usage Level"
+        for args in dct_ClothesWasher_Usage[dct_args[arg]]:
+            if ((args not in dct_HPXML.keys()) & (dct_ClothesWasher_Usage[dct_args[arg]][args]!="auto")):
+                dct_HPXML[args] = dct_ClothesWasher_Usage[dct_args[arg]][args]
+
+        #_____________________________________________________________
+        dct_CookingRange = {}
+        dct_CookingRange["Electric Induction"] = {"cooking_range_oven_present": True, "cooking_range_oven_location": "auto", "cooking_range_oven_fuel_type": "electricity", "cooking_range_oven_is_induction": True, "cooking_range_oven_is_convection": "auto"}
+        dct_CookingRange["Electric Resistance"] = {"cooking_range_oven_present": True, "cooking_range_oven_location": "auto", "cooking_range_oven_fuel_type": "electricity", "cooking_range_oven_is_induction": False, "cooking_range_oven_is_convection": "auto"}
+        dct_CookingRange["Gas"] = {"cooking_range_oven_present": True, "cooking_range_oven_location": "auto", "cooking_range_oven_fuel_type": "natural gas", "cooking_range_oven_is_induction": False, "cooking_range_oven_is_convection": "auto"}
+        dct_CookingRange["None"] = {"cooking_range_oven_present": False, "cooking_range_oven_location": "auto", "cooking_range_oven_fuel_type": "natural gas", "cooking_range_oven_is_induction": False, "cooking_range_oven_is_convection": "auto"}
+        dct_CookingRange["Propane"] = {"cooking_range_oven_present": True, "cooking_range_oven_location": "auto", "cooking_range_oven_fuel_type": "propane", "cooking_range_oven_is_induction": False, "cooking_range_oven_is_convection": "auto"}
+        #dct_CookingRange["Void"] = {}
+        arg = "Cuisiniere_Energie"
+        if (arg in dct_args.keys()):
+            if dct_args[arg] in ["Electrique", "Ne sait pas", "Autre"]:
+                args_value = "Electric Resistance"
+            elif dct_args[arg] in ["Gaz"]:
+                args_value = "Gas"
+            elif dct_args[arg] in ["Aucun"]:
+                args_value = "None"
+            for args in dct_CookingRange[args_value]:
+                if ((args not in dct_HPXML.keys()) & (dct_CookingRange[args_value][args]!="auto")):
+                    dct_HPXML[args] = dct_CookingRange[args_value][args]
+
+        dct_CookingRang_Usage = {}
+        dct_CookingRang_Usage["100% Usage"] = {"cooking_range_oven_usage_multiplier": 1.0}
+        dct_CookingRang_Usage["120% Usage"] = {"cooking_range_oven_usage_multiplier": 1.2}
+        dct_CookingRang_Usage["80% Usage"] = {"cooking_range_oven_usage_multiplier": 0.8}
+        arg = "Cooking Range Usage Level"
+        for args in dct_CookingRang_Usage[dct_args[arg]]:
+            if ((args not in dct_HPXML.keys()) & (dct_CookingRang_Usage[dct_args[arg]][args]!="auto")):
+                dct_HPXML[args] = dct_CookingRang_Usage[dct_args[arg]][args]
+
+        #_____________________________________________________________
+        dct_Dishwasher = {}
+        dct_Dishwasher["144 Rated kWh"] = {"dishwasher_present": True, "dishwasher_location": "auto", "dishwasher_efficiency_type": "RatedAnnualkWh", "dishwasher_efficiency": 144, "dishwasher_label_electric_rate": 0.12, "dishwasher_label_gas_rate": 1.09, "dishwasher_label_annual_gas_cost": 13, "dishwasher_label_usage": 4, "dishwasher_place_setting_capacity": 12}
+        dct_Dishwasher["199 Rated kWh"] = {"dishwasher_present": True, "dishwasher_location": "auto", "dishwasher_efficiency_type": "RatedAnnualkWh", "dishwasher_efficiency": 199, "dishwasher_label_electric_rate": 0.12, "dishwasher_label_gas_rate": 1.09, "dishwasher_label_annual_gas_cost": 18, "dishwasher_label_usage": 4, "dishwasher_place_setting_capacity": 12}
+        dct_Dishwasher["220 Rated kWh"] = {"dishwasher_present": True, "dishwasher_location": "auto", "dishwasher_efficiency_type": "RatedAnnualkWh", "dishwasher_efficiency": 220, "dishwasher_label_electric_rate": 0.12, "dishwasher_label_gas_rate": 1.09, "dishwasher_label_annual_gas_cost": 19, "dishwasher_label_usage": 4, "dishwasher_place_setting_capacity": 12}
+        dct_Dishwasher["255 Rated kWh"] = {"dishwasher_present": True, "dishwasher_location": "auto", "dishwasher_efficiency_type": "RatedAnnualkWh", "dishwasher_efficiency": 255, "dishwasher_label_electric_rate": 0.12, "dishwasher_label_gas_rate": 1.09, "dishwasher_label_annual_gas_cost": 21, "dishwasher_label_usage": 4, "dishwasher_place_setting_capacity": 12}
+        dct_Dishwasher["270 Rated kWh"] = {"dishwasher_present": True, "dishwasher_location": "auto", "dishwasher_efficiency_type": "RatedAnnualkWh", "dishwasher_efficiency": 270, "dishwasher_label_electric_rate": 0.12, "dishwasher_label_gas_rate": 1.09, "dishwasher_label_annual_gas_cost": 22, "dishwasher_label_usage": 4, "dishwasher_place_setting_capacity": 12}
+        dct_Dishwasher["290 Rated kWh"] = {"dishwasher_present": True, "dishwasher_location": "auto", "dishwasher_efficiency_type": "RatedAnnualkWh", "dishwasher_efficiency": 290, "dishwasher_label_electric_rate": 0.12, "dishwasher_label_gas_rate": 1.09, "dishwasher_label_annual_gas_cost": 23, "dishwasher_label_usage": 4, "dishwasher_place_setting_capacity": 12}
+        dct_Dishwasher["318 Rated kWh"] = {"dishwasher_present": True, "dishwasher_location": "auto", "dishwasher_efficiency_type": "RatedAnnualkWh", "dishwasher_efficiency": 318, "dishwasher_label_electric_rate": 0.12, "dishwasher_label_gas_rate": 1.09, "dishwasher_label_annual_gas_cost": 25, "dishwasher_label_usage": 4, "dishwasher_place_setting_capacity": 12}
+        dct_Dishwasher["None"] = {"dishwasher_present": False, "dishwasher_location": "auto", "dishwasher_efficiency_type": "RatedAnnualkWh", "dishwasher_efficiency": 0, "dishwasher_label_electric_rate": 0, "dishwasher_label_gas_rate": 0, "dishwasher_label_annual_gas_cost": 0, "dishwasher_label_usage": 0, "dishwasher_place_setting_capacity": 0}
+        #dct_Dishwasher["Void"] = {}
+        arg = "Dishwasher Energy"
+        if (arg in dct_args.keys()):
+            if dct_args["LaveVaisselle_Presence"] in ["Oui"]:
+                for args in dct_Dishwasher[dct_args[arg]]:
+                    if ((args not in dct_HPXML.keys()) & (dct_Dishwasher[dct_args[arg]][args]!="auto")):
+                        dct_HPXML[args] = dct_Dishwasher[dct_args[arg]][args]
+            else:
+                args_value = "None"
+                for args in dct_Dishwasher[args_value]:
+                    if ((args not in dct_HPXML.keys()) & (dct_Dishwasher[args_value][args]!="auto")):
+                        dct_HPXML[args] = dct_Dishwasher[args_value][args]
+                
+        dct_Dishwasher_Usage = {}
+        dct_Dishwasher_Usage["100% Usage"] = {"cooking_range_oven_usage_multiplier": 1.0}
+        dct_Dishwasher_Usage["120% Usage"] = {"cooking_range_oven_usage_multiplier": 1.2}
+        dct_Dishwasher_Usage["80% Usage"] = {"cooking_range_oven_usage_multiplier": 0.8}
+        arg = "Diswasher Usage Level"
+        for args in dct_Dishwasher_Usage[dct_args[arg]]:
+            if ((args not in dct_HPXML.keys()) & (dct_Dishwasher_Usage[dct_args[arg]][args]!="auto")):
+                dct_HPXML[args] = dct_Dishwasher_Usage[dct_args[arg]][args]
+
+        #_____________________________________________________________
 
         # ajout des Valeurs par défaut du HPXML si cle n'existe pas
         k_missing = list(set(self.HPXMLArg.arguments.keys()) - set(dct_HPXML.keys()))

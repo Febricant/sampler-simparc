@@ -34,7 +34,7 @@ id,Nom,Description,Valeurs,Dépendance (parents),Dépendance (enfants),Échantil
 32,Congelateur_Nombre,Combien de congélateurs distincts avez-vous dans votre résidence?,"['Aucun', '1', '2', '3', '4', '5', '6']","['Nombre_Personnes', 'Type_Logement']",[],Réseau Bayesien,EUEMR modifié
 33,Refrigerateur_Nombre,Combien de réfrigérateurs avez-vous dans votre résidence?,"['Aucun', '1', '2', '3', '4 et plus']","['Nombre_Personnes', 'Type_Logement']",[],Réseau Bayesien,EUEMR modifié
 34,LaveLinge_Type,Quel type de machine à laver le linge avez-vous?,"['Aucun', 'Frontale', 'Traditionnelle']","['Nombre_Personnes', 'Type_Logement']",[],Réseau Bayesien,EUEMR modifié
-35,SecheLinge_Presence,Avez-vous une sécheuse à linge électrique?,"['Aucun', 'Non']","['Nombre_Personnes', 'Type_Logement']",[],Réseau Bayesien,EUEMR modifié
-36,LaveVaisselle_Presence,Avez-vous un lave-vaisselle?,"['Aucun', 'Non']","['Nombre_Personnes', 'Type_Logement']",[],Réseau Bayesien,EUEMR modifié
+35,SecheLinge_Presence,Avez-vous une sécheuse à linge électrique?,"['Oui', 'Non']","['Nombre_Personnes', 'Type_Logement']",[],Réseau Bayesien,EUEMR modifié
+36,LaveVaisselle_Presence,Avez-vous un lave-vaisselle?,"['Oui', 'Non']","['Nombre_Personnes', 'Type_Logement']",[],Réseau Bayesien,EUEMR modifié
 37,Cuisiniere_Presence,Avez-vous une cuisinière?,"['Oui', 'Non']","['Nombre_Personnes', 'Type_Logement']",['Cuisiniere_Energie'],Réseau Bayesien,EUEMR modifié
 38,Cuisiniere_Energie,Quelle est la source d'énergie de votre cuisinière?,"['Aucun', 'Ne sait pas', 'Electrique', 'Gaz', 'Autre']","['Cuisiniere_Presence', 'Source_Energie_Chauf']",[],Réseau Bayesien,EUEMR modifié

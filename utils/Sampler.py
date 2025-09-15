@@ -122,6 +122,15 @@ class BuildstockBatchArguments():
         dct_housing_characteristics_csv["Clothes Dryer Usage Level.csv"] = {"Name": "Clothes Dryer Usage Level",
                                                     "Description": "Clothes Dryer energy usage level multiplier.",
                                                     "Source":"ResStock"}
+        dct_housing_characteristics_csv["Refrigerator Efficiency.csv"] = {"Name": "Refrigerator Efficiency",
+                                                    "Description": "Rated efficiency of the primary refrigerator.",
+                                                    "Source":"ResStock"}
+        dct_housing_characteristics_csv["Freezer Efficiency.csv"] = {"Name": "Freezer Efficiency",
+                                                    "Description": "Rated efficiency of the primary freezer.",
+                                                    "Source":"ResStock"}
+        dct_housing_characteristics_csv["Refrigerator Extra Efficiency.csv"] = {"Name": "Refrigerator Extra Efficiency",
+                                                    "Description": "Rated efficiency of the extra refrigerator.",
+                                                    "Source":"ResStock"}
         dct_housing_characteristics_csv["Refrigerator Usage Level.csv"] = {"Name": "Refrigerator Usage Level",
                                                     "Description": "Refrigerator energy usage level multiplier.",
                                                     "Source":"ResStock"}
@@ -180,7 +189,10 @@ class BuildstockBatchArguments():
                         "Cooking Range Usage Level",
                         "Clothes Washer Usage Level",
                         "Clothes Dryer Usage Level",
+                        "Refrigerator Efficiency",
+                        "Refrigerator Extra Efficiency",
                         "Refrigerator Usage Level",
+                        "Freezer Efficiency",
                         "Dishwasher Energy",
                         "Diswasher Usage Level"]
                         
@@ -237,11 +249,11 @@ class BuildstockBatchArguments():
                     #    df[list(filter_dict.keys())].isin(filter_dict.values()).all(axis=1)
                     #]
                 
-                #try:
-                sumlst = sum(filtered_df[dct_option.keys()].values.tolist()[0])
-                listProb = [k/sumlst for k in filtered_df[dct_option.keys()].values.tolist()[0]]
-                #except:
-                #    print("Error in sampling for attribute:", Attributs)
+                try:
+                    sumlst = sum(filtered_df[dct_option.keys()].values.tolist()[0])
+                    listProb = [k/sumlst for k in filtered_df[dct_option.keys()].values.tolist()[0]]
+                except:
+                    raise Exception("Error in sampling for attribute:" + Attributs)
                 
 
                 choiceStr = self.randGenerator.choice(list(dct_option.keys()),p=listProb)
@@ -2188,6 +2200,92 @@ class MapHPXML:
         for args in dct_Dishwasher_Usage[dct_args[arg]]:
             if ((args not in dct_HPXML.keys()) & (dct_Dishwasher_Usage[dct_args[arg]][args]!="auto")):
                 dct_HPXML[args] = dct_Dishwasher_Usage[dct_args[arg]][args]
+        #_____________________________________________________________
+        #TODO : Refrigerator
+        #TODO : Meisc Extra Refrigerator
+        #TODO : Misc Freezer
+
+        dct_ExtraRefrigerator = {}
+        dct_ExtraRefrigerator["EF 15.9, Fed Standard, bottom freezer-reference fridge"] = {"extra_refrigerator_present": True, "extra_refrigerator_location": "auto", "extra_refrigerator_rated_annual_kwh": 573, "extra_refrigerator_usage_multiplier": 1.0}
+        dct_ExtraRefrigerator["EF 19.8, bottom freezer"] = {"extra_refrigerator_present": True, "extra_refrigerator_location": "auto", "extra_refrigerator_rated_annual_kwh": 458, "extra_refrigerator_usage_multiplier": 1.0}
+        dct_ExtraRefrigerator["EF 6.9, Average Installed"] = {"extra_refrigerator_present": True, "extra_refrigerator_location": "auto", "extra_refrigerator_rated_annual_kwh": 1102, "extra_refrigerator_usage_multiplier": 1.0}
+        dct_ExtraRefrigerator["EF 6.9, National Average"] = {"extra_refrigerator_present": True, "extra_refrigerator_location": "auto", "extra_refrigerator_rated_annual_kwh": 1102, "extra_refrigerator_usage_multiplier": 0.221}
+        dct_ExtraRefrigerator["EF 10.2"] = {"extra_refrigerator_present": True, "extra_refrigerator_location": "auto", "extra_refrigerator_rated_annual_kwh": 748, "extra_refrigerator_usage_multiplier": 1.0}
+        dct_ExtraRefrigerator["EF 10.5"] = {"extra_refrigerator_present": True, "extra_refrigerator_location": "auto", "extra_refrigerator_rated_annual_kwh": 727, "extra_refrigerator_usage_multiplier": 1.0}
+        dct_ExtraRefrigerator["EF 15.9"] = {"extra_refrigerator_present": True, "extra_refrigerator_location": "auto", "extra_refrigerator_rated_annual_kwh": 480, "extra_refrigerator_usage_multiplier": 1.0}
+        dct_ExtraRefrigerator["EF 17.6"] = {"extra_refrigerator_present": True, "extra_refrigerator_location": "auto", "extra_refrigerator_rated_annual_kwh": 433, "extra_refrigerator_usage_multiplier": 1.0}
+        dct_ExtraRefrigerator["EF 19.9"] = {"extra_refrigerator_present": True, "extra_refrigerator_location": "auto", "extra_refrigerator_rated_annual_kwh": 383, "extra_refrigerator_usage_multiplier": 1.0}
+        dct_ExtraRefrigerator["EF 21.9"] = {"extra_refrigerator_present": True, "extra_refrigerator_location": "auto", "extra_refrigerator_rated_annual_kwh": 348, "extra_refrigerator_usage_multiplier": 1.0}
+        dct_ExtraRefrigerator["EF 6.7"] = {"extra_refrigerator_present": True, "extra_refrigerator_location": "auto", "extra_refrigerator_rated_annual_kwh": 1139, "extra_refrigerator_usage_multiplier": 1.0}
+        dct_ExtraRefrigerator["None"] = {"extra_refrigerator_present": False, "extra_refrigerator_location": "auto", "extra_refrigerator_rated_annual_kwh": 0, "extra_refrigerator_usage_multiplier": 0}
+        #dct_ExtraRefrigerator["Void"] = {}
+
+        dict_Refrigerator = {}
+        dict_Refrigerator["EF 10.2"] = {"refrigerator_present": True, "refrigerator_location": "auto", "refrigerator_rated_annual_kwh": 748}
+        dict_Refrigerator["EF 10.5"] = {"refrigerator_present": True, "refrigerator_location": "auto", "refrigerator_rated_annual_kwh": 727}
+        dict_Refrigerator["EF 15.9"] = {"refrigerator_present": True, "refrigerator_location": "auto", "refrigerator_rated_annual_kwh": 480}
+        dict_Refrigerator["EF 17.6"] = {"refrigerator_present": True, "refrigerator_location": "auto", "refrigerator_rated_annual_kwh": 433}
+        dict_Refrigerator["EF 19.9"] = {"refrigerator_present": True, "refrigerator_location": "auto", "refrigerator_rated_annual_kwh": 383}
+        dict_Refrigerator["EF 21.9"] = {"refrigerator_present": True, "refrigerator_location": "auto", "refrigerator_rated_annual_kwh": 348}
+        dict_Refrigerator["EF 6.7"] = {"refrigerator_present": True, "refrigerator_location": "auto", "refrigerator_rated_annual_kwh": 1139}
+        dict_Refrigerator["None"] = {"refrigerator_present": False, "refrigerator_location": "auto", "refrigerator_rated_annual_kwh": 0}
+        #dict_Refrigerator["Void"] = {}
+
+        dict_Refrigerator_Usage = {}
+        dict_Refrigerator_Usage["100% Usage"] = {"refrigerator_usage_multiplier": 1.0}
+        dict_Refrigerator_Usage["105% Usage"] = {"refrigerator_usage_multiplier": 1.05}
+        dict_Refrigerator_Usage["95% Usage"] = {"refrigerator_usage_multiplier": 0.95}
+			
+        #Refrigerateur Principal
+        arg = "Refrigerateur_Nombre"
+        if (arg in dct_args.keys()):
+            if dct_args[arg] in ['1', '2', '3', '4 et plus']:
+                args_value = dct_args["Refrigerator Efficiency"]
+                for args in dict_Refrigerator[args_value]:
+                    if ((args not in dct_HPXML.keys()) & (dict_Refrigerator[args_value][args]!="auto")):
+                        dct_HPXML[args] = dict_Refrigerator[args_value][args]
+            else: #'Aucun', 
+                args_value = "None"
+                for args in dict_Refrigerator[args_value]:
+                    if ((args not in dct_HPXML.keys()) & (dict_Refrigerator[args_value][args]!="auto")):
+                        dct_HPXML[args] = dict_Refrigerator[args_value][args]
+        
+        #Extra refrigerateur
+        arg = "Refrigerateur_Nombre"
+        if (arg in dct_args.keys()):
+            if dct_args[arg] in ['2', '3', '4 et plus']:
+                args_value = dct_args["Refrigerator Extra Efficiency"]
+                for args in dct_ExtraRefrigerator[args_value]:
+                    if ((args not in dct_HPXML.keys()) & (dct_ExtraRefrigerator[args_value][args]!="auto")):
+                        dct_HPXML[args] = dct_ExtraRefrigerator[args_value][args]
+            else: #'Aucun', 
+                args_value = "None"#, '1'
+                for args in dct_ExtraRefrigerator[args_value]:
+                    if ((args not in dct_HPXML.keys()) & (dct_ExtraRefrigerator[args_value][args]!="auto")):
+                        dct_HPXML[args] = dct_ExtraRefrigerator[args_value][args]
+
+        dct_Congelateur = {}
+        dct_Congelateur["EF 12, Average Installed"] = {"freezer_present": True, "freezer_location": "auto", "freezer_rated_annual_kwh": 935, "freezer_usage_multiplier": 1.0}
+        dct_Congelateur["EF 12, National Average"] = {"freezer_present": True, "freezer_location": "auto", "freezer_rated_annual_kwh": 935, "freezer_usage_multiplier": 0.342}
+        dct_Congelateur["EF 16, 2001 Fed Standard-reference freezer"] = {"freezer_present": True, "freezer_location": "auto", "freezer_rated_annual_kwh": 712, "freezer_usage_multiplier": 1.0}
+        dct_Congelateur["EF 18, 2008 Energy Star"] = {"freezer_present": True, "freezer_location": "auto", "freezer_rated_annual_kwh": 641, "freezer_usage_multiplier": 1.0}
+        dct_Congelateur["EF 20, 2008 Energy Star Most Efficient"] = {"freezer_present": True, "freezer_location": "auto", "freezer_rated_annual_kwh": 568, "freezer_usage_multiplier": 1.0}
+        dct_Congelateur["None"] = {"freezer_present": False, "freezer_location": "auto", "freezer_rated_annual_kwh": 0, "freezer_usage_multiplier": 0}
+        #dct_Congelateur["Void"] = {}
+        
+        #Congelateur
+        arg = "Congelateur_Nombre"
+        if (arg in dct_args.keys()):
+            if dct_args[arg] in ['1', '2', '3', '4', '5', '6']:
+                args_value = dct_args["Freezer Efficiency"]
+                for args in dct_Congelateur[args_value]:
+                    if ((args not in dct_HPXML.keys()) & (dct_Congelateur[args_value][args]!="auto")):
+                        dct_HPXML[args] = dct_Congelateur[args_value][args]
+            else: #'Aucun', 
+                args_value = "None"
+                for args in dct_Congelateur[args_value]:
+                    if ((args not in dct_HPXML.keys()) & (dct_Congelateur[args_value][args]!="auto")):
+                        dct_HPXML[args] = dct_Congelateur[args_value][args]
 
         #_____________________________________________________________
 

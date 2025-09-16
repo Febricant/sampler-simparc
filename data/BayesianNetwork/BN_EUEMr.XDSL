@@ -66,6 +66,15 @@
       <parents>Type_Logement</parents>
       <probabilities>0.765147 0.234853 0.732427 0.267573 0.570618 0.429382 0.279108 0.720892 0.0838671 0.916133</probabilities>
     </cpt>
+    <cpt id="Eclairage_LED">
+      <state id="Ne sait pas" />
+      <state id="0%" />
+      <state id="1 à 24 %" />
+      <state id="25 à 50 %" />
+      <state id="Plus de 50 %" />
+      <parents>Mode_Occupation Type_Logement</parents>
+      <probabilities>0.0744317 0.384771 0.115699 0.148399 0.2767 0.0375856 0.223506 0.129681 0.167141 0.442086 0.0891869 0.345773 0.152219 0.158944 0.253878 0.0414459 0.181232 0.0859717 0.193858 0.497492 0.0661583 0.365931 0.134431 0.14808 0.2854 0.030281 0.208153 0.136684 0.192189 0.432693 0.0461902 0.455906 0.0782219 0.178224 0.241458 0.0172287 0.220204 0.134034 0.215072 0.413461 0.0390043 0.331156 0.13697 0.172623 0.320246 0.0250155 0.194496 0.143629 0.208419 0.42844</probabilities>
+    </cpt>
     <cpt id="Nombre_Etages">
       <state id="Un étage" />
       <state id="Deux étages" />
@@ -398,6 +407,9 @@
       </node>
       <node id="Mode_Occupation">
         <name>Mode_Occupation</name>
+      </node>
+      <node id="Eclairage_LED">
+        <name>Eclairage_LED</name>
       </node>
       <node id="Nombre_Etages">
         <name>Nombre_Etages</name>

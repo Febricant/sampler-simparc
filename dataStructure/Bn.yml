@@ -11,6 +11,7 @@
     sidence?"
   Cuisiniere_Energie: "Quelle est la source d'\xE9nergie de votre cuisini\xE8re?"
   Cuisiniere_Presence: "Avez-vous une cuisini\xE8re?"
+  Eclairage_LED: "Quel pourcentage de votre \xE9clairage est \xE0 DEL?"
   LaveLinge_Type: "Quel type de machine \xE0 laver le linge avez-vous?"
   LaveVaisselle_Presence: Avez-vous un lave-vaisselle?
   Mode_Occupation: "Quel est votre lien avec ce logement ? En \xEAtes-vous..."
@@ -129,6 +130,12 @@
   Cuisiniere_Presence:
     '0': Oui
     '1': Non
+  Eclairage_LED:
+    '0': Ne sait pas
+    '1': 0%
+    '2': "1 \xE0 24 %"
+    '3': "25 \xE0 50 %"
+    '4': Plus de 50 %
   LaveLinge_Type:
     '0': Aucun
     '1': Frontale
@@ -494,6 +501,22 @@
     - Non
     id: 37
     "\xC9chantillonneur": "R\xE9seau Bayesien"
+  Eclairage_LED:
+    Description: "Quel pourcentage de votre \xE9clairage est \xE0 DEL?"
+    "D\xE9pendance (enfants)": []
+    "D\xE9pendance (parents)":
+    - Mode_Occupation
+    - Type_Logement
+    Nom: Eclairage_LED
+    Source: "EUEMR modifi\xE9"
+    Valeurs:
+    - Ne sait pas
+    - 0%
+    - "1 \xE0 24 %"
+    - "25 \xE0 50 %"
+    - Plus de 50 %
+    id: 39
+    "\xC9chantillonneur": "R\xE9seau Bayesien"
   LaveLinge_Type:
     Description: "Quel type de machine \xE0 laver le linge avez-vous?"
     "D\xE9pendance (enfants)": []
@@ -523,7 +546,8 @@
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   Mode_Occupation:
     Description: "Quel est votre lien avec ce logement ? En \xEAtes-vous..."
-    "D\xE9pendance (enfants)": []
+    "D\xE9pendance (enfants)":
+    - Eclairage_LED
     "D\xE9pendance (parents)":
     - Type_Logement
     Nom: Mode_Occupation
@@ -972,6 +996,7 @@
     - SecheLinge_Presence
     - LaveVaisselle_Presence
     - Cuisiniere_Presence
+    - Eclairage_LED
     "D\xE9pendance (parents)":
     - Region_Administrative
     Nom: Type_Logement

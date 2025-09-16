@@ -140,6 +140,10 @@ class BuildstockBatchArguments():
         dct_housing_characteristics_csv["Diswasher Usage Level.csv"] = {"Name": "Diswasher Usage Level",
                                                     "Description": "Dishwasher energy usage level multiplier.",
                                                     "Source":"ResStock"}
+        dct_housing_characteristics_csv["Lighting Usage Level.csv"] = {"Name": "Lighting Usage Level",
+                                                    "Description": "Lighting usage level multiplier. Only 100%",
+                                                    "Source":"ResStock"}        
+        
         #dct_housing_characteristics_csv["Water Heater in Unit.csv"] = {"Name": "Water Heater in Unit",
         #                                            "Description": "Chauffeau dans le logement",
         #                                            "Source":""}
@@ -194,7 +198,8 @@ class BuildstockBatchArguments():
                         "Refrigerator Usage Level",
                         "Freezer Efficiency",
                         "Dishwasher Energy",
-                        "Diswasher Usage Level"]
+                        "Diswasher Usage Level",
+                        "Lighting Usage Level"]
                         
                         
                         #"Geometry Attic Type",
@@ -2286,6 +2291,32 @@ class MapHPXML:
                 for args in dct_Congelateur[args_value]:
                     if ((args not in dct_HPXML.keys()) & (dct_Congelateur[args_value][args]!="auto")):
                         dct_HPXML[args] = dct_Congelateur[args_value][args]
+
+        #_____________________________________________________________
+        # Lighting Usage Level
+        # Eclairage_LED
+        dct_Eclairage = {}
+        dct_Eclairage["0%"] = {"lighting_present":True, "lighting_interior_fraction_cfl":0, "lighting_interior_fraction_lfl":0, "lighting_interior_fraction_led":0, "lighting_exterior_fraction_cfl": 0, "lighting_exterior_fraction_lfl":0, "lighting_exterior_fraction_led":0, "lighting_garage_fraction_cfl":0, "lighting_garage_fraction_lfl":0, "lighting_garage_fraction_led":0}
+        dct_Eclairage["1 à 24 %"] = {"lighting_present":True, "lighting_interior_fraction_cfl":0, "lighting_interior_fraction_lfl":0.0, "lighting_interior_fraction_led":0.12, "lighting_exterior_fraction_cfl": 0, "lighting_exterior_fraction_lfl":0, "lighting_exterior_fraction_led":0.12, "lighting_garage_fraction_cfl":0, "lighting_garage_fraction_lfl":0, "lighting_garage_fraction_led":0.12}
+        dct_Eclairage["25 à 50 %"] = {"lighting_present":True, "lighting_interior_fraction_cfl":0, "lighting_interior_fraction_lfl":0.0, "lighting_interior_fraction_led":0.37, "lighting_exterior_fraction_cfl": 0, "lighting_exterior_fraction_lfl":0, "lighting_exterior_fraction_led":0.37, "lighting_garage_fraction_cfl":0, "lighting_garage_fraction_lfl":0, "lighting_garage_fraction_led":0.37}
+        dct_Eclairage["Plus de 50 %"] = {"lighting_present":True, "lighting_interior_fraction_cfl":0, "lighting_interior_fraction_lfl":0.0, "lighting_interior_fraction_led":0.75, "lighting_exterior_fraction_cfl": 0, "lighting_exterior_fraction_lfl":0, "lighting_exterior_fraction_led":0.75, "lighting_garage_fraction_cfl":0, "lighting_garage_fraction_lfl":0, "lighting_garage_fraction_led":0.75}                 
+        dct_Eclairage["Ne sait pas"] = dct_Eclairage["1 à 24 %"]
+
+        dct_EclairageUsage = {}
+        dct_EclairageUsage["105% Usage"] = {"lighting_interior_usage_multiplier": 1.05}
+        dct_EclairageUsage["100% Usage"] = {"lighting_interior_usage_multiplier": 1.0}
+        dct_EclairageUsage["95% Usage"] = {"lighting_interior_usage_multiplier": 0.95}
+        
+        arg = "Eclairage_LED"
+        if (arg in dct_args.keys()):
+            for args in dct_Eclairage[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) & (dct_Eclairage[dct_args[arg]][args]!="auto")):
+                    dct_HPXML[args] = dct_Eclairage[dct_args[arg]][args]
+        
+        arg = "Lighting Usage Level"
+        for args in dct_EclairageUsage[dct_args[arg]]:
+            if ((args not in dct_HPXML.keys()) & (dct_EclairageUsage[dct_args[arg]][args]!="auto")):
+                dct_HPXML[args] = dct_EclairageUsage[dct_args[arg]][args]
 
         #_____________________________________________________________
 

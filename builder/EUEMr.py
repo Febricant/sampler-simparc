@@ -1563,6 +1563,16 @@ class FormatageEUEMr:
                                                         "Gaz": ["Gaz propane ou gaz naturel"],
                                                         "Autre": ["Autre"]}        
 
+        #QB2X8R : % d'éclairage à LED
+        self.Mapping["Eclairage_LED"] = {}
+        self.Mapping["Eclairage_LED"]["ColSrc"] = "QB2X8R"
+        self.Mapping["Eclairage_LED"]["typeMapping"] = "list"
+        self.Mapping["Eclairage_LED"]["Mapping"] = {"Ne sait pas":["Ne sait pas"],
+                                                    "0%": [0],
+                                                    "1 à 24 %": ["1 à 24 %"],
+                                                    "25 à 50 %":["25 à 50 %"],
+                                                    "Plus de 50 %":["Plus de 50 %"]}
+
         # QB1A1 : Présence de cuisinières (Oui/Non)
         # QB1A3 : Source d'énergie de la cuisinière
         # Faire 1 Variable : 1 = Non ; 2+=Oui+source
@@ -1842,7 +1852,8 @@ class EUEMr(Master_genereBN):
                 "SecheLinge_Presence",
                 "LaveVaisselle_Presence",
                 "Cuisiniere_Presence",
-                "Cuisiniere_Energie"]
+                "Cuisiniere_Energie",
+                "Eclairage_LED"]
                     
         
 #    ["QA4", # De quel genre d'habitation s'agit-il?
@@ -1950,6 +1961,7 @@ class EUEMr(Master_genereBN):
         diDep["LaveVaisselle_Presence"] = ["Type_Logement","Nombre_Personnes"]
         diDep["Cuisiniere_Presence"] = ["Type_Logement","Nombre_Personnes"]
         diDep["Cuisiniere_Energie"] = ["Cuisiniere_Presence","Source_Energie_Chauf"]
+        diDep["Eclairage_LED"] = ["Type_Logement","Mode_Occupation"]
 
         #diDep["ConsoElecAn"] = ["AnConstruction", "TypeLogement", "SourceEnerChauf"]
 

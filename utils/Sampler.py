@@ -143,7 +143,13 @@ class BuildstockBatchArguments():
         dct_housing_characteristics_csv["Lighting Usage Level.csv"] = {"Name": "Lighting Usage Level",
                                                     "Description": "Lighting usage level multiplier. Only 100%",
                                                     "Source":"ResStock"}        
-        
+        dct_housing_characteristics_csv["Door Area.csv"] = {"Name": "Door Area",
+                                                    "Description": "Door Area",
+                                                    "Source":"ResStock"} 
+        dct_housing_characteristics_csv["Door Rvalue.csv"] = {"Name": "Door Rvalue",
+                                            "Description": "Door Rvalue",
+                                            "Source":"ResStock"} 
+
         #dct_housing_characteristics_csv["Water Heater in Unit.csv"] = {"Name": "Water Heater in Unit",
         #                                            "Description": "Chauffeau dans le logement",
         #                                            "Source":""}
@@ -199,7 +205,9 @@ class BuildstockBatchArguments():
                         "Freezer Efficiency",
                         "Dishwasher Energy",
                         "Diswasher Usage Level",
-                        "Lighting Usage Level"]
+                        "Lighting Usage Level",
+                        "Door Area",
+                        "Door Rvalue"]
                         
                         
                         #"Geometry Attic Type",
@@ -2319,6 +2327,29 @@ class MapHPXML:
                 dct_HPXML[args] = dct_EclairageUsage[dct_args[arg]][args]
 
         #_____________________________________________________________
+        # Doors
+        dct_Doors = {}
+        dct_Doors["Fiberglass"] = {"door_rvalue": 5}
+        dct_Doors["Steel"] = {"door_rvalue": 5}
+        dct_Doors["Wood"] = {"door_rvalue": 2.1}
+
+        dct_DoorsArea = {}
+        dct_DoorsArea["20 ft^2"] = {"door_area": 20}
+        dct_DoorsArea["30 ft^2"] = {"door_area": 30}
+        dct_DoorsArea["40 ft^2"] = {"door_area": 40}
+
+        arg = "Door Rvalue"
+        if (arg in dct_args.keys()):
+            for args in dct_Doors[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) & (dct_Doors[dct_args[arg]][args]!="auto")):
+                    dct_HPXML[args] = dct_Doors[dct_args[arg]][args]
+
+        arg = "Door Area"
+        if (arg in dct_args.keys()):
+            for args in dct_DoorsArea[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) & (dct_DoorsArea[dct_args[arg]][args]!="auto")):
+                    dct_HPXML[args] = dct_DoorsArea[dct_args[arg]][args]
+
 
         # ajout des Valeurs par défaut du HPXML si cle n'existe pas
         k_missing = list(set(self.HPXMLArg.arguments.keys()) - set(dct_HPXML.keys()))

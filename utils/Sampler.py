@@ -443,15 +443,7 @@ class MapHPXML:
                     dct_HPXML[argHPXML] = self.HPXMLArg.arguments[argHPXML].get("Default Value")
                 else:
                     dct_HPXML[argHPXML] = 'single-family detached'
-
-        #geometry_garage_protrusion
-        argHPXML = "geometry_garage_protrusion"
-        if (argHPXML not in dct_HPXML.keys()):
-            if dct_HPXML.get("geometry_unit_cfa") < 750:
-                dct_HPXML[argHPXML]=0.75
-            else:
-                dct_HPXML[argHPXML]=0.5      
-            
+           
         #________________________________________________________________
         # Vintage
         arg = "An_Construction"
@@ -529,80 +521,26 @@ class MapHPXML:
                 else:
                     dct_HPXML[argHPXML] = dct_HPXML.get("geometry_unit_num_bedrooms", 3)
 
+        #_________________________________________________________________
+        #Geometry Attic Type
+        dct_Geometry_Attic_Type = {}
+        dct_Geometry_Attic_Type["Conditioned Attic"] = {"geometry_attic_type":"ConditionedAttic", "geometry_roof_type":"gable", "geometry_roof_pitch":"6:12"}
+        dct_Geometry_Attic_Type["Finished Attic or Cathedral Ceilings"] = {"geometry_attic_type":"ConditionedAttic", "geometry_roof_type":"gable", "geometry_roof_pitch":"6:12"}
+        dct_Geometry_Attic_Type["None"] = {"geometry_attic_type":"FlatRoof", "geometry_roof_type":"gable", "geometry_roof_pitch":"6:12"}
+        dct_Geometry_Attic_Type["Unvented Attic"] = {"geometry_attic_type":"UnventedAttic", "geometry_roof_type":"gable", "geometry_roof_pitch":"6:12"}
+        dct_Geometry_Attic_Type["Vented Attic"] = {"geometry_attic_type":"VentedAttic", "geometry_roof_type":"gable", "geometry_roof_pitch":"6:12"}
 
-        #________________________________________________________________
-        #geometry_garage_width
-        #The width of the garage. Enter zero for no garage. Only applies to single-family detached units.	
-        #Plex : Ne pas ajouter de de garage
-        #geometry_garage_depth
-
-        #building size (based on buildresidentialhpxml - geometry.rb)
-        # calculate the dimensions of the building
-        # we have: (1) aspect_ratio = fb / lr, and (2) footprint = fb * lr
-        
-        fb = (dct_HPXML["geometry_unit_cfa"] *dct_HPXML["geometry_unit_aspect_ratio"])**0.5
-        lr = dct_HPXML["geometry_unit_cfa"] / fb
-        length = fb
-        width = lr
-
-        max_garage_depth = width / (1.0 - dct_HPXML["geometry_garage_protrusion"]) -1#length -1
-        max_garage_width = length-1 #width / (1.0 - dct_HPXML["geometry_garage_protrusion"]) -1
-        if max_garage_depth>24:
-            garage_depth = 24 #12 / 24 / 36 taille du garage
-        else:
-            garage_depth = max_garage_depth
-
-        #if max_garage_width>36:
-        #    garage_width = 36 #12 / 24 / 36 taille du garage
-        if max_garage_width>24:
-            garage_width = 24
-        elif max_garage_width>12:
-            garage_width = 12
-        else:
-            garage_width = max_garage_width
-
-        if dct_HPXML["geometry_unit_cfa"] <=2000:
-            if garage_depth>12:
-                garage_depth =12
-            if garage_width>20:
-                garage_width =20
-
-        arg = "Presence_Garage"
-        argHPXML = "geometry_garage_width"
-        if (argHPXML not in dct_HPXML.keys()):
-            if (arg in dct_args.keys()):
-                if (dct_args[arg] in ["Garage non chauffé",
-                                      "Garage chauffé à électricité",
-                                      "Garage chauffé à autre source"]):
-                    if (dct_HPXML.get("geometry_unit_type") in ["single-family detached"]):#, "single-family attached"]): Pas supporté pour les attached
-                        dct_HPXML[argHPXML] = garage_width #12 / 24 / 36 taille du garage
-                        #geometry_garage_depth
-                        dct_HPXML["geometry_garage_depth"] = garage_depth
-                        #geometry_garage_position
-                        dct_HPXML["geometry_garage_position"] = "Right"
-                    else:
-                        dct_HPXML[argHPXML] = 0 #Pas de garage pour les plex/appartemnt
-                        dct_HPXML["geometry_garage_depth"] = 0
-                        #geometry_garage_position
-                        dct_HPXML["geometry_garage_position"] = "Right"
-                else:
-                    dct_HPXML[argHPXML] = 0
-                    dct_HPXML["geometry_garage_depth"] = 0
-                    #geometry_garage_position
-                    dct_HPXML["geometry_garage_position"] = "Right"
-            else:
-                if self.HPXMLArg.arguments[argHPXML].get("Default Value", "Defaut_Not_Existing")!="Defaut_Not_Existing":
-                    dct_HPXML[argHPXML] = self.HPXMLArg.arguments[argHPXML].get("Default Value")
-                    dct_HPXML["geometry_garage_depth"] = 0
-                    #geometry_garage_position
-                    dct_HPXML["geometry_garage_position"] = "Right"
-                else:
-                    dct_HPXML[argHPXML] = 0 #No garage
-                    dct_HPXML["geometry_garage_depth"] = 0
-                    #geometry_garage_position
-                    dct_HPXML["geometry_garage_position"] = "Right"
-
-
+        #defaut
+        arg = "geometry attic type"
+        if (arg in dct_args.keys()):
+            for args in dct_Geometry_Attic_Type["None"]:
+                if ((args not in dct_HPXML.keys()) & (dct_Geometry_Attic_Type["None"][args]!="auto")):
+                    dct_HPXML[args] = dct_Geometry_Attic_Type["None"][args]
+        arg = "geometry attic type"
+        if (arg in dct_args.keys()):
+            for args in dct_Geometry_Attic_Type[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) & (dct_Geometry_Attic_Type[dct_args[arg]][args]!="auto")):
+                    dct_HPXML[args] = dct_Geometry_Attic_Type[dct_args[arg]][args]
 
         #_____________________________________________________________
         #geometry_unit_num_floors_above_grade
@@ -610,26 +548,35 @@ class MapHPXML:
         #The number of floors above grade in the unit. 
         # Attic type ConditionedAttic is included. 
         # Assumed to be 1 for apartment units.
+        additional_floor = 0
+        if dct_HPXML["geometry_attic_type"] == "ConditionedAttic":
+            additional_floor ==1
         arg = "Nombre_Etages"
         argHPXML = "geometry_unit_num_floors_above_grade"# du logement et non de l'immeuble
         if (argHPXML not in dct_HPXML.keys()):
             if (arg in dct_args.keys()):
                 if (dct_HPXML.get("geometry_unit_type") in ["single-family detached", "single-family attached"]):
                     if dct_args[arg] == "Un étage":
-                        dct_HPXML[argHPXML] = 1
+                        dct_HPXML[argHPXML] = 1 + additional_floor
                     elif dct_args[arg] == "Deux étages":
-                        dct_HPXML[argHPXML] = 2
+                        dct_HPXML[argHPXML] = 2 + additional_floor
                     elif dct_args[arg] == "Trois étages et plus":
-                        dct_HPXML[argHPXML] = 3
+                        dct_HPXML[argHPXML] = 3 + additional_floor
                 else:#pour les plex et les appart pas d'étage dans le hpxml
                     dct_HPXML[argHPXML] = 1
             else:
-                if self.HPXMLArg.arguments[argHPXML].get("Default Value", "Defaut_Not_Existing")!="Defaut_Not_Existing":
-                    dct_HPXML[argHPXML] = self.HPXMLArg.arguments[argHPXML].get("Default Value")
+                if (dct_HPXML.get("geometry_unit_type") in ["single-family detached", "single-family attached"]):
+                    if self.HPXMLArg.arguments[argHPXML].get("Default Value", "Defaut_Not_Existing")!="Defaut_Not_Existing":
+                        dct_HPXML[argHPXML] = self.HPXMLArg.arguments[argHPXML].get("Default Value") + additional_floor
+                    else:
+                        dct_HPXML[argHPXML] = 1 + additional_floor
                 else:
-                    dct_HPXML[argHPXML] = 1
+                    if self.HPXMLArg.arguments[argHPXML].get("Default Value", "Defaut_Not_Existing")!="Defaut_Not_Existing":
+                        dct_HPXML[argHPXML] = self.HPXMLArg.arguments[argHPXML].get("Default Value") + additional_floor
+                    else:
+                        dct_HPXML[argHPXML] = 1 + additional_floor
 
-        #________________________________________________________________
+        #________________________________________________________________ 
         #Geometry Foundation Type
         arg = "Presence_SousSol"
         args = "geometry_foundation_type"
@@ -756,7 +703,6 @@ class MapHPXML:
                         dct_HPXML[args] = 9.25
                     else:
                         dct_HPXML[args] = 9.25
-
         #________________________________________________________________
 
         dct_windows = {}
@@ -1237,27 +1183,94 @@ class MapHPXML:
             for args in dct_Geometry_Wall_Exterior_Finish["None"]:
                 if ((args not in dct_HPXML.keys()) & (dct_Geometry_Wall_Exterior_Finish["None"][args]!="auto")):
                     dct_HPXML[args] = dct_Geometry_Wall_Exterior_Finish["None"][args]
-        #_________________________________________________________________
-        #Geometry Attic Type
-        dct_Geometry_Attic_Type = {}
-        dct_Geometry_Attic_Type["Conditioned Attic"] = {"geometry_attic_type":"ConditionedAttic", "geometry_roof_type":"gable", "geometry_roof_pitch":"6:12"}
-        dct_Geometry_Attic_Type["Finished Attic or Cathedral Ceilings"] = {"geometry_attic_type":"ConditionedAttic", "geometry_roof_type":"gable", "geometry_roof_pitch":"6:12"}
-        dct_Geometry_Attic_Type["None"] = {"geometry_attic_type":"FlatRoof", "geometry_roof_type":"gable", "geometry_roof_pitch":"6:12"}
-        dct_Geometry_Attic_Type["Unvented Attic"] = {"geometry_attic_type":"UnventedAttic", "geometry_roof_type":"gable", "geometry_roof_pitch":"6:12"}
-        dct_Geometry_Attic_Type["Vented Attic"] = {"geometry_attic_type":"VentedAttic", "geometry_roof_type":"gable", "geometry_roof_pitch":"6:12"}
+        
+        #________________________________________________________________
+        #geometry_garage_width
+        #The width of the garage. Enter zero for no garage. Only applies to single-family detached units.	
+        #Plex : Ne pas ajouter de de garage
+        #geometry_garage_depth
 
-        #defaut
-        arg = "geometry attic type"
-        if (arg in dct_args.keys()):
-            for args in dct_Geometry_Attic_Type["None"]:
-                if ((args not in dct_HPXML.keys()) & (dct_Geometry_Attic_Type["None"][args]!="auto")):
-                    dct_HPXML[args] = dct_Geometry_Attic_Type["None"][args]
-        arg = "geometry attic type"
-        if (arg in dct_args.keys()):
-            for args in dct_Geometry_Attic_Type[dct_args[arg]]:
-                if ((args not in dct_HPXML.keys()) & (dct_Geometry_Attic_Type[dct_args[arg]][args]!="auto")):
-                    dct_HPXML[args] = dct_Geometry_Attic_Type[dct_args[arg]][args]
+        #geometry_garage_protrusion
+        argHPXML = "geometry_garage_protrusion"
+        if (argHPXML not in dct_HPXML.keys()):
+            if dct_HPXML.get("geometry_unit_cfa") < 750:
+                dct_HPXML[argHPXML]=0.75
+            else:
+                dct_HPXML[argHPXML]=0.5      
 
+
+        if ((dct_HPXML.get("geometry_foundation_type") == "ConditionedBasement") and (dct_HPXML.get("geometry_attic_type") == "ConditionedAttic")):
+            num_floors = dct_HPXML.get("geometry_unit_num_floors_above_grade") +1-1
+        elif (dct_HPXML.get("geometry_foundation_type") == "ConditionedBasement"):
+            num_floors = dct_HPXML.get("geometry_unit_num_floors_above_grade") + 1
+        elif (dct_HPXML.get("geometry_attic_type") == "ConditionedAttic"):
+            num_floors = dct_HPXML.get("geometry_unit_num_floors_above_grade") -1
+        else:
+            num_floors = dct_HPXML.get("geometry_unit_num_floors_above_grade")
+
+        fb = (dct_HPXML["geometry_unit_cfa"] *dct_HPXML["geometry_unit_aspect_ratio"])**0.5
+        lr = dct_HPXML["geometry_unit_cfa"] / fb
+        length = fb / num_floors
+        width = lr / num_floors
+
+        max_garage_depth = width / (1.0 - dct_HPXML["geometry_garage_protrusion"]) -1#length -1
+        max_garage_width = length-1 #width / (1.0 - dct_HPXML["geometry_garage_protrusion"]) -1
+        if max_garage_depth>24:
+            garage_depth = 24 #12 / 24 / 36 taille du garage
+        else:
+            garage_depth = max_garage_depth
+
+        #if max_garage_width>36:
+        #    garage_width = 36 #12 / 24 / 36 taille du garage
+        if max_garage_width>24:
+            garage_width = 24
+        elif max_garage_width>12:
+            garage_width = 12
+        else:
+            garage_width = max_garage_width
+
+        if dct_HPXML["geometry_unit_cfa"] <=2000:
+            if garage_depth>12:
+                garage_depth =12
+            if garage_width>20:
+                garage_width =20
+
+        arg = "Presence_Garage"
+        argHPXML = "geometry_garage_width"
+        if (argHPXML not in dct_HPXML.keys()):
+            if (arg in dct_args.keys()):
+                if (dct_args[arg] in ["Garage non chauffé",
+                                      "Garage chauffé à électricité",
+                                      "Garage chauffé à autre source"]):
+                    if (dct_HPXML.get("geometry_unit_type") in ["single-family detached"]):#, "single-family attached"]): Pas supporté pour les attached
+                        dct_HPXML[argHPXML] = garage_width #12 / 24 / 36 taille du garage
+                        #geometry_garage_depth
+                        dct_HPXML["geometry_garage_depth"] = garage_depth
+                        #geometry_garage_position
+                        dct_HPXML["geometry_garage_position"] = "Right"
+                    else:
+                        dct_HPXML[argHPXML] = 0 #Pas de garage pour les plex/appartemnt
+                        dct_HPXML["geometry_garage_depth"] = 0
+                        #geometry_garage_position
+                        dct_HPXML["geometry_garage_position"] = "Right"
+                else:
+                    dct_HPXML[argHPXML] = 0
+                    dct_HPXML["geometry_garage_depth"] = 0
+                    #geometry_garage_position
+                    dct_HPXML["geometry_garage_position"] = "Right"
+            else:
+                if self.HPXMLArg.arguments[argHPXML].get("Default Value", "Defaut_Not_Existing")!="Defaut_Not_Existing":
+                    dct_HPXML[argHPXML] = self.HPXMLArg.arguments[argHPXML].get("Default Value")
+                    dct_HPXML["geometry_garage_depth"] = 0
+                    #geometry_garage_position
+                    dct_HPXML["geometry_garage_position"] = "Right"
+                else:
+                    dct_HPXML[argHPXML] = 0 #No garage
+                    dct_HPXML["geometry_garage_depth"] = 0
+                    #geometry_garage_position
+                    dct_HPXML["geometry_garage_position"] = "Right"
+   
+            
         #_________________________________________________________________
         #"HVAC_Has_Shared_System"
 

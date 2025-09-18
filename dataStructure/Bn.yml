@@ -96,18 +96,25 @@
   Chauffage_Logement:
     '0': "Plinthes \xE9lectriques"
     '1': "Unit\xE9s convecteurs, plancher ou plafond radiant"
-    '10': "Fournaise ou po\xEAle \xE0 bois et Syst\xE8me central \xE0 air chaud"
-    '11': "Fournaise ou po\xEAle \xE0 bois et Syst\xE8me central \xE0 eau chaude"
-    '12': "Fournaise ou po\xEAle \xE0 bois et Fournaise murale ou de plancher"
-    '2': Thermopompe
-    '3': "Syst\xE8me central \xE0 air chaud"
-    '4': "Syst\xE8me central \xE0 eau chaude"
-    '5': "Fournaise ou po\xEAle \xE0 bois"
-    '6': Fournaise murale ou de plancher
-    '7': "Fournaise ou po\xEAle \xE0 bois et Plinthes \xE9lectriques"
-    '8': "Fournaise ou po\xEAle \xE0 bois et Unit\xE9s convecteurs, plancher ou plafond\
+    '10': "Syst\xE8me central \xE0 air chaud"
+    '11': "Syst\xE8me central \xE0 eau chaude"
+    '12': "Fournaise ou po\xEAle \xE0 bois"
+    '13': Fournaise murale ou de plancher
+    '14': "Fournaise ou po\xEAle \xE0 bois et Plinthes \xE9lectriques"
+    '15': "Fournaise ou po\xEAle \xE0 bois et Unit\xE9s convecteurs, plancher ou plafond\
       \ radiant"
-    '9': "Fournaise ou po\xEAle \xE0 bois et Thermopompe"
+    '16': "Fournaise ou po\xEAle \xE0 bois et Thermopompe murale"
+    '17': "Fournaise ou po\xEAle \xE0 bois et Syst\xE8me central \xE0 air chaud"
+    '18': "Fournaise ou po\xEAle \xE0 bois et Syst\xE8me central \xE0 eau chaude"
+    '19': "Fournaise ou po\xEAle \xE0 bois et Fournaise murale ou de plancher"
+    '2': "Thermopompe et Syst\xE8me central \xE0 air chaud"
+    '3': "Thermopompe et Syst\xE8me central \xE0 eau chaude"
+    '4': "Thermopompe g\xE9othermique seule"
+    '5': "Thermopompe g\xE9othermique et Plinthes \xE9lectriques"
+    '6': "Thermopompe g\xE9othermique et Fournaise"
+    '7': Thermopompe murale
+    '8': "Thermopompe murale et Plinthes \xE9lectriques"
+    '9': Thermopompe murale et Fournaise
   Climatisation:
     '0': Aucune
     '1': "Fen\xEAtre, mobile, portable"
@@ -422,7 +429,14 @@
     Valeurs:
     - "Plinthes \xE9lectriques"
     - "Unit\xE9s convecteurs, plancher ou plafond radiant"
-    - Thermopompe
+    - "Thermopompe et Syst\xE8me central \xE0 air chaud"
+    - "Thermopompe et Syst\xE8me central \xE0 eau chaude"
+    - "Thermopompe g\xE9othermique seule"
+    - "Thermopompe g\xE9othermique et Plinthes \xE9lectriques"
+    - "Thermopompe g\xE9othermique et Fournaise"
+    - Thermopompe murale
+    - "Thermopompe murale et Plinthes \xE9lectriques"
+    - Thermopompe murale et Fournaise
     - "Syst\xE8me central \xE0 air chaud"
     - "Syst\xE8me central \xE0 eau chaude"
     - "Fournaise ou po\xEAle \xE0 bois"
@@ -430,7 +444,7 @@
     - "Fournaise ou po\xEAle \xE0 bois et Plinthes \xE9lectriques"
     - "Fournaise ou po\xEAle \xE0 bois et Unit\xE9s convecteurs, plancher ou plafond\
       \ radiant"
-    - "Fournaise ou po\xEAle \xE0 bois et Thermopompe"
+    - "Fournaise ou po\xEAle \xE0 bois et Thermopompe murale"
     - "Fournaise ou po\xEAle \xE0 bois et Syst\xE8me central \xE0 air chaud"
     - "Fournaise ou po\xEAle \xE0 bois et Syst\xE8me central \xE0 eau chaude"
     - "Fournaise ou po\xEAle \xE0 bois et Fournaise murale ou de plancher"

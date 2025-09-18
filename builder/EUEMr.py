@@ -1299,14 +1299,21 @@ class FormatageEUEMr:
         self.Mapping["Chauffage_Logement"]["typeMapping"] = "custom"
         self.Mapping["Chauffage_Logement"]["Mapping"] = {"Plinthes électriques":None,
                                                         "Unités convecteurs, plancher ou plafond radiant":None,
-                                                        "Thermopompe":None,
+                                                        "Thermopompe et Système central à air chaud":None,
+                                                        "Thermopompe et Système central à eau chaude": None,
+                                                        "Thermopompe géothermique seule": None,
+                                                        "Thermopompe géothermique et Plinthes électriques": None,
+                                                        "Thermopompe géothermique et Fournaise": None,
+                                                        "Thermopompe murale" : None,
+                                                        "Thermopompe murale et Plinthes électriques": None,
+                                                        "Thermopompe murale et Fournaise": None,
                                                         "Système central à air chaud":None,
                                                         "Système central à eau chaude":None,
                                                         "Fournaise ou poêle à bois":None,
                                                         "Fournaise murale ou de plancher":None,
                                                         "Fournaise ou poêle à bois et Plinthes électriques":None,
                                                         "Fournaise ou poêle à bois et Unités convecteurs, plancher ou plafond radiant":None,
-                                                        "Fournaise ou poêle à bois et Thermopompe":None,
+                                                        "Fournaise ou poêle à bois et Thermopompe murale":None,
                                                         "Fournaise ou poêle à bois et Système central à air chaud":None,
                                                         "Fournaise ou poêle à bois et Système central à eau chaude":None,
                                                         "Fournaise ou poêle à bois et Fournaise murale ou de plancher":None}#,
@@ -1713,17 +1720,24 @@ class FormatageEUEMr:
                         return dfEUEMrSrc_ColName.apply(lambda row: "Plinthes électriques" if row["SYSTEM1R"] in ["Plinthes électriques"]\
                                                                 else ("Fournaise ou poêle à bois et Plinthes électriques" if (((row["SYSTEM1R"] in ["Fournaise ou poêle à bois"]) or (row["SYSTEM1"] in ["Chaudière à eau chaude chauffée au bois"])) and (row["SYSTEM2R"] in ["Plinthes électriques"]))\
                                                                 else ("Fournaise ou poêle à bois et Unités convecteurs, plancher ou plafond radiant" if (((row["SYSTEM1R"] in ["Fournaise ou poêle à bois"])or (row["SYSTEM1"] in ["Chaudière à eau chaude chauffée au bois"])) and (row["SYSTEM2R"] in ["Unités convecteurs, plancher ou plafond radiant"]))\
-                                                                else ("Fournaise ou poêle à bois et Thermopompe" if (((row["SYSTEM1R"] in ["Fournaise ou poêle à bois"]) or (row["SYSTEM1"] in ["Chaudière à eau chaude chauffée au bois"])) and (row["SYSTEM2R"] in ["Thermopompe"]))\
+                                                                else ("Fournaise ou poêle à bois et Thermopompe murale" if (((row["SYSTEM1R"] in ["Fournaise ou poêle à bois"]) or (row["SYSTEM1"] in ["Chaudière à eau chaude chauffée au bois", "Foyer"])) and (row["SYSTEM2R"] in ["Thermopompe"]))\
                                                                 else ("Fournaise ou poêle à bois et Système central à air chaud" if (((row["SYSTEM1R"] in ["Fournaise ou poêle à bois"]) or (row["SYSTEM1"] in ["Chaudière à eau chaude chauffée au bois"])) and (row["SYSTEM2R"] in ["Système central à air chaud"]))\
                                                                 else ("Fournaise ou poêle à bois et Système central à eau chaude" if (((row["SYSTEM1R"] in ["Fournaise ou poêle à bois"]) or (row["SYSTEM1"] in ["Chaudière à eau chaude chauffée au bois"])) and (row["SYSTEM2R"] in ["Système central à eau chaude"]))\
                                                                 else ("Fournaise ou poêle à bois et Fournaise murale ou de plancher" if (((row["SYSTEM1R"] in ["Fournaise ou poêle à bois"]) or (row["SYSTEM1"] in ["Chaudière à eau chaude chauffée au bois"])) and (row["SYSTEM2R"] in ["Fournaise murale ou de plancher"]))\
                                                                 else ("Fournaise ou poêle à bois" if ((row["SYSTEM1R"] in ["Fournaise ou poêle à bois"]) or (row["SYSTEM1"] in ["Chaudière à eau chaude chauffée au bois"]))\
                                                                 else ("Unités convecteurs, plancher ou plafond radiant" if row["SYSTEM1R"] in ["Unités convecteurs, plancher ou plafond radiant"]\
-                                                                else ("Thermopompe" if row["SYSTEM1R"] in ["Thermopompe"]\
+                                                                else ("Thermopompe et Système central à air chaud" if row["SYSTEM1"] in ["Thermopompe (pompe à chaleur) et fournaise"]\
+                                                                else ("Thermopompe et Système central à eau chaude" if row["SYSTEM1"] in ["Thermopompe et chaudière"]\
+                                                                else ("Thermopompe géothermique seule" if ((row["SYSTEM1"] in ["Thermopompe géothermique"]) and (row["QC9A"] in ["Pas de système de relève"]))\
+                                                                else ("Thermopompe géothermique et Plinthes électriques" if ((row["SYSTEM1"] in ["Thermopompe géothermique"]) and (row["QC9A"] in ["Ne sait pas/Ne répond pas", "Convecteurs", "Plinthes", "Plinthes et convecteurs", "Radiants de plancher"]))\
+                                                                else ("Thermopompe géothermique et Fournaise" if ((row["SYSTEM1"] in ["Thermopompe géothermique"]) and (row["QC9A"] in ["Bouilloire électrique", "Fournaise au gaz naturel à air chaud", "Fournaise au mazout à air chaud","Fournaise au propane à air chaud", "Fournaise électrique à air chaud"]))\
+                                                                else ("Thermopompe murale" if ((row["SYSTEM1"] in ["Thermopompe (pompe à chaleur) murale"]) and (row["QC9A"] in ["Pas de système de relève"]))\
+                                                                else ("Thermopompe murale et Plinthes électriques" if ((row["SYSTEM1"] in ["Thermopompe (pompe à chaleur) murale"]) and (row["QC9A"] in ["Ne sait pas/Ne répond pas", "Convecteurs", "Plinthes", "Plinthes et convecteurs", "Radiants de plancher"]))\
+                                                                else ("Thermopompe murale et Fournaise" if ((row["SYSTEM1"] in ["Thermopompe (pompe à chaleur) murale"]) and (row["QC9A"] in ["Bouilloire électrique", "Fournaise au gaz naturel à air chaud", "Fournaise au mazout à air chaud","Fournaise au propane à air chaud", "Fournaise électrique à air chaud"]))\
                                                                 else ("Système central à air chaud" if row["SYSTEM1R"] in ["Système central à air chaud"]\
                                                                 else ("Système central à eau chaude" if row["SYSTEM1R"] in ["Système central à eau chaude"]\
                                                                 else ("Fournaise murale ou de plancher" if row["SYSTEM1R"] in ["Fournaise murale ou de plancher"]\
-                                                                else None)))))))))))), axis=1).rename(ColName)
+                                                                else None))))))))))))))))))), axis=1).rename(ColName)
                     if ColName == "Spa_Saison":
                         return dfEUEMrSrc_ColName.apply(lambda row: "Aucun" if row["QB1M"] in ["Non"]\
                                                                 else ("Pas utilisé" if row["QS1"] in ["Pas du tout"]\

@@ -1208,10 +1208,10 @@ class MapHPXML:
         else:
             num_floors = dct_HPXML.get("geometry_unit_num_floors_above_grade")
 
-        fb = (dct_HPXML["geometry_unit_cfa"] *dct_HPXML["geometry_unit_aspect_ratio"])**0.5
-        lr = dct_HPXML["geometry_unit_cfa"] / fb
-        length = fb / num_floors
-        width = lr / num_floors
+        fb = ((dct_HPXML["geometry_unit_cfa"] /num_floors) *dct_HPXML["geometry_unit_aspect_ratio"])**0.5
+        lr = (dct_HPXML["geometry_unit_cfa"] / num_floors) / fb
+        length = fb
+        width = lr
 
         max_garage_depth = width / (1.0 - dct_HPXML["geometry_garage_protrusion"]) -1#length -1
         max_garage_width = length-1 #width / (1.0 - dct_HPXML["geometry_garage_protrusion"]) -1

@@ -545,8 +545,8 @@ class MapHPXML:
         length = fb
         width = lr
 
-        max_garage_depth = length -1
-        max_garage_width =  width / (1.0 - dct_HPXML["geometry_garage_protrusion"]) -1
+        max_garage_depth = width / (1.0 - dct_HPXML["geometry_garage_protrusion"]) -1#length -1
+        max_garage_width = length-1 #width / (1.0 - dct_HPXML["geometry_garage_protrusion"]) -1
         if max_garage_depth>24:
             garage_depth = 24 #12 / 24 / 36 taille du garage
         else:

@@ -185,7 +185,7 @@ class BuildstockBatchArguments():
                          "Geometry Building Number Units",
                          "Geometry Building Horizontal Location",
                          "Geometry Building Level",
-                         "Infiltration",
+                         #"Infiltration",#Dans le BN
                         "Windows",
                         "Insulation Wall",
                         "Insulation Ceiling",

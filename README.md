@@ -29,7 +29,7 @@ créer un fichier task.json dans un répertoire .vscode, contenant (adapter les 
                         },
                         "cwd": "${workspaceFolder}"
                     },
-                    "command": "(if not exist C:\\Brice\\Environnement_python\\LTE-Sampler-Residential\\py311\\.venv python -m venv C:\\Brice\\Environnement_python\\LTE-Sampler-Residential\\py311\\.venv) && C:\\Brice\\Environnement_python\\LTE-Sampler-Residential\\py311\\.venv\\Scripts\\activate.bat && python -m pip install --upgrade pip && python -m pip install -r requirements.txt && C:\\Brice\\Environnement_python\\LTE-Sampler-Residential\\py311\\.venv\\Scripts\\deactivate C:\\Brice\\Environnement_python\\LTE-Sampler-Residential\\py311\\.venv"
+                    "command": "(if not exist C:\\Brice\\Environnement_python\\LTE-Sampler-Residential\\py311\\.venv python -m venv C:\\Brice\\Environnement_python\\LTE-Sampler-Residential\\py311\\.venv) && C:\\Brice\\Environnement_python\\LTE-Sampler-Residential\\py311\\.venv\\Scripts\\activate.bat && python -m pip install --upgrade pip && python -m pip install -r requirements.txt && C:\\Brice\\Environnement_python\\LTE-Sampler-Residential\\py311\\.venv\\Scripts\\deactivate.bat C:\\Brice\\Environnement_python\\LTE-Sampler-Residential\\py311\\.venv"
                 },
                 "problemMatcher": [],
             }
@@ -42,7 +42,8 @@ Lancer la tache :
     Menu Terminal - Run Task - choisir la tâche 
 
 ## Lancer le tableau de bord
-    python -m streamlit run "./ui/Dashboard.py"
+    sans les liens dtales (à enlever dans le .py) : python -m streamlit run "./ui/Dashboard.py"
+    avec les liens dtales : dtale-streamlit run "ui/Dashboard.py"
 
 ## Mise à jour de la listes des packages requise dans un env situé dans un autre répertoire que le projet :
 setting (pour permettre la connection à pypi): 

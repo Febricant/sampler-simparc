@@ -67,9 +67,10 @@
     '8': '>= 2020'
   An_ConstructionCode:
     '0': < 1946
-    '1': '[1946 - 1984)'
-    '2': '[1984 - 2011)'
-    '3': '>= 2011'
+    '1': '[1946 - 1971)'
+    '2': '[1971 - 1986)'
+    '3': '[1986 - 2013)'
+    '4': '>= 2013'
   ChaufEau_ChaufType:
     '0': Aucun
     '1': Ne sait pas
@@ -330,6 +331,7 @@
 - An_Construction:
     Description: "Ann\xE9e de construction de l'habitation"
     "D\xE9pendance (enfants)":
+    - Infiltration
     - An_ConstructionCode
     "D\xE9pendance (parents)":
     - Type_Logement
@@ -357,9 +359,10 @@
     Source: "EUEMR modifi\xE9"
     Valeurs:
     - < 1946
-    - '[1946 - 1984)'
-    - '[1984 - 2011)'
-    - '>= 2011'
+    - '[1946 - 1971)'
+    - '[1971 - 1986)'
+    - '[1986 - 2013)'
+    - '>= 2013'
     id: 12
     "\xC9chantillonneur": "R\xE9seau Bayesien"
   ChaufEau_ChaufType:
@@ -1011,6 +1014,7 @@
     - LaveVaisselle_Presence
     - Cuisiniere_Presence
     - Eclairage_LED
+    - Infiltration
     "D\xE9pendance (parents)":
     - Region_Administrative
     Nom: Type_Logement

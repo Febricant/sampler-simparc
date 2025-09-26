@@ -1194,8 +1194,8 @@ class FormatageEUEMr:
                                 "Mapping" : {"labels" : AnConstruction_labels,
                                             "bins" : AnConstruction_bins}}
 
-        AnConstructionCode_bins = [1946-1000, 1946, 1984, 2011, 2011+1000]
-        AnConstructionCode_labels = ["< 1946", "[1946 - 1984)", "[1984 - 2011)", ">= 2011"]
+        AnConstructionCode_bins = [1946-1000, 1946, 1971, 1986, 2013, 2013+1000]
+        AnConstructionCode_labels = ["< 1946", "[1946 - 1971)", "[1971 - 1986)", "[1986 - 2013)", ">= 2013"]
         self.Mapping["An_ConstructionCode"] = {
                                 "ColSrc" : "QA6M",
                                 "typeMapping" : "bin",
@@ -1912,6 +1912,39 @@ class EUEMr(Master_genereBN):
         """
         pass
     
+    def Add_Node_Fromcsv(self, dct_housing_characteristics, listAttributs):
+        
+        for Attributs in listAttributs:
+            #for csv file (ne charger qu'une fois) et creer une structure
+            dct_dependancy = dct_housing_characteristics[Attributs]["Dependency"]
+            dct_option = dct_housing_characteristics[Attributs]["Option"]
+            df = dct_housing_characteristics[Attributs]["Table"]
+
+            # remove option if only 0
+            option_remove = []
+            for option, option_name in dct_option.items():
+                if df[option].sum() == 0:
+                    option_remove.append(option)
+            for k in option_remove:
+                del dct_option[k]
+
+            # add node
+            Node_name = Attributs
+            Node_value  = dct_option.keys()
+            self.bn.add(gum.LabelizedVariable(Node_name, Node_name, [str(i) for i in Node_value]))   # par key [1,2,99]
+
+            # add dependency (i.e. add arcs)
+            for dep in list(dct_dependancy.values())[::-1]:
+                self.bn.addArc(dep, Node_name)
+    
+            for idx in df.index:
+                filtered_df = df[df.index == idx]
+                dep_values = {dep_name: str(filtered_df[dep].values[0]) for dep, dep_name in dct_dependancy.items()}
+                option_values = [float(filtered_df[option].values[0]) for option, option_name in dct_option.items()]
+                sumlst = sum(option_values)
+                listProb = [k/sumlst for k in option_values]
+                self.bn.cpt(Node_name)[dep_values] = listProb
+
     def Make_BN(self):
 
         absolute_path = self.fileEUEMr
@@ -1983,7 +2016,7 @@ class EUEMr(Master_genereBN):
         for k in diDep :
             if diDep[k] != [] :
                 for ele in diDep[k][::-1]:
-                  self.bn.addArc(ele,k)  
+                    self.bn.addArc(ele,k)  
 
         # Ajout des tables conditionnelles
         diCPT = {}

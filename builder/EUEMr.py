@@ -1580,6 +1580,47 @@ class FormatageEUEMr:
                                                     "25 à 50 %":["25 à 50 %"],
                                                     "Plus de 50 %":["Plus de 50 %"]}
 
+        #_____________________________________________________
+        # Mapping pour la pondération
+        # NE PAS UTILISER LES CLEFS self.Mapping - sinon revoir la ligne {**self.Mapping, **self.Pond_Mapping}
+        self.Pond_Mapping = {}
+        
+        #Vintage
+        self.Pond_Mapping["Vintage"] = {}
+        self.Pond_Mapping["Vintage"]["ColSrc"] = "QA6M" # seulement pour la méthode get_Mettadata
+        self.Pond_Mapping["Vintage"]["typeMapping"] = "custom"
+        self.Pond_Mapping["Vintage"]["Mapping"] = {"1946-70":None,
+                                                    "1986-2012": None,
+                                                    "pre-1945": None,
+                                                    "1971-85": None,
+                                                    "post-2012": None}
+
+        self.Pond_Mapping["Territoire"] = {}
+        self.Pond_Mapping["Territoire"]["ColSrc"] = "TERR_HQ" # seulement pour la méthode get_Mettadata
+        self.Pond_Mapping["Territoire"]["typeMapping"] = "list"
+        self.Pond_Mapping["Territoire"]["Mapping"] = {"0_Montreal": ["Montréal"],
+                                                        "1_Laurentides": ["Laurentides"],
+                                                        "2_Montmorency": ["Montmorency"],
+                                                        "3_Nord-Est": ["Est et nord du Québec"],
+                                                        "4_Richelieu": ["Richelieu"]}
+        
+        self.Pond_Mapping["Typo"] = {}
+        self.Pond_Mapping["Typo"]["ColSrc"] = "Type_Logement" # seulement pour la méthode get_Mettadata
+        self.Pond_Mapping["Typo"]["typeMapping"] = "list"
+        self.Pond_Mapping["Typo"]["Mapping"] = {"individuelle" :["Maison individuelle"],
+                                    "en rangee": ["Maison en rangee"], 
+                                     "duplex": ["Duplex"],
+                                     "triplex": ["Triplex"],
+                                     "immeuble": ["Collective"]}
+
+        self.Pond_Mapping["Source"] = {}
+        self.Pond_Mapping["Source"]["ColSrc"] = "QC1R" # seulement pour la méthode get_Mettadata
+        self.Pond_Mapping["Source"]["typeMapping"] = "list"
+        self.Pond_Mapping["Source"]["Mapping"] = {"elec": ["Électricité"],
+                                        "combustible": ["Gaz naturel", "Mazout", "Bois seul ou en combinaison"],
+                                        "bi-energie": ["Bi-énergie"]}
+
+        #______________________________________________________
         # QB1A1 : Présence de cuisinières (Oui/Non)
         # QB1A3 : Source d'énergie de la cuisinière
         # Faire 1 Variable : 1 = Non ; 2+=Oui+source
@@ -1682,41 +1723,42 @@ class FormatageEUEMr:
         Retourne le mapping pour la colonne donnée.
         """
         try:
-            if ColName in self.Mapping:
-                if self.Mapping[ColName]["ColSrc"] in self.dfEUEMrSrc.columns:
+            dct_map_concat = {**self.Mapping, **self.Pond_Mapping}
+            if ColName in dct_map_concat:
+                if dct_map_concat[ColName]["ColSrc"] in self.dfEUEMrSrc.columns:
                     dfEUEMrSrc_ColName = self.dfEUEMrSrc
-                elif self.Mapping[ColName]["ColSrc"] in  self.dfEUEMr_new.columns:
+                elif dct_map_concat[ColName]["ColSrc"] in  self.dfEUEMr_new.columns:
                     dfEUEMrSrc_ColName = self.dfEUEMr_new
                 else:
                     raise ValueError(f"Unknown mapping source for column '{ColName}'.")
                 
-                if self.Mapping[ColName]["typeMapping"] == "no":
-                    return dfEUEMrSrc_ColName[self.Mapping[ColName]["ColSrc"]].rename(ColName)
+                if dct_map_concat[ColName]["typeMapping"] == "no":
+                    return dfEUEMrSrc_ColName[dct_map_concat[ColName]["ColSrc"]].rename(ColName)
                 
-                elif self.Mapping[ColName]["typeMapping"] == "list":
+                elif dct_map_concat[ColName]["typeMapping"] == "list":
                     dct_replace = {}
-                    for k, v in self.Mapping[ColName]["Mapping"].items():
+                    for k, v in dct_map_concat[ColName]["Mapping"].items():
                         for val in v:
                             dct_replace[val] = k
-                    tempoSeries = dfEUEMrSrc_ColName[self.Mapping[ColName]["ColSrc"]].replace(dct_replace).rename(ColName)
+                    tempoSeries = dfEUEMrSrc_ColName[dct_map_concat[ColName]["ColSrc"]].replace(dct_replace).rename(ColName)
                     tempoSeries[~tempoSeries.isin(list(set(dct_replace.values())))] = None
                     return tempoSeries
 
-                elif self.Mapping[ColName]["typeMapping"] == "bin":
+                elif dct_map_concat[ColName]["typeMapping"] == "bin":
 
-                    return pd.cut(dfEUEMrSrc_ColName[self.Mapping[ColName]["ColSrc"]],
-                                bins=self.Mapping[ColName]["Mapping"]["bins"],
-                                labels=self.Mapping[ColName]["Mapping"]["labels"],
-                                right=False).rename(ColName)                
+                    return pd.cut(dfEUEMrSrc_ColName[dct_map_concat[ColName]["ColSrc"]],
+                                bins=dct_map_concat[ColName]["Mapping"]["bins"],
+                                labels=dct_map_concat[ColName]["Mapping"]["labels"],
+                                right=False).rename(ColName)             
                 
-                elif self.Mapping[ColName]["typeMapping"] == "custom":#type de Mapping (plus complexe)
+                elif dct_map_concat[ColName]["typeMapping"] == "custom":#type de Mapping (plus complexe)
                     if ColName == "Presence_Garage":
                         return dfEUEMrSrc_ColName.apply(lambda row: "Pas de Garage" if row["QM1A"] in ["Non", "."]\
                                                                  else ("Garage non chauffé" if row["QM1AA"]=="Non" \
                                                                  else ("Garage chauffé à électricité" if row["QM1B"]=="Oui"\
                                                                  else ("Garage chauffé à autre source" if row["QM1A"]=="Oui" else ""))), axis=1).rename(ColName)
                     
-                    if ColName == "Chauffage_Logement":
+                    elif ColName == "Chauffage_Logement":
                         return dfEUEMrSrc_ColName.apply(lambda row: "Plinthes électriques" if row["SYSTEM1R"] in ["Plinthes électriques"]\
                                                                 else ("Fournaise ou poêle à bois et Plinthes électriques" if (((row["SYSTEM1R"] in ["Fournaise ou poêle à bois"]) or (row["SYSTEM1"] in ["Chaudière à eau chaude chauffée au bois"])) and (row["SYSTEM2R"] in ["Plinthes électriques"]))\
                                                                 else ("Fournaise ou poêle à bois et Unités convecteurs, plancher ou plafond radiant" if (((row["SYSTEM1R"] in ["Fournaise ou poêle à bois"])or (row["SYSTEM1"] in ["Chaudière à eau chaude chauffée au bois"])) and (row["SYSTEM2R"] in ["Unités convecteurs, plancher ou plafond radiant"]))\
@@ -1738,7 +1780,7 @@ class FormatageEUEMr:
                                                                 else ("Système central à eau chaude" if row["SYSTEM1R"] in ["Système central à eau chaude"]\
                                                                 else ("Fournaise murale ou de plancher" if row["SYSTEM1R"] in ["Fournaise murale ou de plancher"]\
                                                                 else None))))))))))))))))))), axis=1).rename(ColName)
-                    if ColName == "Spa_Saison":
+                    elif ColName == "Spa_Saison":
                         return dfEUEMrSrc_ColName.apply(lambda row: "Aucun" if row["QB1M"] in ["Non"]\
                                                                 else ("Pas utilisé" if row["QS1"] in ["Pas du tout"]\
                                                                 else ("Ne sait pas" if row["QS2M1R"] in ["Ne sait pas"]\
@@ -1758,7 +1800,7 @@ class FormatageEUEMr:
                                                                 else ("Ete_Automne_Hiver" if sorted([row["QS2M1R"], row["QS2M2R"], row["QS2M3R"], row["QS2M4R"]])== sorted(["L'été","L'automne","L'hiver", "."])\
                                                                 else None)))))))))))))))), axis=1).rename(ColName)
                         #else ("Printemps_Ete_Hiver" if sorted([row["QS2M1R"], row["QS2M2R"], row["QS2M3R"], row["QS2M4R"]])== sorted(["Le printemps","L'été","L'hiver", "."])\
-                    if ColName == "Vehicule_Presence":
+                    elif ColName == "Vehicule_Presence":
                         return dfEUEMrSrc_ColName.apply(lambda row: "Aucune_VE_Aucune_VHR" if ((row["QT2R"] in ["Aucune"]) and (row["QT3R"] in ["Aucune"]))\
                                                                 else ("Une_VE_Aucune_VHR" if ((row["QT2R"] in ["Une"]) and (row["QT3R"] in ["Aucune"]))\
                                                                 else ("Deux_VE_Aucune_VHR" if ((row["QT2R"] in ["Deux"]) and (row["QT3R"] in ["Aucune"]))\
@@ -1772,7 +1814,7 @@ class FormatageEUEMr:
                                                                 else ("Deux_VE_Deux_VHR" if ((row["QT2R"] in ["Deux"]) and (row["QT3R"] in ["Deux"]))\
                                                                 else ("Trois_VE_Deux_VHR" if ((row["QT2R"] in ["Trois"]) and (row["QT3R"] in ["Deux"]))\
                                                                 else None))))))))))), axis=1).rename(ColName)
-                    if ColName == "Region_Administrative":
+                    elif ColName == "Region_Administrative":
                         return dfEUEMrSrc_ColName.apply(lambda row: "Outaouais" if ((row["ZONE"] in ["Outaouais rural", "CUO"]))\
                                                                 else("Laurentides" if ((row["ZONE"] in ["Milles-Îles", "Antoine-Labelle", "Le Noroit"]))\
                                                                 else("Montréal" if ((row["ZONE"] in ["IDM Est", "IDM Nord", "IDM Ouest", "IDM Sud"]))\
@@ -1789,6 +1831,19 @@ class FormatageEUEMr:
                                                                 else("Bas-Saint-Laurent" if ((row["ZONE"] in ["Bas St-Laurent"]))\
                                                                 else("Gaspésie-Îles-de-la-Madeleine" if ((row["ZONE"] in ["Gaspésie"]))\
                                                                 else None)))))))))))))), axis=1).rename(ColName)
+                    
+                    elif ColName == "Vintage":
+                        return dfEUEMrSrc_ColName.apply(lambda row: "pre-1945" if row["QA6M"] in [i for i in range(1500, 1945+1)]\
+                                                                else ("pre-1945" if ((row["QA6RR"] in ["Avant 1900", "Entre 1900 et 1950"]) and (pd.isnull(row["QA6M"])))\
+                                                                else ("1946-70" if row["QA6M"] in [i for i in range(1946, 1970+1)]\
+                                                                else ("1946-70" if ((row["QA6RR"] in ["Dans les années 50", "Dans les années 60"]) and (pd.isnull(row["QA6M"])))\
+                                                                else ("1971-85" if row["QA6M"] in [i for i in range(1971, 1985+1)]\
+                                                                else ("1971-85" if ((row["QA6RR"] in ["Dans les années 70", "Dans les années 80"]) and (pd.isnull(row["QA6M"])))\
+                                                                else ("1986-2012" if row["QA6M"] in [i for i in range(1986, 2012+1)]\
+                                                                else ("1986-2012" if ((row["QA6RR"] in ["Dans les années 90", "Entre 2000 et 2009", "Entre 2010 et 2013"]) and (pd.isnull(row["QA6M"])))\
+                                                                else ("post-2012" if row["QA6M"] in [i for i in range(2013, 2050+1)]\
+                                                                else ("post-2012" if ((row["QA6RR"] in ["Entre 2014 et 2017", "Entre 2018 et aujourd'hui"]) and (pd.isnull(row["QA6M"])))\
+                                                                else None))))))))), axis=1).rename(ColName)
                 else:
                     raise ValueError(f"Unknown mapping type for column '{ColName}'.")
             else:
@@ -1804,10 +1859,31 @@ class FormatageEUEMr:
         for c in ["POND1","POND2x","POND1_POP","POND2x_POP"]:
             self.dfEUEMr_new[c] = self.dfEUEMrSrc[c]
 
-        for ColName in self.Mapping:
+        for ColName in {**self.Mapping, **self.Pond_Mapping}:
             self.dfEUEMr_new = pd.concat([self.dfEUEMr_new, self.DoMapping(ColName)], axis=1)
         
         return self.dfEUEMr_new
+
+    def Create_Pond(self, df_toPond_src):
+        
+        df_toPond = df_toPond_src[~pd.isnull(df_toPond_src["POND1"])]
+        
+        dataStats = pd.read_csv(PROJECT_DIR+"/data/EUEMr/2022/raked_data.csv")
+        dataStats["Typo"] = dataStats["Typo-Source"].str.split("_").str[0]
+        dataStats["Source"] = dataStats["Typo-Source"].str.split("_").str[1]
+
+        df_toPond_grp = df_toPond[['Vintage', 'Territoire', "Typo", "Source"]].groupby(['Vintage', 'Territoire', "Typo", "Source"]).value_counts().reset_index(name='Nombre')
+
+        df_Pond = pd.merge(df_toPond_grp,dataStats, on=['Vintage', 'Territoire', "Typo", "Source"], how='left')
+        sum_df_Pond = df_Pond['Nombre'].sum()
+        df_Pond["Nombre_rel"] = df_Pond["Nombre"]/sum_df_Pond
+        df_Pond["PONDNew"] = df_Pond["count_pound_rel"]/df_Pond["Nombre_rel"]
+        
+        df_toPond_weight = df_toPond_src.merge(df_Pond[["Vintage","Territoire","Typo","Source", "PONDNew"]], on=['Vintage', 'Territoire', "Typo", "Source"], how='left')#["Weighted"].sum()
+        df_toPond_weight.loc[pd.isnull(df_toPond_weight["POND1"]), "PONDNew"] = None#ne s'applique pas sur le sous-groupe des logements récents
+        df_toPond_weight.insert(0, "PONDNew", df_toPond_weight.pop("PONDNew"))
+
+        return df_toPond_weight
 
     def Main(self):
         """
@@ -1820,8 +1896,12 @@ class FormatageEUEMr:
         #dfEUEMr_new = self.DoAllMapping()
         self.DoAllMapping()
 
+        #add new ponderation column
+        self.dfEUEMr_new = self.Create_Pond(self.dfEUEMr_new)
+
         output_file = PROJECT_DIR+"//data//EUEMr//2022//sondage_residentiel_version_finale_formatted.csv"
         self.SaveToCSV(self.dfEUEMr_new, output_file)
+
 
 class EUEMr(Master_genereBN):
     '''
@@ -1947,11 +2027,12 @@ class EUEMr(Master_genereBN):
 
     def Make_BN(self):
 
+        Pond_col_Name = "POND1"
         absolute_path = self.fileEUEMr
         self.Load_csv(absolute_path)#self.dfcsv
-        self.dfcsv = self.dfcsv[self.dfcsv["POND1"].notnull()]  # Filtrer les lignes où POND1 est supérieur à 0 (enleve logement spécifique aux nouvelle constructions)
+        self.dfcsv = self.dfcsv[self.dfcsv[Pond_col_Name].notnull()]  # Filtrer les lignes où POND1 est supérieur à 0 (enleve logement spécifique aux nouvelle constructions)
 
-        for col in ["POND1", "POND2x", "POND1_POP", "POND2x_POP"]:
+        for col in ["PONDNew", "POND1", "POND2x", "POND1_POP", "POND2x_POP"]:
             self.dfcsv[col] = pd.to_numeric(self.dfcsv[col], errors='coerce')  # Convert to numeric, coercing errors to NaN
 
         # Assigner les information de la structure des variable
@@ -2039,7 +2120,7 @@ class EUEMr(Master_genereBN):
 
             diCPT[k].update(pd.crosstab(liInd,
                                         self.dfcsv[k],
-                                    values=self.dfcsv["POND1"], # Pondération
+                                    values=self.dfcsv[Pond_col_Name], # Pondération
                                     aggfunc="sum"))
             #diCPT[k] = diCPT[k].astype('double')#int64
 
@@ -2053,7 +2134,7 @@ class EUEMr(Master_genereBN):
                     maskTot =  maskIndMin & maskLevel0
                     liOccSum = pd.crosstab(self.dfcsv[diDep[k][0]],
                                         self.dfcsv[k],
-                                        values=self.dfcsv["POND1"], # Pondération
+                                        values=self.dfcsv[Pond_col_Name], # Pondération
                                         aggfunc="sum").fillna(0).loc[i].tolist()
                     intNbCat = len(diCPT[k].loc[maskTot].index)
                     liOcc =[liOccSum for j in range(intNbCat)] 
@@ -2075,15 +2156,15 @@ class EUEMr(Master_genereBN):
     
     
     def Make_csv(self):
-        
+        Pond_col_Name = "POND1"
         absolute_path = self.fileEUEMr
         self.Load_csv(absolute_path)#self.dfcsv
-        self.dfcsv = self.dfcsv[self.dfcsv["POND1"].notnull()]  # Filtrer les lignes où POND1 est supérieur à 0 (enleve logement spécifique aux nouvelle constructions)
+        self.dfcsv = self.dfcsv[self.dfcsv[Pond_col_Name].notnull()]  # Filtrer les lignes où POND1 est supérieur à 0 (enleve logement spécifique aux nouvelle constructions)
 
         # Assigner les information de la structure des variable
         diEUEMr = self.LIST_Dict
 
-        for col in ["POND1", "POND2x", "POND1_POP", "POND2x_POP"]:
+        for col in ["PONDNew","POND1", "POND2x", "POND1_POP", "POND2x_POP"]:
             self.dfcsv[col] = pd.to_numeric(self.dfcsv[col], errors='coerce')  # Convert to numeric, coercing errors to NaN
 
         # QA4M : Nombre de logements dans l'immeuble
@@ -2121,7 +2202,7 @@ class EUEMr(Master_genereBN):
 
             diCPT.update(pd.crosstab(liInd,
                                     self.dfcsv[Name],
-                                    values=self.dfcsv["POND1"], # Pondération
+                                    values=self.dfcsv[Pond_col_Name], # Pondération
                                     aggfunc="sum"))
 
 

@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>LTE-Sampler-Residential.ui.Dashboard API documentation</title>
+<meta name="description" content="Dashboard.py
+…">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>LTE-Sampler-Residential.ui.Dashboard</code></h1>
+</header>
+<section id="section-intro">
+<h1 id="dashboardpy">Dashboard.py</h1>
+<p>This module provides a Streamlit-based dashboard for exploring and downloading HPXML data.
+It allows users to:
+1. View the HPXML data in a table format.
+2. Download the processed results as a CSV file.</p>
+<h2 id="usage">Usage:</h2>
+<p>To run the dashboard, execute the following command in the terminal:
+python -m streamlit run "ui/Dashboard.py"</p>
+<h2 id="dependencies">Dependencies:</h2>
+<ul>
+<li>pandas</li>
+<li>streamlit</li>
+</ul>
+<h2 id="author">Author:</h2>
+<p>[cv1751 - Brice Le Lostec]</p>
+<h2 id="version">version:</h2>
+<p>1.0</p>
+<h2 id="python-version">python version:</h2>
+<p>python 3.11</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="LTE-Sampler-Residential.ui.Dashboard.DashBoard"><code class="name flex">
+<span>def <span class="ident">DashBoard</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def DashBoard():
+    &#34;&#34;&#34;
+    Main function to render the Streamlit dashboard.
+
+    This function performs the following steps:
+    1. Displays the HPXML data in a table format.
+    2. Provides a download button for exporting the data as a CSV file.
+
+    Returns:
+    --------
+    None
+    &#34;&#34;&#34;
+    # Set the page configuration
+    st.set_page_config(page_title=&#34;Echantillonneur ResStock-QC Dashboard&#34;,
+                       page_icon=&#34;🏠&#34;,
+                       layout=&#34;wide&#34;,
+                       initial_sidebar_state=&#34;expanded&#34;)
+    st.markdown(&#34;&#34;&#34;
+                # ResStock-QC - Tableau de bord utilisant un réseau bayesien construit sur l&#39;EUEMr de 2022
+                
+                &#34;&#34;&#34;)
+    
+    InsClsSampler = Sampler()
+    path = PROJECT_DIR+&#34;/data/processed/bayesian_network/BN_EUEMr.XDSL&#34;
+    InsClsSampler.Load_BN(path)
+
+    # List of node names and their values
+    lst_NOEUD = InsClsSampler.lst_NOEUD
+    LIST_Dict = InsClsSampler.LIST_Dict
+
+    # Widget to select multiple parameters
+    st.markdown(&#34;## Étape 1 - Sélection des paramètres d&#39;intérêt&#34;)
+
+    st.markdown(&#34;### Paramètre&#34;)
+
+    settings = {}
+
+
+    Noeuds_contraints = st.multiselect(&#34;Selection des variables imposées:&#34;, lst_NOEUD)
+
+    for input in Noeuds_contraints:
+
+        st.markdown(f&#34;**{input}**&#34;)
+
+        settings[input] = st.selectbox(
+            f&#34;Choisissez la valeur d&#39;intérêt pour {input} (scénario de référence)&#34;,
+            options=LIST_Dict[input].values())
+        pass
+    
+        # Add a toggle to activate the simulations
+    st.markdown(&#34;## Étape 2 - Simulation des résultats&#34;)
+    Nombre_de_Samples = st.number_input(&#34;Nombre de simulations à réaliser:&#34;, min_value=1, max_value=10000, value=10, step=1)
+
+    #ajouter d&#39;un bouton push
+    on = st.button(&#34;Simuler&#34;)
+    if on:
+        with st.status(&#34;Calcul en cours...&#34;):
+            st.write(settings)
+            st.write(&#34;Calcul en utiisant le réseau bayesien...&#34;)
+                        # Add outputs estimated by the models to the dataframe
+
+            df = InsClsSampler.do_Sampling(Nombre_de_Samples, evs = settings)
+
+            lst_dct_args = df.to_dict(orient=&#39;records&#39;)
+            
+            #Ajout de varaible hors BN
+            Bba = BuildstockBatchArguments()
+            lst_dct_args2 = Bba.sampling( lst_dct_args)
+
+            lst_dct_args = [ d1 | d2 for d1, d2 in zip(lst_dct_args, lst_dct_args2)]
+
+            MapSample = MapHPXML()
+            lst_dct_HPXML = MapSample.run(lst_dct_args)
+            dfargs = pd.DataFrame(lst_dct_args)
+            dfHPXML = pd.DataFrame(lst_dct_HPXML)
+
+            st.write(&#34;Calcul terminé.&#34;)  
+
+        st.markdown(&#34;## Étape 3 - Résultats&#34;)   
+       
+        #instance1 = startup(data_id=&#34;1&#34;, data=dfargs)
+        #instance2 = startup(data_id = &#34;2&#34;, data=dfHPXML)
+
+        #st.html(&#34;&#34;&#34;&lt;a href=&#34;/dtale/main/1&#34; target=&#34;_blank&#34;&gt;Exploration de l&#39;échantillonnage&lt;/a&gt;&#34;&#34;&#34;)
+        st.dataframe(dfargs)
+        
+        #st.html(&#34;&#34;&#34;&lt;a href=&#34;/dtale/main/2&#34; target=&#34;_blank&#34;&gt;Exploration du HPXML&lt;/a&gt;&#34;&#34;&#34;)
+        st.dataframe(dfHPXML)
+
+        st.markdown(&#34;## Étape 4 - Téléchargement des résultats&#34;)
+        st.markdown(&#34;Les résultats sont disponibles au format CSV. &#34; \
+                &#34;Attention: le fichier ne devrait pas être trop volumineux (&lt; 100 Mo).&#34;)
+        st.download_button(
+                        label=&#34;Télécharger les résultats&#34;,
+                        data=dfHPXML.to_csv(index=False).encode(&#39;utf-8&#39;),
+                        file_name=&#39;resultats.csv&#39;,
+                        mime=&#39;text/csv&#39;
+                )</code></pre>
+</details>
+<div class="desc"><p>Main function to render the Streamlit dashboard.</p>
+<p>This function performs the following steps:
+1. Displays the HPXML data in a table format.
+2. Provides a download button for exporting the data as a CSV file.</p>
+<h2 id="returns">Returns:</h2>
+<p>None</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul>
+<li><a href="#dashboardpy">Dashboard.py</a><ul>
+<li><a href="#usage">Usage:</a></li>
+<li><a href="#dependencies">Dependencies:</a></li>
+<li><a href="#author">Author:</a></li>
+<li><a href="#version">version:</a></li>
+<li><a href="#python-version">python version:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="LTE-Sampler-Residential.ui" href="index.html">LTE-Sampler-Residential.ui</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="LTE-Sampler-Residential.ui.Dashboard.DashBoard" href="#LTE-Sampler-Residential.ui.Dashboard.DashBoard">DashBoard</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

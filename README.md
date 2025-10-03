@@ -63,3 +63,7 @@ Mettre à jour le fichier requirments.txt, en se plaçant dans le répertoire du
     activer l'environnement pathtoEnv/activate.bat
 
     python -m uv export --no-hashes --format requirements-txt -o "N:\Mes Documents\Projets LTE\Projet archQc\code\GITHUB_Repo\LTE-Sampler-Residential\requirements.txt"
+
+## Créer la documenteation html
+    avec pdoc3 : 
+        python -m pdoc --html --output-dir "N:\Mes Documents\Projets LTE\Projet archQc\code\GITHUB_Repo\LTE-Sampler-Residential\documentation\html" "N:\Mes Documents\Projets LTE\Projet archQc\code\GITHUB_Repo\LTE-Sampler-Residential"

@@ -1,49 +1,67 @@
 # -*- coding: utf-8 -*-
 """
-Created on 26-06-2025
+Dashboard.py
+============
 
-@author: cv1751 - Brice Le Lostec
-@description: Class for generating Bayesian Networks (BN) using pyagrum.
-@note: This class provides methods to save, load, plot Bayesian Networks and load CSV files.
-@version: 1.0
+This module provides a Streamlit-based dashboard for exploring and downloading HPXML data.
+It allows users to:
+1. View the HPXML data in a table format.
+2. Download the processed results as a CSV file.
+
+Usage:
+------
+To run the dashboard, execute the following command in the terminal:
+    python -m streamlit run "ui/Dashboard.py"
+
+Dependencies:
+-------------
+- pandas
+- streamlit
+
+Author:
+-------
+[cv1751 - Brice Le Lostec]
+
+version:
+-------------
+1.0
+
+python version:
+-------------
 python 3.11
 
 """
 import os
 import sys
 import time
-import pickle
 import numpy as np
 import pandas as pd
-import random
-from datetime import datetime
-from datetime import timedelta
-import matplotlib.pyplot as plt
+import pyagrum as gum
 #import dtale
 #from dtale.views import startup
 #from dtale.app import get_instance
-import streamlit.components.v1 as components
+import streamlit as st
 
 FILE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_DIR = os.path.abspath(FILE_DIR+ "/../")  # répertoire supérieur
 sys.path.append(os.path.join(PROJECT_DIR))
-
 from src.utils.sampler.Sampler import Sampler,  BuildstockBatchArguments, MapHPXML
 
-import pyagrum.lib.image as gimg
-import pyagrum as gum
-
-import json
-
-import streamlit as st
-
-import plotly.graph_objects as go
-from dtale.views import startup
 import warnings
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
 
-
 def DashBoard():
+    """
+    Main function to render the Streamlit dashboard.
+
+    This function performs the following steps:
+    1. Displays the HPXML data in a table format.
+    2. Provides a download button for exporting the data as a CSV file.
+
+    Returns:
+    --------
+    None
+    """
     # Set the page configuration
     st.set_page_config(page_title="Echantillonneur ResStock-QC Dashboard",
                        page_icon="🏠",
@@ -132,7 +150,11 @@ def DashBoard():
 		)
 
 if "__main__" == __name__:
-    #python -m streamlit run "ui/Dashboard.py"
-    #dtale-streamlit run "ui/Dashboard.py"
+    """
+    Entry point for the Streamlit dashboard.
+
+    To run the dashboard, execute the following command:
+        python -m streamlit run "ui/Dashboard.py"
+        dtale-streamlit run "ui/Dashboard.py"
+    """
     DashBoard()
-    #documentation

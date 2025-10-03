@@ -1,12 +1,47 @@
 # -*- coding: utf-8 -*-
 """
-Created on 26-06-2025
+    Sampler.py
+    ==========
 
-@author: cv1751 - Brice Le Lostec
-@description: Class for generating Bayesian Networks (BN) using pyAgrum.
-@note: This class provides methods to save, load, plot Bayesian Networks and load CSV files.
-@version: 1.0
-python 3.11
+    This module defines two classes:
+    1. **Sampler**: For generating Bayesian Networks (BN) using the `pyAgrum` library.
+    2. **BuildstockBatchArguments**: For handling housing characteristics and sampling.
+
+    Features:
+    ---------
+    - Save, load, and plot Bayesian Networks.
+    - Load Bayesian Network structures from YAML files.
+    - Load housing characteristics from CSV files.
+    - Generate samples based on Bayesian Networks and housing characteristics.
+
+    Classes:
+    --------
+    - `Sampler`: Manages Bayesian Networks.
+    - `BuildstockBatchArguments`: Handles housing characteristics and sampling.
+
+    Dependencies:
+    -------------
+    - os
+    - sys
+    - yaml
+    - numpy
+    - pyAgrum
+
+    Author:
+    -------
+    Brice Le Lostec (cv1751)
+
+    Version:
+    --------
+    1.0
+
+    Python Version:
+    ---------------
+    3.11
+
+    Created:
+    --------
+    26-06-2025
 
 """
 import os

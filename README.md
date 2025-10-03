@@ -42,8 +42,11 @@ Lancer la tache :
     Menu Terminal - Run Task - choisir la tâche 
 
 ## Lancer le tableau de bord
-    sans les liens dtales (à enlever dans le .py) : python -m streamlit run "./ui/Dashboard.py"
-    avec les liens dtales : dtale-streamlit run "ui/Dashboard.py"
+    1 - activer l'environnement (cmd dans vscode par example)
+
+    2 - lancer le script :
+        sans les liens dtales (à enlever dans le .py) : python -m streamlit run "./ui/Dashboard.py"
+        avec les liens dtales : dtale-streamlit run "ui/Dashboard.py"
 
 ## Mise à jour de la listes des packages requise dans un env situé dans un autre répertoire que le projet :
 setting (pour permettre la connection à pypi): 

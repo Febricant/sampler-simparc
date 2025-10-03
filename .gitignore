@@ -2,9 +2,9 @@
 data/*
 
 # Except for 'sampler'
-!data/BayesianNetwork/
-!data/housing_characteristics/
-!data/housing_characteristics_src/
+!data/processed/
+!data/input/housing_characteristics/
+!data/output/
 
 # Ignore __pycache__ directories
 __pycache__/

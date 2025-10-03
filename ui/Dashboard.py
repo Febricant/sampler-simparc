@@ -32,7 +32,7 @@ PROJECT_DIR = os.path.abspath(FILE_DIR+ "/../")  # répertoire supérieur
 #PACKAGE_DIR = os.path.abspath(PROJECT_DIR)#+ "/../")
 sys.path.append(os.path.join(PROJECT_DIR))
 
-from utils.Sampler import Sampler,  BuildstockBatchArguments, MapHPXML
+from src.utils.sampler.Sampler import Sampler,  BuildstockBatchArguments, MapHPXML
 
 import pyagrum.lib.image as gimg
 #try:
@@ -64,7 +64,7 @@ def DashBoard():
                 """)
     
     InsClsSampler = Sampler()
-    path = PROJECT_DIR+"/data/BayesianNetwork/BN_EUEMr.XDSL"
+    path = PROJECT_DIR+"/data/processed/bayesian_network/BN_EUEMr.XDSL"
     InsClsSampler.Load_BN(path)
 
     # List of node names and their values

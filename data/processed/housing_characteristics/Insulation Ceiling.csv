@@ -1,0 +1,46 @@
+Dependency=Type_Logement;Dependency=An_Construction;Option=QC_R19.6;Option=QC_R24.6;Option=QC_R27.3;Option=QC_R30.9;Option=QC_R41;Option=QC_R12.5;Option=QC_R18.3;Option=QC_R29.8
+Duplex;< 1950;0;0;0;0;0;1;0;0
+Duplex;[1950 - 1960);0;0;0;0;0;0;1;0
+Duplex;[1960 - 1970);0;0;0;0;0;0;1;0
+Duplex;[1970 - 1980);0;0;0;0;0;0;1;0
+Duplex;[1980 - 1990);0;0;0;0;0;0;0;1
+Duplex;[1990 - 2000);0;0;0;0;0;0;0;1
+Duplex;[2000 - 2010);0;0;0;0;0;0;0;1
+Duplex;[2010 - 2020);0;0;0;0;1;0;0;0
+Duplex;>= 2020;0;0;0;0;1;0;0;0
+Triplex;< 1950;0;0;0;0;0;1;0;0
+Triplex;[1950 - 1960);0;0;0;0;0;0;1;0
+Triplex;[1960 - 1970);0;0;0;0;0;0;1;0
+Triplex;[1970 - 1980);0;0;0;0;0;0;1;0
+Triplex;[1980 - 1990);0;0;0;0;0;0;0;1
+Triplex;[1990 - 2000);0;0;0;0;0;0;0;1
+Triplex;[2000 - 2010);0;0;0;0;0;0;0;1
+Triplex;[2010 - 2020);0;0;0;0;1;0;0;0
+Triplex;>= 2020;0;0;0;0;1;0;0;0
+Collective;< 1950;0;0;0;0;0;1;0;0
+Collective;[1950 - 1960);0;0;0;0;0;0;1;0
+Collective;[1960 - 1970);0;0;0;0;0;0;1;0
+Collective;[1970 - 1980);0;0;0;0;0;0;1;0
+Collective;[1980 - 1990);0;0;0;0;0;0;0;1
+Collective;[1990 - 2000);0;0;0;0;0;0;0;1
+Collective;[2000 - 2010);0;0;0;0;0;0;0;1
+Collective;[2010 - 2020);0;0;0;0;1;0;0;0
+Collective;>= 2020;0;0;0;0;1;0;0;0
+Maison individuelle;< 1950;1;0;0;0;0;0;0;0
+Maison individuelle;[1950 - 1960);0;1;0;0;0;0;0;0
+Maison individuelle;[1960 - 1970);0;1;0;0;0;0;0;0
+Maison individuelle;[1970 - 1980);0;0;1;0;0;0;0;0
+Maison individuelle;[1980 - 1990);0;0;0;1;0;0;0;0
+Maison individuelle;[1990 - 2000);0;0;0;1;0;0;0;0
+Maison individuelle;[2000 - 2010);0;0;0;1;0;0;0;0
+Maison individuelle;[2010 - 2020);0;0;0;0;1;0;0;0
+Maison individuelle;>= 2020;0;0;0;0;1;0;0;0
+Maison en rangee;< 1950;1;0;0;0;0;0;0;0
+Maison en rangee;[1950 - 1960);0;1;0;0;0;0;0;0
+Maison en rangee;[1960 - 1970);0;1;0;0;0;0;0;0
+Maison en rangee;[1970 - 1980);0;0;1;0;0;0;0;0
+Maison en rangee;[1980 - 1990);0;0;0;1;0;0;0;0
+Maison en rangee;[1990 - 2000);0;0;0;1;0;0;0;0
+Maison en rangee;[2000 - 2010);0;0;0;1;0;0;0;0
+Maison en rangee;[2010 - 2020);0;0;0;0;1;0;0;0
+Maison en rangee;>= 2020;0;0;0;0;1;0;0;0

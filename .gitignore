@@ -1,5 +1,5 @@
 # Ignore everything in 'data' folder
-data/*
+data/input/*
 
 # Except for 'sampler'
 !data/processed/

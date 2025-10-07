@@ -2140,7 +2140,7 @@ class MapHPXML:
         
         arg = "SecheLinge_Presence"
         if (arg in dct_args.keys()):
-            if dct_args[arg] in ["oui"]:
+            if dct_args[arg] in ["Oui"]:
                 args_value = "Electric"
             else:
                 args_value = "None"

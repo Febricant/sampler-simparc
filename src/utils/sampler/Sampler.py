@@ -1945,6 +1945,8 @@ class MapHPXML:
             if (arg in dct_args.keys()):
                 if dct_args[arg] == "Oui":
                     dct_HPXML[argHPXML] = True
+                    dct_HPXML["permanent_spa_pump_annual_kwh"] = 0
+                    dct_HPXML["permanent_spa_heater_annual_kwh"] =  49/0.048*(0.5+0.25*dct_HPXML['geometry_unit_num_bedrooms']/3+0.25*dct_HPXML['geometry_unit_cfa']/1920)
                 else:
                     dct_HPXML[argHPXML] = False
             else:

@@ -2069,8 +2069,8 @@ class MapHPXML:
                     dct_HPXML["water_heater_standby_loss"]=0
                     dct_HPXML["water_heater_jacket_rvalue"]=0
                     dct_HPXML["water_heater_setpoint_temperature"]=125
-                elif dct_args[arg] in ["wood"]:
-                    dct_HPXML[argHPXML] = "Bois"
+                elif dct_args[arg] in ["Bois"]:
+                    dct_HPXML[argHPXML] = "Wood Pellets"
                     dct_HPXML["water_heater_efficiency_type"]="EnergyFactor"
                     dct_HPXML["water_heater_efficiency"]=0.59
                     dct_HPXML["water_heater_recovery_efficiency"]=0.76

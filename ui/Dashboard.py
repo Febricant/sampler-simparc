@@ -30,6 +30,10 @@ python version:
 -------------
 python 3.11
 
+Usage:
+-------------
+python -m streamlit run "ui/Dashboard.py"
+
 """
 import os
 import sys
@@ -37,10 +41,13 @@ import time
 import numpy as np
 import pandas as pd
 import pyagrum as gum
+#import pyagrum.lib.ipython as gnb
+import pyagrum.lib.notebook as gnb
 #import dtale
 #from dtale.views import startup
 #from dtale.app import get_instance
 import streamlit as st
+import streamlit.components.v1 as components
 
 FILE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_DIR = os.path.abspath(FILE_DIR+ "/../")  # répertoire supérieur
@@ -50,7 +57,29 @@ from src.utils.sampler.Sampler import Sampler,  BuildstockBatchArguments, MapHPX
 import warnings
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
 
-def DashBoard():
+
+# Cache the sampler instance (heavy object)
+@st.cache_resource
+def load_sampler(path):
+    ins = Sampler()
+    ins.Load_BN(path)
+    return ins
+
+# Cache SVG generation (depends on BN, evidence and size)
+@st.cache_data(hash_funcs={gum.BayesNet: lambda b: id(b)})
+def bn_svg(bn, evs=None, Inference=True, size=15):
+    if Inference:
+        # use pyagrum helpers once; cached result avoids recompute on every rerun
+        svgtxt = gum.lib.image.dot_as_svg_string(
+            gum.lib._colors.prepareDot(gum.lib.image.prepareShowInference(bn, evs=evs)),
+            size=size
+        )
+    else:
+        fig = gum.lib.bn2graph.BN2dot(bn)
+        svgtxt = gum.lib.image.dot_as_svg_string(gum.lib._colors.prepareDot(fig), size=size)
+    return svgtxt
+
+def Page_Echantilloneur():
     """
     Main function to render the Streamlit dashboard.
 
@@ -62,19 +91,18 @@ def DashBoard():
     --------
     None
     """
-    # Set the page configuration
-    st.set_page_config(page_title="Echantillonneur ResStock-QC Dashboard",
-                       page_icon="🏠",
-                       layout="wide",
-                       initial_sidebar_state="expanded")
+
     st.markdown("""
-                # ResStock-QC - Tableau de bord utilisant un réseau bayesien construit sur l'EUEMr de 2022
-                
-                """)
-    
-    InsClsSampler = Sampler()
-    path = PROJECT_DIR+"/data/processed/bayesian_network/BN_EUEMr.XDSL"
-    InsClsSampler.Load_BN(path)
+            # ResStock-QC - Tableau de bord utilisant un réseau bayesien construit sur l'EUEMr de 2022
+            
+            """)
+
+    #InsClsSampler = Sampler()
+    #path = PROJECT_DIR+"/data/processed/bayesian_network/BN_EUEMr.XDSL"
+    #InsClsSampler.Load_BN(path)
+    # use cached loader instead of creating a new Sampler each run
+    path = PROJECT_DIR + "/data/processed/bayesian_network/BN_EUEMr.XDSL"
+    InsClsSampler = load_sampler(path)
 
     # List of node names and their values
     lst_NOEUD = InsClsSampler.lst_NOEUD
@@ -148,13 +176,99 @@ def DashBoard():
 			file_name='resultats.csv',
 			mime='text/csv'
 		)
+def BaysianNetwork():
 
-if "__main__" == __name__:
-    """
-    Entry point for the Streamlit dashboard.
+    st.markdown("""
+            # ResStock-QC - Réseau bayesien construit sur l'EUEMr de 2022
+            
+            """)
+    #créer des tabs pour afficher la description des données et le réseau bayesien
+    tab1, tab2, tab3, tab4, tab5 = st.tabs(["Description des données", "Réseau bayesien", "liste de noeuds",  "Tables conditionnelles", "Inférence"])
 
-    To run the dashboard, execute the following command:
-        python -m streamlit run "ui/Dashboard.py"
-        dtale-streamlit run "ui/Dashboard.py"
-    """
-    DashBoard()
+    InsClsSampler = Sampler()
+    path = PROJECT_DIR+"/data/processed/bayesian_network/BN_EUEMr.XDSL"
+    InsClsSampler.Load_BN(path)
+
+    #save inference graph
+    #gum.lib.image.exportInference(InsClsSampler.bn, PROJECT_DIR + "ui/output_inference.png", evs={}, size='30')
+    #inspiré de pyagrum.lib.image
+    
+    # List of node names and their values
+    lst_NOEUD = InsClsSampler.lst_NOEUD
+    LIST_Dict = InsClsSampler.LIST_Dict
+
+    # data description
+    pdfDataDescription = pd.read_csv(PROJECT_DIR+"/data/processed/Data_description.csv", index_col=0)
+
+    
+    #add dropdown to view data description
+    with tab1:
+        # Widget to select multiple parameters
+        #st.markdown("## Visualisation du réseau bayesien")
+        st.dataframe(pdfDataDescription)
+
+    #add expander to view the bayesian network
+    with tab2:
+        check_stats = st.checkbox("Afficher les statistiques du réseau bayesien")
+        selected_size = st.slider("Sélectionnez la taille du graphique:",
+                                                min_value=5, max_value=50, value=15, step=1)
+        if st.button("Afficher le réseau bayesien"):
+            #st.image(PROJECT_DIR + "ui/output_inference.png", caption='Inférence du réseau bayesien', use_column_width=True)
+            #svgtxt = gum.lib.image.dot_as_svg_string(gum.lib._colors.prepareDot(gum.lib.image.prepareShowInference(InsClsSampler.bn)), size=30)
+            
+            #svgtxt = gum.lib.image.dot_as_svg_string(gum.lib._colors.prepareDot(gum.lib.image.prepareShowInference(InsClsSampler.bn)), size=selected_size)
+            # fetch cached SVG (recomputed only when bn, evs or size change)
+            svgtxt = bn_svg(InsClsSampler.bn, evs=None,Inference=check_stats, size=selected_size)
+            #svg = gum.lib._colors.prepareDot(gum.lib.image.prepareShowInference(InsClsSampler.bn)).create_svg(encoding="utf-8").decode("utf-8")
+
+            components.html(svgtxt, height=900, scrolling=True)
+
+            #st.graphviz_chart(gum.lib.bn2graph.BNinference2dot(InsClsSampler.bn,evs={},size = '30').to_string())
+
+    #add expander to view the list of nodes and their values
+    with tab3:
+        for node in lst_NOEUD:
+            st.markdown(f"**{node}**: {', '.join(LIST_Dict[node].values())}")
+    
+    #add expander to view the conditional probability tables
+    with tab4:
+        #select node to view its CPT
+        selected_node = st.selectbox("Sélectionnez un noeud pour voir sa table de probabilité conditionnelle:", lst_NOEUD)
+        cpt = InsClsSampler.bn.cpt(selected_node)
+        
+        #afficher la CPT sous forme de dataframe
+        st.dataframe(cpt.topandas().style.background_gradient(axis=None, low=0.0, high=1.0))
+    
+    #add expander to view the inference example
+    with tab5:
+        st.markdown("### Exemple d'inférence")
+        st.markdown("Dans cet exemple, nous allons effectuer une inférence en fixant certaines variables et en observant les effets sur d'autres variables.")
+        st.markdown("#### Étape 1 - Sélection des variables imposées")
+        
+        settings = {}
+        Noeuds_contraints = st.multiselect("Sélection des variables imposées:", lst_NOEUD)
+
+        for input in Noeuds_contraints:
+            st.markdown(f"**{input}**")
+            settings[input] = st.selectbox(
+                f"Choisissez la valeur d'intérêt pour {input} (scénario de référence)",
+                options=LIST_Dict[input].values())
+            pass
+        
+        st.markdown("#### Étape 2 - Résultats de l'inférence")
+        selected_size2 = st.slider("Sélectionnez la taille du graphique (inférence):",
+                                            min_value=5, max_value=50, value=15, step=1)
+
+        if st.button("Effectuer l'inférence"):
+            
+            #svgtxt_inf = gum.lib.image.dot_as_svg_string(gum.lib._colors.prepareDot(gum.lib.image.prepareShowInference(InsClsSampler.bn, evs = settings)), size=selected_size2)
+            # fetch cached SVG (recomputed only when bn, evs or size change)
+            #svgtxt = bn_svg(InsClsSampler.bn, evs=None, size=selected_size)
+            svgtxt_inf = bn_svg(InsClsSampler.bn, evs=settings, Inference = True, size=selected_size2)
+            components.html(svgtxt_inf, height=900, scrolling=True)
+
+if __name__ == "__main__":
+    st.set_page_config(page_title="Navigation Example", layout="wide")
+    pages = {"Echantilloneur": [st.Page(Page_Echantilloneur, title="Echantilloneur"), st.Page(BaysianNetwork, title="Réseau bayesien")]}
+    pg = st.navigation(pages)
+    pg.run()

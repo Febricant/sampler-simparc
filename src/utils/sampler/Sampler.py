@@ -2119,6 +2119,7 @@ class MapHPXML:
                     dct_HPXML[argHPXML] = "other multifamily buffer space"
                 else:
                     dct_HPXML[argHPXML] = None
+                    dct_HPXML["water_heater_type"] = None #if no water heater
 
         arg = "ChaufEau_Type"
         argHPXML = "water_heater_tank_volume"# du logement et non de l'immeuble

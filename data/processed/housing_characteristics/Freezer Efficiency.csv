@@ -1,3 +1,2 @@
-Dependency=Mode_Occupation;Option=EF 12, National Average;Option=None;Option=Void
-Proprietaire;0.62;0.38;0
-Locataire;0.33;0.67;0
+Option=EF 12, National Average
+0.62

@@ -153,6 +153,7 @@ def Page_Echantilloneur():
             lst_dct_HPXML = MapSample.run(lst_dct_args)
             dfargs = pd.DataFrame(lst_dct_args)
             dfHPXML = pd.DataFrame(lst_dct_HPXML)
+            dfAll = pd.concat([dfargs, dfHPXML], axis=1)
 
             st.write("Calcul terminé.")  
 
@@ -172,7 +173,7 @@ def Page_Echantilloneur():
 		"Attention: le fichier ne devrait pas être trop volumineux (< 100 Mo).")
         st.download_button(
 			label="Télécharger les résultats",
-			data=dfHPXML.to_csv(index=False).encode('utf-8'),
+			data=dfAll.to_csv(index=False).encode('utf-8'),
 			file_name='resultats.csv',
 			mime='text/csv'
 		)

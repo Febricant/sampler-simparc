@@ -1,4 +1,4 @@
-Dependency=Type_Logement;Dependency=Geometry Stories;Option=Bottom;Option=Middle;Option=None;Option=Top
+Dependency=Type_Logement;Dependency=Geometry Stories;Option=Bottom;Option=Middle;Option=Not Applicable;Option=Top
 Maison individuelle;1;0.0;0.0;1;0.0
 Maison individuelle;2;0.0;0.0;1;0.0
 Maison individuelle;3;0.0;0.0;1;0.0

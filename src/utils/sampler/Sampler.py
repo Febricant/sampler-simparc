@@ -566,10 +566,10 @@ class MapHPXML:
 
         #defaut
         arg = "geometry attic type"
-        if (arg in dct_args.keys()):
-            for args in dct_Geometry_Attic_Type["None"]:
-                if ((args not in dct_HPXML.keys()) & (dct_Geometry_Attic_Type["None"][args]!="auto")):
-                    dct_HPXML[args] = dct_Geometry_Attic_Type["None"][args]
+        #if (arg in dct_args.keys()):
+        #    for args in dct_Geometry_Attic_Type["None"]:
+        #        if ((args not in dct_HPXML.keys()) & (dct_Geometry_Attic_Type["None"][args]!="auto")):
+        #            dct_HPXML[args] = dct_Geometry_Attic_Type["None"][args]
         arg = "geometry attic type"
         if (arg in dct_args.keys()):
             for args in dct_Geometry_Attic_Type[dct_args[arg]]:
@@ -987,15 +987,15 @@ class MapHPXML:
         dct_Insulation_Wall["Wood Stud, Uninsulated"] = {"wall_type":"WoodStud", "wall_assembly_r":3.4}
         dct_Insulation_Wall["Wood Stud, Uninsulated, R-5 Sheathing"] = {"wall_type":"WoodStud", "wall_assembly_r":8.4}
         
-        dct_Insulation_Wall["QC_WoodStud-R12.2"]={"wall_type":"WoodStud", "wall_assembly_r":10.9}
-        dct_Insulation_Wall["QC_WoodStud-R12.6"]={"wall_type":"WoodStud", "wall_assembly_r":11.1}
-        dct_Insulation_Wall["QC_WoodStud-R14"]={"wall_type":"WoodStud", "wall_assembly_r":11.7}
-        dct_Insulation_Wall["QC_WoodStud-R14.5"]={"wall_type":"WoodStud", "wall_assembly_r":11.9}
-        dct_Insulation_Wall["QC_WoodStud-R17.2"]={"wall_type":"WoodStud", "wall_assembly_r":13.915}
-        dct_Insulation_Wall["QC_WoodStud-R18.9"]={"wall_type":"WoodStud", "wall_assembly_r":15.32}
-        dct_Insulation_Wall["QC_WoodStud-R20.7"]={"wall_type":"WoodStud", "wall_assembly_r":16.09}
-        dct_Insulation_Wall["QC_WoodStud-R24.5"]={"wall_type":"WoodStud", "wall_assembly_r":17.63}
-        
+        dct_Insulation_Wall["QC_WoodStud-R12.2"]={"wall_type":"WoodStud", "wall_assembly_r":12.2}
+        dct_Insulation_Wall["QC_WoodStud-R12.6"]={"wall_type":"WoodStud", "wall_assembly_r":12.6}
+        dct_Insulation_Wall["QC_WoodStud-R14"]={"wall_type":"WoodStud", "wall_assembly_r":14.0}
+        dct_Insulation_Wall["QC_WoodStud-R14.5"]={"wall_type":"WoodStud", "wall_assembly_r":14.5}
+        dct_Insulation_Wall["QC_WoodStud-R17.2"]={"wall_type":"WoodStud", "wall_assembly_r":17.2}
+        dct_Insulation_Wall["QC_WoodStud-R18.9"]={"wall_type":"WoodStud", "wall_assembly_r":18.9}
+        dct_Insulation_Wall["QC_WoodStud-R20.7"]={"wall_type":"WoodStud", "wall_assembly_r":20.7}
+        dct_Insulation_Wall["QC_WoodStud-R24.5"]={"wall_type":"WoodStud", "wall_assembly_r":24.5}
+
         arg = "Insulation Wall"
         
         if (arg in dct_args.keys()):
@@ -1028,10 +1028,10 @@ class MapHPXML:
         #defaut
         arg = "Insulation Ceiling"
        
-        if (arg in dct_args.keys()):
-            for args in dct_Insulation_Ceiling["None"]:
-                if ((args not in dct_HPXML.keys()) & (dct_Insulation_Ceiling["None"][args]!="auto")):
-                    dct_HPXML[args] = dct_Insulation_Ceiling["None"][args]
+        #if (arg in dct_args.keys()):
+        #    for args in dct_Insulation_Ceiling["None"]:
+        #        if ((args not in dct_HPXML.keys()) & (dct_Insulation_Ceiling["None"][args]!="auto")):
+        #            dct_HPXML[args] = dct_Insulation_Ceiling["None"][args]
 
         arg = "Insulation Ceiling"
         if (arg in dct_args.keys()):
@@ -1125,7 +1125,7 @@ class MapHPXML:
                                                                  "foundation_wall_assembly_r":"auto",
                                                                  "rim_joist_continuous_exterior_r":0,
                                                                  "rim_joist_continuous_interior_r":10.1,
-                                                                 "rim_joist_assembly_interior_r":8.32,#LLb a verifier *0.8
+                                                                 "rim_joist_assembly_interior_r":10.1,#8.32,#LLb a verifier *0.8
                                                                  "rim_joist_assembly_r":"auto"}
         
         dct_Insulation_Foundation_Wall["QC_Wall-R12, interior"]= {"foundation_wall_type":"solid concrete",
@@ -1137,7 +1137,7 @@ class MapHPXML:
                                                                  "foundation_wall_assembly_r":"auto",
                                                                  "rim_joist_continuous_exterior_r":0,
                                                                  "rim_joist_continuous_interior_r":12,
-                                                                 "rim_joist_assembly_interior_r":9.6, #LLb a verifier *0.8
+                                                                 "rim_joist_assembly_interior_r":12,#9.6, #LLb a verifier *0.8
                                                                  "rim_joist_assembly_r":"auto"}
         
         dct_Insulation_Foundation_Wall["QC_Wall-R14.4, interior"]= {"foundation_wall_type":"solid concrete",
@@ -1149,7 +1149,7 @@ class MapHPXML:
                                                                  "foundation_wall_assembly_r":"auto",
                                                                  "rim_joist_continuous_exterior_r":0,
                                                                  "rim_joist_continuous_interior_r":14.4,
-                                                                 "rim_joist_assembly_interior_r":11.52, #LLb a verifier *0.8
+                                                                 "rim_joist_assembly_interior_r":14.4,#11.52, #LLb a verifier *0.8
                                                                  "rim_joist_assembly_r":"auto"}
         
         dct_Insulation_Foundation_Wall["QC_Wall-R17.1, interior"]= {"foundation_wall_type":"solid concrete",
@@ -1161,7 +1161,7 @@ class MapHPXML:
                                                                  "foundation_wall_assembly_r":"auto",
                                                                  "rim_joist_continuous_exterior_r":0,
                                                                  "rim_joist_continuous_interior_r":17.1,
-                                                                 "rim_joist_assembly_interior_r":13.68, #LLb a verifier *0.8
+                                                                 "rim_joist_assembly_interior_r":17.1,#13.68, #LLb a verifier *0.8
                                                                  "rim_joist_assembly_r":"auto"}
         
         dct_Insulation_Foundation_Wall["QC_Wall-R17, interior"]=  {"foundation_wall_type":"solid concrete",
@@ -1173,22 +1173,20 @@ class MapHPXML:
                                                                  "foundation_wall_assembly_r":"auto",
                                                                  "rim_joist_continuous_exterior_r":0,
                                                                  "rim_joist_continuous_interior_r":17,
-                                                                 "rim_joist_assembly_interior_r":13.6, #LLb a verifier *0.8
+                                                                 "rim_joist_assembly_interior_r":17,#13.6, #LLb a verifier *0.8
                                                                  "rim_joist_assembly_r":"auto"}
         
-        #defaut
-        arg = "Insulation Foundation Wall"
-        if (arg in dct_args.keys()):
-            for args in dct_Insulation_Foundation_Wall["None"]:
-                if ((args not in dct_HPXML.keys()) & (dct_Insulation_Foundation_Wall["None"][args]!="auto")):
-                    dct_HPXML[args] = dct_Insulation_Foundation_Wall["None"][args]
-
         arg = "Insulation Foundation Wall"
         if (arg in dct_args.keys()):
             for args in dct_Insulation_Foundation_Wall[dct_args[arg]]:
                 if ((args not in dct_HPXML.keys()) & (dct_Insulation_Foundation_Wall[dct_args[arg]][args]!="auto")):
                     dct_HPXML[args] = dct_Insulation_Foundation_Wall[dct_args[arg]][args]
-
+        #defaut
+        #arg = "Insulation Foundation Wall"
+        #if (arg in dct_args.keys()):
+        #    for args in dct_Insulation_Foundation_Wall["None"]:
+        #        if ((args not in dct_HPXML.keys()) & (dct_Insulation_Foundation_Wall["None"][args]!="auto")):
+        #            dct_HPXML[args] = dct_Insulation_Foundation_Wall["None"][args]
 
         #_________________________________________________________________
         #Geometry Wall Exterior Finish
@@ -1212,11 +1210,11 @@ class MapHPXML:
                 if ((args not in dct_HPXML.keys()) & (dct_Geometry_Wall_Exterior_Finish[dct_args[arg]][args]!="auto")):
                     dct_HPXML[args] = dct_Geometry_Wall_Exterior_Finish[dct_args[arg]][args]
         #defaut
-        arg = "Geometry Wall Exterior Finish"
-        if (arg in dct_args.keys()):
-            for args in dct_Geometry_Wall_Exterior_Finish["None"]:
-                if ((args not in dct_HPXML.keys()) & (dct_Geometry_Wall_Exterior_Finish["None"][args]!="auto")):
-                    dct_HPXML[args] = dct_Geometry_Wall_Exterior_Finish["None"][args]
+        #arg = "Geometry Wall Exterior Finish"
+        #if (arg in dct_args.keys()):
+        #    for args in dct_Geometry_Wall_Exterior_Finish["None"]:
+        #        if ((args not in dct_HPXML.keys()) & (dct_Geometry_Wall_Exterior_Finish["None"][args]!="auto")):
+        #            dct_HPXML[args] = dct_Geometry_Wall_Exterior_Finish["None"][args]
         
         #________________________________________________________________
         #geometry_garage_width
@@ -1252,7 +1250,7 @@ class MapHPXML:
         if max_garage_depth>24:
             garage_depth = 24 #12 / 24 / 36 taille du garage
         else:
-            garage_depth = max_garage_depth
+            garage_depth = max_garage_depth*0.9
 
         #if max_garage_width>36:
         #    garage_width = 36 #12 / 24 / 36 taille du garage
@@ -1261,7 +1259,7 @@ class MapHPXML:
         elif max_garage_width>12:
             garage_width = 12
         else:
-            garage_width = max_garage_width
+            garage_width = max_garage_width *0.8
 
         if dct_HPXML["geometry_unit_cfa"] <=2000:
             if garage_depth>12:
@@ -1580,7 +1578,7 @@ class MapHPXML:
         # Adiabatic Floor/Ceiling
         #site_shielding_of_home
         #arg = "Geometry Building Level"
-        #args = "geometry_unit_level"
+        #args = "geometry_unit_level"Geometry Building Level
         #if (args not in dct_HPXML.keys()):
         #    if (arg in dct_args.keys()):
         #        if dct_args[arg] in ["Bottom"]:
@@ -1592,7 +1590,7 @@ class MapHPXML:
         #        else:
         #            pass
         #remplace dct_HPXML["geometry_unit_level"] par dct_args.get(arg)
-        arg = "Geometry Building Level"
+        arg = ""
         if dct_args.get(arg) == 'Bottom':
             if dct_HPXML.get("geometry_unit_num_floors_above_grade") > 1: # this could be "bottom" of a 1-story building
                 dct_HPXML["geometry_attic_type"] = "BelowApartment"
@@ -2118,7 +2116,10 @@ class MapHPXML:
                 elif dct_args[arg] in ["Central"]:
                     dct_HPXML[argHPXML] = "other multifamily buffer space"
                 else:
-                    dct_HPXML[argHPXML] = "other multifamily buffer space"
+                    if dct_args["Type_Logement"] in ["Maison individuelle"]:
+                        dct_HPXML[argHPXML] = "conditioned space"
+                    elif dct_args["Type_Logement"] in ["Maison en rangee","Collective", "Triplex", "Duplex"]:
+                        dct_HPXML[argHPXML] = "other multifamily buffer space"
                     #dct_HPXML[argHPXML] = None
                     #dct_HPXML["water_heater_type"] = None #if no water heater
 

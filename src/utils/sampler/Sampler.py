@@ -183,7 +183,12 @@ class BuildstockBatchArguments():
         dct_housing_characteristics_csv["Door Rvalue.csv"] = {"Name": "Door Rvalue",
                                             "Description": "Door Rvalue",
                                             "Source":"ResStock"} 
-
+        dct_housing_characteristics_csv["Geometry Foundation Type.csv"] = {"Name": "Geometry Foundation Type",
+                                                    "Description": "Type de fondation géométrique",
+                                                    "Source":"ResStock"}
+        dct_housing_characteristics_csv["Insulation Floor.csv"] = {"Name": "Insulation Floor",
+                                            "Description": "Type d'isolation du plancher",
+                                            "Source":""}
         #dct_housing_characteristics_csv["Water Heater in Unit.csv"] = {"Name": "Water Heater in Unit",
         #                                            "Description": "Chauffeau dans le logement",
         #                                            "Source":""}
@@ -219,11 +224,13 @@ class BuildstockBatchArguments():
                          "Geometry Building Number Units",
                          "Geometry Building Horizontal Location",
                          "Geometry Building Level",
+                         "Geometry Foundation Type",
                          #"Infiltration",#Dans le BN
                         "Windows",
                         "Insulation Wall",
                         "Insulation Ceiling",
                         "Insulation Foundation Wall",
+                        "Insulation Floor",
                         "Geometry Wall Exterior Finish",
                         "geometry attic type",
                         "HVAC Has Shared System",
@@ -612,131 +619,23 @@ class MapHPXML:
 
         #________________________________________________________________ 
         #Geometry Foundation Type
-        arg = "Presence_SousSol"
-        args = "geometry_foundation_type"
-        if (args not in dct_HPXML.keys()):
-            if (arg in dct_args.keys()):
-                if (dct_HPXML.get("geometry_unit_type") in ["apartment unit"]):
-                    if dct_args[arg] == "Sous sol 6 pied":
-                        dct_HPXML[args] = "UnconditionedBasement"
-                    elif dct_args[arg] == "Vide sanitaire moins 6 pieds":
-                        dct_HPXML[args] = "UnventedCrawlspace" #
-                    elif dct_args[arg] == "Aucun Sous-sol ou vide sanitaire":
-                        dct_HPXML[args] = "SlabOnGrade"
-                    elif dct_args[arg] == "Sous-sol et vide sanitaire":
-                        dct_HPXML[args] = "UnventedCrawlspace"
-                else:
-                    if dct_args[arg] == "Sous sol 6 pied":
-                        dct_HPXML[args] = "ConditionedBasement"
-                    elif dct_args[arg] == "Vide sanitaire moins 6 pieds":
-                        dct_HPXML[args] = "UnventedCrawlspace" #"ConditionedCrawlspace"
-                    elif dct_args[arg] == "Aucun Sous-sol ou vide sanitaire":
-                        dct_HPXML[args] = "SlabOnGrade"
-                    elif dct_args[arg] == "Sous-sol et vide sanitaire":
-                        dct_HPXML[args] = "UnventedCrawlspace"
-            else:
-                if self.HPXMLArg.arguments[args].get("Default Value", "Defaut_Not_Existing")!="Defaut_Not_Existing":
-                    dct_HPXML[args] = self.HPXMLArg.arguments[args].get("Default Value")
-                else:
-                    if (dct_HPXML.get("geometry_unit_type") in ["apartment unit"]):
-                        dct_HPXML[args] = "UnconditionedBasement"
-                    else:
-                        dct_HPXML[args] = "ConditionedBasement"
 
-        #geometry_foundation_height
-        arg = "Presence_SousSol"
-        args = "geometry_foundation_height"
-        if (args not in dct_HPXML.keys()):
-            if (arg in dct_args.keys()):
-                if (dct_HPXML.get("geometry_unit_type") in ["apartment unit"]):
-                    if dct_args[arg] == "Sous sol 6 pied":
-                        dct_HPXML[args] = 8
-                    elif dct_args[arg] == "Vide sanitaire moins 6 pieds":
-                        dct_HPXML[args] = 4
-                    elif dct_args[arg] == "Aucun Sous-sol ou vide sanitaire":
-                        dct_HPXML[args] = 0
-                    elif dct_args[arg] == "Sous-sol et vide sanitaire":
-                        dct_HPXML[args] = 4
-                else:
-                    if dct_args[arg] == "Sous sol 6 pied":
-                        dct_HPXML[args] = 8
-                    elif dct_args[arg] == "Vide sanitaire moins 6 pieds":
-                        dct_HPXML[args] = 4
-                    elif dct_args[arg] == "Aucun Sous-sol ou vide sanitaire":
-                        dct_HPXML[args] = 0
-                    elif dct_args[arg] == "Sous-sol et vide sanitaire":
-                        dct_HPXML[args] = 4
-            else:
-                if self.HPXMLArg.arguments[args].get("Default Value", "Defaut_Not_Existing")!="Defaut_Not_Existing":
-                    dct_HPXML[args] = self.HPXMLArg.arguments[args].get("Default Value")
-                else:
-                    if (dct_HPXML.get("geometry_unit_type") in ["apartment unit"]):
-                        dct_HPXML[args] = 8
-                    else:
-                        dct_HPXML[args] = 8
+        dict_Geometry_Foundation_Type = {}
+        dict_Geometry_Foundation_Type["Slab"] = {"geometry_foundation_type":"SlabOnGrade", "geometry_foundation_height":0, "geometry_foundation_height_above_grade":0, "geometry_rim_joist_height":0}
+        dict_Geometry_Foundation_Type["Unheated Basement"] = {"geometry_foundation_type":"UnconditionedBasement", "geometry_foundation_height":8, "geometry_foundation_height_above_grade":1, "geometry_rim_joist_height":9.25}
+        dict_Geometry_Foundation_Type["Vented Crawlspace"] = {"geometry_foundation_type":"VentedCrawlspace", "geometry_foundation_height":4, "geometry_foundation_height_above_grade":1, "geometry_rim_joist_height":9.25}
+        dict_Geometry_Foundation_Type["Heated Basement"] = {"geometry_foundation_type":"ConditionedBasement", "geometry_foundation_height":8, "geometry_foundation_height_above_grade":1, "geometry_rim_joist_height":9.25}
+        dict_Geometry_Foundation_Type["Conditioned Crawlspace"] = {"geometry_foundation_type":"ConditionedCrawlspace", "geometry_foundation_height":4, "geometry_foundation_height_above_grade":1, "geometry_rim_joist_height":9.25}
+        dict_Geometry_Foundation_Type["Ambient"] = {"geometry_foundation_type":"Ambient", "geometry_foundation_height":4, "geometry_foundation_height_above_grade":4, "geometry_rim_joist_height":0}
+        dict_Geometry_Foundation_Type["Unvented Crawlspace"] = {"geometry_foundation_type":"UnventedCrawlspace", "geometry_foundation_height":4, "geometry_foundation_height_above_grade":1, "geometry_rim_joist_height":9.25}
 
-        #geometry_foundation_height_above_grade
-        arg = "Presence_SousSol"
-        args = "geometry_foundation_height_above_grade"
-        if (args not in dct_HPXML.keys()):
-            if (arg in dct_args.keys()):
-                if (dct_HPXML.get("geometry_unit_type") in ["apartment unit"]):
-                    if dct_args[arg] == "Sous sol 6 pied":
-                        dct_HPXML[args] = 1
-                    elif dct_args[arg] == "Vide sanitaire moins 6 pieds":
-                        dct_HPXML[args] = 1
-                    elif dct_args[arg] == "Aucun Sous-sol ou vide sanitaire":
-                        dct_HPXML[args] = 0
-                    elif dct_args[arg] == "Sous-sol et vide sanitaire":
-                        dct_HPXML[args] = 1
-                else:
-                    if dct_args[arg] == "Sous sol 6 pied":
-                        dct_HPXML[args] = 1
-                    elif dct_args[arg] == "Vide sanitaire moins 6 pieds":
-                        dct_HPXML[args] = 1
-                    elif dct_args[arg] == "Aucun Sous-sol ou vide sanitaire":
-                        dct_HPXML[args] = 0
-                    elif dct_args[arg] == "Sous-sol et vide sanitaire":
-                        dct_HPXML[args] = 1
-            else:
-                if self.HPXMLArg.arguments[args].get("Default Value", "Defaut_Not_Existing")!="Defaut_Not_Existing":
-                    dct_HPXML[args] = self.HPXMLArg.arguments[args].get("Default Value")
-                else:
-                    if (dct_HPXML.get("geometry_unit_type") in ["apartment unit"]):
-                        dct_HPXML[args] = 1
-                    else:
-                        dct_HPXML[args] = 1
+        arg = "Geometry Foundation Type"
+        #args = "geometry_foundation_type"
+        if (arg in dct_args.keys()):
+            for args in dict_Geometry_Foundation_Type[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) & (dict_Geometry_Foundation_Type[dct_args[arg]][args]!="auto")):
+                    dct_HPXML[args] = dict_Geometry_Foundation_Type[dct_args[arg]][args]
 
-        #geometry_rim_joist_height
-        args = "geometry_rim_joist_height"
-        if (args not in dct_HPXML.keys()):
-            if (arg in dct_args.keys()):
-                if (dct_HPXML.get("geometry_unit_type") in ["apartment unit"]):
-                    if dct_args[arg] == "Sous sol 6 pied":
-                        dct_HPXML[args] = 9.25
-                    elif dct_args[arg] == "Vide sanitaire moins 6 pieds":
-                        dct_HPXML[args] = 9.25
-                    elif dct_args[arg] == "Aucun Sous-sol ou vide sanitaire":
-                        dct_HPXML[args] = 0
-                    elif dct_args[arg] == "Sous-sol et vide sanitaire":
-                        dct_HPXML[args] = 9.25
-                else:
-                    if dct_args[arg] == "Sous sol 6 pied":
-                        dct_HPXML[args] = 9.25
-                    elif dct_args[arg] == "Vide sanitaire moins 6 pieds":
-                        dct_HPXML[args] = 9.25
-                    elif dct_args[arg] == "Aucun Sous-sol ou vide sanitaire":
-                        dct_HPXML[args] = 0
-                    elif dct_args[arg] == "Sous-sol et vide sanitaire":
-                        dct_HPXML[args] = 9.25
-            else:
-                if self.HPXMLArg.arguments[args].get("Default Value", "Defaut_Not_Existing")!="Defaut_Not_Existing":
-                    dct_HPXML[args] = self.HPXMLArg.arguments[args].get("Default Value")
-                else:
-                    if (dct_HPXML.get("geometry_unit_type") in ["apartment unit"]):
-                        dct_HPXML[args] = 9.25
-                    else:
-                        dct_HPXML[args] = 9.25
         #________________________________________________________________
 
         dct_windows = {}
@@ -1188,6 +1087,21 @@ class MapHPXML:
         #        if ((args not in dct_HPXML.keys()) & (dct_Insulation_Foundation_Wall["None"][args]!="auto")):
         #            dct_HPXML[args] = dct_Insulation_Foundation_Wall["None"][args]
 
+        #_________________________________________________________________
+        # Insulation Floor
+        dct_Insulation_Floor = {}
+        dct_Insulation_Floor["Uninsulated"] = {"floor_type":"WoodFrame", "floor_over_foundation_assembly_r":5.3, "floor_over_garage_assembly_r":5.3}
+        dct_Insulation_Floor["Ceiling R-19"] = {"floor_type":"WoodFrame", "floor_over_foundation_assembly_r":22.6, "floor_over_garage_assembly_r":22.6}
+        dct_Insulation_Floor["Ceiling R-30"] = {"floor_type":"WoodFrame", "floor_over_foundation_assembly_r":30.3, "floor_over_garage_assembly_r":30.3}
+        dct_Insulation_Floor["Ceiling R-38"] = {"floor_type":"WoodFrame", "floor_over_foundation_assembly_r":35.1, "floor_over_garage_assembly_r":35.1}
+        dct_Insulation_Floor["None"] = {"floor_type":"WoodFrame", "floor_over_foundation_assembly_r":0, "floor_over_garage_assembly_r":5.3} # defaut
+        dct_Insulation_Floor["Ceiling R-13"] = {"floor_type":"WoodFrame", "floor_over_foundation_assembly_r":17.8, "floor_over_garage_assembly_r":17.8}
+
+        arg = "Insulation Floor"
+        if (arg in dct_args.keys()):
+            for args in dct_Insulation_Floor[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) & (dct_Insulation_Floor[dct_args[arg]][args]!="auto")):
+                    dct_HPXML[args] = dct_Insulation_Floor[dct_args[arg]][args]
         #_________________________________________________________________
         #Geometry Wall Exterior Finish
         #Geometry_Wall_Exterior_Finish

@@ -291,7 +291,27 @@ def Page_Echantilloneur():
         
         selected_preset = st.selectbox("🎯 Préréglages rapides", list(presets.keys()))
         
-        if selected_preset != "Aucun":
+        # Initialize last_preset tracker ONCE here
+        if 'last_preset' not in st.session_state:
+            st.session_state.last_preset = "Aucun"
+        
+        # Initialize selected nodes in session state if not exists
+        if 'selected_constraint_nodes' not in st.session_state:
+            st.session_state.selected_constraint_nodes = []
+        
+        # If preset changed, update the constraint nodes and force rerun
+        if selected_preset != st.session_state.last_preset:
+            st.session_state.last_preset = selected_preset
+            if selected_preset != "Aucun":
+                st.session_state.settings = presets[selected_preset]
+                st.session_state.selected_constraint_nodes = list(presets[selected_preset].keys())
+            else:
+                st.session_state.settings = {}
+                st.session_state.selected_constraint_nodes = []
+            st.rerun()  # Force rerun to update multiselect
+        
+        # Update settings if preset selected (for non-preset-change case)
+        if selected_preset != "Aucun" and not st.session_state.selected_constraint_nodes:
             st.session_state.settings = presets[selected_preset]
         
         # Advanced parameter selection
@@ -300,35 +320,40 @@ def Page_Echantilloneur():
             search = st.text_input("🔍 Rechercher une variable", "")
             filtered_nodes = [n for n in lst_NOEUD if search.lower() in n.lower()]
             
-            Noeuds_contraints = st.multiselect(
-                "Sélectionner les variables à contraindre:",
-                filtered_nodes if search else lst_NOEUD,
-                default=list(st.session_state.settings.keys())
-            )
-            
-            settings = {}
-            for input_var in Noeuds_contraints:
-                col_a, col_b = st.columns([1, 2])
-                with col_a:
-                    st.markdown(f"**{input_var}**")
-                with col_b:
-                    default_idx = 0
-                    if input_var in st.session_state.settings:
-                        try:
-                            default_idx = list(LIST_Dict[input_var].values()).index(
-                                st.session_state.settings[input_var]
-                            )
-                        except ValueError:
-                            pass
-                    
-                    settings[input_var] = st.selectbox(
-                        f"Valeur pour {input_var}",
-                        options=list(LIST_Dict[input_var].values()),
-                        index=default_idx,
-                        key=f"select_{input_var}"
-                    )
-            
-            st.session_state.settings = settings
+        # Multiselect with default from session_state
+        Noeuds_contraints = st.multiselect(
+            "Sélectionner les variables à contraindre:",
+            filtered_nodes if search else lst_NOEUD,
+            default=st.session_state.selected_constraint_nodes,
+            key="multiselect_constraints"
+        )
+        
+        # Update session_state after user interaction
+        #st.session_state.selected_constraint_nodes = Noeuds_contraints
+        
+        settings = {}
+        for input_var in Noeuds_contraints:
+            col_a, col_b = st.columns([1, 2])
+            with col_a:
+                st.markdown(f"**{input_var}**")
+            with col_b:
+                default_idx = 0
+                if input_var in st.session_state.settings:
+                    try:
+                        default_idx = list(LIST_Dict[input_var].values()).index(
+                            st.session_state.settings[input_var]
+                        )
+                    except ValueError:
+                        pass
+                
+                settings[input_var] = st.selectbox(
+                    f"Valeur pour {input_var}",
+                    options=list(LIST_Dict[input_var].values()),
+                    index=default_idx,
+                    key=f"select_{input_var}"
+                )
+        
+        st.session_state.settings = settings
     
     with col2:
         st.subheader("📊 Résumé de la configuration")
@@ -715,17 +740,74 @@ def BaysianNetwork():
     LIST_Dict = InsClsSampler.LIST_Dict
     pdfDataDescription = load_data_description()
     
-    # Enhanced tabs
-    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
+    # Initialize selected tab in session state
+    if 'selected_bn_tab' not in st.session_state:
+        st.session_state.selected_bn_tab = "📊 Description"
+    
+    # Tab configuration
+    tab_names = [
         "📊 Description",
         "🕸️ Réseau",
         "📋 Nœuds",
         "🎲 CPT",
         "🔍 Inférence",
         "📈 Analyse"
-    ])
+    ]
     
-    with tab1:
+    # Custom CSS for tab-like buttons
+    st.markdown("""
+    <style>
+    div[data-testid="column"] button[kind="secondary"] {
+        width: 100%;
+        border-radius: 8px 8px 0px 0px;
+        border: none;
+        background-color: #f0f2f6;
+        color: #31333F;
+        padding: 12px 24px;
+        font-size: 14px;
+        font-weight: 400;
+        height: 50px;
+    }
+    div[data-testid="column"] button[kind="secondary"]:hover {
+        background-color: #e0e2e6;
+        border-color: transparent;
+        color: #31333F;
+    }
+    div[data-testid="column"] button[kind="primary"] {
+        width: 100%;
+        border-radius: 8px 8px 0px 0px;
+        border: none;
+        background-color: #ff4b4b !important;
+        color: white !important;
+        padding: 12px 24px;
+        font-size: 14px;
+        font-weight: 600;
+        height: 50px;
+    }
+    div[data-testid="column"] button[kind="primary"]:hover {
+        background-color: #ff3333 !important;
+        border-color: transparent !important;
+        color: white !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
+    # Create tab buttons
+    cols = st.columns(6)
+    for idx, tab_name in enumerate(tab_names):
+        with cols[idx]:
+            is_selected = (st.session_state.selected_bn_tab == tab_name)
+            btn_type = "primary" if is_selected else "secondary"
+            if st.button(tab_name, key=f"bn_tab_{idx}", type=btn_type, use_container_width=True):
+                st.session_state.selected_bn_tab = tab_name
+                st.rerun()
+    
+    st.markdown("---")
+    
+    selected_tab = st.session_state.selected_bn_tab
+    
+    # Tab 1: Description
+    if selected_tab == "📊 Description":
         st.subheader("Description des données")
         
         # Search functionality
@@ -743,7 +825,8 @@ def BaysianNetwork():
         col_s2.metric("Nombre d'arcs", InsClsSampler.bn.sizeArcs())
         col_s3.metric("Complexité max", max([InsClsSampler.bn.variable(i).domainSize() for i in InsClsSampler.bn.nodes()]))
     
-    with tab2:
+    # Tab 2: Réseau
+    elif selected_tab == "🕸️ Réseau":
         st.subheader("Visualisation du réseau")
         
         col_v1, col_v2, col_v3 = st.columns(3)
@@ -759,7 +842,8 @@ def BaysianNetwork():
                 svgtxt = bn_svg(InsClsSampler.bn, evs=None, Inference=check_stats, size=selected_size)
                 components.html(svgtxt, height=900, scrolling=True)
     
-    with tab3:
+    # Tab 3: Nœuds
+    elif selected_tab == "📋 Nœuds":
         st.subheader("Liste des nœuds et valeurs possibles")
         
         # Node search
@@ -773,9 +857,9 @@ def BaysianNetwork():
                 
                 # Display as columns for better readability
                 n_cols = 3
-                cols = st.columns(n_cols)
+                cols_node = st.columns(n_cols)
                 for idx, val in enumerate(values_list):
-                    cols[idx % n_cols].markdown(f"• {val}")
+                    cols_node[idx % n_cols].markdown(f"• {val}")
                 
                 # Node statistics
                 node_id = InsClsSampler.bn.idFromName(node)
@@ -784,7 +868,8 @@ def BaysianNetwork():
                 
                 st.markdown(f"**Parents:** {n_parents} | **Enfants:** {n_children}")
     
-    with tab4:
+    # Tab 4: CPT
+    elif selected_tab == "🎲 CPT":
         st.subheader("Tables de Probabilités Conditionnelles (CPT)")
         
         col_cpt1, col_cpt2 = st.columns([2, 1])
@@ -815,7 +900,8 @@ def BaysianNetwork():
                 "text/csv"
             )
     
-    with tab5:
+    # Tab 5: Inférence
+    elif selected_tab == "🔍 Inférence":
         st.subheader("Moteur d'inférence")
         
         st.markdown("""
@@ -827,8 +913,20 @@ def BaysianNetwork():
         with col_inf1:
             st.markdown("#### 🎯 Configuration des observations")
             
+            # Initialize inference constraint nodes in session state
+            if 'inference_constraint_nodes' not in st.session_state:
+                st.session_state.inference_constraint_nodes = []
+            
             settings = {}
-            Noeuds_contraints = st.multiselect("Variables à observer:", lst_NOEUD)
+            Noeuds_contraints = st.multiselect(
+                "Variables à observer:", 
+                lst_NOEUD,
+                #default=st.session_state.inference_constraint_nodes,
+                key="inference_multiselect"
+            )
+            
+            # Update session state
+            st.session_state.inference_constraint_nodes = Noeuds_contraints
             
             for input_var in Noeuds_contraints:
                 settings[input_var] = st.selectbox(
@@ -852,15 +950,11 @@ def BaysianNetwork():
             if show_probs and settings:
                 st.markdown("#### 📊 Distributions marginales après observation")
                 ie = gum.LazyPropagation(InsClsSampler.bn)
-                ie.setEvidence(settings)  # Set all evidence at once
+                ie.setEvidence(settings)
                 ie.makeInference()
                 
-                # Convert to list and get subset
                 all_nodes = list(lst_NOEUD)
-                # Filter out observed nodes
                 unobserved_nodes = [n for n in all_nodes if n not in settings]
-                
-                # Show selected number of variables
                 nodes_to_display = unobserved_nodes[:num_vars_to_show]
                 
                 st.markdown(f"**Affichage des {len(nodes_to_display)} premières variables non observées:**")
@@ -873,23 +967,16 @@ def BaysianNetwork():
                         with st.expander(f"📊 {node_name}", expanded=False):
                             col_p1, col_p2 = st.columns([2, 1])
                             with col_p1:
-                                # FIX: Handle different posterior_df formats correctly
                                 if isinstance(posterior_df, pd.Series):
-                                    # Simple Series - direct access
                                     x_vals = [str(x) for x in posterior_df.index.tolist()]
                                     y_vals = posterior_df.values.tolist()
                                 elif isinstance(posterior_df, pd.DataFrame):
-                                    # DataFrame case - may have multi-index or single column
                                     if posterior_df.shape[1] == 1:
-                                        # Single column DataFrame
                                         x_vals = [str(idx) for idx in posterior_df.index]
                                         y_vals = posterior_df.iloc[:, 0].values.tolist()
                                     else:
-                                        # Multi-column DataFrame - flatten and use first column
                                         posterior_df = posterior_df.reset_index(drop=False)
-                                        # Get the last column (probabilities)
                                         prob_col = posterior_df.columns[-1]
-                                        # Create labels from all other columns
                                         label_cols = [c for c in posterior_df.columns if c != prob_col]
                                         if label_cols:
                                             x_vals = posterior_df[label_cols].astype(str).agg(' | '.join, axis=1).tolist()
@@ -897,19 +984,15 @@ def BaysianNetwork():
                                             x_vals = [str(i) for i in range(len(posterior_df))]
                                         y_vals = posterior_df[prob_col].tolist()
                                 else:
-                                    # Fallback for unexpected types
                                     x_vals = [str(i) for i in range(len(posterior_df))]
                                     y_vals = list(posterior_df)
                                 
-                                # Ensure same length before plotting
                                 if len(x_vals) != len(y_vals):
                                     st.warning(f"Incohérence de données pour {node_name}: {len(x_vals)} labels vs {len(y_vals)} valeurs")
-                                    # Truncate to shortest
                                     min_len = min(len(x_vals), len(y_vals))
                                     x_vals = x_vals[:min_len]
                                     y_vals = y_vals[:min_len]
                                 
-                                # Create figure
                                 fig = px.bar(
                                     x=x_vals,
                                     y=y_vals,
@@ -932,8 +1015,9 @@ def BaysianNetwork():
                         st.code(traceback.format_exc())
             elif show_probs and not settings:
                 st.info("Configurez au moins une observation pour voir les distributions marginales.")
-                
-    with tab6:
+    
+    # Tab 6: Analyse
+    elif selected_tab == "📈 Analyse":
         st.subheader("Analyse structurelle du réseau")
         
         # Network metrics

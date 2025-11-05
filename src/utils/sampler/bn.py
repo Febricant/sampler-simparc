@@ -132,7 +132,7 @@ class EUEMr(Master_genereBN):
             dct_dependancy = dct_housing_characteristics[Attributs]["Dependency"]
             dct_option = dct_housing_characteristics[Attributs]["Option"]
             df = dct_housing_characteristics[Attributs]["Table"]
-
+            
             # remove option if only 0
             option_remove = []
             for option, option_name in dct_option.items():
@@ -144,7 +144,7 @@ class EUEMr(Master_genereBN):
             # add node
             Node_name = Attributs
             Node_value  = dct_option.keys()
-            self.bn.add(gum.LabelizedVariable(Node_name, Node_name, [str(i) for i in Node_value]))   # par key [1,2,99]
+            self.bn.add(gum.LabelizedVariable(Node_name, Node_name, [str(i.split("Option=")[-1]) for i in Node_value]))   # par key [1,2,99]
 
             # add dependency (i.e. add arcs)
             for dep in list(dct_dependancy.values())[::-1]:

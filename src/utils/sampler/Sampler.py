@@ -1262,7 +1262,7 @@ class MapHPXML:
         args = "air_leakage_value"
         if (args not in dct_HPXML.keys()):
             if (arg in dct_args.keys()):
-                if dct_args[arg] == ["1 ACH50","2 ACH50","3 ACH50","4 ACH50","5 ACH50","6 ACH50","7 ACH50","8 ACH50","10 ACH50","15 ACH50","20 ACH50","25 ACH50","30 ACH50","40 ACH50","50 ACH50"]:
+                if dct_args[arg] in ["1 ACH50","2 ACH50","3 ACH50","4 ACH50","5 ACH50","6 ACH50","7 ACH50","8 ACH50","10 ACH50","15 ACH50","20 ACH50","25 ACH50","30 ACH50","40 ACH50","50 ACH50"]:
                     dct_HPXML[args] = int(dct_args[arg].split(" ")[0]) #1,2,3,4,5,6,7,8,10,15,20,25,30,40,50
                 else:#defaut
                     if self.HPXMLArg.arguments[args].get("Default Value", "Defaut_Not_Existing")!="Defaut_Not_Existing":

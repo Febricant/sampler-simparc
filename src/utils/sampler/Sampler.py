@@ -189,6 +189,10 @@ class BuildstockBatchArguments():
         dct_housing_characteristics_csv["Insulation Floor.csv"] = {"Name": "Insulation Floor",
                                             "Description": "Type d'isolation du plancher",
                                             "Source":""}
+        dct_housing_characteristics_csv["Plug Load.csv"] = {"Name": "Plug Load",
+                                            "Description": "Charge électrique des appareils aux prises",
+                                            "Source":""}
+                                            
         #dct_housing_characteristics_csv["Water Heater in Unit.csv"] = {"Name": "Water Heater in Unit",
         #                                            "Description": "Chauffeau dans le logement",
         #                                            "Source":""}
@@ -248,7 +252,8 @@ class BuildstockBatchArguments():
                         "Diswasher Usage Level",
                         "Lighting Usage Level",
                         "Door Area",
-                        "Door Rvalue"]
+                        "Door Rvalue",
+                        "Plug Load"]
                         
                         
                         #"Geometry Attic Type",
@@ -1789,6 +1794,8 @@ class MapHPXML:
             if (arg in dct_args.keys()):
                 if dct_args[arg] == "Aucune_VE_Aucune_VHR":
                     dct_HPXML[argHPXML] = False
+                    dct_HPXML["misc_plug_loads_vehicle_usage_multiplier"]=0
+                    dct_HPXML["misc_plug_loads_vehicle_2_usage_multiplier"] = 0
                 else:
                     dct_HPXML[argHPXML] = True
                     if dct_args[arg] == "Une_VE_Aucune_VHR":
@@ -2331,6 +2338,74 @@ class MapHPXML:
                 if ((args not in dct_HPXML.keys()) & (dct_DoorsArea[dct_args[arg]][args]!="auto")):
                     dct_HPXML[args] = dct_DoorsArea[dct_args[arg]][args]
 
+
+        #if args[:misc_plug_loads_other_annual_kwh].to_s == Constants.Auto
+        #    if [HPXML::ResidentialTypeSFD].include?(args[:geometry_unit_type])
+        #        args[:misc_plug_loads_other_annual_kwh] = 1146.95 + 296.94 * args[:geometry_unit_num_occupants] + 0.3 * args[:geometry_unit_cfa] # RECS 2015
+        #    elsif [HPXML::ResidentialTypeSFA].include?(args[:geometry_unit_type])
+        #        args[:misc_plug_loads_other_annual_kwh] = 1395.84 + 136.53 * args[:geometry_unit_num_occupants] + 0.16 * args[:geometry_unit_cfa] # RECS 2015
+        #    elsif [HPXML::ResidentialTypeApartment].include?(args[:geometry_unit_type])
+        #        args[:misc_plug_loads_other_annual_kwh] = 875.22 + 184.11 * args[:geometry_unit_num_occupants] + 0.38 * args[:geometry_unit_cfa] # RECS 2015
+        #    end
+        #    end
+        #traduction du code
+        # Plug Load
+        
+        dict_PlugLoadsUsage = {}
+        dict_PlugLoadsUsage["78%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 0.78, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["79%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 0.79, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["82%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 0.82, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["84%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 0.84, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["85%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 0.85, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["86%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 0.86, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["89%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 0.89, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["91%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 0.91, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["93%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 0.93, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["94%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 0.94, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["95%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 0.95, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["96%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 0.96, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["97%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 0.97, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["99%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 0.99, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["100%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 1.0, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["101%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 1.01, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["102%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 1.02, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["103%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 1.03, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["104%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 1.04, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["105%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 1.05, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["106%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 1.06, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["108%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 1.08, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["110%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 1.1, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["113%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 1.13, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["119%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 1.19, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["121%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 1.21, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["123%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 1.23, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["134%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 1.34, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["137%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 1.37, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["140%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 1.4, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["144%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 1.44, "misc_plug_loads_television_present": False}
+        dict_PlugLoadsUsage["166%"] = {"misc_plug_loads_other_annual_kwh": "auto", "misc_plug_loads_other_frac_sensible": 0.93, "misc_plug_loads_other_frac_latent": 0.021, "misc_plug_loads_other_usage_multiplier": 1.66, "misc_plug_loads_television_present": False}
+
+        arg = "Plug Loads"
+        if (arg in dct_args.keys()):
+            for args in dict_PlugLoadsUsage[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) & (dict_PlugLoadsUsage[dct_args[arg]][args]!="auto")):
+                    dct_HPXML["misc_plug_loads_television_annual_kwh"] = 0.0 # "other" now accounts for television
+                    dct_HPXML["misc_plug_loads_television_usage_multiplier"] = 0.0 # "other" now accounts for television
+
+                    dct_HPXML[args] = dict_PlugLoadsUsage[dct_args[arg]][args]
+                    
+                    if dct_args["Type_Logement"] in ["Maison individuelle"]:
+                        dct_HPXML["misc_plug_loads_other_annual_kwh"] = 1146.95 + 296.94 * dct_args["Nombre_Occupants"] + 0.3 * dct_args["geometry_unit_cfa"] # RECS 2015
+                    elif dct_args["Type_Logement"] in ["Maison mitoyenne"]:
+                        dct_HPXML["misc_plug_loads_other_annual_kwh"] = 1395.84 + 136.53 * dct_args["Nombre_Occupants"] + 0.16 * dct_args["geometry_unit_cfa"] # RECS 2015
+                    elif dct_args["Type_Logement"] in ["Appartement"]:
+                        dct_HPXML["misc_plug_loads_other_annual_kwh"] = 875.22 + 184.11 * dct_args["Nombre_Occupants"] + 0.38 * dct_args["geometry_unit_cfa"] # RECS 2015
+
+            # Traitement de misc_plug_loads_other_annual_kwh car auto  
+            # Plug Loads
+             #dct_HPXML["misc_plug_loads_other_usage_multiplier"] = float(dct_HPXML.get("misc_plug_loads_other_usage_multiplier",1)) * float(dct_HPXML.get("misc_plug_loads_other_2_usage_multiplier", 1.0))
+            #dct_HPXML["misc_plug_loads_well_pump_usage_multiplier"] = float(dct_HPXML.get("misc_plug_loads_well_pump_usage_multiplier",1)) * float(dct_HPXML.get("misc_plug_loads_well_pump_2_usage_multiplier", 1.0))
+            #dct_HPXML["misc_plug_loads_vehicle_usage_multiplier"] = float(dct_HPXML.get("misc_plug_loads_vehicle_usage_multiplier",1)) * float(dct_HPXML.get("misc_plug_loads_vehicle_2_usage_multiplier", 1.0))
 
         # ajout des Valeurs par défaut du HPXML si cle n'existe pas
         k_missing = list(set(self.HPXMLArg.arguments.keys()) - set(dct_HPXML.keys()))

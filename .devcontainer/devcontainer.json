@@ -1,0 +1,20 @@
+{
+    "name": "OpenStudio Python DevContainer",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "python.defaultInterpreterPath": "/workspaces/LTE-OpenStudioCLI-Test/.venv/bin/python3"
+            },
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+				"ms-toolsai.jupyter",
+				"ms-toolsai.datawrangler"
+            ]
+        }
+    },
+    "postCreateCommand": "uv sync"
+}

@@ -1,0 +1,19 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# ignore the folder "results"
+results
+
+# ignore the folder "openstudio-3.9.0"
+openstudio-3.9.0
+
+# ignore dask output
+dask-report-*

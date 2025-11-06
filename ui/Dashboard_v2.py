@@ -54,7 +54,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
     menu_items={
         'Get Help': 'https://github.com/yourusername/LTE-Sampler-Residential',
-        'Report a bug': "https://github.com/yourusername/LTE-Sampler-Residential/issues",
+        #'Report a bug': "https://github.com/yourusername/LTE-Sampler-Residential/issues",
         'About': "# ResStock-QC Dashboard v2.0\nBayesian Network sampling tool for residential buildings."
     }
 )
@@ -218,7 +218,7 @@ def bn_posterior(bn, evidence: dict, varname: str):
 def render_sidebar():
     """Render enhanced sidebar with settings and controls."""
     with st.sidebar:
-        st.image("https://via.placeholder.com/150x50/ff4b4b/ffffff?text=ResStock-QC", use_container_width=True)
+        #st.image("https://via.placeholder.com/150x50/ff4b4b/ffffff?text=ResStock-QC", use_container_width=True)
                 
         # Data folder selector
         st.subheader("📁 Dossiers de données")
@@ -512,12 +512,12 @@ def Page_Echantilloneur():
         dfHPXML = sim['dfHPXML']
         dfAll = sim['dfAll']
         
-        # Initialize active tab in session state
-        if 'active_results_tab' not in st.session_state:
-            st.session_state.active_results_tab = 0
+        # Initialize selected results tab in session state
+        if 'selected_results_tab' not in st.session_state:
+            st.session_state.selected_results_tab = "📋 Échantillons"
         
-        # Results tabs
-        tab_names = [
+        # Results tab configuration
+        results_tab_names = [
             "📋 Échantillons", 
             "🗺️ Mapping HPXML", 
             "📊 Statistiques", 
@@ -525,22 +525,60 @@ def Page_Echantilloneur():
             "💾 Export"
         ]
         
-        # Create tab selector that persists across reruns
-        selected_tab_name = st.radio(
-            "Sélectionner une section:",
-            tab_names,
-            index=st.session_state.active_results_tab,
-            horizontal=True,
-            key="results_tab_selector"
-        )
+        # Custom CSS for tab-like buttons (same as BaysianNetwork)
+        st.markdown("""
+        <style>
+        div[data-testid="column"] button[kind="secondary"] {
+            width: 100%;
+            border-radius: 8px 8px 0px 0px;
+            border: none;
+            background-color: #f0f2f6;
+            color: #31333F;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 400;
+            height: 50px;
+        }
+        div[data-testid="column"] button[kind="secondary"]:hover {
+            background-color: #e0e2e6;
+            border-color: transparent;
+            color: #31333F;
+        }
+        div[data-testid="column"] button[kind="primary"] {
+            width: 100%;
+            border-radius: 8px 8px 0px 0px;
+            border: none;
+            background-color: #ff4b4b !important;
+            color: white !important;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            height: 50px;
+        }
+        div[data-testid="column"] button[kind="primary"]:hover {
+            background-color: #ff3333 !important;
+            border-color: transparent !important;
+            color: white !important;
+        }
+        </style>
+        """, unsafe_allow_html=True)
         
-        # Update session state
-        st.session_state.active_results_tab = tab_names.index(selected_tab_name)
+        # Create results tab buttons
+        cols = st.columns(5)
+        for idx, tab_name in enumerate(results_tab_names):
+            with cols[idx]:
+                is_selected = (st.session_state.selected_results_tab == tab_name)
+                btn_type = "primary" if is_selected else "secondary"
+                if st.button(tab_name, key=f"results_tab_{idx}", type=btn_type, use_container_width=True):
+                    st.session_state.selected_results_tab = tab_name
+                    st.rerun()
         
         st.markdown("---")
         
+        selected_results_tab = st.session_state.selected_results_tab
+        
         # Tab 1: Échantillons
-        if selected_tab_name == "📋 Échantillons":
+        if selected_results_tab == "📋 Échantillons":
             st.subheader("Données d'échantillonnage")
             
             # Filters
@@ -564,12 +602,12 @@ def Page_Echantilloneur():
                 st.dataframe(style_dataframe(df_display), use_container_width=True)
         
         # Tab 2: Mapping HPXML
-        elif selected_tab_name == "🗺️ Mapping HPXML":
+        elif selected_results_tab == "🗺️ Mapping HPXML":
             st.subheader("Mapping HPXML")
             st.dataframe(style_dataframe(dfHPXML), use_container_width=True)
         
         # Tab 3: Statistiques
-        elif selected_tab_name == "📊 Statistiques":
+        elif selected_results_tab == "📊 Statistiques":
             st.subheader("Statistiques descriptives")
             
             if add_statistics:
@@ -595,7 +633,7 @@ def Page_Echantilloneur():
                         st.plotly_chart(fig, use_container_width=True)
         
         # Tab 4: Visualisations
-        elif selected_tab_name == "📈 Visualisations":
+        elif selected_results_tab == "📈 Visualisations":
             if add_visualizations:
                 st.subheader("Visualisations interactives")
                 
@@ -683,7 +721,7 @@ def Page_Echantilloneur():
                                     st.plotly_chart(fig_diff, use_container_width=True)
         
         # Tab 5: Export
-        elif selected_tab_name == "💾 Export":
+        elif selected_results_tab == "💾 Export":
             st.subheader("Export des données")
             
             col_e1, col_e2, col_e3 = st.columns(3)

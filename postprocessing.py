@@ -34,6 +34,8 @@ def postprocess_results(i):
 	i['last_step'] = out_osw['steps'][out_osw['current_step']-1].get('measure_dir_name', None)
 	i['failure_message'] = out_osw['steps'][out_osw['current_step']-1]['result'].get('step_errors', None)
 	if i['status'] == 'Success':
+		# Collect all columns names
+		columns_to_be_str = list(i.keys())
 		# Add the annual results
 		results_annual_path = os.path.join(building_dir, 'run', 'results_annual.csv')
 		df_annual_results = pd.read_csv(results_annual_path,header=None)
@@ -41,6 +43,7 @@ def postprocess_results(i):
 		i.update(dict_annual_results)
 		# Convert the dictionary to a pandas DataFrame and save it as a parquet file
 		dfMetadata = pd.DataFrame([i])
+		dfMetadata[columns_to_be_str] = dfMetadata[columns_to_be_str].astype(str)
 		tableMetadata = pa.Table.from_pandas(dfMetadata)
 		pq.write_to_dataset(tableMetadata, 
 							root_path=os.path.join(results_dir, 'metadata.parquet'), 

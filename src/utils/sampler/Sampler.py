@@ -49,7 +49,7 @@ import sys
 import yaml
 import numpy as np
 import pandas as pd
-
+import random
 FILE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_DIR = os.path.abspath(FILE_DIR+ "/../" +"/../" + "/../")  # répertoire supérieur
 #PACKAGE_DIR = os.path.abspath(PROJECT_DIR+ "/../")
@@ -57,6 +57,42 @@ sys.path.append(os.path.join(PROJECT_DIR))
 
 from src.utils.sampler.Master_genereBN import Master_genereBN
 from src.utils.hpxml.HPXMLArg import HPXMLArguments
+
+def HConsignes():
+    """
+        Initialise les paramètres aléatoires pour le setback et les variations horaires.
+        Méthode permettant de déterminer les paramètres aléatoires liés au chauffage & à la climatisation.
+            1 - self.dev1 : heure setback AM montee température
+            2 - self.dev2 : heure setback AM descente température
+            3 - self.dev3 : heure setback PM montee température
+            4 - self.dev4 : heure setback PM descente température
+                           ___TM____              ___TS____                  
+                          |         |            |         |                 
+              0h___TN___h1|       h2|____TJ____h3|       h4|___TN_____24h    
+                
+
+            Nuit (temperature)
+                           __TM_________TJ___________TS____                  
+                          |                                |
+              0h___TN __h1|       h2           h3        h4|___TN______24h   
+
+    """
+
+    # Variations horaires aléatoires
+    dev1 = random.uniform(-3, 3)#randnb(3)
+    dev2 = random.uniform(-3, 3)
+    dev3 = random.uniform(-3, 3)
+    dev4 = random.uniform(-3, 3)
+    dev5 = random.uniform(-1, 1)
+    dev6 = random.uniform(-1, 1)
+    
+    # Calcul des heures de changement de consigne
+    h1 = 6 + 6/60 + (dev1 * 0.75 - dev2 * 0.25)
+    h2 = 8 + (dev1 * 0.75 + dev2 * 0.25)
+    h3 = 16 + 20/60 + (dev3 * 0.5 - dev4 * 0.5)
+    h4 = min(22 + 17/60 + (dev3 * 0.5 + dev4 * 0.5), 23 + 59/60)
+    return [h1, h2, h3, h4]
+
 
 class Sampler(Master_genereBN):
     '''
@@ -323,6 +359,14 @@ class BuildstockBatchArguments():
                         dct_args2[Attributs] = int(dct_args2[Attributs])
             
             lst_dct_args2.append(dct_args2)
+        
+        #ajout des Heures de changement de température (h1 à h4)
+        h1, h2, h3, h4= HConsignes()
+        lst_dct_args2.append({"Tconsignes_chauffage_H1": h1})
+        lst_dct_args2.append({"Tconsignes_chauffage_H2": h2})
+        lst_dct_args2.append({"Tconsignes_chauffage_H3": h3})
+        lst_dct_args2.append({"Tconsignes_chauffage_H4": h4})
+
         return lst_dct_args2
 
 class MapHPXML:
@@ -1147,7 +1191,13 @@ class MapHPXML:
             if dct_HPXML.get("geometry_unit_cfa") < 750:
                 dct_HPXML[argHPXML]=0.75
             else:
-                dct_HPXML[argHPXML]=0.5      
+                dct_HPXML[argHPXML]=0.5   
+        # Certains logements créés des problèmes de geometry (>2étages) 
+        # Resstick considère qu'il n'y a pas de garage pour de nombreux cas(Geometry Garage csv)
+        # On change la protusion pour éviter des erreur de geometry 
+        if dct_HPXML.get("geometry_unit_num_floors_above_grade")>=2:
+            dct_HPXML[argHPXML]=1
+
 
 
         if ((dct_HPXML.get("geometry_foundation_type") == "ConditionedBasement") and (dct_HPXML.get("geometry_attic_type") == "ConditionedAttic")):
@@ -1163,28 +1213,32 @@ class MapHPXML:
         lr = (dct_HPXML["geometry_unit_cfa"] / num_floors) / fb
         length = fb
         width = lr
-
-        max_garage_depth = width / (1.0 - dct_HPXML["geometry_garage_protrusion"]) -1#length -1
-        max_garage_width = length-1 #width / (1.0 - dct_HPXML["geometry_garage_protrusion"]) -1
-        if max_garage_depth>24:
-            garage_depth = 24 #12 / 24 / 36 taille du garage
+        #Si protusion de 1 on suppose que le garage est détaché 
+        if dct_HPXML["geometry_garage_protrusion"]==1:
+            max_garage_width = 12
+            max_garage_depth = 24
         else:
-            garage_depth = max_garage_depth*0.9
+            max_garage_depth = width / (1.0 - dct_HPXML["geometry_garage_protrusion"]) -1#length -1
+            max_garage_width = length-1 #width / (1.0 - dct_HPXML["geometry_garage_protrusion"]) -1
+            if max_garage_depth>24:
+                garage_depth = 24 #12 / 24 / 36 taille du garage
+            else:
+                garage_depth = max_garage_depth*0.9
 
-        #if max_garage_width>36:
-        #    garage_width = 36 #12 / 24 / 36 taille du garage
-        if max_garage_width>24:
-            garage_width = 24
-        elif max_garage_width>12:
-            garage_width = 12
-        else:
-            garage_width = max_garage_width *0.8
+            #if max_garage_width>36:
+            #    garage_width = 36 #12 / 24 / 36 taille du garage
+            if max_garage_width>24:
+                garage_width = 24
+            elif max_garage_width>12:
+                garage_width = 12
+            else:
+                garage_width = max_garage_width *0.8
 
-        if dct_HPXML["geometry_unit_cfa"] <=2000:
-            if garage_depth>12:
-                garage_depth =12
-            if garage_width>20:
-                garage_width =20
+            if dct_HPXML["geometry_unit_cfa"] <=2000:
+                if garage_depth>12:
+                    garage_depth =12
+                if garage_width>20:
+                    garage_width =20
 
         arg = "Presence_Garage"
         argHPXML = "geometry_garage_width"
@@ -1200,7 +1254,7 @@ class MapHPXML:
                         #geometry_garage_position
                         dct_HPXML["geometry_garage_position"] = "Right"
                     else:
-                        dct_HPXML[argHPXML] = 0 #Pas de garage pour les plex/appartemnt
+                        dct_HPXML[argHPXML] = 0 #Pas de garage pour les plex/appartemnt # on pourrait les ajouter avec une protusion de 1 (garage détaché)
                         dct_HPXML["geometry_garage_depth"] = 0
                         #geometry_garage_position
                         dct_HPXML["geometry_garage_position"] = "Right"

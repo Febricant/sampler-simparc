@@ -227,8 +227,11 @@ class BuildstockBatchArguments():
                                             "Source":""}
         dct_housing_characteristics_csv["Plug Load.csv"] = {"Name": "Plug Load",
                                             "Description": "Charge électrique des appareils aux prises",
-                                            "Source":""}
-                                            
+                                            "Source":""}                         
+        dct_housing_characteristics_csv["Heating Setpoint.csv"] = {"Name": "Heating Setpoint",
+                                            "Description": "Consigne de chauffage",
+                                            "Source":"Sondage Sensibilisation intégrée"}
+
         #dct_housing_characteristics_csv["Water Heater in Unit.csv"] = {"Name": "Water Heater in Unit",
         #                                            "Description": "Chauffeau dans le logement",
         #                                            "Source":""}
@@ -289,7 +292,8 @@ class BuildstockBatchArguments():
                         "Lighting Usage Level",
                         "Door Area",
                         "Door Rvalue",
-                        "Plug Load"]
+                        "Plug Load",
+                        "Heating Setpoint"]
                         
                         
                         #"Geometry Attic Type",
@@ -1215,8 +1219,8 @@ class MapHPXML:
         width = lr
         #Si protusion de 1 on suppose que le garage est détaché 
         if dct_HPXML["geometry_garage_protrusion"]==1:
-            max_garage_width = 12
-            max_garage_depth = 24
+            garage_width = 12
+            garage_depth = 24
         else:
             max_garage_depth = width / (1.0 - dct_HPXML["geometry_garage_protrusion"]) -1#length -1
             max_garage_width = length-1 #width / (1.0 - dct_HPXML["geometry_garage_protrusion"]) -1

@@ -362,15 +362,15 @@ class BuildstockBatchArguments():
                                      "Geometry Building Number Units"]:
                         dct_args2[Attributs] = int(dct_args2[Attributs])
             
-            lst_dct_args2.append(dct_args2)
-        
-        #ajout des Heures de changement de température (h1 à h4)
-        h1, h2, h3, h4= HConsignes()
-        lst_dct_args2.append({"Tconsignes_chauffage_H1": h1})
-        lst_dct_args2.append({"Tconsignes_chauffage_H2": h2})
-        lst_dct_args2.append({"Tconsignes_chauffage_H3": h3})
-        lst_dct_args2.append({"Tconsignes_chauffage_H4": h4})
 
+                #ajout des Heures de changement de température (h1 à h4)
+                h1, h2, h3, h4= HConsignes()
+                dct_args2["Tconsignes_chauffage_H1"] = h1
+                dct_args2["Tconsignes_chauffage_H2"] = h2
+                dct_args2["Tconsignes_chauffage_H3"] = h3
+                dct_args2["Tconsignes_chauffage_H4"] = h4
+
+            lst_dct_args2.append(dct_args2)
         return lst_dct_args2
 
 class MapHPXML:

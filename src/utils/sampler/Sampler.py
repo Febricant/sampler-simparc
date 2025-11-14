@@ -232,6 +232,16 @@ class BuildstockBatchArguments():
                                             "Description": "Consigne de chauffage",
                                             "Source":"Sondage Sensibilisation intégrée"}
 
+        dct_housing_characteristics_csv["Garage Heating Setpoint.csv"] = {"Name": "Garage Heating Setpoint",
+                                            "Description": "Consigne de chauffage du garage",
+                                            "Source":"Sondage Sensibilisation intégrée"}
+        dct_housing_characteristics_csv["Cooling Setpoint.csv"] = {"Name": "Cooling Setpoint",
+                                            "Description": "Consigne de climatisation",
+                                            "Source":"Sondage Sensibilisation intégrée"}
+        dct_housing_characteristics_csv["Basement Heating Setpoint.csv"] = {"Name": "Basement Heating Setpoint",
+                                            "Description": "Consigne de chauffage du sous-sol",
+                                            "Source":"Sondage Sensibilisation intégrée"}
+
         #dct_housing_characteristics_csv["Water Heater in Unit.csv"] = {"Name": "Water Heater in Unit",
         #                                            "Description": "Chauffeau dans le logement",
         #                                            "Source":""}
@@ -293,8 +303,10 @@ class BuildstockBatchArguments():
                         "Door Area",
                         "Door Rvalue",
                         "Plug Load",
-                        "Heating Setpoint"]
-                        
+                        "Heating Setpoint",
+                        "Cooling Setpoint",
+                        "Garage Heating Setpoint",
+                        "Basement Heating Setpoint"]
                         
                         #"Geometry Attic Type",
                         # "Geometry Building Horizontal Location MF",
@@ -1202,8 +1214,6 @@ class MapHPXML:
         if dct_HPXML.get("geometry_unit_num_floors_above_grade")>=2:
             dct_HPXML[argHPXML]=1
 
-
-
         if ((dct_HPXML.get("geometry_foundation_type") == "ConditionedBasement") and (dct_HPXML.get("geometry_attic_type") == "ConditionedAttic")):
             num_floors = dct_HPXML.get("geometry_unit_num_floors_above_grade") +1-1
         elif (dct_HPXML.get("geometry_foundation_type") == "ConditionedBasement"):
@@ -1220,7 +1230,11 @@ class MapHPXML:
         #Si protusion de 1 on suppose que le garage est détaché 
         if dct_HPXML["geometry_garage_protrusion"]==1:
             garage_width = 12
-            garage_depth = 24
+            garage_depth = 22
+            if garage_width>width:
+                garage_width = width*0.75
+            if garage_depth>length:
+                garage_depth = length*0.75
         else:
             max_garage_depth = width / (1.0 - dct_HPXML["geometry_garage_protrusion"]) -1#length -1
             max_garage_width = length-1 #width / (1.0 - dct_HPXML["geometry_garage_protrusion"]) -1
@@ -2464,6 +2478,55 @@ class MapHPXML:
              #dct_HPXML["misc_plug_loads_other_usage_multiplier"] = float(dct_HPXML.get("misc_plug_loads_other_usage_multiplier",1)) * float(dct_HPXML.get("misc_plug_loads_other_2_usage_multiplier", 1.0))
             #dct_HPXML["misc_plug_loads_well_pump_usage_multiplier"] = float(dct_HPXML.get("misc_plug_loads_well_pump_usage_multiplier",1)) * float(dct_HPXML.get("misc_plug_loads_well_pump_2_usage_multiplier", 1.0))
             #dct_HPXML["misc_plug_loads_vehicle_usage_multiplier"] = float(dct_HPXML.get("misc_plug_loads_vehicle_usage_multiplier",1)) * float(dct_HPXML.get("misc_plug_loads_vehicle_2_usage_multiplier", 1.0))
+
+        #Simplify hourly heating setpoint if not using stochastic profiles
+        pdtempo_H = pd.Series([0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0,21.0,22.0,23.0])
+    
+        filtre_Tnuit = (pdtempo_H < dct_args["Tconsignes_chauffage_H1"]) | (pdtempo_H >= dct_args["Tconsignes_chauffage_H4"])
+        filtre_Tjour = (pdtempo_H >= dct_args["Tconsignes_chauffage_H2"]) & (pdtempo_H < dct_args["Tconsignes_chauffage_H3"])
+        filtre_Tmatin = (pdtempo_H >= dct_args["Tconsignes_chauffage_H1"]) & (pdtempo_H < dct_args["Tconsignes_chauffage_H2"])
+        filtre_Tsoir = (pdtempo_H >= dct_args["Tconsignes_chauffage_H3"]) & (pdtempo_H < dct_args["Tconsignes_chauffage_H4"])
+
+        Tnuit = float(eval(dct_args['Heating Setpoint'])[2])*9/5+32 #F
+        Tmatin = float(eval(dct_args['Heating Setpoint'])[1])*9/5+32 #F
+        Tjour = float(eval(dct_args['Heating Setpoint'])[0])*9/5+32 #F
+        Tsoir = float(eval(dct_args['Heating Setpoint'])[1])*9/5+32 #F
+        
+        pdtempo_T= pdtempo_H.copy()
+        pdtempo_T.loc[filtre_Tnuit] = Tnuit
+        pdtempo_T.loc[filtre_Tjour] = Tjour
+        pdtempo_T.loc[filtre_Tmatin] = Tmatin
+        pdtempo_T.loc[filtre_Tsoir] = Tsoir
+        pdtempo_T.tolist()
+        separator = ","
+        [str(element) for element in pdtempo_T.tolist()]
+        hvac_control_heating_setpoint = separator.join([str(element) for element in pdtempo_T.tolist()])
+        
+        arg = "Heating Setpoint"
+        args = "hvac_control_heating_weekday_setpoint"
+        
+        if (args not in dct_HPXML.keys()):
+            if (arg in dct_args.keys()):
+                dct_HPXML[args] = hvac_control_heating_setpoint
+
+        arg = "Heating Setpoint"
+        args = "hvac_control_heating_weekend_setpoint"
+        if (args not in dct_HPXML.keys()):
+            if (arg in dct_args.keys()):
+                #convert list to str
+                dct_HPXML[args] = hvac_control_heating_setpoint
+
+        arg = "Cooling Setpoint"
+        args = "hvac_control_cooling_weekday_setpoint"
+        if (args not in dct_HPXML.keys()):
+            if (arg in dct_args.keys()):
+                dct_HPXML[args] = separator.join([str(float(dct_args[arg]) *9/5+32)]*24) # conversion C to F , Tjour
+
+        arg = "Cooling Setpoint"
+        args = "hvac_control_cooling_weekend_setpoint"
+        if (args not in dct_HPXML.keys()):
+            if (arg in dct_args.keys()):
+                dct_HPXML[args] = separator.join([str(float(dct_args[arg]) *9/5+32)]*24) # conversion C to F , Tjour
 
         # ajout des Valeurs par défaut du HPXML si cle n'existe pas
         k_missing = list(set(self.HPXMLArg.arguments.keys()) - set(dct_HPXML.keys()))

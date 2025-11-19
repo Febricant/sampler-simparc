@@ -73,6 +73,7 @@ id,Nom,Description,Valeurs,Dépendance (parents),Dépendance (enfants),Échantil
 ,Garage Heating Setpoint,Consigne de chauffage du garage,"['10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24']",[],[],BuildstockBatchArguments,Sondage Sensibilisation intégrée
 ,Cooling Setpoint,Consigne de climatisation,"['18', '19', '20', '21', '22', '23', '24', '25', '26']","['Chauffage_Logement', 'Climatisation']",[],BuildstockBatchArguments,Sondage Sensibilisation intégrée
 ,Basement Heating Setpoint,Consigne de chauffage du sous-sol,"['10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24']",[],[],BuildstockBatchArguments,Sondage Sensibilisation intégrée
+,Mechanical Ventilation,Mechanical Ventilation,['None'],[],[],BuildstockBatchArguments,
 ,Tconsignes_chauffage_H1,Heure du début du changement de consigne de chauffage pour le matin,[],[],[],Code,
 ,Tconsignes_chauffage_H2,Heure de fin du changement de consigne de chauffage pour le matin,[],[],[],Code,
 ,Tconsignes_chauffage_H3,Heure du début du changement de consigne de chauffage pour le soir,[],[],[],Code,

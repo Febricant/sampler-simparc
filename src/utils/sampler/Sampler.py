@@ -242,6 +242,10 @@ class BuildstockBatchArguments():
                                             "Description": "Consigne de chauffage du sous-sol",
                                             "Source":"Sondage Sensibilisation intégrée"}
 
+        dct_housing_characteristics_csv["Mechanical Ventilation.csv"] = {"Name": "Mechanical Ventilation",
+                                            "Description": "Mechanical Ventilation",
+                                            "Source":""}
+
         #dct_housing_characteristics_csv["Water Heater in Unit.csv"] = {"Name": "Water Heater in Unit",
         #                                            "Description": "Chauffeau dans le logement",
         #                                            "Source":""}
@@ -306,7 +310,8 @@ class BuildstockBatchArguments():
                         "Heating Setpoint",
                         "Cooling Setpoint",
                         "Garage Heating Setpoint",
-                        "Basement Heating Setpoint"]
+                        "Basement Heating Setpoint",
+                        "Mechanical Ventilation"]
                         
                         #"Geometry Attic Type",
                         # "Geometry Building Horizontal Location MF",
@@ -2527,6 +2532,19 @@ class MapHPXML:
         if (args not in dct_HPXML.keys()):
             if (arg in dct_args.keys()):
                 dct_HPXML[args] = separator.join([str(float(dct_args[arg]) *9/5+32)]*24) # conversion C to F , Tjour
+
+        #Ventilation mechanique
+        dict_MechVentilation = {}
+        dict_MechVentilation["ERV, 72%"] = {"mech_vent_fan_type":"energy recovery ventilator", "mech_vent_flow_rate":"auto", "mech_vent_hours_in_operation":"auto", "mech_vent_recovery_efficiency_type":"Unadjusted", "mech_vent_total_recovery_efficiency":0.48, "mech_vent_sensible_recovery_efficiency":0.72, "mech_vent_fan_power":"auto", "mech_vent_num_units_served":1, "mech_vent_2_fan_type":"none", "mech_vent_2_flow_rate":0, "mech_vent_2_hours_in_operation":0, "mech_vent_2_recovery_efficiency_type":"Unadjusted", "mech_vent_2_total_recovery_efficiency":0, "mech_vent_2_sensible_recovery_efficiency":0, "mech_vent_2_fan_power":0, "whole_house_fan_present":False, "whole_house_fan_flow_rate":0, "whole_house_fan_power":0, "mech_vent_shared_frac_recirculation":"auto", "mech_vent_shared_precooling_efficiency":"auto", "mech_vent_shared_precooling_fraction_cool_load_served":"auto", "mech_vent_shared_precooling_fuel":"auto", "mech_vent_shared_preheating_efficiency":"auto", "mech_vent_shared_preheating_fraction_heat_load_served":"auto", "mech_vent_shared_preheating_fuel":"auto"}
+        dict_MechVentilation["HRV, 60%"] = {"mech_vent_fan_type":"heat recovery ventilator", "mech_vent_flow_rate":"auto", "mech_vent_hours_in_operation":"auto", "mech_vent_recovery_efficiency_type":"Unadjusted", "mech_vent_total_recovery_efficiency":0, "mech_vent_sensible_recovery_efficiency":0.6, "mech_vent_fan_power":"auto", "mech_vent_num_units_served":1, "mech_vent_2_fan_type":"none", "mech_vent_2_flow_rate":0, "mech_vent_2_hours_in_operation":0, "mech_vent_2_recovery_efficiency_type":"Unadjusted", "mech_vent_2_total_recovery_efficiency":0, "mech_vent_2_sensible_recovery_efficiency":0, "mech_vent_2_fan_power":0, "whole_house_fan_present":False, "whole_house_fan_flow_rate":0, "whole_house_fan_power":0, "mech_vent_shared_frac_recirculation":"auto", "mech_vent_shared_precooling_efficiency":"auto", "mech_vent_shared_precooling_fraction_cool_load_served":"auto", "mech_vent_shared_precooling_fuel":"auto", "mech_vent_shared_preheating_efficiency":"auto", "mech_vent_shared_preheating_fraction_heat_load_served":"auto", "mech_vent_shared_preheating_fuel":"auto"}
+        dict_MechVentilation["Exhaust"] = {"mech_vent_fan_type":"exhaust only", "mech_vent_flow_rate":"auto", "mech_vent_hours_in_operation":"auto", "mech_vent_recovery_efficiency_type":"Unadjusted", "mech_vent_total_recovery_efficiency":0, "mech_vent_sensible_recovery_efficiency":0, "mech_vent_fan_power":"auto", "mech_vent_num_units_served":1, "mech_vent_2_fan_type":"none", "mech_vent_2_flow_rate":0, "mech_vent_2_hours_in_operation":0, "mech_vent_2_recovery_efficiency_type":"Unadjusted", "mech_vent_2_total_recovery_efficiency":0, "mech_vent_2_sensible_recovery_efficiency":0, "mech_vent_2_fan_power":0, "whole_house_fan_present":False, "whole_house_fan_flow_rate":0, "whole_house_fan_power":0, "mech_vent_shared_frac_recirculation":"auto", "mech_vent_shared_precooling_efficiency":"auto", "mech_vent_shared_precooling_fraction_cool_load_served":"auto", "mech_vent_shared_precooling_fuel":"auto", "mech_vent_shared_preheating_efficiency":"auto", "mech_vent_shared_preheating_fraction_heat_load_served":"auto", "mech_vent_shared_preheating_fuel":"auto"}
+        dict_MechVentilation["None"] = {"mech_vent_fan_type":"none", "mech_vent_flow_rate":0, "mech_vent_hours_in_operation":0, "mech_vent_recovery_efficiency_type":"Unadjusted", "mech_vent_total_recovery_efficiency":0, "mech_vent_sensible_recovery_efficiency":0, "mech_vent_fan_power":0, "mech_vent_num_units_served":0, "mech_vent_2_fan_type":"none", "mech_vent_2_flow_rate":0, "mech_vent_2_hours_in_operation":0, "mech_vent_2_recovery_efficiency_type":"Unadjusted", "mech_vent_2_total_recovery_efficiency":0, "mech_vent_2_sensible_recovery_efficiency":0, "mech_vent_2_fan_power":0, "whole_house_fan_present":False, "whole_house_fan_flow_rate":0, "whole_house_fan_power":0, "mech_vent_shared_frac_recirculation":"auto", "mech_vent_shared_precooling_efficiency":"auto", "mech_vent_shared_precooling_fraction_cool_load_served":"auto", "mech_vent_shared_precooling_fuel":"auto", "mech_vent_shared_preheating_efficiency":"auto", "mech_vent_shared_preheating_fraction_heat_load_served":"auto", "mech_vent_shared_preheating_fuel":"auto"}
+        arg = "Mechanical Ventilation"
+        if (arg in dct_args.keys()):
+            for args in dict_MechVentilation[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) & (dict_MechVentilation[dct_args[arg]][args]!="auto")):
+                    dct_HPXML[args] = dict_MechVentilation[dct_args[arg]][args]
+
 
         # ajout des Valeurs par défaut du HPXML si cle n'existe pas
         k_missing = list(set(self.HPXMLArg.arguments.keys()) - set(dct_HPXML.keys()))

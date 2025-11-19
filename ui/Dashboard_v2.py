@@ -41,7 +41,8 @@ import plotly.graph_objects as go
 FILE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_DIR = os.path.abspath(FILE_DIR + "/../")
 sys.path.append(os.path.join(PROJECT_DIR))
-from src.utils.sampler.Sampler import Sampler, BuildstockBatchArguments, MapHPXML
+from src.utils.sampler.Sampler import Sampler
+from src.utils.sampler.Mapping import BuildstockBatchArguments, MapHPXML
 
 import warnings
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
@@ -129,8 +130,7 @@ if 'last_simulation' not in st.session_state:
 @st.cache_resource
 def load_sampler(path):
     """Load and cache the Bayesian Network sampler."""
-    ins = Sampler()
-    ins.Load_BN(path)
+    ins = Sampler(path)
     return ins
 
 @st.cache_data(hash_funcs={gum.BayesNet: lambda b: id(b)})
@@ -437,15 +437,14 @@ def Page_Echantilloneur():
             if seed > 0:
                 np.random.seed(seed)
             
-            df = InsClsSampler.do_Sampling(Nombre_de_Samples, evs=st.session_state.settings)
+            df = InsClsSampler.GUM_Sampling(Nombre_de_Samples, evs=st.session_state.settings)
             lst_dct_args = df.to_dict(orient='records')
             
             # Step 2: Add external variables
             status_text.text("➕ Ajout de variables additionnelles...")
             progress_bar.progress(40)
-            
-            Bba = BuildstockBatchArguments()
-            lst_dct_args2 = Bba.sampling(lst_dct_args)
+
+            lst_dct_args2 = InsClsSampler.resstock_args_sampling(lst_dct_args)
             lst_dct_args = [d1 | d2 for d1, d2 in zip(lst_dct_args, lst_dct_args2)]
             
             # Step 3: HPXML Mapping

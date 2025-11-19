@@ -1,24 +1,24 @@
-Module LTE-Sampler-Residential.src.utils.sampler.Master_genereBN
+Module LTE-Sampler-Residential.src.utils.sampler.bayesian_network
 ================================================================
-Master_genereBN.py
+bayesian_network.py
 ==================
-Master_genereBN class for generating and manipulating Bayesian Networks (BN) using the pyAgrum library.
+bayesian_network class for generating and manipulating Bayesian Networks (BN) using the pyAgrum library.
 This class provides methods to save, load, plot Bayesian Networks, and load data from CSV or Excel files. 
 It also includes functionality for sampling from the Bayesian Network.
 Methods:
-    __init__(): Initializes the Master_genereBN object.
+    __init__(): Initializes the bayesian_network object.
     Save_BN(pathfile): Saves the current Bayesian Network to the specified file path.
     Load_BN(pathfile): Loads a Bayesian Network from the specified file path.
     Plot_BN(): Plots the current Bayesian Network using the appropriate visualization library.
     Load_csv(stFileName, sep=','): Loads data from a CSV file into a DataFrame.
     Load_excel(stFileName, sheet_name=None): Loads data from an Excel file into a DataFrame.
-    Gum_Sampling(number, Multiplicateur=1, evs={}): Generates samples from the Bayesian Network based on the specified number and multiplier.
+    draw_GUM_Sample(number, Multiplicateur=1, evs={}): Generates samples from the Bayesian Network based on the specified number and multiplier.
     do_Sampling(numberOfSamples, evs={}): Performs sampling from the Bayesian Network, ensuring the specified number of samples is returned.
 Attributes:
     bn: The Bayesian Network object.
     dfcsv: The DataFrame containing loaded data from CSV or Excel files.
 
-This module defines the `Master_genereBN` class, which provides functionality for:
+This module defines the `bayesian_network` class, which provides functionality for:
 1. Loading and saving Bayesian Networks (BNs) using the `pyAgrum` library.
 2. Visualizing Bayesian Networks.
 3. Loading data from CSV and Excel files.
@@ -36,8 +36,8 @@ Author:
 Classes
 -------
 
-`Master_genereBN()`
-:   Master_genereBN class
+`bayesian_network()`
+:   bayesian_network class
     A class to manage Bayesian Networks (BNs) using the pyAgrum library.
     
     This class provides methods to:
@@ -47,20 +47,20 @@ Classes
     - Perform sampling on Bayesian Networks.
     
     Methods:
-    - __init__(): Initializes the Master_genereBN class.
+    - __init__(): Initializes the bayesian_network class.
     - Save_BN(pathfile: str) -> None: Saves the Bayesian Network to a specified file.
     - Load_BN(pathfile: str) -> None: Loads a Bayesian Network from a specified file.
     - Plot_BN() -> None: Visualizes the Bayesian Network.
     - Load_csv(stFileName: str, sep: str = ',') -> None: Loads data from a CSV file into a DataFrame.
     - Load_excel(stFileName: str, sheet_name: str = None) -> None: Loads data from an Excel file into a DataFrame.
-    - Gum_Sampling(number: int, Multiplicateur: int = 1, evs: dict = {}) -> pd.DataFrame: Generates samples from the Bayesian Network.
+    - draw_GUM_Sample(number: int, Multiplicateur: int = 1, evs: dict = {}) -> pd.DataFrame: Generates samples from the Bayesian Network.
     - do_Sampling(numberOfSamples: int, evs: dict = {}) -> pd.DataFrame: Performs sampling on the Bayesian Network and returns a DataFrame of samples.
     
-    Initialize the Master_genereBN class.
+    Initialize the bayesian_network class.
 
     ### Methods
 
-    `Gum_Sampling(self, number, Multiplicateur=1, evs={})`
+    `draw_GUM_Sample(self, number, Multiplicateur=1, evs={})`
     :   Generates samples from a Bayesian network using the Gum library.
         
         Parameters:
@@ -137,5 +137,5 @@ Classes
         Returns:
             pd.DataFrame: A DataFrame containing the sampled data, reset to a new index.
         Notes:
-            The function first attempts to generate samples using the Gum_Sampling method. 
+            The function first attempts to generate samples using the draw_GUM_Sample method. 
             If the initial sample size is insufficient, it continues to sample until the desired number of samples is reached.

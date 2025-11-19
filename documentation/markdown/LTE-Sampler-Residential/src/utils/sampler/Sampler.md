@@ -83,7 +83,7 @@ Classes
 
     ### Ancestors (in MRO)
 
-    * src.utils.sampler.Master_genereBN.Master_genereBN
+    * src.utils.sampler.bayesian_network.bayesian_network
 
     ### Methods
 

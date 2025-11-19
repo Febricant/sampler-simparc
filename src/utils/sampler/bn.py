@@ -24,7 +24,7 @@ import pyagrum as gum
 
 from src.utils.euemr.EUEMRArg import Attribut_EUEMr
 from src.utils.euemr.EUEMr import FormatageEUEMr
-from src.utils.sampler.Master_genereBN import Master_genereBN
+from src.utils.sampler.bayesian_network import bayesian_network
 
 #import json
 
@@ -36,7 +36,7 @@ PROJECT_DIR = os.path.abspath(FILE_DIR+ "/../"+ "/../"+ "/../")  # répertoire s
 #PACKAGE_DIR = os.path.abspath(PROJECT_DIR+ "/../")
 #sys.path.append(os.path.join(PACKAGE_DIR))
 
-class EUEMr(Master_genereBN):
+class EUEMr(bayesian_network):
     '''
     Class qui permet de générer un réseau bayésien à partir des données EUEMr.
     '''

@@ -156,7 +156,7 @@ python 3.11</p>
             dct_dependancy = dct_housing_characteristics[Attributs][&#34;Dependency&#34;]
             dct_option = dct_housing_characteristics[Attributs][&#34;Option&#34;]
             df = dct_housing_characteristics[Attributs][&#34;Table&#34;]
-
+            
             # remove option if only 0
             option_remove = []
             for option, option_name in dct_option.items():
@@ -168,7 +168,7 @@ python 3.11</p>
             # add node
             Node_name = Attributs
             Node_value  = dct_option.keys()
-            self.bn.add(gum.LabelizedVariable(Node_name, Node_name, [str(i) for i in Node_value]))   # par key [1,2,99]
+            self.bn.add(gum.LabelizedVariable(Node_name, Node_name, [str(i.split(&#34;Option=&#34;)[-1]) for i in Node_value]))   # par key [1,2,99]
 
             # add dependency (i.e. add arcs)
             for dep in list(dct_dependancy.values())[::-1]:
@@ -447,7 +447,7 @@ python 3.11</p>
         dct_dependancy = dct_housing_characteristics[Attributs][&#34;Dependency&#34;]
         dct_option = dct_housing_characteristics[Attributs][&#34;Option&#34;]
         df = dct_housing_characteristics[Attributs][&#34;Table&#34;]
-
+        
         # remove option if only 0
         option_remove = []
         for option, option_name in dct_option.items():
@@ -459,7 +459,7 @@ python 3.11</p>
         # add node
         Node_name = Attributs
         Node_value  = dct_option.keys()
-        self.bn.add(gum.LabelizedVariable(Node_name, Node_name, [str(i) for i in Node_value]))   # par key [1,2,99]
+        self.bn.add(gum.LabelizedVariable(Node_name, Node_name, [str(i.split(&#34;Option=&#34;)[-1]) for i in Node_value]))   # par key [1,2,99]
 
         # add dependency (i.e. add arcs)
         for dep in list(dct_dependancy.values())[::-1]:

@@ -1,5 +1,5 @@
 Module LTE-Sampler-Residential.src.utils.sampler.bayesian_network
-================================================================
+=================================================================
 bayesian_network.py
 ==================
 bayesian_network class for generating and manipulating Bayesian Networks (BN) using the pyAgrum library.
@@ -53,23 +53,11 @@ Classes
     - Plot_BN() -> None: Visualizes the Bayesian Network.
     - Load_csv(stFileName: str, sep: str = ',') -> None: Loads data from a CSV file into a DataFrame.
     - Load_excel(stFileName: str, sheet_name: str = None) -> None: Loads data from an Excel file into a DataFrame.
-    - draw_GUM_Sample(number: int, Multiplicateur: int = 1, evs: dict = {}) -> pd.DataFrame: Generates samples from the Bayesian Network.
-    - do_Sampling(numberOfSamples: int, evs: dict = {}) -> pd.DataFrame: Performs sampling on the Bayesian Network and returns a DataFrame of samples.
+    -
     
     Initialize the bayesian_network class.
 
     ### Methods
-
-    `draw_GUM_Sample(self, number, Multiplicateur=1, evs={})`
-    :   Generates samples from a Bayesian network using the Gum library.
-        
-        Parameters:
-            number (int): The base number of samples to generate.
-            Multiplicateur (float, optional): A multiplier to adjust the number of samples. Default is 1.
-            evs (dict, optional): A dictionary of evidence variables to condition the sampling on. Default is an empty dictionary.
-        
-        Returns:
-            pandas.DataFrame: A DataFrame containing the generated samples.
 
     `Load_BN(self, pathfile)`
     :   Load a Bayesian Network from a file.
@@ -129,13 +117,5 @@ Classes
         --------
         None
 
-    `do_Sampling(self, numberOfSamples, evs={})`
-    :   Perform sampling to generate a specified number of samples.
-        Parameters:
-            numberOfSamples (int): The total number of samples to generate.
-            evs (dict, optional): A dictionary of environmental variables to influence the sampling process. Defaults to an empty dictionary.
-        Returns:
-            pd.DataFrame: A DataFrame containing the sampled data, reset to a new index.
-        Notes:
-            The function first attempts to generate samples using the draw_GUM_Sample method. 
-            If the initial sample size is insufficient, it continues to sample until the desired number of samples is reached.
+    `getBNStructure(self)`
+    :

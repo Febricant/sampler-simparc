@@ -38,7 +38,7 @@ el.replaceWith(d);
 <h1 class="title">Module <code>LTE-Sampler-Residential.src.utils.sampler.bayesian_network</code></h1>
 </header>
 <section id="section-intro">
-<h1 id="master_generebnpy">bayesian_network.py</h1>
+<h1 id="bayesian_networkpy">bayesian_network.py</h1>
 <p>bayesian_network class for generating and manipulating Bayesian Networks (BN) using the pyAgrum library.
 This class provides methods to save, load, plot Bayesian Networks, and load data from CSV or Excel files.
 It also includes functionality for sampling from the Bayesian Network.</p>
@@ -58,7 +58,7 @@ do_Sampling(numberOfSamples, evs={}): Performs sampling from the Bayesian Networ
 <dt><strong><code>dfcsv</code></strong></dt>
 <dd>The DataFrame containing loaded data from CSV or Excel files.</dd>
 </dl>
-<p>This module defines the <code><a title="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network" href="#LTE-Sampler-Residential.src.utils.sampler.Master_genereBN.Master_genereBN">bayesian_network</a></code> class, which provides functionality for:
+<p>This module defines the <code><a title="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network" href="#LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network">bayesian_network</a></code> class, which provides functionality for:
 1. Loading and saving Bayesian Networks (BNs) using the <code>pyAgrum</code> library.
 2. Visualizing Bayesian Networks.
 3. Loading data from CSV and Excel files.
@@ -80,7 +80,7 @@ do_Sampling(numberOfSamples, evs={}): Performs sampling from the Bayesian Networ
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="LTE-Sampler-Residential.src.utils.sampler.Master_genereBN.Master_genereBN"><code class="flex name class">
+<dt id="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network"><code class="flex name class">
 <span>class <span class="ident">bayesian_network</span></span>
 </code></dt>
 <dd>
@@ -106,9 +106,7 @@ do_Sampling(numberOfSamples, evs={}): Performs sampling from the Bayesian Networ
     - Plot_BN() -&gt; None: Visualizes the Bayesian Network.
     - Load_csv(stFileName: str, sep: str = &#39;,&#39;) -&gt; None: Loads data from a CSV file into a DataFrame.
     - Load_excel(stFileName: str, sheet_name: str = None) -&gt; None: Loads data from an Excel file into a DataFrame.
-    - draw_GUM_Sample(number: int, Multiplicateur: int = 1, evs: dict = {}) -&gt; pd.DataFrame: Generates samples from the Bayesian Network.
-    - do_Sampling(numberOfSamples: int, evs: dict = {}) -&gt; pd.DataFrame: Performs sampling on the Bayesian Network and returns a DataFrame of samples.
-
+    -
 
     &#34;&#34;&#34;
     def __init__(self):
@@ -191,68 +189,11 @@ do_Sampling(numberOfSamples, evs={}): Performs sampling from the Bayesian Networ
         &#34;&#34;&#34;
         self.dfcsv = pd.read_excel(stFileName, sheet_name=sheet_name)
 
-    def draw_GUM_Sample(self, number, Multiplicateur = 1, evs={}):
-        &#34;&#34;&#34;
-        Generates samples from a Bayesian network using the Gum library.
-
-        Parameters:
-            number (int): The base number of samples to generate.
-            Multiplicateur (float, optional): A multiplier to adjust the number of samples. Default is 1.
-            evs (dict, optional): A dictionary of evidence variables to condition the sampling on. Default is an empty dictionary.
-
-        Returns:
-            pandas.DataFrame: A DataFrame containing the generated samples.
-        &#34;&#34;&#34;
-        g=gum.BNDatabaseGenerator(self.bn)
-        g.setTopologicalVarOrder()#setRandomVarOrder()
-        #g.setDiscretizedLabelModeRandom()
-        if int(number * Multiplicateur) == 0:
-            number = 1
-        else:
-            number = int(number * Multiplicateur)
-        g.drawSamples(number, evs)
-        return g.to_pandas()
-    
-    def do_Sampling(self, numberOfSamples, evs = {}):
-        &#34;&#34;&#34;
-        Perform sampling to generate a specified number of samples.
-        Parameters:
-            numberOfSamples (int): The total number of samples to generate.
-            evs (dict, optional): A dictionary of environmental variables to influence the sampling process. Defaults to an empty dictionary.
-        Returns:
-            pd.DataFrame: A DataFrame containing the sampled data, reset to a new index.
-        Notes:
-            The function first attempts to generate samples using the draw_GUM_Sample method.
-            If the initial sample size is insufficient, it continues to sample until the desired number of samples is reached.
-        &#34;&#34;&#34;
-
-        dfSampling = pd.DataFrame()
-        #{&#39;ModeOccupation&#39;:&#39;Proprietaire&#39;}
-        #numberOfSamples = 1000
-        boSampling = False#not finish
-        dfTemp = self.draw_GUM_Sample(numberOfSamples, 1, evs=evs)
-
-        if len(dfTemp)&gt;= numberOfSamples:
-            dfSampling = dfTemp.sample(n=numberOfSamples, random_state=42)
-            boSampling = True    
-        else:
-            dfSampling = pd.concat([dfSampling, dfTemp])
-            numberOfSamples_restant = numberOfSamples - len(dfSampling)
-            if len(dfSampling)&gt;0:
-                Fact = len(dfSampling)/numberOfSamples
-            else:
-                Fact = 5
-
-        while not boSampling:
-            dfTemp = self.draw_GUM_Sample(numberOfSamples_restant, min(1, max(5, Fact)), evs=evs)
-            if len(dfTemp)&gt;= numberOfSamples_restant:
-                dfSampling = pd.concat([dfSampling, dfTemp.sample(numberOfSamples_restant, random_state=42)])
-                boSampling = True
-
-            else:
-                dfSampling = pd.concat([dfSampling, dfTemp])
-                numberOfSamples_restant = numberOfSamples - len(dfSampling)
-        return dfSampling.reset_index(drop=True)</code></pre>
+    def getBNStructure(self):
+        file_path = str(Path(__file__).parents[3] / &#34;data/processed/bayesian_network/Bn.yml&#34;)
+        with open(file_path, &#39;r&#39;) as file:
+            lst_NOEUD, LIST_Dict, dict_info = yaml.safe_load(file)
+        return lst_NOEUD, LIST_Dict</code></pre>
 </details>
 <div class="desc"><p>bayesian_network class
 A class to manage Bayesian Networks (BNs) using the pyAgrum library.</p>
@@ -268,53 +209,11 @@ A class to manage Bayesian Networks (BNs) using the pyAgrum library.</p>
 - Plot_BN() -&gt; None: Visualizes the Bayesian Network.
 - Load_csv(stFileName: str, sep: str = ',') -&gt; None: Loads data from a CSV file into a DataFrame.
 - Load_excel(stFileName: str, sheet_name: str = None) -&gt; None: Loads data from an Excel file into a DataFrame.
-- draw_GUM_Sample(number: int, Multiplicateur: int = 1, evs: dict = {}) -&gt; pd.DataFrame: Generates samples from the Bayesian Network.
-- do_Sampling(numberOfSamples: int, evs: dict = {}) -&gt; pd.DataFrame: Performs sampling on the Bayesian Network and returns a DataFrame of samples.</p>
+-</p>
 <p>Initialize the bayesian_network class.</p></div>
 <h3>Methods</h3>
 <dl>
-<dt id="LTE-Sampler-Residential.src.utils.sampler.Master_genereBN.Master_genereBN.Gum_Sampling"><code class="name flex">
-<span>def <span class="ident">draw_GUM_Sample</span></span>(<span>self, number, Multiplicateur=1, evs={})</span>
-</code></dt>
-<dd>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def draw_GUM_Sample(self, number, Multiplicateur = 1, evs={}):
-    &#34;&#34;&#34;
-    Generates samples from a Bayesian network using the Gum library.
-
-    Parameters:
-        number (int): The base number of samples to generate.
-        Multiplicateur (float, optional): A multiplier to adjust the number of samples. Default is 1.
-        evs (dict, optional): A dictionary of evidence variables to condition the sampling on. Default is an empty dictionary.
-
-    Returns:
-        pandas.DataFrame: A DataFrame containing the generated samples.
-    &#34;&#34;&#34;
-    g=gum.BNDatabaseGenerator(self.bn)
-    g.setTopologicalVarOrder()#setRandomVarOrder()
-    #g.setDiscretizedLabelModeRandom()
-    if int(number * Multiplicateur) == 0:
-        number = 1
-    else:
-        number = int(number * Multiplicateur)
-    g.drawSamples(number, evs)
-    return g.to_pandas()</code></pre>
-</details>
-<div class="desc"><p>Generates samples from a Bayesian network using the Gum library.</p>
-<h2 id="parameters">Parameters</h2>
-<p>number (int): The base number of samples to generate.
-Multiplicateur (float, optional): A multiplier to adjust the number of samples. Default is 1.
-evs (dict, optional): A dictionary of evidence variables to condition the sampling on. Default is an empty dictionary.</p>
-<h2 id="returns">Returns</h2>
-<dl>
-<dt><code>pandas.DataFrame</code></dt>
-<dd>A DataFrame containing the generated samples.</dd>
-</dl></div>
-</dd>
-<dt id="LTE-Sampler-Residential.src.utils.sampler.Master_genereBN.Master_genereBN.Load_BN"><code class="name flex">
+<dt id="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.Load_BN"><code class="name flex">
 <span>def <span class="ident">Load_BN</span></span>(<span>self, pathfile)</span>
 </code></dt>
 <dd>
@@ -344,7 +243,7 @@ The path to the file containing the Bayesian Network.</p>
 <h2 id="returns">Returns:</h2>
 <p>None</p></div>
 </dd>
-<dt id="LTE-Sampler-Residential.src.utils.sampler.Master_genereBN.Master_genereBN.Load_csv"><code class="name flex">
+<dt id="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.Load_csv"><code class="name flex">
 <span>def <span class="ident">Load_csv</span></span>(<span>self, stFileName, sep=',')</span>
 </code></dt>
 <dd>
@@ -375,7 +274,7 @@ sep (str, optional): The delimiter to use for separating values. Defaults to ','
 <dd>The method loads the CSV data into the instance variable <code>dfcsv</code>.</dd>
 </dl></div>
 </dd>
-<dt id="LTE-Sampler-Residential.src.utils.sampler.Master_genereBN.Master_genereBN.Load_excel"><code class="name flex">
+<dt id="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.Load_excel"><code class="name flex">
 <span>def <span class="ident">Load_excel</span></span>(<span>self, stFileName, sheet_name=None)</span>
 </code></dt>
 <dd>
@@ -406,7 +305,7 @@ sheet_name (str, optional): The name of the sheet to load. If None, the first sh
 <dd>The loaded DataFrame is stored in the instance variable <code>dfcsv</code>.</dd>
 </dl></div>
 </dd>
-<dt id="LTE-Sampler-Residential.src.utils.sampler.Master_genereBN.Master_genereBN.Plot_BN"><code class="name flex">
+<dt id="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.Plot_BN"><code class="name flex">
 <span>def <span class="ident">Plot_BN</span></span>(<span>self)</span>
 </code></dt>
 <dd>
@@ -442,7 +341,7 @@ visualization.</p>
 <h2 id="returns">Returns</h2>
 <p>None</p></div>
 </dd>
-<dt id="LTE-Sampler-Residential.src.utils.sampler.Master_genereBN.Master_genereBN.Save_BN"><code class="name flex">
+<dt id="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.Save_BN"><code class="name flex">
 <span>def <span class="ident">Save_BN</span></span>(<span>self, pathfile)</span>
 </code></dt>
 <dd>
@@ -472,67 +371,21 @@ The path to the file where the Bayesian Network will be saved.</p>
 <h2 id="returns">Returns:</h2>
 <p>None</p></div>
 </dd>
-<dt id="LTE-Sampler-Residential.src.utils.sampler.Master_genereBN.Master_genereBN.do_Sampling"><code class="name flex">
-<span>def <span class="ident">do_Sampling</span></span>(<span>self, numberOfSamples, evs={})</span>
+<dt id="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.getBNStructure"><code class="name flex">
+<span>def <span class="ident">getBNStructure</span></span>(<span>self)</span>
 </code></dt>
 <dd>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def do_Sampling(self, numberOfSamples, evs = {}):
-    &#34;&#34;&#34;
-    Perform sampling to generate a specified number of samples.
-    Parameters:
-        numberOfSamples (int): The total number of samples to generate.
-        evs (dict, optional): A dictionary of environmental variables to influence the sampling process. Defaults to an empty dictionary.
-    Returns:
-        pd.DataFrame: A DataFrame containing the sampled data, reset to a new index.
-    Notes:
-        The function first attempts to generate samples using the draw_GUM_Sample method.
-        If the initial sample size is insufficient, it continues to sample until the desired number of samples is reached.
-    &#34;&#34;&#34;
-
-    dfSampling = pd.DataFrame()
-    #{&#39;ModeOccupation&#39;:&#39;Proprietaire&#39;}
-    #numberOfSamples = 1000
-    boSampling = False#not finish
-    dfTemp = self.draw_GUM_Sample(numberOfSamples, 1, evs=evs)
-
-    if len(dfTemp)&gt;= numberOfSamples:
-        dfSampling = dfTemp.sample(n=numberOfSamples, random_state=42)
-        boSampling = True    
-    else:
-        dfSampling = pd.concat([dfSampling, dfTemp])
-        numberOfSamples_restant = numberOfSamples - len(dfSampling)
-        if len(dfSampling)&gt;0:
-            Fact = len(dfSampling)/numberOfSamples
-        else:
-            Fact = 5
-
-    while not boSampling:
-        dfTemp = self.draw_GUM_Sample(numberOfSamples_restant, min(1, max(5, Fact)), evs=evs)
-        if len(dfTemp)&gt;= numberOfSamples_restant:
-            dfSampling = pd.concat([dfSampling, dfTemp.sample(numberOfSamples_restant, random_state=42)])
-            boSampling = True
-
-        else:
-            dfSampling = pd.concat([dfSampling, dfTemp])
-            numberOfSamples_restant = numberOfSamples - len(dfSampling)
-    return dfSampling.reset_index(drop=True)</code></pre>
+<pre><code class="python">def getBNStructure(self):
+    file_path = str(Path(__file__).parents[3] / &#34;data/processed/bayesian_network/Bn.yml&#34;)
+    with open(file_path, &#39;r&#39;) as file:
+        lst_NOEUD, LIST_Dict, dict_info = yaml.safe_load(file)
+    return lst_NOEUD, LIST_Dict</code></pre>
 </details>
-<div class="desc"><p>Perform sampling to generate a specified number of samples.</p>
-<h2 id="parameters">Parameters</h2>
-<p>numberOfSamples (int): The total number of samples to generate.
-evs (dict, optional): A dictionary of environmental variables to influence the sampling process. Defaults to an empty dictionary.</p>
-<h2 id="returns">Returns</h2>
-<dl>
-<dt><code>pd.DataFrame</code></dt>
-<dd>A DataFrame containing the sampled data, reset to a new index.</dd>
-</dl>
-<h2 id="notes">Notes</h2>
-<p>The function first attempts to generate samples using the draw_GUM_Sample method.
-If the initial sample size is insufficient, it continues to sample until the desired number of samples is reached.</p></div>
+<div class="desc"></div>
 </dd>
 </dl>
 </dd>
@@ -542,7 +395,7 @@ If the initial sample size is insufficient, it continues to sample until the des
 <nav id="sidebar">
 <div class="toc">
 <ul>
-<li><a href="#master_generebnpy">bayesian_network.py</a><ul>
+<li><a href="#bayesian_networkpy">bayesian_network.py</a><ul>
 <li><a href="#dependencies">Dependencies:</a></li>
 <li><a href="#author">Author:</a></li>
 </ul>
@@ -558,15 +411,14 @@ If the initial sample size is insufficient, it continues to sample until the des
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network" href="#LTE-Sampler-Residential.src.utils.sampler.Master_genereBN.Master_genereBN">bayesian_network</a></code></h4>
+<h4><code><a title="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network" href="#LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network">bayesian_network</a></code></h4>
 <ul class="two-column">
-<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.draw_GUM_Sample" href="#LTE-Sampler-Residential.src.utils.sampler.Master_genereBN.Master_genereBN.Gum_Sampling">draw_GUM_Sample</a></code></li>
-<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.Load_BN" href="#LTE-Sampler-Residential.src.utils.sampler.Master_genereBN.Master_genereBN.Load_BN">Load_BN</a></code></li>
-<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.Load_csv" href="#LTE-Sampler-Residential.src.utils.sampler.Master_genereBN.Master_genereBN.Load_csv">Load_csv</a></code></li>
-<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.Load_excel" href="#LTE-Sampler-Residential.src.utils.sampler.Master_genereBN.Master_genereBN.Load_excel">Load_excel</a></code></li>
-<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.Plot_BN" href="#LTE-Sampler-Residential.src.utils.sampler.Master_genereBN.Master_genereBN.Plot_BN">Plot_BN</a></code></li>
-<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.Save_BN" href="#LTE-Sampler-Residential.src.utils.sampler.Master_genereBN.Master_genereBN.Save_BN">Save_BN</a></code></li>
-<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.do_Sampling" href="#LTE-Sampler-Residential.src.utils.sampler.Master_genereBN.Master_genereBN.do_Sampling">do_Sampling</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.Load_BN" href="#LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.Load_BN">Load_BN</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.Load_csv" href="#LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.Load_csv">Load_csv</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.Load_excel" href="#LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.Load_excel">Load_excel</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.Plot_BN" href="#LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.Plot_BN">Plot_BN</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.Save_BN" href="#LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.Save_BN">Save_BN</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.getBNStructure" href="#LTE-Sampler-Residential.src.utils.sampler.bayesian_network.bayesian_network.getBNStructure">getBNStructure</a></code></li>
 </ul>
 </li>
 </ul>

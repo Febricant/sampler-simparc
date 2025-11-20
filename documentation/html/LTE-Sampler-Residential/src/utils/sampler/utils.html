@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <meta name="generator" content="pdoc3 0.11.6">
-<title>LTE-Sampler-Residential.src.utils.sampler API documentation</title>
+<title>LTE-Sampler-Residential.src.utils.sampler.utils API documentation</title>
 <meta name="description" content="">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
@@ -33,40 +33,82 @@ el.replaceWith(d);
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>LTE-Sampler-Residential.src.utils.sampler</code></h1>
+<h1 class="title">Module <code>LTE-Sampler-Residential.src.utils.sampler.utils</code></h1>
 </header>
 <section id="section-intro">
 </section>
 <section>
-<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
-<dt><code class="name"><a title="LTE-Sampler-Residential.src.utils.sampler.Mapping" href="Mapping.html">LTE-Sampler-Residential.src.utils.sampler.Mapping</a></code></dt>
+<dt id="LTE-Sampler-Residential.src.utils.sampler.utils.HConsignes"><code class="name flex">
+<span>def <span class="ident">HConsignes</span></span>(<span>)</span>
+</code></dt>
 <dd>
-<div class="desc"></div>
-</dd>
-<dt><code class="name"><a title="LTE-Sampler-Residential.src.utils.sampler.Sampler" href="Sampler.html">LTE-Sampler-Residential.src.utils.sampler.Sampler</a></code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt><code class="name"><a title="LTE-Sampler-Residential.src.utils.sampler.bayesian_network" href="bayesian_network.html">LTE-Sampler-Residential.src.utils.sampler.bayesian_network</a></code></dt>
-<dd>
-<div class="desc"><p>bayesian_network.py</p>
-<p>bayesian_network class for generating and manipulating Bayesian Networks (BN) using the pyAgrum library.
-This class provides …</p></div>
-</dd>
-<dt><code class="name"><a title="LTE-Sampler-Residential.src.utils.sampler.bn" href="bn.html">LTE-Sampler-Residential.src.utils.sampler.bn</a></code></dt>
-<dd>
-<div class="desc"><p>Created on 26-06-2025 …</p></div>
-</dd>
-<dt><code class="name"><a title="LTE-Sampler-Residential.src.utils.sampler.utils" href="utils.html">LTE-Sampler-Residential.src.utils.sampler.utils</a></code></dt>
-<dd>
-<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def HConsignes():
+    &#34;&#34;&#34;
+        Initialise les paramètres aléatoires pour le setback et les variations horaires.
+        Méthode permettant de déterminer les paramètres aléatoires liés au chauffage &amp; à la climatisation.
+            1 - self.dev1 : heure setback AM montee température
+            2 - self.dev2 : heure setback AM descente température
+            3 - self.dev3 : heure setback PM montee température
+            4 - self.dev4 : heure setback PM descente température
+                           ___TM____              ___TS____
+                          |         |            |         |
+              0h___TN___h1|       h2|____TJ____h3|       h4|___TN_____24h
+
+
+            Nuit (temperature)
+                           __TM_________TJ___________TS____
+                          |                                |
+              0h___TN __h1|       h2           h3        h4|___TN______24h
+
+    &#34;&#34;&#34;
+
+    # Variations horaires aléatoires
+    dev1 = random.uniform(-3, 3)  # randnb(3)
+    dev2 = random.uniform(-3, 3)
+    dev3 = random.uniform(-3, 3)
+    dev4 = random.uniform(-3, 3)
+    dev5 = random.uniform(-1, 1)
+    dev6 = random.uniform(-1, 1)
+
+    # Calcul des heures de changement de consigne
+    h1 = 6 + 6 / 60 + (dev1 * 0.75 - dev2 * 0.25)
+    h2 = 8 + (dev1 * 0.75 + dev2 * 0.25)
+    h3 = 16 + 20 / 60 + (dev3 * 0.5 - dev4 * 0.5)
+    h4 = min(22 + 17 / 60 + (dev3 * 0.5 + dev4 * 0.5), 23 + 59 / 60)
+    return [h1, h2, h3, h4]</code></pre>
+</details>
+<div class="desc"><p>Initialise les paramètres aléatoires pour le setback et les variations horaires.
+Méthode permettant de déterminer les paramètres aléatoires liés au chauffage &amp; à la climatisation.
+1 - self.dev1 : heure setback AM montee température
+2 - self.dev2 : heure setback AM descente température
+3 - self.dev3 : heure setback PM montee température
+4 - self.dev4 : heure setback PM descente température
+<strong><em>TM</em></strong><em>
+<strong><em>TS</em></strong></em>
+|
+|
+|
+|
+0h<strong><em>TN</em></strong>h1|
+h2|<strong><em>_TJ</em></strong>_h3|
+h4|<strong><em>TN</em></strong>__24h</p>
+<pre><code>Nuit (temperature)
+               __TM_________TJ___________TS____
+              |                                |
+  0h___TN __h1|       h2           h3        h4|___TN______24h
+</code></pre></div>
 </dd>
 </dl>
-</section>
-<section>
-</section>
-<section>
 </section>
 <section>
 </section>
@@ -78,16 +120,12 @@ This class provides …</p></div>
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="LTE-Sampler-Residential.src.utils" href="../index.html">LTE-Sampler-Residential.src.utils</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.sampler" href="index.html">LTE-Sampler-Residential.src.utils.sampler</a></code></li>
 </ul>
 </li>
-<li><h3><a href="#header-submodules">Sub-modules</a></h3>
-<ul>
-<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.Mapping" href="Mapping.html">LTE-Sampler-Residential.src.utils.sampler.Mapping</a></code></li>
-<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.Sampler" href="Sampler.html">LTE-Sampler-Residential.src.utils.sampler.Sampler</a></code></li>
-<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.bayesian_network" href="bayesian_network.html">LTE-Sampler-Residential.src.utils.sampler.bayesian_network</a></code></li>
-<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.bn" href="bn.html">LTE-Sampler-Residential.src.utils.sampler.bn</a></code></li>
-<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.utils" href="utils.html">LTE-Sampler-Residential.src.utils.sampler.utils</a></code></li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.utils.HConsignes" href="#LTE-Sampler-Residential.src.utils.sampler.utils.HConsignes">HConsignes</a></code></li>
 </ul>
 </li>
 </ul>

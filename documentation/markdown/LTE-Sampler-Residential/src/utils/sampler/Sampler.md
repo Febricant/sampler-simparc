@@ -1,91 +1,35 @@
 Module LTE-Sampler-Residential.src.utils.sampler.Sampler
 ========================================================
-Sampler.py
-==========
-
-This module defines two classes:
-1. **Sampler**: For generating Bayesian Networks (BN) using the `pyAgrum` library.
-2. **BuildstockBatchArguments**: For handling housing characteristics and sampling.
-
-Features:
----------
-- Save, load, and plot Bayesian Networks.
-- Load Bayesian Network structures from YAML files.
-- Load housing characteristics from CSV files.
-- Generate samples based on Bayesian Networks and housing characteristics.
-
-Classes:
---------
-- `Sampler`: Manages Bayesian Networks.
-- `BuildstockBatchArguments`: Handles housing characteristics and sampling.
-
-Dependencies:
--------------
-- os
-- sys
-- yaml
-- numpy
-- pyAgrum
-
-Author:
--------
-Brice Le Lostec (cv1751)
-
-Version:
---------
-1.0
-
-Python Version:
----------------
-3.11
-
-Created:
---------
-26-06-2025
 
 Classes
 -------
 
-`BuildstockBatchArguments()`
+`Sampler(bayesian_network_path)`
 :   
 
     ### Methods
 
-    `csv_to_dict(self, path='N:\\Mes Documents\\Projets LTE\\Projet archQc\\code\\GITHUB_Repo\\LTE-Sampler-Residential/data/processed/housing_characteristics/')`
-    :   Convert a CSV file to a dictionary.
+    `GUM_Sampling(self, numberOfSamples, evs={})`
+    :   Perform sampling to generate a specified number of samples.
+        Parameters:
+            numberOfSamples (int): The total number of samples to generate.
+            evs (dict, optional): A dictionary of environmental variables to influence the sampling process. Defaults to an empty dictionary.
+        Returns:
+            pd.DataFrame: A DataFrame containing the sampled data, reset to a new index.
+        Notes:
+            The function first attempts to generate samples using the draw_GUM_Sample method.
+            If the initial sample size is insufficient, it continues to sample until the desired number of samples is reached.
+
+    `draw_GUM_Sample(self, number, Multiplicateur=1, evs={})`
+    :   Generates samples from a Bayesian network using the PyAgrum library.
         
-        :param path: Path to the CSV file.
-        :return: Dictionary with column names as keys and lists of column values as values.
-
-    `sampling(self, lst_dct_args={})`
-    :   Generate a sample of Buildstock Bach arguments based on the provided evidence.
+        Parameters:
+            number (int): The base number of samples to generate.
+            Multiplicateur (float, optional): A multiplier to adjust the number of samples. Default is 1.
+            evs (dict, optional): A dictionary of evidence variables to condition the sampling on. Default is an empty dictionary.
         
-        :param evs: Dictionary containing evidence for the sampling.
-        :return: dictionarie representing the sampled arguments.
+        Returns:
+            pandas.DataFrame: A DataFrame containing the generated samples.
 
-`MapHPXML()`
-:   
-
-    ### Methods
-
-    `doMapping(self, dct_args)`
-    :
-
-    `run(self, lst_dct_args)`
-    :
-
-`Sampler()`
-:   Class qui permet d'utiliser réseau bayésien à partir des données EUEMr.
-    
-    Initialize the EUEMr class with an optional DataFrame.
-    
-    :param df: pandas DataFrame containing the data.
-
-    ### Ancestors (in MRO)
-
-    * src.utils.sampler.bayesian_network.bayesian_network
-
-    ### Methods
-
-    `getBNStructure(self, path='N:\\Mes Documents\\Projets LTE\\Projet archQc\\code\\GITHUB_Repo\\LTE-Sampler-Residential/data/processed/bayesian_network/Bn.yml')`
+    `resstock_args_sampling(self, lst_dct_args={})`
     :

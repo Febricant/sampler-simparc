@@ -244,8 +244,16 @@ class BuildstockBatchArguments():
 
         dct_housing_characteristics_csv["Mechanical Ventilation.csv"] = {"Name": "Mechanical Ventilation",
                                             "Description": "Mechanical Ventilation",
-                                            "Source":""}
-
+                                            "Source":"ResStock"}
+        dct_housing_characteristics_csv["Bathroom Spot Vent Hour.csv"] = {"Name": "Bathroom Spot Vent Hour",
+                                            "Description": "Bathroom Spot Vent Hour",
+                                            "Source":"ResStock"}
+        dct_housing_characteristics_csv["Natural Ventilation.csv"] = {"Name": "Natural Ventilation",
+                                            "Description": "Natural Ventilation",
+                                            "Source":"ResStock"}
+        dct_housing_characteristics_csv["Range Spot Vent Hour.csv"] = {"Name": "Range Spot Vent Hour",
+                                            "Description": "Range Spot Vent Hour",
+                                            "Source":"ResStock"}
         #dct_housing_characteristics_csv["Water Heater in Unit.csv"] = {"Name": "Water Heater in Unit",
         #                                            "Description": "Chauffeau dans le logement",
         #                                            "Source":""}
@@ -311,7 +319,10 @@ class BuildstockBatchArguments():
                         "Cooling Setpoint",
                         "Garage Heating Setpoint",
                         "Basement Heating Setpoint",
-                        "Mechanical Ventilation"]
+                        "Mechanical Ventilation",
+                        "Bathroom Spot Vent Hour",
+                        "Natural Ventilation",
+                        "Range Spot Vent Hour"]
                         
                         #"Geometry Attic Type",
                         # "Geometry Building Horizontal Location MF",
@@ -2544,6 +2555,49 @@ class MapHPXML:
             for args in dict_MechVentilation[dct_args[arg]]:
                 if ((args not in dct_HPXML.keys()) & (dict_MechVentilation[dct_args[arg]][args]!="auto")):
                     dct_HPXML[args] = dict_MechVentilation[dct_args[arg]][args]
+
+        #_____________________________________________________________
+        # Bathroom Spot Ventilation Hourly Distribution
+        dctBathroomSpotVent = {}
+        for hour in range(24):
+            dctBathroomSpotVent[f"Hour{hour}"] = {"bathroom_fans_quantity":"auto",
+                                                "bathroom_fans_start_hour":hour,
+                                                "bathroom_fans_flow_rate":"auto",
+                                                "bathroom_fans_hours_in_operation":"auto",
+                                                "bathroom_fans_power":"auto"}
+        arg = "Bathroom Spot Ventilation Hour"
+        if (arg in dct_args.keys()):
+            for args in dctBathroomSpotVent[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) & (dctBathroomSpotVent[dct_args[arg]][args]!="auto")):
+                    dct_HPXML[args] = dctBathroomSpotVent[dct_args[arg]][args]
+
+        #_____________________________________________________________
+        # Range Spot Ventilation Hourly Distribution
+        dctRangeSpotVent = {}
+        for hour in range(24):
+            dctRangeSpotVent[f"Hour{hour}"] = {"kitchen_fans_quantity":"auto",
+                                                "kitchen_fans_start_hour":hour,
+                                                "kitchen_fans_flow_rate":"auto",
+                                                "kitchen_fans_hours_in_operation":"auto",
+                                                "kitchen_fans_power":"auto"}
+        arg = "Range Spot Ventilation Hour"
+        if (arg in dct_args.keys()):
+            for args in dctRangeSpotVent[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) & (dctRangeSpotVent[dct_args[arg]][args]!="auto")):
+                    dct_HPXML[args] = dctRangeSpotVent[dct_args[arg]][args]
+
+        #_____________________________________________________________
+        # Natural Ventilation
+        dict_NaturalVentilation = {}
+        dict_NaturalVentilation["Cooling Season, 7 days/wk"] = {"window_fraction_operable":0.67}
+        dict_NaturalVentilation["None"] = {"window_fraction_operable":0}
+        arg = "Natural Ventilation"
+        if (arg in dct_args.keys()):
+            for args in dict_NaturalVentilation[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) & (dict_NaturalVentilation[dct_args[arg]][args]!="auto")):
+                    dct_HPXML[args] = dict_NaturalVentilation[dct_args[arg]][args]
+        #_____________________________________________________________
+
 
 
         # ajout des Valeurs par défaut du HPXML si cle n'existe pas

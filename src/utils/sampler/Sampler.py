@@ -254,6 +254,12 @@ class BuildstockBatchArguments():
         dct_housing_characteristics_csv["Range Spot Vent Hour.csv"] = {"Name": "Range Spot Vent Hour",
                                             "Description": "Range Spot Vent Hour",
                                             "Source":"ResStock"}
+        dct_housing_characteristics_csv["Orientation.csv"] = {"Name": "Orientation",
+                                            "Description": "Orientation du bâtiment",
+                                            "Source":"ResStock"}
+        dct_housing_characteristics_csv["Overhangs.csv"] = {"Name": "Overhangs",
+                                            "Description": "Surplombs",
+                                            "Source":"ResStock"}
         #dct_housing_characteristics_csv["Water Heater in Unit.csv"] = {"Name": "Water Heater in Unit",
         #                                            "Description": "Chauffeau dans le logement",
         #                                            "Source":""}
@@ -322,7 +328,9 @@ class BuildstockBatchArguments():
                         "Mechanical Ventilation",
                         "Bathroom Spot Vent Hour",
                         "Natural Ventilation",
-                        "Range Spot Vent Hour"]
+                        "Range Spot Vent Hour",
+                        "Orientation",
+                        "Overhangs"]
                         
                         #"Geometry Attic Type",
                         # "Geometry Building Horizontal Location MF",
@@ -500,6 +508,113 @@ class MapHPXML:
                     dct_HPXML[argHPXML] = self.HPXMLArg.arguments[argHPXML].get("Default Value")
                 else:
                     dct_HPXML[argHPXML]=1.8
+        #________________________________________________________________
+        # Orientation
+        dct_orientation = {}
+        dct_orientation["ENE"] = {"geometry_unit_orientation": 68}
+        dct_orientation["ESE"] = {"geometry_unit_orientation": 113}
+        dct_orientation["East"] = {"geometry_unit_orientation": 90}
+        dct_orientation["NNE"] = {"geometry_unit_orientation": 23}
+        dct_orientation["NNW"] = {"geometry_unit_orientation": 338}
+        dct_orientation["North"] = {"geometry_unit_orientation": 0}
+        dct_orientation["Northeast"] = {"geometry_unit_orientation": 45}
+        dct_orientation["Northwest"] = {"geometry_unit_orientation": 315}
+        dct_orientation["SSE"] = {"geometry_unit_orientation": 158}
+        dct_orientation["SSW"] = {"geometry_unit_orientation": 203}
+        dct_orientation["South"] = {"geometry_unit_orientation": 180}
+        dct_orientation["Southeast"] = {"geometry_unit_orientation": 135}
+        dct_orientation["Southwest"] = {"geometry_unit_orientation": 225}
+        dct_orientation["WNW"] = {"geometry_unit_orientation": 293}
+        dct_orientation["WSW"] = {"geometry_unit_orientation": 248}
+        dct_orientation["West"] = {"geometry_unit_orientation": 270}
+
+        arg = "Orientation"
+        if (arg in dct_args.keys()):
+            for args in dct_orientation[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) & (dct_orientation[dct_args[arg]][args]!="auto")):
+                    dct_HPXML[args] = dct_orientation[dct_args[arg]][args]
+
+        #________________________________________________________________
+        # Overhangs
+        dct_overhangs = {}
+        dct_overhangs["2ft, All Windows"] = {"geometry_overhangs_front_depth": 2,
+                                             "geometry_overhangs_front_distance_to_top_of_window": 0,
+                                             "geometry_overhangs_front_distance_to_bottom_of_window": 4,
+                                             "geometry_overhangs_back_depth": 2,
+                                             "geometry_overhangs_back_distance_to_top_of_window": 0,
+                                             "geometry_overhangs_back_distance_to_bottom_of_window": 4,
+                                             "geometry_overhangs_left_depth": 2,
+                                             "geometry_overhangs_left_distance_to_top_of_window": 0,
+                                             "geometry_overhangs_left_distance_to_bottom_of_window": 4,
+                                             "geometry_overhangs_right_depth": 2,
+                                             "geometry_overhangs_right_distance_to_top_of_window": 0,
+                                             "geometry_overhangs_right_distance_to_bottom_of_window": 4}
+        dct_overhangs["2ft, Back Windows"] = {"geometry_overhangs_front_depth": 0,
+                                             "geometry_overhangs_front_distance_to_top_of_window": 0,
+                                             "geometry_overhangs_front_distance_to_bottom_of_window": 4,
+                                             "geometry_overhangs_back_depth": 2,
+                                             "geometry_overhangs_back_distance_to_top_of_window": 0,
+                                             "geometry_overhangs_back_distance_to_bottom_of_window": 4,
+                                             "geometry_overhangs_left_depth": 0,
+                                             "geometry_overhangs_left_distance_to_top_of_window": 0,
+                                             "geometry_overhangs_left_distance_to_bottom_of_window": 4,
+                                             "geometry_overhangs_right_depth": 0,
+                                             "geometry_overhangs_right_distance_to_top_of_window": 0,
+                                             "geometry_overhangs_right_distance_to_bottom_of_window": 4}
+        dct_overhangs["2ft, Front Windows"] = {"geometry_overhangs_front_depth": 2,
+                                             "geometry_overhangs_front_distance_to_top_of_window": 0,
+                                             "geometry_overhangs_front_distance_to_bottom_of_window": 4,
+                                             "geometry_overhangs_back_depth": 0,
+                                             "geometry_overhangs_back_distance_to_top_of_window": 0,
+                                             "geometry_overhangs_back_distance_to_bottom_of_window": 4,
+                                             "geometry_overhangs_left_depth": 0,
+                                             "geometry_overhangs_left_distance_to_top_of_window": 0,
+                                             "geometry_overhangs_left_distance_to_bottom_of_window": 4,
+                                             "geometry_overhangs_right_depth": 0,
+                                             "geometry_overhangs_right_distance_to_top_of_window": 0,
+                                             "geometry_overhangs_right_distance_to_bottom_of_window": 4}
+        dct_overhangs["2ft, Left Windows"] = {"geometry_overhangs_front_depth": 0,
+                                             "geometry_overhangs_front_distance_to_top_of_window": 0,
+                                             "geometry_overhangs_front_distance_to_bottom_of_window": 4,
+                                             "geometry_overhangs_back_depth": 0,
+                                             "geometry_overhangs_back_distance_to_top_of_window": 0,
+                                             "geometry_overhangs_back_distance_to_bottom_of_window": 4,
+                                             "geometry_overhangs_left_depth": 2,
+                                             "geometry_overhangs_left_distance_to_top_of_window": 0,
+                                             "geometry_overhangs_left_distance_to_bottom_of_window": 4,
+                                             "geometry_overhangs_right_depth": 0,
+                                             "geometry_overhangs_right_distance_to_top_of_window": 0,
+                                             "geometry_overhangs_right_distance_to_bottom_of_window": 4}
+        dct_overhangs["2ft, Right Windows"] = {"geometry_overhangs_front_depth": 0,
+                                             "geometry_overhangs_front_distance_to_top_of_window": 0,
+                                             "geometry_overhangs_front_distance_to_bottom_of_window": 4,
+                                             "geometry_overhangs_back_depth": 0,
+                                             "geometry_overhangs_back_distance_to_top_of_window": 0,
+                                             "geometry_overhangs_back_distance_to_bottom_of_window": 4,
+                                             "geometry_overhangs_left_depth": 0,
+                                             "geometry_overhangs_left_distance_to_top_of_window": 0,
+                                             "geometry_overhangs_left_distance_to_bottom_of_window": 4,
+                                             "geometry_overhangs_right_depth": 2,
+                                             "geometry_overhangs_right_distance_to_top_of_window": 0,
+                                             "geometry_overhangs_right_distance_to_bottom_of_window": 4}
+        dct_overhangs["None"] = {"geometry_overhangs_front_depth": 0,
+                                             "geometry_overhangs_front_distance_to_top_of_window": 0,
+                                             "geometry_overhangs_front_distance_to_bottom_of_window": 4,
+                                             "geometry_overhangs_back_depth": 0,
+                                             "geometry_overhangs_back_distance_to_top_of_window": 0,
+                                             "geometry_overhangs_back_distance_to_bottom_of_window": 4,
+                                             "geometry_overhangs_left_depth": 0,
+                                             "geometry_overhangs_left_distance_to_top_of_window": 0,
+                                             "geometry_overhangs_left_distance_to_bottom_of_window": 4,
+                                             "geometry_overhangs_right_depth": 0,
+                                             "geometry_overhangs_right_distance_to_top_of_window": 0,
+                                             "geometry_overhangs_right_distance_to_bottom_of_window": 4}
+        arg = "Overhangs"
+        if (arg in dct_args.keys()):
+            for args in dct_overhangs[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) & (dct_overhangs[dct_args[arg]][args]!="auto")):
+                    dct_HPXML[args] = dct_overhangs[dct_args[arg]][args]
+
         #________________________________________________________________
 
         arg = "Superficie_Totale"

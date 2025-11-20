@@ -80,8 +80,6 @@ class Sampler():
                 dfSampling = pd.concat([dfSampling, dfTemp])
                 numberOfSamples_restant = numberOfSamples - len(dfSampling)
         return dfSampling.reset_index(drop=True)
-
-
     
     def resstock_args_sampling(self, lst_dct_args={}):
 

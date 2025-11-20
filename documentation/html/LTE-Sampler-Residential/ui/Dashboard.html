@@ -56,6 +56,8 @@ python -m streamlit run "ui/Dashboard.py"</p>
 <p>1.0</p>
 <h2 id="python-version">python version:</h2>
 <p>python 3.11</p>
+<h2 id="usage_1">Usage:</h2>
+<p>python -m streamlit run "ui/Dashboard.py"</p>
 </section>
 <section>
 </section>
@@ -64,15 +66,116 @@ python -m streamlit run "ui/Dashboard.py"</p>
 <section>
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
-<dt id="LTE-Sampler-Residential.ui.Dashboard.DashBoard"><code class="name flex">
-<span>def <span class="ident">DashBoard</span></span>(<span>)</span>
+<dt id="LTE-Sampler-Residential.ui.Dashboard.BaysianNetwork"><code class="name flex">
+<span>def <span class="ident">BaysianNetwork</span></span>(<span>)</span>
 </code></dt>
 <dd>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def DashBoard():
+<pre><code class="python">def BaysianNetwork():
+
+    st.markdown(&#34;&#34;&#34;
+            # ResStock-QC - Réseau bayesien construit sur l&#39;EUEMr de 2022
+            
+            &#34;&#34;&#34;)
+    #créer des tabs pour afficher la description des données et le réseau bayesien
+    tab1, tab2, tab3, tab4, tab5 = st.tabs([&#34;Description des données&#34;, &#34;Réseau bayesien&#34;, &#34;liste de noeuds&#34;,  &#34;Tables conditionnelles&#34;, &#34;Inférence&#34;])
+
+    InsClsSampler = Sampler()
+    path = PROJECT_DIR+&#34;/data/processed/bayesian_network/BN_EUEMr.XDSL&#34;
+    InsClsSampler.Load_BN(path)
+
+    #save inference graph
+    #gum.lib.image.exportInference(InsClsSampler.bn, PROJECT_DIR + &#34;ui/output_inference.png&#34;, evs={}, size=&#39;30&#39;)
+    #inspiré de pyagrum.lib.image
+    
+    # List of node names and their values
+    lst_NOEUD = InsClsSampler.lst_NOEUD
+    LIST_Dict = InsClsSampler.LIST_Dict
+
+    # data description
+    pdfDataDescription = pd.read_csv(PROJECT_DIR+&#34;/data/processed/Data_description.csv&#34;, index_col=0)
+
+    
+    #add dropdown to view data description
+    with tab1:
+        # Widget to select multiple parameters
+        #st.markdown(&#34;## Visualisation du réseau bayesien&#34;)
+        st.dataframe(pdfDataDescription)
+
+    #add expander to view the bayesian network
+    with tab2:
+        check_stats = st.checkbox(&#34;Afficher les statistiques du réseau bayesien&#34;)
+        selected_size = st.slider(&#34;Sélectionnez la taille du graphique:&#34;,
+                                                min_value=5, max_value=50, value=15, step=1)
+        if st.button(&#34;Afficher le réseau bayesien&#34;):
+            #st.image(PROJECT_DIR + &#34;ui/output_inference.png&#34;, caption=&#39;Inférence du réseau bayesien&#39;, use_column_width=True)
+            #svgtxt = gum.lib.image.dot_as_svg_string(gum.lib._colors.prepareDot(gum.lib.image.prepareShowInference(InsClsSampler.bn)), size=30)
+            
+            #svgtxt = gum.lib.image.dot_as_svg_string(gum.lib._colors.prepareDot(gum.lib.image.prepareShowInference(InsClsSampler.bn)), size=selected_size)
+            # fetch cached SVG (recomputed only when bn, evs or size change)
+            svgtxt = bn_svg(InsClsSampler.bn, evs=None,Inference=check_stats, size=selected_size)
+            #svg = gum.lib._colors.prepareDot(gum.lib.image.prepareShowInference(InsClsSampler.bn)).create_svg(encoding=&#34;utf-8&#34;).decode(&#34;utf-8&#34;)
+
+            components.html(svgtxt, height=900, scrolling=True)
+
+            #st.graphviz_chart(gum.lib.bn2graph.BNinference2dot(InsClsSampler.bn,evs={},size = &#39;30&#39;).to_string())
+
+    #add expander to view the list of nodes and their values
+    with tab3:
+        for node in lst_NOEUD:
+            st.markdown(f&#34;**{node}**: {&#39;, &#39;.join(LIST_Dict[node].values())}&#34;)
+    
+    #add expander to view the conditional probability tables
+    with tab4:
+        #select node to view its CPT
+        selected_node = st.selectbox(&#34;Sélectionnez un noeud pour voir sa table de probabilité conditionnelle:&#34;, lst_NOEUD)
+        cpt = InsClsSampler.bn.cpt(selected_node)
+        
+        #afficher la CPT sous forme de dataframe
+        st.dataframe(cpt.topandas().style.background_gradient(axis=None, low=0.0, high=1.0))
+    
+    #add expander to view the inference example
+    with tab5:
+        st.markdown(&#34;### Exemple d&#39;inférence&#34;)
+        st.markdown(&#34;Dans cet exemple, nous allons effectuer une inférence en fixant certaines variables et en observant les effets sur d&#39;autres variables.&#34;)
+        st.markdown(&#34;#### Étape 1 - Sélection des variables imposées&#34;)
+        
+        settings = {}
+        Noeuds_contraints = st.multiselect(&#34;Sélection des variables imposées:&#34;, lst_NOEUD)
+
+        for input in Noeuds_contraints:
+            st.markdown(f&#34;**{input}**&#34;)
+            settings[input] = st.selectbox(
+                f&#34;Choisissez la valeur d&#39;intérêt pour {input} (scénario de référence)&#34;,
+                options=LIST_Dict[input].values())
+            pass
+        
+        st.markdown(&#34;#### Étape 2 - Résultats de l&#39;inférence&#34;)
+        selected_size2 = st.slider(&#34;Sélectionnez la taille du graphique (inférence):&#34;,
+                                            min_value=5, max_value=50, value=15, step=1)
+
+        if st.button(&#34;Effectuer l&#39;inférence&#34;):
+            
+            #svgtxt_inf = gum.lib.image.dot_as_svg_string(gum.lib._colors.prepareDot(gum.lib.image.prepareShowInference(InsClsSampler.bn, evs = settings)), size=selected_size2)
+            # fetch cached SVG (recomputed only when bn, evs or size change)
+            #svgtxt = bn_svg(InsClsSampler.bn, evs=None, size=selected_size)
+            svgtxt_inf = bn_svg(InsClsSampler.bn, evs=settings, Inference = True, size=selected_size2)
+            components.html(svgtxt_inf, height=900, scrolling=True)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.ui.Dashboard.Page_Echantilloneur"><code class="name flex">
+<span>def <span class="ident">Page_Echantilloneur</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def Page_Echantilloneur():
     &#34;&#34;&#34;
     Main function to render the Streamlit dashboard.
 
@@ -84,19 +187,18 @@ python -m streamlit run "ui/Dashboard.py"</p>
     --------
     None
     &#34;&#34;&#34;
-    # Set the page configuration
-    st.set_page_config(page_title=&#34;Echantillonneur ResStock-QC Dashboard&#34;,
-                       page_icon=&#34;🏠&#34;,
-                       layout=&#34;wide&#34;,
-                       initial_sidebar_state=&#34;expanded&#34;)
+
     st.markdown(&#34;&#34;&#34;
-                # ResStock-QC - Tableau de bord utilisant un réseau bayesien construit sur l&#39;EUEMr de 2022
-                
-                &#34;&#34;&#34;)
-    
-    InsClsSampler = Sampler()
-    path = PROJECT_DIR+&#34;/data/processed/bayesian_network/BN_EUEMr.XDSL&#34;
-    InsClsSampler.Load_BN(path)
+            # ResStock-QC - Tableau de bord utilisant un réseau bayesien construit sur l&#39;EUEMr de 2022
+            
+            &#34;&#34;&#34;)
+
+    #InsClsSampler = Sampler()
+    #path = PROJECT_DIR+&#34;/data/processed/bayesian_network/BN_EUEMr.XDSL&#34;
+    #InsClsSampler.Load_BN(path)
+    # use cached loader instead of creating a new Sampler each run
+    path = PROJECT_DIR + &#34;/data/processed/bayesian_network/BN_EUEMr.XDSL&#34;
+    InsClsSampler = load_sampler(path)
 
     # List of node names and their values
     lst_NOEUD = InsClsSampler.lst_NOEUD
@@ -147,6 +249,7 @@ python -m streamlit run "ui/Dashboard.py"</p>
             lst_dct_HPXML = MapSample.run(lst_dct_args)
             dfargs = pd.DataFrame(lst_dct_args)
             dfHPXML = pd.DataFrame(lst_dct_HPXML)
+            dfAll = pd.concat([dfargs, dfHPXML], axis=1)
 
             st.write(&#34;Calcul terminé.&#34;)  
 
@@ -166,7 +269,7 @@ python -m streamlit run "ui/Dashboard.py"</p>
                 &#34;Attention: le fichier ne devrait pas être trop volumineux (&lt; 100 Mo).&#34;)
         st.download_button(
                         label=&#34;Télécharger les résultats&#34;,
-                        data=dfHPXML.to_csv(index=False).encode(&#39;utf-8&#39;),
+                        data=dfAll.to_csv(index=False).encode(&#39;utf-8&#39;),
                         file_name=&#39;resultats.csv&#39;,
                         mime=&#39;text/csv&#39;
                 )</code></pre>
@@ -177,6 +280,45 @@ python -m streamlit run "ui/Dashboard.py"</p>
 2. Provides a download button for exporting the data as a CSV file.</p>
 <h2 id="returns">Returns:</h2>
 <p>None</p></div>
+</dd>
+<dt id="LTE-Sampler-Residential.ui.Dashboard.bn_svg"><code class="name flex">
+<span>def <span class="ident">bn_svg</span></span>(<span>bn, evs=None, Inference=True, size=15)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@st.cache_data(hash_funcs={gum.BayesNet: lambda b: id(b)})
+def bn_svg(bn, evs=None, Inference=True, size=15):
+    if Inference:
+        # use pyagrum helpers once; cached result avoids recompute on every rerun
+        svgtxt = gum.lib.image.dot_as_svg_string(
+            gum.lib._colors.prepareDot(gum.lib.image.prepareShowInference(bn, evs=evs)),
+            size=size
+        )
+    else:
+        fig = gum.lib.bn2graph.BN2dot(bn)
+        svgtxt = gum.lib.image.dot_as_svg_string(gum.lib._colors.prepareDot(fig), size=size)
+    return svgtxt</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.ui.Dashboard.load_sampler"><code class="name flex">
+<span>def <span class="ident">load_sampler</span></span>(<span>path)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@st.cache_resource
+def load_sampler(path):
+    ins = Sampler()
+    ins.Load_BN(path)
+    return ins</code></pre>
+</details>
+<div class="desc"></div>
 </dd>
 </dl>
 </section>
@@ -192,6 +334,7 @@ python -m streamlit run "ui/Dashboard.py"</p>
 <li><a href="#author">Author:</a></li>
 <li><a href="#version">version:</a></li>
 <li><a href="#python-version">python version:</a></li>
+<li><a href="#usage_1">Usage:</a></li>
 </ul>
 </li>
 </ul>
@@ -204,7 +347,10 @@ python -m streamlit run "ui/Dashboard.py"</p>
 </li>
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="">
-<li><code><a title="LTE-Sampler-Residential.ui.Dashboard.DashBoard" href="#LTE-Sampler-Residential.ui.Dashboard.DashBoard">DashBoard</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.ui.Dashboard.BaysianNetwork" href="#LTE-Sampler-Residential.ui.Dashboard.BaysianNetwork">BaysianNetwork</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.ui.Dashboard.Page_Echantilloneur" href="#LTE-Sampler-Residential.ui.Dashboard.Page_Echantilloneur">Page_Echantilloneur</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.ui.Dashboard.bn_svg" href="#LTE-Sampler-Residential.ui.Dashboard.bn_svg">bn_svg</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.ui.Dashboard.load_sampler" href="#LTE-Sampler-Residential.ui.Dashboard.load_sampler">load_sampler</a></code></li>
 </ul>
 </li>
 </ul>

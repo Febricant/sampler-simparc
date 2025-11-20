@@ -30,10 +30,17 @@ python version:
 -------------
 python 3.11
 
+Usage:
+-------------
+python -m streamlit run "ui/Dashboard.py"
+
 Functions
 ---------
 
-`DashBoard()`
+`BaysianNetwork()`
+:   
+
+`Page_Echantilloneur()`
 :   Main function to render the Streamlit dashboard.
     
     This function performs the following steps:
@@ -43,3 +50,9 @@ Functions
     Returns:
     --------
     None
+
+`bn_svg(bn, evs=None, Inference=True, size=15)`
+:   
+
+`load_sampler(path)`
+:

@@ -2676,11 +2676,11 @@ class MapHPXML:
         dctBathroomSpotVent = {}
         for hour in range(24):
             dctBathroomSpotVent[f"Hour{hour}"] = {"bathroom_fans_quantity":"auto",
-                                                "bathroom_fans_start_hour":hour,
+                                                "bathroom_fans_start_hour":int(hour),
                                                 "bathroom_fans_flow_rate":"auto",
                                                 "bathroom_fans_hours_in_operation":"auto",
                                                 "bathroom_fans_power":"auto"}
-        arg = "Bathroom Spot Ventilation Hour"
+        arg = "Bathroom Spot Vent Hour"
         if (arg in dct_args.keys()):
             for args in dctBathroomSpotVent[dct_args[arg]]:
                 if ((args not in dct_HPXML.keys()) & (dctBathroomSpotVent[dct_args[arg]][args]!="auto")):
@@ -2691,11 +2691,11 @@ class MapHPXML:
         dctRangeSpotVent = {}
         for hour in range(24):
             dctRangeSpotVent[f"Hour{hour}"] = {"kitchen_fans_quantity":"auto",
-                                                "kitchen_fans_start_hour":hour,
+                                                "kitchen_fans_start_hour":int(hour),
                                                 "kitchen_fans_flow_rate":"auto",
                                                 "kitchen_fans_hours_in_operation":"auto",
                                                 "kitchen_fans_power":"auto"}
-        arg = "Range Spot Ventilation Hour"
+        arg = "Range Spot Vent Hour"
         if (arg in dct_args.keys()):
             for args in dctRangeSpotVent[dct_args[arg]]:
                 if ((args not in dct_HPXML.keys()) & (dctRangeSpotVent[dct_args[arg]][args]!="auto")):

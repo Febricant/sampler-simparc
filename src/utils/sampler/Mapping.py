@@ -103,6 +103,113 @@ class MapHPXML:
                 else:
                     dct_HPXML[argHPXML] = 1.8
         # ________________________________________________________________
+            # Orientation
+            dct_orientation = {}
+            dct_orientation["ENE"] = {"geometry_unit_orientation": 68}
+            dct_orientation["ESE"] = {"geometry_unit_orientation": 113}
+            dct_orientation["East"] = {"geometry_unit_orientation": 90}
+            dct_orientation["NNE"] = {"geometry_unit_orientation": 23}
+            dct_orientation["NNW"] = {"geometry_unit_orientation": 338}
+            dct_orientation["North"] = {"geometry_unit_orientation": 0}
+            dct_orientation["Northeast"] = {"geometry_unit_orientation": 45}
+            dct_orientation["Northwest"] = {"geometry_unit_orientation": 315}
+            dct_orientation["SSE"] = {"geometry_unit_orientation": 158}
+            dct_orientation["SSW"] = {"geometry_unit_orientation": 203}
+            dct_orientation["South"] = {"geometry_unit_orientation": 180}
+            dct_orientation["Southeast"] = {"geometry_unit_orientation": 135}
+            dct_orientation["Southwest"] = {"geometry_unit_orientation": 225}
+            dct_orientation["WNW"] = {"geometry_unit_orientation": 293}
+            dct_orientation["WSW"] = {"geometry_unit_orientation": 248}
+            dct_orientation["West"] = {"geometry_unit_orientation": 270}
+
+            arg = "Orientation"
+            if (arg in dct_args.keys()):
+                for args in dct_orientation[dct_args[arg]]:
+                    if ((args not in dct_HPXML.keys()) & (dct_orientation[dct_args[arg]][args] != "auto")):
+                        dct_HPXML[args] = dct_orientation[dct_args[arg]][args]
+
+            # ________________________________________________________________
+            # Overhangs
+            dct_overhangs = {}
+            dct_overhangs["2ft, All Windows"] = {"geometry_overhangs_front_depth": 2,
+                                                 "geometry_overhangs_front_distance_to_top_of_window": 0,
+                                                 "geometry_overhangs_front_distance_to_bottom_of_window": 4,
+                                                 "geometry_overhangs_back_depth": 2,
+                                                 "geometry_overhangs_back_distance_to_top_of_window": 0,
+                                                 "geometry_overhangs_back_distance_to_bottom_of_window": 4,
+                                                 "geometry_overhangs_left_depth": 2,
+                                                 "geometry_overhangs_left_distance_to_top_of_window": 0,
+                                                 "geometry_overhangs_left_distance_to_bottom_of_window": 4,
+                                                 "geometry_overhangs_right_depth": 2,
+                                                 "geometry_overhangs_right_distance_to_top_of_window": 0,
+                                                 "geometry_overhangs_right_distance_to_bottom_of_window": 4}
+            dct_overhangs["2ft, Back Windows"] = {"geometry_overhangs_front_depth": 0,
+                                                  "geometry_overhangs_front_distance_to_top_of_window": 0,
+                                                  "geometry_overhangs_front_distance_to_bottom_of_window": 4,
+                                                  "geometry_overhangs_back_depth": 2,
+                                                  "geometry_overhangs_back_distance_to_top_of_window": 0,
+                                                  "geometry_overhangs_back_distance_to_bottom_of_window": 4,
+                                                  "geometry_overhangs_left_depth": 0,
+                                                  "geometry_overhangs_left_distance_to_top_of_window": 0,
+                                                  "geometry_overhangs_left_distance_to_bottom_of_window": 4,
+                                                  "geometry_overhangs_right_depth": 0,
+                                                  "geometry_overhangs_right_distance_to_top_of_window": 0,
+                                                  "geometry_overhangs_right_distance_to_bottom_of_window": 4}
+            dct_overhangs["2ft, Front Windows"] = {"geometry_overhangs_front_depth": 2,
+                                                   "geometry_overhangs_front_distance_to_top_of_window": 0,
+                                                   "geometry_overhangs_front_distance_to_bottom_of_window": 4,
+                                                   "geometry_overhangs_back_depth": 0,
+                                                   "geometry_overhangs_back_distance_to_top_of_window": 0,
+                                                   "geometry_overhangs_back_distance_to_bottom_of_window": 4,
+                                                   "geometry_overhangs_left_depth": 0,
+                                                   "geometry_overhangs_left_distance_to_top_of_window": 0,
+                                                   "geometry_overhangs_left_distance_to_bottom_of_window": 4,
+                                                   "geometry_overhangs_right_depth": 0,
+                                                   "geometry_overhangs_right_distance_to_top_of_window": 0,
+                                                   "geometry_overhangs_right_distance_to_bottom_of_window": 4}
+            dct_overhangs["2ft, Left Windows"] = {"geometry_overhangs_front_depth": 0,
+                                                  "geometry_overhangs_front_distance_to_top_of_window": 0,
+                                                  "geometry_overhangs_front_distance_to_bottom_of_window": 4,
+                                                  "geometry_overhangs_back_depth": 0,
+                                                  "geometry_overhangs_back_distance_to_top_of_window": 0,
+                                                  "geometry_overhangs_back_distance_to_bottom_of_window": 4,
+                                                  "geometry_overhangs_left_depth": 2,
+                                                  "geometry_overhangs_left_distance_to_top_of_window": 0,
+                                                  "geometry_overhangs_left_distance_to_bottom_of_window": 4,
+                                                  "geometry_overhangs_right_depth": 0,
+                                                  "geometry_overhangs_right_distance_to_top_of_window": 0,
+                                                  "geometry_overhangs_right_distance_to_bottom_of_window": 4}
+            dct_overhangs["2ft, Right Windows"] = {"geometry_overhangs_front_depth": 0,
+                                                   "geometry_overhangs_front_distance_to_top_of_window": 0,
+                                                   "geometry_overhangs_front_distance_to_bottom_of_window": 4,
+                                                   "geometry_overhangs_back_depth": 0,
+                                                   "geometry_overhangs_back_distance_to_top_of_window": 0,
+                                                   "geometry_overhangs_back_distance_to_bottom_of_window": 4,
+                                                   "geometry_overhangs_left_depth": 0,
+                                                   "geometry_overhangs_left_distance_to_top_of_window": 0,
+                                                   "geometry_overhangs_left_distance_to_bottom_of_window": 4,
+                                                   "geometry_overhangs_right_depth": 2,
+                                                   "geometry_overhangs_right_distance_to_top_of_window": 0,
+                                                   "geometry_overhangs_right_distance_to_bottom_of_window": 4}
+            dct_overhangs["None"] = {"geometry_overhangs_front_depth": 0,
+                                     "geometry_overhangs_front_distance_to_top_of_window": 0,
+                                     "geometry_overhangs_front_distance_to_bottom_of_window": 4,
+                                     "geometry_overhangs_back_depth": 0,
+                                     "geometry_overhangs_back_distance_to_top_of_window": 0,
+                                     "geometry_overhangs_back_distance_to_bottom_of_window": 4,
+                                     "geometry_overhangs_left_depth": 0,
+                                     "geometry_overhangs_left_distance_to_top_of_window": 0,
+                                     "geometry_overhangs_left_distance_to_bottom_of_window": 4,
+                                     "geometry_overhangs_right_depth": 0,
+                                     "geometry_overhangs_right_distance_to_top_of_window": 0,
+                                     "geometry_overhangs_right_distance_to_bottom_of_window": 4}
+            arg = "Overhangs"
+            if (arg in dct_args.keys()):
+                for args in dct_overhangs[dct_args[arg]]:
+                    if ((args not in dct_HPXML.keys()) & (dct_overhangs[dct_args[arg]][args] != "auto")):
+                        dct_HPXML[args] = dct_overhangs[dct_args[arg]][args]
+
+            # ________________________________________________________________
 
         arg = "Superficie_Totale"
         argHPXML = "geometry_unit_cfa"
@@ -3180,7 +3287,7 @@ class MapHPXML:
                                                        "heat_pump_heating_efficiency": 3.6,
                                                        "heat_pump_cooling_efficiency_type": "EER",
                                                        "heat_pump_cooling_efficiency": 16.6,
-                                                       "heat_pump_sizing_methodology": "ACCA",
+                                                       "heat_pump_sizing_methodology": "MaxLoad",
                                                        "heat_pump_sizing_is_duct_limited": "false",
                                                        "heat_pump_backup_sizing_methodology": "auto",
                                                        "heat_pump_heating_capacity": "auto",
@@ -3270,7 +3377,7 @@ class MapHPXML:
                                                        "heat_pump_heating_efficiency": 4.2,
                                                        "heat_pump_cooling_efficiency_type": "EER",
                                                        "heat_pump_cooling_efficiency": 20.2,
-                                                       "heat_pump_sizing_methodology": "ACCA",
+                                                       "heat_pump_sizing_methodology": "MaxLoad",
                                                        "heat_pump_sizing_is_duct_limited": "false",
                                                        "heat_pump_backup_sizing_methodology": "auto",
                                                        "heat_pump_heating_capacity": "auto",
@@ -3405,7 +3512,7 @@ class MapHPXML:
                                                          "heat_pump_heating_efficiency": 8.2,
                                                          "heat_pump_cooling_efficiency_type": "SEER",
                                                          "heat_pump_cooling_efficiency": 14.5,
-                                                         "heat_pump_sizing_methodology": "ACCA",
+                                                         "heat_pump_sizing_methodology": "MaxLoad",
                                                          "heat_pump_sizing_is_duct_limited": "false",
                                                          "heat_pump_backup_sizing_methodology": "auto",
                                                          "heat_pump_heating_capacity": "auto",
@@ -5339,6 +5446,134 @@ class MapHPXML:
                 dct_HPXML[args] = separator.join(
                     [str(float(dct_args[arg]) * 9 / 5 + 32)] * 24)  # conversion C to F , Tjour
 
+                # Ventilation mechanique
+            dict_MechVentilation = {}
+            dict_MechVentilation["ERV, 72%"] = {"mech_vent_fan_type": "energy recovery ventilator",
+                                                "mech_vent_flow_rate": "auto", "mech_vent_hours_in_operation": "auto",
+                                                "mech_vent_recovery_efficiency_type": "Unadjusted",
+                                                "mech_vent_total_recovery_efficiency": 0.48,
+                                                "mech_vent_sensible_recovery_efficiency": 0.72,
+                                                "mech_vent_fan_power": "auto", "mech_vent_num_units_served": 1,
+                                                "mech_vent_2_fan_type": "none", "mech_vent_2_flow_rate": 0,
+                                                "mech_vent_2_hours_in_operation": 0,
+                                                "mech_vent_2_recovery_efficiency_type": "Unadjusted",
+                                                "mech_vent_2_total_recovery_efficiency": 0,
+                                                "mech_vent_2_sensible_recovery_efficiency": 0,
+                                                "mech_vent_2_fan_power": 0, "whole_house_fan_present": False,
+                                                "whole_house_fan_flow_rate": 0, "whole_house_fan_power": 0,
+                                                "mech_vent_shared_frac_recirculation": "auto",
+                                                "mech_vent_shared_precooling_efficiency": "auto",
+                                                "mech_vent_shared_precooling_fraction_cool_load_served": "auto",
+                                                "mech_vent_shared_precooling_fuel": "auto",
+                                                "mech_vent_shared_preheating_efficiency": "auto",
+                                                "mech_vent_shared_preheating_fraction_heat_load_served": "auto",
+                                                "mech_vent_shared_preheating_fuel": "auto"}
+            dict_MechVentilation["HRV, 60%"] = {"mech_vent_fan_type": "heat recovery ventilator",
+                                                "mech_vent_flow_rate": "auto", "mech_vent_hours_in_operation": "auto",
+                                                "mech_vent_recovery_efficiency_type": "Unadjusted",
+                                                "mech_vent_total_recovery_efficiency": 0,
+                                                "mech_vent_sensible_recovery_efficiency": 0.6,
+                                                "mech_vent_fan_power": "auto", "mech_vent_num_units_served": 1,
+                                                "mech_vent_2_fan_type": "none", "mech_vent_2_flow_rate": 0,
+                                                "mech_vent_2_hours_in_operation": 0,
+                                                "mech_vent_2_recovery_efficiency_type": "Unadjusted",
+                                                "mech_vent_2_total_recovery_efficiency": 0,
+                                                "mech_vent_2_sensible_recovery_efficiency": 0,
+                                                "mech_vent_2_fan_power": 0, "whole_house_fan_present": False,
+                                                "whole_house_fan_flow_rate": 0, "whole_house_fan_power": 0,
+                                                "mech_vent_shared_frac_recirculation": "auto",
+                                                "mech_vent_shared_precooling_efficiency": "auto",
+                                                "mech_vent_shared_precooling_fraction_cool_load_served": "auto",
+                                                "mech_vent_shared_precooling_fuel": "auto",
+                                                "mech_vent_shared_preheating_efficiency": "auto",
+                                                "mech_vent_shared_preheating_fraction_heat_load_served": "auto",
+                                                "mech_vent_shared_preheating_fuel": "auto"}
+            dict_MechVentilation["Exhaust"] = {"mech_vent_fan_type": "exhaust only", "mech_vent_flow_rate": "auto",
+                                               "mech_vent_hours_in_operation": "auto",
+                                               "mech_vent_recovery_efficiency_type": "Unadjusted",
+                                               "mech_vent_total_recovery_efficiency": 0,
+                                               "mech_vent_sensible_recovery_efficiency": 0,
+                                               "mech_vent_fan_power": "auto", "mech_vent_num_units_served": 1,
+                                               "mech_vent_2_fan_type": "none", "mech_vent_2_flow_rate": 0,
+                                               "mech_vent_2_hours_in_operation": 0,
+                                               "mech_vent_2_recovery_efficiency_type": "Unadjusted",
+                                               "mech_vent_2_total_recovery_efficiency": 0,
+                                               "mech_vent_2_sensible_recovery_efficiency": 0,
+                                               "mech_vent_2_fan_power": 0, "whole_house_fan_present": False,
+                                               "whole_house_fan_flow_rate": 0, "whole_house_fan_power": 0,
+                                               "mech_vent_shared_frac_recirculation": "auto",
+                                               "mech_vent_shared_precooling_efficiency": "auto",
+                                               "mech_vent_shared_precooling_fraction_cool_load_served": "auto",
+                                               "mech_vent_shared_precooling_fuel": "auto",
+                                               "mech_vent_shared_preheating_efficiency": "auto",
+                                               "mech_vent_shared_preheating_fraction_heat_load_served": "auto",
+                                               "mech_vent_shared_preheating_fuel": "auto"}
+            dict_MechVentilation["None"] = {"mech_vent_fan_type": "none", "mech_vent_flow_rate": 0,
+                                            "mech_vent_hours_in_operation": 0,
+                                            "mech_vent_recovery_efficiency_type": "Unadjusted",
+                                            "mech_vent_total_recovery_efficiency": 0,
+                                            "mech_vent_sensible_recovery_efficiency": 0, "mech_vent_fan_power": 0,
+                                            "mech_vent_num_units_served": 0, "mech_vent_2_fan_type": "none",
+                                            "mech_vent_2_flow_rate": 0, "mech_vent_2_hours_in_operation": 0,
+                                            "mech_vent_2_recovery_efficiency_type": "Unadjusted",
+                                            "mech_vent_2_total_recovery_efficiency": 0,
+                                            "mech_vent_2_sensible_recovery_efficiency": 0, "mech_vent_2_fan_power": 0,
+                                            "whole_house_fan_present": False, "whole_house_fan_flow_rate": 0,
+                                            "whole_house_fan_power": 0, "mech_vent_shared_frac_recirculation": "auto",
+                                            "mech_vent_shared_precooling_efficiency": "auto",
+                                            "mech_vent_shared_precooling_fraction_cool_load_served": "auto",
+                                            "mech_vent_shared_precooling_fuel": "auto",
+                                            "mech_vent_shared_preheating_efficiency": "auto",
+                                            "mech_vent_shared_preheating_fraction_heat_load_served": "auto",
+                                            "mech_vent_shared_preheating_fuel": "auto"}
+            arg = "Mechanical Ventilation"
+            if (arg in dct_args.keys()):
+                for args in dict_MechVentilation[dct_args[arg]]:
+                    if ((args not in dct_HPXML.keys()) & (dict_MechVentilation[dct_args[arg]][args] != "auto")):
+                        dct_HPXML[args] = dict_MechVentilation[dct_args[arg]][args]
+
+            # _____________________________________________________________
+            # Bathroom Spot Ventilation Hourly Distribution
+            dctBathroomSpotVent = {}
+            for hour in range(24):
+                dctBathroomSpotVent[f"Hour{hour}"] = {"bathroom_fans_quantity": "auto",
+                                                      "bathroom_fans_start_hour": int(hour),
+                                                      "bathroom_fans_flow_rate": "auto",
+                                                      "bathroom_fans_hours_in_operation": "auto",
+                                                      "bathroom_fans_power": "auto"}
+            arg = "Bathroom Spot Vent Hour"
+            if (arg in dct_args.keys()):
+                for args in dctBathroomSpotVent[dct_args[arg]]:
+                    if ((args not in dct_HPXML.keys()) & (dctBathroomSpotVent[dct_args[arg]][args] != "auto")):
+                        dct_HPXML[args] = dctBathroomSpotVent[dct_args[arg]][args]
+
+            # _____________________________________________________________
+            # Range Spot Ventilation Hourly Distribution
+            dctRangeSpotVent = {}
+            for hour in range(24):
+                dctRangeSpotVent[f"Hour{hour}"] = {"kitchen_fans_quantity": "auto",
+                                                   "kitchen_fans_start_hour": int(hour),
+                                                   "kitchen_fans_flow_rate": "auto",
+                                                   "kitchen_fans_hours_in_operation": "auto",
+                                                   "kitchen_fans_power": "auto"}
+            arg = "Range Spot Vent Hour"
+            if (arg in dct_args.keys()):
+                for args in dctRangeSpotVent[dct_args[arg]]:
+                    if ((args not in dct_HPXML.keys()) & (dctRangeSpotVent[dct_args[arg]][args] != "auto")):
+                        dct_HPXML[args] = dctRangeSpotVent[dct_args[arg]][args]
+
+            # _____________________________________________________________
+            # Natural Ventilation
+            dict_NaturalVentilation = {}
+            dict_NaturalVentilation["Cooling Season, 7 days/wk"] = {"window_fraction_operable": 0.67}
+            dict_NaturalVentilation["None"] = {"window_fraction_operable": 0}
+            arg = "Natural Ventilation"
+            if (arg in dct_args.keys()):
+                for args in dict_NaturalVentilation[dct_args[arg]]:
+                    if ((args not in dct_HPXML.keys()) & (dict_NaturalVentilation[dct_args[arg]][args] != "auto")):
+                        dct_HPXML[args] = dict_NaturalVentilation[dct_args[arg]][args]
+            # _____________________________________________________________
+
         # ajout des Valeurs par défaut du HPXML si cle n'existe pas
         k_missing = list(set(self.HPXMLArg.arguments.keys()) - set(dct_HPXML.keys()))
         dct_HPXML_missing = {}  # {k: self.HPXMLArg.arguments[k].get("Default Value", None) for k in k_missing if self.HPXMLArg.arguments[k].get("Default Value", "Defaut_Not_Existing")!="Defaut_Not_Existing"}
@@ -5396,7 +5631,13 @@ class BuildstockBatchArguments():
                         "Heating Setpoint",
                         "Cooling Setpoint",
                         "Garage Heating Setpoint",
-                        "Basement Heating Setpoint"]
+                        "Basement Heating Setpoint",
+                        "Mechanical Ventilation",
+                        "Bathroom Spot Vent Hour",
+                        "Natural Ventilation",
+                        "Range Spot Vent Hour",
+                        "Orientation",
+                        "Overhangs"]
 
     def csv_to_dict(self):
         """
@@ -5526,6 +5767,24 @@ class BuildstockBatchArguments():
         dct_housing_characteristics_csv["Basement Heating Setpoint.csv"] = {"Name": "Basement Heating Setpoint",
                                                                             "Description": "Consigne de chauffage du sous-sol",
                                                                             "Source": "Sondage Sensibilisation intégrée"}
+        dct_housing_characteristics_csv["Mechanical Ventilation.csv"] = {"Name": "Mechanical Ventilation",
+                                            "Description": "Mechanical Ventilation",
+                                            "Source":"ResStock"}
+        dct_housing_characteristics_csv["Bathroom Spot Vent Hour.csv"] = {"Name": "Bathroom Spot Vent Hour",
+                                            "Description": "Bathroom Spot Vent Hour",
+                                            "Source":"ResStock"}
+        dct_housing_characteristics_csv["Natural Ventilation.csv"] = {"Name": "Natural Ventilation",
+                                            "Description": "Natural Ventilation",
+                                            "Source":"ResStock"}
+        dct_housing_characteristics_csv["Range Spot Vent Hour.csv"] = {"Name": "Range Spot Vent Hour",
+                                            "Description": "Range Spot Vent Hour",
+                                            "Source":"ResStock"}
+        dct_housing_characteristics_csv["Orientation.csv"] = {"Name": "Orientation",
+                                            "Description": "Orientation du bâtiment",
+                                            "Source":"ResStock"}
+        dct_housing_characteristics_csv["Overhangs.csv"] = {"Name": "Overhangs",
+                                            "Description": "Surplombs",
+                                            "Source":"ResStock"}
 
         dct_housing_characteristics = {}
         for file in dct_housing_characteristics_csv.keys():

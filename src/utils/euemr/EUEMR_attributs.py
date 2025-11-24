@@ -1,5 +1,4 @@
-class Attribut_EUEMr(object):
-
+class Attributs_EUEMr(object):
     # Attributs de l'enquête EUEMr
 
     # QA1 : Quel est votre lien avec ce logement ? En êtes-vous...

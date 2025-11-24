@@ -4,7 +4,7 @@ Module LTE-Sampler-Residential.src.utils.euemr.EUEMRArg
 Classes
 -------
 
-`Attribut_EUEMr()`
+`Attributs_EUEMr()`
 :   
 
     ### Class variables

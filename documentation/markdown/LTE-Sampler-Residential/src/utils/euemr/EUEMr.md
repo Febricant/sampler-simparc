@@ -11,7 +11,7 @@ python 3.11
 Classes
 -------
 
-`FormatageEUEMr()`
+`EUEMR_formatage()`
 :   Classe pour transformet les données EUEMr en données pour le BN.
 
     ### Methods

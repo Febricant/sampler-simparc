@@ -10,36 +10,26 @@ python 3.11
 
 """
 import os
-import sys
-import time
-import pickle
 import numpy as np
 import pandas as pd
-import random
-from datetime import datetime
-from datetime import timedelta
-import matplotlib.pyplot as plt
-
 import pyagrum as gum
+from pathlib import Path
 
-from src.utils.euemr.EUEMRArg import Attribut_EUEMr
-from src.utils.euemr.EUEMr import FormatageEUEMr
+from src.utils.euemr.EUEMR_attributs import Attributs_EUEMr
+from src.utils.euemr.Mapping import EUEMR_formatage
 from src.utils.sampler.bayesian_network import bayesian_network
 
-#import json
 
 import warnings
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
 
-FILE_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_DIR = os.path.abspath(FILE_DIR+ "/../"+ "/../"+ "/../")  # répertoire supérieur
-#PACKAGE_DIR = os.path.abspath(PROJECT_DIR+ "/../")
-#sys.path.append(os.path.join(PACKAGE_DIR))
-
 class EUEMr(bayesian_network):
     '''
     Class qui permet de générer un réseau bayésien à partir des données EUEMr.
+
+    Les données de consommation électrique annuelle sont ignorées (i.e. ConsoElecAn) pour éviter une référence circulaire.
     '''
+
     lst_NOEUD = ["Territoire_HQ",
                  "Region_Administrative",
                  "Type_Logement",
@@ -51,7 +41,6 @@ class EUEMr(bayesian_network):
                  "Nombre_Personnes",
                  "Presence_Garage",
                  "Mode_Occupation",
-                 ##"ConsoElecAn",
                  "An_Construction",
                  "An_ConstructionCode",
                  "Climatisation",
@@ -81,23 +70,18 @@ class EUEMr(bayesian_network):
                 "Cuisiniere_Presence",
                 "Cuisiniere_Energie",
                 "Eclairage_LED"]
-                    
-        
-    #    ["QA4", # De quel genre d'habitation s'agit-il?
-    #                 "QA1", # Quel est votre lien avec ce logement ?
-    #                 "QC1R", # Principale source d'énergie utilisée pour le chauffage du domicile
-    #                 ]
 
     # création des noeuds 
     # Nom_Noeud:description_Noeud
-    MapEUEMr = FormatageEUEMr()
+
+    MapEUEMr = EUEMR_formatage()
     dictMapEUEMr = MapEUEMr.get_Mettadata()
     NOEUD_EUEMr = {}
     for key in lst_NOEUD:
         if key in dictMapEUEMr.keys():
             NOEUD_EUEMr[key] = dictMapEUEMr[key]["Description"]
         else:
-            NOEUD_EUEMr[key] = Attribut_EUEMr.__dict__[key]["Description"]
+            NOEUD_EUEMr[key] = Attributs_EUEMr.__dict__[key]["Description"]
 
     # création des dictionnaires des noeuds
     # {Nom_Noeud: {IdLabel: Label}}
@@ -109,13 +93,10 @@ class EUEMr(bayesian_network):
                                                          dictMapEUEMr[key]["Label"])}
 
         else:
-            LIST_Dict[key] = {idL:Lab for idL,Lab in zip(Attribut_EUEMr.__dict__[key]["IdLabel"],
-                                                        Attribut_EUEMr.__dict__[key]["Label"])}
+            LIST_Dict[key] = {idL:Lab for idL,Lab in zip(Attributs_EUEMr.__dict__[key]["IdLabel"],
+                                                        Attributs_EUEMr.__dict__[key]["Label"])}
 
-    #TODO
-    # Changer en relatif
-
-    fileEUEMr = PROJECT_DIR+"//data//processed//euemr//2022//sondage_residentiel_version_finale_formatted.csv"
+    fileEUEMr = str(Path(__file__).parents[3] / "/data/processed/euemr/2022/sondage_residentiel_version_finale_formatted.csv")
 
     def __init__(self):
         """
@@ -305,13 +286,11 @@ class EUEMr(bayesian_network):
                                               "dropvalues" : [".", "NSP/NRP"],
                                               "Dependancy": ["Type_Logement"]}}
 
-        #csvName = PROJECT_DIR+"//data//housing_characteristics//"+dct_MetaStats["Nombre_Logement"]["Csv_name"]
-        
                 # Ajout des tables conditionnelles
         for Name, dct_val in dct_MetaStats.items():
-            csvName = PROJECT_DIR+"//data//processed//housing_characteristics//"+dct_val["Csv_name"]
+            csvName = str(Path(__file__).parents[3] / "/data/processed/housing_characteristics/"+dct_val["Csv_name"])
             lstDep = dct_val["Dependancy"]
-            diCPT = {}
+
             #for k in diDep :
             if len(lstDep) == 0 :  # Aucune dépendance
                 ind = [0]
@@ -330,7 +309,7 @@ class EUEMr(bayesian_network):
             colVal_f = colval[~maskvalues].values
              
             diCPT = pd.DataFrame(index = ind, columns = colVal_f).astype(float).fillna(0)#.fillna(0) # diEUEMr[k].keys()
-            #diCPT = diCPT.sort_index(axis=1) # sort column
+
             # Updater le DataFrame avec l'occurance d'individu par dépendances
 
             diCPT.update(pd.crosstab(liInd,

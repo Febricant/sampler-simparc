@@ -9,33 +9,15 @@ Created on 26-06-2025
 python 3.11
 
 """
-import os
-import sys
-import time
-import pickle
-import numpy as np
+
 import pandas as pd
-import random
-from datetime import datetime
-from datetime import timedelta
-import matplotlib.pyplot as plt
-
-current_dir = os.getcwd()
-project_dir = os.path.abspath(current_dir+ "/../"+ "/../"+"/../")
-sys.path.append(project_dir)
-
-from src.utils.euemr.EUEMRArg import Attribut_EUEMr
-#import json
+from src.utils.euemr.EUEMR_attributs import Attributs_EUEMr
+from pathlib import Path
 
 import warnings
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
 
-FILE_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_DIR = os.path.abspath(FILE_DIR+ "/../" + "/../"+ "/../")  # répertoire supérieur
-#PACKAGE_DIR = os.path.abspath(PROJECT_DIR+ "/../")
-#sys.path.append(os.path.join(PACKAGE_DIR))
-
-class FormatageEUEMr:
+class EUEMR_formatage:
     """
     Classe pour transformet les données EUEMr en données pour le BN.
     """
@@ -573,7 +555,7 @@ class FormatageEUEMr:
         ## a voir si pertinent # # QF3 : Quelle est la capacité du chauffe-eau?
 
     def get_Mapping_Colsrc(self, colName):
-        if colName in Attribut_EUEMr.__dict__.keys():
+        if colName in Attributs_EUEMr.__dict__.keys():
             return colName
         elif colName in self.Mapping.keys():
             return self.get_Mapping_Colsrc(self.Mapping[colName]["ColSrc"])#recursif
@@ -586,29 +568,29 @@ class FormatageEUEMr:
                 if dictMap["typeMapping"] == "list":
                     Metadata[keyMap] = {"Label": list(dictMap["Mapping"].keys()),
                                         "IdLabel": [str(i) for i in range(len(dictMap["Mapping"]))],
-                                        "Description": Attribut_EUEMr.__dict__[ColSrc]["Description"],
+                                        "Description": Attributs_EUEMr.__dict__[ColSrc]["Description"],
                                         "Type": "discrete"}
                 elif dictMap["typeMapping"] == "bin":
                     Metadata[keyMap] = {"Label": dictMap["Mapping"]["labels"],
                                         "IdLabel": [str(i) for i in range(len(dictMap["Mapping"]["labels"]))],
-                                        "Description": Attribut_EUEMr.__dict__[ColSrc]["Description"],
+                                        "Description": Attributs_EUEMr.__dict__[ColSrc]["Description"],
                                         "Type": "discrete"}
                 elif dictMap["typeMapping"] == "custom":
                     Metadata[keyMap] = {"Label": dictMap["Mapping"].keys(),
                                         "IdLabel": [str(i) for i in range(len(dictMap["Mapping"]))],
-                                        "Description": Attribut_EUEMr.__dict__[ColSrc]["Description"],
+                                        "Description": Attributs_EUEMr.__dict__[ColSrc]["Description"],
                                         "Type": "discrete"}
                 elif dictMap["typeMapping"] == "no":
                     Metadata[keyMap] = {"Label": [],
                                         "IdLabel": [],
-                                        "Description": Attribut_EUEMr.__dict__[ColSrc]["Description"],
+                                        "Description": Attributs_EUEMr.__dict__[ColSrc]["Description"],
                                         "Type": ""}
             except KeyError as e:
                 print(f"Error processing mapping for key: {keyMap} : {e}")
                 
             #Metadata[keyMap] = {"Label": list(dictMap["Mapping"].keys()),
             #                    "IdLabel": [str(i) for i in range(len(dictMap["Mapping"]))],
-            #                    "Description": Attribut_EUEMr.__dict__[dictMap["ColSrc"]]["Description"],
+            #                    "Description": Attributs_EUEMr.__dict__[dictMap["ColSrc"]]["Description"],
             #                   "Type": "discrete"}
         return Metadata
 
@@ -707,7 +689,7 @@ class FormatageEUEMr:
                                                                 else ("Printemps_Automne_Hiver" if sorted([row["QS2M1R"], row["QS2M2R"], row["QS2M3R"], row["QS2M4R"]])== sorted(["Le printemps","L'automne","L'hiver", "."])\
                                                                 else ("Ete_Automne_Hiver" if sorted([row["QS2M1R"], row["QS2M2R"], row["QS2M3R"], row["QS2M4R"]])== sorted(["L'été","L'automne","L'hiver", "."])\
                                                                 else None)))))))))))))))), axis=1).rename(ColName)
-                        #else ("Printemps_Ete_Hiver" if sorted([row["QS2M1R"], row["QS2M2R"], row["QS2M3R"], row["QS2M4R"]])== sorted(["Le printemps","L'été","L'hiver", "."])\
+
                     elif ColName == "Vehicule_Presence":
                         return dfEUEMrSrc_ColName.apply(lambda row: "Aucune_VE_Aucune_VHR" if ((row["QT2R"] in ["Aucune"]) and (row["QT3R"] in ["Aucune"]))\
                                                                 else ("Une_VE_Aucune_VHR" if ((row["QT2R"] in ["Une"]) and (row["QT3R"] in ["Aucune"]))\
@@ -776,7 +758,7 @@ class FormatageEUEMr:
         
         df_toPond = df_toPond_src[~pd.isnull(df_toPond_src["POND1"])]
         
-        dataStats = pd.read_csv(PROJECT_DIR+"/data/input/euemr/2022/raked_data.csv")
+        dataStats = pd.read_csv(str(Path(__file__).parents[3] / "data/input/euemr/2022/raked_data.csv"))
         dataStats["Typo"] = dataStats["Typo-Source"].str.split("_").str[0]
         dataStats["Source"] = dataStats["Typo-Source"].str.split("_").str[1]
 
@@ -797,7 +779,7 @@ class FormatageEUEMr:
         """
         Fonction principale pour exécuter le formatage des données EUEMr.
         """
-        stFileName = PROJECT_DIR+"//data//input//euemr//2022//sondage_residentiel_version_finale.xlsx"
+        stFileName = str(Path(__file__).parents[3] / "data/input/euemr/2022/sondage_residentiel_version_finale.xlsx")
         sheet_name = "Data"
 
         self.Load_excel(stFileName, sheet_name)
@@ -807,8 +789,9 @@ class FormatageEUEMr:
         #add new ponderation column
         self.dfEUEMr_new = self.Create_Pond(self.dfEUEMr_new)
 
-        output_file = PROJECT_DIR+"//data//processed//euemr//2022//sondage_residentiel_version_finale_formatted.csv"
+        output_file = str(Path(__file__).parents[3] / "data/processed/euemr/2022/sondage_residentiel_version_finale_formatted.csv")
         self.SaveToCSV(self.dfEUEMr_new, output_file)
+
 if __name__ == "__main__":
-    euemr = FormatageEUEMr()
+    euemr = EUEMR_formatage()
     euemr.Main()

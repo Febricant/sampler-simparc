@@ -12,8 +12,6 @@ Methods:
     Plot_BN(): Plots the current Bayesian Network using the appropriate visualization library.
     Load_csv(stFileName, sep=','): Loads data from a CSV file into a DataFrame.
     Load_excel(stFileName, sheet_name=None): Loads data from an Excel file into a DataFrame.
-    draw_GUM_Sample(number, Multiplicateur=1, evs={}): Generates samples from the Bayesian Network based on the specified number and multiplier.
-    do_Sampling(numberOfSamples, evs={}): Performs sampling from the Bayesian Network, ensuring the specified number of samples is returned.
 Attributes:
     bn: The Bayesian Network object.
     dfcsv: The DataFrame containing loaded data from CSV or Excel files.
@@ -37,22 +35,15 @@ Author:
 
 import os
 current_path = os.environ.get("PATH")
-os.environ["PATH"] = current_path + ";C:\\Brice\\Graphviz2.38\\bin"
-
 
 import pandas as pd
 import yaml
 from pathlib import Path
 
 import pyagrum as gum
-try:
-    import pyagrum.lib.ipython as gnb
-except:
-    import pyagrum.lib.notebook as gnb
-
-
-FILE_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_DIR = os.path.abspath(FILE_DIR+ "/../")  # répertoire supérieur
+import warnings
+warnings.filterwarnings('ignore', category=UserWarning, module='pyagrum.lib.notebook')
+import pyagrum.lib.notebook as gnb
 
 class bayesian_network(object):
     """
@@ -127,7 +118,6 @@ class bayesian_network(object):
             None
         """
         gnb.showInference(self.bn,evs={},size = '30')
-        #gnb.showBN(self.bn,size='10')
     
     def Load_csv(self, stFileName, sep = ','):
         """

@@ -114,14 +114,14 @@ python 3.11</p>
 
     # création des noeuds 
     # Nom_Noeud:description_Noeud
-    MapEUEMr = FormatageEUEMr()
+    MapEUEMr = EUEMR_formatage()
     dictMapEUEMr = MapEUEMr.get_Mettadata()
     NOEUD_EUEMr = {}
     for key in lst_NOEUD:
         if key in dictMapEUEMr.keys():
             NOEUD_EUEMr[key] = dictMapEUEMr[key][&#34;Description&#34;]
         else:
-            NOEUD_EUEMr[key] = Attribut_EUEMr.__dict__[key][&#34;Description&#34;]
+            NOEUD_EUEMr[key] = Attributs_EUEMr.__dict__[key][&#34;Description&#34;]
 
     # création des dictionnaires des noeuds
     # {Nom_Noeud: {IdLabel: Label}}
@@ -133,8 +133,8 @@ python 3.11</p>
                                                          dictMapEUEMr[key][&#34;Label&#34;])}
 
         else:
-            LIST_Dict[key] = {idL:Lab for idL,Lab in zip(Attribut_EUEMr.__dict__[key][&#34;IdLabel&#34;],
-                                                        Attribut_EUEMr.__dict__[key][&#34;Label&#34;])}
+            LIST_Dict[key] = {idL:Lab for idL,Lab in zip(Attributs_EUEMr.__dict__[key][&#34;IdLabel&#34;],
+                                                        Attributs_EUEMr.__dict__[key][&#34;Label&#34;])}
 
     #TODO
     # Changer en relatif

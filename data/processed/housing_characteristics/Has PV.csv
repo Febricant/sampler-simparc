@@ -1,0 +1,11 @@
+Dependency=Type_Logement;Dependency=Vacancy Status;Option=No;Option=Yes
+Collective;Occupied;1.0;0.0
+Collective;Vacant;1.0;0.0
+Duplex;Occupied;1.0;0.0
+Duplex;Vacant;1.0;0.0
+Maison en rangee;Occupied;1.0;0.0
+Maison en rangee;Vacant;1.0;0.0
+Maison individuelle;Occupied;0.996772479521979;0.00322752047802103
+Maison individuelle;Vacant;1.0;0.0
+Triplex;Occupied;1.0;0.0
+Triplex;Vacant;1.0;0.0

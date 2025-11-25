@@ -1,0 +1,271 @@
+Dependency=An_Construction;Dependency=Type_Logement;Dependency=Geometry Foundation Type;Option=None;Option=Uninsulated;Option=2ft R5 Under, Horizontal;Option=2ft R10 Under, Horizontal;Option=4ft R5 Under, Horizontal;Option=2ft R5 Perimeter, Vertical;Option=2ft R10 Perimeter, Vertical;Option=R10 Whole Slab, Horizontal
+< 1950;Collective;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Collective;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Collective;Slab;0;1.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Collective;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Collective;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Collective;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Duplex;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Duplex;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Duplex;Slab;0;1.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Duplex;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Duplex;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Duplex;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Maison en rangee;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Maison en rangee;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Maison en rangee;Slab;0;1.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Maison en rangee;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Maison en rangee;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Maison en rangee;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Maison individuelle;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Maison individuelle;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Maison individuelle;Slab;0;1.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Maison individuelle;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Maison individuelle;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Maison individuelle;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Triplex;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Triplex;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Triplex;Slab;0;1.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Triplex;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Triplex;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+< 1950;Triplex;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Collective;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Collective;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Collective;Slab;0;0.248338870431893;0.100498338870431;0.13704318936877;0;0.106312292358803;0.407807308970099;0
+>= 2020;Collective;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Collective;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Collective;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Duplex;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Duplex;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Duplex;Slab;0;0.248338870431893;0.100498338870431;0.13704318936877;0;0.106312292358803;0.407807308970099;0
+>= 2020;Duplex;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Duplex;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Duplex;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Maison en rangee;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Maison en rangee;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Maison en rangee;Slab;0;0.248338870431893;0.100498338870431;0.13704318936877;0;0.106312292358803;0.407807308970099;0
+>= 2020;Maison en rangee;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Maison en rangee;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Maison en rangee;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Maison individuelle;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Maison individuelle;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Maison individuelle;Slab;0;0.248338870431893;0.100498338870431;0.13704318936877;0;0.106312292358803;0.407807308970099;0
+>= 2020;Maison individuelle;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Maison individuelle;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Maison individuelle;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Triplex;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Triplex;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Triplex;Slab;0;0.248338870431893;0.100498338870431;0.13704318936877;0;0.106312292358803;0.407807308970099;0
+>= 2020;Triplex;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Triplex;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+>= 2020;Triplex;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Collective;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Collective;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Collective;Slab;0;1.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Collective;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Collective;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Collective;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Duplex;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Duplex;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Duplex;Slab;0;1.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Duplex;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Duplex;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Duplex;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Maison en rangee;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Maison en rangee;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Maison en rangee;Slab;0;1.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Maison en rangee;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Maison en rangee;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Maison en rangee;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Maison individuelle;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Maison individuelle;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Maison individuelle;Slab;0;1.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Maison individuelle;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Maison individuelle;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Maison individuelle;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Triplex;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Triplex;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Triplex;Slab;0;1.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Triplex;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Triplex;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1950 - 1960);Triplex;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Collective;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Collective;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Collective;Slab;0;1.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Collective;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Collective;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Collective;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Duplex;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Duplex;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Duplex;Slab;0;1.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Duplex;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Duplex;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Duplex;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Maison en rangee;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Maison en rangee;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Maison en rangee;Slab;0;1.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Maison en rangee;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Maison en rangee;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Maison en rangee;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Maison individuelle;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Maison individuelle;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Maison individuelle;Slab;0;1.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Maison individuelle;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Maison individuelle;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Maison individuelle;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Triplex;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Triplex;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Triplex;Slab;0;1.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Triplex;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Triplex;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1960 - 1970);Triplex;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Collective;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Collective;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Collective;Slab;0;1.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Collective;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Collective;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Collective;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Duplex;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Duplex;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Duplex;Slab;0;1.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Duplex;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Duplex;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Duplex;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Maison en rangee;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Maison en rangee;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Maison en rangee;Slab;0;1.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Maison en rangee;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Maison en rangee;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Maison en rangee;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Maison individuelle;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Maison individuelle;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Maison individuelle;Slab;0;1.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Maison individuelle;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Maison individuelle;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Maison individuelle;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Triplex;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Triplex;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Triplex;Slab;0;1.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Triplex;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Triplex;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1970 - 1980);Triplex;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Collective;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Collective;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Collective;Slab;0;0.806827643630308;0.114904246461282;0.0782681099084096;0;0.0;0.0;0
+[1980 - 1990);Collective;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Collective;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Collective;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Duplex;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Duplex;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Duplex;Slab;0;0.806827643630308;0.114904246461282;0.0782681099084096;0;0.0;0.0;0
+[1980 - 1990);Duplex;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Duplex;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Duplex;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Maison en rangee;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Maison en rangee;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Maison en rangee;Slab;0;0.806827643630308;0.114904246461282;0.0782681099084096;0;0.0;0.0;0
+[1980 - 1990);Maison en rangee;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Maison en rangee;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Maison en rangee;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Maison individuelle;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Maison individuelle;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Maison individuelle;Slab;0;0.806827643630308;0.114904246461282;0.0782681099084096;0;0.0;0.0;0
+[1980 - 1990);Maison individuelle;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Maison individuelle;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Maison individuelle;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Triplex;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Triplex;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Triplex;Slab;0;0.806827643630308;0.114904246461282;0.0782681099084096;0;0.0;0.0;0
+[1980 - 1990);Triplex;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Triplex;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1980 - 1990);Triplex;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Collective;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Collective;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Collective;Slab;0;0.241666666666666;0.204166666666666;0.155833333333333;0;0.141666666666666;0.256666666666666;0
+[1990 - 2000);Collective;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Collective;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Collective;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Duplex;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Duplex;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Duplex;Slab;0;0.241666666666666;0.204166666666666;0.155833333333333;0;0.141666666666666;0.256666666666666;0
+[1990 - 2000);Duplex;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Duplex;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Duplex;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Maison en rangee;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Maison en rangee;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Maison en rangee;Slab;0;0.241666666666666;0.204166666666666;0.155833333333333;0;0.141666666666666;0.256666666666666;0
+[1990 - 2000);Maison en rangee;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Maison en rangee;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Maison en rangee;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Maison individuelle;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Maison individuelle;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Maison individuelle;Slab;0;0.241666666666666;0.204166666666666;0.155833333333333;0;0.141666666666666;0.256666666666666;0
+[1990 - 2000);Maison individuelle;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Maison individuelle;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Maison individuelle;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Triplex;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Triplex;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Triplex;Slab;0;0.241666666666666;0.204166666666666;0.155833333333333;0;0.141666666666666;0.256666666666666;0
+[1990 - 2000);Triplex;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Triplex;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[1990 - 2000);Triplex;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Collective;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Collective;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Collective;Slab;0;0.248338870431893;0.100498338870431;0.13704318936877;0;0.106312292358803;0.407807308970099;0
+[2000 - 2010);Collective;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Collective;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Collective;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Duplex;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Duplex;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Duplex;Slab;0;0.248338870431893;0.100498338870431;0.13704318936877;0;0.106312292358803;0.407807308970099;0
+[2000 - 2010);Duplex;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Duplex;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Duplex;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Maison en rangee;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Maison en rangee;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Maison en rangee;Slab;0;0.248338870431893;0.100498338870431;0.13704318936877;0;0.106312292358803;0.407807308970099;0
+[2000 - 2010);Maison en rangee;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Maison en rangee;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Maison en rangee;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Maison individuelle;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Maison individuelle;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Maison individuelle;Slab;0;0.248338870431893;0.100498338870431;0.13704318936877;0;0.106312292358803;0.407807308970099;0
+[2000 - 2010);Maison individuelle;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Maison individuelle;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Maison individuelle;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Triplex;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Triplex;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Triplex;Slab;0;0.248338870431893;0.100498338870431;0.13704318936877;0;0.106312292358803;0.407807308970099;0
+[2000 - 2010);Triplex;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Triplex;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2000 - 2010);Triplex;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Collective;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Collective;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Collective;Slab;0;0.248338870431893;0.100498338870431;0.13704318936877;0;0.106312292358803;0.407807308970099;0
+[2010 - 2020);Collective;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Collective;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Collective;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Duplex;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Duplex;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Duplex;Slab;0;0.248338870431893;0.100498338870431;0.13704318936877;0;0.106312292358803;0.407807308970099;0
+[2010 - 2020);Duplex;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Duplex;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Duplex;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Maison en rangee;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Maison en rangee;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Maison en rangee;Slab;0;0.248338870431893;0.100498338870431;0.13704318936877;0;0.106312292358803;0.407807308970099;0
+[2010 - 2020);Maison en rangee;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Maison en rangee;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Maison en rangee;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Maison individuelle;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Maison individuelle;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Maison individuelle;Slab;0;0.248338870431893;0.100498338870431;0.13704318936877;0;0.106312292358803;0.407807308970099;0
+[2010 - 2020);Maison individuelle;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Maison individuelle;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Maison individuelle;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Triplex;Ambient;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Triplex;Heated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Triplex;Slab;0;0.248338870431893;0.100498338870431;0.13704318936877;0;0.106312292358803;0.407807308970099;0
+[2010 - 2020);Triplex;Unheated Basement;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Triplex;Unvented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0
+[2010 - 2020);Triplex;Vented Crawlspace;1;0.0;0.0;0.0;0;0.0;0.0;0

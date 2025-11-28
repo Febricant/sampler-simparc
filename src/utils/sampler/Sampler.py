@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import functools
 
 import pyagrum as gum
 from src.utils.sampler.utils import HConsignes
@@ -11,6 +12,7 @@ from datetime import date
 from datetime import timedelta
 from src.utils.sampler.Mapping import BuildstockBatchArguments, MapHPXML
 import argparse, os
+from joblib import Parallel, delayed, parallel_backend
 
 class Sampler():
     LOGO = "   _____ _           ____                       _____                       __\n"\
@@ -26,6 +28,7 @@ class Sampler():
         self.bn = model.bn
         self.lst_NOEUD, self.LIST_Dict = model.getBNStructure()
         self.randGenerator = np.random.default_rng(seed=0)
+        self._parallel = {'prefer': 'threads', 'n_jobs': int((os.cpu_count() - 8) / 1), 'verbose': 10,'inner_max_num_threads': 1}
 
     def draw_GUM_Sample(self, number, Multiplicateur=1, evs={}):
         """
@@ -149,11 +152,12 @@ class Sampler():
             lst_dct_args2.append(dct_args2)
         return lst_dct_args2
 
-    def run(self, Nombre_de_Samples):
-        start_time = time.perf_counter()
-        print(self.LOGO)
-        print("------------------------------------------------------")
-        print("Sampling {} with {} target samples".format(self.bn_filename, Nombre_de_Samples))
+    def run(self, Nombre_de_Samples,**kwargs):
+        if kwargs["PARALLEL"]:
+            pass
+        else:
+            start_time = time.perf_counter()
+            print("Sampling {} with {} target samples".format(self.bn_filename, Nombre_de_Samples))
 
         # Load the Bayesian Network from file
         Evidence = {}
@@ -170,12 +174,30 @@ class Sampler():
         # Mapping vers HPXML
         self.lst_dct_HPXML = MapHPXML().run(self.lst_dct_args)
 
-        duration = timedelta(seconds=time.perf_counter() - start_time)
-        print("Sampling Terminé ! - Nombre d'attributs HPXML: {}\nDurée Sampling : {}".format(
+        if kwargs["PARALLEL"]:
+            pass
+        else:
+            duration = timedelta(seconds=time.perf_counter() - start_time)
+            print("SubSampling Terminé ! - Nombre d'attributs HPXML: {}\nDurée Sampling : {}".format(
             len(self.lst_dct_HPXML[0].keys()), duration))
-        print("------------------------------------------------------\n")
-        self.sample_number = Nombre_de_Samples
+
         return self
+
+    def run_parallel(self, Nombre_de_Samples):
+        start_time = time.perf_counter()
+        print(self.LOGO)
+        print("------------------------------------------------------")
+        print("Sampling {} with {} target samples".format(self.bn_filename, Nombre_de_Samples))
+        chunk_size = int(Nombre_de_Samples / self._parallel['n_jobs'])
+        with parallel_backend("loky", inner_max_num_threads=self._parallel['n_jobs']):
+            sampling_function = map(delayed(functools.partial(self.run,PARALLEL=True)), [chunk_size] * self._parallel['n_jobs'])
+            sample_hors_bn = Parallel(**self._parallel)(sampling_function)
+        results = pd.concat([s.to_df() for s in sample_hors_bn])
+        duration = timedelta(seconds=time.perf_counter() - start_time)
+        print("SubSampling Terminé ! - Nombre d'attributs HPXML: {}\nDurée Sampling : {}".format(len(results), duration))
+        print("------------------------------------------------------\n")
+        return results
+
 
     def to_df(self):
         dfargs = pd.DataFrame(self.lst_dct_args)
@@ -195,7 +217,11 @@ def main():
     parser.add_argument("output_file_dir",type=str,help="Directory for outputfile. Default: current work directory.",default=os.getcwd(),)
     args = parser.parse_args()
     file_path = args.bayesian_network_filepath
-    Sampler(file_path).run(args.samples_number).to_csv(args.output_file_dir)
+
+    results = Sampler(file_path).run_parallel(args.samples_number)
+
+    today = date.today()
+    results.to_csv(os.path.join(args.output_file_dir, str(args.samples_number) + "_sample_buildings_{}.csv".format(today.isoformat())),index=False)
     return 0
 
 if __name__ == "__main__":

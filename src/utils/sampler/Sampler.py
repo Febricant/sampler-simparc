@@ -2,7 +2,7 @@
 import functools
 
 import pyagrum as gum
-from src.utils.sampler.utils import HConsignes
+from src.utils.sampler.utils import HConsignes, chunks
 from src.utils.sampler.bayesian_network import bayesian_network
 from pathlib import Path
 import pandas as pd
@@ -11,8 +11,9 @@ import time
 from datetime import date
 from datetime import timedelta
 from src.utils.sampler.Mapping import BuildstockBatchArguments, MapHPXML
-import argparse, os
+import argparse, os, json
 from joblib import Parallel, delayed, parallel_backend
+from itertools import chain
 
 class Sampler():
     LOGO = "   _____ _           ____                       _____                       __\n"\
@@ -21,13 +22,19 @@ class Sampler():
            " ___/ / / / / / / / ____/ /_/ / /  / /__      ___/ / /_/ / / / / / / /_/ / /  __/ /    \n"\
            "/____/_/_/ /_/ /_/_/    \__,_/_/   \___/     /____/\__,_/_/ /_/ /_/ .___/_/\___/_/     \n"\
            "                                                                 /_/                   "
-    def __init__(self, bayesian_network_path):
+    def __init__(self, bayesian_network_path, **kwargs):
         model = bayesian_network()
         model.Load_BN(bayesian_network_path)
         self.bn_filename = Path(bayesian_network_path).name
         self.bn = model.bn
         self.lst_NOEUD, self.LIST_Dict = model.getBNStructure()
-        self.randGenerator = np.random.default_rng(seed=0)
+
+        if "seed" in kwargs:
+            self._seed = np.random.default_rng(seed=kwargs["seed"])
+        else:
+            self._seed = None
+
+        self.randGenerator = np.random.default_rng(self._seed)
         self._parallel = {'prefer': 'threads', 'n_jobs': int((os.cpu_count() - 8) / 1), 'verbose': 10,'inner_max_num_threads': 1}
 
     def draw_GUM_Sample(self, number, Multiplicateur=1, evs={}):
@@ -72,7 +79,7 @@ class Sampler():
         dfTemp = self.draw_GUM_Sample(numberOfSamples, 1, evs=evs)
 
         if len(dfTemp) >= numberOfSamples:
-            dfSampling = dfTemp.sample(n=numberOfSamples, random_state=42)
+            dfSampling = dfTemp.sample(n=numberOfSamples, random_state=self._seed)
             boSampling = True
 
         else:
@@ -86,7 +93,7 @@ class Sampler():
         while not boSampling:
             dfTemp = self.draw_GUM_Sample(numberOfSamples_restant, min(1, max(5, Fact)), evs=evs)
             if len(dfTemp) >= numberOfSamples_restant:
-                dfSampling = pd.concat([dfSampling, dfTemp.sample(numberOfSamples_restant, random_state=42)])
+                dfSampling = pd.concat([dfSampling, dfTemp.sample(numberOfSamples_restant, random_state=self._seed)])
                 boSampling = True
 
             else:
@@ -152,52 +159,40 @@ class Sampler():
             lst_dct_args2.append(dct_args2)
         return lst_dct_args2
 
-    def run(self, Nombre_de_Samples,**kwargs):
-        if kwargs["PARALLEL"]:
-            pass
-        else:
-            start_time = time.perf_counter()
-            print("Sampling {} with {} target samples".format(self.bn_filename, Nombre_de_Samples))
-
-        # Load the Bayesian Network from file
-        Evidence = {}
-
-        # Fait un échantillonage - Avant enregistrement
-        df = self.GUM_Sampling(Nombre_de_Samples, evs=Evidence)
-        lst_dct_args = df.to_dict(orient='records')
-
+    def run_hors_bn(self, lst_dct_args):
         # Ajout des variables hors BN
         lst_dct_args2 = self.resstock_args_sampling(lst_dct_args)
-        self.lst_dct_args = [d2 | d1 for d1, d2 in zip(lst_dct_args, lst_dct_args2)]  # lst_dct_args prioritaire
-
-
+        lst_dct_args = [d2 | d1 for d1, d2 in zip(lst_dct_args, lst_dct_args2)]  # lst_dct_args prioritaire
         # Mapping vers HPXML
-        self.lst_dct_HPXML = MapHPXML().run(self.lst_dct_args)
-
-        if kwargs["PARALLEL"]:
-            pass
-        else:
-            duration = timedelta(seconds=time.perf_counter() - start_time)
-            print("SubSampling Terminé ! - Nombre d'attributs HPXML: {}\nDurée Sampling : {}".format(
-            len(self.lst_dct_HPXML[0].keys()), duration))
+        lst_dct_HPXML = MapHPXML().run(lst_dct_args)
+        return lst_dct_args, lst_dct_HPXML
 
         return self
 
-    def run_parallel(self, Nombre_de_Samples):
+    def run_parallel(self, Nombre_de_Samples,**kwargs):
         start_time = time.perf_counter()
         print(self.LOGO)
         print("------------------------------------------------------")
         print("Sampling {} with {} target samples".format(self.bn_filename, Nombre_de_Samples))
-        chunk_size = int(Nombre_de_Samples / self._parallel['n_jobs'])
-        with parallel_backend("loky", inner_max_num_threads=self._parallel['n_jobs']):
-            sampling_function = map(delayed(functools.partial(self.run,PARALLEL=True)), [chunk_size] * self._parallel['n_jobs'])
-            sample_hors_bn = Parallel(**self._parallel)(sampling_function)
-        results = pd.concat([s.to_df() for s in sample_hors_bn])
-        duration = timedelta(seconds=time.perf_counter() - start_time)
-        print("SubSampling Terminé ! - Nombre d'attributs HPXML: {}\nDurée Sampling : {}".format(len(results), duration))
-        print("------------------------------------------------------\n")
-        return results
 
+        # Load the Bayesian Network from file
+        Evidence = kwargs["ev"]
+
+        # Fait un échantillonage - Avant enregistrement
+        df = self.GUM_Sampling(Nombre_de_Samples, evs=Evidence)
+        lst_dct_args = df.to_dict(orient='records')
+        chunk_size = int(len(lst_dct_args) / self._parallel['n_jobs'])
+
+        with parallel_backend("loky", inner_max_num_threads=self._parallel['n_jobs']):
+            sampling_function = map(delayed(functools.partial(self.run_hors_bn)), list(chunks(lst_dct_args, chunk_size)))
+            results = Parallel(**self._parallel)(sampling_function)
+
+        self.lst_dct_args = list(chain(*[r[0] for r in results]))
+        self.lst_dct_HPXML = list(chain(*[r[1] for r in results]))
+        duration = timedelta(seconds=time.perf_counter() - start_time)
+        print("Sampling Terminé ! - Nombre d'attributs HPXML: {}\nDurée Sampling : {}".format(len(self.lst_dct_HPXML[0].keys()), duration))
+        print("------------------------------------------------------\n")
+        return self
 
     def to_df(self):
         dfargs = pd.DataFrame(self.lst_dct_args)
@@ -205,23 +200,27 @@ class Sampler():
         dfAll = pd.concat([dfargs, dfHPXML], axis=1)
         return dfAll
 
-    def to_csv(self,output_dir):
+    def to_csv(self,output_path):
         dfAll = self.to_df()
-        today = date.today()
-        dfAll.to_csv(os.path.join(output_dir, str(self.sample_number)+"_sample_buildings_{}.csv".format(today.isoformat())), index=False)
+        dfAll.to_csv(output_path, index=False)
 
 def main():
+
     parser = argparse.ArgumentParser(description="Bayesian network sampler for SimParc")
     parser.add_argument("bayesian_network_filepath", type=str, help="Path to the Bayesian network file. (.XDSL)")
     parser.add_argument("samples_number", type=int, help="Number of samples to generate. (Integer)")
-    parser.add_argument("output_file_dir",type=str,help="Directory for outputfile. Default: current work directory.",default=os.getcwd(),)
+    parser.add_argument("output_file",type=str,help="Path for the outputfile (.csv)")
+    parser.add_argument('-ev','--evidence',type=json.loads,default={}, nargs='?',help='Evidences passed to the Bayesian network.')
     args = parser.parse_args()
-    file_path = args.bayesian_network_filepath
-
-    results = Sampler(file_path).run_parallel(args.samples_number)
 
     today = date.today()
-    results.to_csv(os.path.join(args.output_file_dir, str(args.samples_number) + "_sample_buildings_{}.csv".format(today.isoformat())),index=False)
+    if args.output_file is None:
+        args.output_file = str(args.samples_number) + "_sample_buildings_{}.csv".format(today.isoformat())
+    file_path = args.bayesian_network_filepath
+
+    results = Sampler(file_path).run_parallel(args.samples_number,ev=args.evidence).to_df()
+    results.to_csv(args.output_file, index=False)
+
     return 0
 
 if __name__ == "__main__":

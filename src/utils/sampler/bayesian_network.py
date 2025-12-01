@@ -33,17 +33,30 @@ Author:
 
 """
 
-import os
+import os, sys
 current_path = os.environ.get("PATH")
 
 import pandas as pd
 import yaml
 from pathlib import Path
 
-import pyagrum as gum
-import warnings
-warnings.filterwarnings('ignore', category=UserWarning, module='pyagrum.lib.notebook')
-import pyagrum.lib.notebook as gnb
+from contextlib import contextmanager
+
+@contextmanager
+def suppress_stdout():
+    with open(os.devnull, "w") as devnull:
+        old_stdout = sys.stdout
+        sys.stdout = devnull
+        try:
+            yield
+        finally:
+            sys.stdout = old_stdout
+
+with suppress_stdout():
+    import pyagrum as gum
+    import warnings
+    warnings.filterwarnings('ignore', category=UserWarning, module='pyagrum.lib.notebook')
+    import pyagrum.lib.notebook as gnb
 
 class bayesian_network(object):
     """

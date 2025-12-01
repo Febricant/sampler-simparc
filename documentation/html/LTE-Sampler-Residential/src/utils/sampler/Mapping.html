@@ -96,7 +96,19 @@ el.replaceWith(d);
                         &#34;Natural Ventilation&#34;,
                         &#34;Range Spot Vent Hour&#34;,
                         &#34;Orientation&#34;,
-                        &#34;Overhangs&#34;]
+                        &#34;Overhangs&#34;,
+                        &#34;Vacancy Status&#34;,
+                        &#34;Has PV&#34;,
+                        &#34;PV Orientation&#34;,
+                        &#34;PV System Size&#34;,
+                        &#34;Battery&#34;,
+                        &#34;Ceiling Fan&#34;,
+                        &#34;Dehumidifier&#34;,
+                        &#34;Insulation Roof&#34;,
+                        &#34;Insulation Slab&#34;,
+                        &#34;Interior Shading&#34;,
+                        &#34;Radiant Barrier&#34;,
+                        &#34;Roof Material&#34;]
 
     def csv_to_dict(self):
         &#34;&#34;&#34;
@@ -244,6 +256,42 @@ el.replaceWith(d);
         dct_housing_characteristics_csv[&#34;Overhangs.csv&#34;] = {&#34;Name&#34;: &#34;Overhangs&#34;,
                                             &#34;Description&#34;: &#34;Surplombs&#34;,
                                             &#34;Source&#34;:&#34;ResStock&#34;}
+        dct_housing_characteristics_csv[&#34;Battery.csv&#34;] = {&#34;Name&#34;: &#34;Battery&#34;,
+                                            &#34;Description&#34;: &#34;Type de batterie&#34;,
+                                            &#34;Source&#34;:&#34;ResStock&#34;}
+        dct_housing_characteristics_csv[&#34;Ceiling Fan.csv&#34;] = {&#34;Name&#34;: &#34;Ceiling Fan&#34;,
+                                            &#34;Description&#34;: &#34;Ventilateur de plafond&#34;,
+                                            &#34;Source&#34;:&#34;ResStock&#34;}
+        dct_housing_characteristics_csv[&#34;Dehumidifier.csv&#34;] = {&#34;Name&#34;: &#34;Dehumidifier&#34;,
+                                            &#34;Description&#34;: &#34;Déshumidificateur&#34;,
+                                            &#34;Source&#34;:&#34;ResStock&#34;}
+        dct_housing_characteristics_csv[&#34;Has PV.csv&#34;] = {&#34;Name&#34;: &#34;Has PV&#34;,
+                                            &#34;Description&#34;: &#34;Présence de panneaux photovoltaïques&#34;,
+                                            &#34;Source&#34;:&#34;ResStock&#34;}
+        dct_housing_characteristics_csv[&#34;Insulation Roof.csv&#34;] = {&#34;Name&#34;: &#34;Insulation Roof&#34;,
+                                            &#34;Description&#34;: &#34;Type d&#39;isolation du toit&#34;,
+                                            &#34;Source&#34;:&#34;ResStock&#34;}
+        dct_housing_characteristics_csv[&#34;Insulation Slab.csv&#34;] = {&#34;Name&#34;: &#34;Insulation Slab&#34;,
+                                            &#34;Description&#34;: &#34;Type d&#39;isolation de la dalle&#34;,
+                                            &#34;Source&#34;:&#34;ResStock&#34;}
+        dct_housing_characteristics_csv[&#34;Interior Shading.csv&#34;] = {&#34;Name&#34;: &#34;Interior Shading&#34;,
+                                            &#34;Description&#34;: &#34;Type d&#39;ombrage intérieur&#34;,
+                                            &#34;Source&#34;:&#34;ResStock&#34;}
+        dct_housing_characteristics_csv[&#34;PV Orientation.csv&#34;] = {&#34;Name&#34;: &#34;PV Orientation&#34;,
+                                            &#34;Description&#34;: &#34;Orientation des panneaux photovoltaïques&#34;,
+                                            &#34;Source&#34;:&#34;ResStock&#34;}
+        dct_housing_characteristics_csv[&#34;PV System Size.csv&#34;] = {&#34;Name&#34;: &#34;PV System Size&#34;,
+                                            &#34;Description&#34;: &#34;Taille du système photovoltaïque&#34;,
+                                            &#34;Source&#34;:&#34;ResStock&#34;}
+        dct_housing_characteristics_csv[&#34;Radiant Barrier.csv&#34;] = {&#34;Name&#34;: &#34;Radiant Barrier&#34;,
+                                            &#34;Description&#34;: &#34;Barrière radiante&#34;,
+                                            &#34;Source&#34;:&#34;ResStock&#34;}
+        dct_housing_characteristics_csv[&#34;Roof Material.csv&#34;] = {&#34;Name&#34;: &#34;Roof Material&#34;,
+                                            &#34;Description&#34;: &#34;Matériau de la toiture&#34;,
+                                            &#34;Source&#34;:&#34;ResStock&#34;}
+        dct_housing_characteristics_csv[&#34;Vacancy Status.csv&#34;] = {&#34;Name&#34;: &#34;Vacancy Status&#34;,
+                                            &#34;Description&#34;: &#34;Statut de vacance&#34;,
+                                            &#34;Source&#34;:&#34;Manual Input&#34;}
 
         dct_housing_characteristics = {}
         for file in dct_housing_characteristics_csv.keys():
@@ -421,6 +469,42 @@ el.replaceWith(d);
     dct_housing_characteristics_csv[&#34;Overhangs.csv&#34;] = {&#34;Name&#34;: &#34;Overhangs&#34;,
                                         &#34;Description&#34;: &#34;Surplombs&#34;,
                                         &#34;Source&#34;:&#34;ResStock&#34;}
+    dct_housing_characteristics_csv[&#34;Battery.csv&#34;] = {&#34;Name&#34;: &#34;Battery&#34;,
+                                        &#34;Description&#34;: &#34;Type de batterie&#34;,
+                                        &#34;Source&#34;:&#34;ResStock&#34;}
+    dct_housing_characteristics_csv[&#34;Ceiling Fan.csv&#34;] = {&#34;Name&#34;: &#34;Ceiling Fan&#34;,
+                                        &#34;Description&#34;: &#34;Ventilateur de plafond&#34;,
+                                        &#34;Source&#34;:&#34;ResStock&#34;}
+    dct_housing_characteristics_csv[&#34;Dehumidifier.csv&#34;] = {&#34;Name&#34;: &#34;Dehumidifier&#34;,
+                                        &#34;Description&#34;: &#34;Déshumidificateur&#34;,
+                                        &#34;Source&#34;:&#34;ResStock&#34;}
+    dct_housing_characteristics_csv[&#34;Has PV.csv&#34;] = {&#34;Name&#34;: &#34;Has PV&#34;,
+                                        &#34;Description&#34;: &#34;Présence de panneaux photovoltaïques&#34;,
+                                        &#34;Source&#34;:&#34;ResStock&#34;}
+    dct_housing_characteristics_csv[&#34;Insulation Roof.csv&#34;] = {&#34;Name&#34;: &#34;Insulation Roof&#34;,
+                                        &#34;Description&#34;: &#34;Type d&#39;isolation du toit&#34;,
+                                        &#34;Source&#34;:&#34;ResStock&#34;}
+    dct_housing_characteristics_csv[&#34;Insulation Slab.csv&#34;] = {&#34;Name&#34;: &#34;Insulation Slab&#34;,
+                                        &#34;Description&#34;: &#34;Type d&#39;isolation de la dalle&#34;,
+                                        &#34;Source&#34;:&#34;ResStock&#34;}
+    dct_housing_characteristics_csv[&#34;Interior Shading.csv&#34;] = {&#34;Name&#34;: &#34;Interior Shading&#34;,
+                                        &#34;Description&#34;: &#34;Type d&#39;ombrage intérieur&#34;,
+                                        &#34;Source&#34;:&#34;ResStock&#34;}
+    dct_housing_characteristics_csv[&#34;PV Orientation.csv&#34;] = {&#34;Name&#34;: &#34;PV Orientation&#34;,
+                                        &#34;Description&#34;: &#34;Orientation des panneaux photovoltaïques&#34;,
+                                        &#34;Source&#34;:&#34;ResStock&#34;}
+    dct_housing_characteristics_csv[&#34;PV System Size.csv&#34;] = {&#34;Name&#34;: &#34;PV System Size&#34;,
+                                        &#34;Description&#34;: &#34;Taille du système photovoltaïque&#34;,
+                                        &#34;Source&#34;:&#34;ResStock&#34;}
+    dct_housing_characteristics_csv[&#34;Radiant Barrier.csv&#34;] = {&#34;Name&#34;: &#34;Radiant Barrier&#34;,
+                                        &#34;Description&#34;: &#34;Barrière radiante&#34;,
+                                        &#34;Source&#34;:&#34;ResStock&#34;}
+    dct_housing_characteristics_csv[&#34;Roof Material.csv&#34;] = {&#34;Name&#34;: &#34;Roof Material&#34;,
+                                        &#34;Description&#34;: &#34;Matériau de la toiture&#34;,
+                                        &#34;Source&#34;:&#34;ResStock&#34;}
+    dct_housing_characteristics_csv[&#34;Vacancy Status.csv&#34;] = {&#34;Name&#34;: &#34;Vacancy Status&#34;,
+                                        &#34;Description&#34;: &#34;Statut de vacance&#34;,
+                                        &#34;Source&#34;:&#34;Manual Input&#34;}
 
     dct_housing_characteristics = {}
     for file in dct_housing_characteristics_csv.keys():
@@ -6023,6 +6107,637 @@ el.replaceWith(d);
                     if ((args not in dct_HPXML.keys()) &amp; (dict_NaturalVentilation[dct_args[arg]][args] != &#34;auto&#34;)):
                         dct_HPXML[args] = dict_NaturalVentilation[dct_args[arg]][args]
             # _____________________________________________________________
+            # Dictionnaire pour le param�tre : Battery
+            battery_dict = {
+                &#39;20 kWh, 80% Round Trip Efficiency&#39;: {
+                    &#39;battery_present&#39;: True,
+                    &#39;battery_location&#39;: &#39;auto&#39;,
+                    &#39;battery_power&#39;: &#39;auto&#39;,
+                    &#39;battery_capacity&#39;: &#39;auto&#39;,
+                    &#39;battery_usable_capacity&#39;: &#39;auto&#39;,
+                    &#39;battery_round_trip_efficiency&#39;: 0.8,
+                },
+                &#39;20 kWh, Garage&#39;: {
+                    &#39;battery_present&#39;: True,
+                    &#39;battery_location&#39;: &#39;garage&#39;,
+                    &#39;battery_power&#39;: &#39;auto&#39;,
+                    &#39;battery_capacity&#39;: &#39;auto&#39;,
+                    &#39;battery_usable_capacity&#39;: &#39;auto&#39;,
+                    &#39;battery_round_trip_efficiency&#39;: &#39;auto&#39;,
+                },
+                &#39;20 kWh, Outside&#39;: {
+                    &#39;battery_present&#39;: True,
+                    &#39;battery_location&#39;: &#39;outside&#39;,
+                    &#39;battery_power&#39;: &#39;auto&#39;,
+                    &#39;battery_capacity&#39;: &#39;auto&#39;,
+                    &#39;battery_usable_capacity&#39;: &#39;auto&#39;,
+                    &#39;battery_round_trip_efficiency&#39;: &#39;auto&#39;,
+                },
+                &#39;10 kWh&#39;: {
+                    &#39;battery_present&#39;: True,
+                    &#39;battery_location&#39;: &#39;auto&#39;,
+                    &#39;battery_power&#39;: &#39;auto&#39;,
+                    &#39;battery_capacity&#39;: &#39;auto&#39;,
+                    &#39;battery_usable_capacity&#39;: &#39;auto&#39;,
+                    &#39;battery_round_trip_efficiency&#39;: &#39;auto&#39;,
+                },
+                &#39;None&#39;: {
+                    &#39;battery_present&#39;: False,
+                    &#39;battery_location&#39;: &#39;auto&#39;,
+                    &#39;battery_power&#39;: &#39;auto&#39;,
+                    &#39;battery_capacity&#39;: &#39;auto&#39;,
+                    &#39;battery_usable_capacity&#39;: &#39;auto&#39;,
+                    &#39;battery_round_trip_efficiency&#39;: &#39;auto&#39;,
+                },
+            }
+
+            arg = &#39;Battery&#39;  # add the Parameter Name
+            if (arg in dct_args.keys()):
+                for args in battery_dict[dct_args[arg]]:
+                    if ((args not in dct_HPXML.keys()) &amp; (battery_dict[dct_args[arg]][args] != &#39;auto&#39;)):
+                        dct_HPXML[args] = battery_dict[dct_args[arg]][args]
+
+
+            # Dictionnaire pour le param�tre : Ceiling Fan
+            ceiling_fan_dict = {
+                &#39;Premium Efficiency&#39;: {
+                    &#39;ceiling_fan_present&#39;: True,
+                    &#39;ceiling_fan_efficiency&#39;: 140.8,
+                    &#39;ceiling_fan_quantity&#39;: 1,
+                    &#39;ceiling_fan_cooling_setpoint_temp_offset&#39;: 0,
+                },
+                &#39;None&#39;: {
+                    &#39;ceiling_fan_present&#39;: False,
+                    &#39;ceiling_fan_efficiency&#39;: 0,
+                    &#39;ceiling_fan_quantity&#39;: 0,
+                    &#39;ceiling_fan_cooling_setpoint_temp_offset&#39;: 0,
+                },
+                &#39;Standard Efficiency&#39;: {
+                    &#39;ceiling_fan_present&#39;: True,
+                    &#39;ceiling_fan_efficiency&#39;: 70.4,
+                    &#39;ceiling_fan_quantity&#39;: 1,
+                    &#39;ceiling_fan_cooling_setpoint_temp_offset&#39;: 0,
+                },
+                &#39;Standard Efficiency, 0.5F Offset&#39;: {
+                    &#39;ceiling_fan_present&#39;: True,
+                    &#39;ceiling_fan_efficiency&#39;: 70.4,
+                    &#39;ceiling_fan_quantity&#39;: 1,
+                    &#39;ceiling_fan_cooling_setpoint_temp_offset&#39;: 0.5,
+                },
+                &#39;Premium Efficiency, 0.5F Offset&#39;: {
+                    &#39;ceiling_fan_present&#39;: True,
+                    &#39;ceiling_fan_efficiency&#39;: 140.8,
+                    &#39;ceiling_fan_quantity&#39;: 1,
+                    &#39;ceiling_fan_cooling_setpoint_temp_offset&#39;: 0.5,
+                },
+                &#39;Standard Efficiency, No usage&#39;: {
+                    &#39;ceiling_fan_present&#39;: False,
+                    &#39;ceiling_fan_efficiency&#39;: 0,
+                    &#39;ceiling_fan_quantity&#39;: 0,
+                    &#39;ceiling_fan_cooling_setpoint_temp_offset&#39;: 0,
+                },
+            }
+
+            arg = &#39;Ceiling Fan&#39;  # add the Parameter Name
+            if (arg in dct_args.keys()):
+                for args in ceiling_fan_dict[dct_args[arg]]:
+                    if ((args not in dct_HPXML.keys()) &amp; (ceiling_fan_dict[dct_args[arg]][args] != &#39;auto&#39;)):
+                        dct_HPXML[args] = ceiling_fan_dict[dct_args[arg]][args]
+
+
+            # Dictionnaire pour le param�tre : Dehumidifier
+            dehumidifier_dict = {
+                &#39;65 pints/day, 50% RH&#39;: {
+                    &#39;dehumidifier_type&#39;: &#39;portable&#39;,
+                    &#39;dehumidifier_efficiency_type&#39;: &#39;EnergyFactor&#39;,
+                    &#39;dehumidifier_efficiency&#39;: 1.8,
+                    &#39;dehumidifier_capacity&#39;: 65,
+                    &#39;dehumidifier_rh_setpoint&#39;: 0.5,
+                    &#39;dehumidifier_fraction_dehumidification_load_served&#39;: 1,
+                },
+                &#39;65 pints/day, 50% RH, 2.0 EF&#39;: {
+                    &#39;dehumidifier_type&#39;: &#39;portable&#39;,
+                    &#39;dehumidifier_efficiency_type&#39;: &#39;EnergyFactor&#39;,
+                    &#39;dehumidifier_efficiency&#39;: 2,
+                    &#39;dehumidifier_capacity&#39;: 65,
+                    &#39;dehumidifier_rh_setpoint&#39;: 0.5,
+                    &#39;dehumidifier_fraction_dehumidification_load_served&#39;: 1,
+                },
+                &#39;65 pints/day, 60% RH&#39;: {
+                    &#39;dehumidifier_type&#39;: &#39;portable&#39;,
+                    &#39;dehumidifier_efficiency_type&#39;: &#39;EnergyFactor&#39;,
+                    &#39;dehumidifier_efficiency&#39;: 1.8,
+                    &#39;dehumidifier_capacity&#39;: 65,
+                    &#39;dehumidifier_rh_setpoint&#39;: 0.6,
+                    &#39;dehumidifier_fraction_dehumidification_load_served&#39;: 1,
+                },
+                &#39;None&#39;: {
+                    &#39;dehumidifier_type&#39;: &#39;none&#39;,
+                    &#39;dehumidifier_efficiency_type&#39;: &#39;EnergyFactor&#39;,
+                    &#39;dehumidifier_efficiency&#39;: 0,
+                    &#39;dehumidifier_capacity&#39;: 40,
+                    &#39;dehumidifier_rh_setpoint&#39;: 0.5,
+                    &#39;dehumidifier_fraction_dehumidification_load_served&#39;: 1,
+                },
+            }
+
+            arg = &#39;Dehumidifier&#39;  # add the Parameter Name
+            if (arg in dct_args.keys()):
+                for args in dehumidifier_dict[dct_args[arg]]:
+                    if ((args not in dct_HPXML.keys()) &amp; (dehumidifier_dict[dct_args[arg]][args] != &#39;auto&#39;)):
+                        dct_HPXML[args] = dehumidifier_dict[dct_args[arg]][args]
+
+
+            # Dictionnaire pour le param�tre : Has PV
+            has_pv_dict = {
+                &#39;No&#39;: {
+                },
+                &#39;Yes&#39;: {
+                },
+            }
+
+            arg = &#39;Has PV&#39;  # add the Parameter Name
+            if (arg in dct_args.keys()):
+                for args in has_pv_dict[dct_args[arg]]:
+                    if ((args not in dct_HPXML.keys()) &amp; (has_pv_dict[dct_args[arg]][args] != &#39;auto&#39;)):
+                        dct_HPXML[args] = has_pv_dict[dct_args[arg]][args]
+
+
+            # Dictionnaire pour le param�tre : Insulation Roof
+            insulation_roof_dict = {
+                &#39;Unfinished, Uninsulated&#39;: {
+                    &#39;roof_assembly_r&#39;: 2.3,
+                },
+                &#39;Finished, Uninsulated&#39;: {
+                    &#39;roof_assembly_r&#39;: 3.7,
+                },
+                &#39;Finished, R-49&#39;: {
+                    &#39;roof_assembly_r&#39;: 47.0,
+                },
+                &#39;Finished, R-7&#39;: {
+                    &#39;roof_assembly_r&#39;: 10.2,
+                },
+                &#39;Finished, R-30&#39;: {
+                    &#39;roof_assembly_r&#39;: 29.7,
+                },
+                &#39;Finished, R-19&#39;: {
+                    &#39;roof_assembly_r&#39;: 21.2,
+                },
+                &#39;Finished, R-13&#39;: {
+                    &#39;roof_assembly_r&#39;: 14.3,
+                },
+                &#39;Finished, R-38&#39;: {
+                    &#39;roof_assembly_r&#39;: 36.5,
+                },
+            }
+
+            arg = &#39;Insulation Roof&#39;  # add the Parameter Name
+            if (arg in dct_args.keys()):
+                for args in insulation_roof_dict[dct_args[arg]]:
+                    if ((args not in dct_HPXML.keys()) &amp; (insulation_roof_dict[dct_args[arg]][args] != &#39;auto&#39;)):
+                        dct_HPXML[args] = insulation_roof_dict[dct_args[arg]][args]
+
+
+            # Dictionnaire pour le param�tre : Insulation Slab
+            insulation_slab_dict = {
+                &#39;R10 Whole Slab, Horizontal&#39;: {
+                    &#39;slab_perimeter_insulation_r&#39;: 0,
+                    &#39;slab_perimeter_depth&#39;: 0,
+                    &#39;slab_under_insulation_r&#39;: 10,
+                    &#39;slab_under_width&#39;: 999,
+                    &#39;slab_thickness&#39;: &#39;auto&#39;,
+                    &#39;slab_carpet_fraction&#39;: &#39;auto&#39;,
+                    &#39;slab_carpet_r&#39;: &#39;auto&#39;,
+                },
+                &#39;Uninsulated&#39;: {
+                    &#39;slab_perimeter_insulation_r&#39;: 0,
+                    &#39;slab_perimeter_depth&#39;: 0,
+                    &#39;slab_under_insulation_r&#39;: 0,
+                    &#39;slab_under_width&#39;: 0,
+                    &#39;slab_thickness&#39;: &#39;auto&#39;,
+                    &#39;slab_carpet_fraction&#39;: &#39;auto&#39;,
+                    &#39;slab_carpet_r&#39;: &#39;auto&#39;,
+                },
+                &#39;None&#39;: {
+                    &#39;slab_perimeter_insulation_r&#39;: 0,
+                    &#39;slab_perimeter_depth&#39;: 0,
+                    &#39;slab_under_insulation_r&#39;: 0,
+                    &#39;slab_under_width&#39;: 0,
+                    &#39;slab_thickness&#39;: &#39;auto&#39;,
+                    &#39;slab_carpet_fraction&#39;: &#39;auto&#39;,
+                    &#39;slab_carpet_r&#39;: &#39;auto&#39;,
+                },
+                &#39;4ft R5 Under, Horizontal&#39;: {
+                    &#39;slab_perimeter_insulation_r&#39;: 0,
+                    &#39;slab_perimeter_depth&#39;: 0,
+                    &#39;slab_under_insulation_r&#39;: 5,
+                    &#39;slab_under_width&#39;: 4,
+                    &#39;slab_thickness&#39;: &#39;auto&#39;,
+                    &#39;slab_carpet_fraction&#39;: &#39;auto&#39;,
+                    &#39;slab_carpet_r&#39;: &#39;auto&#39;,
+                },
+                &#39;2ft R10 Under, Horizontal&#39;: {
+                    &#39;slab_perimeter_insulation_r&#39;: 0,
+                    &#39;slab_perimeter_depth&#39;: 0,
+                    &#39;slab_under_insulation_r&#39;: 10,
+                    &#39;slab_under_width&#39;: 2,
+                    &#39;slab_thickness&#39;: &#39;auto&#39;,
+                    &#39;slab_carpet_fraction&#39;: &#39;auto&#39;,
+                    &#39;slab_carpet_r&#39;: &#39;auto&#39;,
+                },
+                &#39;2ft R5 Perimeter, Vertical&#39;: {
+                    &#39;slab_perimeter_insulation_r&#39;: 5,
+                    &#39;slab_perimeter_depth&#39;: 2,
+                    &#39;slab_under_insulation_r&#39;: 0,
+                    &#39;slab_under_width&#39;: 0,
+                    &#39;slab_thickness&#39;: &#39;auto&#39;,
+                    &#39;slab_carpet_fraction&#39;: &#39;auto&#39;,
+                    &#39;slab_carpet_r&#39;: &#39;auto&#39;,
+                },
+                &#39;2ft R10 Perimeter, Vertical&#39;: {
+                    &#39;slab_perimeter_insulation_r&#39;: 10,
+                    &#39;slab_perimeter_depth&#39;: 2,
+                    &#39;slab_under_insulation_r&#39;: 0,
+                    &#39;slab_under_width&#39;: 0,
+                    &#39;slab_thickness&#39;: &#39;auto&#39;,
+                    &#39;slab_carpet_fraction&#39;: &#39;auto&#39;,
+                    &#39;slab_carpet_r&#39;: &#39;auto&#39;,
+                },
+                &#39;2ft R5 Under, Horizontal&#39;: {
+                    &#39;slab_perimeter_insulation_r&#39;: 0,
+                    &#39;slab_perimeter_depth&#39;: 0,
+                    &#39;slab_under_insulation_r&#39;: 5,
+                    &#39;slab_under_width&#39;: 2,
+                    &#39;slab_thickness&#39;: &#39;auto&#39;,
+                    &#39;slab_carpet_fraction&#39;: &#39;auto&#39;,
+                    &#39;slab_carpet_r&#39;: &#39;auto&#39;,
+                },
+            }
+
+            arg = &#39;Insulation Slab&#39;  # add the Parameter Name
+            if (arg in dct_args.keys()):
+                for args in insulation_slab_dict[dct_args[arg]]:
+                    if ((args not in dct_HPXML.keys()) &amp; (insulation_slab_dict[dct_args[arg]][args] != &#39;auto&#39;)):
+                        dct_HPXML[args] = insulation_slab_dict[dct_args[arg]][args]
+
+
+            # Dictionnaire pour le param�tre : Interior Shading
+            interior_shading_dict = {
+                &#39;Summer = 0.7, Winter = 0.95&#39;: {
+                    &#39;window_interior_shading_summer&#39;: 0.7,
+                    &#39;window_interior_shading_winter&#39;: 0.95,
+                },
+                &#39;Summer = 0.7, Winter = 0.85&#39;: {
+                    &#39;window_interior_shading_summer&#39;: 0.7,
+                    &#39;window_interior_shading_winter&#39;: 0.85,
+                },
+                &#39;Summer = 0.7, Winter = 0.7&#39;: {
+                    &#39;window_interior_shading_summer&#39;: 0.7,
+                    &#39;window_interior_shading_winter&#39;: 0.7,
+                },
+                &#39;Summer = 0.5, Winter = 0.7&#39;: {
+                    &#39;window_interior_shading_summer&#39;: 0.5,
+                    &#39;window_interior_shading_winter&#39;: 0.7,
+                },
+                &#39;Summer = 0.5, Winter = 0.95&#39;: {
+                    &#39;window_interior_shading_summer&#39;: 0.5,
+                    &#39;window_interior_shading_winter&#39;: 0.95,
+                },
+                &#39;Summer = 0.6, Winter = 0.7&#39;: {
+                    &#39;window_interior_shading_summer&#39;: 0.6,
+                    &#39;window_interior_shading_winter&#39;: 0.7,
+                },
+            }
+
+            arg = &#39;Interior Shading&#39;  # add the Parameter Name
+            if (arg in dct_args.keys()):
+                for args in interior_shading_dict[dct_args[arg]]:
+                    if ((args not in dct_HPXML.keys()) &amp; (interior_shading_dict[dct_args[arg]][args] != &#39;auto&#39;)):
+                        dct_HPXML[args] = interior_shading_dict[dct_args[arg]][args]
+
+
+            # Dictionnaire pour le param�tre : PV Orientation
+            pv_orientation_dict = {
+                &#39;Southeast&#39;: {
+                    &#39;pv_system_array_azimuth&#39;: 135,
+                    &#39;pv_system_2_array_azimuth&#39;: 0,
+                },
+                &#39;West&#39;: {
+                    &#39;pv_system_array_azimuth&#39;: 270,
+                    &#39;pv_system_2_array_azimuth&#39;: 0,
+                },
+                &#39;Southwest&#39;: {
+                    &#39;pv_system_array_azimuth&#39;: 225,
+                    &#39;pv_system_2_array_azimuth&#39;: 0,
+                },
+                &#39;South&#39;: {
+                    &#39;pv_system_array_azimuth&#39;: 180,
+                    &#39;pv_system_2_array_azimuth&#39;: 0,
+                },
+                &#39;East&#39;: {
+                    &#39;pv_system_array_azimuth&#39;: 90,
+                    &#39;pv_system_2_array_azimuth&#39;: 0,
+                },
+                &#39;Northeast&#39;: {
+                    &#39;pv_system_array_azimuth&#39;: 45,
+                    &#39;pv_system_2_array_azimuth&#39;: 0,
+                },
+                &#39;North&#39;: {
+                    &#39;pv_system_array_azimuth&#39;: 0,
+                    &#39;pv_system_2_array_azimuth&#39;: 0,
+                },
+                &#39;None&#39;: {
+                    &#39;pv_system_array_azimuth&#39;: 180,
+                    &#39;pv_system_2_array_azimuth&#39;: 0,
+                },
+                &#39;Northwest&#39;: {
+                    &#39;pv_system_array_azimuth&#39;: 315,
+                    &#39;pv_system_2_array_azimuth&#39;: 0,
+                },
+            }
+
+            arg = &#39;PV Orientation&#39;  # add the Parameter Name
+            if (arg in dct_args.keys()):
+                for args in pv_orientation_dict[dct_args[arg]]:
+                    if ((args not in dct_HPXML.keys()) &amp; (pv_orientation_dict[dct_args[arg]][args] != &#39;auto&#39;)):
+                        dct_HPXML[args] = pv_orientation_dict[dct_args[arg]][args]
+
+
+            # Dictionnaire pour le param�tre : PV System Size
+            pv_system_size_dict = {
+                &#39;1.0 kWDC&#39;: {
+                    &#39;pv_system_present&#39;: True,
+                    &#39;pv_system_module_type&#39;: &#39;auto&#39;,
+                    &#39;pv_system_max_power_output&#39;: 1000,
+                    &#39;pv_system_location&#39;: &#39;roof&#39;,
+                    &#39;pv_system_tracking&#39;: &#39;auto&#39;,
+                    &#39;pv_system_array_tilt&#39;: &#39;roofpitch&#39;,
+                    &#39;pv_system_inverter_efficiency&#39;: &#39;auto&#39;,
+                    &#39;pv_system_system_losses_fraction&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_present&#39;: False,
+                    &#39;pv_system_2_module_type&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_max_power_output&#39;: 0,
+                    &#39;pv_system_2_location&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_tracking&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_array_tilt&#39;: &#39;roofpitch&#39;,
+                },
+                &#39;11.0 kWDC&#39;: {
+                    &#39;pv_system_present&#39;: True,
+                    &#39;pv_system_module_type&#39;: &#39;auto&#39;,
+                    &#39;pv_system_max_power_output&#39;: 11000,
+                    &#39;pv_system_location&#39;: &#39;roof&#39;,
+                    &#39;pv_system_tracking&#39;: &#39;auto&#39;,
+                    &#39;pv_system_array_tilt&#39;: &#39;roofpitch&#39;,
+                    &#39;pv_system_inverter_efficiency&#39;: &#39;auto&#39;,
+                    &#39;pv_system_system_losses_fraction&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_present&#39;: False,
+                    &#39;pv_system_2_module_type&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_max_power_output&#39;: 0,
+                    &#39;pv_system_2_location&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_tracking&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_array_tilt&#39;: &#39;roofpitch&#39;,
+                },
+                &#39;13.0 kWDC&#39;: {
+                    &#39;pv_system_present&#39;: True,
+                    &#39;pv_system_module_type&#39;: &#39;auto&#39;,
+                    &#39;pv_system_max_power_output&#39;: 13000,
+                    &#39;pv_system_location&#39;: &#39;roof&#39;,
+                    &#39;pv_system_tracking&#39;: &#39;auto&#39;,
+                    &#39;pv_system_array_tilt&#39;: &#39;roofpitch&#39;,
+                    &#39;pv_system_inverter_efficiency&#39;: &#39;auto&#39;,
+                    &#39;pv_system_system_losses_fraction&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_present&#39;: False,
+                    &#39;pv_system_2_module_type&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_max_power_output&#39;: 0,
+                    &#39;pv_system_2_location&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_tracking&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_array_tilt&#39;: &#39;roofpitch&#39;,
+                },
+                &#39;3.0 kWDC&#39;: {
+                    &#39;pv_system_present&#39;: True,
+                    &#39;pv_system_module_type&#39;: &#39;auto&#39;,
+                    &#39;pv_system_max_power_output&#39;: 3000,
+                    &#39;pv_system_location&#39;: &#39;roof&#39;,
+                    &#39;pv_system_tracking&#39;: &#39;auto&#39;,
+                    &#39;pv_system_array_tilt&#39;: &#39;roofpitch&#39;,
+                    &#39;pv_system_inverter_efficiency&#39;: &#39;auto&#39;,
+                    &#39;pv_system_system_losses_fraction&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_present&#39;: False,
+                    &#39;pv_system_2_module_type&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_max_power_output&#39;: 0,
+                    &#39;pv_system_2_location&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_tracking&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_array_tilt&#39;: &#39;roofpitch&#39;,
+                },
+                &#39;5.0 kWDC&#39;: {
+                    &#39;pv_system_present&#39;: True,
+                    &#39;pv_system_module_type&#39;: &#39;auto&#39;,
+                    &#39;pv_system_max_power_output&#39;: 5000,
+                    &#39;pv_system_location&#39;: &#39;roof&#39;,
+                    &#39;pv_system_tracking&#39;: &#39;auto&#39;,
+                    &#39;pv_system_array_tilt&#39;: &#39;roofpitch&#39;,
+                    &#39;pv_system_inverter_efficiency&#39;: &#39;auto&#39;,
+                    &#39;pv_system_system_losses_fraction&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_present&#39;: False,
+                    &#39;pv_system_2_module_type&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_max_power_output&#39;: 0,
+                    &#39;pv_system_2_location&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_tracking&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_array_tilt&#39;: &#39;roofpitch&#39;,
+                },
+                &#39;7.0 kWDC&#39;: {
+                    &#39;pv_system_present&#39;: True,
+                    &#39;pv_system_module_type&#39;: &#39;auto&#39;,
+                    &#39;pv_system_max_power_output&#39;: 7000,
+                    &#39;pv_system_location&#39;: &#39;roof&#39;,
+                    &#39;pv_system_tracking&#39;: &#39;auto&#39;,
+                    &#39;pv_system_array_tilt&#39;: &#39;roofpitch&#39;,
+                    &#39;pv_system_inverter_efficiency&#39;: &#39;auto&#39;,
+                    &#39;pv_system_system_losses_fraction&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_present&#39;: False,
+                    &#39;pv_system_2_module_type&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_max_power_output&#39;: 0,
+                    &#39;pv_system_2_location&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_tracking&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_array_tilt&#39;: &#39;roofpitch&#39;,
+                },
+                &#39;9.0 kWDC&#39;: {
+                    &#39;pv_system_present&#39;: True,
+                    &#39;pv_system_module_type&#39;: &#39;auto&#39;,
+                    &#39;pv_system_max_power_output&#39;: 9000,
+                    &#39;pv_system_location&#39;: &#39;roof&#39;,
+                    &#39;pv_system_tracking&#39;: &#39;auto&#39;,
+                    &#39;pv_system_array_tilt&#39;: &#39;roofpitch&#39;,
+                    &#39;pv_system_inverter_efficiency&#39;: &#39;auto&#39;,
+                    &#39;pv_system_system_losses_fraction&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_present&#39;: False,
+                    &#39;pv_system_2_module_type&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_max_power_output&#39;: 0,
+                    &#39;pv_system_2_location&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_tracking&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_array_tilt&#39;: &#39;roofpitch&#39;,
+                },
+                &#39;None&#39;: {
+                    &#39;pv_system_present&#39;: False,
+                    &#39;pv_system_module_type&#39;: &#39;auto&#39;,
+                    &#39;pv_system_max_power_output&#39;: 0,
+                    &#39;pv_system_location&#39;: &#39;roof&#39;,
+                    &#39;pv_system_tracking&#39;: &#39;auto&#39;,
+                    &#39;pv_system_array_tilt&#39;: &#39;roofpitch&#39;,
+                    &#39;pv_system_inverter_efficiency&#39;: &#39;auto&#39;,
+                    &#39;pv_system_system_losses_fraction&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_present&#39;: False,
+                    &#39;pv_system_2_module_type&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_max_power_output&#39;: 0,
+                    &#39;pv_system_2_location&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_tracking&#39;: &#39;auto&#39;,
+                    &#39;pv_system_2_array_tilt&#39;: &#39;roofpitch&#39;,
+                },
+            }
+
+            arg = &#39;PV System Size&#39;  # add the Parameter Name
+            if (arg in dct_args.keys()):
+                for args in pv_system_size_dict[dct_args[arg]]:
+                    if ((args not in dct_HPXML.keys()) &amp; (pv_system_size_dict[dct_args[arg]][args] != &#39;auto&#39;)):
+                        dct_HPXML[args] = pv_system_size_dict[dct_args[arg]][args]
+
+
+            # Dictionnaire pour le param�tre : Radiant Barrier
+            radiant_barrier_dict = {
+                &#39;No&#39;: {
+                    &#39;radiant_barrier_attic_location&#39;: &#39;none&#39;,
+                    &#39;radiant_barrier_grade&#39;: 1,
+                },
+                &#39;None&#39;: {
+                    &#39;radiant_barrier_attic_location&#39;: &#39;none&#39;,
+                    &#39;radiant_barrier_grade&#39;: 1,
+                },
+                &#39;Yes&#39;: {
+                    &#39;radiant_barrier_attic_location&#39;: &#39;Attic roof only&#39;,
+                    &#39;radiant_barrier_grade&#39;: 1,
+                },
+            }
+
+            arg = &#39;Radiant Barrier&#39;  # add the Parameter Name
+            if (arg in dct_args.keys()):
+                for args in radiant_barrier_dict[dct_args[arg]]:
+                    if ((args not in dct_HPXML.keys()) &amp; (radiant_barrier_dict[dct_args[arg]][args] != &#39;auto&#39;)):
+                        dct_HPXML[args] = radiant_barrier_dict[dct_args[arg]][args]
+
+
+            # Dictionnaire pour le param�tre : Roof Material
+            roof_material_dict = {
+                &#39;Composition Shingles&#39;: {
+                    &#39;roof_material_type&#39;: &#39;asphalt or fiberglass shingles&#39;,
+                    &#39;roof_color&#39;: &#39;medium&#39;,
+                },
+                &#39;Wood Shingles&#39;: {
+                    &#39;roof_material_type&#39;: &#39;wood shingles or shakes&#39;,
+                    &#39;roof_color&#39;: &#39;medium&#39;,
+                },
+                &#39;Slate&#39;: {
+                    &#39;roof_material_type&#39;: &#39;slate or tile shingles&#39;,
+                    &#39;roof_color&#39;: &#39;medium&#39;,
+                },
+                &#39;Galvanized Steel&#39;: {
+                    &#39;roof_material_type&#39;: &#39;metal surfacing&#39;,
+                    &#39;roof_color&#39;: &#39;medium&#39;,
+                },
+                &#39;Tile, White&#39;: {
+                    &#39;roof_material_type&#39;: &#39;slate or tile shingles&#39;,
+                    &#39;roof_color&#39;: &#39;reflective&#39;,
+                },
+                &#39;Tile, Medium&#39;: {
+                    &#39;roof_material_type&#39;: &#39;slate or tile shingles&#39;,
+                    &#39;roof_color&#39;: &#39;medium&#39;,
+                },
+                &#39;Tile, Light&#39;: {
+                    &#39;roof_material_type&#39;: &#39;slate or tile shingles&#39;,
+                    &#39;roof_color&#39;: &#39;light&#39;,
+                },
+                &#39;Tile, Dark&#39;: {
+                    &#39;roof_material_type&#39;: &#39;slate or tile shingles&#39;,
+                    &#39;roof_color&#39;: &#39;dark&#39;,
+                },
+                &#39;Tile, Concrete, White or Cool Colors&#39;: {
+                    &#39;roof_material_type&#39;: &#39;slate or tile shingles&#39;,
+                    &#39;roof_color&#39;: &#39;reflective&#39;,
+                },
+                &#39;Tile, Concrete&#39;: {
+                    &#39;roof_material_type&#39;: &#39;slate or tile shingles&#39;,
+                    &#39;roof_color&#39;: &#39;medium&#39;,
+                },
+                &#39;Tile, Clay or Ceramic, White or Cool Colors&#39;: {
+                    &#39;roof_material_type&#39;: &#39;slate or tile shingles&#39;,
+                    &#39;roof_color&#39;: &#39;reflective&#39;,
+                },
+                &#39;Tile, Clay or Ceramic&#39;: {
+                    &#39;roof_material_type&#39;: &#39;slate or tile shingles&#39;,
+                    &#39;roof_color&#39;: &#39;medium&#39;,
+                },
+                &#39;Metal, White&#39;: {
+                    &#39;roof_material_type&#39;: &#39;metal surfacing&#39;,
+                    &#39;roof_color&#39;: &#39;reflective&#39;,
+                },
+                &#39;Metal, Medium&#39;: {
+                    &#39;roof_material_type&#39;: &#39;metal surfacing&#39;,
+                    &#39;roof_color&#39;: &#39;medium&#39;,
+                },
+                &#39;Metal, Light&#39;: {
+                    &#39;roof_material_type&#39;: &#39;metal surfacing&#39;,
+                    &#39;roof_color&#39;: &#39;light&#39;,
+                },
+                &#39;Metal, Dark&#39;: {
+                    &#39;roof_material_type&#39;: &#39;metal surfacing&#39;,
+                    &#39;roof_color&#39;: &#39;dark&#39;,
+                },
+                &#39;Metal, Cool Colors&#39;: {
+                    &#39;roof_material_type&#39;: &#39;metal surfacing&#39;,
+                    &#39;roof_color&#39;: &#39;reflective&#39;,
+                },
+                &#39;Composition Shingles, White or Cool Colors&#39;: {
+                    &#39;roof_material_type&#39;: &#39;asphalt or fiberglass shingles&#39;,
+                    &#39;roof_color&#39;: &#39;reflective&#39;,
+                },
+                &#39;Asphalt Shingles, White or cool colors&#39;: {
+                    &#39;roof_material_type&#39;: &#39;asphalt or fiberglass shingles&#39;,
+                    &#39;roof_color&#39;: &#39;reflective&#39;,
+                },
+                &#39;Asphalt Shingles, Medium&#39;: {
+                    &#39;roof_material_type&#39;: &#39;asphalt or fiberglass shingles&#39;,
+                    &#39;roof_color&#39;: &#39;medium&#39;,
+                },
+                &#39;Asphalt Shingles, Light&#39;: {
+                    &#39;roof_material_type&#39;: &#39;asphalt or fiberglass shingles&#39;,
+                    &#39;roof_color&#39;: &#39;light&#39;,
+                },
+                &#39;Asphalt Shingles, Dark&#39;: {
+                    &#39;roof_material_type&#39;: &#39;asphalt or fiberglass shingles&#39;,
+                    &#39;roof_color&#39;: &#39;dark&#39;,
+                },
+            }
+
+            arg = &#39;Roof Material&#39;  # add the Parameter Name
+            if (arg in dct_args.keys()):
+                for args in roof_material_dict[dct_args[arg]]:
+                    if ((args not in dct_HPXML.keys()) &amp; (roof_material_dict[dct_args[arg]][args] != &#39;auto&#39;)):
+                        dct_HPXML[args] = roof_material_dict[dct_args[arg]][args]
+
+
+            # Dictionnaire pour le param�tre : Vacancy Status
+            vacancy_status_dict = {
+                &#39;Occupied&#39;: {
+                },
+                &#39;Vacant&#39;: {
+                    &#39;schedules_vacancy_period&#39;: &#39;Jan 1 - Dec 31&#39;,
+                },
+            }
+
+            arg = &#39;Vacancy Status&#39;  # add the Parameter Name
+            if (arg in dct_args.keys()):
+                for args in vacancy_status_dict[dct_args[arg]]:
+                    if ((args not in dct_HPXML.keys()) &amp; (vacancy_status_dict[dct_args[arg]][args] != &#39;auto&#39;)):
+                        dct_HPXML[args] = vacancy_status_dict[dct_args[arg]][args]
 
         # ajout des Valeurs par défaut du HPXML si cle n&#39;existe pas
         k_missing = list(set(self.HPXMLArg.arguments.keys()) - set(dct_HPXML.keys()))
@@ -11620,6 +12335,637 @@ el.replaceWith(d);
                 if ((args not in dct_HPXML.keys()) &amp; (dict_NaturalVentilation[dct_args[arg]][args] != &#34;auto&#34;)):
                     dct_HPXML[args] = dict_NaturalVentilation[dct_args[arg]][args]
         # _____________________________________________________________
+        # Dictionnaire pour le param�tre : Battery
+        battery_dict = {
+            &#39;20 kWh, 80% Round Trip Efficiency&#39;: {
+                &#39;battery_present&#39;: True,
+                &#39;battery_location&#39;: &#39;auto&#39;,
+                &#39;battery_power&#39;: &#39;auto&#39;,
+                &#39;battery_capacity&#39;: &#39;auto&#39;,
+                &#39;battery_usable_capacity&#39;: &#39;auto&#39;,
+                &#39;battery_round_trip_efficiency&#39;: 0.8,
+            },
+            &#39;20 kWh, Garage&#39;: {
+                &#39;battery_present&#39;: True,
+                &#39;battery_location&#39;: &#39;garage&#39;,
+                &#39;battery_power&#39;: &#39;auto&#39;,
+                &#39;battery_capacity&#39;: &#39;auto&#39;,
+                &#39;battery_usable_capacity&#39;: &#39;auto&#39;,
+                &#39;battery_round_trip_efficiency&#39;: &#39;auto&#39;,
+            },
+            &#39;20 kWh, Outside&#39;: {
+                &#39;battery_present&#39;: True,
+                &#39;battery_location&#39;: &#39;outside&#39;,
+                &#39;battery_power&#39;: &#39;auto&#39;,
+                &#39;battery_capacity&#39;: &#39;auto&#39;,
+                &#39;battery_usable_capacity&#39;: &#39;auto&#39;,
+                &#39;battery_round_trip_efficiency&#39;: &#39;auto&#39;,
+            },
+            &#39;10 kWh&#39;: {
+                &#39;battery_present&#39;: True,
+                &#39;battery_location&#39;: &#39;auto&#39;,
+                &#39;battery_power&#39;: &#39;auto&#39;,
+                &#39;battery_capacity&#39;: &#39;auto&#39;,
+                &#39;battery_usable_capacity&#39;: &#39;auto&#39;,
+                &#39;battery_round_trip_efficiency&#39;: &#39;auto&#39;,
+            },
+            &#39;None&#39;: {
+                &#39;battery_present&#39;: False,
+                &#39;battery_location&#39;: &#39;auto&#39;,
+                &#39;battery_power&#39;: &#39;auto&#39;,
+                &#39;battery_capacity&#39;: &#39;auto&#39;,
+                &#39;battery_usable_capacity&#39;: &#39;auto&#39;,
+                &#39;battery_round_trip_efficiency&#39;: &#39;auto&#39;,
+            },
+        }
+
+        arg = &#39;Battery&#39;  # add the Parameter Name
+        if (arg in dct_args.keys()):
+            for args in battery_dict[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) &amp; (battery_dict[dct_args[arg]][args] != &#39;auto&#39;)):
+                    dct_HPXML[args] = battery_dict[dct_args[arg]][args]
+
+
+        # Dictionnaire pour le param�tre : Ceiling Fan
+        ceiling_fan_dict = {
+            &#39;Premium Efficiency&#39;: {
+                &#39;ceiling_fan_present&#39;: True,
+                &#39;ceiling_fan_efficiency&#39;: 140.8,
+                &#39;ceiling_fan_quantity&#39;: 1,
+                &#39;ceiling_fan_cooling_setpoint_temp_offset&#39;: 0,
+            },
+            &#39;None&#39;: {
+                &#39;ceiling_fan_present&#39;: False,
+                &#39;ceiling_fan_efficiency&#39;: 0,
+                &#39;ceiling_fan_quantity&#39;: 0,
+                &#39;ceiling_fan_cooling_setpoint_temp_offset&#39;: 0,
+            },
+            &#39;Standard Efficiency&#39;: {
+                &#39;ceiling_fan_present&#39;: True,
+                &#39;ceiling_fan_efficiency&#39;: 70.4,
+                &#39;ceiling_fan_quantity&#39;: 1,
+                &#39;ceiling_fan_cooling_setpoint_temp_offset&#39;: 0,
+            },
+            &#39;Standard Efficiency, 0.5F Offset&#39;: {
+                &#39;ceiling_fan_present&#39;: True,
+                &#39;ceiling_fan_efficiency&#39;: 70.4,
+                &#39;ceiling_fan_quantity&#39;: 1,
+                &#39;ceiling_fan_cooling_setpoint_temp_offset&#39;: 0.5,
+            },
+            &#39;Premium Efficiency, 0.5F Offset&#39;: {
+                &#39;ceiling_fan_present&#39;: True,
+                &#39;ceiling_fan_efficiency&#39;: 140.8,
+                &#39;ceiling_fan_quantity&#39;: 1,
+                &#39;ceiling_fan_cooling_setpoint_temp_offset&#39;: 0.5,
+            },
+            &#39;Standard Efficiency, No usage&#39;: {
+                &#39;ceiling_fan_present&#39;: False,
+                &#39;ceiling_fan_efficiency&#39;: 0,
+                &#39;ceiling_fan_quantity&#39;: 0,
+                &#39;ceiling_fan_cooling_setpoint_temp_offset&#39;: 0,
+            },
+        }
+
+        arg = &#39;Ceiling Fan&#39;  # add the Parameter Name
+        if (arg in dct_args.keys()):
+            for args in ceiling_fan_dict[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) &amp; (ceiling_fan_dict[dct_args[arg]][args] != &#39;auto&#39;)):
+                    dct_HPXML[args] = ceiling_fan_dict[dct_args[arg]][args]
+
+
+        # Dictionnaire pour le param�tre : Dehumidifier
+        dehumidifier_dict = {
+            &#39;65 pints/day, 50% RH&#39;: {
+                &#39;dehumidifier_type&#39;: &#39;portable&#39;,
+                &#39;dehumidifier_efficiency_type&#39;: &#39;EnergyFactor&#39;,
+                &#39;dehumidifier_efficiency&#39;: 1.8,
+                &#39;dehumidifier_capacity&#39;: 65,
+                &#39;dehumidifier_rh_setpoint&#39;: 0.5,
+                &#39;dehumidifier_fraction_dehumidification_load_served&#39;: 1,
+            },
+            &#39;65 pints/day, 50% RH, 2.0 EF&#39;: {
+                &#39;dehumidifier_type&#39;: &#39;portable&#39;,
+                &#39;dehumidifier_efficiency_type&#39;: &#39;EnergyFactor&#39;,
+                &#39;dehumidifier_efficiency&#39;: 2,
+                &#39;dehumidifier_capacity&#39;: 65,
+                &#39;dehumidifier_rh_setpoint&#39;: 0.5,
+                &#39;dehumidifier_fraction_dehumidification_load_served&#39;: 1,
+            },
+            &#39;65 pints/day, 60% RH&#39;: {
+                &#39;dehumidifier_type&#39;: &#39;portable&#39;,
+                &#39;dehumidifier_efficiency_type&#39;: &#39;EnergyFactor&#39;,
+                &#39;dehumidifier_efficiency&#39;: 1.8,
+                &#39;dehumidifier_capacity&#39;: 65,
+                &#39;dehumidifier_rh_setpoint&#39;: 0.6,
+                &#39;dehumidifier_fraction_dehumidification_load_served&#39;: 1,
+            },
+            &#39;None&#39;: {
+                &#39;dehumidifier_type&#39;: &#39;none&#39;,
+                &#39;dehumidifier_efficiency_type&#39;: &#39;EnergyFactor&#39;,
+                &#39;dehumidifier_efficiency&#39;: 0,
+                &#39;dehumidifier_capacity&#39;: 40,
+                &#39;dehumidifier_rh_setpoint&#39;: 0.5,
+                &#39;dehumidifier_fraction_dehumidification_load_served&#39;: 1,
+            },
+        }
+
+        arg = &#39;Dehumidifier&#39;  # add the Parameter Name
+        if (arg in dct_args.keys()):
+            for args in dehumidifier_dict[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) &amp; (dehumidifier_dict[dct_args[arg]][args] != &#39;auto&#39;)):
+                    dct_HPXML[args] = dehumidifier_dict[dct_args[arg]][args]
+
+
+        # Dictionnaire pour le param�tre : Has PV
+        has_pv_dict = {
+            &#39;No&#39;: {
+            },
+            &#39;Yes&#39;: {
+            },
+        }
+
+        arg = &#39;Has PV&#39;  # add the Parameter Name
+        if (arg in dct_args.keys()):
+            for args in has_pv_dict[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) &amp; (has_pv_dict[dct_args[arg]][args] != &#39;auto&#39;)):
+                    dct_HPXML[args] = has_pv_dict[dct_args[arg]][args]
+
+
+        # Dictionnaire pour le param�tre : Insulation Roof
+        insulation_roof_dict = {
+            &#39;Unfinished, Uninsulated&#39;: {
+                &#39;roof_assembly_r&#39;: 2.3,
+            },
+            &#39;Finished, Uninsulated&#39;: {
+                &#39;roof_assembly_r&#39;: 3.7,
+            },
+            &#39;Finished, R-49&#39;: {
+                &#39;roof_assembly_r&#39;: 47.0,
+            },
+            &#39;Finished, R-7&#39;: {
+                &#39;roof_assembly_r&#39;: 10.2,
+            },
+            &#39;Finished, R-30&#39;: {
+                &#39;roof_assembly_r&#39;: 29.7,
+            },
+            &#39;Finished, R-19&#39;: {
+                &#39;roof_assembly_r&#39;: 21.2,
+            },
+            &#39;Finished, R-13&#39;: {
+                &#39;roof_assembly_r&#39;: 14.3,
+            },
+            &#39;Finished, R-38&#39;: {
+                &#39;roof_assembly_r&#39;: 36.5,
+            },
+        }
+
+        arg = &#39;Insulation Roof&#39;  # add the Parameter Name
+        if (arg in dct_args.keys()):
+            for args in insulation_roof_dict[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) &amp; (insulation_roof_dict[dct_args[arg]][args] != &#39;auto&#39;)):
+                    dct_HPXML[args] = insulation_roof_dict[dct_args[arg]][args]
+
+
+        # Dictionnaire pour le param�tre : Insulation Slab
+        insulation_slab_dict = {
+            &#39;R10 Whole Slab, Horizontal&#39;: {
+                &#39;slab_perimeter_insulation_r&#39;: 0,
+                &#39;slab_perimeter_depth&#39;: 0,
+                &#39;slab_under_insulation_r&#39;: 10,
+                &#39;slab_under_width&#39;: 999,
+                &#39;slab_thickness&#39;: &#39;auto&#39;,
+                &#39;slab_carpet_fraction&#39;: &#39;auto&#39;,
+                &#39;slab_carpet_r&#39;: &#39;auto&#39;,
+            },
+            &#39;Uninsulated&#39;: {
+                &#39;slab_perimeter_insulation_r&#39;: 0,
+                &#39;slab_perimeter_depth&#39;: 0,
+                &#39;slab_under_insulation_r&#39;: 0,
+                &#39;slab_under_width&#39;: 0,
+                &#39;slab_thickness&#39;: &#39;auto&#39;,
+                &#39;slab_carpet_fraction&#39;: &#39;auto&#39;,
+                &#39;slab_carpet_r&#39;: &#39;auto&#39;,
+            },
+            &#39;None&#39;: {
+                &#39;slab_perimeter_insulation_r&#39;: 0,
+                &#39;slab_perimeter_depth&#39;: 0,
+                &#39;slab_under_insulation_r&#39;: 0,
+                &#39;slab_under_width&#39;: 0,
+                &#39;slab_thickness&#39;: &#39;auto&#39;,
+                &#39;slab_carpet_fraction&#39;: &#39;auto&#39;,
+                &#39;slab_carpet_r&#39;: &#39;auto&#39;,
+            },
+            &#39;4ft R5 Under, Horizontal&#39;: {
+                &#39;slab_perimeter_insulation_r&#39;: 0,
+                &#39;slab_perimeter_depth&#39;: 0,
+                &#39;slab_under_insulation_r&#39;: 5,
+                &#39;slab_under_width&#39;: 4,
+                &#39;slab_thickness&#39;: &#39;auto&#39;,
+                &#39;slab_carpet_fraction&#39;: &#39;auto&#39;,
+                &#39;slab_carpet_r&#39;: &#39;auto&#39;,
+            },
+            &#39;2ft R10 Under, Horizontal&#39;: {
+                &#39;slab_perimeter_insulation_r&#39;: 0,
+                &#39;slab_perimeter_depth&#39;: 0,
+                &#39;slab_under_insulation_r&#39;: 10,
+                &#39;slab_under_width&#39;: 2,
+                &#39;slab_thickness&#39;: &#39;auto&#39;,
+                &#39;slab_carpet_fraction&#39;: &#39;auto&#39;,
+                &#39;slab_carpet_r&#39;: &#39;auto&#39;,
+            },
+            &#39;2ft R5 Perimeter, Vertical&#39;: {
+                &#39;slab_perimeter_insulation_r&#39;: 5,
+                &#39;slab_perimeter_depth&#39;: 2,
+                &#39;slab_under_insulation_r&#39;: 0,
+                &#39;slab_under_width&#39;: 0,
+                &#39;slab_thickness&#39;: &#39;auto&#39;,
+                &#39;slab_carpet_fraction&#39;: &#39;auto&#39;,
+                &#39;slab_carpet_r&#39;: &#39;auto&#39;,
+            },
+            &#39;2ft R10 Perimeter, Vertical&#39;: {
+                &#39;slab_perimeter_insulation_r&#39;: 10,
+                &#39;slab_perimeter_depth&#39;: 2,
+                &#39;slab_under_insulation_r&#39;: 0,
+                &#39;slab_under_width&#39;: 0,
+                &#39;slab_thickness&#39;: &#39;auto&#39;,
+                &#39;slab_carpet_fraction&#39;: &#39;auto&#39;,
+                &#39;slab_carpet_r&#39;: &#39;auto&#39;,
+            },
+            &#39;2ft R5 Under, Horizontal&#39;: {
+                &#39;slab_perimeter_insulation_r&#39;: 0,
+                &#39;slab_perimeter_depth&#39;: 0,
+                &#39;slab_under_insulation_r&#39;: 5,
+                &#39;slab_under_width&#39;: 2,
+                &#39;slab_thickness&#39;: &#39;auto&#39;,
+                &#39;slab_carpet_fraction&#39;: &#39;auto&#39;,
+                &#39;slab_carpet_r&#39;: &#39;auto&#39;,
+            },
+        }
+
+        arg = &#39;Insulation Slab&#39;  # add the Parameter Name
+        if (arg in dct_args.keys()):
+            for args in insulation_slab_dict[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) &amp; (insulation_slab_dict[dct_args[arg]][args] != &#39;auto&#39;)):
+                    dct_HPXML[args] = insulation_slab_dict[dct_args[arg]][args]
+
+
+        # Dictionnaire pour le param�tre : Interior Shading
+        interior_shading_dict = {
+            &#39;Summer = 0.7, Winter = 0.95&#39;: {
+                &#39;window_interior_shading_summer&#39;: 0.7,
+                &#39;window_interior_shading_winter&#39;: 0.95,
+            },
+            &#39;Summer = 0.7, Winter = 0.85&#39;: {
+                &#39;window_interior_shading_summer&#39;: 0.7,
+                &#39;window_interior_shading_winter&#39;: 0.85,
+            },
+            &#39;Summer = 0.7, Winter = 0.7&#39;: {
+                &#39;window_interior_shading_summer&#39;: 0.7,
+                &#39;window_interior_shading_winter&#39;: 0.7,
+            },
+            &#39;Summer = 0.5, Winter = 0.7&#39;: {
+                &#39;window_interior_shading_summer&#39;: 0.5,
+                &#39;window_interior_shading_winter&#39;: 0.7,
+            },
+            &#39;Summer = 0.5, Winter = 0.95&#39;: {
+                &#39;window_interior_shading_summer&#39;: 0.5,
+                &#39;window_interior_shading_winter&#39;: 0.95,
+            },
+            &#39;Summer = 0.6, Winter = 0.7&#39;: {
+                &#39;window_interior_shading_summer&#39;: 0.6,
+                &#39;window_interior_shading_winter&#39;: 0.7,
+            },
+        }
+
+        arg = &#39;Interior Shading&#39;  # add the Parameter Name
+        if (arg in dct_args.keys()):
+            for args in interior_shading_dict[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) &amp; (interior_shading_dict[dct_args[arg]][args] != &#39;auto&#39;)):
+                    dct_HPXML[args] = interior_shading_dict[dct_args[arg]][args]
+
+
+        # Dictionnaire pour le param�tre : PV Orientation
+        pv_orientation_dict = {
+            &#39;Southeast&#39;: {
+                &#39;pv_system_array_azimuth&#39;: 135,
+                &#39;pv_system_2_array_azimuth&#39;: 0,
+            },
+            &#39;West&#39;: {
+                &#39;pv_system_array_azimuth&#39;: 270,
+                &#39;pv_system_2_array_azimuth&#39;: 0,
+            },
+            &#39;Southwest&#39;: {
+                &#39;pv_system_array_azimuth&#39;: 225,
+                &#39;pv_system_2_array_azimuth&#39;: 0,
+            },
+            &#39;South&#39;: {
+                &#39;pv_system_array_azimuth&#39;: 180,
+                &#39;pv_system_2_array_azimuth&#39;: 0,
+            },
+            &#39;East&#39;: {
+                &#39;pv_system_array_azimuth&#39;: 90,
+                &#39;pv_system_2_array_azimuth&#39;: 0,
+            },
+            &#39;Northeast&#39;: {
+                &#39;pv_system_array_azimuth&#39;: 45,
+                &#39;pv_system_2_array_azimuth&#39;: 0,
+            },
+            &#39;North&#39;: {
+                &#39;pv_system_array_azimuth&#39;: 0,
+                &#39;pv_system_2_array_azimuth&#39;: 0,
+            },
+            &#39;None&#39;: {
+                &#39;pv_system_array_azimuth&#39;: 180,
+                &#39;pv_system_2_array_azimuth&#39;: 0,
+            },
+            &#39;Northwest&#39;: {
+                &#39;pv_system_array_azimuth&#39;: 315,
+                &#39;pv_system_2_array_azimuth&#39;: 0,
+            },
+        }
+
+        arg = &#39;PV Orientation&#39;  # add the Parameter Name
+        if (arg in dct_args.keys()):
+            for args in pv_orientation_dict[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) &amp; (pv_orientation_dict[dct_args[arg]][args] != &#39;auto&#39;)):
+                    dct_HPXML[args] = pv_orientation_dict[dct_args[arg]][args]
+
+
+        # Dictionnaire pour le param�tre : PV System Size
+        pv_system_size_dict = {
+            &#39;1.0 kWDC&#39;: {
+                &#39;pv_system_present&#39;: True,
+                &#39;pv_system_module_type&#39;: &#39;auto&#39;,
+                &#39;pv_system_max_power_output&#39;: 1000,
+                &#39;pv_system_location&#39;: &#39;roof&#39;,
+                &#39;pv_system_tracking&#39;: &#39;auto&#39;,
+                &#39;pv_system_array_tilt&#39;: &#39;roofpitch&#39;,
+                &#39;pv_system_inverter_efficiency&#39;: &#39;auto&#39;,
+                &#39;pv_system_system_losses_fraction&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_present&#39;: False,
+                &#39;pv_system_2_module_type&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_max_power_output&#39;: 0,
+                &#39;pv_system_2_location&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_tracking&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_array_tilt&#39;: &#39;roofpitch&#39;,
+            },
+            &#39;11.0 kWDC&#39;: {
+                &#39;pv_system_present&#39;: True,
+                &#39;pv_system_module_type&#39;: &#39;auto&#39;,
+                &#39;pv_system_max_power_output&#39;: 11000,
+                &#39;pv_system_location&#39;: &#39;roof&#39;,
+                &#39;pv_system_tracking&#39;: &#39;auto&#39;,
+                &#39;pv_system_array_tilt&#39;: &#39;roofpitch&#39;,
+                &#39;pv_system_inverter_efficiency&#39;: &#39;auto&#39;,
+                &#39;pv_system_system_losses_fraction&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_present&#39;: False,
+                &#39;pv_system_2_module_type&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_max_power_output&#39;: 0,
+                &#39;pv_system_2_location&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_tracking&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_array_tilt&#39;: &#39;roofpitch&#39;,
+            },
+            &#39;13.0 kWDC&#39;: {
+                &#39;pv_system_present&#39;: True,
+                &#39;pv_system_module_type&#39;: &#39;auto&#39;,
+                &#39;pv_system_max_power_output&#39;: 13000,
+                &#39;pv_system_location&#39;: &#39;roof&#39;,
+                &#39;pv_system_tracking&#39;: &#39;auto&#39;,
+                &#39;pv_system_array_tilt&#39;: &#39;roofpitch&#39;,
+                &#39;pv_system_inverter_efficiency&#39;: &#39;auto&#39;,
+                &#39;pv_system_system_losses_fraction&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_present&#39;: False,
+                &#39;pv_system_2_module_type&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_max_power_output&#39;: 0,
+                &#39;pv_system_2_location&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_tracking&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_array_tilt&#39;: &#39;roofpitch&#39;,
+            },
+            &#39;3.0 kWDC&#39;: {
+                &#39;pv_system_present&#39;: True,
+                &#39;pv_system_module_type&#39;: &#39;auto&#39;,
+                &#39;pv_system_max_power_output&#39;: 3000,
+                &#39;pv_system_location&#39;: &#39;roof&#39;,
+                &#39;pv_system_tracking&#39;: &#39;auto&#39;,
+                &#39;pv_system_array_tilt&#39;: &#39;roofpitch&#39;,
+                &#39;pv_system_inverter_efficiency&#39;: &#39;auto&#39;,
+                &#39;pv_system_system_losses_fraction&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_present&#39;: False,
+                &#39;pv_system_2_module_type&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_max_power_output&#39;: 0,
+                &#39;pv_system_2_location&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_tracking&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_array_tilt&#39;: &#39;roofpitch&#39;,
+            },
+            &#39;5.0 kWDC&#39;: {
+                &#39;pv_system_present&#39;: True,
+                &#39;pv_system_module_type&#39;: &#39;auto&#39;,
+                &#39;pv_system_max_power_output&#39;: 5000,
+                &#39;pv_system_location&#39;: &#39;roof&#39;,
+                &#39;pv_system_tracking&#39;: &#39;auto&#39;,
+                &#39;pv_system_array_tilt&#39;: &#39;roofpitch&#39;,
+                &#39;pv_system_inverter_efficiency&#39;: &#39;auto&#39;,
+                &#39;pv_system_system_losses_fraction&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_present&#39;: False,
+                &#39;pv_system_2_module_type&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_max_power_output&#39;: 0,
+                &#39;pv_system_2_location&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_tracking&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_array_tilt&#39;: &#39;roofpitch&#39;,
+            },
+            &#39;7.0 kWDC&#39;: {
+                &#39;pv_system_present&#39;: True,
+                &#39;pv_system_module_type&#39;: &#39;auto&#39;,
+                &#39;pv_system_max_power_output&#39;: 7000,
+                &#39;pv_system_location&#39;: &#39;roof&#39;,
+                &#39;pv_system_tracking&#39;: &#39;auto&#39;,
+                &#39;pv_system_array_tilt&#39;: &#39;roofpitch&#39;,
+                &#39;pv_system_inverter_efficiency&#39;: &#39;auto&#39;,
+                &#39;pv_system_system_losses_fraction&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_present&#39;: False,
+                &#39;pv_system_2_module_type&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_max_power_output&#39;: 0,
+                &#39;pv_system_2_location&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_tracking&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_array_tilt&#39;: &#39;roofpitch&#39;,
+            },
+            &#39;9.0 kWDC&#39;: {
+                &#39;pv_system_present&#39;: True,
+                &#39;pv_system_module_type&#39;: &#39;auto&#39;,
+                &#39;pv_system_max_power_output&#39;: 9000,
+                &#39;pv_system_location&#39;: &#39;roof&#39;,
+                &#39;pv_system_tracking&#39;: &#39;auto&#39;,
+                &#39;pv_system_array_tilt&#39;: &#39;roofpitch&#39;,
+                &#39;pv_system_inverter_efficiency&#39;: &#39;auto&#39;,
+                &#39;pv_system_system_losses_fraction&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_present&#39;: False,
+                &#39;pv_system_2_module_type&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_max_power_output&#39;: 0,
+                &#39;pv_system_2_location&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_tracking&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_array_tilt&#39;: &#39;roofpitch&#39;,
+            },
+            &#39;None&#39;: {
+                &#39;pv_system_present&#39;: False,
+                &#39;pv_system_module_type&#39;: &#39;auto&#39;,
+                &#39;pv_system_max_power_output&#39;: 0,
+                &#39;pv_system_location&#39;: &#39;roof&#39;,
+                &#39;pv_system_tracking&#39;: &#39;auto&#39;,
+                &#39;pv_system_array_tilt&#39;: &#39;roofpitch&#39;,
+                &#39;pv_system_inverter_efficiency&#39;: &#39;auto&#39;,
+                &#39;pv_system_system_losses_fraction&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_present&#39;: False,
+                &#39;pv_system_2_module_type&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_max_power_output&#39;: 0,
+                &#39;pv_system_2_location&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_tracking&#39;: &#39;auto&#39;,
+                &#39;pv_system_2_array_tilt&#39;: &#39;roofpitch&#39;,
+            },
+        }
+
+        arg = &#39;PV System Size&#39;  # add the Parameter Name
+        if (arg in dct_args.keys()):
+            for args in pv_system_size_dict[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) &amp; (pv_system_size_dict[dct_args[arg]][args] != &#39;auto&#39;)):
+                    dct_HPXML[args] = pv_system_size_dict[dct_args[arg]][args]
+
+
+        # Dictionnaire pour le param�tre : Radiant Barrier
+        radiant_barrier_dict = {
+            &#39;No&#39;: {
+                &#39;radiant_barrier_attic_location&#39;: &#39;none&#39;,
+                &#39;radiant_barrier_grade&#39;: 1,
+            },
+            &#39;None&#39;: {
+                &#39;radiant_barrier_attic_location&#39;: &#39;none&#39;,
+                &#39;radiant_barrier_grade&#39;: 1,
+            },
+            &#39;Yes&#39;: {
+                &#39;radiant_barrier_attic_location&#39;: &#39;Attic roof only&#39;,
+                &#39;radiant_barrier_grade&#39;: 1,
+            },
+        }
+
+        arg = &#39;Radiant Barrier&#39;  # add the Parameter Name
+        if (arg in dct_args.keys()):
+            for args in radiant_barrier_dict[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) &amp; (radiant_barrier_dict[dct_args[arg]][args] != &#39;auto&#39;)):
+                    dct_HPXML[args] = radiant_barrier_dict[dct_args[arg]][args]
+
+
+        # Dictionnaire pour le param�tre : Roof Material
+        roof_material_dict = {
+            &#39;Composition Shingles&#39;: {
+                &#39;roof_material_type&#39;: &#39;asphalt or fiberglass shingles&#39;,
+                &#39;roof_color&#39;: &#39;medium&#39;,
+            },
+            &#39;Wood Shingles&#39;: {
+                &#39;roof_material_type&#39;: &#39;wood shingles or shakes&#39;,
+                &#39;roof_color&#39;: &#39;medium&#39;,
+            },
+            &#39;Slate&#39;: {
+                &#39;roof_material_type&#39;: &#39;slate or tile shingles&#39;,
+                &#39;roof_color&#39;: &#39;medium&#39;,
+            },
+            &#39;Galvanized Steel&#39;: {
+                &#39;roof_material_type&#39;: &#39;metal surfacing&#39;,
+                &#39;roof_color&#39;: &#39;medium&#39;,
+            },
+            &#39;Tile, White&#39;: {
+                &#39;roof_material_type&#39;: &#39;slate or tile shingles&#39;,
+                &#39;roof_color&#39;: &#39;reflective&#39;,
+            },
+            &#39;Tile, Medium&#39;: {
+                &#39;roof_material_type&#39;: &#39;slate or tile shingles&#39;,
+                &#39;roof_color&#39;: &#39;medium&#39;,
+            },
+            &#39;Tile, Light&#39;: {
+                &#39;roof_material_type&#39;: &#39;slate or tile shingles&#39;,
+                &#39;roof_color&#39;: &#39;light&#39;,
+            },
+            &#39;Tile, Dark&#39;: {
+                &#39;roof_material_type&#39;: &#39;slate or tile shingles&#39;,
+                &#39;roof_color&#39;: &#39;dark&#39;,
+            },
+            &#39;Tile, Concrete, White or Cool Colors&#39;: {
+                &#39;roof_material_type&#39;: &#39;slate or tile shingles&#39;,
+                &#39;roof_color&#39;: &#39;reflective&#39;,
+            },
+            &#39;Tile, Concrete&#39;: {
+                &#39;roof_material_type&#39;: &#39;slate or tile shingles&#39;,
+                &#39;roof_color&#39;: &#39;medium&#39;,
+            },
+            &#39;Tile, Clay or Ceramic, White or Cool Colors&#39;: {
+                &#39;roof_material_type&#39;: &#39;slate or tile shingles&#39;,
+                &#39;roof_color&#39;: &#39;reflective&#39;,
+            },
+            &#39;Tile, Clay or Ceramic&#39;: {
+                &#39;roof_material_type&#39;: &#39;slate or tile shingles&#39;,
+                &#39;roof_color&#39;: &#39;medium&#39;,
+            },
+            &#39;Metal, White&#39;: {
+                &#39;roof_material_type&#39;: &#39;metal surfacing&#39;,
+                &#39;roof_color&#39;: &#39;reflective&#39;,
+            },
+            &#39;Metal, Medium&#39;: {
+                &#39;roof_material_type&#39;: &#39;metal surfacing&#39;,
+                &#39;roof_color&#39;: &#39;medium&#39;,
+            },
+            &#39;Metal, Light&#39;: {
+                &#39;roof_material_type&#39;: &#39;metal surfacing&#39;,
+                &#39;roof_color&#39;: &#39;light&#39;,
+            },
+            &#39;Metal, Dark&#39;: {
+                &#39;roof_material_type&#39;: &#39;metal surfacing&#39;,
+                &#39;roof_color&#39;: &#39;dark&#39;,
+            },
+            &#39;Metal, Cool Colors&#39;: {
+                &#39;roof_material_type&#39;: &#39;metal surfacing&#39;,
+                &#39;roof_color&#39;: &#39;reflective&#39;,
+            },
+            &#39;Composition Shingles, White or Cool Colors&#39;: {
+                &#39;roof_material_type&#39;: &#39;asphalt or fiberglass shingles&#39;,
+                &#39;roof_color&#39;: &#39;reflective&#39;,
+            },
+            &#39;Asphalt Shingles, White or cool colors&#39;: {
+                &#39;roof_material_type&#39;: &#39;asphalt or fiberglass shingles&#39;,
+                &#39;roof_color&#39;: &#39;reflective&#39;,
+            },
+            &#39;Asphalt Shingles, Medium&#39;: {
+                &#39;roof_material_type&#39;: &#39;asphalt or fiberglass shingles&#39;,
+                &#39;roof_color&#39;: &#39;medium&#39;,
+            },
+            &#39;Asphalt Shingles, Light&#39;: {
+                &#39;roof_material_type&#39;: &#39;asphalt or fiberglass shingles&#39;,
+                &#39;roof_color&#39;: &#39;light&#39;,
+            },
+            &#39;Asphalt Shingles, Dark&#39;: {
+                &#39;roof_material_type&#39;: &#39;asphalt or fiberglass shingles&#39;,
+                &#39;roof_color&#39;: &#39;dark&#39;,
+            },
+        }
+
+        arg = &#39;Roof Material&#39;  # add the Parameter Name
+        if (arg in dct_args.keys()):
+            for args in roof_material_dict[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) &amp; (roof_material_dict[dct_args[arg]][args] != &#39;auto&#39;)):
+                    dct_HPXML[args] = roof_material_dict[dct_args[arg]][args]
+
+
+        # Dictionnaire pour le param�tre : Vacancy Status
+        vacancy_status_dict = {
+            &#39;Occupied&#39;: {
+            },
+            &#39;Vacant&#39;: {
+                &#39;schedules_vacancy_period&#39;: &#39;Jan 1 - Dec 31&#39;,
+            },
+        }
+
+        arg = &#39;Vacancy Status&#39;  # add the Parameter Name
+        if (arg in dct_args.keys()):
+            for args in vacancy_status_dict[dct_args[arg]]:
+                if ((args not in dct_HPXML.keys()) &amp; (vacancy_status_dict[dct_args[arg]][args] != &#39;auto&#39;)):
+                    dct_HPXML[args] = vacancy_status_dict[dct_args[arg]][args]
 
     # ajout des Valeurs par défaut du HPXML si cle n&#39;existe pas
     k_missing = list(set(self.HPXMLArg.arguments.keys()) - set(dct_HPXML.keys()))

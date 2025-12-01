@@ -48,9 +48,7 @@ Save_BN(pathfile): Saves the current Bayesian Network to the specified file path
 Load_BN(pathfile): Loads a Bayesian Network from the specified file path.
 Plot_BN(): Plots the current Bayesian Network using the appropriate visualization library.
 Load_csv(stFileName, sep=','): Loads data from a CSV file into a DataFrame.
-Load_excel(stFileName, sheet_name=None): Loads data from an Excel file into a DataFrame.
-draw_GUM_Sample(number, Multiplicateur=1, evs={}): Generates samples from the Bayesian Network based on the specified number and multiplier.
-do_Sampling(numberOfSamples, evs={}): Performs sampling from the Bayesian Network, ensuring the specified number of samples is returned.</p>
+Load_excel(stFileName, sheet_name=None): Loads data from an Excel file into a DataFrame.</p>
 <h2 id="attributes">Attributes</h2>
 <dl>
 <dt><strong><code>bn</code></strong></dt>
@@ -76,6 +74,29 @@ do_Sampling(numberOfSamples, evs={}): Performs sampling from the Bayesian Networ
 <section>
 </section>
 <section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.suppress_stdout"><code class="name flex">
+<span>def <span class="ident">suppress_stdout</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@contextmanager
+def suppress_stdout():
+    with open(os.devnull, &#34;w&#34;) as devnull:
+        old_stdout = sys.stdout
+        sys.stdout = devnull
+        try:
+            yield
+        finally:
+            sys.stdout = old_stdout</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
 </section>
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
@@ -161,7 +182,6 @@ do_Sampling(numberOfSamples, evs={}): Performs sampling from the Bayesian Networ
             None
         &#34;&#34;&#34;
         gnb.showInference(self.bn,evs={},size = &#39;30&#39;)
-        #gnb.showBN(self.bn,size=&#39;10&#39;)
     
     def Load_csv(self, stFileName, sep = &#39;,&#39;):
         &#34;&#34;&#34;
@@ -328,8 +348,7 @@ sheet_name (str, optional): The name of the sheet to load. If None, the first sh
     Returns:
         None
     &#34;&#34;&#34;
-    gnb.showInference(self.bn,evs={},size = &#39;30&#39;)
-    #gnb.showBN(self.bn,size=&#39;10&#39;)</code></pre>
+    gnb.showInference(self.bn,evs={},size = &#39;30&#39;)</code></pre>
 </details>
 <div class="desc"><p>Plot_BN method to visualize the Bayesian Network (BN) inference.</p>
 <p>This method utilizes the gnb module to display the inference results of the
@@ -406,6 +425,11 @@ The path to the file where the Bayesian Network will be saved.</p>
 <li><h3>Super-module</h3>
 <ul>
 <li><code><a title="LTE-Sampler-Residential.src.utils.sampler" href="index.html">LTE-Sampler-Residential.src.utils.sampler</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.bayesian_network.suppress_stdout" href="#LTE-Sampler-Residential.src.utils.sampler.bayesian_network.suppress_stdout">suppress_stdout</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>

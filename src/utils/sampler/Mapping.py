@@ -6259,6 +6259,7 @@ class BuildstockBatchArguments():
                         "Door Area",
                         "Door Rvalue",
                         "Plug Load",
+                        "ModeConsigne",
                         "Heating Setpoint",
                         "Cooling Setpoint",
                         "Garage Heating Setpoint",
@@ -6397,6 +6398,9 @@ class BuildstockBatchArguments():
         dct_housing_characteristics_csv["Plug Load.csv"] = {"Name": "Plug Load",
                                                             "Description": "Charge électrique des appareils aux prises",
                                                             "Source": ""}
+        dct_housing_characteristics_csv["ModeConsigne.csv"] = {"Name": "ModeConsigne",
+                                                              "Description": "Mode de consigne pour le chauffage et la climatisation",
+                                                              "Source": "Sondage Sensibilisation intégrée"}
         dct_housing_characteristics_csv["Heating Setpoint.csv"] = {"Name": "Heating Setpoint",
                                                                    "Description": "Consigne de chauffage",
                                                                    "Source": "Sondage Sensibilisation intégrée"}

@@ -35,7 +35,7 @@ class Sampler():
             self._seed = None
 
         self.randGenerator = np.random.default_rng(self._seed)
-        self._parallel = {'prefer': 'threads', 'n_jobs': int((os.cpu_count() - 8) / 1), 'verbose': 10,'inner_max_num_threads': 1}
+        self._parallel = {'prefer': 'threads', 'n_jobs': int(max((os.cpu_count() - 8) / 1,1)), 'verbose': 10,'inner_max_num_threads': 1}
 
     def draw_GUM_Sample(self, number, Multiplicateur=1, evs={}):
         """

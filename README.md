@@ -1,4 +1,11 @@
 English is following.  
+
+# Avertissement  
+## Statut du projet et limitation de responsabilité  
+Ce dépôt contient du code, des données et de la documentation qui sont toujours en cours de développement. Le contenu est fourni "tel quel", sans aucune garantie d’aucune sorte, expresse ou implicite, y compris, sans s’y limiter, les garanties de qualité marchande, d’adéquation à un usage particulier ou d’absence d’erreurs.
+Les auteurs et contributeurs de ce dépôt ne garantissent pas l’exactitude, l’exhaustivité, la fiabilité ou la pertinence du contenu pour un quelconque usage.
+Toute utilisation du contenu de ce dépôt se fait aux seuls risques et périls de l’utilisateur.
+En aucun cas, les auteurs, contributeurs ou organisations associées à ce dépôt ne pourront être tenus responsables de dommages directs ou indirects, pertes de données, pertes financières ou de toute autre conséquence résultant de l’utilisation, de la modification ou de la redistribution du contenu par des tiers.
   
 # Simulateur de parc de bâtiments   
 Ce dépôt contient le code nécessaire pour simuler en parallèle (en utilisant Dask) les bâtiments listés et caractérisés dans un fichier csv (par exemple,building-test-from-sampler.csv) en utilisant le processus développé par le NREL (OpenStudio-HPXML). Cet outil de simulation se lance à partir du fichier "main.py". Ce fichier fait appel à divers scripts et fonctions définis dans les fichiers suivants:  
@@ -32,6 +39,13 @@ Une application avec interface graphique a été développée afin de créer des
 Une fois les étapes 1 et 2 complétées, il est maintenant possible d'effectuer une simulation de parc de bâtiments en lançant le fichier main.py. À noter qu'il faudra, préalablement, spécifier le bon chemin vers le fichier csv décrivant la liste des bâtiments à simuler (fichier csv généré lors de l'étape 2).    
 
 ----------------------------------------------------------------------------  
+# Disclaimer  
+## Project Status and Limitation of Liability  
+This repository contains code, data, and documentation that is under active development. The content is provided "as is", without warranty of any kind, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or absence of defects.
+The authors and contributors of this repository make no guarantees regarding the accuracy, completeness, reliability, or suitability of the content for any specific use.
+Any use of the content is made entirely at the user’s own risk.
+Under no circumstances shall the authors, contributors, or any affiliated organizations be held liable for any direct or indirect damages, data loss, financial loss, or any other consequences arising from the use, modification, or redistribution of the content by third parties.
+  
 # Building Stock Simulator  
 This repository contains the code needed to simulate in parallel (using Dask) the buildings that are listed and described in a CSV file (e.g., building-test-from-sampler.csv) using the process developed by NREL (OpenStudio-HPXML). This simulation tool is launched from the file "main.py". This file calls various scripts and functions defined in the following files:  
 - The file "config.py": this script configures the simulation.  

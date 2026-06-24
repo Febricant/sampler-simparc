@@ -14,6 +14,16 @@ class MapHPXML:
         # Initialisation avec les valeurs à ne pas parser
         dct_HPXML = {k: dct_args[k] for k in dct_args.keys() if k in self.HPXMLArg.arguments.keys()}
 
+        # --- CALGARY FUEL OVERRIDE ---------------------------------------------
+        # 'Bi-energie' (dual-energy) is a Hydro-Quebec-only tariff with no Alberta
+        # equivalent. Intercept the row BEFORE any heating rule runs and recode it
+        # to natural gas. Mutating dct_args (not just dct_HPXML) makes it propagate
+        # to building-input.csv AND to the heating_system_fuel rule that reads
+        # Source_Energie_Chauf (elif dct_args[arg] in ["Bi-energie"]:).
+        if dct_args.get("Source_Energie_Chauf") == "Bi-energie":
+            dct_args["Source_Energie_Chauf"] = "Gaz naturel"
+        # -----------------------------------------------------------------------
+
         # _______________________________________________________________
         # weather_station_epw_filepath
         # Type de Logement

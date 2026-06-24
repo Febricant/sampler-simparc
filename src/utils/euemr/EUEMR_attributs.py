@@ -1,7 +1,7 @@
 class Attributs_EUEMr(object):
-    # Attributs de l'enquête EUEMr
+    # Attributes from the EUEMr survey
 
-    # QA1 : Quel est votre lien avec ce logement ? En êtes-vous...
+    # QA1: What is your relationship to this dwelling? Are you...
     QA1 = {}
     QA1["Label"] = ["Le propriétaire / Co-propriétaire",
                      "Le locataire / Co-locataire"]
@@ -9,7 +9,7 @@ class Attributs_EUEMr(object):
     QA1["Description"] = "Quel est votre lien avec ce logement ? En êtes-vous..."
     QA1["Type"] = "discrete"
 
-    # QA4 : De quel genre d'habitation s'agit-il ?
+    # QA4: What type of dwelling is it?
     QA4 = {}
     QA4["Label"] = ['Immeuble de 4 à 8 appartements',
                     'Immeuble de 9 à 19 appartements',
@@ -33,7 +33,7 @@ class Attributs_EUEMr(object):
     QA4["Description"] = "De quel genre d'habitation s'agit-il?"
     QA4["Type"] = "discrete"
 
-    # QC1R : Principale source d'énergie utilisée pour le chauffage du domicile
+    # QC1R: Primary energy source used for home heating
     QC1R = {}
     QC1R["Label"] = ['Électricité',
                         'Bois seul ou en combinaison',
@@ -44,21 +44,21 @@ class Attributs_EUEMr(object):
     QC1R["Description"] = "Principale source d'énergie utilisée pour le chauffage du domicile"
     QC1R["Type"] = "discrete"
 
-    # CONS_AN : Consommation annuelle d'électricité en kWh
+    # CONS_AN: Annual electricity consumption (kWh)
     CONS_AN = {}
     CONS_AN["Label"] = None
     CONS_AN["IdLabel"] = None
     CONS_AN["Description"] = "Consommation annuelle d'électricité en kWh"
     CONS_AN["Type"] = "Double"
 
-    # QA6M : Année de construction de l'habitation
+    # QA6M: Year the dwelling was built
     QA6M = {}
     QA6M["Label"] = None
     QA6M["IdLabel"] = None
     QA6M["Description"] = "Année de construction de l'habitation"
     QA6M["Type"] = "Entier"
 
-    # TERR_HQ : Territoire de l'habitation
+    # TERR_HQ: Utility territory of the dwelling
     TERR_HQ = {}
     TERR_HQ["Label"] = ["Est et nord du Québec",
                         "Laurentides",
@@ -103,21 +103,21 @@ class Attributs_EUEMr(object):
     ZONE["Description"] = "Zone du Québec"
     ZONE["Type"] = "discrete"
 
-    # QA4R : Type d'habitation (code : Multi, Uni, Plex)
+    # QA4R: Dwelling type (code: Multi, Uni, Plex)
     QA4R = {}
     QA4R["Label"] = ["Uni", "Plex", "Multi"]
     QA4R["IdLabel"] = ["0", "1", "2"]
     QA4R["Description"] = "Type d'habitation"
     QA4R["Type"] = "discrete"
 
-    # QA4M : Nombre de logements dans l'immeuble
+    # QA4M: Number of dwellings in the building
     QA4M = {}
     QA4M["Label"] = None
     QA4M["IdLabel"] = None
     QA4M["Description"] = "Nombre de logements dans l'immeuble"
     QA4M["Type"] = "Entier"
 
-    # QA6RR : Décennie de construction de l'habitation
+    # QA6RR: Decade the dwelling was built
     QA6RR = {}
     QA6RR["Label"] = ["Avant 1900",
                         "Entre 1900 et 1950",
@@ -134,7 +134,7 @@ class Attributs_EUEMr(object):
     QA6RR["Description"] = "Décennie de construction de l'habitation"
     QA6RR["Type"] = "discrete"
 
-    # QA2 : Résidence principale ou secondaire
+    # QA2: Primary or secondary residence
     QA2 = {}
     QA2["Label"] = ["Résidence principale",
                     "Résidence secondaire"]
@@ -142,14 +142,14 @@ class Attributs_EUEMr(object):
     QA2["Description"] = "est-ce votre résidence principale ou secondaire?"
     QA2["Type"] = "discrete"
 
-    # QH1 : Nombre de pièces dans la résidence (incluant les pièces du sous-sol et le garage, excluant les salles de bain et les couloirs)
+    # QH1: Number of rooms in the dwelling (including basement and garage rooms; excluding bathrooms and hallways)
     QH1 = {}
     QH1["Label"] = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"] 
     QH1["IdLabel"] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
     QH1["Description"] = "Nombre de pièces dans la résidence (incluant les pièces du sous-sol et le garage, excluant les salles de bain et les couloirs)"
     QH1["Type"] = "discrete"
 
-    # QH2 : Nombre d'étages habitables dans la résidence (incluant le sous-sol et le garage)
+    # QH2: Number of habitable stories in the dwelling (including basement and garage)
     QH2 = {}
     QH2["Label"] = ["Un étage",
                     "1½ étages",
@@ -164,21 +164,21 @@ class Attributs_EUEMr(object):
     QH2["Description"] = "Nombre d'étages habitables dans la résidence (incluant le sous-sol et le garage)"
     QH2["Type"] = "discrete"
 
-    # ETAGE : Nombre d'étages habitables dans la résidence (incluant le sous-sol et le garage) (MÉTRIQUE)
+    # ETAGE: Number of habitable stories in the dwelling (including basement and garage) (METRIC)
     ETAGE = {}
     ETAGE["Label"] = ["1.0", "1.5", "2.0", "2.5", "3.0", "3.5", "4.0", "4.5", "5.0"]
     ETAGE["IdLabel"] = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
     ETAGE["Description"] = "Nombre d'étages habitables dans la résidence (incluant le sous-sol et le garage) (MÉTRIQUE)"
     ETAGE["Type"] = "discrete"
 
-    # SUPERTOT : Superficie totale de la résidence incluant le sous-sol et le garage
+    # SUPERTOT: Total floor area of the dwelling including basement and garage
     SUPERTOT = {}
     SUPERTOT["Label"] = None,
     SUPERTOT["IdLabel"] = None
     SUPERTOT["Description"] = "Quelle est la superficie TOTALE habitable de votre résidence incluant le sous-sol et le garage?"
     SUPERTOT["Type"] = "Double"
 
-    # QH4 : Présence d'un sous-sol ou vide sanitaire dans la résidence
+    # QH4: Presence of a basement or crawlspace in the dwelling
     QH4 = {}
     QH4["Label"] = ["Un sous-sol d'une hauteur de 6 ou 7 pied",
                     "Un vide sanitaire d'une hauteur inférieure à 6 pieds",
@@ -188,35 +188,35 @@ class Attributs_EUEMr(object):
     QH4["Description"] = "Votre résidence comporte-elle un sous-sol ou vide sanitaire?"
     QH4["Type"] = "discrete"
 
-    # QM1A : Présence d'un garage dans la résidence #Question seulement pour les propriétaire
+    # QM1A: Presence of a garage in the dwelling # Question for owners only
     QM1A = {}
     QM1A["Label"] = ["Oui", "Non"]
     QM1A["IdLabel"] = ["0", "1"]
     QM1A["Description"] = "Avez-vous un garage?"
     QM1A["Type"] = "discrete"
 
-    # QM1AA : Garage chauffé (Oui/Non)
+    # QM1AA: Heated garage (Yes/No)
     QM1AA = {}
     QM1AA["Label"] = ["Oui", "Non"]
     QM1AA["IdLabel"] = ["0", "1"]
     QM1AA["Description"] = "Est-ce que votre garage est chauffé?"
     QM1AA["Type"] = "discrete"
 
-    # QM1B : Garage chauffé à l'électricité (Oui/Non)
+    # QM1B: Garage heated with electricity (Yes/No)
     QM1B = {}
     QM1B["Label"] = ["Oui", "Non"]
     QM1B["IdLabel"] = ["0", "1"]
     QM1B["Description"] = "Est-ce que votre garage est chauffé à l'électricité?"
     QM1B["Type"] = "discrete"
 
-    # QL1 : Nombre de personnes habitant le logement (incluant l'interviewé)
+    # QL1: Number of people living in the dwelling (including the respondent)
     QL1 = {}
     QL1["Label"] = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "15", "25"]
     QL1["IdLabel"] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"]
     QL1["Description"] = "En vous incluant, combien de personnes habitent ce logement?"
     QL1["Type"] = "discrete"
 
-    # QL3A : Catégorie d'âge de l'interviewé
+    # QL3A: Age category of the respondent
     QL3A = {}
     QL3A["Label"] = ["18-24 ans", "25-34 ans", "35-44 ans", "45-54 ans", "55-64 ans", "65 ans et plus"]
     QL3A["IdLabel"] = ["0", "1", "2", "3", "4", "5"]

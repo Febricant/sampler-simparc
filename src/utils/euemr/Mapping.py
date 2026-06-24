@@ -129,8 +129,8 @@ class EUEMR_formatage:
                                                             "Montréal":None,
                                                             "Outaouais":None,
                                                             "Saguenay-Lac-Saint-Jean":None}
-        #"Abitibi-Témiscamingue":None,
-        #Nord-du-Québec":None,
+        # "Abitibi-Temiscamingue": None,
+        # "Nord-du-Quebec": None,
 
         self.Mapping["Nombre_Pieces"] = {}
         self.Mapping["Nombre_Pieces"]["ColSrc"] = "QH1"
@@ -141,8 +141,8 @@ class EUEMR_formatage:
         self.Mapping["Nombre_Etages"] = {}
         self.Mapping["Nombre_Etages"]["ColSrc"] = "QH2"
         self.Mapping["Nombre_Etages"]["typeMapping"] = "list"
-        self.Mapping["Nombre_Etages"]["Mapping"] = {"Un étage": ["Un étage", "1.5 étages"],#trop peu de "1.5 étages"
-                                                     "Deux étages": ["Deux étages", "2 ½étages"],#trop peu de "2 ½étages"
+        self.Mapping["Nombre_Etages"]["Mapping"] = {"Un étage": ["Un étage", "1.5 étages"], # too few \"1.5 étages\"
+                                                     "Deux étages": ["Deux étages", "2 ½étages"], # too few \"2 ½étages\"
                                                         "Trois étages et plus": ["Trois étages", "3½ étages", "Quatre étages", "4½ étages", "5 étages"]}
 
         Superficie_Totale_kmax = 5000
@@ -159,7 +159,7 @@ class EUEMR_formatage:
 
         self.Mapping["Presence_SousSol"] = {}
         self.Mapping["Presence_SousSol"]["ColSrc"] = "QH4"
-        self.Mapping["Presence_SousSol"]["typeMapping"] = "list"# ne s'applique qu'au maison
+        self.Mapping["Presence_SousSol"]["typeMapping"] = "list" # only applies to houses
         self.Mapping["Presence_SousSol"]["Mapping"] = {"Sous sol 6 pied":["Un sous-sol d'une hauteur de 6 ou 7 pieds avec murs & planchers en béton (inclus les demis sous-sol)"],
                                                         "Vide sanitaire moins 6 pieds" :["Un vide sanitaire d'une hauteur inférieure à 7 pieds avec plancher en terre"],
                                                         "Aucun Sous-sol ou vide sanitaire" :[".", "Ne comporte ni sous-sol, ni vide sanitaire"],
@@ -175,18 +175,18 @@ class EUEMR_formatage:
                                                         "5 et plus" :[5, 6, 7, 8, 9, 10, 11, 12, 15, 25]}
 
 
-        #presence garage et chauffé et type chauffage
+        # garage presence, whether heated, and heating system type
         self.Mapping["Presence_Garage"] = {}
-        self.Mapping["Presence_Garage"]["ColSrc"] = "QM1A" # seulement pour la méthode get_Mettadata
+        self.Mapping["Presence_Garage"]["ColSrc"] = "QM1A" # only for the get_Mettadata method
         self.Mapping["Presence_Garage"]["typeMapping"] = "custom"
         self.Mapping["Presence_Garage"]["Mapping"] = {"Pas de Garage":None,
                                                         "Garage non chauffé":None,
                                                         "Garage chauffé à électricité":None,
                                                         "Garage chauffé à autre source":None}
                                         
-        #Type de chauffage
+        # Heating system type
         self.Mapping["Chauffage_Logement"] = {}
-        self.Mapping["Chauffage_Logement"]["ColSrc"] = "SYSTEM1R" # seulement pour la méthode get_Mettadata
+        self.Mapping["Chauffage_Logement"]["ColSrc"] = "SYSTEM1R" # only for the get_Mettadata method
         self.Mapping["Chauffage_Logement"]["typeMapping"] = "custom"
         self.Mapping["Chauffage_Logement"]["Mapping"] = {"Plinthes électriques":None,
                                                         "Unités convecteurs, plancher ou plafond radiant":None,
@@ -209,9 +209,9 @@ class EUEMR_formatage:
                                                         "Fournaise ou poêle à bois et Système central à eau chaude":None,
                                                         "Fournaise ou poêle à bois et Fournaise murale ou de plancher":None}#,
                                                         #"Autres":None,
-                                                        #"Pas de système principal (chalet)":None,}
+                                                        #\"No primary system (cottage)\":None,}
 
-        # QB2I1 : Nombre de réfrigérateurs dans la résidence
+        # QB2I1: Number of refrigerators in the dwelling
         self.Mapping["Nombre_Refrigerateur"] = {}
         self.Mapping["Nombre_Refrigerateur"]["ColSrc"] = "QB2I1"
         self.Mapping["Nombre_Refrigerateur"]["typeMapping"] = "list"
@@ -220,14 +220,14 @@ class EUEMR_formatage:
                                                         "3 et plus" :[3, 4, 5,
                                                                        7]}
 
-        # no MAPPING ; fOR CSV STATS
+        # No mapping; used for CSV stats
         self.Mapping["Nombre_Logement"] = {}
         self.Mapping["Nombre_Logement"]["ColSrc"] = "QA4M"
         self.Mapping["Nombre_Logement"]["typeMapping"] = "no"
         self.Mapping["Nombre_Logement"]["Mapping"] = {}
 
-        #QD11BM1 type de climatisation
-        #Ne sait pas/Ne répond pas ; Aucune de ces réponses
+        # QD11BM1: air conditioning type
+        # Don't know/No answer; none of these answers
 
         self.Mapping["Climatisation"] = {}
         self.Mapping["Climatisation"]["ColSrc"] = "QD11BM1"
@@ -238,10 +238,10 @@ class EUEMR_formatage:
                                                      "Murale": ["Climatiseur mural ou bibloc (mini-split)","Thermopompe murale"],
                                                      "Centrale": ["Thermopompe centrale", "Thermopompe géothermique","Climatiseur central autre qu'une thermopompe"]}
 
-        #presence spa
-        # spa (oui, non, oui+type)
-        # spa utilisation (saison)
-        # spa utilisation (habitude Temperature)
+        # spa presence
+        # spa (yes/no, yes+type)
+        # spa usage (season)
+        # spa usage (temperature habits)
         self.Mapping["Spa_Presence"] = {}
         self.Mapping["Spa_Presence"]["ColSrc"] = "QB1M"
         self.Mapping["Spa_Presence"]["typeMapping"] = "list"
@@ -255,9 +255,9 @@ class EUEMR_formatage:
                                                     "Exterieur":["Extérieur", "Ne sait pas/Ne répond pas"],
                                                    "Interieur":["Intérieur"]}
 
-                #Spa_Saison
+                # Spa_Saison
         self.Mapping["Spa_Saison"] = {}
-        self.Mapping["Spa_Saison"]["ColSrc"] = "QS2M1R" # seulement pour la méthode get_Mettadata
+        self.Mapping["Spa_Saison"]["ColSrc"] = "QS2M1R" # only for the get_Mettadata method
         self.Mapping["Spa_Saison"]["typeMapping"] = "custom"
         self.Mapping["Spa_Saison"]["Mapping"] = {"Aucun": None,
                                                  "Pas utilisé":None,
@@ -344,9 +344,9 @@ class EUEMR_formatage:
                                                         "Bois": ["Un chauffe-piscine au bois"],
                                                         "Mazout": ["Un chauffe-piscine à l’huile/mazout"]}
     
-        #Nombre de VE et Hybride en 1 variable
+        # Number of EVs and plug-in hybrids in one variable
         self.Mapping["Vehicule_Presence"] = {}
-        self.Mapping["Vehicule_Presence"]["ColSrc"] = "QT2T3" # seulement pour la méthode get_Mettadata
+        self.Mapping["Vehicule_Presence"]["ColSrc"] = "QT2T3" # only for the get_Mettadata method
         self.Mapping["Vehicule_Presence"]["typeMapping"] = "custom"
         self.Mapping["Vehicule_Presence"]["Mapping"] = {"Aucune_VE_Aucune_VHR": None,
                                                  "Une_VE_Aucune_VHR":None,
@@ -401,7 +401,7 @@ class EUEMR_formatage:
                                                        "60 gallons": ["60 gallons (264 litres)"],
                                                        "60 et plus gallons": ["Plus de 60 gallons (264 litres)"]}
 
-        # QB2M2R : Nombre de congélateurs distinct dans la résidence
+        # QB2M2R: Number of distinct freezers in the dwelling
         self.Mapping["Congelateur_Nombre"] = {}
         self.Mapping["Congelateur_Nombre"]["ColSrc"] = "QB2M2R"
         self.Mapping["Congelateur_Nombre"]["typeMapping"] = "list"
@@ -413,7 +413,7 @@ class EUEMR_formatage:
                                                        "5": [5],
                                                        "6": [6]}
 
-        # QB2I1 : Nombre de réfrigérateurs dans la résidence
+        # QB2I1: Number of refrigerators in the dwelling
         self.Mapping["Refrigerateur_Nombre"] = {}
         self.Mapping["Refrigerateur_Nombre"]["ColSrc"] = "QB2I1"
         self.Mapping["Refrigerateur_Nombre"]["typeMapping"] = "list"
@@ -431,7 +431,7 @@ class EUEMR_formatage:
                                                       "Frontale":["Machine à chargement frontal"],
                                                       "Traditionnelle": ["Machine traditionnelle"]}
 
-        #QB1H : Type de machines à laver (Base totale)
+        # QB1H: Type of clothes washer (total base)
         self.Mapping["SecheLinge_Presence"] = {}
         self.Mapping["SecheLinge_Presence"]["ColSrc"] = "QB1H"
         self.Mapping["SecheLinge_Presence"]["typeMapping"] = "list"
@@ -445,13 +445,13 @@ class EUEMR_formatage:
         self.Mapping["LaveVaisselle_Presence"]["Mapping"] = {"Oui":["Oui"],
                                                             "Non":["Non"]}
         
-        #QB1A1 : Présence de cuisinières (Oui/Non)
+        # QB1A1: Presence of a cooking range (Yes/No)
         self.Mapping["Cuisiniere_Presence"] = {}
         self.Mapping["Cuisiniere_Presence"]["ColSrc"] = "QB1A1"
         self.Mapping["Cuisiniere_Presence"]["typeMapping"] = "list"
         self.Mapping["Cuisiniere_Presence"]["Mapping"] = {"Oui":["Oui"],
                                                             "Non":["Non", "Ne sait pas/Ne répond pas"]}
-        #QB1A3 : Source d'énergie de la cuisinière
+        # QB1A3: Cooking range energy source
         self.Mapping["Cuisiniere_Energie"] = {}
         self.Mapping["Cuisiniere_Energie"]["ColSrc"] = "QB1A3"
         self.Mapping["Cuisiniere_Energie"]["typeMapping"] = "list"
@@ -461,7 +461,7 @@ class EUEMR_formatage:
                                                         "Gaz": ["Gaz propane ou gaz naturel"],
                                                         "Autre": ["Autre"]}        
 
-        #QB2X8R : % d'éclairage à LED
+        # QB2X8R: % of lighting that is LED
         self.Mapping["Eclairage_LED"] = {}
         self.Mapping["Eclairage_LED"]["ColSrc"] = "QB2X8R"
         self.Mapping["Eclairage_LED"]["typeMapping"] = "list"
@@ -472,13 +472,13 @@ class EUEMR_formatage:
                                                     "Plus de 50 %":["Plus de 50 %"]}
 
         #_____________________________________________________
-        # Mapping pour la pondération
-        # NE PAS UTILISER LES CLEFS self.Mapping - sinon revoir la ligne {**self.Mapping, **self.Pond_Mapping}
+        # Mapping for weighting
+        # DO NOT USE self.Mapping keys here; otherwise revisit the merge line {**self.Mapping, **self.Pond_Mapping}
         self.Pond_Mapping = {}
         
         #Vintage
         self.Pond_Mapping["Vintage"] = {}
-        self.Pond_Mapping["Vintage"]["ColSrc"] = "QA6M" # seulement pour la méthode get_Mettadata
+        self.Pond_Mapping["Vintage"]["ColSrc"] = "QA6M" # only for the get_Mettadata method
         self.Pond_Mapping["Vintage"]["typeMapping"] = "custom"
         self.Pond_Mapping["Vintage"]["Mapping"] = {"1946-70":None,
                                                     "1986-2012": None,
@@ -487,7 +487,7 @@ class EUEMR_formatage:
                                                     "post-2012": None}
 
         self.Pond_Mapping["Territoire"] = {}
-        self.Pond_Mapping["Territoire"]["ColSrc"] = "TERR_HQ" # seulement pour la méthode get_Mettadata
+        self.Pond_Mapping["Territoire"]["ColSrc"] = "TERR_HQ" # only for the get_Mettadata method
         self.Pond_Mapping["Territoire"]["typeMapping"] = "list"
         self.Pond_Mapping["Territoire"]["Mapping"] = {"0_Montreal": ["Montréal"],
                                                         "1_Laurentides": ["Laurentides"],
@@ -496,7 +496,7 @@ class EUEMR_formatage:
                                                         "4_Richelieu": ["Richelieu"]}
         
         self.Pond_Mapping["Typo"] = {}
-        self.Pond_Mapping["Typo"]["ColSrc"] = "Type_Logement" # seulement pour la méthode get_Mettadata
+        self.Pond_Mapping["Typo"]["ColSrc"] = "Type_Logement" # only for the get_Mettadata method
         self.Pond_Mapping["Typo"]["typeMapping"] = "list"
         self.Pond_Mapping["Typo"]["Mapping"] = {"individuelle" :["Maison individuelle"],
                                     "en rangee": ["Maison en rangee"], 
@@ -505,38 +505,38 @@ class EUEMR_formatage:
                                      "immeuble": ["Collective"]}
 
         self.Pond_Mapping["Source"] = {}
-        self.Pond_Mapping["Source"]["ColSrc"] = "QC1R" # seulement pour la méthode get_Mettadata
+        self.Pond_Mapping["Source"]["ColSrc"] = "QC1R" # only for the get_Mettadata method
         self.Pond_Mapping["Source"]["typeMapping"] = "list"
         self.Pond_Mapping["Source"]["Mapping"] = {"elec": ["Électricité"],
                                         "combustible": ["Gaz naturel", "Mazout", "Bois seul ou en combinaison"],
                                         "bi-energie": ["Bi-énergie"]}
 
         #______________________________________________________
-        # QB1A1 : Présence de cuisinières (Oui/Non)
-        # QB1A3 : Source d'énergie de la cuisinière
-        # Faire 1 Variable : 1 = Non ; 2+=Oui+source
+        # QB1A1: Presence of a cooking range (Yes/No)
+        # QB1A3: Cooking range energy source
+        # Build a single variable: 1 = No; 2+ = Yes + source
 
-        # QB1F : Présence de micro-ondes (Oui/Non)
+        # QB1F: Presence of a microwave (Yes/No)
 
-        # QB1G : Présence de lave-vaisselle (Oui/Non)
+        # QB1G: Presence of a dishwasher (Yes/No)
 
-        # QB1H : Présence de sécheuse à linge électrique (Oui/Non)
+        # QB1H: Presence of an electric clothes dryer (Yes/No)
 
-        # QB1I : Présence de machine à laver le linge (Oui/Non)
-        # QB1I1 : S'agit-il d'une machine à chargement frontal (Oui/Non)
-        #   Faire 2 variable : Non ; Oui Frontale ; Oui Autre
+        # QB1I: Presence of a clothes washer (Yes/No)
+        # QB1I1: Is it a front-loading machine? (Yes/No)
+        #   Build two variables: No; Yes front-load; Yes other
 
-        # QB1S : Présence de cellier avec système de réfrigération (Oui/Non)
+        # QB1S: Presence of a wine cellar with refrigeration system (Yes/No)
     
-        # QB1N : Présence de sauna (Oui/Non)
+        # QB1N: Presence of a sauna (Yes/No)
 
-        # QB2 : Nombre de téléviseurs dans la résidence
+        # QB2: Number of televisions in the dwelling
 
         # B2C2R : Nombre d'ordinateur total
 
-        # QB2X6 : Présence d'éclairage à LED (Oui/Non)
-        # QB2X8R : Pourcentage d'éclairage à LED (Base possède de l'éclairage à LED)
-        # Faire 2 variable : 1 = Non ; 2+=Oui+pourcentage
+        # QB2X6: Presence of LED lighting (Yes/No)
+        # QB2X8R: Percentage of LED lighting (base has LED lighting)
+        # Build two variables: 1 = No; 2+ = Yes + percentage
 
         #chauffage
 
@@ -547,12 +547,12 @@ class EUEMR_formatage:
 
         #clim  (non, oui+system)
 
-        # QD7F1 : Utilisez-vous un échangeur d'air?
-        # QD7G1 : S'agit-il d'un échangeur d'air avec ou sans récupérateur de chaleur?
-        # Faire une variable
+        # QD7F1: Do you use an air exchanger?
+        # QD7G1: Is it an air exchanger with or without heat recovery?
+        # Build one variable
 
-        ## QF1 : À quelle source d'énergie votre chauffe-eau fonctionne-t-il?
-        ## a voir si pertinent # # QF3 : Quelle est la capacité du chauffe-eau?
+        ## QF1: What energy source does your water heater use?
+        ## to review whether relevant # QF3: What is the water heater capacity?
 
     def get_Mapping_Colsrc(self, colName):
         if colName in Attributs_EUEMr.__dict__.keys():
@@ -770,7 +770,7 @@ class EUEMR_formatage:
         df_Pond["PONDNew"] = df_Pond["count_pound_rel"]/df_Pond["Nombre_rel"]
         
         df_toPond_weight = df_toPond_src.merge(df_Pond[["Vintage","Territoire","Typo","Source", "PONDNew"]], on=['Vintage', 'Territoire', "Typo", "Source"], how='left')#["Weighted"].sum()
-        df_toPond_weight.loc[pd.isnull(df_toPond_weight["POND1"]), "PONDNew"] = None#ne s'applique pas sur le sous-groupe des logements récents
+        df_toPond_weight.loc[pd.isnull(df_toPond_weight["POND1"]), "PONDNew"] = None # does not apply to the subgroup of recent dwellings
         df_toPond_weight.insert(0, "PONDNew", df_toPond_weight.pop("PONDNew"))
 
         return df_toPond_weight

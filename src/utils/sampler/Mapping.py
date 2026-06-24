@@ -11,7 +11,7 @@ class MapHPXML:
 
     def doMapping(self, dct_args):
 
-        # Initialisation avec les valeurs à ne pas parser
+        # Initialize with values that should not be parsed
         dct_HPXML = {k: dct_args[k] for k in dct_args.keys() if k in self.HPXMLArg.arguments.keys()}
 
         # --- CALGARY FUEL OVERRIDE ---------------------------------------------
@@ -26,7 +26,7 @@ class MapHPXML:
 
         # _______________________________________________________________
         # weather_station_epw_filepath
-        # Type de Logement
+        # Dwelling type
         arg = "Territoire_HQ"
         argHPXML = "weather_station_epw_filepath"
         if (argHPXML not in dct_HPXML.keys()):
@@ -403,7 +403,7 @@ class MapHPXML:
         if dct_HPXML["geometry_attic_type"] == "ConditionedAttic":
             additional_floor == 1
         arg = "Nombre_Etages"
-        argHPXML = "geometry_unit_num_floors_above_grade"  # du logement et non de l'immeuble
+        argHPXML = "geometry_unit_num_floors_above_grade"  # unit-level, not building-level
         if (argHPXML not in dct_HPXML.keys()):
             if (arg in dct_args.keys()):
                 if (dct_HPXML.get("geometry_unit_type") in ["single-family detached", "single-family attached"]):
@@ -413,7 +413,7 @@ class MapHPXML:
                         dct_HPXML[argHPXML] = 2 + additional_floor
                     elif dct_args[arg] == "Trois étages et plus":
                         dct_HPXML[argHPXML] = 3 + additional_floor
-                else:  # pour les plex et les appart pas d'étage dans le hpxml
+                else:  # for plex/apartment units, floors are not represented the same way in HPXML
                     dct_HPXML[argHPXML] = 1
             else:
                 if (dct_HPXML.get("geometry_unit_type") in ["single-family detached", "single-family attached"]):
@@ -1003,7 +1003,7 @@ class MapHPXML:
         # ________________________________________________________________
         # geometry_garage_width
         # The width of the garage. Enter zero for no garage. Only applies to single-family detached units.
-        # Plex : Ne pas ajouter de de garage
+        # Plex: do not add a garage
         # geometry_garage_depth
 
         # geometry_garage_protrusion
@@ -1013,9 +1013,9 @@ class MapHPXML:
                 dct_HPXML[argHPXML] = 0.75
             else:
                 dct_HPXML[argHPXML] = 0.5
-                # Certains logements créés des problèmes de geometry (>2étages)
-        # Resstick considère qu'il n'y a pas de garage pour de nombreux cas(Geometry Garage csv)
-        # On change la protusion pour éviter des erreur de geometry
+                # Some dwellings create geometry issues (>2 floors)
+        # ResStock considers there is no garage for many cases (Geometry Garage csv)
+        # Adjust protrusion to avoid geometry errors
         if dct_HPXML.get("geometry_unit_num_floors_above_grade") >= 2:
             dct_HPXML[argHPXML] = 1
 
@@ -1033,7 +1033,7 @@ class MapHPXML:
         lr = (dct_HPXML["geometry_unit_cfa"] / num_floors) / fb
         length = fb
         width = lr
-        # Si protusion de 1 on suppose que le garage est détaché
+        # If protrusion is 1, assume the garage is detached
         if dct_HPXML["geometry_garage_protrusion"] == 1:
             garage_width = 12
             garage_depth = 22
@@ -1072,7 +1072,7 @@ class MapHPXML:
                                       "Garage chauffé à électricité",
                                       "Garage chauffé à autre source"]):
                     if (dct_HPXML.get("geometry_unit_type") in [
-                        "single-family detached"]):  # , "single-family attached"]): Pas supporté pour les attached
+                        "single-family detached"]):  # "single-family attached" is not supported here
                         dct_HPXML[argHPXML] = garage_width  # 12 / 24 / 36 taille du garage
                         # geometry_garage_depth
                         dct_HPXML["geometry_garage_depth"] = garage_depth
@@ -1080,7 +1080,7 @@ class MapHPXML:
                         dct_HPXML["geometry_garage_position"] = "Right"
                     else:
                         dct_HPXML[
-                            argHPXML] = 0  # Pas de garage pour les plex/appartemnt # on pourrait les ajouter avec une protusion de 1 (garage détaché)
+                            argHPXML] = 0  # No garage for plex/apartment units (could be added with protrusion=1 as detached garage)
                         dct_HPXML["geometry_garage_depth"] = 0
                         # geometry_garage_position
                         dct_HPXML["geometry_garage_position"] = "Right"
@@ -1387,7 +1387,7 @@ class MapHPXML:
                 dct_HPXML["air_leakage_value"] = dct_HPXML["air_leakage_value"] * (
                             1.0 - dct_HPXML["air_leakage_percent_reduction"] / 100.0)
 
-        # geometry_unit_level n'est pas dans le HPXML. variable intermédiaire
+        # geometry_unit_level is not in HPXML; intermediate variable
         # Adiabatic Floor/Ceiling
         # site_shielding_of_home
         # arg = "Geometry Building Level"
@@ -1402,7 +1402,7 @@ class MapHPXML:
         #            dct_HPXML[args] = 'Middle'
         #        else:
         #            pass
-        # remplace dct_HPXML["geometry_unit_level"] par dct_args.get(arg)
+        # Replaces dct_HPXML["geometry_unit_level"] with dct_args.get(arg)
         arg = ""
         if dct_args.get(arg) == 'Bottom':
             if dct_HPXML.get(
@@ -1436,15 +1436,15 @@ class MapHPXML:
 
         # ________________________________________________________________
         # geometry_corridor_width
-        # apres les etage
+        # after floors
 
-        # Ajout de variables ResStockArguments similaire à optionlookup
+        # Add ResStockArguments-like variables similar to option_lookup
 
-        # Conversion de certaines logiques du code ResStockArguments en HPXMLArguments
+        # Convert selected ResStockArguments logic into HPXMLArguments
 
-        # conversion format des variable (str double...)
+        # Convert variable formats (str, float, etc.)
         # _________________________________________________________________
-        # chauffage principale
+        # primary heating
 
         # Make dict only based on data - from code parse option_lookup
         dct_HVAC_Heating = {}
@@ -4325,11 +4325,11 @@ class MapHPXML:
             dct_HVAC_Heating["Fuel Furnace, 80% AFUE & " + key_syst]["heat_pump_backup_heating_efficiency"] = 0.8
             dct_HVAC_Heating["Fuel Furnace, 80% AFUE & " + key_syst]["heat_pump_backup_heating_capacity"] = "auto"
 
-        # bienergie Élec+Mazout/Gaz (air) #TODO : ajouter les autres types de chauffage
+        # dual-fuel: electric + oil/gas (air) #TODO: add other heating types
         dct_HVAC_Heating["Electric Furnace, 100% AFUE & Fuel Furnace, 80% AFUE"] = dct_HVAC_Heating[
             "Electric Furnace, 100% AFUE"].copy()
 
-        # bienergie Élec+Mazout/Gaz (eau) #TODO : ajouter les autres types de chauffage
+        # dual-fuel: electric + oil/gas (water) #TODO: add other heating types
         dct_HVAC_Heating["Electric Boiler, 100% AFUE & Fuel Boiler, 80% AFUE"] = dct_HVAC_Heating[
             "Electric Boiler, 100% AFUE"].copy()
 
@@ -4340,7 +4340,7 @@ class MapHPXML:
                 if ((args not in dct_HPXML.keys()) & (dct_HVAC_Heating[dct_args[arg]][args] != "auto")):
                     dct_HPXML[args] = dct_HVAC_Heating[dct_args[arg]][args]
         #
-        # bienergie : 90% à 95.6% au Mazout+elec
+        # dual-fuel: 90% to 95.6% oil+electric
         # Bois en combinaison :
 
         # arg = "Chauffage_Logement"
@@ -4351,7 +4351,7 @@ class MapHPXML:
         #            if ((args not in dct_HPXML.keys()) & (dctsysCh[dct_args[arg]][args]!="auto")):
         #                dct_HPXML[args] = dctsysCh[dct_args[arg]][args]
 
-        # Chauffage_Logement: faire un csv pour avoir l'efficacité
+        # Chauffage_Logement: create a CSV to get efficiency values
         # '0': "Plinthes \xE9lectriques"
         # '1': "Unit\xE9s convecteurs, plancher ou plafond radiant"
         # '10': "Fournaise ou po\xEAle \xE0 bois et Syst\xE8me central \xE0 air chaud"
@@ -4383,7 +4383,7 @@ class MapHPXML:
                 elif dct_args[arg] in ["Gaz naturel"]:
                     dct_HPXML[args] = 'natural gas'
                 elif dct_args[arg] in ["Bi-energie"]:
-                    dct_HPXML[args] = 'natural gas'  # à faire
+                    dct_HPXML[args] = 'natural gas'  # TODO
                 elif dct_args[arg] in ["Bois"]:
                     dct_HPXML[args] = 'wood'
         # _________________________________________________________________
@@ -4454,8 +4454,8 @@ class MapHPXML:
         # misc_plug_loads_vehicle_present
         arg = "Vehicule_Presence"
         argHPXML = "misc_plug_loads_vehicle_present"  # du logement et non de l'immeuble
-        ConsoVE = 3274  # kWh/an Provient du modèle de l'OPE
-        ConsoVHR = 2248  # kWh/an Provient du modèle de l'OPE
+        ConsoVE = 3274  # kWh/year from the OPE model
+        ConsoVHR = 2248  # kWh/year from the OPE model
 
         if (argHPXML not in dct_HPXML.keys()):
             if (arg in dct_args.keys()):
@@ -6215,12 +6215,12 @@ class MapHPXML:
                     if ((args not in dct_HPXML.keys()) & (vacancy_status_dict[dct_args[arg]][args] != 'auto')):
                         dct_HPXML[args] = vacancy_status_dict[dct_args[arg]][args]
 
-        # ajout des Valeurs par défaut du HPXML si cle n'existe pas
+        # Add HPXML default values when a key does not exist
         k_missing = list(set(self.HPXMLArg.arguments.keys()) - set(dct_HPXML.keys()))
         dct_HPXML_missing = {}  # {k: self.HPXMLArg.arguments[k].get("Default Value", None) for k in k_missing if self.HPXMLArg.arguments[k].get("Default Value", "Defaut_Not_Existing")!="Defaut_Not_Existing"}
 
         dct_HPXML = {**dct_HPXML, **dct_HPXML_missing}
-        # ne pas traiter les variables exclues (cf. MapHPXML.py)
+        # Do not include excluded variables (see MapHPXML.py)
         Exclude = ["air_leakage_leakiness_description",
                    "ceiling_insulation_r",
                    "rim_joist_continuous_exterior_r",
@@ -6228,6 +6228,18 @@ class MapHPXML:
                    "rim_joist_assembly_interior_r",
                    "exterior_finish_r"]
         dct_HPXML = {k: v for k, v in dct_HPXML.items() if k not in Exclude}
+
+        # --- CALGARY LOCATION OVERRIDE -----------------------------------------
+        # Force Calgary climate/site for EVERY dwelling, overriding the Quebec
+        # logic above (EPW from Territoire_HQ; the unconditional '... = -5' UTC).
+        # Placed last so it always wins.
+        dct_HPXML["weather_station_epw_filepath"] = "CAN_AB_Calgary.Intl.AP.718770_CWEC2020.epw"
+        dct_HPXML["site_time_zone_utc_offset"] = -7.0   # Mountain Time (was -5 Eastern)
+        # The real OS-HPXML arg is simulation_control_daylight_saving_enabled
+        # (there is no site_dst_enabled). Keep DST on:
+        dct_HPXML["simulation_control_daylight_saving_enabled"] = True
+        # -----------------------------------------------------------------------
+
         return dct_HPXML
 
     def run(self, lst_dct_args):

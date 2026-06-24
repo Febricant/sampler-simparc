@@ -109,7 +109,7 @@ class Sampler():
         for dctSampler in lst_dct_args:
             dct_args2 = {}
             for Attributs in BBA.listAttributs:
-                #for csv file (ne charger qu'une fois) et creer une structure
+                # For CSV tables: load once and reuse a structured cache
                 dct_dependancy = BBA.dct_housing_characteristics[Attributs]["Dependency"]
                 dct_option = BBA.dct_housing_characteristics[Attributs]["Option"]
                 df = BBA.dct_housing_characteristics[Attributs]["Table"]
@@ -149,7 +149,7 @@ class Sampler():
                         dct_args2[Attributs] = int(dct_args2[Attributs])
             
 
-            #ajout des Heures de changement de température (h1 à h4)
+            # Add temperature schedule change hours (h1 to h4)
             h1, h2, h3, h4= HConsignes()
             dct_args2["Tconsignes_chauffage_H1"] = h1
             dct_args2["Tconsignes_chauffage_H2"] = h2
@@ -160,10 +160,10 @@ class Sampler():
         return lst_dct_args2
 
     def run_hors_bn(self, lst_dct_args):
-        # Ajout des variables hors BN
+        # Add variables that are not part of the BN
         lst_dct_args2 = self.resstock_args_sampling(lst_dct_args)
         lst_dct_args = [d2 | d1 for d1, d2 in zip(lst_dct_args, lst_dct_args2)]  # lst_dct_args prioritaire
-        # Mapping vers HPXML
+        # Map to HPXML arguments
         lst_dct_HPXML = MapHPXML().run(lst_dct_args)
         return lst_dct_args, lst_dct_HPXML
 
@@ -178,7 +178,7 @@ class Sampler():
         # Load the Bayesian Network from file
         Evidence = kwargs["ev"]
 
-        # Fait un échantillonage - Avant enregistrement
+        # Perform sampling (before any persistence/export)
         df = self.GUM_Sampling(Nombre_de_Samples, evs=Evidence)
         lst_dct_args = df.to_dict(orient='records')
         chunk_size = int(len(lst_dct_args) / self._parallel['n_jobs'])

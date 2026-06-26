@@ -164,13 +164,13 @@ def export_to_excel(dataframes_dict):
 def create_distribution_plot(df, column):
     """Create interactive distribution plot."""
     if df[column].dtype in ['int64', 'float64']:
-        fig = px.histogram(df, x=column, title=f'Distribution de {column}',
+        fig = px.histogram(df, x=column, title=f'Distribution of {column}',
                           color_discrete_sequence=['#ff4b4b'])
     else:
         value_counts = df[column].value_counts()
         fig = px.bar(x=value_counts.index, y=value_counts.values,
-                    title=f'Distribution de {column}',
-                    labels={'x': column, 'y': 'Fréquence'},
+                    title=f'Distribution of {column}',
+                    labels={'x': column, 'y': 'Frequency'},
                     color_discrete_sequence=['#ff4b4b'])
     fig.update_layout(showlegend=False)
     return fig
@@ -181,12 +181,12 @@ def create_correlation_heatmap(df):
     if len(numeric_cols) > 1:
         corr = df[numeric_cols].corr()
         fig = px.imshow(corr, 
-                       labels=dict(color="Corrélation"),
-                       x=corr.columns,
-                       y=corr.columns,
-                       color_continuous_scale='RdBu_r',
-                       aspect="auto")
-        fig.update_layout(title="Matrice de corrélation")
+                   labels=dict(color="Correlation"),
+                   x=corr.columns,
+                   y=corr.columns,
+                   color_continuous_scale='RdBu_r',
+                   aspect="auto")
+        fig.update_layout(title="Correlation Matrix")
         return fig
     return None
 
@@ -221,40 +221,40 @@ def render_sidebar():
         #st.image("https://via.placeholder.com/150x50/ff4b4b/ffffff?text=ResStock-QC", use_container_width=True)
                 
         # Data folder selector
-        st.subheader("📁 Dossiers de données")
+        st.subheader("📁 Data folders")
         data_output_dir = os.path.join(PROJECT_DIR, "data", "output")
         
         if os.path.isdir(data_output_dir):
-            csv_files = ["<Aucun>"] + sorted([f for f in os.listdir(data_output_dir) 
+            csv_files = ["<None>"] + sorted([f for f in os.listdir(data_output_dir) 
                                              if f.lower().endswith(".csv")])
-            selected_file = st.selectbox("📊 Fichiers CSV disponibles", csv_files)
+            selected_file = st.selectbox("📊 Available CSV files", csv_files)
             
-            if selected_file != "<Aucun>":
+            if selected_file != "<None>":
                 file_path = os.path.join(data_output_dir, selected_file)
                 try:
                     df_preview = pd.read_csv(file_path)
-                    st.info(f"📋 {len(df_preview)} lignes × {len(df_preview.columns)} colonnes")
+                    st.info(f"📋 {len(df_preview)} rows × {len(df_preview.columns)} columns")
                     
-                    if st.button("📥 Charger le fichier"):
+                    if st.button("📥 Load file"):
                         st.session_state.loaded_file = df_preview
-                        st.success("Fichier chargé avec succès!")
+                        st.success("File loaded successfully!")
                 except Exception as e:
-                    st.error(f"Erreur: {e}")
+                    st.error(f"Error: {e}")
         
         # Simulation history
         st.markdown("---")
-        st.subheader("📜 Historique")
+        st.subheader("📜 History")
         if st.session_state.simulation_history:
-            st.metric("Simulations effectuées", len(st.session_state.simulation_history))
-            if st.button("🗑️ Effacer l'historique"):
+            st.metric("Simulations run", len(st.session_state.simulation_history))
+            if st.button("🗑️ Clear history"):
                 st.session_state.simulation_history = []
                 st.rerun()
         else:
-            st.info("Aucune simulation effectuée")
+            st.info("No simulations run")
         
         # System info
         st.markdown("---")
-        st.subheader("ℹ️ Informations système")
+        st.subheader("ℹ️ System information")
         st.text(f"Python: {sys.version.split()[0]}")
         st.text(f"Streamlit: {st.__version__}")
         st.text(f"PyAgrum: {gum.__version__}")
@@ -263,37 +263,37 @@ def render_sidebar():
 
 def Page_Echantilloneur():
     """Enhanced sampling page with advanced features."""
-    st.title("🏠 ResStock-QC - Échantillonneur")
-    st.markdown("Génération d'échantillons résidentiels basée sur un réseau bayésien (EUEMr 2022)")
+    st.title("🏠 ResStock-QC - Sampler")
+    st.markdown("Residential sample generation based on a Bayesian network (EUEMr 2022)")
     
     # Load sampler
     path = PROJECT_DIR + "/data/processed/bayesian_network/BN_EUEMr.XDSL"
-    with st.spinner("🔄 Chargement du réseau bayésien..."):
+    with st.spinner("🔄 Loading Bayesian network..."):
         InsClsSampler = load_sampler(path)
     
     lst_NOEUD = InsClsSampler.lst_NOEUD
     LIST_Dict = InsClsSampler.LIST_Dict
     
     # ===== STEP 1: Parameter Selection =====
-    st.header("📝 Étape 1 - Configuration des paramètres")
+    st.header("📝 Step 1 - Parameter configuration")
     
     col1, col2 = st.columns([2, 1])
     
     with col1:
-        st.subheader("Variables imposées")
+        st.subheader("Constrained variables")
         
         # Quick preset selection
         presets = {
-            "Aucun": {},
-            "Maison unifamiliale": {"Type_Logement": "Maison individuelle"},
-            "Appartement récent": {"Type_Logement": "Appartement", "An_Construction": "[2000 - 2010)"},
+            "None": {},
+            "Single-family house": {"Type_Logement": "Maison individuelle"},
+            "Recent apartment": {"Type_Logement": "Appartement", "An_Construction": "[2000 - 2010)"},
         }
         
-        selected_preset = st.selectbox("🎯 Préréglages rapides", list(presets.keys()))
+        selected_preset = st.selectbox("🎯 Quick presets", list(presets.keys()))
         
         # Initialize last_preset tracker ONCE here
         if 'last_preset' not in st.session_state:
-            st.session_state.last_preset = "Aucun"
+            st.session_state.last_preset = "None"
         
         # Initialize selected nodes in session state if not exists
         if 'selected_constraint_nodes' not in st.session_state:
@@ -302,7 +302,7 @@ def Page_Echantilloneur():
         # If preset changed, update the constraint nodes and force rerun
         if selected_preset != st.session_state.last_preset:
             st.session_state.last_preset = selected_preset
-            if selected_preset != "Aucun":
+            if selected_preset != "None":
                 st.session_state.settings = presets[selected_preset]
                 st.session_state.selected_constraint_nodes = list(presets[selected_preset].keys())
             else:
@@ -311,18 +311,18 @@ def Page_Echantilloneur():
             st.rerun()  # Force rerun to update multiselect
         
         # Update settings if preset selected (for non-preset-change case)
-        if selected_preset != "Aucun" and not st.session_state.selected_constraint_nodes:
+        if selected_preset != "None" and not st.session_state.selected_constraint_nodes:
             st.session_state.settings = presets[selected_preset]
         
         # Advanced parameter selection
-        with st.expander("⚙️ Sélection avancée des variables", expanded=True):
+        with st.expander("⚙️ Advanced variable selection", expanded=True):
             # Search filter
-            search = st.text_input("🔍 Rechercher une variable", "")
+            search = st.text_input("🔍 Search variable", "")
             filtered_nodes = [n for n in lst_NOEUD if search.lower() in n.lower()]
             
         # Multiselect with default from session_state
         Noeuds_contraints = st.multiselect(
-            "Sélectionner les variables à contraindre:",
+            "Select variables to constrain:",
             filtered_nodes if search else lst_NOEUD,
             default=st.session_state.selected_constraint_nodes,
             key="multiselect_constraints"
@@ -347,7 +347,7 @@ def Page_Echantilloneur():
                         pass
                 
                 settings[input_var] = st.selectbox(
-                    f"Valeur pour {input_var}",
+                    f"Value for {input_var}",
                     options=list(LIST_Dict[input_var].values()),
                     index=default_idx,
                     key=f"select_{input_var}"
@@ -356,43 +356,43 @@ def Page_Echantilloneur():
         st.session_state.settings = settings
     
     with col2:
-        st.subheader("📊 Résumé de la configuration")
+        st.subheader("📊 Configuration summary")
         if st.session_state.settings:
             for key, value in st.session_state.settings.items():
                 st.markdown(f"**{key}:** `{value}`")
             
             # Save/Load configuration
-            if st.button("💾 Sauvegarder la configuration"):
+            if st.button("💾 Save configuration"):
                 config_json = json.dumps(st.session_state.settings, indent=2)
                 st.download_button(
-                    "📥 Télécharger config.json",
+                    "📥 Download config.json",
                     config_json,
                     "configuration.json",
                     "application/json"
                 )
             
-            uploaded_config = st.file_uploader("📤 Charger une configuration", type=['json'])
+            uploaded_config = st.file_uploader("📤 Upload configuration", type=['json'])
             if uploaded_config:
                 try:
                     config = json.load(uploaded_config)
                     st.session_state.settings = config
-                    st.success("Configuration chargée!")
+                    st.success("Configuration loaded!")
                     st.rerun()
                 except Exception as e:
-                    st.error(f"Erreur lors du chargement: {e}")
+                    st.error(f"Error loading configuration: {e}")
         else:
-            st.info("Aucune variable contrainte sélectionnée")
+            st.info("No constrained variables selected")
     
     st.markdown("---")
     
     # ===== STEP 2: Simulation =====
-    st.header("🚀 Étape 2 - Simulation")
+    st.header("🚀 Step 2 - Simulation")
     
     col1, col2, col3 = st.columns(3)
     
     with col1:
         Nombre_de_Samples = st.number_input(
-            "Nombre d'échantillons:",
+            "Number of samples:",
             min_value=1,
             max_value=10000,
             value=100,
@@ -400,28 +400,28 @@ def Page_Echantilloneur():
         )
     
     with col2:
-        seed = st.number_input("🎲 Graine aléatoire (0 = aléatoire)", 
+        seed = st.number_input("🎲 Random seed (0 = random)", 
                               min_value=0, max_value=99999, value=0)
     
     with col3:
         export_format = st.multiselect(
-            "📦 Formats d'export",
+            "📦 Export formats",
             ["CSV", "Excel", "JSON"],
             default=["CSV"]
         )
     
     # Advanced options
-    with st.expander("⚙️ Options avancées"):
+    with st.expander("⚙️ Advanced options"):
         col_a, col_b = st.columns(2)
         with col_a:
-            add_statistics = st.checkbox("📈 Ajouter statistiques descriptives", value=True)
-            add_visualizations = st.checkbox("📊 Générer visualisations", value=True)
+            add_statistics = st.checkbox("📈 Add descriptive statistics", value=True)
+            add_visualizations = st.checkbox("📊 Generate visualizations", value=True)
         with col_b:
-            validate_data = st.checkbox("✅ Valider les données", value=True)
-            save_history = st.checkbox("💾 Sauvegarder dans l'historique", value=True)
+            validate_data = st.checkbox("✅ Validate data", value=True)
+            save_history = st.checkbox("💾 Save to history", value=True)
     
     # Simulation button
-    simulate_btn = st.button("▶️ Lancer la simulation", type="primary", use_container_width=True)
+    simulate_btn = st.button("▶️ Run simulation", type="primary", use_container_width=True)
     
     if simulate_btn:
         start_time = time.time()
@@ -431,7 +431,7 @@ def Page_Echantilloneur():
         
         try:
             # Step 1: BN Sampling
-            status_text.text("🔄 Échantillonnage du réseau bayésien...")
+            status_text.text("🔄 Sampling Bayesian network...")
             progress_bar.progress(20)
             
             if seed > 0:
@@ -441,21 +441,21 @@ def Page_Echantilloneur():
             lst_dct_args = df.to_dict(orient='records')
             
             # Step 2: Add external variables
-            status_text.text("➕ Ajout de variables additionnelles...")
+            status_text.text("➕ Adding additional variables...")
             progress_bar.progress(40)
 
             lst_dct_args2 = InsClsSampler.resstock_args_sampling(lst_dct_args)
             lst_dct_args = [d1 | d2 for d1, d2 in zip(lst_dct_args, lst_dct_args2)]
             
             # Step 3: HPXML Mapping
-            status_text.text("🗺️ Mapping vers HPXML...")
+            status_text.text("🗺️ Mapping to HPXML...")
             progress_bar.progress(60)
             
             MapSample = MapHPXML()
             lst_dct_HPXML = MapSample.run(lst_dct_args)
             
             # Step 4: Create DataFrames
-            status_text.text("📊 Génération des tableaux...")
+            status_text.text("📊 Generating tables...")
             progress_bar.progress(80)
             
             dfargs = pd.DataFrame(lst_dct_args)
@@ -464,13 +464,13 @@ def Page_Echantilloneur():
             
             # Data validation
             if validate_data:
-                status_text.text("✅ Validation des données...")
+                status_text.text("✅ Validating data...")
                 null_counts = dfAll.isnull().sum()
                 if null_counts.sum() > 0:
-                    st.warning(f"⚠️ {null_counts.sum()} valeurs manquantes détectées")
+                    st.warning(f"⚠️ {null_counts.sum()} missing values detected")
             
             progress_bar.progress(100)
-            status_text.text("✅ Simulation terminée!")
+            status_text.text("✅ Simulation completed!")
             
             elapsed_time = time.time() - start_time
             
@@ -490,21 +490,21 @@ def Page_Echantilloneur():
             
             st.markdown(f"""
             <div class="success-box">
-                ✅ <strong>Simulation réussie!</strong><br>
-                📊 {Nombre_de_Samples} échantillons générés en {elapsed_time:.2f} secondes<br>
-                📈 Vitesse: {Nombre_de_Samples/elapsed_time:.1f} échantillons/seconde
+                ✅ <strong>Simulation successful!</strong><br>
+                📊 {Nombre_de_Samples} samples generated in {elapsed_time:.2f} seconds<br>
+                📈 Speed: {Nombre_de_Samples/elapsed_time:.1f} samples/second
             </div>
             """, unsafe_allow_html=True)
             
         except Exception as e:
-            st.error(f"❌ Erreur lors de la simulation: {str(e)}")
+            st.error(f"❌ Error during simulation: {str(e)}")
             st.exception(e)
             return
     
     # ===== STEP 3: Results Display =====
     if st.session_state.last_simulation:
         st.markdown("---")
-        st.header("📊 Étape 3 - Résultats")
+        st.header("📊 Step 3 - Results")
         
         sim = st.session_state.last_simulation
         dfargs = sim['dfargs']
@@ -513,14 +513,14 @@ def Page_Echantilloneur():
         
         # Initialize selected results tab in session state
         if 'selected_results_tab' not in st.session_state:
-            st.session_state.selected_results_tab = "📋 Échantillons"
+            st.session_state.selected_results_tab = "📋 Samples"
         
         # Results tab configuration
         results_tab_names = [
-            "📋 Échantillons", 
-            "🗺️ Mapping HPXML", 
-            "📊 Statistiques", 
-            "📈 Visualisations",
+            "📋 Samples", 
+            "🗺️ HPXML mapping", 
+            "📊 Statistics", 
+            "📈 Visualizations",
             "💾 Export"
         ]
         
@@ -576,16 +576,16 @@ def Page_Echantilloneur():
         
         selected_results_tab = st.session_state.selected_results_tab
         
-        # Tab 1: Échantillons
-        if selected_results_tab == "📋 Échantillons":
-            st.subheader("Données d'échantillonnage")
+        # Tab 1: Samples
+        if selected_results_tab == "📋 Samples":
+            st.subheader("Sampling data")
             
             # Filters
             col_f1, col_f2 = st.columns(2)
             with col_f1:
-                search_col = st.text_input("🔍 Rechercher dans les colonnes", "", key="search_col_tab1")
+                search_col = st.text_input("🔍 Search in columns", "", key="search_col_tab1")
             with col_f2:
-                display_mode = st.radio("Mode d'affichage", ["Aperçu (50 lignes)", "Complet"], horizontal=True, key="display_mode_tab1")
+                display_mode = st.radio("Display mode", ["Preview (50 rows)", "Full"], horizontal=True, key="display_mode_tab1")
             
             # Filter columns
             if search_col:
@@ -595,55 +595,55 @@ def Page_Echantilloneur():
                 df_display = dfargs
             
             # Display
-            if display_mode == "Aperçu (50 lignes)":
+            if display_mode == "Preview (50 rows)":
                 st.dataframe(style_dataframe(df_display.head(50)), use_container_width=True)
             else:
                 st.dataframe(style_dataframe(df_display), use_container_width=True)
         
-        # Tab 2: Mapping HPXML
-        elif selected_results_tab == "🗺️ Mapping HPXML":
-            st.subheader("Mapping HPXML")
+        # Tab 2: HPXML mapping
+        elif selected_results_tab == "🗺️ HPXML mapping":
+            st.subheader("HPXML mapping")
             st.dataframe(style_dataframe(dfHPXML), use_container_width=True)
         
-        # Tab 3: Statistiques
-        elif selected_results_tab == "📊 Statistiques":
-            st.subheader("Statistiques descriptives")
+        # Tab 3: Statistics
+        elif selected_results_tab == "📊 Statistics":
+            st.subheader("Descriptive statistics")
             
             if add_statistics:
                 # Numeric statistics
                 numeric_cols = dfAll.select_dtypes(include=[np.number]).columns
                 if len(numeric_cols) > 0:
-                    st.markdown("#### Variables numériques")
+                    st.markdown("#### Numeric variables")
                     st.dataframe(dfAll[numeric_cols].describe().T, use_container_width=True)
                 
                 # Categorical statistics
                 cat_cols = dfAll.select_dtypes(include=['object']).columns
                 if len(cat_cols) > 0:
-                    st.markdown("#### Variables catégorielles")
-                    selected_cat = st.selectbox("Sélectionner une variable", cat_cols, key="selected_cat_tab3")
+                    st.markdown("#### Categorical variables")
+                    selected_cat = st.selectbox("Select a variable", cat_cols, key="selected_cat_tab3")
                     value_counts = dfAll[selected_cat].value_counts()
                     
                     col_stat1, col_stat2 = st.columns(2)
                     with col_stat1:
-                        st.dataframe(value_counts.reset_index(name='Fréquence'), use_container_width=True)
+                        st.dataframe(value_counts.reset_index(name='Frequency'), use_container_width=True)
                     with col_stat2:
                         fig = px.pie(values=value_counts.values, names=value_counts.index,
-                                    title=f"Distribution de {selected_cat}")
+                                    title=f"Distribution of {selected_cat}")
                         st.plotly_chart(fig, use_container_width=True)
         
-        # Tab 4: Visualisations
-        elif selected_results_tab == "📈 Visualisations":
+        # Tab 4: Visualizations
+        elif selected_results_tab == "📈 Visualizations":
             if add_visualizations:
-                st.subheader("Visualisations interactives")
+                st.subheader("Interactive visualizations")
                 
                 # Initialize viz_type in session state to prevent reset
                 if 'viz_type' not in st.session_state:
                     st.session_state.viz_type = "Distribution"
                 
                 viz_type = st.selectbox(
-                    "Type de visualisation", 
-                    ["Distribution", "Corrélation", "Box Plot", "Comparaison BN vs Échantillon"],
-                    index=["Distribution", "Corrélation", "Box Plot", "Comparaison BN vs Échantillon"].index(st.session_state.viz_type),
+                    "Visualization type", 
+                    ["Distribution", "Correlation", "Box Plot", "BN vs Sample comparison"],
+                    index=["Distribution", "Correlation", "Box Plot", "BN vs Sample comparison"].index(st.session_state.viz_type),
                     key="viz_type_selector"
                 )
                 
@@ -651,43 +651,43 @@ def Page_Echantilloneur():
                 st.session_state.viz_type = viz_type
                    
                 if viz_type == "Distribution":
-                    selected_col = st.selectbox("Sélectionner une colonne", dfAll.columns, key="dist_col")
+                    selected_col = st.selectbox("Select a column", dfAll.columns, key="dist_col")
                     fig = create_distribution_plot(dfAll, selected_col)
                     st.plotly_chart(fig, use_container_width=True)
                 
-                elif viz_type == "Corrélation":
+                elif viz_type == "Correlation":
                     fig = create_correlation_heatmap(dfAll)
                     if fig:
                         st.plotly_chart(fig, use_container_width=True)
                     else:
-                        st.info("Pas assez de colonnes numériques pour la corrélation")
+                        st.info("Not enough numeric columns for correlation")
                 
                 elif viz_type == "Box Plot":
                     numeric_cols = dfAll.select_dtypes(include=[np.number]).columns
                     if len(numeric_cols) > 0:
-                        selected_col = st.selectbox("Sélectionner une variable", numeric_cols, key="box_col")
+                        selected_col = st.selectbox("Select a variable", numeric_cols, key="box_col")
                         fig = px.box(dfAll, y=selected_col, title=f"Box Plot: {selected_col}")
                         st.plotly_chart(fig, use_container_width=True)
 
-                elif viz_type == "Comparaison BN vs Échantillon":
-                    st.markdown("Comparer la distribution théorique (posterior BN) avec la distribution empirique des échantillons.")
+                elif viz_type == "BN vs Sample comparison":
+                    st.markdown("Compare the theoretical distribution (BN posterior) with the empirical sample distribution.")
                     
                     bn_vars = [c for c in dfAll.columns if c in lst_NOEUD]
                     
                     if not bn_vars:
-                        st.warning("Aucune variable du réseau bayésien trouvée dans les données.")
+                        st.warning("No Bayesian network variables found in data.")
                     else:
                         compare_var = st.selectbox(
-                            "Variable catégorielle du réseau bayésien",
+                            "Categorical BN variable",
                             bn_vars,
                             key="compare_var_selector"
                         )
                         
                         if compare_var:
-                            # Théorique (posterior)
+                            # Theoretical (posterior)
                             posterior_dict = bn_posterior(InsClsSampler.bn, st.session_state.settings, compare_var)
                             if posterior_dict is None:
-                                st.warning("Variable non présente dans le BN.")
+                                st.warning("Variable not present in BN.")
                             else:
                                 # Empirique
                                 emp_counts = dfAll[compare_var].value_counts(normalize=True)
@@ -696,9 +696,9 @@ def Page_Echantilloneur():
                                 empirical_vals = [emp_counts.get(s, 0) for s in states]
 
                                 df_compare = pd.DataFrame({
-                                    "État": states,
+                                    "State": states,
                                     "Posterior_BN": posterior_vals,
-                                    "Empirique_Échantillon": empirical_vals,
+                                    "Empirical_Sample": empirical_vals,
                                     "Diff": np.array(empirical_vals) - np.array(posterior_vals)
                                 })
 
@@ -706,31 +706,31 @@ def Page_Echantilloneur():
                                 with colc1:
                                     fig = go.Figure()
                                     fig.add_trace(go.Bar(name='Posterior BN', x=states, y=posterior_vals, marker_color="#1f77b4"))
-                                    fig.add_trace(go.Bar(name='Empirique', x=states, y=empirical_vals, marker_color="#ff4b4b"))
+                                    fig.add_trace(go.Bar(name='Empirical', x=states, y=empirical_vals, marker_color="#ff4b4b"))
                                     fig.update_layout(barmode='group', title=f"Distribution - {compare_var}")
                                     st.plotly_chart(fig, use_container_width=True)
                                 with colc2:
                                     st.dataframe(df_compare, use_container_width=True)
 
-                                show_diff = st.checkbox("Afficher graphique des différences (Empirique - BN)", key="show_diff_checkbox")
+                                show_diff = st.checkbox("Show differences plot (Empirical - BN)", key="show_diff_checkbox")
                                 if show_diff:
                                     fig_diff = go.Figure()
-                                    fig_diff.add_trace(go.Bar(name='Différence', x=states, y=df_compare["Diff"], marker_color="#ff9f0a"))
-                                    fig_diff.update_layout(title=f"Différences Empirique - Posterior BN ({compare_var})")
+                                    fig_diff.add_trace(go.Bar(name='Difference', x=states, y=df_compare["Diff"], marker_color="#ff9f0a"))
+                                    fig_diff.update_layout(title=f"Empirical - Posterior BN differences ({compare_var})")
                                     st.plotly_chart(fig_diff, use_container_width=True)
         
         # Tab 5: Export
         elif selected_results_tab == "💾 Export":
-            st.subheader("Export des données")
+            st.subheader("Data export")
             
             col_e1, col_e2, col_e3 = st.columns(3)
             
             with col_e1:
                 if "CSV" in export_format:
                     st.download_button(
-                        label="📥 Télécharger CSV",
+                        label="📥 Download CSV",
                         data=dfAll.to_csv(index=False).encode('utf-8'),
-                        file_name=f'resultats_{time.strftime("%Y%m%d_%H%M%S")}.csv',
+                        file_name=f'results_{time.strftime("%Y%m%d_%H%M%S")}.csv',
                         mime='text/csv',
                         use_container_width=True
                     )
@@ -738,14 +738,14 @@ def Page_Echantilloneur():
             with col_e2:
                 if "Excel" in export_format:
                     excel_data = export_to_excel({
-                        'Echantillons': dfargs,
+                        'Samples': dfargs,
                         'HPXML': dfHPXML,
-                        'Complet': dfAll
+                        'Complete': dfAll
                     })
                     st.download_button(
-                        label="📥 Télécharger Excel",
+                        label="📥 Download Excel",
                         data=excel_data,
-                        file_name=f'resultats_{time.strftime("%Y%m%d_%H%M%S")}.xlsx',
+                        file_name=f'results_{time.strftime("%Y%m%d_%H%M%S")}.xlsx',
                         mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                         use_container_width=True
                     )
@@ -754,9 +754,9 @@ def Page_Echantilloneur():
                 if "JSON" in export_format:
                     json_data = dfAll.to_json(orient='records', indent=2)
                     st.download_button(
-                        label="📥 Télécharger JSON",
+                        label="📥 Download JSON",
                         data=json_data,
-                        file_name=f'resultats_{time.strftime("%Y%m%d_%H%M%S")}.json',
+                        file_name=f'results_{time.strftime("%Y%m%d_%H%M%S")}.json',
                         mime='application/json',
                         use_container_width=True
                     )
@@ -765,12 +765,12 @@ def Page_Echantilloneur():
 
 def BaysianNetwork():
     """Enhanced Bayesian Network visualization and exploration page."""
-    st.title("🕸️ Réseau Bayésien - EUEMr 2022")
-    st.markdown("Exploration et analyse du réseau bayésien")
+    st.title("🕸️ Bayesian Network - EUEMr 2022")
+    st.markdown("Exploration and analysis of the Bayesian network")
     
     # Load sampler
     path = PROJECT_DIR + "/data/processed/bayesian_network/BN_EUEMr.XDSL"
-    with st.spinner("🔄 Chargement du réseau bayésien..."):
+    with st.spinner("🔄 Loading Bayesian network..."):
         InsClsSampler = load_sampler(path)
     
     lst_NOEUD = InsClsSampler.lst_NOEUD
@@ -784,11 +784,11 @@ def BaysianNetwork():
     # Tab configuration
     tab_names = [
         "📊 Description",
-        "🕸️ Réseau",
-        "📋 Nœuds",
+        "🕸️ Network",
+        "📋 Nodes",
         "🎲 CPT",
-        "🔍 Inférence",
-        "📈 Analyse"
+        "🔍 Inference",
+        "📈 Analysis"
     ]
     
     # Custom CSS for tab-like buttons
@@ -845,10 +845,10 @@ def BaysianNetwork():
     
     # Tab 1: Description
     if selected_tab == "📊 Description":
-        st.subheader("Description des données")
+        st.subheader("Data description")
         
         # Search functionality
-        search_desc = st.text_input("🔍 Rechercher dans les descriptions", "")
+        search_desc = st.text_input("🔍 Search in descriptions", "")
         if search_desc:
             mask = pdfDataDescription.apply(lambda row: row.astype(str).str.contains(search_desc, case=False).any(), axis=1)
             st.dataframe(pdfDataDescription[mask], use_container_width=True)
@@ -856,40 +856,40 @@ def BaysianNetwork():
             st.dataframe(pdfDataDescription, use_container_width=True)
         
         # Summary statistics
-        st.markdown("#### Statistiques du réseau")
+        st.markdown("#### Network statistics")
         col_s1, col_s2, col_s3 = st.columns(3)
-        col_s1.metric("Nombre de nœuds", len(lst_NOEUD))
-        col_s2.metric("Nombre d'arcs", InsClsSampler.bn.sizeArcs())
-        col_s3.metric("Complexité max", max([InsClsSampler.bn.variable(i).domainSize() for i in InsClsSampler.bn.nodes()]))
+        col_s1.metric("Number of nodes", len(lst_NOEUD))
+        col_s2.metric("Number of arcs", InsClsSampler.bn.sizeArcs())
+        col_s3.metric("Max complexity", max([InsClsSampler.bn.variable(i).domainSize() for i in InsClsSampler.bn.nodes()]))
     
-    # Tab 2: Réseau
-    elif selected_tab == "🕸️ Réseau":
-        st.subheader("Visualisation du réseau")
+    # Tab 2: Network
+    elif selected_tab == "🕸️ Network":
+        st.subheader("Network visualization")
         
         col_v1, col_v2, col_v3 = st.columns(3)
         with col_v1:
-            check_stats = st.checkbox("📊 Afficher statistiques", value=False)
+            check_stats = st.checkbox("📊 Show statistics", value=False)
         with col_v2:
-            selected_size = st.slider("📏 Taille", 5, 50, 15, 1)
+            selected_size = st.slider("📏 Size", 5, 50, 15, 1)
         with col_v3:
-            show_labels = st.checkbox("🏷️ Afficher étiquettes", value=True)
+            show_labels = st.checkbox("🏷️ Show labels", value=True)
         
-        if st.button("🎨 Générer la visualisation", type="primary"):
-            with st.spinner("Génération en cours..."):
+        if st.button("🎨 Generate visualization", type="primary"):
+            with st.spinner("Generating..."):
                 svgtxt = bn_svg(InsClsSampler.bn, evs=None, Inference=check_stats, size=selected_size)
                 components.html(svgtxt, height=900, scrolling=True)
     
-    # Tab 3: Nœuds
-    elif selected_tab == "📋 Nœuds":
-        st.subheader("Liste des nœuds et valeurs possibles")
+    # Tab 3: Nodes
+    elif selected_tab == "📋 Nodes":
+        st.subheader("List of nodes and possible values")
         
         # Node search
-        search_node = st.text_input("🔍 Rechercher un nœud", "")
+        search_node = st.text_input("🔍 Search for a node", "")
         filtered_nodes = [n for n in lst_NOEUD if search_node.lower() in n.lower()]
         
         # Display as expandable cards
         for node in filtered_nodes:
-            with st.expander(f"📌 {node} ({len(LIST_Dict[node])} valeurs possibles)"):
+            with st.expander(f"📌 {node} ({len(LIST_Dict[node])} possible values)"):
                 values_list = list(LIST_Dict[node].values())
                 
                 # Display as columns for better readability
@@ -903,19 +903,19 @@ def BaysianNetwork():
                 n_parents = len(InsClsSampler.bn.parents(node_id))
                 n_children = len(InsClsSampler.bn.children(node_id))
                 
-                st.markdown(f"**Parents:** {n_parents} | **Enfants:** {n_children}")
+                st.markdown(f"**Parents:** {n_parents} | **Children:** {n_children}")
     
     # Tab 4: CPT
     elif selected_tab == "🎲 CPT":
-        st.subheader("Tables de Probabilités Conditionnelles (CPT)")
+        st.subheader("Conditional Probability Tables (CPT)")
         
         col_cpt1, col_cpt2 = st.columns([2, 1])
         
         with col_cpt1:
-            selected_node = st.selectbox("🎯 Sélectionner un nœud", lst_NOEUD)
+            selected_node = st.selectbox("🎯 Select a node", lst_NOEUD)
         
         with col_cpt2:
-            cpt_display = st.radio("Format d'affichage", ["Tableau", "Heatmap"], horizontal=True)
+            cpt_display = st.radio("Display format", ["Table", "Heatmap"], horizontal=True)
         
         if selected_node:
             cpt = InsClsSampler.bn.cpt(selected_node)
@@ -931,15 +931,15 @@ def BaysianNetwork():
             
             # Export CPT
             st.download_button(
-                "📥 Exporter cette CPT (CSV)",
+                "📥 Export this CPT (CSV)",
                 cpt_df.to_csv(index=True).encode('utf-8'),
                 f"cpt_{selected_node}.csv",
                 "text/csv"
             )
     
-    # Tab 5: Inférence
-    elif selected_tab == "🔍 Inférence":
-        st.subheader("Moteur d'inférence")
+    # Tab 5: Inference
+    elif selected_tab == "🔍 Inference":
+        st.subheader("Inference engine")
         
         st.markdown("""
         Configurez des observations (evidence) et observez l'impact sur les distributions conditionnelles.
@@ -948,7 +948,7 @@ def BaysianNetwork():
         col_inf1, col_inf2 = st.columns([2, 1])
         
         with col_inf1:
-            st.markdown("#### 🎯 Configuration des observations")
+            st.markdown("#### 🎯 Observation configuration")
             
             # Initialize inference constraint nodes in session state
             if 'inference_constraint_nodes' not in st.session_state:
@@ -956,7 +956,7 @@ def BaysianNetwork():
             
             settings = {}
             Noeuds_contraints = st.multiselect(
-                "Variables à observer:", 
+                "Variables to observe:", 
                 lst_NOEUD,
                 #default=st.session_state.inference_constraint_nodes,
                 key="inference_multiselect"
@@ -967,25 +967,25 @@ def BaysianNetwork():
             
             for input_var in Noeuds_contraints:
                 settings[input_var] = st.selectbox(
-                    f"Valeur observée pour **{input_var}**",
+                    f"Observed value for **{input_var}**",
                     options=list(LIST_Dict[input_var].values()),
                     key=f"inf_{input_var}"
                 )
         
         with col_inf2:
-            st.markdown("#### ⚙️ Paramètres de visualisation")
-            selected_size2 = st.slider("Taille du graphique", 5, 50, 15, 1, key="inf_size")
-            show_probs = st.checkbox("Afficher probabilités", value=True)
-            num_vars_to_show = st.slider("Nombre de variables à afficher", 1, min(20, len(lst_NOEUD)), 5, 1, key="num_vars_inference")
+            st.markdown("#### ⚙️ Visualization parameters")
+            selected_size2 = st.slider("Graph size", 5, 50, 15, 1, key="inf_size")
+            show_probs = st.checkbox("Show probabilities", value=True)
+            num_vars_to_show = st.slider("Number of variables to show", 1, min(20, len(lst_NOEUD)), 5, 1, key="num_vars_inference")
         
-        if st.button("🔍 Effectuer l'inférence", type="primary"):
-            with st.spinner("Calcul des inférences..."):
+        if st.button("🔍 Run inference", type="primary"):
+            with st.spinner("Computing inferences..."):
                 svgtxt_inf = bn_svg(InsClsSampler.bn, evs=settings, Inference=True, size=selected_size2)
                 components.html(svgtxt_inf, height=900, scrolling=True)
             
             # Show marginal distributions
             if show_probs and settings:
-                st.markdown("#### 📊 Distributions marginales après observation")
+                st.markdown("#### 📊 Marginal distributions after observation")
                 ie = gum.LazyPropagation(InsClsSampler.bn)
                 ie.setEvidence(settings)
                 ie.makeInference()
@@ -994,7 +994,7 @@ def BaysianNetwork():
                 unobserved_nodes = [n for n in all_nodes if n not in settings]
                 nodes_to_display = unobserved_nodes[:num_vars_to_show]
                 
-                st.markdown(f"**Affichage des {len(nodes_to_display)} premières variables non observées:**")
+                st.markdown(f"**Showing the first {len(nodes_to_display)} unobserved variables:**")
                 
                 for node_name in nodes_to_display:
                     try:
@@ -1025,7 +1025,7 @@ def BaysianNetwork():
                                     y_vals = list(posterior_df)
                                 
                                 if len(x_vals) != len(y_vals):
-                                    st.warning(f"Incohérence de données pour {node_name}: {len(x_vals)} labels vs {len(y_vals)} valeurs")
+                                    st.warning(f"Data inconsistency for {node_name}: {len(x_vals)} labels vs {len(y_vals)} values")
                                     min_len = min(len(x_vals), len(y_vals))
                                     x_vals = x_vals[:min_len]
                                     y_vals = y_vals[:min_len]
@@ -1033,13 +1033,13 @@ def BaysianNetwork():
                                 fig = px.bar(
                                     x=x_vals,
                                     y=y_vals,
-                                    labels={'x': 'État', 'y': 'Probabilité'},
-                                    title=f"Distribution posterieure - {node_name}",
+                                    labels={'x': 'State', 'y': 'Probability'},
+                                    title=f"Posterior distribution - {node_name}",
                                     color_discrete_sequence=['#ff4b4b']
                                 )
                                 fig.update_layout(
-                                    xaxis_title="État",
-                                    yaxis_title="Probabilité",
+                                    xaxis_title="State",
+                                    yaxis_title="Probability",
                                     showlegend=False,
                                     xaxis={'tickangle': -45} if len(x_vals) > 5 else {}
                                 )
@@ -1051,24 +1051,24 @@ def BaysianNetwork():
                         import traceback
                         st.code(traceback.format_exc())
             elif show_probs and not settings:
-                st.info("Configurez au moins une observation pour voir les distributions marginales.")
+                st.info("Set at least one observation to see marginal distributions.")
     
     # Tab 6: Analyse
-    elif selected_tab == "📈 Analyse":
-        st.subheader("Analyse structurelle du réseau")
+    elif selected_tab == "📈 Analysis":
+        st.subheader("Structural analysis of the network")
         
         # Network metrics
-        st.markdown("#### Métriques du réseau")
+        st.markdown("#### Network metrics")
         
         metrics_col1, metrics_col2, metrics_col3, metrics_col4 = st.columns(4)
         
-        metrics_col1.metric("🔢 Nœuds", InsClsSampler.bn.size())
+        metrics_col1.metric("🔢 Nodes", InsClsSampler.bn.size())
         metrics_col2.metric("🔗 Arcs", InsClsSampler.bn.sizeArcs())
-        metrics_col3.metric("📊 États totaux", sum([InsClsSampler.bn.variable(i).domainSize() for i in InsClsSampler.bn.nodes()]))
-        metrics_col4.metric("🎯 Paramètres", InsClsSampler.bn.log10DomainSize())
+        metrics_col3.metric("📊 Total states", sum([InsClsSampler.bn.variable(i).domainSize() for i in InsClsSampler.bn.nodes()]))
+        metrics_col4.metric("🎯 Parameters", InsClsSampler.bn.log10DomainSize())
         
         # Node degree distribution
-        st.markdown("#### Distribution des degrés des nœuds")
+        st.markdown("#### Node degree distribution")
         
         degrees = []
         for node_id in InsClsSampler.bn.nodes():
@@ -1090,7 +1090,7 @@ def BaysianNetwork():
         
         with col_deg2:
             fig = px.histogram(df_degrees, x='Total', nbins=20,
-                             title="Distribution des degrés totaux")
+                             title="Total degree distribution")
             st.plotly_chart(fig, use_container_width=True)
 
 # ==================== MAIN ====================
@@ -1103,9 +1103,9 @@ def main():
     
     # Page navigation
     pages = {
-        "Échantillonneur": [
-            st.Page(Page_Echantilloneur, title="Échantillonneur", icon="🏠"),
-            st.Page(BaysianNetwork, title="Réseau Bayésien", icon="🕸️")
+        "Sampler": [
+            st.Page(Page_Echantilloneur, title="Sampler", icon="🏠"),
+            st.Page(BaysianNetwork, title="Bayesian Network", icon="🕸️")
         ]
     }
     

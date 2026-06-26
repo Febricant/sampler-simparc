@@ -2,14 +2,14 @@
 Sampler for residential
 
 
-## Installation dans un ordinateur bur
-setting (pour permettre l'installation de package): 
+## Installation on a corporate workstation
+setting (to allow installing packages):
 
     "http.proxy": "http://bpbqvsg600.ireq.ca:8080"
 
-s'assurer d'être connecté à artifactory
+Make sure you are connected to Artifactory.
 
-créer un fichier task.json dans un répertoire .vscode, contenant (adapter les chemins d'accès) :
+Create a `task.json` file in a `.vscode` directory containing the following (adjust the paths as needed):
 
     {
         "version": "2.0.0",
@@ -37,35 +37,35 @@ créer un fichier task.json dans un répertoire .vscode, contenant (adapter les 
         ]
     }
 
-Lancer la tache :
+Run the task:
 
-    Menu Terminal - Run Task - choisir la tâche 
+    Terminal menu → Run Task → select the task
 
-## Lancer le tableau de bord
-    1 - activer l'environnement (cmd dans vscode par example)
+## Launch the dashboard
+    1 - activate the environment (e.g., cmd inside VS Code)
 
-    2 - lancer le script :
-        sans les liens dtales (à enlever dans le .py) : python -m streamlit run "./ui/Dashboard.py"
-        avec les liens dtales : dtale-streamlit run "ui/Dashboard.py"
+    2 - run the script:
+        without D-Tale links (remove them in the .py): python -m streamlit run "./ui/Dashboard.py"
+        with D-Tale links: dtale-streamlit run "ui/Dashboard.py"
 
-## Mise à jour de la listes des packages requise dans un env situé dans un autre répertoire que le projet :
-setting (pour permettre la connection à pypi): 
+## Update the required packages list (env located outside the project directory)
+setting (to allow connecting to PyPI):
 
     "http.proxy": "http://bpbqvsg600.ireq.ca:8080"
 
-Commandes à exécuter à partir de l'env, en se plaçant dans le répertoire du projet :
+Commands to run from the environment while in the project directory:
 
-    activer l'environnement pathtoEnv/activate.bat
+    activate the environment pathtoEnv/activate.bat
     python -m uv add openpyxl --active
 
-Mettre à jour le fichier requirments.txt, en se plaçant dans le répertoire du projet :
+Update the `requirements.txt` file while in the project directory:
 
-    activer l'environnement pathtoEnv/activate.bat
+    activate the environment pathtoEnv/activate.bat
 
     python -m uv export --no-hashes --format requirements-txt -o "N:\Mes Documents\Projets LTE\Projet archQc\code\GITHUB_Repo\LTE-Sampler-Residential\requirements.txt"
 
-## Créer la documenteation html
-    html avec pdoc3 : 
+## Generate HTML documentation
+    HTML with pdoc3:
         python -m pdoc --html --output-dir "N:\Mes Documents\Projets LTE\Projet archQc\code\GITHUB_Repo\LTE-Sampler-Residential\documentation\html" "N:\Mes Documents\Projets LTE\Projet archQc\code\GITHUB_Repo\LTE-Sampler-Residential"
-    markdown avec pdoc3 : 
+    Markdown with pdoc3:
         python -m pdoc --output-dir "N:\Mes Documents\Projets LTE\Projet archQc\code\GITHUB_Repo\LTE-Sampler-Residential\documentation\markdown" "N:\Mes Documents\Projets LTE\Projet archQc\code\GITHUB_Repo\LTE-Sampler-Residential"

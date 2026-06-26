@@ -20,4 +20,4 @@ RUN pip install -r requirements.txt
 EXPOSE 8501
 
 # Commande pour lancer l’application Streamlit
-CMD ["streamlit", "run", "ui/Dashboard_v2.py"]
+CMD ["streamlit", "run", "ui/Dashboard.py"]

@@ -1,0 +1,98 @@
+Column,Provenance,SpatialDependency,Notes
+Geometry Stories,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,
+Geometry Building Number Units,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,
+Geometry Building Horizontal Location,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,
+Geometry Building Level,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,
+Geometry Foundation Type,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Windows,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,
+Insulation Wall,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,
+Insulation Ceiling,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,
+Insulation Foundation Wall,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,
+Insulation Floor,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,
+Geometry Wall Exterior Finish,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,
+geometry attic type,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,
+HVAC Has Shared System,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,
+HVAC Heating Efficiency,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,
+Spa ChaufType,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,
+Usage Level,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Cooking Range Usage Level,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Clothes Washer Usage Level,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Clothes Dryer Usage Level,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Refrigerator Efficiency,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Refrigerator Extra Efficiency,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Refrigerator Usage Level,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Freezer Efficiency,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Dishwasher Energy,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Diswasher Usage Level,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Lighting Usage Level,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Door Area,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Door Rvalue,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Plug Load,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,
+ModeConsigne,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,
+Heating Setpoint,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,
+Cooling Setpoint,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,
+Garage Heating Setpoint,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,
+Basement Heating Setpoint,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,
+Mechanical Ventilation,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Bathroom Spot Vent Hour,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Natural Ventilation,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Range Spot Vent Hour,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Orientation,Tech-Hardcoded (ResStock / Buildstock sampling),Location Dependent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Overhangs,Tech-Hardcoded (ResStock / Buildstock sampling),Location Dependent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Vacancy Status,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,
+Has PV,Tech-Hardcoded (ResStock / Buildstock sampling),Location Dependent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+PV Orientation,Tech-Hardcoded (ResStock / Buildstock sampling),Location Dependent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+PV System Size,Tech-Hardcoded (ResStock / Buildstock sampling),Location Dependent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Battery,Tech-Hardcoded (ResStock / Buildstock sampling),Location Dependent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Ceiling Fan,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Dehumidifier,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Insulation Roof,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Insulation Slab,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Interior Shading,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Radiant Barrier,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Roof Material,Tech-Hardcoded (ResStock / Buildstock sampling),Location Dependent,"Sampled from ResStock conditional tables, not raw EUEMR survey variable."
+Tconsignes_chauffage_H1,Tech-Hardcoded (Code-generated),Location Independent,Generated schedule columns.
+Tconsignes_chauffage_H2,Tech-Hardcoded (Code-generated),Location Independent,Generated schedule columns.
+Tconsignes_chauffage_H3,Tech-Hardcoded (Code-generated),Location Independent,Generated schedule columns.
+Tconsignes_chauffage_H4,Tech-Hardcoded (Code-generated),Location Independent,Generated schedule columns.
+Territoire_HQ,Survey-Derived (EUEMR),Location Dependent,
+Region_Administrative,Survey-Derived (EUEMR),Location Dependent,
+Type_Logement,Survey-Derived (EUEMR),Location Independent,
+ChaufEau_Presence,Survey-Derived (EUEMR),Location Independent,
+ChaufEau_Type,Survey-Derived (EUEMR),Location Independent,
+Presence_Garage,Survey-Derived (EUEMR),Location Independent,
+Nombre_Etages,Survey-Derived (EUEMR),Location Independent,
+Presence_SousSol,Survey-Derived (EUEMR),Location Independent,
+Nombre_Pieces,Survey-Derived (EUEMR),Location Independent,
+Nombre_Personnes,Survey-Derived (EUEMR),Location Independent,
+Refrigerateur_Nombre,Survey-Derived (EUEMR),Location Independent,
+Cuisiniere_Presence,Survey-Derived (EUEMR),Location Independent,
+LaveLinge_Type,Survey-Derived (EUEMR),Location Independent,
+SecheLinge_Presence,Survey-Derived (EUEMR),Location Independent,
+Congelateur_Nombre,Survey-Derived (EUEMR),Location Independent,
+LaveVaisselle_Presence,Survey-Derived (EUEMR),Location Independent,
+Superficie_Totale,Survey-Derived (EUEMR),Location Independent,
+Spa_Presence,Survey-Derived (EUEMR),Location Independent,
+Spa_Logement,Survey-Derived (EUEMR),Location Independent,
+Spa_Saison,Survey-Derived (EUEMR),Location Independent,
+Spa_Utilisation_SaisonChaude,Survey-Derived (EUEMR),Location Independent,
+Spa_Utilisation_SaisonFroide,Survey-Derived (EUEMR),Location Independent,
+Piscine_Presence,Survey-Derived (EUEMR),Location Independent,
+Piscine_Type,Survey-Derived (EUEMR),Location Independent,
+Piscine_Chauffee,Survey-Derived (EUEMR),Location Independent,
+Piscine_ChaufType,Survey-Derived (EUEMR),Location Independent,
+Piscine_Toile,Survey-Derived (EUEMR),Location Independent,
+Piscine_Minuterie,Survey-Derived (EUEMR),Location Independent,
+Vehicule_Presence,Survey-Derived (EUEMR),Location Independent,
+Vehicule_BornePresence,Survey-Derived (EUEMR),Location Independent,
+Mode_Occupation,Survey-Derived (EUEMR),Location Independent,
+Eclairage_LED,Survey-Derived (EUEMR),Location Independent,
+Type_Batiment,Survey-Derived (EUEMR),Location Independent,
+An_Construction,Survey-Derived (EUEMR),Location Independent,
+Infiltration,Mixed (Survey + program logic),Location Independent,EUEMR node filtered/extended through Buildstock or ResStock logic.
+An_ConstructionCode,Survey-Derived (EUEMR),Location Independent,
+Source_Energie_Chauf,Survey-Derived (EUEMR),Location Dependent,
+Cuisiniere_Energie,Survey-Derived (EUEMR),Location Independent,
+Chauffage_Logement,Survey-Derived (EUEMR),Location Independent,
+Climatisation,Survey-Derived (EUEMR),Location Dependent,
+ChaufEau_ChaufType,Survey-Derived (EUEMR),Location Independent,

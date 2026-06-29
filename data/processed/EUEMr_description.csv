@@ -118,3 +118,124 @@ QT3,Combien avez-vous de voiture(s) électrique(s) hybride rechargeable?,"['Aucu
 QT3R,Combien avez-vous de voiture(s) électrique(s) hybride rechargeable? (Base totale),"['Aucune', 'Une', 'Deux']","['0', '1', '2']",discrete
 QT2T3,Voiture(s) électrique? (Base totale),"['Ne possède aucune voiture électrique', 'Possède une ou plusieurs voitures 100 % électriques', 'Possède une ou plusieurs voitures électriques hybrides', 'Possède les deux types de voitures']","['0', '1', '2', '3']",discrete
 QT4,Disposez-vous d'une borne de recharge reliée à votre compteur d'électricité?,"['Oui', 'Non']","['0', '1']",discrete
+
+
+QA1	What is your relationship with this dwelling? Are you...	['Owner / Co-owner', 'Tenant / Co-tenant']	['0', '1']	discrete
+QA4	What type of dwelling is it?	['Building with 4 to 8 apartments', 'Building with 9 to 19 apartments', 'Building with 20 to 49 apartments', 'Building with 50 apartments or more', 'Apartment building (no detail)', 'Mobile home/trailer', 'Detached single-family house', 'Row house attached on both sides', 'Row house (no detail)', 'Semi-detached/end of row house attached on 1 side', 'Detached duplex', 'Mid-row duplex attached on both sides', 'Semi-detached/end-of-row duplex attached on one side', 'Duplex (no detail)', 'Mid-row triplex attached on both sides', 'Semi-detached/end-of-row triplex attached on one side', 'Triplex (no detail)', 'Detached triplex']	['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13']	discrete
+QC1R	Main energy source used for heating the dwelling	['Electricity', 'Natural gas', 'Heating oil', 'Wood only or in combination', 'Dual-energy', 'Other']	['0', '1', '2', '3', '4', '5']	discrete
+CONS_AN	Annual electricity consumption in kWh			Double
+QA6M	Year of construction of the dwelling			Integer
+TERR_HQ	HQ territory	['East and North of Quebec', 'Laurentides', 'Montmorency', 'Montreal', 'Richelieu']	['0', '1', '2', '3', '4']	discrete
+ZONE	Quebec Zone	['Rural Outaouais', 'Milles-Îles', 'East IDM', 'North IDM', 'CUQ', 'CUO', 'St-Maurice', 'Côte-Nord', 'Le Noroit', 'West IDM', 'Chateauguay-Vaudreuil', 'Des Cantons', 'Sorel-Victoriaville', 'Drummondville', 'Lévis', 'South IDM', 'Laval', 'North Montmorency', 'Saguenay', 'Le Haut St-Laurent', 'Bas St-Laurent', 'Gaspésie', 'Appalaches', 'Antoine-Labelle', 'Des Seigneuries', 'Lanaudière', 'Ozias-Leduc']	['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26']	discrete
+QA4R	Type of dwelling	['Single', 'Plex', 'Multi']	['0', '1', '2']	discrete
+QA4M	Number of dwellings in the building			Integer
+QA6RR	Decade of construction of the dwelling	['Before 1900', 'Between 1900 and 1950', 'In the 50s', 'In the 60s', 'In the 70s', 'In the 80s', 'In the 90s', 'Between 2000 and 2009', 'Between 2010 and 2013', 'Between 2014 and 2017', 'Between 2018 and today']	['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']	discrete
+QA2	Is this your primary or secondary residence?	['Primary residence', 'Secondary residence']	['0', '1']	discrete
+QH1	Number of rooms in the residence (including basement and garage rooms, excluding bathrooms and hallways)	['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']	['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']	discrete
+QH2	Number of habitable floors in the residence (including basement and garage)	['One floor', '1½ floors', 'Two floors', '2½ floors', 'Three floors', '3½ floors', 'Four floors', '4½ floors', '5 floors']	['0', '1', '2', '3', '4', '5', '6', '7', '8']	discrete
+ETAGE	Number of habitable floors in the residence (including basement and garage) (METRIC)	['1.0', '1.5', '2.0', '2.5', '3.0', '3.5', '4.0', '4.5', '5.0']	['0', '1', '2', '3', '4', '5', '6', '7', '8']	discrete
+SUPERTOT	What is the TOTAL habitable area of your residence including the basement and garage?	(None,)		Double
+QH4	Does your residence have a basement or crawl space?	['A basement 6 or 7 feet high', 'A crawl space less than 6 feet high', 'Has neither basement nor crawl space', 'A basement and a crawl space']	['0', '1', '2', '3']	discrete
+QM1A	Do you have a garage?	['Yes', 'No']	['0', '1']	discrete
+QM1AA	Is your garage heated?	['Yes', 'No']	['0', '1']	discrete
+QM1B	Is your garage heated with electricity?	['Yes', 'No']	['0', '1']	discrete
+QL1	Including you, how many people live in this dwelling?	['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '15', '25']	['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13']	discrete
+QL3A	What is your age?	['18-24 years', '25-34 years', '35-44 years', '45-54 years', '55-64 years', '65 years and over']	['0', '1', '2', '3', '4', '5']	discrete
+QL4A	What is the highest level of education you have completed?	['Primary (0 to 7 years)', 'Secondary (8 to 12 years)', 'CEGEP/technical (13 to 15 years)', 'University (16 years and over)']	['0', '1', '2', '3']	discrete
+QL5A	What is the approximate value of your residence including the land?	['Less than $100,000', '$100,000 to $199,999', '$200,000 to $299,999', '$300,000 to $399,999', '$400,000 to $499,999', '$500,000 to $599,999', '$600,000 to $699,999', '$700,000 to $799,999', '$800,000 to $899,999', '$900,000 to $999,999', '$1 million or more']	['0', '1', '2', '3', '4', '5', '6', '7', '8']	discrete
+QL5BA	What is your total household income (before taxes including all income sources and all members of the household)?	['Less than $20,000', '$20,000 to $39,999', '$40,000 to $59,999', '$60,000 to $79,999', '$80,000 to $99,999', '$100,000 to $119,999', '$120,000 to $199,999', '$200,000 to $299,999', '$300,000 or more']	['0', '1', '2', '3', '4', '5', '6', '7', '8']	discrete
+QB2I1	How many refrigerators do you have in your residence?	['0', '1', '2', '3', '4', '5', '7']	['0', '1', '2', '3', '4', '5', '6']	discrete
+QB2I2	What is the age of your main refrigerator?	['Less than 1 year', '1 to 5 years', '6 to 10 years', '11 to 15 years', '16 to 20 years', '21 to 25 years', 'More than 25 years']	['0', '1', '2', '3', '4', '5', '6']	discrete
+QBM1	Do you have a freezer separate from your refrigerator?	['Yes', 'No']	['0', '1']	discrete
+QB2M2R	How many separate freezers do you have in your residence?	['None', '1', '2', '3', '4', '5', '6']	['0', '1', '2', '3', '4', '5', '6']	discrete
+QB1A1	Do you have a stove?	['Yes', 'No']	['0', '1']	discrete
+QB1RR	How many cooking appliances do you have in your residence?	['None', '1', '2', '3']	['0', '1', '2', '3']	discrete
+QB1A3	What is the energy source of your stove?	['Electricity', 'Propane gas or natural gas', 'Other']	['0', '1', '2']	discrete
+QB1C1	Do you have an electric wall oven?	['Yes', 'No']	['0', '1']	discrete
+QB1D1	Do you have a cooktop with independent burners separate from the stove (Jen-Air type)?	['Yes', 'No']	['0', '1']	discrete
+QB1D2	What is the energy source of your cooktop?	['Electricity', 'Propane gas or natural gas']	['0', '1']	discrete
+QB1E1	Do you have a kitchen hood or fan?	['Yes', 'No']	['0', '1']	discrete
+QB1F	Do you have a microwave?	['Yes', 'No']	['0', '1']	discrete
+QB1G	Do you have a dishwasher?	['Yes', 'No']	['0', '1']	discrete
+QB1H	Do you have an electric clothes dryer?	['Yes', 'No']	['0', '1']	discrete
+QB1I	Do you have a clothes washing machine?	['Yes', 'No']	['0', '1']	discrete
+QB1I1	Is your washing machine front-loading?	['Yes', 'No']	['0', '1']	discrete
+QB1I1R	What type of washing machine do you have?	['Does not have a washing machine', 'Traditional machine', 'Front-loading machine']	['0', '1', '2']	discrete
+QB1S	Do you have a wine cellar with a refrigeration system?	['Yes', 'No']	['0', '1']	discrete
+QB1N	Do you have a sauna?	['Yes', 'No']	['0', '1']	discrete
+QB2	How many televisions do you have in your residence?	['0', '1', '2', '3', '4', '5', '6', '7', '8', '10']	['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']	discrete
+B2A3	What is the type of your main television?	['Conventional', '3D LCD screen', '3D LED screen', '3D screen (no detail)', 'LED screen', 'DLP screen', 'OLED screen', 'Flat LCD screen', 'Flat plasma screen', 'Flat screen (no detail) (plasma/LCD)', 'Projector', '4K, 8K or 16K TV (Ultra HD)']	['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']	discrete
+B3A2R	What is the size of your main television?	['Less than 30 inches', 'From 30 to 45 inches', 'From 46 to 65 inches', 'More than 65 inches']	['0', '1', '2', '3']	discrete
+QB2C1	Do you have a computer?	['Yes', 'No']	['0', '1']	discrete
+B2C2R	How many computers do you have in your residence?	['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']	['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']	discrete
+B2C2BR	How many laptops do you have in your residence?	['0', '1', '2', '3', '4', '5', '6', '7', '8']	['0', '1', '2', '3', '4', '5', '6', '7', '8']	discrete
+B2C2AR	How many desktop computers do you have in your residence?	['0', '1', '2', '3', '4', '5', '6']	['0', '1', '2', '3', '4', '5', '6']	discrete
+QB2D1	Do you have Internet access?	['Yes', 'No']	['0', '1']	discrete
+QB2D1R	Do you have Internet access with a computer?	['Yes', 'No']	['0', '1']	discrete
+QB2X6	Do you have LED lighting in your residence?	['Yes', 'No']	['0', '1']	discrete
+QB2X8R	What percentage of your lighting is LED?	['0%', '1 to 24%', '25 to 50%', 'More than 50%']	['0', '1', '2', '3']	discrete
+SOURC	Main energy source used for heating the dwelling - detail	['Electricity', 'Natural gas', 'Propane', 'Heating oil', 'Wood (or pellets)', 'Electricity and natural gas', 'Electricity and propane', 'Electricity and heating oil', 'Wood (or pellets) AND electricity', 'Wood AND heating oil', 'Dual-energy (no detail)']	['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']	discrete
+CENTRAL2	Do you have a central system?	['Yes', 'No']	['0', '1']	discrete
+SYSTEM1R	Main heating system	['Electric baseboards', 'Convector units, radiant floor or ceiling', 'Heat pump', 'Others', 'Central hot air system', 'Central hot water system', 'Wood furnace or stove', 'Wall or floor furnace']	['0', '1', '2', '3', '4', '5', '6', '7']	discrete
+SYSTEM2	Main heating system in combination	['Heat pump', 'Electric baseboards', 'Central hot air system', 'Convector units, radiant floor or ceiling', 'Wall or floor furnace', 'Central hot water system']	['0', '1', '2', '3', '4', '5', '6', '7', '8']	discrete
+SYSTEM2R	Main heating system in combination		['0', '1', '2', '3', '4', '5']	discrete
+QC9A	With what other system is your heat pump combined?	['Baseboards', 'Convectors', 'Baseboards and convectors', 'Radiant floor heating', 'Electric boiler', 'Electric hot air furnace', 'Natural gas hot air furnace', 'Propane hot air furnace', 'Heating oil hot air furnace', 'No backup system']	['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']	discrete
+QC7A	Is your heat pump "cold climate" or "low temperature" type?	['Yes', 'No']	['0', '1']	discrete
+QC21A	In what year was your heat pump installed?			Integer
+APPOINT	How many backup systems do you have?	['0', '1', '2', '3', '4', '5', '6']	['0', '1', '2', '3', '4', '5', '6']	discrete
+QD1A	Do you use portable electric heaters as backup heating?	['Yes', 'No']	['0', '1']	discrete
+QD1B	Do you use fixed electric baseboards as backup heating?	['Yes', 'No']	['0', '1']	discrete
+QD1C	Do you use convector units as backup heating?	['Yes', 'No']	['0', '1']	discrete
+QD1D	Do you use a slow-combustion (airtight) stove as backup heating?	['Yes', 'No']	['0', '1']	discrete
+QD1E	Do you use a slow-combustion or conventional wood stove as backup heating?	['Yes', 'No']	['0', '1']	discrete
+QD1F	Do you use a fireplace as backup heating?	['Yes', 'No']	['0', '1']	discrete
+QD2F2	What energy source do you use for this fireplace?	['Electricity', 'Natural gas', 'Propane gas', 'Heating oil', 'Wood']	['0', '1', '2', '3', '4']	discrete
+QD1J	Do you use a radiant heating system in the floor or ceiling as backup heating?	['Yes', 'No']	['0', '1']	discrete
+QD1G	Do you use an individual wall or floor furnace as backup heating?	['Yes', 'No']	['0', '1']	discrete
+QD2G	What energy source do you use for this furnace?	['Electricity', 'Natural gas', 'Propane gas', 'Heating oil', 'Wood']	['0', '1', '2', '3']	discrete
+QD1H	Do you use a central hot air furnace (with heat vents) as backup heating?	['Yes', 'No']	['0', '1']	discrete
+QD2H	What energy source do you use for this furnace?	['Electricity', 'Natural gas', 'Propane gas', 'Heating oil', 'Wood']	['0', '1', '2', '3']	discrete
+QD1I	Do you use a central hot water boiler (with radiators) as backup heating?	['Yes', 'No']	['0', '1']	discrete
+QD2I	What energy source do you use for this boiler?	['Electricity', 'Natural gas', 'Propane gas', 'Heating oil', 'Wood']	['0', '1', '2', '3']	discrete
+QD4A	Do you use a central thermostat, i.e., one that controls the temperature of several rooms at the same time?	['Yes', 'No']	['0', '1']	discrete
+QD4C	Is your central thermostat programmable, i.e., does it allow you to program automatic temperature increases and decreases in advance at set times without further intervention?	['Yes', 'No']	['0', '1']	discrete
+QD4C1	Do you usually program automatic temperature increases and decreases in advance at set times using your programmable central thermostat?	['Yes', 'No']	['0', '1']	discrete
+QD6A	Do you use one or more thermostat(s) placed on the wall that control(s) the heating of one or more rooms at a time? (wall thermostats)	['Yes', 'No']	['0', '1']	discrete
+QD6	How many wall thermostats do you have? (thermostats placed on the wall that control(s) the heating of one room at a time)	['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18']	['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17']	discrete
+QD6B	Do you have any that are electronic, meaning there is a screen that displays the temperature?	['Yes', 'No']	['0', '1']	discrete
+QD6C	How many programmable electronic thermostats do you have, i.e., that allow you to program automatic temperature increases and decreases in advance at set times without further intervention?	['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18']	['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17']	discrete
+QD6C1	Do you usually program automatic temperature increases and decreases in advance at set times using your programmable wall thermostat(s)?	['Yes', 'No']	['0', '1']	discrete
+QD11A	Do you air condition your dwelling, whether it's a single room or all rooms?	['Yes', 'No']	['0', '1']	discrete
+QD11BM1	Among the following devices, which do you use to air condition your dwelling? (Total mentions)	['Central air conditioner other than a heat pump', 'Window air conditioner', 'Mobile/portable air conditioner', 'Wall or split-system air conditioner', 'Wall-mounted heat pump', 'Central heat pump', 'Geothermal heat pump']	['0', '1', '2', '3', '4', '5', '6']	discrete
+QD11BM1R	Among the following devices, which do you use to air condition your dwelling? (Total base)	['Central other than heat pump', 'Window air conditioner', 'Mobile air conditioner', 'Wall or split-system air conditioner', 'Wall-mounted heat pump', 'Central heat pump', 'Geothermal heat pump']	['0', '1', '2', '3', '4', '5', '6']	discrete
+D11B8	In what year was your air conditioner installed?			Integer
+QD7F1	Do you use an air exchanger?	['Yes', 'No']	['0', '1']	discrete
+QD7G1	Is it an air exchanger with or without a heat recovery unit?	['With heat recovery unit', 'Without heat recovery unit']	['0', '1']	discrete
+QD7H3	Do you turn off your air exchanger during periods of extreme cold (-20 and colder)?	['Yes', 'No']	['0', '1']	discrete
+QF1	What energy source does your water heater run on?	['Electricity', 'Natural gas', 'Heating oil', 'Propane', 'Wood', 'No water heater']	['0', '1', '2', '3', '4', '5']	discrete
+QF2	Is your water heater central, i.e., common to two or more dwellings, or is it a water heater only for your residence?	['Central, i.e., for several dwellings', 'Only for the residence']	['0', '1']	discrete
+QF2R	Is the water heater central or only for the residence (Total base)	['Central, i.e., for several dwellings', 'Only for the residence', 'No water heater']	['0', '1', '2']	discrete
+QF3	What is the capacity of the water heater?	['Tankless water heater', 'Less than 22 gallons (97 liters)', '22 gallons (97 liters)', 'Between 23 and 39 gallons (100 and 172 liters)', '40 gallons (176 liters)', '41 to 59 gallons (180 to 260 liters)', '60 gallons (264 liters)', 'More than 60 gallons (264 liters)']	['0', '1', '2', '3', '4', '5', '6', '7']	discrete
+QG1	Do you have a permanently installed pool, whether it is in-ground or above-ground?	['Yes', 'No']	['0', '1']	discrete
+QG1A	Do you have an inflatable pool?	['Yes', 'No']	['0', '1']	discrete
+QG2	What type of pool is it?	['Above-ground / semi-in-ground pool', 'Outdoor in-ground pool', 'Indoor in-ground pool', 'Inflatable above-ground pool']	['0', '1', '2', '3']	discrete
+QG3	Is your filter equipped with a timer?	['Yes', 'No']	['0', '1']	discrete
+QG5	Do you have a solar cover?	['Yes', 'No']	['0', '1']	discrete
+QG7	Is your pool heated (other than by a solar cover)?	['Yes', 'No']	['0', '1']	discrete
+QG8M1	How is it heated? (Total mentions)	['A pool heat pump', 'An electric pool heater (which is not a heat pump)', 'A solar collector', 'A propane pool heater', 'A natural gas pool heater', 'A wood pool heater', 'An oil/heating oil pool heater']	['0', '1', '2', '3', '4', '5', '6']	discrete
+QB1M	Do you have a spa at your residence?	['Yes', 'No']	['0', '1']	discrete
+QB1M3	Is the spa inside or outside the residence?	['Inside', 'Outside']	['0', '1']	discrete
+QS1	Over the last 12 months, have you used your spa...?	['Yes', 'No']	['0', '1']	discrete
+QS2M1R	Have you used your spa...? (Spring, summer, autumn, winter, not used)	['Spring', 'Summer', 'Autumn', 'Winter', 'Not used']	['0', '1', '2', '3', '4']	discrete
+QS2M2R	Have you used your spa...? (Spring, summer, autumn, winter)	['Spring', 'Summer', 'Autumn', 'Winter']	['0', '1', '2', '3']	discrete
+QS2M3R	Have you used your spa...? (Spring, summer, autumn, winter)	['Spring', 'Summer', 'Autumn', 'Winter']	['0', '1', '2', '3']	discrete
+QS2M4R	Have you used your spa...? (Spring, summer, autumn, winter)	['Spring', 'Summer', 'Autumn', 'Winter']	['0', '1', '2', '3']	discrete
+QS3AA	Which of the following two statements best corresponds to your habits during the cold months of the last year?	['I kept my spa temperature constant', 'I increased the temperature for bathing periods']	['0', '1']	discrete
+QS3BB	Which of the following two statements best corresponds to your habits during the hot months of the last year?	['I kept my spa temperature constant', 'I increased the temperature for bathing periods']	['0', '1']	discrete
+QT1	Do you use one or more electric rechargeable car(s), whether it is 100% electric or plug-in hybrid, whether purchased or leased?	['Yes', 'No']	['0', '1']	discrete
+QT2	How many 100% electric car(s) do you have?	['None', 'One', 'Two', 'Three']	['0', '1', '2', '3']	discrete
+QT2R	How many 100% electric car(s) do you have? (Total base)	['None', 'One', 'Two', 'Three']	['0', '1', '2', '3']	discrete
+QT3	How many plug-in hybrid electric car(s) do you have?	['None', 'One', 'Two']	['0', '1', '2']	discrete
+QT3R	How many plug-in hybrid electric car(s) do you have? (Total base)	['None', 'One', 'Two']	['0', '1', '2']	discrete
+QT2T3	Electric car(s)? (Total base)	['Does not own any electric car', 'Owns one or more 100% electric cars', 'Owns one or more plug-in hybrid electric cars', 'Owns both types of cars']	['0', '1', '2', '3']	discrete
+QT4	Do you have a charging station connected to your electricity meter?	['Yes', 'No']	['0', '1']

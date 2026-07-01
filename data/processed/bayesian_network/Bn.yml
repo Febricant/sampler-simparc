@@ -1,60 +1,53 @@
-- An_Construction: "Ann\xE9e de construction de l'habitation"
-  An_ConstructionCode: "Ann\xE9e de construction de l'habitation"
-  ChaufEau_ChaufType: "\xC0 quelle source d'\xE9nergie votre chauffe-eau fonctionne-t-il?"
-  ChaufEau_Presence: "Le chauffe-eau est central ou uniquement pour le lieu de r\xE9\
-    sidence (Base totale)"
-  ChaufEau_Type: "Quelle est la capacit\xE9 du chauffe-eau?"
-  Chauffage_Logement: "Syst\xE8me principal de chauffage"
+- An_Construction: Année de construction de l'habitation
+  An_ConstructionCode: Année de construction de l'habitation
+  ChaufEau_ChaufType: À quelle source d'énergie votre chauffe-eau fonctionne-t-il?
+  ChaufEau_Presence: Le chauffe-eau est central ou uniquement pour le lieu de résidence
+    (Base totale)
+  ChaufEau_Type: Quelle est la capacité du chauffe-eau?
+  Chauffage_Logement: Système principal de chauffage
   Climatisation: Parmi les appareils suivants, lesquels utilisez-vous pour climatiser
     votre habitation? (Ensemble des mentions)
-  Congelateur_Nombre: "Combien de cong\xE9lateurs distincts avez-vous dans votre r\xE9\
-    sidence?"
-  Cuisiniere_Energie: "Quelle est la source d'\xE9nergie de votre cuisini\xE8re?"
-  Cuisiniere_Presence: "Avez-vous une cuisini\xE8re?"
-  Eclairage_LED: "Quel pourcentage de votre \xE9clairage est \xE0 DEL?"
-  LaveLinge_Type: "Quel type de machine \xE0 laver le linge avez-vous?"
+  Congelateur_Nombre: Combien de congélateurs distincts avez-vous dans votre résidence?
+  Cuisiniere_Energie: Quelle est la source d'énergie de votre cuisinière?
+  Cuisiniere_Presence: Avez-vous une cuisinière?
+  Eclairage_LED: Quel pourcentage de votre éclairage est à DEL?
+  LaveLinge_Type: Quel type de machine à laver le linge avez-vous?
   LaveVaisselle_Presence: Avez-vous un lave-vaisselle?
-  Mode_Occupation: "Quel est votre lien avec ce logement ? En \xEAtes-vous..."
-  Nombre_Etages: "Nombre d'\xE9tages habitables dans la r\xE9sidence (incluant le\
-    \ sous-sol et le garage)"
+  Mode_Occupation: Quel est votre lien avec ce logement ? En êtes-vous...
+  Nombre_Etages: Nombre d'étages habitables dans la résidence (incluant le sous-sol
+    et le garage)
   Nombre_Personnes: En vous incluant, combien de personnes habitent ce logement?
-  Nombre_Pieces: "Nombre de pi\xE8ces dans la r\xE9sidence (incluant les pi\xE8ces\
-    \ du sous-sol et le garage, excluant les salles de bain et les couloirs)"
-  Piscine_ChaufType: "De quelle fa\xE7on est-elle chauff\xE9e? (Ensemble des mentions)"
-  Piscine_Chauffee: "Votre piscine est-elle chauff\xE9e (autrement que par une toile\
-    \ solaire)?"
-  Piscine_Minuterie: "Votre filtreur est-il \xE9quip\xE9 d'une minuterie?"
-  Piscine_Presence: "Avez-vous une piscine install\xE9e en permanence, qu'elle soit\
-    \ creus\xE9e ou hors-terre?"
-  Piscine_Toile: "Poss\xE9dez-vous une toile solaire?"
+  Nombre_Pieces: Nombre de pièces dans la résidence (incluant les pièces du sous-sol
+    et le garage, excluant les salles de bain et les couloirs)
+  Piscine_ChaufType: De quelle façon est-elle chauffée? (Ensemble des mentions)
+  Piscine_Chauffee: Votre piscine est-elle chauffée (autrement que par une toile solaire)?
+  Piscine_Minuterie: Votre filtreur est-il équipé d'une minuterie?
+  Piscine_Presence: Avez-vous une piscine installée en permanence, qu'elle soit creusée
+    ou hors-terre?
+  Piscine_Toile: Possédez-vous une toile solaire?
   Piscine_Type: De quel type de piscine s'agit-il?
   Presence_Garage: Avez-vous un garage?
-  Presence_SousSol: "Votre r\xE9sidence comporte-elle un sous-sol ou vide sanitaire?"
-  Refrigerateur_Nombre: "Combien de r\xE9frig\xE9rateurs avez-vous dans votre r\xE9\
-    sidence?"
-  Region_Administrative: "Zone du Qu\xE9bec"
-  SecheLinge_Presence: "Avez-vous une s\xE9cheuse \xE0 linge \xE9lectrique?"
-  Source_Energie_Chauf: "Principale source d'\xE9nergie utilis\xE9e pour le chauffage\
-    \ de l'habitation"
-  Spa_Logement: "Le spa est-il \xE0 l'int\xE9rieur ou \xE0 l'ext\xE9rieur de la r\xE9\
-    sidence?"
-  Spa_Presence: "Avez-vous un spa \xE0 votre r\xE9sidence?"
-  Spa_Saison: "Avez-vous utilis\xE9 votre spa\u2026? (Printemps, \xE9t\xE9, automne,\
-    \ hiver, pas utilis\xE9)"
-  Spa_Utilisation_SaisonChaude: "Lequel des deux \xE9nonc\xE9s suivants correspond\
-    \ le mieux \xE0 vos habitudes durant les mois chauds de la derni\xE8re ann\xE9\
-    e?"
-  Spa_Utilisation_SaisonFroide: "Lequel des deux \xE9nonc\xE9s suivants correspond\
-    \ le mieux \xE0 vos habitudes durant les mois froids de la derni\xE8re ann\xE9\
-    e?"
-  Superficie_Totale: "Quelle est la superficie TOTALE habitable de votre r\xE9sidence\
-    \ incluant le sous-sol et le garage?"
+  Presence_SousSol: Votre résidence comporte-elle un sous-sol ou vide sanitaire?
+  Refrigerateur_Nombre: Combien de réfrigérateurs avez-vous dans votre résidence?
+  Region_Administrative: Zone du Québec
+  SecheLinge_Presence: Avez-vous une sécheuse à linge électrique?
+  Source_Energie_Chauf: Principale source d'énergie utilisée pour le chauffage de
+    l'habitation
+  Spa_Logement: Le spa est-il à l'intérieur ou à l'extérieur de la résidence?
+  Spa_Presence: Avez-vous un spa à votre résidence?
+  Spa_Saison: Avez-vous utilisé votre spa…? (Printemps, été, automne, hiver, pas utilisé)
+  Spa_Utilisation_SaisonChaude: Lequel des deux énoncés suivants correspond le mieux
+    à vos habitudes durant les mois chauds de la dernière année?
+  Spa_Utilisation_SaisonFroide: Lequel des deux énoncés suivants correspond le mieux
+    à vos habitudes durant les mois froids de la dernière année?
+  Superficie_Totale: Quelle est la superficie TOTALE habitable de votre résidence
+    incluant le sous-sol et le garage?
   Territoire_HQ: Territoire HQ
   Type_Batiment: De quel genre d'habitation s'agit-il?
   Type_Logement: De quel genre d'habitation s'agit-il?
-  Vehicule_BornePresence: "Disposez-vous d'une borne de recharge reli\xE9e \xE0 votre\
-    \ compteur d'\xE9lectricit\xE9?"
-  Vehicule_Presence: "Voiture(s) \xE9lectrique? (Base totale)"
+  Vehicule_BornePresence: Disposez-vous d'une borne de recharge reliée à votre compteur
+    d'électricité?
+  Vehicule_Presence: Voiture(s) électrique? (Base totale)
 - An_Construction:
     '0': < 1950
     '1': '[1950 - 1960)'
@@ -86,7 +79,7 @@
   ChaufEau_Type:
     '0': Non definit
     '1': Ne sait pas
-    '2': "Chauffe-eau sans r\xE9servoir"
+    '2': Chauffe-eau sans réservoir
     '3': Moins de 22 gallons
     '4': 22 gallons
     '5': 23-40 gallons
@@ -95,30 +88,29 @@
     '8': 60 gallons
     '9': 60 et plus gallons
   Chauffage_Logement:
-    '0': "Plinthes \xE9lectriques"
-    '1': "Unit\xE9s convecteurs, plancher ou plafond radiant"
-    '10': "Syst\xE8me central \xE0 air chaud"
-    '11': "Syst\xE8me central \xE0 eau chaude"
-    '12': "Fournaise ou po\xEAle \xE0 bois"
+    '0': Plinthes électriques
+    '1': Unités convecteurs, plancher ou plafond radiant
+    '10': Système central à air chaud
+    '11': Système central à eau chaude
+    '12': Fournaise ou poêle à bois
     '13': Fournaise murale ou de plancher
-    '14': "Fournaise ou po\xEAle \xE0 bois et Plinthes \xE9lectriques"
-    '15': "Fournaise ou po\xEAle \xE0 bois et Unit\xE9s convecteurs, plancher ou plafond\
-      \ radiant"
-    '16': "Fournaise ou po\xEAle \xE0 bois et Thermopompe murale"
-    '17': "Fournaise ou po\xEAle \xE0 bois et Syst\xE8me central \xE0 air chaud"
-    '18': "Fournaise ou po\xEAle \xE0 bois et Syst\xE8me central \xE0 eau chaude"
-    '19': "Fournaise ou po\xEAle \xE0 bois et Fournaise murale ou de plancher"
-    '2': "Thermopompe et Syst\xE8me central \xE0 air chaud"
-    '3': "Thermopompe et Syst\xE8me central \xE0 eau chaude"
-    '4': "Thermopompe g\xE9othermique seule"
-    '5': "Thermopompe g\xE9othermique et Plinthes \xE9lectriques"
-    '6': "Thermopompe g\xE9othermique et Fournaise"
+    '14': Fournaise ou poêle à bois et Plinthes électriques
+    '15': Fournaise ou poêle à bois et Unités convecteurs, plancher ou plafond radiant
+    '16': Fournaise ou poêle à bois et Thermopompe murale
+    '17': Fournaise ou poêle à bois et Système central à air chaud
+    '18': Fournaise ou poêle à bois et Système central à eau chaude
+    '19': Fournaise ou poêle à bois et Fournaise murale ou de plancher
+    '2': Thermopompe et Système central à air chaud
+    '3': Thermopompe et Système central à eau chaude
+    '4': Thermopompe géothermique seule
+    '5': Thermopompe géothermique et Plinthes électriques
+    '6': Thermopompe géothermique et Fournaise
     '7': Thermopompe murale
-    '8': "Thermopompe murale et Plinthes \xE9lectriques"
+    '8': Thermopompe murale et Plinthes électriques
     '9': Thermopompe murale et Fournaise
   Climatisation:
     '0': Aucune
-    '1': "Fen\xEAtre, mobile, portable"
+    '1': Fenêtre, mobile, portable
     '2': Murale
     '3': Centrale
   Congelateur_Nombre:
@@ -141,8 +133,8 @@
   Eclairage_LED:
     '0': Ne sait pas
     '1': 0%
-    '2': "1 \xE0 24 %"
-    '3': "25 \xE0 50 %"
+    '2': 1 à 24 %
+    '3': 25 à 50 %
     '4': Plus de 50 %
   LaveLinge_Type:
     '0': Aucun
@@ -155,9 +147,9 @@
     '0': Locataire
     '1': Proprietaire
   Nombre_Etages:
-    '0': "Un \xE9tage"
-    '1': "Deux \xE9tages"
-    '2': "Trois \xE9tages et plus"
+    '0': Un étage
+    '1': Deux étages
+    '2': Trois étages et plus
   Nombre_Personnes:
     '0': '1'
     '1': '2'
@@ -212,9 +204,9 @@
     '3': Creusee_Interieur
   Presence_Garage:
     '0': Pas de Garage
-    '1': "Garage non chauff\xE9"
-    '2': "Garage chauff\xE9 \xE0 \xE9lectricit\xE9"
-    '3': "Garage chauff\xE9 \xE0 autre source"
+    '1': Garage non chauffé
+    '2': Garage chauffé à électricité
+    '3': Garage chauffé à autre source
   Presence_SousSol:
     '0': Sous sol 6 pied
     '1': Vide sanitaire moins 6 pieds
@@ -227,21 +219,7 @@
     '3': '3'
     '4': 4 et plus
   Region_Administrative:
-    '0': Bas-Saint-Laurent
-    '1': Capitale-Nationale
-    '10': Mauricie
-    '11': "Mont\xE9r\xE9gie"
-    '12': "Montr\xE9al"
-    '13': Outaouais
-    '14': Saguenay-Lac-Saint-Jean
-    '2': "Centre-du-Qu\xE9bec"
-    '3': "Chaudi\xE8re-Appalaches"
-    '4': "C\xF4te-Nord"
-    '5': Estrie
-    '6': "Gasp\xE9sie-\xCEles-de-la-Madeleine"
-    '7': "Lanaudi\xE8re"
-    '8': Laurentides
-    '9': Laval
+    '0': Alberta
   SecheLinge_Presence:
     '0': Oui
     '1': Non
@@ -260,7 +238,7 @@
     '1': Non
   Spa_Saison:
     '0': Aucun
-    '1': "Pas utilis\xE9"
+    '1': Pas utilisé
     '10': Printemps_Hiver
     '11': Ete_Automne
     '12': Ete_Hiver
@@ -299,11 +277,7 @@
     '8': '[4000 - 4500)'
     '9': '[4500 - 5000)'
   Territoire_HQ:
-    '0': "Est et Nord du Qu\xE9bec"
-    '1': Laurentides
-    '2': Montmorency
-    '3': "Montr\xE9al"
-    '4': Richelieu
+    '0': Calgary
   Type_Batiment:
     '0': Collective
     '1': Plex
@@ -329,14 +303,14 @@
     '7': Deux_VE_Deux_VHR
     '8': Aucune_VE_Deux_VHR
 - An_Construction:
-    Description: "Ann\xE9e de construction de l'habitation"
-    "D\xE9pendance (enfants)":
+    Description: Année de construction de l'habitation
+    Dépendance (enfants):
     - Infiltration
     - An_ConstructionCode
-    "D\xE9pendance (parents)":
+    Dépendance (parents):
     - Type_Logement
     Nom: An_Construction
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - < 1950
     - '[1950 - 1960)'
@@ -348,15 +322,15 @@
     - '[2010 - 2020)'
     - '>= 2020'
     id: 11
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   An_ConstructionCode:
-    Description: "Ann\xE9e de construction de l'habitation"
-    "D\xE9pendance (enfants)":
+    Description: Année de construction de l'habitation
+    Dépendance (enfants):
     - Source_Energie_Chauf
-    "D\xE9pendance (parents)":
+    Dépendance (parents):
     - An_Construction
     Nom: An_ConstructionCode
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - < 1946
     - '[1946 - 1971)'
@@ -364,15 +338,15 @@
     - '[1986 - 2013)'
     - '>= 2013'
     id: 12
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   ChaufEau_ChaufType:
-    Description: "\xC0 quelle source d'\xE9nergie votre chauffe-eau fonctionne-t-il?"
-    "D\xE9pendance (enfants)": []
-    "D\xE9pendance (parents)":
+    Description: À quelle source d'énergie votre chauffe-eau fonctionne-t-il?
+    Dépendance (enfants): []
+    Dépendance (parents):
     - Source_Energie_Chauf
     - ChaufEau_Presence
     Nom: ChaufEau_ChaufType
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Aucun
     - Ne sait pas
@@ -382,35 +356,35 @@
     - Bois
     - Mazout
     id: 29
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   ChaufEau_Presence:
-    Description: "Le chauffe-eau est central ou uniquement pour le lieu de r\xE9sidence\
-      \ (Base totale)"
-    "D\xE9pendance (enfants)":
+    Description: Le chauffe-eau est central ou uniquement pour le lieu de résidence
+      (Base totale)
+    Dépendance (enfants):
     - ChaufEau_ChaufType
     - ChaufEau_Type
-    "D\xE9pendance (parents)":
+    Dépendance (parents):
     - Type_Logement
     Nom: ChaufEau_Presence
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Aucun
     - Logement
     - Central
     id: 31
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   ChaufEau_Type:
-    Description: "Quelle est la capacit\xE9 du chauffe-eau?"
-    "D\xE9pendance (enfants)": []
-    "D\xE9pendance (parents)":
+    Description: Quelle est la capacité du chauffe-eau?
+    Dépendance (enfants): []
+    Dépendance (parents):
     - Type_Logement
     - ChaufEau_Presence
     Nom: ChaufEau_Type
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Non definit
     - Ne sait pas
-    - "Chauffe-eau sans r\xE9servoir"
+    - Chauffe-eau sans réservoir
     - Moins de 22 gallons
     - 22 gallons
     - 23-40 gallons
@@ -419,65 +393,63 @@
     - 60 gallons
     - 60 et plus gallons
     id: 30
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Chauffage_Logement:
-    Description: "Syst\xE8me principal de chauffage"
-    "D\xE9pendance (enfants)":
+    Description: Système principal de chauffage
+    Dépendance (enfants):
     - Climatisation
-    "D\xE9pendance (parents)":
+    Dépendance (parents):
     - Type_Logement
     - Source_Energie_Chauf
     Nom: Chauffage_Logement
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
-    - "Plinthes \xE9lectriques"
-    - "Unit\xE9s convecteurs, plancher ou plafond radiant"
-    - "Thermopompe et Syst\xE8me central \xE0 air chaud"
-    - "Thermopompe et Syst\xE8me central \xE0 eau chaude"
-    - "Thermopompe g\xE9othermique seule"
-    - "Thermopompe g\xE9othermique et Plinthes \xE9lectriques"
-    - "Thermopompe g\xE9othermique et Fournaise"
+    - Plinthes électriques
+    - Unités convecteurs, plancher ou plafond radiant
+    - Thermopompe et Système central à air chaud
+    - Thermopompe et Système central à eau chaude
+    - Thermopompe géothermique seule
+    - Thermopompe géothermique et Plinthes électriques
+    - Thermopompe géothermique et Fournaise
     - Thermopompe murale
-    - "Thermopompe murale et Plinthes \xE9lectriques"
+    - Thermopompe murale et Plinthes électriques
     - Thermopompe murale et Fournaise
-    - "Syst\xE8me central \xE0 air chaud"
-    - "Syst\xE8me central \xE0 eau chaude"
-    - "Fournaise ou po\xEAle \xE0 bois"
+    - Système central à air chaud
+    - Système central à eau chaude
+    - Fournaise ou poêle à bois
     - Fournaise murale ou de plancher
-    - "Fournaise ou po\xEAle \xE0 bois et Plinthes \xE9lectriques"
-    - "Fournaise ou po\xEAle \xE0 bois et Unit\xE9s convecteurs, plancher ou plafond\
-      \ radiant"
-    - "Fournaise ou po\xEAle \xE0 bois et Thermopompe murale"
-    - "Fournaise ou po\xEAle \xE0 bois et Syst\xE8me central \xE0 air chaud"
-    - "Fournaise ou po\xEAle \xE0 bois et Syst\xE8me central \xE0 eau chaude"
-    - "Fournaise ou po\xEAle \xE0 bois et Fournaise murale ou de plancher"
+    - Fournaise ou poêle à bois et Plinthes électriques
+    - Fournaise ou poêle à bois et Unités convecteurs, plancher ou plafond radiant
+    - Fournaise ou poêle à bois et Thermopompe murale
+    - Fournaise ou poêle à bois et Système central à air chaud
+    - Fournaise ou poêle à bois et Système central à eau chaude
+    - Fournaise ou poêle à bois et Fournaise murale ou de plancher
     id: 15
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Climatisation:
     Description: Parmi les appareils suivants, lesquels utilisez-vous pour climatiser
       votre habitation? (Ensemble des mentions)
-    "D\xE9pendance (enfants)": []
-    "D\xE9pendance (parents)":
+    Dépendance (enfants): []
+    Dépendance (parents):
     - Type_Logement
     - Chauffage_Logement
     Nom: Climatisation
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Aucune
-    - "Fen\xEAtre, mobile, portable"
+    - Fenêtre, mobile, portable
     - Murale
     - Centrale
     id: 13
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Congelateur_Nombre:
-    Description: "Combien de cong\xE9lateurs distincts avez-vous dans votre r\xE9\
-      sidence?"
-    "D\xE9pendance (enfants)": []
-    "D\xE9pendance (parents)":
+    Description: Combien de congélateurs distincts avez-vous dans votre résidence?
+    Dépendance (enfants): []
+    Dépendance (parents):
     - Nombre_Personnes
     - Type_Logement
     Nom: Congelateur_Nombre
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Aucun
     - '1'
@@ -487,15 +459,15 @@
     - '5'
     - '6'
     id: 32
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Cuisiniere_Energie:
-    Description: "Quelle est la source d'\xE9nergie de votre cuisini\xE8re?"
-    "D\xE9pendance (enfants)": []
-    "D\xE9pendance (parents)":
+    Description: Quelle est la source d'énergie de votre cuisinière?
+    Dépendance (enfants): []
+    Dépendance (parents):
     - Cuisiniere_Presence
     - Source_Energie_Chauf
     Nom: Cuisiniere_Energie
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Aucun
     - Ne sait pas
@@ -503,107 +475,107 @@
     - Gaz
     - Autre
     id: 38
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Cuisiniere_Presence:
-    Description: "Avez-vous une cuisini\xE8re?"
-    "D\xE9pendance (enfants)":
+    Description: Avez-vous une cuisinière?
+    Dépendance (enfants):
     - Cuisiniere_Energie
-    "D\xE9pendance (parents)":
+    Dépendance (parents):
     - Nombre_Personnes
     - Type_Logement
     Nom: Cuisiniere_Presence
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Oui
     - Non
     id: 37
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Eclairage_LED:
-    Description: "Quel pourcentage de votre \xE9clairage est \xE0 DEL?"
-    "D\xE9pendance (enfants)": []
-    "D\xE9pendance (parents)":
+    Description: Quel pourcentage de votre éclairage est à DEL?
+    Dépendance (enfants): []
+    Dépendance (parents):
     - Mode_Occupation
     - Type_Logement
     Nom: Eclairage_LED
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Ne sait pas
     - 0%
-    - "1 \xE0 24 %"
-    - "25 \xE0 50 %"
+    - 1 à 24 %
+    - 25 à 50 %
     - Plus de 50 %
     id: 39
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   LaveLinge_Type:
-    Description: "Quel type de machine \xE0 laver le linge avez-vous?"
-    "D\xE9pendance (enfants)": []
-    "D\xE9pendance (parents)":
+    Description: Quel type de machine à laver le linge avez-vous?
+    Dépendance (enfants): []
+    Dépendance (parents):
     - Nombre_Personnes
     - Type_Logement
     Nom: LaveLinge_Type
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Aucun
     - Frontale
     - Traditionnelle
     id: 34
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   LaveVaisselle_Presence:
     Description: Avez-vous un lave-vaisselle?
-    "D\xE9pendance (enfants)": []
-    "D\xE9pendance (parents)":
+    Dépendance (enfants): []
+    Dépendance (parents):
     - Nombre_Personnes
     - Type_Logement
     Nom: LaveVaisselle_Presence
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Oui
     - Non
     id: 36
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Mode_Occupation:
-    Description: "Quel est votre lien avec ce logement ? En \xEAtes-vous..."
-    "D\xE9pendance (enfants)":
+    Description: Quel est votre lien avec ce logement ? En êtes-vous...
+    Dépendance (enfants):
     - Eclairage_LED
-    "D\xE9pendance (parents)":
+    Dépendance (parents):
     - Type_Logement
     Nom: Mode_Occupation
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Locataire
     - Proprietaire
     id: 10
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Nombre_Etages:
-    Description: "Nombre d'\xE9tages habitables dans la r\xE9sidence (incluant le\
-      \ sous-sol et le garage)"
-    "D\xE9pendance (enfants)":
+    Description: Nombre d'étages habitables dans la résidence (incluant le sous-sol
+      et le garage)
+    Dépendance (enfants):
     - Nombre_Pieces
     - Presence_SousSol
-    "D\xE9pendance (parents)":
+    Dépendance (parents):
     - Region_Administrative
     - Type_Logement
     Nom: Nombre_Etages
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
-    - "Un \xE9tage"
-    - "Deux \xE9tages"
-    - "Trois \xE9tages et plus"
+    - Un étage
+    - Deux étages
+    - Trois étages et plus
     id: 4
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Nombre_Personnes:
     Description: En vous incluant, combien de personnes habitent ce logement?
-    "D\xE9pendance (enfants)":
+    Dépendance (enfants):
     - Congelateur_Nombre
     - Refrigerateur_Nombre
     - LaveLinge_Type
     - SecheLinge_Presence
     - LaveVaisselle_Presence
     - Cuisiniere_Presence
-    "D\xE9pendance (parents)":
+    Dépendance (parents):
     - Nombre_Pieces
     Nom: Nombre_Personnes
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - '1'
     - '2'
@@ -611,18 +583,18 @@
     - '4'
     - 5 et plus
     id: 8
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Nombre_Pieces:
-    Description: "Nombre de pi\xE8ces dans la r\xE9sidence (incluant les pi\xE8ces\
-      \ du sous-sol et le garage, excluant les salles de bain et les couloirs)"
-    "D\xE9pendance (enfants)":
+    Description: Nombre de pièces dans la résidence (incluant les pièces du sous-sol
+      et le garage, excluant les salles de bain et les couloirs)
+    Dépendance (enfants):
     - Nombre_Personnes
     - Superficie_Totale
-    "D\xE9pendance (parents)":
+    Dépendance (parents):
     - Type_Logement
     - Nombre_Etages
     Nom: Nombre_Pieces
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - '1'
     - '2'
@@ -640,14 +612,14 @@
     - '14'
     - 15 et plus
     id: 5
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Piscine_ChaufType:
-    Description: "De quelle fa\xE7on est-elle chauff\xE9e? (Ensemble des mentions)"
-    "D\xE9pendance (enfants)": []
-    "D\xE9pendance (parents)":
+    Description: De quelle façon est-elle chauffée? (Ensemble des mentions)
+    Dépendance (enfants): []
+    Dépendance (parents):
     - Piscine_Chauffee
     Nom: Piscine_ChaufType
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Aucun
     - Ne sait pas
@@ -659,118 +631,117 @@
     - Bois
     - Mazout
     id: 26
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Piscine_Chauffee:
-    Description: "Votre piscine est-elle chauff\xE9e (autrement que par une toile\
-      \ solaire)?"
-    "D\xE9pendance (enfants)":
+    Description: Votre piscine est-elle chauffée (autrement que par une toile solaire)?
+    Dépendance (enfants):
     - Piscine_ChaufType
-    "D\xE9pendance (parents)":
+    Dépendance (parents):
     - Piscine_Type
     Nom: Piscine_Chauffee
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Aucun
     - Oui
     - Non
     id: 25
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Piscine_Minuterie:
-    Description: "Votre filtreur est-il \xE9quip\xE9 d'une minuterie?"
-    "D\xE9pendance (enfants)": []
-    "D\xE9pendance (parents)":
+    Description: Votre filtreur est-il équipé d'une minuterie?
+    Dépendance (enfants): []
+    Dépendance (parents):
     - Piscine_Type
     Nom: Piscine_Minuterie
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Aucun
     - Oui
     - Non
     id: 23
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Piscine_Presence:
-    Description: "Avez-vous une piscine install\xE9e en permanence, qu'elle soit creus\xE9\
-      e ou hors-terre?"
-    "D\xE9pendance (enfants)":
+    Description: Avez-vous une piscine installée en permanence, qu'elle soit creusée
+      ou hors-terre?
+    Dépendance (enfants):
     - Piscine_Type
-    "D\xE9pendance (parents)":
+    Dépendance (parents):
     - Region_Administrative
     - Type_Logement
     Nom: Piscine_Presence
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Oui
     - Non
     id: 21
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Piscine_Toile:
-    Description: "Poss\xE9dez-vous une toile solaire?"
-    "D\xE9pendance (enfants)": []
-    "D\xE9pendance (parents)":
+    Description: Possédez-vous une toile solaire?
+    Dépendance (enfants): []
+    Dépendance (parents):
     - Piscine_Type
     Nom: Piscine_Toile
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Aucun
     - Oui
     - Non
     id: 24
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Piscine_Type:
     Description: De quel type de piscine s'agit-il?
-    "D\xE9pendance (enfants)":
+    Dépendance (enfants):
     - Piscine_Toile
     - Piscine_Chauffee
     - Piscine_Minuterie
-    "D\xE9pendance (parents)":
+    Dépendance (parents):
     - Type_Logement
     - Piscine_Presence
     Nom: Piscine_Type
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Aucun
     - Hors_Terre
     - Creusee_Exterieur
     - Creusee_Interieur
     id: 22
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Presence_Garage:
     Description: Avez-vous un garage?
-    "D\xE9pendance (enfants)": []
-    "D\xE9pendance (parents)":
+    Dépendance (enfants): []
+    Dépendance (parents):
     - Type_Logement
     Nom: Presence_Garage
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Pas de Garage
-    - "Garage non chauff\xE9"
-    - "Garage chauff\xE9 \xE0 \xE9lectricit\xE9"
-    - "Garage chauff\xE9 \xE0 autre source"
+    - Garage non chauffé
+    - Garage chauffé à électricité
+    - Garage chauffé à autre source
     id: 9
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Presence_SousSol:
-    Description: "Votre r\xE9sidence comporte-elle un sous-sol ou vide sanitaire?"
-    "D\xE9pendance (enfants)": []
-    "D\xE9pendance (parents)":
+    Description: Votre résidence comporte-elle un sous-sol ou vide sanitaire?
+    Dépendance (enfants): []
+    Dépendance (parents):
     - Type_Logement
     - Nombre_Etages
     Nom: Presence_SousSol
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Sous sol 6 pied
     - Vide sanitaire moins 6 pieds
     - Aucun Sous-sol ou vide sanitaire
     - Sous-sol et vide sanitaire
     id: 7
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Refrigerateur_Nombre:
-    Description: "Combien de r\xE9frig\xE9rateurs avez-vous dans votre r\xE9sidence?"
-    "D\xE9pendance (enfants)": []
-    "D\xE9pendance (parents)":
+    Description: Combien de réfrigérateurs avez-vous dans votre résidence?
+    Dépendance (enfants): []
+    Dépendance (parents):
     - Nombre_Personnes
     - Type_Logement
     Nom: Refrigerateur_Nombre
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Aucun
     - '1'
@@ -778,63 +749,48 @@
     - '3'
     - 4 et plus
     id: 33
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Region_Administrative:
-    Description: "Zone du Qu\xE9bec"
-    "D\xE9pendance (enfants)":
+    Description: Zone du Québec
+    Dépendance (enfants):
     - Type_Logement
     - Nombre_Etages
     - Spa_Presence
     - Piscine_Presence
     - Vehicule_Presence
-    "D\xE9pendance (parents)":
+    Dépendance (parents):
     - Territoire_HQ
     Nom: Region_Administrative
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
-    - Bas-Saint-Laurent
-    - Capitale-Nationale
-    - "Centre-du-Qu\xE9bec"
-    - "Chaudi\xE8re-Appalaches"
-    - "C\xF4te-Nord"
-    - Estrie
-    - "Gasp\xE9sie-\xCEles-de-la-Madeleine"
-    - "Lanaudi\xE8re"
-    - Laurentides
-    - Laval
-    - Mauricie
-    - "Mont\xE9r\xE9gie"
-    - "Montr\xE9al"
-    - Outaouais
-    - Saguenay-Lac-Saint-Jean
+    - Alberta
     id: 1
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   SecheLinge_Presence:
-    Description: "Avez-vous une s\xE9cheuse \xE0 linge \xE9lectrique?"
-    "D\xE9pendance (enfants)": []
-    "D\xE9pendance (parents)":
+    Description: Avez-vous une sécheuse à linge électrique?
+    Dépendance (enfants): []
+    Dépendance (parents):
     - Nombre_Personnes
     - Type_Logement
     Nom: SecheLinge_Presence
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Oui
     - Non
     id: 35
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Source_Energie_Chauf:
-    Description: "Principale source d'\xE9nergie utilis\xE9e pour le chauffage de\
-      \ l'habitation"
-    "D\xE9pendance (enfants)":
+    Description: Principale source d'énergie utilisée pour le chauffage de l'habitation
+    Dépendance (enfants):
     - ChaufEau_ChaufType
     - Cuisiniere_Energie
     - Chauffage_Logement
-    "D\xE9pendance (parents)":
+    Dépendance (parents):
     - Territoire_HQ
     - Type_Batiment
     - An_ConstructionCode
     Nom: Source_Energie_Chauf
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Electricite
     - Mazout
@@ -842,52 +798,51 @@
     - Bi-energie
     - Bois
     id: 14
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Spa_Logement:
-    Description: "Le spa est-il \xE0 l'int\xE9rieur ou \xE0 l'ext\xE9rieur de la r\xE9\
-      sidence?"
-    "D\xE9pendance (enfants)":
+    Description: Le spa est-il à l'intérieur ou à l'extérieur de la résidence?
+    Dépendance (enfants):
     - Spa_Saison
-    "D\xE9pendance (parents)":
+    Dépendance (parents):
     - Spa_Presence
     - Type_Logement
     Nom: Spa_Logement
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Aucun
     - Exterieur
     - Interieur
     id: 17
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Spa_Presence:
-    Description: "Avez-vous un spa \xE0 votre r\xE9sidence?"
-    "D\xE9pendance (enfants)":
+    Description: Avez-vous un spa à votre résidence?
+    Dépendance (enfants):
     - Spa_Logement
     - Spa_Saison
-    "D\xE9pendance (parents)":
+    Dépendance (parents):
     - Region_Administrative
     - Type_Logement
     Nom: Spa_Presence
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Oui
     - Non
     id: 16
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Spa_Saison:
-    Description: "Avez-vous utilis\xE9 votre spa\u2026? (Printemps, \xE9t\xE9, automne,\
-      \ hiver, pas utilis\xE9)"
-    "D\xE9pendance (enfants)":
+    Description: Avez-vous utilisé votre spa…? (Printemps, été, automne, hiver, pas
+      utilisé)
+    Dépendance (enfants):
     - Spa_Utilisation_SaisonChaude
     - Spa_Utilisation_SaisonFroide
-    "D\xE9pendance (parents)":
+    Dépendance (parents):
     - Spa_Presence
     - Spa_Logement
     Nom: Spa_Saison
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Aucun
-    - "Pas utilis\xE9"
+    - Pas utilisé
     - Ne sait pas
     - Toute_Saison
     - Printemps
@@ -904,45 +859,45 @@
     - Printemps_Automne_Hiver
     - Ete_Automne_Hiver
     id: 18
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Spa_Utilisation_SaisonChaude:
-    Description: "Lequel des deux \xE9nonc\xE9s suivants correspond le mieux \xE0\
-      \ vos habitudes durant les mois chauds de la derni\xE8re ann\xE9e?"
-    "D\xE9pendance (enfants)": []
-    "D\xE9pendance (parents)":
+    Description: Lequel des deux énoncés suivants correspond le mieux à vos habitudes
+      durant les mois chauds de la dernière année?
+    Dépendance (enfants): []
+    Dépendance (parents):
     - Spa_Saison
     Nom: Spa_Utilisation_SaisonChaude
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Aucun
     - Ne sais pas
     - Constant
     - Augmentation
     id: 19
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Spa_Utilisation_SaisonFroide:
-    Description: "Lequel des deux \xE9nonc\xE9s suivants correspond le mieux \xE0\
-      \ vos habitudes durant les mois froids de la derni\xE8re ann\xE9e?"
-    "D\xE9pendance (enfants)": []
-    "D\xE9pendance (parents)":
+    Description: Lequel des deux énoncés suivants correspond le mieux à vos habitudes
+      durant les mois froids de la dernière année?
+    Dépendance (enfants): []
+    Dépendance (parents):
     - Spa_Saison
     Nom: Spa_Utilisation_SaisonFroide
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Aucun
     - Ne sais pas
     - Constant
     - Augmentation
     id: 20
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Superficie_Totale:
-    Description: "Quelle est la superficie TOTALE habitable de votre r\xE9sidence\
-      \ incluant le sous-sol et le garage?"
-    "D\xE9pendance (enfants)": []
-    "D\xE9pendance (parents)":
+    Description: Quelle est la superficie TOTALE habitable de votre résidence incluant
+      le sous-sol et le garage?
+    Dépendance (enfants): []
+    Dépendance (parents):
     - Nombre_Pieces
     Nom: Superficie_Totale
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - '[1 - 500)'
     - '[500 - 1000)'
@@ -956,40 +911,36 @@
     - '[4500 - 5000)'
     - '>= 5000'
     id: 6
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Territoire_HQ:
     Description: Territoire HQ
-    "D\xE9pendance (enfants)":
+    Dépendance (enfants):
     - Region_Administrative
     - Source_Energie_Chauf
-    "D\xE9pendance (parents)": []
+    Dépendance (parents): []
     Nom: Territoire_HQ
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
-    - "Est et Nord du Qu\xE9bec"
-    - Laurentides
-    - Montmorency
-    - "Montr\xE9al"
-    - Richelieu
+    - Calgary
     id: 0
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Type_Batiment:
     Description: De quel genre d'habitation s'agit-il?
-    "D\xE9pendance (enfants)":
+    Dépendance (enfants):
     - Source_Energie_Chauf
-    "D\xE9pendance (parents)":
+    Dépendance (parents):
     - Type_Logement
     Nom: Type_Batiment
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Collective
     - Plex
     - Maison
     id: 3
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Type_Logement:
     Description: De quel genre d'habitation s'agit-il?
-    "D\xE9pendance (enfants)":
+    Dépendance (enfants):
     - Type_Batiment
     - Nombre_Etages
     - Nombre_Pieces
@@ -1015,10 +966,10 @@
     - Cuisiniere_Presence
     - Eclairage_LED
     - Infiltration
-    "D\xE9pendance (parents)":
+    Dépendance (parents):
     - Region_Administrative
     Nom: Type_Logement
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Collective
     - Triplex
@@ -1026,31 +977,30 @@
     - Maison en rangee
     - Maison individuelle
     id: 2
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Vehicule_BornePresence:
-    Description: "Disposez-vous d'une borne de recharge reli\xE9e \xE0 votre compteur\
-      \ d'\xE9lectricit\xE9?"
-    "D\xE9pendance (enfants)": []
-    "D\xE9pendance (parents)":
+    Description: Disposez-vous d'une borne de recharge reliée à votre compteur d'électricité?
+    Dépendance (enfants): []
+    Dépendance (parents):
     - Type_Logement
     - Vehicule_Presence
     Nom: Vehicule_BornePresence
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Aucun
     - Oui
     - Non
     id: 28
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien
   Vehicule_Presence:
-    Description: "Voiture(s) \xE9lectrique? (Base totale)"
-    "D\xE9pendance (enfants)":
+    Description: Voiture(s) électrique? (Base totale)
+    Dépendance (enfants):
     - Vehicule_BornePresence
-    "D\xE9pendance (parents)":
+    Dépendance (parents):
     - Region_Administrative
     - Type_Logement
     Nom: Vehicule_Presence
-    Source: "EUEMR modifi\xE9"
+    Source: EUEMR modifié
     Valeurs:
     - Aucune_VE_Aucune_VHR
     - Une_VE_Aucune_VHR
@@ -1062,4 +1012,4 @@
     - Deux_VE_Deux_VHR
     - Aucune_VE_Deux_VHR
     id: 27
-    "\xC9chantillonneur": "R\xE9seau Bayesien"
+    Échantillonneur: Réseau Bayesien

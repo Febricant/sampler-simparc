@@ -14,51 +14,21 @@ class MapHPXML:
         # Initialize with values that should not be parsed
         dct_HPXML = {k: dct_args[k] for k in dct_args.keys() if k in self.HPXMLArg.arguments.keys()}
 
-        # --- CALGARY FUEL OVERRIDE ---------------------------------------------
-        # 'Bi-energie' (dual-energy) is a Hydro-Quebec-only tariff with no Alberta
-        # equivalent. Intercept the row BEFORE any heating rule runs and recode it
-        # to natural gas. Mutating dct_args (not just dct_HPXML) makes it propagate
-        # to building-input.csv AND to the heating_system_fuel rule that reads
-        # Source_Energie_Chauf (elif dct_args[arg] in ["Bi-energie"]:).
-        if dct_args.get("Source_Energie_Chauf") == "Bi-energie":
-            dct_args["Source_Energie_Chauf"] = "Gaz naturel"
-        # -----------------------------------------------------------------------
+        # ---- CALGARY HARDCODE: single-region (Calgary, Alberta) ----------------
+        # The generator runs exclusively for Calgary. Collapse the raw geographic
+        # draws so every output row is Calgary/Alberta, replacing the former
+        # multi-region Territoire_HQ / Region_Administrative weather switch.
+        dct_args["Territoire_HQ"] = "Calgary"
+        dct_args["Region_Administrative"] = "Alberta"
 
-        # _______________________________________________________________
-        # weather_station_epw_filepath
-        # Dwelling type
-        arg = "Territoire_HQ"
-        argHPXML = "weather_station_epw_filepath"
-        if (argHPXML not in dct_HPXML.keys()):
-            if (arg in dct_args.keys()):
-                if dct_args[arg] in ["Est et Nord du Québec"]:
-                    dct_HPXML[argHPXML] = "2020s_CAN_QC_Saguenay-Bagotville.AP-CFB.Bagotville.717270_CWEC2016.epw"
-                elif dct_args[arg] == "Laurentides":
-                    dct_HPXML[argHPXML] = "2020s_CAN_QC_Montreal-McTavish.716120_CWEC2016.epw"
-                elif dct_args[arg] == "Montmorency":
-                    dct_HPXML[argHPXML] = "2020s_CAN_QC_Quebec-Lesage.Intl.AP.717140_CWEC2016.epw"
-                    # dct_HPXML[argHPXML] = 'manufactured home' never create
-                elif dct_args[arg] == "Montréal":
-                    dct_HPXML[argHPXML] = "2020s_CAN_QC_Montreal-McTavish.716120_CWEC2016.epw"
-                elif dct_args[arg] == "Richelieu":
-                    dct_HPXML[argHPXML] = "2020s_CAN_QC_Montreal-McTavish.716120_CWEC2016.epw"
-            else:
-                if self.HPXMLArg.arguments[argHPXML].get("Default Value",
-                                                         "Defaut_Not_Existing") != "Defaut_Not_Existing":
-                    dct_HPXML[argHPXML] = self.HPXMLArg.arguments[argHPXML].get("Default Value")
-                else:
-                    dct_HPXML[argHPXML] = "2020s_CAN_QC_Montreal-McTavish.716120_CWEC2016.epw"
+        # weather_station_epw_filepath -- universal Calgary EPW (region switch removed)
+        dct_HPXML["weather_station_epw_filepath"] = "CAN_AB_Calgary.Intl.AP.718770_CWEC2020.epw"
 
         # simulation_control_daylight_saving_enabled
-        argHPXML = "simulation_control_daylight_saving_enabled"
-        if (argHPXML not in dct_HPXML.keys()):
-            dct_HPXML[argHPXML] = True
+        dct_HPXML["simulation_control_daylight_saving_enabled"] = True
 
-        # site_time_zone_utc_offset
-        argHPXML = "site_time_zone_utc_offset"
-        if (argHPXML not in dct_HPXML.keys()):
-            dct_HPXML[argHPXML] = True
-        dct_HPXML[argHPXML] = -5
+        # site_time_zone_utc_offset -- Mountain Time
+        dct_HPXML["site_time_zone_utc_offset"] = -7
 
         # ________________________________________________________________
         # Type de Logement
@@ -6228,18 +6198,6 @@ class MapHPXML:
                    "rim_joist_assembly_interior_r",
                    "exterior_finish_r"]
         dct_HPXML = {k: v for k, v in dct_HPXML.items() if k not in Exclude}
-
-        # --- CALGARY LOCATION OVERRIDE -----------------------------------------
-        # Force Calgary climate/site for EVERY dwelling, overriding the Quebec
-        # logic above (EPW from Territoire_HQ; the unconditional '... = -5' UTC).
-        # Placed last so it always wins.
-        dct_HPXML["weather_station_epw_filepath"] = "CAN_AB_Calgary.Intl.AP.718770_CWEC2020.epw"
-        dct_HPXML["site_time_zone_utc_offset"] = -7.0   # Mountain Time (was -5 Eastern)
-        # The real OS-HPXML arg is simulation_control_daylight_saving_enabled
-        # (there is no site_dst_enabled). Keep DST on:
-        dct_HPXML["simulation_control_daylight_saving_enabled"] = True
-        # -----------------------------------------------------------------------
-
         return dct_HPXML
 
     def run(self, lst_dct_args):

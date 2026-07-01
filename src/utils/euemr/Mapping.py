@@ -103,34 +103,17 @@ class EUEMR_formatage:
                                             "Bi-energie" : ["Bi-énergie"],
                                             "Bois" : ["Bois seul ou en combinaison"]}}
         
+        # CALGARY HARDCODE: collapsed to a single territory / region.
+        # The legacy Quebec Hydro territories and 15 administrative regions were removed.
         self.Mapping["Territoire_HQ"] = {}
         self.Mapping["Territoire_HQ"]["ColSrc"] = "TERR_HQ"
         self.Mapping["Territoire_HQ"]["typeMapping"] = "list"
-        self.Mapping["Territoire_HQ"]["Mapping"] = {"Est et Nord du Québec" : ["Est et nord du Québec"],
-                                                     "Laurentides": ["Laurentides"],
-                                                     "Montmorency": ["Montmorency"],
-                                                     "Montréal": ["Montréal"],
-                                                     "Richelieu": ["Richelieu"]}
+        self.Mapping["Territoire_HQ"]["Mapping"] = {"Calgary": ["Calgary"]}
+
         self.Mapping["Region_Administrative"] = {}
         self.Mapping["Region_Administrative"]["ColSrc"] = "ZONE"
         self.Mapping["Region_Administrative"]["typeMapping"] = "custom"
-        self.Mapping["Region_Administrative"]["Mapping"] = {"Bas-Saint-Laurent":None,
-                                                            "Capitale-Nationale":None,
-                                                            "Centre-du-Québec":None,
-                                                            "Chaudière-Appalaches":None,
-                                                            "Côte-Nord":None,
-                                                            "Estrie":None,
-                                                            "Gaspésie-Îles-de-la-Madeleine":None,
-                                                            "Lanaudière":None,
-                                                            "Laurentides":None,
-                                                            "Laval":None,
-                                                            "Mauricie":None,
-                                                            "Montérégie":None,
-                                                            "Montréal":None,
-                                                            "Outaouais":None,
-                                                            "Saguenay-Lac-Saint-Jean":None}
-        # "Abitibi-Temiscamingue": None,
-        # "Nord-du-Quebec": None,
+        self.Mapping["Region_Administrative"]["Mapping"] = {"Alberta": None}
 
         self.Mapping["Nombre_Pieces"] = {}
         self.Mapping["Nombre_Pieces"]["ColSrc"] = "QH1"
@@ -489,11 +472,7 @@ class EUEMR_formatage:
         self.Pond_Mapping["Territoire"] = {}
         self.Pond_Mapping["Territoire"]["ColSrc"] = "TERR_HQ" # only for the get_Mettadata method
         self.Pond_Mapping["Territoire"]["typeMapping"] = "list"
-        self.Pond_Mapping["Territoire"]["Mapping"] = {"0_Montreal": ["Montréal"],
-                                                        "1_Laurentides": ["Laurentides"],
-                                                        "2_Montmorency": ["Montmorency"],
-                                                        "3_Nord-Est": ["Est et nord du Québec"],
-                                                        "4_Richelieu": ["Richelieu"]}
+        self.Pond_Mapping["Territoire"]["Mapping"] = {"Calgary": ["Calgary"]}
         
         self.Pond_Mapping["Typo"] = {}
         self.Pond_Mapping["Typo"]["ColSrc"] = "Type_Logement" # only for the get_Mettadata method
@@ -705,22 +684,9 @@ class EUEMR_formatage:
                                                                 else ("Trois_VE_Deux_VHR" if ((row["QT2R"] in ["Trois"]) and (row["QT3R"] in ["Deux"]))\
                                                                 else None))))))))))), axis=1).rename(ColName)
                     elif ColName == "Region_Administrative":
-                        return dfEUEMrSrc_ColName.apply(lambda row: "Outaouais" if ((row["ZONE"] in ["Outaouais rural", "CUO"]))\
-                                                                else("Laurentides" if ((row["ZONE"] in ["Milles-Îles", "Antoine-Labelle", "Le Noroit"]))\
-                                                                else("Montréal" if ((row["ZONE"] in ["IDM Est", "IDM Nord", "IDM Ouest", "IDM Sud"]))\
-                                                                else("Capitale-Nationale" if ((row["ZONE"] in ["CUQ", "Montmorency-nord", "Appalaches"]))\
-                                                                else("Mauricie" if ((row["ZONE"] in ["St-Maurice"]))\
-                                                                else("Côte-Nord" if ((row["ZONE"] in ["Côte-Nord"]))\
-                                                                else("Chaudière-Appalaches" if ((row["ZONE"] in ["Lévis", "Appalaches"]))\
-                                                                else("Montérégie" if ((row["ZONE"] in ["Chateauguay-Vaudreuil", "Le Haut St-Laurent", "Des Seigneuries", "Drummonville", "Ozias-Leduc"]) or ((row["ZONE"] in ["Sorel-Victoriaville"]) and (row["MONTREAL_RMR"] in ["Montréal RMR"])))\
-                                                                else("Estrie" if ((row["ZONE"] in ["Des Cantons"]))\
-                                                                else("Centre-du-Québec" if ((row["ZONE"] in ["Drummonville"]) or ((row["ZONE"] in ["Sorel-Victoriaville"]) and (row["MONTREAL_RMR"] in ["Pas Montréal RMR"])))\
-                                                                else("Laval" if ((row["ZONE"] in ["Laval"]))\
-                                                                else("Lanaudière" if ((row["ZONE"] in ["Lanaudière"]))\
-                                                                else("Saguenay-Lac-Saint-Jean" if ((row["ZONE"] in ["Saguenay"]))\
-                                                                else("Bas-Saint-Laurent" if ((row["ZONE"] in ["Bas St-Laurent"]))\
-                                                                else("Gaspésie-Îles-de-la-Madeleine" if ((row["ZONE"] in ["Gaspésie"]))\
-                                                                else None)))))))))))))), axis=1).rename(ColName)
+                        # CALGARY HARDCODE: single region; the legacy ZONE -> Quebec-region
+                        # switch (Outaouais, Laurentides, Montreal, ... 15 regions) was removed.
+                        return dfEUEMrSrc_ColName.apply(lambda row: "Alberta", axis=1).rename(ColName)
                     
                     elif ColName == "Vintage":
                         return dfEUEMrSrc_ColName.apply(lambda row: "pre-1945" if row["QA6M"] in [i for i in range(1500, 1945+1)]\

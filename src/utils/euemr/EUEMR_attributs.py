@@ -59,48 +59,18 @@ class Attributs_EUEMr(object):
     QA6M["Type"] = "Entier"
 
     # TERR_HQ: Utility territory of the dwelling
+    # CALGARY HARDCODE: single territory; the 5 Hydro-Quebec territories were removed.
     TERR_HQ = {}
-    TERR_HQ["Label"] = ["Est et nord du Québec",
-                        "Laurentides",
-                        "Montmorency",
-                        "Montréal",
-                        "Richelieu"]
-    TERR_HQ["IdLabel"] = ["0", "1", "2", "3", "4"]
-    TERR_HQ["Description"] = "Territoire HQ"
+    TERR_HQ["Label"] = ["Calgary"]
+    TERR_HQ["IdLabel"] = ["0"]
+    TERR_HQ["Description"] = "Territory (Calgary, Alberta)"
     TERR_HQ["Type"] = "discrete"
 
+    # CALGARY HARDCODE: single zone; the 27 Quebec billing zones were removed.
     ZONE = {}
-    ZONE["Label"] = ["Outaouais rural",
-                     "Milles-Îles",
-                     "IDM Est",
-                     "IDM Nord",
-                     "CUQ",
-                     "CUO",
-                     "St-Maurice",
-                     "Côte-Nord",
-                     "Le Noroit",
-                     "IDM Ouest",
-                     "Chateauguay-Vaudreuil",
-                     "Des Cantons",
-                     "Sorel-Victoriaville",
-                     "Drummonville",
-                     "Lévis",
-                     "IDM Sud",
-                     "Laval",
-                     "Montmorency-nord",
-                     "Saguenay",
-                     "Le Haut St-Laurent",
-                     "Bas St-Laurent",
-                     "Gaspésie",
-                     "Appalaches",
-                     "Antoine-Labelle",
-                     "Des Seigneuries",
-                     "Lanaudière",
-                     "Ozias-Leduc"]
-    ZONE["IdLabel"] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-                        "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-                          "21", "22", "23", "24", "25", "26"]
-    ZONE["Description"] = "Zone du Québec"
+    ZONE["Label"] = ["Calgary"]
+    ZONE["IdLabel"] = ["0"]
+    ZONE["Description"] = "Zone (Calgary, Alberta)"
     ZONE["Type"] = "discrete"
 
     # QA4R: Dwelling type (code: Multi, Uni, Plex)

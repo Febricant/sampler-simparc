@@ -17,3 +17,14 @@ openstudio-3.9.0
 
 # ignore dask output
 dask-report-*
+# Stale second virtualenv (the pattern above only covers .venv)
+.venv-1/
+
+# pytest
+.pytest_cache/
+
+# Loose run outputs written next to the input CSV.
+# smoke-test.csv is kept deliberately: tests/ uses it as a fixture.
+/test.csv
+/all-simulations.csv
+/results_*.csv

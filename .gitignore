@@ -6,6 +6,11 @@ data/input/*
 !data/input/housing_characteristics/
 !data/output/
 
+# Alberta re-calibration: version the provenance log only, not the pulled data
+!data/input/alberta/
+data/input/alberta/*
+!data/input/alberta/SOURCES.md
+
 # Ignore __pycache__ directories
 __pycache__/
 

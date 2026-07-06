@@ -121,3 +121,227 @@ def dedupe_stock(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+# --------------------------------------------------------------------------- #
+# 3. Mapping framework: EnerGuide vocabulary -> BN state labels
+# --------------------------------------------------------------------------- #
+
+class UnmappedValueError(AssertionError):
+    """Raised when the EnerGuide data contains a category we never mapped."""
+
+
+class EnerGuideToBN:
+    """Translate EnerGuide columns into the BN's exact (French) state labels.
+
+    Design rules:
+    - Target labels are copied verbatim from Bn.yml and *verified against it
+      at runtime* (`verify_against_bnyml`), so a typo here or a future BN
+      regeneration cannot silently desynchronize the two.
+    - Source keys are matched case-insensitively (the open data mixes
+      "Single detached" / "Single Detached" across years).
+    - Any source value without a mapping raises UnmappedValueError listing
+      the offending values and their counts - never a silent NaN.
+    """
+
+    # ----- Type_Logement --------------------------------------------------- #
+    # BN states: Collective | Triplex | Duplex | Maison en rangee | Maison individuelle
+    #
+    # Best-guess correspondences (to iterate on together):
+    # - "Double/Semi-detached" -> Duplex: two dwellings sharing one structure.
+    #   NOTE Quebec's "Duplex" usually means *stacked* units, while a
+    #   semi-detached is side-by-side; the alternative reading is
+    #   "Maison individuelle" (jumelee). Flagged for review.
+    # - "Mobile home" -> Maison individuelle: the BN has no mobile-home state;
+    #   detached single dwelling is the closest geometry (143+39 rows only).
+    # - "Apartment Row" (row-oriented MURB) -> Collective.
+    TYPE_LOGEMENT = {
+        "single detached": "Maison individuelle",
+        "mobile home": "Maison individuelle",
+        "row house, end unit": "Maison en rangee",
+        "row house, middle unit": "Maison en rangee",
+        "row, end unit": "Maison en rangee",
+        "row, middle unit": "Maison en rangee",
+        "double/semi-detached": "Duplex",
+        "attached duplex": "Duplex",
+        "detached duplex": "Duplex",
+        "duplex (non-murb)": "Duplex",
+        "attached triplex": "Triplex",
+        "detached triplex": "Triplex",
+        "apartment": "Collective",
+        "apartment row": "Collective",
+    }
+
+    # ----- An_Construction (binning, not a dict) --------------------------- #
+    # BN states (Bn.yml): "< 1950", "[1950 - 1960)", ..., "[2010 - 2020)", ">= 2020"
+    AN_CONSTRUCTION_EDGES = [1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020]
+    AN_CONSTRUCTION_LABELS = [
+        "< 1950", "[1950 - 1960)", "[1960 - 1970)", "[1970 - 1980)",
+        "[1980 - 1990)", "[1990 - 2000)", "[2000 - 2010)", "[2010 - 2020)",
+        ">= 2020",
+    ]
+
+    # ----- Source_Energie_Chauf -------------------------------------------- #
+    # BN states: Electricite | Mazout | Gaz naturel | Bi-energie | Bois
+    #
+    # - "Bi-energie" is a Hydro-Quebec-only tariff: nothing maps to it, so its
+    #   probability will land at 0 while the state name is preserved.
+    # - Propane -> Gaz naturel: closest combustion-gas equipment class in the
+    #   BN vocabulary (0.13% of AB rows). Flagged for review.
+    # - All wood variants (4 spellings) -> Bois.
+    SOURCE_ENERGIE_CHAUF = {
+        "natural gas": "Gaz naturel",
+        "propane": "Gaz naturel",
+        "electricity": "Electricite",
+        "oil": "Mazout",
+        "mixed wood": "Bois",
+        "hardwood": "Bois",
+        "softwood": "Bois",
+        "wood pellets": "Bois",
+    }
+
+    # (source column, output column, mapping dict) for the dict-based nodes
+    DICT_MAPPINGS = [
+        ("TYPEOFHOUSE", "Type_Logement", TYPE_LOGEMENT),
+        ("FURNACEFUEL", "Source_Energie_Chauf", SOURCE_ENERGIE_CHAUF),
+    ]
+
+    # ------------------------------------------------------------------ #
+
+    def apply(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Add one BN-labelled column per mapped node; loud on unmapped values."""
+        df = df.copy()
+        for src_col, out_col, mapping in self.DICT_MAPPINGS:
+            df[out_col] = self._map_column(df[src_col], mapping, src_col)
+        df["An_Construction"] = self._bin_an_construction(df["YEARBUILT"])
+        return df
+
+    @staticmethod
+    def _map_column(series: pd.Series, mapping: dict[str, str],
+                    src_name: str) -> pd.Series:
+        """Case-insensitive dict lookup that fails loudly on unmapped values."""
+        normalized = series.str.strip().str.casefold()
+        mapped = normalized.map(mapping)
+        bad = normalized[mapped.isna() & normalized.notna()]
+        if len(bad):
+            counts = bad.value_counts().to_dict()
+            raise UnmappedValueError(
+                f"{src_name}: unmapped categories {counts} - "
+                f"extend EnerGuideToBN mappings"
+            )
+        return mapped
+
+    @classmethod
+    def _bin_an_construction(cls, yearbuilt: pd.Series) -> pd.Series:
+        """YEARBUILT (text) -> the BN's 9 An_Construction vintage bins.
+
+        Junk years (outside [YEARBUILT_MIN, YEARBUILT_MAX]) become NaN and are
+        counted by the caller's sanity report rather than crashing: unlike a
+        category typo, a bad year is a data-entry problem in the source, not a
+        mapping gap.
+        """
+        years = pd.to_numeric(yearbuilt, errors="coerce")
+        years = years.where((years >= YEARBUILT_MIN) & (years <= YEARBUILT_MAX))
+        binned = pd.cut(
+            years,
+            bins=[-np.inf, *cls.AN_CONSTRUCTION_EDGES, np.inf],
+            labels=cls.AN_CONSTRUCTION_LABELS,
+            right=False,  # [1950, 1960) etc., matching the BN labels
+        )
+        return binned.astype(object)
+
+    # ------------------------------------------------------------------ #
+
+    def verify_against_bnyml(self) -> None:
+        """Assert every mapping target is a real state label in Bn.yml."""
+        import yaml
+        docs = yaml.safe_load(open(BN_YML, encoding="utf-8"))
+        labels = docs[1]  # documents: 0=descriptions, 1=state labels, 2=structure
+        checks = [
+            ("Type_Logement", set(self.TYPE_LOGEMENT.values())),
+            ("Source_Energie_Chauf", set(self.SOURCE_ENERGIE_CHAUF.values())),
+            ("An_Construction", set(self.AN_CONSTRUCTION_LABELS)),
+        ]
+        for node, targets in checks:
+            valid = set(labels[node].values())
+            rogue = targets - valid
+            assert not rogue, (
+                f"{node}: mapping targets {rogue} are not states in Bn.yml "
+                f"(valid: {sorted(valid)})"
+            )
+        print("  mapping targets verified against Bn.yml")
+
+
+# --------------------------------------------------------------------------- #
+# 4. Raking placeholder (Phase 2b)
+# --------------------------------------------------------------------------- #
+
+def rake_to_census_margins(df: pd.DataFrame,
+                           margins: dict[str, pd.Series] | None = None
+                           ) -> pd.DataFrame:
+    """Post-stratify (IPF) the mapped table to Calgary census margins.
+
+    EnerGuide is a self-selected sample (retrofit-grant applicants + new-home
+    labelling), so raw counts over-represent older detached homes. This step
+    will assign each record a weight `POND_AB` such that the weighted margins
+    of Type_Logement x An_Construction x Mode_Occupation match Census 2021
+    (Calgary CSD) targets, mirroring how the Quebec pipeline rakes EUEMr with
+    POND1/PONDNew.
+
+    Implementation plan (Phase 2b):
+    - adapt `Create_Pond` from src/utils/euemr/Mapping.py (its IPF loop over
+      raked_data.csv targets is exactly this operation);
+    - margins come from the census extracts logged in
+      data/input/alberta/SOURCES.md;
+    - until then, every record gets weight 1.0 so downstream code can already
+      consume the `POND_AB` column.
+    """
+    if margins is not None:
+        raise NotImplementedError(
+            "IPF raking lands in Phase 2b (adapt Create_Pond from "
+            "src/utils/euemr/Mapping.py); margins were provided but no "
+            "raking logic exists yet."
+        )
+    df = df.copy()
+    df["POND_AB"] = 1.0
+    print("  raking: placeholder weights POND_AB=1.0 (IPF lands in Phase 2b)")
+    return df
+
+
+# --------------------------------------------------------------------------- #
+# Pipeline
+# --------------------------------------------------------------------------- #
+
+def build(save: bool = True) -> pd.DataFrame:
+    df = load_energuide()
+    df = dedupe_stock(df)
+
+    mapper = EnerGuideToBN()
+    mapper.verify_against_bnyml()
+    df = mapper.apply(df)
+
+    n_bad_year = df["An_Construction"].isna().sum()
+    if n_bad_year:
+        print(f"  note: {n_bad_year} houses with invalid YEARBUILT "
+              f"(outside [{YEARBUILT_MIN}, {YEARBUILT_MAX}]) -> An_Construction=NaN")
+
+    df = rake_to_census_margins(df)
+
+    # ---- sanity report ---------------------------------------------------- #
+    print("\n=== sanity report (existing-stock cohort, unweighted) ===")
+    stock = df[df["cohort"] == "existing"]
+    print("\nType_Logement shares:")
+    print(stock["Type_Logement"].value_counts(normalize=True).round(4).to_string())
+    print("\nSource_Energie_Chauf shares:")
+    print(stock["Source_Energie_Chauf"].value_counts(normalize=True).round(4).to_string())
+    print("\nAn_Construction x Type_Logement (counts):")
+    xtab = pd.crosstab(stock["An_Construction"], stock["Type_Logement"])
+    xtab = xtab.reindex(EnerGuideToBN.AN_CONSTRUCTION_LABELS)
+    print(xtab.to_string())
+
+    if save:
+        df.to_parquet(OUT_PATH, index=False)
+        print(f"\nwrote {len(df):,} rows -> {OUT_PATH.relative_to(REPO_ROOT)}")
+    return df
+
+
+if __name__ == "__main__":
+    build()

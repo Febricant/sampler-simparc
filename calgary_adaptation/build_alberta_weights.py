@@ -271,6 +271,108 @@ class EnerGuideToBN:
 
 
 # --------------------------------------------------------------------------- #
+# 4. Raking (Phase 2b): IPF to Calgary 2021 census margins
+# --------------------------------------------------------------------------- #
+#
+# The Quebec pipeline's Create_Pond (src/utils/euemr/Mapping.py:723) is a
+# direct post-stratification: PONDNew = target_share / sample_share per JOINT
+# (Vintage x Territoire x Typo x Source) cell, read from raked_data.csv. That
+# only works when every joint cell is populated. Our EnerGuide pull has
+# essentially no Collective records (0.06% vs ~30% of the real stock), so most
+# Collective joint cells are EMPTY and the direct method divides by zero.
+#
+# We therefore keep Create_Pond's core ratio idea but apply it ITERATIVELY,
+# one margin at a time (classical IPF / raking): each pass multiplies the
+# weights by target_share/current_share of ONE margin, cycling until all
+# margins agree. IPF needs support per marginal category only - far weaker
+# than joint support - and the remaining pathologies are handled explicitly:
+#   * a target category with ZERO sample support cannot be raked to: it is
+#     dropped from the margin (renormalized) with a loud warning;
+#   * critically sparse categories converge mathematically but concentrate
+#     huge weight on a handful of rows: an optional trim-and-re-rake loop
+#     caps single-row weights, and Kish effective-sample-size diagnostics
+#     make the concentration visible instead of silent.
+
+# ---- Census 2021 targets, Calgary CSD (4806016), occupied private dwellings.
+# Hardcoded estimates for now - derived from the 2021 Census Profile
+# (structural type, period of construction, tenure), with census categories
+# folded onto the BN vocabulary:
+#   Maison individuelle = single-detached + movable
+#   Duplex              = semi-detached + apartment/flat in a duplex
+#   Maison en rangee    = row house + other single-attached
+#   Collective          = apartment <5 storeys + apartment >=5 storeys
+#   Triplex             = no census category (folded into low-rise apartments
+#                         by StatCan); tiny share carved out of Collective
+# Period-of-construction census bins ("1960 or before", "1961-1980", ...) are
+# split onto the BN decade bins. TODO Phase 2b-doc: replace with exact table
+# extracts and log retrieval in data/input/alberta/SOURCES.md.
+CENSUS_MARGINS_CALGARY_2021: dict[str, dict[str, float]] = {
+    "Type_Logement": {
+        "Maison individuelle": 0.552,
+        "Maison en rangee":    0.088,
+        "Duplex":              0.084,
+        "Triplex":             0.005,
+        "Collective":          0.271,
+    },
+    "An_Construction": {
+        "< 1950":         0.035,
+        "[1950 - 1960)":  0.048,
+        "[1960 - 1970)":  0.105,
+        "[1970 - 1980)":  0.158,
+        "[1980 - 1990)":  0.129,
+        "[1990 - 2000)":  0.135,
+        "[2000 - 2010)":  0.211,
+        "[2010 - 2020)":  0.155,
+        ">= 2020":        0.024,
+    },
+    "Mode_Occupation": {
+        "Proprietaire": 0.709,
+        "Locataire":    0.291,
+    },
+}
+
+# Census-conditional owner share by dwelling type (Calgary 2021, tenure x
+# structural type). Used ONLY to impute Mode_Occupation - EnerGuide records
+# no tenure - so this column carries census structure, not EnerGuide signal.
+OWNER_SHARE_BY_TYPE = {
+    "Maison individuelle": 0.87,
+    "Duplex":              0.62,
+    "Maison en rangee":    0.62,
+    "Triplex":             0.35,
+    "Collective":          0.38,
+}
+
+RAKING_VARS = list(CENSUS_MARGINS_CALGARY_2021)
+
+
+def impute_mode_occupation(df: pd.DataFrame, seed: int = 20260707) -> pd.DataFrame:
+    """Draw Locataire/Proprietaire per record from P(tenure | Type_Logement).
+
+    EnerGuide has no tenure field, but Mode_Occupation is both a BN node and a
+    census raking margin. Imputing it conditionally on dwelling type gives the
+    pseudo-survey a tenure column whose JOINT structure with type follows the
+    census; the subsequent IPF pass then pins its marginal exactly. Fixed seed
+    -> reproducible builds.
+    """
+    rng = np.random.default_rng(seed)
+    p_owner = df["Type_Logement"].map(OWNER_SHARE_BY_TYPE)
+    assert not p_owner.isna().any(), (
+        "Type_Logement values missing from OWNER_SHARE_BY_TYPE: "
+        f"{sorted(set(df['Type_Logement'][p_owner.isna()]))}"
+    )
+    df = df.copy()
+    df["Mode_Occupation"] = np.where(
+        rng.random(len(df)) < p_owner.to_numpy(), "Proprietaire", "Locataire"
+    )
+    return df
+
+
+def _kish_neff(w: np.ndarray) -> float:
+    """Kish effective sample size: (sum w)^2 / sum w^2."""
+    return float(w.sum() ** 2 / np.square(w).sum()) if len(w) else 0.0
+
+
+# --------------------------------------------------------------------------- #
 # 4. Raking placeholder (Phase 2b)
 # --------------------------------------------------------------------------- #
 

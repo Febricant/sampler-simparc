@@ -372,39 +372,146 @@ def _kish_neff(w: np.ndarray) -> float:
     return float(w.sum() ** 2 / np.square(w).sum()) if len(w) else 0.0
 
 
-# --------------------------------------------------------------------------- #
-# 4. Raking placeholder (Phase 2b)
-# --------------------------------------------------------------------------- #
+def ipf_rake(
+    df: pd.DataFrame,
+    margins: dict[str, dict[str, float]],
+    max_iter: int = 200,
+    tol: float = 1e-7,
+    max_weight_ratio: float | None = 500.0,
+    trim_rounds: int = 10,
+    min_support: int = 50,
+) -> tuple[np.ndarray, dict[str, dict[str, float]]]:
+    """Iterative proportional fitting of row weights to categorical margins.
 
-def rake_to_census_margins(df: pd.DataFrame,
-                           margins: dict[str, pd.Series] | None = None
-                           ) -> pd.DataFrame:
-    """Post-stratify (IPF) the mapped table to Calgary census margins.
+    Returns (weights, effective_margins). Weights are normalized to mean 1.
 
-    EnerGuide is a self-selected sample (retrofit-grant applicants + new-home
-    labelling), so raw counts over-represent older detached homes. This step
-    will assign each record a weight `POND_AB` such that the weighted margins
-    of Type_Logement x An_Construction x Mode_Occupation match Census 2021
-    (Calgary CSD) targets, mirroring how the Quebec pipeline rakes EUEMr with
-    POND1/PONDNew.
-
-    Implementation plan (Phase 2b):
-    - adapt `Create_Pond` from src/utils/euemr/Mapping.py (its IPF loop over
-      raked_data.csv targets is exactly this operation);
-    - margins come from the census extracts logged in
-      data/input/alberta/SOURCES.md;
-    - until then, every record gets weight 1.0 so downstream code can already
-      consume the `POND_AB` column.
+    Robustness mechanics:
+    - **Zero-support fallback**: a target category with no rows in `df` is
+      removed from its margin and the margin renormalized (loud warning) -
+      IPF cannot move mass onto an empty category, and pretending otherwise
+      is what makes naive implementations divide by zero. The dropped mass is
+      reported so downstream CPT-building knows census coverage is partial.
+    - **Sparse-category warning**: categories with < `min_support` rows still
+      converge, but the warning + per-category Kish n_eff printed by the
+      caller make the weight concentration explicit.
+    - **Trim-and-re-rake**: after convergence, weights above
+      `max_weight_ratio` x mean are capped and the IPF re-run on the capped
+      weights (`trim_rounds` rounds). Trimming trades exact margin agreement
+      for bounded single-row influence; the residual margin error is
+      reported by the caller. Set `max_weight_ratio=None` to disable.
     """
-    if margins is not None:
-        raise NotImplementedError(
-            "IPF raking lands in Phase 2b (adapt Create_Pond from "
-            "src/utils/euemr/Mapping.py); margins were provided but no "
-            "raking logic exists yet."
-        )
-    df = df.copy()
-    df["POND_AB"] = 1.0
-    print("  raking: placeholder weights POND_AB=1.0 (IPF lands in Phase 2b)")
+    n = len(df)
+    assert n > 0, "cannot rake an empty DataFrame"
+
+    # -- validate categories & apply the zero-support fallback ------------- #
+    eff_margins: dict[str, dict[str, float]] = {}
+    for var, target in margins.items():
+        observed = set(df[var].dropna().unique())
+        rogue = observed - set(target)
+        assert not rogue, f"{var}: data categories {sorted(rogue)} absent from census target"
+        empty = {c for c in target if c not in observed}
+        kept = {c: p for c, p in target.items() if c not in empty}
+        if empty:
+            lost = sum(target[c] for c in empty)
+            print(f"  WARNING {var}: no sample support for {sorted(empty)} "
+                  f"({lost:.1%} of census mass) - dropped from margin and renormalized")
+        total = sum(kept.values())
+        eff_margins[var] = {c: p / total for c, p in kept.items()}
+        sparse = {c: int((df[var] == c).sum()) for c in kept
+                  if (df[var] == c).sum() < min_support}
+        if sparse:
+            print(f"  WARNING {var}: critically sparse categories {sparse} "
+                  f"(< {min_support} rows) - weights will concentrate, watch n_eff")
+
+    # -- the IPF loop ------------------------------------------------------- #
+    codes = {var: df[var].to_numpy() for var in eff_margins}
+    w = np.ones(n)
+
+    def _rake_until_converged(w: np.ndarray) -> tuple[np.ndarray, float]:
+        for _ in range(max_iter):
+            max_dev = 0.0
+            for var, target in eff_margins.items():
+                cur = pd.Series(w).groupby(codes[var]).sum()
+                cur_share = cur / w.sum()
+                # factor per category; guard: cur>0 for all kept categories
+                factor = {c: target[c] / cur_share[c] for c in target}
+                w = w * pd.Series(codes[var]).map(factor).to_numpy()
+                dev = max(abs(cur_share[c] - target[c]) for c in target)
+                max_dev = max(max_dev, dev)
+            if max_dev < tol:
+                break
+        return w, max_dev
+
+    w, _ = _rake_until_converged(w)
+
+    # -- trim-and-re-rake ---------------------------------------------------- #
+    if max_weight_ratio is not None:
+        for round_ in range(trim_rounds):
+            cap = max_weight_ratio * w.mean()
+            over = w > cap
+            if not over.any():
+                break
+            w = np.minimum(w, cap)
+            w, _ = _rake_until_converged(w)
+        if over.any():
+            print(f"  trim: {int(over.sum())} weights still at the "
+                  f"{max_weight_ratio:.0f}x-mean cap after {trim_rounds} rounds")
+
+    return w / w.mean(), eff_margins
+
+
+def rake_to_census_margins(
+    df: pd.DataFrame,
+    margins: dict[str, dict[str, float]] | None = None,
+    max_weight_ratio: float | None = 500.0,
+) -> pd.DataFrame:
+    """Assign each record a census-calibrated weight POND_AB.
+
+    Rakes over ALL records (existing + new cohorts together): the census
+    describes the entire 2021 occupied stock, and nearly all of the sample's
+    scarce Collective / >=2020 support lives in the new-construction cohort -
+    excluding it would make those margins un-rakeable. Rows lacking a raking
+    variable (invalid YEARBUILT) are dropped with a note.
+
+    Prints a target-vs-achieved margin table (the convergence proof) plus
+    weight-concentration diagnostics (max weight, Kish n_eff overall and for
+    the sparsest dimension, Type_Logement).
+    """
+    margins = margins or CENSUS_MARGINS_CALGARY_2021
+
+    if "Mode_Occupation" not in df.columns:
+        df = impute_mode_occupation(df)
+
+    n0 = len(df)
+    df = df.dropna(subset=RAKING_VARS).copy()
+    if len(df) < n0:
+        print(f"  raking: dropped {n0 - len(df)} rows lacking a raking variable")
+
+    w, eff_margins = ipf_rake(df, margins, max_weight_ratio=max_weight_ratio)
+    df["POND_AB"] = w
+
+    # ---- convergence proof: target vs achieved ---------------------------- #
+    print("\n  === raking validation: census target vs weighted sample ===")
+    for var, target in eff_margins.items():
+        achieved = df.groupby(var)["POND_AB"].sum() / df["POND_AB"].sum()
+        unweighted = df[var].value_counts(normalize=True)
+        lines = pd.DataFrame({
+            "target": pd.Series(target),
+            "achieved": achieved,
+            "unweighted": unweighted,
+        }).reindex(target.keys())
+        lines["abs_err"] = (lines["achieved"] - lines["target"]).abs()
+        print(f"\n  {var}  (max |err| = {lines['abs_err'].max():.2e})")
+        print(lines.round(4).to_string())
+
+    # ---- weight-concentration diagnostics --------------------------------- #
+    print("\n  weight diagnostics: "
+          f"max={w.max():.1f}x mean, n={len(w):,}, "
+          f"Kish n_eff={_kish_neff(w):,.0f} "
+          f"({_kish_neff(w) / len(w):.1%} of nominal)")
+    for cat, grp in df.groupby("Type_Logement")["POND_AB"]:
+        print(f"    n_eff[{cat}] = {_kish_neff(grp.to_numpy()):,.0f} "
+              f"(n={len(grp):,})")
     return df
 
 
@@ -428,14 +535,16 @@ def build(save: bool = True) -> pd.DataFrame:
     df = rake_to_census_margins(df)
 
     # ---- sanity report ---------------------------------------------------- #
-    print("\n=== sanity report (existing-stock cohort, unweighted) ===")
-    stock = df[df["cohort"] == "existing"]
-    print("\nType_Logement shares:")
-    print(stock["Type_Logement"].value_counts(normalize=True).round(4).to_string())
-    print("\nSource_Energie_Chauf shares:")
-    print(stock["Source_Energie_Chauf"].value_counts(normalize=True).round(4).to_string())
-    print("\nAn_Construction x Type_Logement (counts):")
-    xtab = pd.crosstab(stock["An_Construction"], stock["Type_Logement"])
+    print("\n=== sanity report ===")
+    print("\nSource_Energie_Chauf shares (unweighted -> census-weighted):")
+    report = pd.DataFrame({
+        "unweighted": df["Source_Energie_Chauf"].value_counts(normalize=True),
+        "weighted": df.groupby("Source_Energie_Chauf")["POND_AB"].sum()
+                      / df["POND_AB"].sum(),
+    })
+    print(report.round(4).to_string())
+    print("\nAn_Construction x Type_Logement (unweighted counts):")
+    xtab = pd.crosstab(df["An_Construction"], df["Type_Logement"])
     xtab = xtab.reindex(EnerGuideToBN.AN_CONSTRUCTION_LABELS)
     print(xtab.to_string())
 

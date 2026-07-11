@@ -63,6 +63,11 @@ def postprocess_results(i):
 	else:
 		# If the simulation failed, just save the dict i into a json file
 		dfErrors = pd.DataFrame([i])
+		# Cast every column to str, as the success branch above does. The input
+		# columns are sampled per building, so a column that is numeric for one
+		# failure and blank/text for another gives the partitions conflicting
+		# types and makes errors.parquet unreadable as a single dataset.
+		dfErrors = dfErrors.astype(str)
 		tableErrors = pa.Table.from_pandas(dfErrors)
 		pq.write_to_dataset(tableErrors, 
 							root_path=os.path.join(results_dir, 'errors.parquet'), 

@@ -4,6 +4,7 @@ import json
 
 # Import local libraries
 import config
+from osrunner import to_container_path
 
 # Class to define a building and its methods/attributes
 class Building:
@@ -47,7 +48,10 @@ class Building:
 		self.osw_content = {}
 
 		# Define the path to the measures
-		self.osw_content['measure_paths'] = [os.path.join(project_dir, config.MEASURES_PATH)]
+		# Every path written *into* the OSW must be the path OpenStudio will see,
+		# which differs from ours when it runs in a container. See osrunner.py.
+		osw_dir = to_container_path(building_dir)
+		self.osw_content['measure_paths'] = [to_container_path(os.path.join(project_dir, config.MEASURES_PATH))]
 		
 		# Initialize the list of steps in the OSW content
 		self.osw_content['steps'] = []
@@ -63,9 +67,9 @@ class Building:
 		step2 = {
 			'measure_dir_name': 'BuildResidentialScheduleFile',
 			'arguments': {
-				"hpxml_path": building_dir+"/built.xml",
-				"output_csv_path": building_dir+"/stochastic.csv",
-				"hpxml_output_path": building_dir+"/built-stochastic-schedules.xml"
+				"hpxml_path": osw_dir+"/built.xml",
+				"output_csv_path": osw_dir+"/stochastic.csv",
+				"hpxml_output_path": osw_dir+"/built-stochastic-schedules.xml"
 			}}
 		self.osw_content['steps'].append(step2)
 
@@ -81,7 +85,7 @@ class Building:
 		step4 = {
 			'measure_dir_name': 'HPXMLtoOpenStudio',
 			'arguments': {
-				"hpxml_path": building_dir+"/built-stochastic-schedules.xml",
+				"hpxml_path": osw_dir+"/built-stochastic-schedules.xml",
 				"output_dir": "..",
 				"output_format": "csv",
 				"add_component_loads": config.ADD_COMPONENT_LOADS,

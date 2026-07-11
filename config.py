@@ -13,8 +13,20 @@ CURRENT_PATH = os.path.dirname(os.path.abspath(__file__))
 RESULTS_PATH = "results"
 MEASURES_PATH = "measures"
 WEATHER_FILES_PATH = "weather"
+WEATHER_EPW_FILENAME = "CAN_AB_Calgary.Intl.AP.718770_CWEC2016.epw" # location fixed to Calgary
 
-# Define the path to the openstudio executable
+# How to invoke OpenStudio. See osrunner.py.
+# "auto"   - use an installed binary if there is one, else Docker. This keeps the
+#            devcontainer working (openstudio on PATH, no docker inside it) while
+#            a bare host falls through to the image.
+# "docker" - always shell out to DOCKER_IMAGE, which already carries OpenStudio
+#            3.9.0. Runs from an ordinary Windows shell; no devcontainer needed.
+# "native" - always call an installed binary directly (OPENSTUDIO_EXE, else PATH).
+OPENSTUDIO_RUNNER = "auto"
+DOCKER_IMAGE = "simparc-dev:latest"
+CONTAINER_WORKSPACE = "/workspace" # where the project is bind-mounted in the container
+
+# Define the path to the openstudio executable (used when OPENSTUDIO_RUNNER = "native")
 # NOT NEEDED IF USING DEVCONTAINER
 OPENSTUDIO_EXE = "openstudio-3.9.0/bin/openstudio"
 

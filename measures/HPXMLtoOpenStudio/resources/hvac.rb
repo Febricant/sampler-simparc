@@ -839,6 +839,7 @@ module HVAC
     )
 
     plant_loop.addSupplyBranchForComponent(ground_heat_exch_vert)
+    plant_loop.setFluidType(hp_ap.fluid_type) # GroundHeatExchangerVertical.addToNode() resets the loop fluid type to Water
     plant_loop.addDemandBranchForComponent(htg_coil)
     plant_loop.addDemandBranchForComponent(clg_coil)
 
@@ -5052,7 +5053,7 @@ module HVAC
     hp_ap.design_chw = [85.0, weather.design.CoolingDrybulb - 15.0, weather.data.DeepGroundAnnualTemp + 10.0].max # Temperature of water entering indoor coil, use 85F as lower bound
     hp_ap.design_delta_t = 10.0
     hp_ap.fluid_type = EPlus::FluidPropyleneGlycol
-    hp_ap.frac_glycol = 0.2 # This was changed from 0.3 to 0.2 -- more typical based on experts/spec sheets
+    hp_ap.frac_glycol = 0.3 # E+ built-in property data for 20% glycol only covers 0-125C; 30% extends below 0C, needed when the ground loop dips below freezing in cold climates
     if hp_ap.fluid_type == EPlus::FluidWater
       hp_ap.design_hw = [45.0, weather.design.HeatingDrybulb + 35.0, weather.data.DeepGroundAnnualTemp - 10.0].max # Temperature of fluid entering indoor coil, use 45F as lower bound for water
     else

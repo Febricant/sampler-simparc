@@ -22,7 +22,7 @@ class MapHPXML:
         dct_args["Region_Administrative"] = "Alberta"
 
         # weather_station_epw_filepath -- universal Calgary EPW (region switch removed)
-        dct_HPXML["weather_station_epw_filepath"] = "CAN_AB_Calgary.Intl.AP.718770_CWEC2020.epw"
+        dct_HPXML["weather_station_epw_filepath"] = "CAN_AB_Calgary.Intl.AP.718770_CWEC2016.epw"
 
         # simulation_control_daylight_saving_enabled
         dct_HPXML["simulation_control_daylight_saving_enabled"] = True
@@ -1373,7 +1373,7 @@ class MapHPXML:
         #        else:
         #            pass
         # Replaces dct_HPXML["geometry_unit_level"] with dct_args.get(arg)
-        arg = ""
+        arg = "Geometry Building Level"
         if dct_args.get(arg) == 'Bottom':
             if dct_HPXML.get(
                     "geometry_unit_num_floors_above_grade") > 1:  # this could be "bottom" of a 1-story building
@@ -1383,6 +1383,17 @@ class MapHPXML:
             dct_HPXML["geometry_attic_type"] = "BelowApartment"
         elif dct_args.get(arg) == 'Top':
             dct_HPXML["geometry_foundation_type"] = "AboveApartment"
+
+        # OS-HPXML refuses ConditionedBasement/ConditionedCrawlspace for apartment
+        # units (see the geometry_foundation_type description in measure.xml). A
+        # bottom-floor unit has no dwelling below it, so AboveApartment above does
+        # not apply: keep the basement in the model, outside the unit's
+        # conditioned volume.
+        if dct_HPXML.get("geometry_unit_type") == "apartment unit":
+            if dct_HPXML.get("geometry_foundation_type") == "ConditionedBasement":
+                dct_HPXML["geometry_foundation_type"] = "UnconditionedBasement"
+            elif dct_HPXML.get("geometry_foundation_type") == "ConditionedCrawlspace":
+                dct_HPXML["geometry_foundation_type"] = "UnventedCrawlspace"
 
         # ________________________________________________________________
         # geometry_corridor_position
@@ -4704,6 +4715,16 @@ class MapHPXML:
                 elif dct_args[arg] in ["Chauffe-eau sans réservoi"]:
                     dct_HPXML[argHPXML] = 0
 
+        # Aucun chauffe-eau : ne pas décrire de système d'eau chaude partiel.
+        # Sans ce garde-fou, water_heater_type reste vide mais water_heater_fuel_type
+        # et water_heater_efficiency sont quand même émis, et OS-HPXML reçoit un
+        # système incohérent.
+        arg = "ChaufEau_Presence"
+        if (arg in dct_args.keys()):
+            if dct_args[arg] in ["Aucun"]:
+                for argHPXML in [k for k in dct_HPXML.keys() if k.startswith("water_heater_")]:
+                    dct_HPXML[argHPXML] = None
+
         # Clothes dryer
         # Make dict only based on data - from code parse option_lookup
         dct_ClothesDryer = {}
@@ -5748,72 +5769,72 @@ class MapHPXML:
             insulation_slab_dict = {
                 'R10 Whole Slab, Horizontal': {
                     'slab_perimeter_insulation_r': 0,
-                    'slab_perimeter_depth': 0,
+                    'slab_perimeter_insulation_depth': 0,
                     'slab_under_insulation_r': 10,
-                    'slab_under_width': 999,
+                    'slab_under_insulation_width': 999,
                     'slab_thickness': 'auto',
                     'slab_carpet_fraction': 'auto',
                     'slab_carpet_r': 'auto',
                 },
                 'Uninsulated': {
                     'slab_perimeter_insulation_r': 0,
-                    'slab_perimeter_depth': 0,
+                    'slab_perimeter_insulation_depth': 0,
                     'slab_under_insulation_r': 0,
-                    'slab_under_width': 0,
+                    'slab_under_insulation_width': 0,
                     'slab_thickness': 'auto',
                     'slab_carpet_fraction': 'auto',
                     'slab_carpet_r': 'auto',
                 },
                 'None': {
                     'slab_perimeter_insulation_r': 0,
-                    'slab_perimeter_depth': 0,
+                    'slab_perimeter_insulation_depth': 0,
                     'slab_under_insulation_r': 0,
-                    'slab_under_width': 0,
+                    'slab_under_insulation_width': 0,
                     'slab_thickness': 'auto',
                     'slab_carpet_fraction': 'auto',
                     'slab_carpet_r': 'auto',
                 },
                 '4ft R5 Under, Horizontal': {
                     'slab_perimeter_insulation_r': 0,
-                    'slab_perimeter_depth': 0,
+                    'slab_perimeter_insulation_depth': 0,
                     'slab_under_insulation_r': 5,
-                    'slab_under_width': 4,
+                    'slab_under_insulation_width': 4,
                     'slab_thickness': 'auto',
                     'slab_carpet_fraction': 'auto',
                     'slab_carpet_r': 'auto',
                 },
                 '2ft R10 Under, Horizontal': {
                     'slab_perimeter_insulation_r': 0,
-                    'slab_perimeter_depth': 0,
+                    'slab_perimeter_insulation_depth': 0,
                     'slab_under_insulation_r': 10,
-                    'slab_under_width': 2,
+                    'slab_under_insulation_width': 2,
                     'slab_thickness': 'auto',
                     'slab_carpet_fraction': 'auto',
                     'slab_carpet_r': 'auto',
                 },
                 '2ft R5 Perimeter, Vertical': {
                     'slab_perimeter_insulation_r': 5,
-                    'slab_perimeter_depth': 2,
+                    'slab_perimeter_insulation_depth': 2,
                     'slab_under_insulation_r': 0,
-                    'slab_under_width': 0,
+                    'slab_under_insulation_width': 0,
                     'slab_thickness': 'auto',
                     'slab_carpet_fraction': 'auto',
                     'slab_carpet_r': 'auto',
                 },
                 '2ft R10 Perimeter, Vertical': {
                     'slab_perimeter_insulation_r': 10,
-                    'slab_perimeter_depth': 2,
+                    'slab_perimeter_insulation_depth': 2,
                     'slab_under_insulation_r': 0,
-                    'slab_under_width': 0,
+                    'slab_under_insulation_width': 0,
                     'slab_thickness': 'auto',
                     'slab_carpet_fraction': 'auto',
                     'slab_carpet_r': 'auto',
                 },
                 '2ft R5 Under, Horizontal': {
                     'slab_perimeter_insulation_r': 0,
-                    'slab_perimeter_depth': 0,
+                    'slab_perimeter_insulation_depth': 0,
                     'slab_under_insulation_r': 5,
-                    'slab_under_width': 2,
+                    'slab_under_insulation_width': 2,
                     'slab_thickness': 'auto',
                     'slab_carpet_fraction': 'auto',
                     'slab_carpet_r': 'auto',

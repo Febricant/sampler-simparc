@@ -16,10 +16,10 @@ Pulls the two primary machine-readable sources:
 Also stubs data/input/alberta/SOURCES.md for tracking manual StatCan/CEUD pulls.
 
 Usage (from repo root, with the project venv):
-    python calgary_adaptation/fetch_alberta_data.py                # everything
-    python calgary_adaptation/fetch_alberta_data.py --only energuide --years 2020-2025
-    python calgary_adaptation/fetch_alberta_data.py --only benchmarkyyc
-    python calgary_adaptation/fetch_alberta_data.py --force        # re-download
+    python calgary_adaptation/fetch_data.py                # everything
+    python calgary_adaptation/fetch_data.py --only energuide --years 2020-2025
+    python calgary_adaptation/fetch_data.py --only benchmarkyyc
+    python calgary_adaptation/fetch_data.py --force        # re-download
 
 The script is idempotent: a year whose Parquet file already exists is skipped
 unless --force is given. A manifest.json in the energuide folder records row
@@ -46,10 +46,53 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 ALBERTA_DIR = REPO_ROOT / "data" / "input" / "alberta"
 ENERGUIDE_DIR = ALBERTA_DIR / "energuide"
 BENCHMARK_DIR = ALBERTA_DIR / "benchmarkyyc"
+CENSUS_DIR = ALBERTA_DIR / "census"
 SOURCES_MD = ALBERTA_DIR / "SOURCES.md"
 
 CKAN_BASE = "https://open.canada.ca/data/en/api/3/action"
 ENERGUIDE_PACKAGE_ID = "0a7619fd-2ffe-44b5-9027-3dfcec0866fd"
+
+# StatCan 2021 Census Profile, Forward Sortation Areas (98-401-X2021013).
+# The comprehensive national CSV (one row per characteristic per FSA) is a
+# ~68 MB zip; we stream it, keep only Calgary FSAs and the two composition
+# characteristics, and fold onto the BN vocabulary. HEAD 302-loops on this
+# endpoint - a streamed GET is the only thing that works.
+CENSUS_FSA_PRODUCT = "98-401-X2021013"
+CENSUS_FSA_URL = (
+    "https://www12.statcan.gc.ca/census-recensement/2021/dp-pd/prof/details/"
+    "download-telecharger/comp/GetFile.cfm?Lang=E&FILETYPE=CSV&GEONO=013"
+)
+# Calgary's forward-sortation footprint: every T2*/T3* FSA plus T1Y (NE Calgary).
+# T1* otherwise reaches Lethbridge/Medicine Hat/Okotoks and T4/T6/T0 are
+# Airdrie/Edmonton/rural - a handful of EnerGuide rows are mislabelled "Calgary"
+# with those FSAs and must not pull non-Calgary census dwelling counts in.
+CENSUS_CALGARY_FSA_PREFIXES = ("T2", "T3")
+CENSUS_CALGARY_FSA_EXTRA = {"T1Y"}
+
+# CHARACTERISTIC_ID -> our folded category. Structural type of dwelling (id 41
+# is the total) folds onto the 4 census-backed BN dwelling types; the BN's
+# Triplex has no census counterpart, so pool Triplex rows fold into Collective
+# downstream. Period of construction (id 1440 is the total) keeps the census's
+# own 8 bins - the FSA table cannot populate the finer decade bins.
+CENSUS_TYPE_FOLD = {
+    42: "type_individuelle", 49: "type_individuelle",   # single-detached + movable
+    43: "type_duplex",       45: "type_duplex",          # semi-detached + flat-in-duplex
+    44: "type_rangee",       48: "type_rangee",          # row + other single-attached
+    46: "type_collective",   47: "type_collective",      # apartments <5 + >=5 storeys
+}
+CENSUS_VINTAGE_FOLD = {
+    1441: "vint_pre1961", 1442: "vint_1961_1980", 1443: "vint_1981_1990",
+    1444: "vint_1991_2000", 1445: "vint_2001_2005", 1446: "vint_2006_2010",
+    1447: "vint_2011_2015", 1448: "vint_2016plus",
+}
+# Household size (id 50 is the total). The five census categories land exactly
+# on the BN's five Nombre_Personnes states, so no folding judgement is needed --
+# "5 or more persons" is the BN's "5 et plus".
+CENSUS_HHSIZE_FOLD = {
+    51: "hh_1", 52: "hh_2", 53: "hh_3", 54: "hh_4", 55: "hh_5plus",
+}
+
+CENSUS_DWELLING_TOTAL_ID = 41   # Total - Occupied private dwellings (the weight N_a)
 
 # The DataStore rejects limits above 32,000. We stay well under it so a page
 # of ~100 selected fields keeps a modest payload (a few MB of JSON).
@@ -129,7 +172,7 @@ ENERGUIDE_FIELDS = [
 def _session() -> requests.Session:
     s = requests.Session()
     s.headers.update(
-        {"User-Agent": "LTE-Sampler-Residential calgary_adaptation/fetch_alberta_data"}
+        {"User-Agent": "LTE-Sampler-Residential calgary_adaptation/fetch_data"}
     )
     return s
 
@@ -363,13 +406,133 @@ def fetch_benchmarkyyc(force: bool) -> None:
 
 
 # --------------------------------------------------------------------------- #
-# 3. Manual sources stub
+# 3. Census composition by FSA (StatCan 98-401-X2021013)
+# --------------------------------------------------------------------------- #
+
+def _is_calgary_fsa(fsa: str) -> bool:
+    return (
+        len(fsa) == 3
+        and (fsa[:2] in CENSUS_CALGARY_FSA_PREFIXES or fsa in CENSUS_CALGARY_FSA_EXTRA)
+    )
+
+
+def _download_census_zip(session: requests.Session, dst: Path) -> None:
+    """Stream the comprehensive FSA CSV zip (no HEAD - the endpoint 302-loops)."""
+    for attempt in range(MAX_RETRIES):
+        try:
+            with session.get(CENSUS_FSA_URL, timeout=TIMEOUT_S, stream=True) as r:
+                r.raise_for_status()
+                n = 0
+                with open(dst, "wb") as fh:
+                    for chunk in r.iter_content(1 << 20):
+                        fh.write(chunk)
+                        n += len(chunk)
+            if n < 1_000_000:
+                raise RuntimeError(f"download too small ({n} bytes) - endpoint changed?")
+            print(f"    downloaded {n / 1e6:.0f} MB -> {dst.relative_to(REPO_ROOT)}")
+            return
+        except (requests.RequestException, RuntimeError) as err:
+            wait = BACKOFF_BASE_S * (2 ** attempt)
+            print(f"    retry {attempt + 1}/{MAX_RETRIES} in {wait:.0f}s ({err})")
+            time.sleep(wait)
+    raise RuntimeError(f"could not download {CENSUS_FSA_URL}")
+
+
+def _parse_census_zip(zip_path: Path) -> pd.DataFrame:
+    """Fold the national FSA CSV into one Calgary-FSA-per-row composition table."""
+    import csv
+    import io
+    import zipfile
+
+    wanted = {CENSUS_DWELLING_TOTAL_ID, *CENSUS_TYPE_FOLD, *CENSUS_VINTAGE_FOLD,
+              *CENSUS_HHSIZE_FOLD}
+    counts: dict[str, dict[str, float]] = {}
+    with zipfile.ZipFile(zip_path) as zf:
+        data_name = next(n for n in zf.namelist() if n.lower().endswith("data.csv"))
+        with zf.open(data_name) as raw:
+            # StatCan ships these CSVs as Latin-1 (French characteristic names).
+            reader = csv.reader(io.TextIOWrapper(raw, encoding="latin-1"))
+            header = next(reader)
+            gi = header.index("ALT_GEO_CODE")
+            ci = header.index("CHARACTERISTIC_ID")
+            vi = header.index("C1_COUNT_TOTAL")
+            for row in reader:
+                fsa = row[gi]
+                if not _is_calgary_fsa(fsa):
+                    continue
+                cid = int(row[ci])
+                if cid not in wanted:
+                    continue
+                val = pd.to_numeric(row[vi], errors="coerce")
+                rec = counts.setdefault(fsa, {})
+                if cid == CENSUS_DWELLING_TOTAL_ID:
+                    rec["dwelling_count"] = val
+                else:
+                    key = (CENSUS_TYPE_FOLD.get(cid)
+                           or CENSUS_VINTAGE_FOLD.get(cid)
+                           or CENSUS_HHSIZE_FOLD[cid])
+                    rec[key] = rec.get(key, 0.0) + (val or 0.0)
+
+    cols = (["dwelling_count"]
+            + sorted(set(CENSUS_TYPE_FOLD.values()))
+            + list(CENSUS_VINTAGE_FOLD.values())
+            + list(CENSUS_HHSIZE_FOLD.values()))
+    out = (pd.DataFrame.from_dict(counts, orient="index")
+             .reindex(columns=cols)
+             .rename_axis("FSA").reset_index()
+             .sort_values("FSA").reset_index(drop=True))
+    return out
+
+
+def fetch_census_fsa(force: bool) -> None:
+    CENSUS_DIR.mkdir(parents=True, exist_ok=True)
+    out_path = CENSUS_DIR / "calgary_fsa_composition.parquet"
+    if out_path.exists() and not force:
+        print(f"  {out_path.relative_to(REPO_ROOT)} exists, skipping")
+        return
+
+    zip_path = CENSUS_DIR / "_raw" / f"{CENSUS_FSA_PRODUCT}_eng_CSV.zip"
+    zip_path.parent.mkdir(parents=True, exist_ok=True)
+    if not zip_path.exists() or zip_path.stat().st_size < 1_000_000:
+        print(f"  downloading {CENSUS_FSA_PRODUCT} (StatCan FSA census profile)")
+        try:
+            _download_census_zip(_session(), zip_path)
+        except RuntimeError as err:
+            print(f"  WARNING: automated download failed ({err}).\n"
+                  f"  Manually download the CSV zip from\n    {CENSUS_FSA_URL}\n"
+                  f"  and place it at {zip_path.relative_to(REPO_ROOT)}, then re-run.")
+            return
+    else:
+        print(f"  using cached {zip_path.relative_to(REPO_ROOT)}")
+
+    df = _parse_census_zip(zip_path)
+    df.to_parquet(out_path, index=False)
+    print(f"  wrote {len(df)} Calgary FSAs, "
+          f"{int(df['dwelling_count'].sum()):,} dwellings -> "
+          f"{out_path.relative_to(REPO_ROOT)}")
+
+    manifest = {
+        "product": CENSUS_FSA_PRODUCT,
+        "url": CENSUS_FSA_URL,
+        "retrieved_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "fsa_rule": f"prefix {CENSUS_CALGARY_FSA_PREFIXES} + {sorted(CENSUS_CALGARY_FSA_EXTRA)}",
+        "n_fsa": len(df),
+        "total_dwellings": int(df["dwelling_count"].sum()),
+        "type_fold": {str(k): v for k, v in CENSUS_TYPE_FOLD.items()},
+        "vintage_fold": {str(k): v for k, v in CENSUS_VINTAGE_FOLD.items()},
+    }
+    (CENSUS_DIR / "manifest.json").write_text(json.dumps(manifest, indent=2, sort_keys=True))
+    print(f"  wrote {(CENSUS_DIR / 'manifest.json').relative_to(REPO_ROOT)}")
+
+
+# --------------------------------------------------------------------------- #
+# 4. Manual sources stub
 # --------------------------------------------------------------------------- #
 
 SOURCES_TEMPLATE = """\
 # Alberta data sources - provenance log
 
-Automated pulls (see `calgary_adaptation/fetch_alberta_data.py` and
+Automated pulls (see `calgary_adaptation/fetch_data.py` and
 `energuide/manifest.json` for exact row counts and retrieval dates):
 
 | Source | Location | Licence |
@@ -381,7 +544,7 @@ Manual downloads - fill one row per file you add:
 
 | File | Source dataset (table id) | URL | Retrieved | Used for |
 |---|---|---|---|---|
-| `res_ab_e.xlsx` | NRCan CEUD, Residential Sector Alberta, Tables 1-41 | https://oee.nrcan.gc.ca/corporate/statistics/neud/dpa/menus/trends/comprehensive_tables/list.cfm | (add date) | Tier-B margins: heating system stock, appliance stock, water heaters |
+| `data/input/alberta/res_ab_e.xlsx` | NRCan CEUD, Residential Sector Alberta, Tables 1-41 | https://oee.nrcan.gc.ca/corporate/statistics/neud/dpa/menus/trends/comprehensive_tables/list.cfm | (add date) | Tier-B margins: heating system stock, appliance stock, water heaters |
 | | StatCan 38-10-0286 (primary heating systems and type of energy) | https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3810028601 | | `Source_Energie_Chauf` / `Chauffage_Logement` cross-check |
 | | Census 2021 Profile, Calgary CSD (dwelling type x period x tenure x household size) | https://www12.statcan.gc.ca/census-recensement/2021/dp-pd/prof/index.cfm | | Raking margins (IPF) |
 | | StatCan 20-10-0025 (ZEV registrations, AB) | https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=2010002501 | | `Vehicule_Presence` |
@@ -405,8 +568,9 @@ def write_sources_stub(force: bool) -> None:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    parser.add_argument("--only", choices=["energuide", "benchmarkyyc", "sources"],
-                        help="run a single step (default: all three)")
+    parser.add_argument("--only",
+                        choices=["energuide", "benchmarkyyc", "census", "sources"],
+                        help="run a single step (default: all)")
     parser.add_argument("--years", type=str, default=None,
                         help="EnerGuide years, e.g. '2020-2025' or '2007,2010'")
     parser.add_argument("--page-size", type=int, default=PAGE_SIZE,
@@ -427,6 +591,9 @@ def main(argv: list[str] | None = None) -> int:
     if args.only in (None, "benchmarkyyc"):
         print("== BenchmarkYYC ==")
         fetch_benchmarkyyc(args.force)
+    if args.only in (None, "census"):
+        print("== Census FSA composition (98-401-X2021013) ==")
+        fetch_census_fsa(args.force)
     if args.only in (None, "energuide"):
         print("== EnerGuide (PROVINCE=AB) ==")
         fetch_energuide(years, args.force, args.page_size, args.all_fields)

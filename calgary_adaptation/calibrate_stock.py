@@ -22,13 +22,14 @@ Pipeline:
                                src/utils/euemr/Mapping.py)
 
 Usage (from repo root):
-    python calgary_adaptation/build_alberta_weights.py
-Writes data/input/alberta/energuide/alberta_stock_mapped.parquet and prints a
-sanity report.
+    uv run python calgary_adaptation/calibrate_stock.py [combine|weights|all]
+`combine` writes energuide_ab_houses/evaluations.parquet; `weights` writes
+alberta_stock_mapped.parquet (mapped + census-raked); `all` (default) does both.
 """
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 import numpy as np
@@ -54,7 +55,11 @@ def load_energuide(columns: list[str] | None = None) -> pd.DataFrame:
     a `source_file_year` column records which year-resource each row came
     from (the *evaluation* vintage, not the construction vintage).
     """
-    files = sorted(ENERGUIDE_DIR.glob("energuide_ab_*.parquet"))
+    # The [0-9] guard keeps this to the raw per-year pulls: the derived tables
+    # written by build_energuide_dataset.py (energuide_ab_evaluations.parquet,
+    # energuide_ab_houses.parquet) live in the same directory and would
+    # otherwise be concatenated back in on top of their own inputs.
+    files = sorted(ENERGUIDE_DIR.glob("energuide_ab_[0-9]*.parquet"))
     assert files, f"no Parquet files under {ENERGUIDE_DIR} - run fetch_alberta_data.py first"
     frames = []
     for f in files:
@@ -71,6 +76,65 @@ def load_energuide(columns: list[str] | None = None) -> pd.DataFrame:
 # --------------------------------------------------------------------------- #
 # 2. De-duplication
 # --------------------------------------------------------------------------- #
+
+# The record key NRCan documents in the open-data dictionary: "Files can be
+# linked together using the following fields: EVALTYPE, EVALUATIONSID and
+# HOUSEID." Note `_id` is NOT a usable key - it is a CKAN per-resource row
+# number whose ranges overlap across files, so keying on it deletes real rows.
+RECORD_KEY = ["HOUSEID", "EVALUATIONSID", "EVALTYPE"]
+
+# A restatement count far above this means the upstream data changed shape and
+# the "later file wins" rule deserves a fresh look rather than silent trust.
+RESTATEMENT_ALERT_THRESHOLD = 100
+
+
+def resolve_restatements(df: pd.DataFrame) -> tuple[pd.DataFrame, list[dict]]:
+    """Collapse records NRCan restated in a later annual release.
+
+    The same (HOUSEID, EVALUATIONSID, EVALTYPE) can appear in two adjacent-year
+    files with revised values; the later file wins. There were 9 such records on
+    the 2004-2025 pull. Returns the de-duplicated frame plus one report entry
+    per resolved key. `source_file_year` sorts correctly as a string here
+    ("2004-2006" < "2007" < ... < "2025").
+    """
+    dup_mask = df.duplicated(RECORD_KEY, keep=False)
+    n_dup_rows = int(dup_mask.sum())
+
+    report: list[dict] = []
+    if n_dup_rows:
+        payload = [c for c in df.columns
+                   if c not in {"_id", "source_row_id", "source_file_year"}]
+        for key, grp in df[dup_mask].groupby(RECORD_KEY, dropna=False, sort=True):
+            differing = [c for c in payload if grp[c].astype(str).nunique() > 1]
+            report.append({
+                "HOUSEID": key[0],
+                "EVALUATIONSID": key[1],
+                "EVALTYPE": key[2],
+                "source_files": sorted(grp["source_file_year"]),
+                "kept_from": max(grp["source_file_year"]),
+                "n_differing_columns": len(differing),
+                "differing_columns": differing,
+            })
+
+    out = (
+        df.sort_values(RECORD_KEY + ["source_file_year"])
+          .drop_duplicates(RECORD_KEY, keep="last")
+          .reset_index(drop=True)
+    )
+
+    n_dropped = len(df) - len(out)
+    if n_dropped:
+        print(f"  resolved {n_dropped} restated record(s) "
+              f"({n_dup_rows} rows in {len(report)} conflicting group(s)); "
+              f"kept the later release of each")
+    else:
+        print("  no restated records found")
+
+    if n_dropped > RESTATEMENT_ALERT_THRESHOLD:
+        print(f"  WARNING: {n_dropped} restatements is far above the expected "
+              f"handful - check whether the upstream pull changed shape")
+
+    return out, report
 
 # EVALTYPE codes in the open data:
 #   D = evaluation of an existing house BEFORE retrofit  (what we want)
@@ -92,6 +156,17 @@ def dedupe_stock(df: pd.DataFrame) -> pd.DataFrame:
     dropped with a warning. A `cohort` column separates the existing-stock
     records ("existing": D/E) from new-construction records ("new": N/P) so
     Phase 3 can build vintage-specific CPTs from the right population.
+
+    The rank is applied globally within a HOUSEID, so a house holding both a D
+    and an N record collapses to the D row and is labelled "existing". The
+    evaluation-level table from build_energuide_dataset.py keeps both records
+    if you need to recover such houses.
+
+    Selection uses .head(1), NOT .groupby(...).first(): pandas' GroupBy.first()
+    returns the first *non-null* value per column independently, which silently
+    back-fills the winning row's nulls from the losing evaluation - i.e. it
+    mixes post-retrofit values into a pre-retrofit record. That affected 17,868
+    of 191,621 houses (9.3%) on the 2004-2025 pull.
     """
     n0 = len(df)
     null_ids = df["HOUSEID"].isna()
@@ -109,8 +184,9 @@ def dedupe_stock(df: pd.DataFrame) -> pd.DataFrame:
     df = (
         df.sort_values(["HOUSEID", "_rank", "_date"])
           .groupby("HOUSEID", as_index=False, sort=False)
-          .first()
+          .head(1)
           .drop(columns=["_rank", "_date"])
+          .reset_index(drop=True)
     )
     df["cohort"] = np.where(
         df["EVALTYPE"].isin(list(EXISTING_EVALTYPES)), "existing", "new"
@@ -521,6 +597,7 @@ def rake_to_census_margins(
 
 def build(save: bool = True) -> pd.DataFrame:
     df = load_energuide()
+    df, _ = resolve_restatements(df)
     df = dedupe_stock(df)
 
     mapper = EnerGuideToBN()
@@ -554,5 +631,91 @@ def build(save: bool = True) -> pd.DataFrame:
     return df
 
 
+# --------------------------------------------------------------------------- #
+# Combine step (was build_energuide_dataset.py): the 20 per-year EnerGuide pulls
+# -> one de-duplicated evaluation table and one house-level table.
+# --------------------------------------------------------------------------- #
+
+EVALUATIONS_PATH = ENERGUIDE_DIR / "energuide_ab_evaluations.parquet"
+HOUSES_PATH = ENERGUIDE_DIR / "energuide_ab_houses.parquet"
+COMBINED_MANIFEST_PATH = ENERGUIDE_DIR / "energuide_ab_combined_manifest.json"
+
+
+def combine_energuide() -> None:
+    """Combine + de-duplicate the raw per-year pulls into two tables:
+    energuide_ab_evaluations.parquet (one row per evaluation) and
+    energuide_ab_houses.parquet (one row per house). See resolve_restatements /
+    dedupe_stock above for the de-duplication rules.
+    """
+    print("Loading raw per-year pulls")
+    raw = load_energuide()
+    n_raw = len(raw)
+
+    # Keep _id for traceability but rename it so nothing mistakes a per-resource
+    # row number for a stable record id.
+    if "_id" in raw.columns:
+        raw = raw.rename(columns={"_id": "source_row_id"})
+
+    print("\nBuilding evaluation-level table")
+    evaluations, restatements = resolve_restatements(raw)
+    for entry in restatements:
+        print(f"    HOUSEID={entry['HOUSEID']} "
+              f"EVAL={entry['EVALUATIONSID']}/{entry['EVALTYPE']} "
+              f"{entry['source_files']} -> kept {entry['kept_from']} "
+              f"({entry['n_differing_columns']} column(s) differ)")
+    assert not evaluations.duplicated(RECORD_KEY).any(), \
+        "evaluation table still holds duplicate record keys"
+    print(f"  {n_raw:,} raw rows -> {len(evaluations):,} evaluations")
+    print("  EVALTYPE breakdown: "
+          + ", ".join(f"{k}={v:,}" for k, v
+                      in evaluations["EVALTYPE"].value_counts().items()))
+    evaluations.to_parquet(EVALUATIONS_PATH, index=False)
+    print(f"  wrote {EVALUATIONS_PATH.relative_to(REPO_ROOT)}")
+
+    print("\nBuilding house-level table")
+    houses = dedupe_stock(evaluations)
+    assert not houses.duplicated("HOUSEID").any(), \
+        "house table still holds duplicate HOUSEIDs"
+    houses.to_parquet(HOUSES_PATH, index=False)
+    print(f"  wrote {HOUSES_PATH.relative_to(REPO_ROOT)}")
+
+    manifest = {
+        "inputs": sorted(
+            f.name for f in ENERGUIDE_DIR.glob("energuide_ab_[0-9]*.parquet")
+        ),
+        "record_key": RECORD_KEY,
+        "rows_raw": n_raw,
+        "rows_evaluations": len(evaluations),
+        "rows_houses": len(houses),
+        "restatements_resolved": len(restatements),
+        "restatement_detail": restatements,
+        "evaltype_counts_evaluations":
+            {str(k): int(v) for k, v
+             in evaluations["EVALTYPE"].value_counts().items()},
+        "cohort_counts_houses":
+            {str(k): int(v) for k, v
+             in houses["cohort"].value_counts().items()},
+    }
+    COMBINED_MANIFEST_PATH.write_text(json.dumps(manifest, indent=2, sort_keys=True))
+    print(f"  wrote {COMBINED_MANIFEST_PATH.name}")
+    print(f"\nDone. {n_raw:,} raw rows -> {len(evaluations):,} evaluations "
+          f"-> {len(houses):,} houses")
+
+
+def main() -> None:
+    import argparse
+    ap = argparse.ArgumentParser(
+        description="Combine + weight the EnerGuide Alberta pull for Calgary")
+    ap.add_argument("step", nargs="?", default="all",
+                    choices=["all", "combine", "weights"],
+                    help="combine = house/evaluation tables; "
+                         "weights = map+rake -> alberta_stock_mapped.parquet")
+    args = ap.parse_args()
+    if args.step in ("all", "combine"):
+        combine_energuide()
+    if args.step in ("all", "weights"):
+        build()
+
+
 if __name__ == "__main__":
-    build()
+    main()

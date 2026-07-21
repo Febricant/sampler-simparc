@@ -1,0 +1,5517 @@
+{
+  "source": "data/input/alberta/energuide/alberta_stock_mapped.parquet",
+  "caveats": {
+    "thin_building_types": [
+      {
+        "type": "Collective",
+        "n_audited": 121,
+        "weighted_share": 0.271
+      }
+    ],
+    "city_wide_gas_share": 0.988,
+    "note": "Gas share is biased high: apartments are 27% of Calgary but only 121 were audited, and audited apartments skew gas-heated. Raking corrects how many apartments there are, not which ones entered the sample."
+  },
+  "n_calgary_homes": 73927,
+  "min_support": 50,
+  "weight_column": "POND_AB",
+  "Source_Energie_Chauf": {
+    "parents": [
+      "Type_Batiment",
+      "An_ConstructionCode"
+    ],
+    "city_wide": {
+      "Bois": 3.5427818003087404e-05,
+      "Electricite": 0.011891405307131406,
+      "Gaz naturel": 0.9880168723344015,
+      "Mazout": 5.6294540463927965e-05
+    },
+    "cells": {
+      "Collective|< 1946": {
+        "shares": {
+          "Electricite": 0.03688615518990736,
+          "Gaz naturel": 0.9631138448100927,
+          "Bi-energie": 0.0
+        },
+        "n_homes": 0,
+        "n_eff": 0.0,
+        "level": "fallback:Type_Batiment",
+        "reassigned_weight": 0.0
+      },
+      "Collective|[1946 - 1971)": {
+        "shares": {
+          "Gaz naturel": 0.96583632510963,
+          "Electricite": 0.03416367489037001,
+          "Bi-energie": 0.0
+        },
+        "n_homes": 4,
+        "n_eff": 4.0,
+        "level": "shrunk:Type_Batiment",
+        "reassigned_weight": 0.0
+      },
+      "Collective|[1971 - 1986)": {
+        "shares": {
+          "Gaz naturel": 0.9676311652033809,
+          "Electricite": 0.03236883479661908,
+          "Bi-energie": 0.0
+        },
+        "n_homes": 7,
+        "n_eff": 7.0,
+        "level": "shrunk:Type_Batiment",
+        "reassigned_weight": 0.0
+      },
+      "Collective|[1986 - 2013)": {
+        "shares": {
+          "Gaz naturel": 0.9778599302072588,
+          "Electricite": 0.02214006979274115,
+          "Bi-energie": 0.0
+        },
+        "n_homes": 39,
+        "n_eff": 33.3,
+        "level": "shrunk:Type_Batiment",
+        "reassigned_weight": 0.0
+      },
+      "Collective|>= 2013": {
+        "shares": {
+          "Gaz naturel": 0.9205396610484584,
+          "Electricite": 0.0794603389515417,
+          "Bi-energie": 0.0
+        },
+        "n_homes": 71,
+        "n_eff": 46.3,
+        "level": "shrunk:Type_Batiment",
+        "reassigned_weight": 0.0
+      },
+      "Plex|< 1946": {
+        "shares": {
+          "Gaz naturel": 0.9972443172050447,
+          "Electricite": 0.002755682794955275,
+          "Bi-energie": 0.0
+        },
+        "n_homes": 15,
+        "n_eff": 13.3,
+        "level": "shrunk:Type_Batiment",
+        "reassigned_weight": 0.0
+      },
+      "Plex|[1946 - 1971)": {
+        "shares": {
+          "Gaz naturel": 0.9989845065460651,
+          "Electricite": 0.0010154934539349353,
+          "Bi-energie": 0.0
+        },
+        "n_homes": 130,
+        "n_eff": 121.7,
+        "level": "shrunk:Type_Batiment",
+        "reassigned_weight": 0.0
+      },
+      "Plex|[1971 - 1986)": {
+        "shares": {
+          "Gaz naturel": 1.0,
+          "Bi-energie": 0.0
+        },
+        "n_homes": 432,
+        "n_eff": 388.5,
+        "level": "cell",
+        "reassigned_weight": 0.0
+      },
+      "Plex|[1986 - 2013)": {
+        "shares": {
+          "Electricite": 0.0050999364931191855,
+          "Gaz naturel": 0.9949000635068809,
+          "Bi-energie": 0.0
+        },
+        "n_homes": 643,
+        "n_eff": 478.9,
+        "level": "cell",
+        "reassigned_weight": 0.0
+      },
+      "Plex|>= 2013": {
+        "shares": {
+          "Electricite": 0.007772046932579246,
+          "Gaz naturel": 0.9922279530674208,
+          "Bi-energie": 0.0
+        },
+        "n_homes": 2869,
+        "n_eff": 1437.3,
+        "level": "cell",
+        "reassigned_weight": 0.0
+      },
+      "Maison|< 1946": {
+        "shares": {
+          "Electricite": 0.004066543121835556,
+          "Gaz naturel": 0.9951146199841505,
+          "Mazout": 0.0008188368940139621,
+          "Bi-energie": 0.0
+        },
+        "n_homes": 1224,
+        "n_eff": 1222.6,
+        "level": "cell",
+        "reassigned_weight": 0.0
+      },
+      "Maison|[1946 - 1971)": {
+        "shares": {
+          "Bois": 0.0002136963838895232,
+          "Electricite": 0.0013279499335149378,
+          "Gaz naturel": 0.9983201897987168,
+          "Mazout": 0.00013816388387875348,
+          "Bi-energie": 0.0
+        },
+        "n_homes": 8541,
+        "n_eff": 7959.1,
+        "level": "cell",
+        "reassigned_weight": 0.0
+      },
+      "Maison|[1971 - 1986)": {
+        "shares": {
+          "Electricite": 0.0005199301334182411,
+          "Gaz naturel": 0.9994142735906089,
+          "Mazout": 6.579627597287821e-05,
+          "Bi-energie": 0.0
+        },
+        "n_homes": 13396,
+        "n_eff": 12969.1,
+        "level": "cell",
+        "reassigned_weight": 0.0
+      },
+      "Maison|[1986 - 2013)": {
+        "shares": {
+          "Bois": 2.2406195291125175e-05,
+          "Electricite": 0.0034303299457543552,
+          "Gaz naturel": 0.9965472638589545,
+          "Bi-energie": 0.0
+        },
+        "n_homes": 24930,
+        "n_eff": 19598.2,
+        "level": "cell",
+        "reassigned_weight": 0.0
+      },
+      "Maison|>= 2013": {
+        "shares": {
+          "Electricite": 0.006869331052103174,
+          "Gaz naturel": 0.9930307439017215,
+          "Mazout": 9.99250461753484e-05,
+          "Bi-energie": 0.0
+        },
+        "n_homes": 21626,
+        "n_eff": 11727.3,
+        "level": "cell",
+        "reassigned_weight": 0.0
+      }
+    }
+  },
+  "Chauffage_Logement": {
+    "parents": [
+      "Type_Logement",
+      "Source_Energie_Chauf"
+    ],
+    "city_wide": {
+      "Fournaise murale ou de plancher": 0.014847735132252458,
+      "Fournaise ou poêle à bois": 3.5427818003087404e-05,
+      "Plinthes électriques": 0.00764860562274053,
+      "Système central à air chaud": 0.804024714069488,
+      "Système central à eau chaude": 0.17225070376351026,
+      "Thermopompe et Système central à air chaud": 0.0008681156868869751,
+      "Thermopompe et Système central à eau chaude": 1.6711586687916005e-06,
+      "Thermopompe géothermique et Fournaise": 5.570528895972002e-07,
+      "Thermopompe géothermique seule": 7.0859799709096435e-06,
+      "Thermopompe murale et Fournaise": 0.0003153837155894768
+    },
+    "cells": {
+      "Collective|Electricite": {
+        "shares": {
+          "Thermopompe géothermique seule": 7.709970497897826e-05,
+          "Système central à eau chaude": 0.005832963014168226,
+          "Thermopompe murale et Fournaise": 0.024888845177865014,
+          "Plinthes électriques": 0.6508491761289696,
+          "Thermopompe et Système central à air chaud": 0.004298498349144229,
+          "Système central à air chaud": 0.31401486777238447,
+          "Thermopompe géothermique et Fournaise": 3.854985248948913e-05
+        },
+        "n_homes": 23,
+        "n_eff": 10.8,
+        "level": "shrunk:Source_Energie_Chauf",
+        "reassigned_weight": 0.0
+      },
+      "Collective|Mazout": {
+        "shares": {
+          "Système central à air chaud": 1.0
+        },
+        "n_homes": 0,
+        "n_eff": 0.0,
+        "level": "fallback:Source_Energie_Chauf",
+        "reassigned_weight": 0.0
+      },
+      "Collective|Gaz naturel": {
+        "shares": {
+          "Système central à eau chaude": 0.4162705698230803,
+          "Système central à air chaud": 0.557594112823943,
+          "Fournaise murale ou de plancher": 0.026135317352976684
+        },
+        "n_homes": 98,
+        "n_eff": 67.9,
+        "level": "shrunk:Source_Energie_Chauf",
+        "reassigned_weight": 0.0
+      },
+      "Collective|Bi-energie": {
+        "shares": {
+          "Système central à air chaud": 0.8228303329124799,
+          "Système central à eau chaude": 0.17627953648933334,
+          "Thermopompe et Système central à air chaud": 0.0008884203521958174,
+          "Thermopompe et Système central à eau chaude": 1.710245990862077e-06
+        },
+        "n_homes": 0,
+        "n_eff": 0.0,
+        "level": "fallback:city",
+        "reassigned_weight": 0.0229
+      },
+      "Collective|Bois": {
+        "shares": {
+          "Fournaise ou poêle à bois": 1.0
+        },
+        "n_homes": 0,
+        "n_eff": 0.0,
+        "level": "fallback:Source_Energie_Chauf",
+        "reassigned_weight": 0.0
+      },
+      "Triplex|Electricite": {
+        "shares": {
+          "Plinthes électriques": 0.6432045183216132,
+          "Système central à air chaud": 0.3202630177395601,
+          "Système central à eau chaude": 0.007088098622162742,
+          "Thermopompe et Système central à air chaud": 0.005223448211814653,
+          "Thermopompe géothermique et Fournaise": 4.6845000671462224e-05,
+          "Thermopompe géothermique seule": 9.369000134292445e-05,
+          "Thermopompe murale et Fournaise": 0.024080382102834978
+        },
+        "n_homes": 0,
+        "n_eff": 0.0,
+        "level": "fallback:Source_Energie_Chauf",
+        "reassigned_weight": 0.0
+      },
+      "Triplex|Mazout": {
+        "shares": {
+          "Système central à air chaud": 1.0
+        },
+        "n_homes": 0,
+        "n_eff": 0.0,
+        "level": "fallback:Source_Energie_Chauf",
+        "reassigned_weight": 0.0
+      },
+      "Triplex|Gaz naturel": {
+        "shares": {
+          "Système central à eau chaude": 0.10877034776616969,
+          "Système central à air chaud": 0.8710098783812148,
+          "Fournaise murale ou de plancher": 0.020219773852615603
+        },
+        "n_homes": 47,
+        "n_eff": 34.9,
+        "level": "shrunk:Source_Energie_Chauf",
+        "reassigned_weight": 0.0
+      },
+      "Triplex|Bi-energie": {
+        "shares": {
+          "Système central à air chaud": 0.8228303329124799,
+          "Système central à eau chaude": 0.17627953648933334,
+          "Thermopompe et Système central à air chaud": 0.0008884203521958174,
+          "Thermopompe et Système central à eau chaude": 1.710245990862077e-06
+        },
+        "n_homes": 0,
+        "n_eff": 0.0,
+        "level": "fallback:city",
+        "reassigned_weight": 0.0229
+      },
+      "Triplex|Bois": {
+        "shares": {
+          "Fournaise ou poêle à bois": 1.0
+        },
+        "n_homes": 0,
+        "n_eff": 0.0,
+        "level": "fallback:Source_Energie_Chauf",
+        "reassigned_weight": 0.0
+      },
+      "Duplex|Electricite": {
+        "shares": {
+          "Thermopompe géothermique seule": 8.238894340126519e-05,
+          "Système central à eau chaude": 0.006233119306578541,
+          "Thermopompe murale et Fournaise": 0.021175762725091907,
+          "Plinthes électriques": 0.5985143206107272,
+          "Thermopompe et Système central à air chaud": 0.023780728698686242,
+          "Système central à air chaud": 0.35017248524381406,
+          "Thermopompe géothermique et Fournaise": 4.119447170063259e-05
+        },
+        "n_homes": 35,
+        "n_eff": 6.9,
+        "level": "shrunk:Source_Energie_Chauf",
+        "reassigned_weight": 0.0
+      },
+      "Duplex|Mazout": {
+        "shares": {
+          "Système central à air chaud": 1.0
+        },
+        "n_homes": 0,
+        "n_eff": 0.0,
+        "level": "fallback:Source_Energie_Chauf",
+        "reassigned_weight": 0.0
+      },
+      "Duplex|Gaz naturel": {
+        "shares": {
+          "Fournaise murale ou de plancher": 0.015425751147712866,
+          "Système central à air chaud": 0.9709805957516116,
+          "Système central à eau chaude": 0.013593653100675512
+        },
+        "n_homes": 4007,
+        "n_eff": 1578.3,
+        "level": "cell",
+        "reassigned_weight": 0.0026
+      },
+      "Duplex|Bi-energie": {
+        "shares": {
+          "Système central à air chaud": 0.8228303329124799,
+          "Système central à eau chaude": 0.17627953648933334,
+          "Thermopompe et Système central à air chaud": 0.0008884203521958174,
+          "Thermopompe et Système central à eau chaude": 1.710245990862077e-06
+        },
+        "n_homes": 0,
+        "n_eff": 0.0,
+        "level": "fallback:city",
+        "reassigned_weight": 0.0229
+      },
+      "Duplex|Bois": {
+        "shares": {
+          "Fournaise ou poêle à bois": 1.0
+        },
+        "n_homes": 0,
+        "n_eff": 0.0,
+        "level": "fallback:Source_Energie_Chauf",
+        "reassigned_weight": 0.0
+      },
+      "Maison en rangee|Electricite": {
+        "shares": {
+          "Thermopompe géothermique seule": 5.8344277447683056e-05,
+          "Système central à eau chaude": 0.005065729308137898,
+          "Thermopompe murale et Fournaise": 0.01499575701052254,
+          "Plinthes électriques": 0.6123033507310001,
+          "Thermopompe et Système central à air chaud": 0.005185951032149416,
+          "Système central à air chaud": 0.36236169550201847,
+          "Thermopompe géothermique et Fournaise": 2.9172138723841528e-05
+        },
+        "n_homes": 78,
+        "n_eff": 30.3,
+        "level": "shrunk:Source_Energie_Chauf",
+        "reassigned_weight": 0.0
+      },
+      "Maison en rangee|Mazout": {
+        "shares": {
+          "Système central à air chaud": 1.0
+        },
+        "n_homes": 0,
+        "n_eff": 0.0,
+        "level": "fallback:Source_Energie_Chauf",
+        "reassigned_weight": 0.0
+      },
+      "Maison en rangee|Gaz naturel": {
+        "shares": {
+          "Fournaise murale ou de plancher": 0.006227623626325239,
+          "Système central à air chaud": 0.9645941082734091,
+          "Système central à eau chaude": 0.029178268100265657
+        },
+        "n_homes": 8573,
+        "n_eff": 5200.9,
+        "level": "cell",
+        "reassigned_weight": 0.0005
+      },
+      "Maison en rangee|Bi-energie": {
+        "shares": {
+          "Système central à air chaud": 0.8228303329124799,
+          "Système central à eau chaude": 0.17627953648933334,
+          "Thermopompe et Système central à air chaud": 0.0008884203521958174,
+          "Thermopompe et Système central à eau chaude": 1.710245990862077e-06
+        },
+        "n_homes": 0,
+        "n_eff": 0.0,
+        "level": "fallback:city",
+        "reassigned_weight": 0.0229
+      },
+      "Maison en rangee|Bois": {
+        "shares": {
+          "Fournaise ou poêle à bois": 1.0
+        },
+        "n_homes": 1,
+        "n_eff": 1.0,
+        "level": "cell",
+        "reassigned_weight": 0.0
+      },
+      "Maison individuelle|Electricite": {
+        "shares": {
+          "Thermopompe géothermique seule": 0.000650802425486237,
+          "Système central à eau chaude": 0.04876921368965049,
+          "Thermopompe murale et Fournaise": 0.009574151145798885,
+          "Plinthes électriques": 0.49102235111361014,
+          "Thermopompe et Système central à air chaud": 0.00770877342855804,
+          "Système central à air chaud": 0.44194930698415313,
+          "Thermopompe géothermique et Fournaise": 0.0003254012127431185
+        },
+        "n_homes": 140,
+        "n_eff": 75.8,
+        "level": "shrunk:Source_Energie_Chauf",
+        "reassigned_weight": 0.0
+      },
+      "Maison individuelle|Mazout": {
+        "shares": {
+          "Système central à air chaud": 1.0
+        },
+        "n_homes": 5,
+        "n_eff": 3.2,
+        "level": "cell",
+        "reassigned_weight": 0.0
+      },
+      "Maison individuelle|Gaz naturel": {
+        "shares": {
+          "Fournaise murale ou de plancher": 0.00713193103645825,
+          "Système central à air chaud": 0.9687141701514541,
+          "Système central à eau chaude": 0.024153898812087595
+        },
+        "n_homes": 60918,
+        "n_eff": 41037.6,
+        "level": "cell",
+        "reassigned_weight": 0.0011
+      },
+      "Maison individuelle|Bi-energie": {
+        "shares": {
+          "Système central à air chaud": 0.8228303329124799,
+          "Système central à eau chaude": 0.17627953648933334,
+          "Thermopompe et Système central à air chaud": 0.0008884203521958174,
+          "Thermopompe et Système central à eau chaude": 1.710245990862077e-06
+        },
+        "n_homes": 0,
+        "n_eff": 0.0,
+        "level": "fallback:city",
+        "reassigned_weight": 0.0229
+      },
+      "Maison individuelle|Bois": {
+        "shares": {
+          "Fournaise ou poêle à bois": 1.0
+        },
+        "n_homes": 2,
+        "n_eff": 1.8,
+        "level": "cell",
+        "reassigned_weight": 0.0
+      }
+    }
+  },
+  "stock": {
+    "note": "Type_Logement / An_Construction / Mode_Occupation are read straight off the 2021 census. load_calgary() now re-rakes the Calgary subset to those same margins, so the weighted subset reproduces them to ~1e-8 and the two routes agree; the census is kept as the source of truth because it is exact where the weights are only fitted.",
+    "Type_Logement": {
+      "parents": [],
+      "shares": {
+        "Collective": 0.271,
+        "Triplex": 0.005,
+        "Duplex": 0.084,
+        "Maison en rangee": 0.088,
+        "Maison individuelle": 0.552
+      },
+      "source": "CENSUS_MARGINS_CALGARY_2021"
+    },
+    "An_Construction": {
+      "parents": [
+        "Type_Logement"
+      ],
+      "cells": {
+        "Collective": {
+          "shares": {
+            "< 1950": 0.0003550500380767397,
+            "[1950 - 1960)": 0.023228144029292443,
+            "[1960 - 1970)": 0.05045422273831804,
+            "[1970 - 1980)": 0.12777035300004724,
+            "[1980 - 1990)": 0.04993590153050448,
+            "[1990 - 2000)": 0.2856527504286524,
+            "[2000 - 2010)": 0.1009091745578782,
+            "[2010 - 2020)": 0.3243379740373885,
+            ">= 2020": 0.03735642963984204
+          },
+          "n_homes": 121,
+          "level": "census-IPF",
+          "reassigned_weight": 0.0
+        },
+        "Triplex": {
+          "shares": {
+            "< 1950": 0.03536459731624098,
+            "[1950 - 1960)": 0.04792375858550447,
+            "[1960 - 1970)": 0.10456108324613513,
+            "[1970 - 1980)": 0.15747266840690416,
+            "[1980 - 1990)": 0.13259078266729765,
+            "[1990 - 2000)": 0.13410973408221202,
+            "[2000 - 2010)": 0.21009856478329825,
+            "[2010 - 2020)": 0.15395531571277396,
+            ">= 2020": 0.02392349519963343
+          },
+          "n_homes": 47,
+          "level": "census-IPF",
+          "reassigned_weight": 0.0
+        },
+        "Duplex": {
+          "shares": {
+            "< 1950": 0.019811447980260008,
+            "[1950 - 1960)": 0.034376486853103,
+            "[1960 - 1970)": 0.06362191857718662,
+            "[1970 - 1980)": 0.17590030179149274,
+            "[1980 - 1990)": 0.12420406906680881,
+            "[1990 - 2000)": 0.06063830478301223,
+            "[2000 - 2010)": 0.2509661109118261,
+            "[2010 - 2020)": 0.2024547726123716,
+            ">= 2020": 0.06802658742393901
+          },
+          "n_homes": 4042,
+          "level": "census-IPF",
+          "reassigned_weight": 0.0
+        },
+        "Maison en rangee": {
+          "shares": {
+            "< 1950": 0.004092434324616869,
+            "[1950 - 1960)": 0.0197674150029023,
+            "[1960 - 1970)": 0.08619072820807103,
+            "[1970 - 1980)": 0.3377359799600212,
+            "[1980 - 1990)": 0.16968765632340674,
+            "[1990 - 2000)": 0.05255642565836014,
+            "[2000 - 2010)": 0.1564415486321518,
+            "[2010 - 2020)": 0.15307663090153986,
+            ">= 2020": 0.020451180988929955
+          },
+          "n_homes": 8652,
+          "level": "census-IPF",
+          "reassigned_weight": 0.0
+        },
+        "Maison individuelle": {
+          "shares": {
+            "< 1950": 0.059243953984615925,
+            "[1950 - 1960)": 0.0667362260094874,
+            "[1960 - 1970)": 0.14107803437448554,
+            "[1970 - 1980)": 0.14146825979570385,
+            "[1980 - 1990)": 0.16202674132003717,
+            "[1990 - 2000)": 0.085505385711684,
+            "[2000 - 2010)": 0.2676723030201876,
+            "[2010 - 2020)": 0.06495957980152918,
+            ">= 2020": 0.011309515982269197
+          },
+          "n_homes": 61065,
+          "level": "census-IPF",
+          "reassigned_weight": 0.0
+        }
+      },
+      "source": "EnerGuide joint, IPF-fitted to both census margins"
+    },
+    "Mode_Occupation": {
+      "parents": [
+        "Type_Logement"
+      ],
+      "cells": {
+        "Collective": {
+          "shares": {
+            "Proprietaire": 0.4079905492471875,
+            "Locataire": 0.5920094507528125
+          },
+          "n_homes": 121,
+          "level": "census",
+          "reassigned_weight": 0.0
+        },
+        "Triplex": {
+          "shares": {
+            "Proprietaire": 0.37754830609221407,
+            "Locataire": 0.6224516939077859
+          },
+          "n_homes": 47,
+          "level": "census",
+          "reassigned_weight": 0.0
+        },
+        "Duplex": {
+          "shares": {
+            "Proprietaire": 0.6448908700452057,
+            "Locataire": 0.3551091299547943
+          },
+          "n_homes": 4042,
+          "level": "census",
+          "reassigned_weight": 0.0
+        },
+        "Maison en rangee": {
+          "shares": {
+            "Proprietaire": 0.6448908700452057,
+            "Locataire": 0.3551091299547942
+          },
+          "n_homes": 8652,
+          "level": "census",
+          "reassigned_weight": 0.0
+        },
+        "Maison individuelle": {
+          "shares": {
+            "Proprietaire": 0.8797565035479635,
+            "Locataire": 0.12024349645203637
+          },
+          "n_homes": 61065,
+          "level": "census",
+          "reassigned_weight": 0.0
+        }
+      },
+      "source": "OWNER_SHARE_BY_TYPE (census tenure x structural type)"
+    },
+    "Nombre_Etages": {
+      "parents": [
+        "Type_Logement"
+      ],
+      "cells": {
+        "Collective": {
+          "shares": {
+            "Trois étages et plus": 0.5428521463980956,
+            "Un étage": 0.1684862575123805,
+            "Deux étages": 0.28866159608952385
+          },
+          "n_homes": 121,
+          "n_eff": 72.6,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Triplex": {
+          "shares": {
+            "Trois étages et plus": 0.8315346629550499,
+            "Un étage": 0.0832725203698531,
+            "Deux étages": 0.08519281667509712
+          },
+          "n_homes": 47,
+          "n_eff": 34.9,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Duplex": {
+          "shares": {
+            "Deux étages": 0.6169824601242019,
+            "Trois étages et plus": 0.035651724641984725,
+            "Un étage": 0.34736581523381344
+          },
+          "n_homes": 4042,
+          "n_eff": 1585.0,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Maison en rangee": {
+          "shares": {
+            "Deux étages": 0.6302048794587465,
+            "Trois étages et plus": 0.09298366851178184,
+            "Un étage": 0.27681145202947166
+          },
+          "n_homes": 8652,
+          "n_eff": 5232.2,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Maison individuelle": {
+          "shares": {
+            "Deux étages": 0.6001251698684523,
+            "Trois étages et plus": 0.004830795236207196,
+            "Un étage": 0.3950440348953404
+          },
+          "n_homes": 61065,
+          "n_eff": 41117.5,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        }
+      },
+      "city_wide": {
+        "Deux étages": 0.5172069193887877,
+        "Trois étages et plus": 0.1651144891515203,
+        "Un étage": 0.31767859145969196
+      },
+      "source": "EnerGuide STOREYS, POND_AB-weighted"
+    },
+    "Superficie_Totale": {
+      "parents": [],
+      "shares": {
+        "[1 - 500)": 6.171152734770499e-05,
+        "[500 - 1000)": 0.06416480093829063,
+        "[1000 - 1500)": 0.11621962229321284,
+        "[1500 - 2000)": 0.20650465990779626,
+        "[2000 - 2500)": 0.24117216156876306,
+        "[2500 - 3000)": 0.17318855559670296,
+        "[3000 - 3500)": 0.09851352445501653,
+        "[3500 - 4000)": 0.054443113097782214,
+        "[4000 - 4500)": 0.018119502986031762,
+        "[4500 - 5000)": 0.018928758586801174,
+        ">= 5000": 0.008683589042254691
+      },
+      "n_homes": 47132,
+      "source": "EnerGuide HEATEDFLOORAREA x 10.7639 ft2/m2, POND_AB-weighted; 47,132 of 73,927 Calgary homes report a usable area",
+      "applied_as": "marginal rake of P(Superficie_Totale | Nombre_Pieces)"
+    },
+    "Nombre_Personnes": {
+      "parents": [],
+      "shares": {
+        "1": 0.26245163576934816,
+        "2": 0.3192876059582763,
+        "3": 0.1591466236106052,
+        "4": 0.15897925629842577,
+        "5 et plus": 0.10013487836334459
+      },
+      "n_homes": 507865,
+      "source": "2021 Census Profile 98-401-X2021013, household size (characteristics 51-55) summed over Calgary's 36 FSAs",
+      "applied_as": "marginal rake of P(Nombre_Personnes | Nombre_Pieces)"
+    }
+  },
+  "enduse": {
+    "note": "Cooling, water heating and envelope, straight from POND_AB-weighted EnerGuide observations. ChaufEau_Presence is NOT here: EnerGuide has no field separating a dwelling's own water heater from a building-central one, and the only cell where that matters (Collective) is exactly the one it cannot identify.",
+    "Climatisation": {
+      "parents": [
+        "Chauffage_Logement",
+        "Type_Logement"
+      ],
+      "cells": {
+        "Plinthes électriques|Collective": {
+          "shares": {
+            "Centrale": 0.047374624686793466,
+            "Murale": 0.001056640696153526,
+            "Aucune": 0.9515687346170529
+          },
+          "n_homes": 121,
+          "n_eff": 72.6,
+          "level": "shrunk:Type_Logement",
+          "reassigned_weight": 0.0
+        },
+        "Plinthes électriques|Triplex": {
+          "shares": {
+            "Aucune": 1.0
+          },
+          "n_homes": 47,
+          "n_eff": 34.9,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Plinthes électriques|Duplex": {
+          "shares": {
+            "Aucune": 0.7964384442218149,
+            "Centrale": 0.19957020385221627,
+            "Murale": 0.003991351925968909
+          },
+          "n_homes": 4042,
+          "n_eff": 1585.0,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Plinthes électriques|Maison en rangee": {
+          "shares": {
+            "Aucune": 0.9027322616694704,
+            "Centrale": 0.09278679048377682,
+            "Fenêtre, mobile, portable": 0.00418220660370082,
+            "Murale": 0.0002987412430520506
+          },
+          "n_homes": 8652,
+          "n_eff": 5232.2,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Plinthes électriques|Maison individuelle": {
+          "shares": {
+            "Aucune": 0.764910229007717,
+            "Centrale": 0.23171400829310024,
+            "Fenêtre, mobile, portable": 0.0023037128517102256,
+            "Murale": 0.0010720498474724586
+          },
+          "n_homes": 61065,
+          "n_eff": 41117.5,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Unités convecteurs, plancher ou plafond radiant|Collective": {
+          "shares": {
+            "Centrale": 0.047374624686793466,
+            "Murale": 0.001056640696153526,
+            "Aucune": 0.9515687346170529
+          },
+          "n_homes": 121,
+          "n_eff": 72.6,
+          "level": "shrunk:Type_Logement",
+          "reassigned_weight": 0.0
+        },
+        "Unités convecteurs, plancher ou plafond radiant|Triplex": {
+          "shares": {
+            "Aucune": 1.0
+          },
+          "n_homes": 47,
+          "n_eff": 34.9,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Unités convecteurs, plancher ou plafond radiant|Duplex": {
+          "shares": {
+            "Aucune": 0.7964384442218149,
+            "Centrale": 0.19957020385221627,
+            "Murale": 0.003991351925968909
+          },
+          "n_homes": 4042,
+          "n_eff": 1585.0,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Unités convecteurs, plancher ou plafond radiant|Maison en rangee": {
+          "shares": {
+            "Aucune": 0.9027322616694704,
+            "Centrale": 0.09278679048377682,
+            "Fenêtre, mobile, portable": 0.00418220660370082,
+            "Murale": 0.0002987412430520506
+          },
+          "n_homes": 8652,
+          "n_eff": 5232.2,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Unités convecteurs, plancher ou plafond radiant|Maison individuelle": {
+          "shares": {
+            "Aucune": 0.764910229007717,
+            "Centrale": 0.23171400829310024,
+            "Fenêtre, mobile, portable": 0.0023037128517102256,
+            "Murale": 0.0010720498474724586
+          },
+          "n_homes": 61065,
+          "n_eff": 41117.5,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe et Système central à air chaud|Collective": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe et Système central à air chaud|Triplex": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe et Système central à air chaud|Duplex": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe et Système central à air chaud|Maison en rangee": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe et Système central à air chaud|Maison individuelle": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe et Système central à eau chaude|Collective": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe et Système central à eau chaude|Triplex": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe et Système central à eau chaude|Duplex": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe et Système central à eau chaude|Maison en rangee": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe et Système central à eau chaude|Maison individuelle": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe géothermique seule|Collective": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe géothermique seule|Triplex": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe géothermique seule|Duplex": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe géothermique seule|Maison en rangee": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe géothermique seule|Maison individuelle": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe géothermique et Plinthes électriques|Collective": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe géothermique et Plinthes électriques|Triplex": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe géothermique et Plinthes électriques|Duplex": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe géothermique et Plinthes électriques|Maison en rangee": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe géothermique et Plinthes électriques|Maison individuelle": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe géothermique et Fournaise|Collective": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe géothermique et Fournaise|Triplex": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe géothermique et Fournaise|Duplex": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe géothermique et Fournaise|Maison en rangee": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe géothermique et Fournaise|Maison individuelle": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe murale|Collective": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe murale|Triplex": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe murale|Duplex": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe murale|Maison en rangee": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe murale|Maison individuelle": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe murale et Plinthes électriques|Collective": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe murale et Plinthes électriques|Triplex": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe murale et Plinthes électriques|Duplex": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe murale et Plinthes électriques|Maison en rangee": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe murale et Plinthes électriques|Maison individuelle": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe murale et Fournaise|Collective": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe murale et Fournaise|Triplex": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe murale et Fournaise|Duplex": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe murale et Fournaise|Maison en rangee": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Thermopompe murale et Fournaise|Maison individuelle": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Système central à air chaud|Collective": {
+          "shares": {
+            "Centrale": 0.047374624686793466,
+            "Murale": 0.001056640696153526,
+            "Aucune": 0.9515687346170529
+          },
+          "n_homes": 121,
+          "n_eff": 72.6,
+          "level": "shrunk:Type_Logement",
+          "reassigned_weight": 0.0
+        },
+        "Système central à air chaud|Triplex": {
+          "shares": {
+            "Aucune": 1.0
+          },
+          "n_homes": 47,
+          "n_eff": 34.9,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Système central à air chaud|Duplex": {
+          "shares": {
+            "Aucune": 0.7964384442218149,
+            "Centrale": 0.19957020385221627,
+            "Murale": 0.003991351925968909
+          },
+          "n_homes": 4042,
+          "n_eff": 1585.0,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Système central à air chaud|Maison en rangee": {
+          "shares": {
+            "Aucune": 0.9027322616694704,
+            "Centrale": 0.09278679048377682,
+            "Fenêtre, mobile, portable": 0.00418220660370082,
+            "Murale": 0.0002987412430520506
+          },
+          "n_homes": 8652,
+          "n_eff": 5232.2,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Système central à air chaud|Maison individuelle": {
+          "shares": {
+            "Aucune": 0.764910229007717,
+            "Centrale": 0.23171400829310024,
+            "Fenêtre, mobile, portable": 0.0023037128517102256,
+            "Murale": 0.0010720498474724586
+          },
+          "n_homes": 61065,
+          "n_eff": 41117.5,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Système central à eau chaude|Collective": {
+          "shares": {
+            "Centrale": 0.047374624686793466,
+            "Murale": 0.001056640696153526,
+            "Aucune": 0.9515687346170529
+          },
+          "n_homes": 121,
+          "n_eff": 72.6,
+          "level": "shrunk:Type_Logement",
+          "reassigned_weight": 0.0
+        },
+        "Système central à eau chaude|Triplex": {
+          "shares": {
+            "Aucune": 1.0
+          },
+          "n_homes": 47,
+          "n_eff": 34.9,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Système central à eau chaude|Duplex": {
+          "shares": {
+            "Aucune": 0.7964384442218149,
+            "Centrale": 0.19957020385221627,
+            "Murale": 0.003991351925968909
+          },
+          "n_homes": 4042,
+          "n_eff": 1585.0,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Système central à eau chaude|Maison en rangee": {
+          "shares": {
+            "Aucune": 0.9027322616694704,
+            "Centrale": 0.09278679048377682,
+            "Fenêtre, mobile, portable": 0.00418220660370082,
+            "Murale": 0.0002987412430520506
+          },
+          "n_homes": 8652,
+          "n_eff": 5232.2,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Système central à eau chaude|Maison individuelle": {
+          "shares": {
+            "Aucune": 0.764910229007717,
+            "Centrale": 0.23171400829310024,
+            "Fenêtre, mobile, portable": 0.0023037128517102256,
+            "Murale": 0.0010720498474724586
+          },
+          "n_homes": 61065,
+          "n_eff": 41117.5,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois|Collective": {
+          "shares": {
+            "Centrale": 0.047374624686793466,
+            "Murale": 0.001056640696153526,
+            "Aucune": 0.9515687346170529
+          },
+          "n_homes": 121,
+          "n_eff": 72.6,
+          "level": "shrunk:Type_Logement",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois|Triplex": {
+          "shares": {
+            "Aucune": 1.0
+          },
+          "n_homes": 47,
+          "n_eff": 34.9,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois|Duplex": {
+          "shares": {
+            "Aucune": 0.7964384442218149,
+            "Centrale": 0.19957020385221627,
+            "Murale": 0.003991351925968909
+          },
+          "n_homes": 4042,
+          "n_eff": 1585.0,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois|Maison en rangee": {
+          "shares": {
+            "Aucune": 0.9027322616694704,
+            "Centrale": 0.09278679048377682,
+            "Fenêtre, mobile, portable": 0.00418220660370082,
+            "Murale": 0.0002987412430520506
+          },
+          "n_homes": 8652,
+          "n_eff": 5232.2,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois|Maison individuelle": {
+          "shares": {
+            "Aucune": 0.764910229007717,
+            "Centrale": 0.23171400829310024,
+            "Fenêtre, mobile, portable": 0.0023037128517102256,
+            "Murale": 0.0010720498474724586
+          },
+          "n_homes": 61065,
+          "n_eff": 41117.5,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise murale ou de plancher|Collective": {
+          "shares": {
+            "Centrale": 0.047374624686793466,
+            "Murale": 0.001056640696153526,
+            "Aucune": 0.9515687346170529
+          },
+          "n_homes": 121,
+          "n_eff": 72.6,
+          "level": "shrunk:Type_Logement",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise murale ou de plancher|Triplex": {
+          "shares": {
+            "Aucune": 1.0
+          },
+          "n_homes": 47,
+          "n_eff": 34.9,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise murale ou de plancher|Duplex": {
+          "shares": {
+            "Aucune": 0.7964384442218149,
+            "Centrale": 0.19957020385221627,
+            "Murale": 0.003991351925968909
+          },
+          "n_homes": 4042,
+          "n_eff": 1585.0,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise murale ou de plancher|Maison en rangee": {
+          "shares": {
+            "Aucune": 0.9027322616694704,
+            "Centrale": 0.09278679048377682,
+            "Fenêtre, mobile, portable": 0.00418220660370082,
+            "Murale": 0.0002987412430520506
+          },
+          "n_homes": 8652,
+          "n_eff": 5232.2,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise murale ou de plancher|Maison individuelle": {
+          "shares": {
+            "Aucune": 0.764910229007717,
+            "Centrale": 0.23171400829310024,
+            "Fenêtre, mobile, portable": 0.0023037128517102256,
+            "Murale": 0.0010720498474724586
+          },
+          "n_homes": 61065,
+          "n_eff": 41117.5,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Plinthes électriques|Collective": {
+          "shares": {
+            "Centrale": 0.047374624686793466,
+            "Murale": 0.001056640696153526,
+            "Aucune": 0.9515687346170529
+          },
+          "n_homes": 121,
+          "n_eff": 72.6,
+          "level": "shrunk:Type_Logement",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Plinthes électriques|Triplex": {
+          "shares": {
+            "Aucune": 1.0
+          },
+          "n_homes": 47,
+          "n_eff": 34.9,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Plinthes électriques|Duplex": {
+          "shares": {
+            "Aucune": 0.7964384442218149,
+            "Centrale": 0.19957020385221627,
+            "Murale": 0.003991351925968909
+          },
+          "n_homes": 4042,
+          "n_eff": 1585.0,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Plinthes électriques|Maison en rangee": {
+          "shares": {
+            "Aucune": 0.9027322616694704,
+            "Centrale": 0.09278679048377682,
+            "Fenêtre, mobile, portable": 0.00418220660370082,
+            "Murale": 0.0002987412430520506
+          },
+          "n_homes": 8652,
+          "n_eff": 5232.2,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Plinthes électriques|Maison individuelle": {
+          "shares": {
+            "Aucune": 0.764910229007717,
+            "Centrale": 0.23171400829310024,
+            "Fenêtre, mobile, portable": 0.0023037128517102256,
+            "Murale": 0.0010720498474724586
+          },
+          "n_homes": 61065,
+          "n_eff": 41117.5,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Unités convecteurs, plancher ou plafond radiant|Collective": {
+          "shares": {
+            "Centrale": 0.047374624686793466,
+            "Murale": 0.001056640696153526,
+            "Aucune": 0.9515687346170529
+          },
+          "n_homes": 121,
+          "n_eff": 72.6,
+          "level": "shrunk:Type_Logement",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Unités convecteurs, plancher ou plafond radiant|Triplex": {
+          "shares": {
+            "Aucune": 1.0
+          },
+          "n_homes": 47,
+          "n_eff": 34.9,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Unités convecteurs, plancher ou plafond radiant|Duplex": {
+          "shares": {
+            "Aucune": 0.7964384442218149,
+            "Centrale": 0.19957020385221627,
+            "Murale": 0.003991351925968909
+          },
+          "n_homes": 4042,
+          "n_eff": 1585.0,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Unités convecteurs, plancher ou plafond radiant|Maison en rangee": {
+          "shares": {
+            "Aucune": 0.9027322616694704,
+            "Centrale": 0.09278679048377682,
+            "Fenêtre, mobile, portable": 0.00418220660370082,
+            "Murale": 0.0002987412430520506
+          },
+          "n_homes": 8652,
+          "n_eff": 5232.2,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Unités convecteurs, plancher ou plafond radiant|Maison individuelle": {
+          "shares": {
+            "Aucune": 0.764910229007717,
+            "Centrale": 0.23171400829310024,
+            "Fenêtre, mobile, portable": 0.0023037128517102256,
+            "Murale": 0.0010720498474724586
+          },
+          "n_homes": 61065,
+          "n_eff": 41117.5,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Thermopompe murale|Collective": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Thermopompe murale|Triplex": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Thermopompe murale|Duplex": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Thermopompe murale|Maison en rangee": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Thermopompe murale|Maison individuelle": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:heat-pump-is-the-cooling",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Système central à air chaud|Collective": {
+          "shares": {
+            "Centrale": 0.047374624686793466,
+            "Murale": 0.001056640696153526,
+            "Aucune": 0.9515687346170529
+          },
+          "n_homes": 121,
+          "n_eff": 72.6,
+          "level": "shrunk:Type_Logement",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Système central à air chaud|Triplex": {
+          "shares": {
+            "Aucune": 1.0
+          },
+          "n_homes": 47,
+          "n_eff": 34.9,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Système central à air chaud|Duplex": {
+          "shares": {
+            "Aucune": 0.7964384442218149,
+            "Centrale": 0.19957020385221627,
+            "Murale": 0.003991351925968909
+          },
+          "n_homes": 4042,
+          "n_eff": 1585.0,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Système central à air chaud|Maison en rangee": {
+          "shares": {
+            "Aucune": 0.9027322616694704,
+            "Centrale": 0.09278679048377682,
+            "Fenêtre, mobile, portable": 0.00418220660370082,
+            "Murale": 0.0002987412430520506
+          },
+          "n_homes": 8652,
+          "n_eff": 5232.2,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Système central à air chaud|Maison individuelle": {
+          "shares": {
+            "Aucune": 0.764910229007717,
+            "Centrale": 0.23171400829310024,
+            "Fenêtre, mobile, portable": 0.0023037128517102256,
+            "Murale": 0.0010720498474724586
+          },
+          "n_homes": 61065,
+          "n_eff": 41117.5,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Système central à eau chaude|Collective": {
+          "shares": {
+            "Centrale": 0.047374624686793466,
+            "Murale": 0.001056640696153526,
+            "Aucune": 0.9515687346170529
+          },
+          "n_homes": 121,
+          "n_eff": 72.6,
+          "level": "shrunk:Type_Logement",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Système central à eau chaude|Triplex": {
+          "shares": {
+            "Aucune": 1.0
+          },
+          "n_homes": 47,
+          "n_eff": 34.9,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Système central à eau chaude|Duplex": {
+          "shares": {
+            "Aucune": 0.7964384442218149,
+            "Centrale": 0.19957020385221627,
+            "Murale": 0.003991351925968909
+          },
+          "n_homes": 4042,
+          "n_eff": 1585.0,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Système central à eau chaude|Maison en rangee": {
+          "shares": {
+            "Aucune": 0.9027322616694704,
+            "Centrale": 0.09278679048377682,
+            "Fenêtre, mobile, portable": 0.00418220660370082,
+            "Murale": 0.0002987412430520506
+          },
+          "n_homes": 8652,
+          "n_eff": 5232.2,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Système central à eau chaude|Maison individuelle": {
+          "shares": {
+            "Aucune": 0.764910229007717,
+            "Centrale": 0.23171400829310024,
+            "Fenêtre, mobile, portable": 0.0023037128517102256,
+            "Murale": 0.0010720498474724586
+          },
+          "n_homes": 61065,
+          "n_eff": 41117.5,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Fournaise murale ou de plancher|Collective": {
+          "shares": {
+            "Centrale": 0.047374624686793466,
+            "Murale": 0.001056640696153526,
+            "Aucune": 0.9515687346170529
+          },
+          "n_homes": 121,
+          "n_eff": 72.6,
+          "level": "shrunk:Type_Logement",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Fournaise murale ou de plancher|Triplex": {
+          "shares": {
+            "Aucune": 1.0
+          },
+          "n_homes": 47,
+          "n_eff": 34.9,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Fournaise murale ou de plancher|Duplex": {
+          "shares": {
+            "Aucune": 0.7964384442218149,
+            "Centrale": 0.19957020385221627,
+            "Murale": 0.003991351925968909
+          },
+          "n_homes": 4042,
+          "n_eff": 1585.0,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Fournaise murale ou de plancher|Maison en rangee": {
+          "shares": {
+            "Aucune": 0.9027322616694704,
+            "Centrale": 0.09278679048377682,
+            "Fenêtre, mobile, portable": 0.00418220660370082,
+            "Murale": 0.0002987412430520506
+          },
+          "n_homes": 8652,
+          "n_eff": 5232.2,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Fournaise ou poêle à bois et Fournaise murale ou de plancher|Maison individuelle": {
+          "shares": {
+            "Aucune": 0.764910229007717,
+            "Centrale": 0.23171400829310024,
+            "Fenêtre, mobile, portable": 0.0023037128517102256,
+            "Murale": 0.0010720498474724586
+          },
+          "n_homes": 61065,
+          "n_eff": 41117.5,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        }
+      },
+      "city_wide": {
+        "Aucune": 0.8314468339804763,
+        "Centrale": 0.16567379831268386,
+        "Fenêtre, mobile, portable": 0.0016396837777348124,
+        "Murale": 0.0012396839291051209
+      },
+      "by_type": {
+        "Collective": {
+          "shares": {
+            "Centrale": 0.047374624686793466,
+            "Murale": 0.001056640696153526,
+            "Aucune": 0.9515687346170529
+          },
+          "n_homes": 121,
+          "n_eff": 72.6,
+          "level": "shrunk:Type_Logement",
+          "reassigned_weight": 0.0
+        },
+        "Triplex": {
+          "shares": {
+            "Aucune": 1.0
+          },
+          "n_homes": 47,
+          "n_eff": 34.9,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Duplex": {
+          "shares": {
+            "Aucune": 0.7964384442218149,
+            "Centrale": 0.19957020385221627,
+            "Murale": 0.003991351925968909
+          },
+          "n_homes": 4042,
+          "n_eff": 1585.0,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Maison en rangee": {
+          "shares": {
+            "Aucune": 0.9027322616694704,
+            "Centrale": 0.09278679048377682,
+            "Fenêtre, mobile, portable": 0.00418220660370082,
+            "Murale": 0.0002987412430520506
+          },
+          "n_homes": 8652,
+          "n_eff": 5232.2,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Maison individuelle": {
+          "shares": {
+            "Aucune": 0.764910229007717,
+            "Centrale": 0.23171400829310024,
+            "Fenêtre, mobile, portable": 0.0023037128517102256,
+            "Murale": 0.0010720498474724586
+          },
+          "n_homes": 61065,
+          "n_eff": 41117.5,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        }
+      },
+      "source": "EnerGuide AIRCONDTYPE, POND_AB-weighted; 73,927 of 73,927 Calgary homes report a cooling record",
+      "limitation": "Broadcast over Chauffage_Logement rather than jointly derived; heat-pump heating states keep their Quebec rows."
+    },
+    "ChaufEau_ChaufType": {
+      "parents": [
+        "Source_Energie_Chauf",
+        "ChaufEau_Presence"
+      ],
+      "cells": {
+        "Electricite|Aucun": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:no-water-heater",
+          "reassigned_weight": 0.0
+        },
+        "Electricite|Logement": {
+          "shares": {
+            "Gaz Naturel": 0.09110982032550607,
+            "Electrique": 0.908890179674494
+          },
+          "n_homes": 241,
+          "n_eff": 14.1,
+          "level": "shrunk:Source_Energie_Chauf",
+          "reassigned_weight": 0.0
+        },
+        "Electricite|Central": {
+          "shares": {
+            "Gaz Naturel": 0.09110982032550607,
+            "Electrique": 0.908890179674494
+          },
+          "n_homes": 241,
+          "n_eff": 14.1,
+          "level": "shrunk:Source_Energie_Chauf",
+          "reassigned_weight": 0.0
+        },
+        "Mazout|Aucun": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:no-water-heater",
+          "reassigned_weight": 0.0
+        },
+        "Mazout|Logement": {
+          "shares": {
+            "Gaz Naturel": 1.0
+          },
+          "n_homes": 5,
+          "n_eff": 3.2,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Mazout|Central": {
+          "shares": {
+            "Gaz Naturel": 1.0
+          },
+          "n_homes": 5,
+          "n_eff": 3.2,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Gaz naturel|Aucun": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:no-water-heater",
+          "reassigned_weight": 0.0
+        },
+        "Gaz naturel|Logement": {
+          "shares": {
+            "Aucun": 0.00027707119661695264,
+            "Electrique": 0.05481454285895364,
+            "Gaz Naturel": 0.9447791022608886,
+            "Mazout": 1.4942606482118324e-05,
+            "Propane": 0.00011434107705868335
+          },
+          "n_homes": 73579,
+          "n_eff": 988.5,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Gaz naturel|Central": {
+          "shares": {
+            "Aucun": 0.00027707119661695264,
+            "Electrique": 0.05481454285895364,
+            "Gaz Naturel": 0.9447791022608886,
+            "Mazout": 1.4942606482118324e-05,
+            "Propane": 0.00011434107705868335
+          },
+          "n_homes": 73579,
+          "n_eff": 988.5,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Bi-energie|Aucun": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:no-water-heater",
+          "reassigned_weight": 0.0
+        },
+        "Bi-energie|Logement": {
+          "shares": {
+            "Aucun": 0.00027383792264964747,
+            "Electrique": 0.06469705854049523,
+            "Gaz Naturel": 0.9349013285253578,
+            "Mazout": 1.476823418672195e-05,
+            "Propane": 0.00011300677731059886
+          },
+          "n_homes": 0,
+          "n_eff": 0.0,
+          "level": "fallback:city",
+          "reassigned_weight": 0.0
+        },
+        "Bi-energie|Central": {
+          "shares": {
+            "Aucun": 0.00027383792264964747,
+            "Electrique": 0.06469705854049523,
+            "Gaz Naturel": 0.9349013285253578,
+            "Mazout": 1.476823418672195e-05,
+            "Propane": 0.00011300677731059886
+          },
+          "n_homes": 0,
+          "n_eff": 0.0,
+          "level": "fallback:city",
+          "reassigned_weight": 0.0
+        },
+        "Bois|Aucun": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:no-water-heater",
+          "reassigned_weight": 0.0
+        },
+        "Bois|Logement": {
+          "shares": {
+            "Gaz Naturel": 1.0
+          },
+          "n_homes": 3,
+          "n_eff": 2.6,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Bois|Central": {
+          "shares": {
+            "Gaz Naturel": 1.0
+          },
+          "n_homes": 3,
+          "n_eff": 2.6,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        }
+      },
+      "city_wide": {
+        "Aucun": 0.00027383792264964747,
+        "Electrique": 0.06469705854049523,
+        "Gaz Naturel": 0.9349013285253578,
+        "Mazout": 1.476823418672195e-05,
+        "Propane": 0.00011300677731059886
+      },
+      "by_heating_fuel": {
+        "Electricite": {
+          "shares": {
+            "Gaz Naturel": 0.09110982032550607,
+            "Electrique": 0.908890179674494
+          },
+          "n_homes": 241,
+          "n_eff": 14.1,
+          "level": "shrunk:Source_Energie_Chauf",
+          "reassigned_weight": 0.0
+        },
+        "Mazout": {
+          "shares": {
+            "Gaz Naturel": 1.0
+          },
+          "n_homes": 5,
+          "n_eff": 3.2,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Gaz naturel": {
+          "shares": {
+            "Aucun": 0.00027707119661695264,
+            "Electrique": 0.05481454285895364,
+            "Gaz Naturel": 0.9447791022608886,
+            "Mazout": 1.4942606482118324e-05,
+            "Propane": 0.00011434107705868335
+          },
+          "n_homes": 73579,
+          "n_eff": 988.5,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Bi-energie": {
+          "shares": {
+            "Aucun": 0.00027383792264964747,
+            "Electrique": 0.06469705854049523,
+            "Gaz Naturel": 0.9349013285253578,
+            "Mazout": 1.476823418672195e-05,
+            "Propane": 0.00011300677731059886
+          },
+          "n_homes": 0,
+          "n_eff": 0.0,
+          "level": "fallback:city",
+          "reassigned_weight": 0.0
+        },
+        "Bois": {
+          "shares": {
+            "Gaz Naturel": 1.0
+          },
+          "n_homes": 3,
+          "n_eff": 2.6,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        }
+      },
+      "source": "EnerGuide PDHWFUEL x Source_Energie_Chauf, POND_AB-weighted; 73,828 of 73,927 homes"
+    },
+    "ChaufEau_Type": {
+      "parents": [
+        "ChaufEau_Presence",
+        "Type_Logement"
+      ],
+      "cells": {
+        "Aucun|Collective": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:no-water-heater",
+          "reassigned_weight": 0.0
+        },
+        "Aucun|Triplex": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:no-water-heater",
+          "reassigned_weight": 0.0
+        },
+        "Aucun|Duplex": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:no-water-heater",
+          "reassigned_weight": 0.0
+        },
+        "Aucun|Maison en rangee": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:no-water-heater",
+          "reassigned_weight": 0.0
+        },
+        "Aucun|Maison individuelle": {
+          "shares": {},
+          "n_homes": 0,
+          "level": "quebec-preserved:no-water-heater",
+          "reassigned_weight": 0.0
+        },
+        "Logement|Collective": {
+          "shares": {
+            "40 gallons": 0.10693010548874847,
+            "41-59 gallons": 0.09969066535778326,
+            "Chauffe-eau sans réservoir": 0.4275052687540728,
+            "60 gallons": 0.03966460663144745,
+            "60 et plus gallons": 0.3262093537679481
+          },
+          "n_homes": 45,
+          "n_eff": 14.8,
+          "level": "shrunk:Type_Logement",
+          "reassigned_weight": 0.0
+        },
+        "Logement|Triplex": {
+          "shares": {
+            "40 gallons": 0.4317487535189692,
+            "41-59 gallons": 0.5682512464810308
+          },
+          "n_homes": 5,
+          "n_eff": 4.5,
+          "level": "shrunk:Type_Logement",
+          "reassigned_weight": 0.0
+        },
+        "Logement|Duplex": {
+          "shares": {
+            "23-40 gallons": 0.004878225921193536,
+            "40 gallons": 0.4294533205752948,
+            "41-59 gallons": 0.30963516290203735,
+            "60 et plus gallons": 0.08862277783750468,
+            "60 gallons": 0.013730838497651726,
+            "Chauffe-eau sans réservoir": 0.15359920383603667,
+            "Moins de 22 gallons": 8.047043028138883e-05
+          },
+          "n_homes": 3341,
+          "n_eff": 1206.8,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Logement|Maison en rangee": {
+          "shares": {
+            "23-40 gallons": 0.0034679879789228187,
+            "40 gallons": 0.5675280429790067,
+            "41-59 gallons": 0.23656074156791335,
+            "60 et plus gallons": 0.0539661316392592,
+            "60 gallons": 0.007537706196444579,
+            "Chauffe-eau sans réservoir": 0.13030608708268704,
+            "Moins de 22 gallons": 0.0006333025557663278
+          },
+          "n_homes": 3792,
+          "n_eff": 1803.9,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Logement|Maison individuelle": {
+          "shares": {
+            "23-40 gallons": 0.0020958800044891387,
+            "40 gallons": 0.4301369738733888,
+            "41-59 gallons": 0.38036010986689833,
+            "60 et plus gallons": 0.04951256093636544,
+            "60 gallons": 0.015255576200436872,
+            "Chauffe-eau sans réservoir": 0.12194761628048491,
+            "Moins de 22 gallons": 0.0006912828379365402
+          },
+          "n_homes": 37298,
+          "n_eff": 22269.2,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Central|Collective": {
+          "shares": {
+            "40 gallons": 0.10693010548874847,
+            "41-59 gallons": 0.09969066535778326,
+            "Chauffe-eau sans réservoir": 0.4275052687540728,
+            "60 gallons": 0.03966460663144745,
+            "60 et plus gallons": 0.3262093537679481
+          },
+          "n_homes": 45,
+          "n_eff": 14.8,
+          "level": "shrunk:Type_Logement",
+          "reassigned_weight": 0.0
+        },
+        "Central|Triplex": {
+          "shares": {
+            "40 gallons": 0.4317487535189692,
+            "41-59 gallons": 0.5682512464810308
+          },
+          "n_homes": 5,
+          "n_eff": 4.5,
+          "level": "shrunk:Type_Logement",
+          "reassigned_weight": 0.0
+        },
+        "Central|Duplex": {
+          "shares": {
+            "23-40 gallons": 0.004878225921193536,
+            "40 gallons": 0.4294533205752948,
+            "41-59 gallons": 0.30963516290203735,
+            "60 et plus gallons": 0.08862277783750468,
+            "60 gallons": 0.013730838497651726,
+            "Chauffe-eau sans réservoir": 0.15359920383603667,
+            "Moins de 22 gallons": 8.047043028138883e-05
+          },
+          "n_homes": 3341,
+          "n_eff": 1206.8,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Central|Maison en rangee": {
+          "shares": {
+            "23-40 gallons": 0.0034679879789228187,
+            "40 gallons": 0.5675280429790067,
+            "41-59 gallons": 0.23656074156791335,
+            "60 et plus gallons": 0.0539661316392592,
+            "60 gallons": 0.007537706196444579,
+            "Chauffe-eau sans réservoir": 0.13030608708268704,
+            "Moins de 22 gallons": 0.0006333025557663278
+          },
+          "n_homes": 3792,
+          "n_eff": 1803.9,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Central|Maison individuelle": {
+          "shares": {
+            "23-40 gallons": 0.0020958800044891387,
+            "40 gallons": 0.4301369738733888,
+            "41-59 gallons": 0.38036010986689833,
+            "60 et plus gallons": 0.04951256093636544,
+            "60 gallons": 0.015255576200436872,
+            "Chauffe-eau sans réservoir": 0.12194761628048491,
+            "Moins de 22 gallons": 0.0006912828379365402
+          },
+          "n_homes": 37298,
+          "n_eff": 22269.2,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        }
+      },
+      "city_wide": {
+        "23-40 gallons": 0.0022965289251041256,
+        "40 gallons": 0.3930835496553991,
+        "41-59 gallons": 0.3207759254743091,
+        "60 et plus gallons": 0.09491234051929742,
+        "60 gallons": 0.017966232630795515,
+        "Chauffe-eau sans réservoir": 0.17046832786105687,
+        "Moins de 22 gallons": 0.000497094934037755
+      },
+      "coverage": 0.6017,
+      "source": "EnerGuide PDHWTYPE (tankless) + PRIMARYDHWTANKVOLUME / 3.785 L per US gal; 44,481 of 73,927 homes report a usable size",
+      "limitation": "PRIMARYDHWTANKVOLUME is 43.5% null. Observed sizes are renormalized to 1, so 'Non definit' and 'Ne sait pas' fall to zero rather than absorbing the non-response."
+    },
+    "Presence_SousSol": {
+      "parents": [
+        "Nombre_Etages",
+        "Type_Logement"
+      ],
+      "cells": {
+        "Un étage|Collective": {
+          "shares": {
+            "Vide sanitaire moins 6 pieds": 0.07591456231025857,
+            "Sous sol 6 pied": 0.7201783928020292,
+            "Aucun Sous-sol ou vide sanitaire": 0.20390704488771216
+          },
+          "n_homes": 19,
+          "n_eff": 9.6,
+          "level": "shrunk:Type_Logement",
+          "reassigned_weight": 0.0
+        },
+        "Un étage|Triplex": {
+          "shares": {
+            "Sous sol 6 pied": 0.9601888726003371,
+            "Aucun Sous-sol ou vide sanitaire": 0.03981112739966283
+          },
+          "n_homes": 7,
+          "n_eff": 2.2,
+          "level": "shrunk:Type_Logement",
+          "reassigned_weight": 0.0
+        },
+        "Un étage|Duplex": {
+          "shares": {
+            "Aucun Sous-sol ou vide sanitaire": 0.012128650599051499,
+            "Sous sol 6 pied": 0.9715756730169418,
+            "Sous-sol et vide sanitaire": 0.014287843448178555,
+            "Vide sanitaire moins 6 pieds": 0.002007832935828131
+          },
+          "n_homes": 661,
+          "n_eff": 466.0,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Un étage|Maison en rangee": {
+          "shares": {
+            "Aucun Sous-sol ou vide sanitaire": 0.03387898711229645,
+            "Sous sol 6 pied": 0.9528261948332165,
+            "Sous-sol et vide sanitaire": 0.008310686881518817,
+            "Vide sanitaire moins 6 pieds": 0.0049841311729682345
+          },
+          "n_homes": 1518,
+          "n_eff": 1290.8,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Un étage|Maison individuelle": {
+          "shares": {
+            "Aucun Sous-sol ou vide sanitaire": 0.018436425534410734,
+            "Sous sol 6 pied": 0.9383823315099341,
+            "Sous-sol et vide sanitaire": 0.039789865786240934,
+            "Vide sanitaire moins 6 pieds": 0.0033913771694142228
+          },
+          "n_homes": 17082,
+          "n_eff": 15056.1,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Deux étages|Collective": {
+          "shares": {
+            "Vide sanitaire moins 6 pieds": 0.02773086145000655,
+            "Sous sol 6 pied": 0.7345011658706505,
+            "Aucun Sous-sol ou vide sanitaire": 0.23776797267934296
+          },
+          "n_homes": 38,
+          "n_eff": 26.1,
+          "level": "shrunk:Type_Logement",
+          "reassigned_weight": 0.0
+        },
+        "Deux étages|Triplex": {
+          "shares": {
+            "Sous sol 6 pied": 0.938377810272317,
+            "Aucun Sous-sol ou vide sanitaire": 0.06162218972768294
+          },
+          "n_homes": 10,
+          "n_eff": 3.7,
+          "level": "shrunk:Type_Logement",
+          "reassigned_weight": 0.0
+        },
+        "Deux étages|Duplex": {
+          "shares": {
+            "Aucun Sous-sol ou vide sanitaire": 0.012429120657067902,
+            "Sous sol 6 pied": 0.9809345056843959,
+            "Sous-sol et vide sanitaire": 0.0044972044171387995,
+            "Vide sanitaire moins 6 pieds": 0.0021391692413975476
+          },
+          "n_homes": 3255,
+          "n_eff": 1092.0,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Deux étages|Maison en rangee": {
+          "shares": {
+            "Aucun Sous-sol ou vide sanitaire": 0.04734206920024282,
+            "Sous sol 6 pied": 0.9368049177698238,
+            "Sous-sol et vide sanitaire": 0.01043296150324293,
+            "Vide sanitaire moins 6 pieds": 0.005420051526690446
+          },
+          "n_homes": 5214,
+          "n_eff": 3180.6,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Deux étages|Maison individuelle": {
+          "shares": {
+            "Aucun Sous-sol ou vide sanitaire": 0.030641956843920085,
+            "Sous sol 6 pied": 0.9407249060918744,
+            "Sous-sol et vide sanitaire": 0.0273015151320019,
+            "Vide sanitaire moins 6 pieds": 0.0013316219322036195
+          },
+          "n_homes": 42917,
+          "n_eff": 25470.7,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Trois étages et plus|Collective": {
+          "shares": {
+            "Vide sanitaire moins 6 pieds": 0.023846685274607808,
+            "Sous sol 6 pied": 0.7289141636150719,
+            "Aucun Sous-sol ou vide sanitaire": 0.2472391511103203
+          },
+          "n_homes": 64,
+          "n_eff": 38.5,
+          "level": "shrunk:Type_Logement",
+          "reassigned_weight": 0.0
+        },
+        "Trois étages et plus|Triplex": {
+          "shares": {
+            "Sous sol 6 pied": 0.9758580399433405,
+            "Aucun Sous-sol ou vide sanitaire": 0.024141960056659424
+          },
+          "n_homes": 30,
+          "n_eff": 29.4,
+          "level": "shrunk:Type_Logement",
+          "reassigned_weight": 0.0
+        },
+        "Trois étages et plus|Duplex": {
+          "shares": {
+            "Sous-sol et vide sanitaire": 0.0037058188008274534,
+            "Vide sanitaire moins 6 pieds": 0.0009661245657295722,
+            "Sous sol 6 pied": 0.7888163604539675,
+            "Aucun Sous-sol ou vide sanitaire": 0.2065116961794753
+          },
+          "n_homes": 126,
+          "n_eff": 54.4,
+          "level": "shrunk:Type_Logement",
+          "reassigned_weight": 0.0
+        },
+        "Trois étages et plus|Maison en rangee": {
+          "shares": {
+            "Aucun Sous-sol ou vide sanitaire": 0.6980082105804849,
+            "Sous sol 6 pied": 0.2723437864915072,
+            "Sous-sol et vide sanitaire": 0.016565820511389762,
+            "Vide sanitaire moins 6 pieds": 0.013082182416618234
+          },
+          "n_homes": 1849,
+          "n_eff": 949.8,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Trois étages et plus|Maison individuelle": {
+          "shares": {
+            "Sous-sol et vide sanitaire": 0.08668022934729783,
+            "Sous sol 6 pied": 0.863777270453007,
+            "Aucun Sous-sol ou vide sanitaire": 0.04585955490869234,
+            "Vide sanitaire moins 6 pieds": 0.0036829452910029092
+          },
+          "n_homes": 477,
+          "n_eff": 181.0,
+          "level": "shrunk:Type_Logement",
+          "reassigned_weight": 0.0
+        }
+      },
+      "city_wide": {
+        "Aucun Sous-sol ou vide sanitaire": 0.08883566124835496,
+        "Sous sol 6 pied": 0.8782277076275202,
+        "Sous-sol et vide sanitaire": 0.019477641905839022,
+        "Vide sanitaire moins 6 pieds": 0.013458989218285639
+      },
+      "source": "EnerGuide BASEMENTFLOORAR / CRAWLSPFLOORAR, POND_AB-weighted; 73,267 of 73,927 homes",
+      "limitation": "The 6-foot threshold in the Quebec state labels is not observable here: any basement maps to 'Sous sol 6 pied'. Calgary basements are essentially all full height."
+    },
+    "Infiltration": {
+      "parents": [
+        "Type_Logement",
+        "An_Construction"
+      ],
+      "cells": {
+        "Collective|< 1950": {
+          "shares": {
+            "1 ACH50": 0.0018918416014410413,
+            "10 ACH50": 0.21788309561625765,
+            "15 ACH50": 0.09586793090028914,
+            "2 ACH50": 0.013200316143842499,
+            "20 ACH50": 0.015088324211065159,
+            "25 ACH50": 0.00872215647444622,
+            "3 ACH50": 0.03019890206116058,
+            "30 ACH50": 0.0018918416014410413,
+            "4 ACH50": 0.06778028369251267,
+            "5 ACH50": 0.12053272464578514,
+            "6 ACH50": 0.12642394977190158,
+            "7 ACH50": 0.1387564379903433,
+            "8 ACH50": 0.16176219528951394
+          },
+          "n_homes": 0,
+          "n_eff": 0.0,
+          "level": "fallback:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Collective|[1950 - 1960)": {
+          "shares": {
+            "30 ACH50": 0.00023849139113625928,
+            "7 ACH50": 0.0972148235065904,
+            "10 ACH50": 0.2017024589595045,
+            "2 ACH50": 0.01616911029899968,
+            "8 ACH50": 0.07485589658330956,
+            "25 ACH50": 0.001669439737953815,
+            "1 ACH50": 0.0011924569556812964,
+            "4 ACH50": 0.17428295069027308,
+            "3 ACH50": 0.08062496462819076,
+            "6 ACH50": 0.15287609157381024,
+            "20 ACH50": 0.005821757055158088,
+            "5 ACH50": 0.1792707659006924,
+            "15 ACH50": 0.014080792718699744
+          },
+          "n_homes": 1,
+          "n_eff": 1.0,
+          "level": "shrunk:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Collective|[1960 - 1970)": {
+          "shares": {
+            "30 ACH50": 0.0012208033191038717,
+            "7 ACH50": 0.04963093216967171,
+            "10 ACH50": 0.021954797878247275,
+            "2 ACH50": 0.03294075199113631,
+            "8 ACH50": 0.028061859353995914,
+            "25 ACH50": 0.0018251325836184046,
+            "1 ACH50": 0.0041719837651215215,
+            "4 ACH50": 0.2518006325804467,
+            "3 ACH50": 0.2693549486243797,
+            "6 ACH50": 0.08464225240396989,
+            "20 ACH50": 0.0022681627973704867,
+            "5 ACH50": 0.24169180405308727,
+            "15 ACH50": 0.010435938479850913
+          },
+          "n_homes": 2,
+          "n_eff": 2.0,
+          "level": "shrunk:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Collective|[1970 - 1980)": {
+          "shares": {
+            "7 ACH50": 0.10664058328798101,
+            "2 ACH50": 0.027638259064885352,
+            "30 ACH50": 0.0011115874821163428,
+            "20 ACH50": 0.05306518562466827,
+            "10 ACH50": 0.08610185931168887,
+            "8 ACH50": 0.038630043306116905,
+            "25 ACH50": 0.0015031496262540582,
+            "1 ACH50": 0.0016626705348324869,
+            "4 ACH50": 0.1665961285044803,
+            "3 ACH50": 0.17667669428437183,
+            "6 ACH50": 0.13965782446666009,
+            "15 ACH50": 0.010022599657306007,
+            "5 ACH50": 0.19069341484863847
+          },
+          "n_homes": 6,
+          "n_eff": 6.0,
+          "level": "shrunk:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Collective|[1980 - 1990)": {
+          "shares": {
+            "30 ACH50": 0.0003189233341599078,
+            "7 ACH50": 0.060755980154365896,
+            "10 ACH50": 0.11625956028316851,
+            "2 ACH50": 0.021721979458076402,
+            "8 ACH50": 0.11505400391201961,
+            "25 ACH50": 0.0014543998847944438,
+            "1 ACH50": 0.00219260321470544,
+            "4 ACH50": 0.22918575693746174,
+            "3 ACH50": 0.13040998317979616,
+            "6 ACH50": 0.11139030035875376,
+            "20 ACH50": 0.0030600823742673675,
+            "5 ACH50": 0.19413956954025127,
+            "15 ACH50": 0.014056857368179354
+          },
+          "n_homes": 2,
+          "n_eff": 2.0,
+          "level": "shrunk:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Collective|[1990 - 2000)": {
+          "shares": {
+            "7 ACH50": 0.007205557718301036,
+            "2 ACH50": 0.019359668362303323,
+            "20 ACH50": 0.00010389605886667507,
+            "10 ACH50": 0.031727332591260454,
+            "8 ACH50": 0.004335354119471628,
+            "25 ACH50": 2.9493633143267378e-05,
+            "4 ACH50": 0.1266914668773408,
+            "1 ACH50": 0.0010485250153384079,
+            "3 ACH50": 0.6564606108855885,
+            "6 ACH50": 0.10342577794311768,
+            "15 ACH50": 0.0006125136706532121,
+            "5 ACH50": 0.048999803124615
+          },
+          "n_homes": 25,
+          "n_eff": 25.0,
+          "level": "shrunk:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Collective|[2000 - 2010)": {
+          "shares": {
+            "7 ACH50": 0.05875671122655624,
+            "10 ACH50": 0.05217007106428889,
+            "2 ACH50": 0.16167467654013729,
+            "8 ACH50": 0.006599146161703229,
+            "1 ACH50": 0.06493666973057033,
+            "4 ACH50": 0.20831077267432502,
+            "3 ACH50": 0.2876366055163002,
+            "6 ACH50": 0.07495061467737256,
+            "20 ACH50": 0.00018159359303819393,
+            "5 ACH50": 0.08410835584887207,
+            "15 ACH50": 0.0006747829668359591
+          },
+          "n_homes": 4,
+          "n_eff": 4.0,
+          "level": "shrunk:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Collective|[2010 - 2020)": {
+          "shares": {
+            "7 ACH50": 0.03430381830658018,
+            "2 ACH50": 0.32125796301188975,
+            "10 ACH50": 0.016723824333439764,
+            "8 ACH50": 8.171938704954233e-05,
+            "4 ACH50": 0.06716879865828711,
+            "1 ACH50": 0.04911297557546159,
+            "3 ACH50": 0.43453724759886075,
+            "6 ACH50": 0.03558358868983652,
+            "5 ACH50": 0.04123006443859475
+          },
+          "n_homes": 46,
+          "n_eff": 46.0,
+          "level": "shrunk:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Collective|>= 2020": {
+          "shares": {
+            "7 ACH50": 0.03728334554029722,
+            "10 ACH50": 0.00010671062036608869,
+            "2 ACH50": 0.386038368150717,
+            "8 ACH50": 0.00044869462650349375,
+            "4 ACH50": 0.08206379498388663,
+            "1 ACH50": 0.35333025375846666,
+            "3 ACH50": 0.11730739858036485,
+            "6 ACH50": 0.019465980695367494,
+            "5 ACH50": 0.0039554530440305295
+          },
+          "n_homes": 35,
+          "n_eff": 35.0,
+          "level": "shrunk:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Triplex|< 1950": {
+          "shares": {
+            "30 ACH50": 0.0018190990789147773,
+            "7 ACH50": 0.1334211639861728,
+            "20 ACH50": 0.014508168471297645,
+            "10 ACH50": 0.20950535089445585,
+            "2 ACH50": 0.01269275552475269,
+            "8 ACH50": 0.1555423351670902,
+            "25 ACH50": 0.008386783965808754,
+            "1 ACH50": 0.0018190990789147773,
+            "4 ACH50": 0.06517408832732802,
+            "3 ACH50": 0.02903773491493696,
+            "6 ACH50": 0.1411182524417166,
+            "15 ACH50": 0.11107700404479695,
+            "5 ACH50": 0.11589816410381407
+          },
+          "n_homes": 2,
+          "n_eff": 2.0,
+          "level": "shrunk:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Triplex|[1950 - 1960)": {
+          "shares": {
+            "30 ACH50": 0.00023849139113625928,
+            "7 ACH50": 0.0972148235065904,
+            "10 ACH50": 0.2017024589595045,
+            "2 ACH50": 0.01616911029899968,
+            "8 ACH50": 0.07485589658330956,
+            "25 ACH50": 0.001669439737953815,
+            "1 ACH50": 0.0011924569556812964,
+            "4 ACH50": 0.17428295069027308,
+            "3 ACH50": 0.08062496462819076,
+            "6 ACH50": 0.15287609157381024,
+            "20 ACH50": 0.005821757055158088,
+            "5 ACH50": 0.1792707659006924,
+            "15 ACH50": 0.014080792718699744
+          },
+          "n_homes": 1,
+          "n_eff": 1.0,
+          "level": "shrunk:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Triplex|[1960 - 1970)": {
+          "shares": {
+            "1 ACH50": 0.004338863115726349,
+            "10 ACH50": 0.022832989793376987,
+            "15 ACH50": 0.010853376019044866,
+            "2 ACH50": 0.034258382070781496,
+            "20 ACH50": 0.0023588893092652877,
+            "25 ACH50": 0.001898137886963126,
+            "3 ACH50": 0.2601291375541085,
+            "30 ACH50": 0.0012696354518680168,
+            "4 ACH50": 0.26187265788366254,
+            "5 ACH50": 0.23135948523046115,
+            "6 ACH50": 0.08802794250012799,
+            "7 ACH50": 0.05161616945645818,
+            "8 ACH50": 0.029184333728155525
+          },
+          "n_homes": 0,
+          "n_eff": 0.0,
+          "level": "fallback:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Triplex|[1970 - 1980)": {
+          "shares": {
+            "30 ACH50": 0.0011970745641991466,
+            "7 ACH50": 0.09539701461399057,
+            "10 ACH50": 0.0928341364103855,
+            "2 ACH50": 0.029763790486674394,
+            "8 ACH50": 0.04160090231280968,
+            "25 ACH50": 0.001618749952408925,
+            "1 ACH50": 0.0017905388805764231,
+            "4 ACH50": 0.17940827072564403,
+            "3 ACH50": 0.17081928087556114,
+            "6 ACH50": 0.13160985523972205,
+            "20 ACH50": 0.05725303125734013,
+            "5 ACH50": 0.1859139629684408,
+            "15 ACH50": 0.010793391712247054
+          },
+          "n_homes": 2,
+          "n_eff": 2.0,
+          "level": "shrunk:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Triplex|[1980 - 1990)": {
+          "shares": {
+            "7 ACH50": 0.08997300502780245,
+            "2 ACH50": 0.014120683561316589,
+            "30 ACH50": 0.00020732067676814244,
+            "20 ACH50": 0.014286464777430494,
+            "10 ACH50": 0.2121489771308948,
+            "8 ACH50": 0.16260555586482273,
+            "25 ACH50": 0.013242667899823002,
+            "4 ACH50": 0.16171231277510792,
+            "1 ACH50": 0.0014253330931527724,
+            "3 ACH50": 0.08477487557119684,
+            "6 ACH50": 0.07241085860529864,
+            "15 ACH50": 0.03416190782632412,
+            "5 ACH50": 0.13893003719006164
+          },
+          "n_homes": 30,
+          "n_eff": 30.0,
+          "level": "shrunk:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Triplex|[1990 - 2000)": {
+          "shares": {
+            "1 ACH50": 0.0015726330789174463,
+            "10 ACH50": 0.027921976082375205,
+            "15 ACH50": 0.0009186802848451822,
+            "2 ACH50": 0.029036650931597963,
+            "20 ACH50": 0.0001558287847716764,
+            "25 ACH50": 4.423610540525671e-05,
+            "3 ACH50": 0.5851242575068802,
+            "4 ACH50": 0.16966719241558195,
+            "5 ACH50": 0.07349248718624186,
+            "6 ACH50": 0.09475638980292264,
+            "7 ACH50": 0.010807275223845624,
+            "8 ACH50": 0.006502392596615008
+          },
+          "n_homes": 0,
+          "n_eff": 0.0,
+          "level": "fallback:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Triplex|[2000 - 2010)": {
+          "shares": {
+            "1 ACH50": 0.050131603309015955,
+            "10 ACH50": 0.036343676749432,
+            "15 ACH50": 0.0007287656041828358,
+            "2 ACH50": 0.17460865066334827,
+            "20 ACH50": 0.00019612108048124943,
+            "3 ACH50": 0.31064753395760425,
+            "4 ACH50": 0.22497563448827101,
+            "5 ACH50": 0.09083702431678183,
+            "6 ACH50": 0.06094666385156237,
+            "7 ACH50": 0.04345724812468074,
+            "8 ACH50": 0.0071270778546394875
+          },
+          "n_homes": 0,
+          "n_eff": 0.0,
+          "level": "fallback:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Triplex|[2010 - 2020)": {
+          "shares": {
+            "1 ACH50": 0.0942847048991705,
+            "10 ACH50": 0.012351040971381736,
+            "2 ACH50": 0.3571657591474523,
+            "3 ACH50": 0.37432778772392955,
+            "4 ACH50": 0.06899361480200092,
+            "5 ACH50": 0.038262089152168735,
+            "6 ACH50": 0.028802555847819367,
+            "7 ACH50": 0.02565556654625172,
+            "8 ACH50": 0.0001568809098253212
+          },
+          "n_homes": 0,
+          "n_eff": 0.0,
+          "level": "fallback:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Triplex|>= 2020": {
+          "shares": {
+            "7 ACH50": 0.01927341362668064,
+            "10 ACH50": 0.00014628759580344132,
+            "2 ACH50": 0.31948749060641923,
+            "8 ACH50": 0.0330519057184245,
+            "4 ACH50": 0.06420828311127826,
+            "1 ACH50": 0.3218488474708856,
+            "3 ACH50": 0.19391466263688417,
+            "6 ACH50": 0.026706693851119567,
+            "5 ACH50": 0.021362415382504704
+          },
+          "n_homes": 12,
+          "n_eff": 12.0,
+          "level": "shrunk:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Duplex|< 1950": {
+          "shares": {
+            "7 ACH50": 0.1373301543995536,
+            "2 ACH50": 0.010154696179036107,
+            "30 ACH50": 0.0014553497410329985,
+            "20 ACH50": 0.011607096871360316,
+            "10 ACH50": 0.21375704950888302,
+            "8 ACH50": 0.13999649218724322,
+            "25 ACH50": 0.006709752104333454,
+            "4 ACH50": 0.067698393551344,
+            "1 ACH50": 0.0014553497410329985,
+            "3 ACH50": 0.03878791077985332,
+            "6 ACH50": 0.12784305805843796,
+            "15 ACH50": 0.1204187629090796,
+            "5 ACH50": 0.12278593396880931
+          },
+          "n_homes": 15,
+          "n_eff": 15.0,
+          "level": "shrunk:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Duplex|[1950 - 1960)": {
+          "shares": {
+            "7 ACH50": 0.08970373274472962,
+            "2 ACH50": 0.008247325056884617,
+            "30 ACH50": 0.00012164652164510414,
+            "20 ACH50": 0.01308426694987132,
+            "10 ACH50": 0.1326566468932816,
+            "8 ACH50": 0.13796355340822705,
+            "25 ACH50": 0.0008515256515157291,
+            "4 ACH50": 0.15935796687118056,
+            "1 ACH50": 0.0006082326082255207,
+            "3 ACH50": 0.08158324095926443,
+            "6 ACH50": 0.20810340563819907,
+            "15 ACH50": 0.02672882236686356,
+            "5 ACH50": 0.14098963433011188
+          },
+          "n_homes": 50,
+          "n_eff": 50.0,
+          "level": "shrunk:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Duplex|[1960 - 1970)": {
+          "shares": {
+            "7 ACH50": 0.10894958787978455,
+            "2 ACH50": 0.016011091506752746,
+            "30 ACH50": 0.0005933803107827988,
+            "20 ACH50": 0.0011024569843057312,
+            "10 ACH50": 0.02966401047270841,
+            "8 ACH50": 0.0690149995597816,
+            "25 ACH50": 0.0008871189345080367,
+            "1 ACH50": 0.011524183814374799,
+            "4 ACH50": 0.261949832505746,
+            "3 ACH50": 0.18676692516824478,
+            "6 ACH50": 0.08798165076200287,
+            "15 ACH50": 0.01424825729254323,
+            "5 ACH50": 0.21130650480846447
+          },
+          "n_homes": 57,
+          "n_eff": 57.0,
+          "level": "shrunk:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Duplex|[1970 - 1980)": {
+          "shares": {
+            "10 ACH50": 0.05468544501068266,
+            "15 ACH50": 0.0073576247161559385,
+            "2 ACH50": 0.00355462726795625,
+            "20 ACH50": 0.00355462726795625,
+            "3 ACH50": 0.07283113662082907,
+            "4 ACH50": 0.2144420422340441,
+            "5 ACH50": 0.2649519345261619,
+            "6 ACH50": 0.17104140447783875,
+            "7 ACH50": 0.1272682114512683,
+            "8 ACH50": 0.08031294642710672
+          },
+          "n_homes": 275,
+          "n_eff": 274.9,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Duplex|[1980 - 1990)": {
+          "shares": {
+            "7 ACH50": 0.0924904297574148,
+            "2 ACH50": 0.005206308156136843,
+            "30 ACH50": 7.643931157488177e-05,
+            "20 ACH50": 0.0007334383063176709,
+            "10 ACH50": 0.11930355828405534,
+            "8 ACH50": 0.0922710886800349,
+            "25 ACH50": 0.0003485895011135575,
+            "4 ACH50": 0.2027136182736523,
+            "1 ACH50": 0.000525521535545347,
+            "3 ACH50": 0.09130307514805398,
+            "6 ACH50": 0.1656182808343428,
+            "15 ACH50": 0.035726110851381596,
+            "5 ACH50": 0.19368354136037613
+          },
+          "n_homes": 167,
+          "n_eff": 167.0,
+          "level": "shrunk:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Duplex|[1990 - 2000)": {
+          "shares": {
+            "7 ACH50": 0.04254848206283426,
+            "2 ACH50": 0.02933972400314775,
+            "20 ACH50": 3.510389294212234e-05,
+            "10 ACH50": 0.02422106083930537,
+            "8 ACH50": 0.032767125313174085,
+            "25 ACH50": 9.965164719713711e-06,
+            "1 ACH50": 0.0047600636990651635,
+            "4 ACH50": 0.27819304652199517,
+            "3 ACH50": 0.31096846533167816,
+            "6 ACH50": 0.07088715634175032,
+            "15 ACH50": 0.00020695312752708696,
+            "5 ACH50": 0.2060628537018607
+          },
+          "n_homes": 172,
+          "n_eff": 172.0,
+          "level": "shrunk:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Duplex|[2000 - 2010)": {
+          "shares": {
+            "1 ACH50": 0.018914331735397485,
+            "10 ACH50": 0.018783994241773266,
+            "2 ACH50": 0.12225082804788673,
+            "3 ACH50": 0.32428072686786585,
+            "4 ACH50": 0.2784692507233144,
+            "5 ACH50": 0.1378254409145271,
+            "6 ACH50": 0.05752502016793778,
+            "7 ACH50": 0.019044669229021705,
+            "8 ACH50": 0.022905738072275732
+          },
+          "n_homes": 262,
+          "n_eff": 261.9,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Duplex|[2010 - 2020)": {
+          "shares": {
+            "1 ACH50": 0.04690318834643284,
+            "2 ACH50": 0.40714997029183625,
+            "3 ACH50": 0.35661680743799723,
+            "4 ACH50": 0.11490462343990573,
+            "5 ACH50": 0.049878922626002846,
+            "6 ACH50": 0.02138902018163391,
+            "7 ACH50": 0.003157467676191163
+          },
+          "n_homes": 941,
+          "n_eff": 940.7,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Duplex|>= 2020": {
+          "shares": {
+            "1 ACH50": 0.28653225344567446,
+            "10 ACH50": 0.0004656179832346875,
+            "2 ACH50": 0.636557344220714,
+            "3 ACH50": 0.05882651306750413,
+            "4 ACH50": 0.009041944633053607,
+            "5 ACH50": 0.006697587804247292,
+            "6 ACH50": 0.0014131208623369414,
+            "8 ACH50": 0.0004656179832346875
+          },
+          "n_homes": 2103,
+          "n_eff": 2102.4,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Maison en rangee|< 1950": {
+          "shares": {
+            "7 ACH50": 0.11563585440011016,
+            "2 ACH50": 0.011000785677065493,
+            "30 ACH50": 0.001576609511895458,
+            "20 ACH50": 0.04601444317618497,
+            "10 ACH50": 0.23145117597105216,
+            "8 ACH50": 0.1512412960562543,
+            "25 ACH50": 0.007268808790005362,
+            "1 ACH50": 0.001576609511895458,
+            "4 ACH50": 0.056486251231175504,
+            "3 ACH50": 0.02516694643048261,
+            "6 ACH50": 0.15523160284283138,
+            "15 ACH50": 0.09690091074489182,
+            "5 ACH50": 0.10044870565615546
+          },
+          "n_homes": 10,
+          "n_eff": 10.0,
+          "level": "shrunk:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Maison en rangee|[1950 - 1960)": {
+          "shares": {
+            "7 ACH50": 0.1149897683840604,
+            "2 ACH50": 0.00557282280141938,
+            "30 ACH50": 8.219810724827562e-05,
+            "20 ACH50": 0.008854631605765103,
+            "10 ACH50": 0.1839459721838063,
+            "8 ACH50": 0.13375134144806516,
+            "25 ACH50": 0.0005753867507379294,
+            "4 ACH50": 0.13424150628439552,
+            "1 ACH50": 0.00041099053624137815,
+            "3 ACH50": 0.03463619985990047,
+            "6 ACH50": 0.16748978507024223,
+            "15 ACH50": 0.025397405238690333,
+            "5 ACH50": 0.1900519917294276
+          },
+          "n_homes": 98,
+          "n_eff": 98.0,
+          "level": "shrunk:An_Construction",
+          "reassigned_weight": 0.0
+        },
+        "Maison en rangee|[1960 - 1970)": {
+          "shares": {
+            "10 ACH50": 0.07546078675921059,
+            "15 ACH50": 0.045611011280118616,
+            "2 ACH50": 0.007494611102906862,
+            "20 ACH50": 0.015117891138349212,
+            "25 ACH50": 0.011177582188092549,
+            "3 ACH50": 0.03721571764946333,
+            "4 ACH50": 0.15002089099067273,
+            "5 ACH50": 0.22179870666469764,
+            "6 ACH50": 0.18368230648748587,
+            "7 ACH50": 0.13948665346525763,
+            "8 ACH50": 0.11293384227374488
+          },
+          "n_homes": 266,
+          "n_eff": 265.9,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Maison en rangee|[1970 - 1980)": {
+          "shares": {
+            "10 ACH50": 0.1308932279023112,
+            "15 ACH50": 0.04170862449903729,
+            "2 ACH50": 0.0032922931525412678,
+            "20 ACH50": 0.013705399001892818,
+            "25 ACH50": 0.0038097858437253175,
+            "3 ACH50": 0.021898664482158593,
+            "30 ACH50": 0.003311026853084965,
+            "4 ACH50": 0.08495099337108303,
+            "5 ACH50": 0.19011703724696666,
+            "6 ACH50": 0.2200965650061288,
+            "7 ACH50": 0.1587465837951061,
+            "8 ACH50": 0.12746979884596407
+          },
+          "n_homes": 1826,
+          "n_eff": 1825.5,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Maison en rangee|[1980 - 1990)": {
+          "shares": {
+            "10 ACH50": 0.13355828247864626,
+            "15 ACH50": 0.04188603784365161,
+            "2 ACH50": 0.006264699955387975,
+            "20 ACH50": 0.00888359986972353,
+            "25 ACH50": 0.0025319615049660435,
+            "3 ACH50": 0.026650799609170592,
+            "30 ACH50": 0.0012442461501406437,
+            "4 ACH50": 0.12583199034969386,
+            "5 ACH50": 0.18677294328761793,
+            "6 ACH50": 0.19179339709286525,
+            "7 ACH50": 0.14990735924921364,
+            "8 ACH50": 0.12467468260892271
+          },
+          "n_homes": 787,
+          "n_eff": 786.8,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Maison en rangee|[1990 - 2000)": {
+          "shares": {
+            "10 ACH50": 0.06098041846409542,
+            "15 ACH50": 0.007728138632096165,
+            "2 ACH50": 0.009710358400828675,
+            "20 ACH50": 0.0019822197687325094,
+            "3 ACH50": 0.1193094823500121,
+            "4 ACH50": 0.25948659342285707,
+            "5 ACH50": 0.21358615599689246,
+            "6 ACH50": 0.1609360974933948,
+            "7 ACH50": 0.09592432601088972,
+            "8 ACH50": 0.07035620946020098
+          },
+          "n_homes": 511,
+          "n_eff": 510.9,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Maison en rangee|[2000 - 2010)": {
+          "shares": {
+            "1 ACH50": 0.0035609482773908243,
+            "10 ACH50": 0.02842645117057307,
+            "15 ACH50": 0.008810668120646776,
+            "2 ACH50": 0.046292327606080715,
+            "20 ACH50": 0.0018110416629721737,
+            "3 ACH50": 0.17890330454929054,
+            "4 ACH50": 0.23750611350485532,
+            "5 ACH50": 0.2158347485977428,
+            "6 ACH50": 0.14642682471289845,
+            "7 ACH50": 0.07520785916508196,
+            "8 ACH50": 0.05721971263246728
+          },
+          "n_homes": 560,
+          "n_eff": 559.8,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Maison en rangee|[2010 - 2020)": {
+          "shares": {
+            "1 ACH50": 0.016344636580004297,
+            "10 ACH50": 0.0008305492715321517,
+            "2 ACH50": 0.34322516000206615,
+            "3 ACH50": 0.3621595729205864,
+            "4 ACH50": 0.18530699571051765,
+            "5 ACH50": 0.06955932939879782,
+            "6 ACH50": 0.018477083201074412,
+            "7 ACH50": 0.0028508490081227966,
+            "8 ACH50": 0.0012458239072982275
+          },
+          "n_homes": 2439,
+          "n_eff": 2438.3,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Maison en rangee|>= 2020": {
+          "shares": {
+            "1 ACH50": 0.02826559832056657,
+            "10 ACH50": 0.000924399413611503,
+            "2 ACH50": 0.4746315754655472,
+            "3 ACH50": 0.3035958404841849,
+            "4 ACH50": 0.1210229450391201,
+            "5 ACH50": 0.05853869814705777,
+            "6 ACH50": 0.010702009461948015,
+            "7 ACH50": 0.00047013484074083257,
+            "8 ACH50": 0.001848798827223006
+          },
+          "n_homes": 2155,
+          "n_eff": 2154.4,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Maison individuelle|< 1950": {
+          "shares": {
+            "1 ACH50": 0.002034189654908897,
+            "10 ACH50": 0.22121449338626412,
+            "15 ACH50": 0.0845518988272173,
+            "2 ACH50": 0.014193549037550409,
+            "20 ACH50": 0.014193549037550409,
+            "25 ACH50": 0.009378438689211845,
+            "3 ACH50": 0.02908805056680972,
+            "30 ACH50": 0.002034189654908897,
+            "4 ACH50": 0.06949717238411643,
+            "5 ACH50": 0.12306416663005072,
+            "6 ACH50": 0.1186524482191439,
+            "7 ACH50": 0.14254488577358926,
+            "8 ACH50": 0.1695529681386782
+          },
+          "n_homes": 1481,
+          "n_eff": 1480.8,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Maison individuelle|[1950 - 1960)": {
+          "shares": {
+            "1 ACH50": 0.0015752263575060255,
+            "10 ACH50": 0.05485641423714061,
+            "15 ACH50": 0.01412386254917533,
+            "2 ACH50": 0.02135926886002727,
+            "20 ACH50": 0.005638910085994352,
+            "25 ACH50": 0.0022053169005084357,
+            "3 ACH50": 0.09973772912300047,
+            "30 ACH50": 0.00031504527150120516,
+            "4 ACH50": 0.21408052226671778,
+            "5 ACH50": 0.22013019202729533,
+            "6 ACH50": 0.17368428571760525,
+            "7 ACH50": 0.11647766824726745,
+            "8 ACH50": 0.07581555835626044
+          },
+          "n_homes": 3189,
+          "n_eff": 3188.6,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Maison individuelle|[1960 - 1970)": {
+          "shares": {
+            "1 ACH50": 0.004591037733688459,
+            "10 ACH50": 0.020797289166579032,
+            "15 ACH50": 0.008923208484481351,
+            "2 ACH50": 0.0450764752734656,
+            "20 ACH50": 0.0016892807772712261,
+            "25 ACH50": 0.001454971414975208,
+            "3 ACH50": 0.24975468805324594,
+            "30 ACH50": 0.0016974666508044094,
+            "4 ACH50": 0.3178027237422202,
+            "5 ACH50": 0.18857019182928791,
+            "6 ACH50": 0.09392953893443334,
+            "7 ACH50": 0.0446897152842054,
+            "8 ACH50": 0.021023412655341866
+          },
+          "n_homes": 4143,
+          "n_eff": 4142.4,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Maison individuelle|[1970 - 1980)": {
+          "shares": {
+            "1 ACH50": 0.0037531660049462128,
+            "10 ACH50": 0.017346984749463244,
+            "15 ACH50": 0.005264440019746424,
+            "2 ACH50": 0.060455114324007866,
+            "20 ACH50": 0.0012463452599349861,
+            "25 ACH50": 0.0019345725598570143,
+            "3 ACH50": 0.2616601325653647,
+            "30 ACH50": 0.0012416351848879015,
+            "4 ACH50": 0.30295731608350496,
+            "5 ACH50": 0.1925447697110618,
+            "6 ACH50": 0.08751735254817994,
+            "7 ACH50": 0.04087565773449279,
+            "8 ACH50": 0.02320251325455222
+          },
+          "n_homes": 7198,
+          "n_eff": 7197.1,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Maison individuelle|[1980 - 1990)": {
+          "shares": {
+            "1 ACH50": 0.003368711770807802,
+            "10 ACH50": 0.018113973298185985,
+            "15 ACH50": 0.006610561441342927,
+            "2 ACH50": 0.032327961324159965,
+            "20 ACH50": 0.0016891209054666003,
+            "25 ACH50": 0.00028231432092154995,
+            "3 ACH50": 0.18685272968116864,
+            "30 ACH50": 0.00028231432092154995,
+            "4 ACH50": 0.30723534714969825,
+            "5 ACH50": 0.2433138004240584,
+            "6 ACH50": 0.11816519464030133,
+            "7 ACH50": 0.05028648240169707,
+            "8 ACH50": 0.03147148832126991
+          },
+          "n_homes": 7116,
+          "n_eff": 7115.1,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Maison individuelle|[1990 - 2000)": {
+          "shares": {
+            "1 ACH50": 0.003878339741034621,
+            "10 ACH50": 0.006398222990584857,
+            "15 ACH50": 0.0018718059244471669,
+            "2 ACH50": 0.07875273035385891,
+            "20 ACH50": 0.0002524143605483297,
+            "25 ACH50": 0.00012620718027416485,
+            "3 ACH50": 0.31515311665894435,
+            "4 ACH50": 0.35862748151909996,
+            "5 ACH50": 0.16279924506508428,
+            "6 ACH50": 0.04873832672599066,
+            "7 ACH50": 0.015994229047354445,
+            "8 ACH50": 0.007407880432778175
+          },
+          "n_homes": 7957,
+          "n_eff": 7956.0,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Maison individuelle|[2000 - 2010)": {
+          "shares": {
+            "1 ACH50": 0.022585475951528895,
+            "10 ACH50": 0.0007708783347836702,
+            "15 ACH50": 0.00021653346441049943,
+            "2 ACH50": 0.22565309600441774,
+            "20 ACH50": 0.00011012547639766716,
+            "3 ACH50": 0.3773260560121169,
+            "4 ACH50": 0.25706348002129936,
+            "5 ACH50": 0.08907476123996871,
+            "6 ACH50": 0.019182738648355718,
+            "7 ACH50": 0.0064788156655381885,
+            "8 ACH50": 0.0015380391811825054
+          },
+          "n_homes": 9119,
+          "n_eff": 9117.9,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Maison individuelle|[2010 - 2020)": {
+          "shares": {
+            "1 ACH50": 0.38101994422524865,
+            "2 ACH50": 0.5246527578719372,
+            "3 ACH50": 0.07521898189676587,
+            "4 ACH50": 0.012094209576703674,
+            "5 ACH50": 0.005367026882475233,
+            "6 ACH50": 0.001131491041275765,
+            "7 ACH50": 0.00030795126784111685,
+            "8 ACH50": 0.00020763723775241448
+          },
+          "n_homes": 9676,
+          "n_eff": 9674.7,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        },
+        "Maison individuelle|>= 2020": {
+          "shares": {
+            "1 ACH50": 0.798147122503697,
+            "2 ACH50": 0.19461772645523348,
+            "3 ACH50": 0.004639772946806933,
+            "4 ACH50": 0.0007184753493853653,
+            "5 ACH50": 0.001787093326204031,
+            "6 ACH50": 8.980941867317066e-05
+          },
+          "n_homes": 11186,
+          "n_eff": 11184.5,
+          "level": "cell",
+          "reassigned_weight": 0.0
+        }
+      },
+      "city_wide": {
+        "1 ACH50": 0.036150485331041475,
+        "10 ACH50": 0.05731018541120686,
+        "15 ACH50": 0.0091215657734123,
+        "2 ACH50": 0.11828622428947029,
+        "20 ACH50": 0.007836640534552363,
+        "25 ACH50": 0.0010533976621473894,
+        "3 ACH50": 0.2828418878263618,
+        "30 ACH50": 0.00045069005281056317,
+        "4 ACH50": 0.18113441009887912,
+        "5 ACH50": 0.12906307990567892,
+        "6 ACH50": 0.08815908203133843,
+        "7 ACH50": 0.05404082250896315,
+        "8 ACH50": 0.03455152857413736
+      },
+      "source": "EnerGuide AIR50P snapped to the nearest of 13 ACH50 states, POND_AB-weighted; 73,927 of 73,927 homes"
+    }
+  },
+  "stage2": {
+    "HVAC Heating Efficiency.csv": {
+      "rewrites": {
+        "Gaz naturel|Système central à air chaud": {
+          "where": {
+            "Source_Energie_Chauf": "Gaz naturel",
+            "Chauffage_Logement": "Système central à air chaud"
+          },
+          "shares": {
+            "Fuel Furnace, 72% AFUE": 0.008388486154390314,
+            "Fuel Furnace, 76% AFUE": 0.3838836496178017,
+            "Fuel Furnace, 80% AFUE": 0.12874455750787775,
+            "Fuel Furnace, 85% AFUE": 0.0018174717012506372,
+            "Fuel Furnace, 90% AFUE": 0.056193137227081226,
+            "Fuel Furnace, 92.5% AFUE": 0.16627712000010217,
+            "Fuel Furnace, 96% AFUE": 0.25469557779149626
+          },
+          "n_homes": 73014,
+          "weighted_mean_afue": 85.4
+        },
+        "Gaz naturel|Système central à eau chaude": {
+          "where": {
+            "Source_Energie_Chauf": "Gaz naturel",
+            "Chauffage_Logement": "Système central à eau chaude"
+          },
+          "shares": {
+            "Fuel Boiler, 72% AFUE": 0.00038785438250233414,
+            "Fuel Boiler, 76% AFUE": 0.5444832012370012,
+            "Fuel Boiler, 80% AFUE": 0.004005111446046955,
+            "Fuel Boiler, 82% AFUE": 0.002473956954953009,
+            "Fuel Boiler, 85% AFUE": 0.0015670831219423125,
+            "Fuel Boiler, 90% AFUE": 0.02992184575927391,
+            "Fuel Boiler, 96% AFUE": 0.41716094709828017
+          },
+          "n_homes": 487,
+          "weighted_mean_afue": 84.35
+        }
+      },
+      "source": "EnerGuide HEATAFUE where recorded, else FURSSEFF less the measured steady-state-to-AFUE offset (1.1 pp condensing, 2.2 pp not); weighted by the Calgary-raked POND_AB",
+      "note": "Only the natural-gas forced-air and hot-water rows are rewritten. Oil (5 homes) and wood (3) keep Quebec, as do all combination systems: the audits do not split the load between a furnace and its heat pump."
+    },
+    "Insulation Ceiling.csv": {
+      "rewrites": {
+        "Collective|< 1950": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": "< 1950"
+          },
+          "shares": {
+            "QC_R12.5": 0.09514699182631074,
+            "QC_R18.3": 0.026569238223105442,
+            "QC_R19.6": 0.10425994133641683,
+            "QC_R24.6": 0.012059281544126022,
+            "QC_R29.8": 0.09808536263628222,
+            "QC_R30.9": 0.05130058024068071,
+            "QC_R41": 0.612578604193078
+          },
+          "n_homes": 0,
+          "level": "fallback:Type_Logement"
+        },
+        "Collective|[1950 - 1960)": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": "[1950 - 1960)"
+          },
+          "shares": {
+            "QC_R30.9": 0.05029468651047129,
+            "QC_R19.6": 0.12182347189844789,
+            "QC_R12.5": 0.09328136453559878,
+            "QC_R41": 0.6005672590128216,
+            "QC_R18.3": 0.026048272767750437,
+            "QC_R24.6": 0.011822825043260807,
+            "QC_R29.8": 0.09616212023164925
+          },
+          "n_homes": 1,
+          "level": "shrunk:Type_Logement"
+        },
+        "Collective|[1960 - 1970)": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": "[1960 - 1970)"
+          },
+          "shares": {
+            "QC_R30.9": 0.04932748100065491,
+            "QC_R19.6": 0.10024994359270928,
+            "QC_R12.5": 0.11071827003995756,
+            "QC_R41": 0.589017888647195,
+            "QC_R18.3": 0.0447781050075514,
+            "QC_R24.6": 0.011595463023198188,
+            "QC_R29.8": 0.09431284868873363
+          },
+          "n_homes": 2,
+          "level": "shrunk:Type_Logement"
+        },
+        "Collective|[1970 - 1980)": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": "[1970 - 1980)"
+          },
+          "shares": {
+            "QC_R30.9": 0.06325202777014902,
+            "QC_R19.6": 0.09309181620512148,
+            "QC_R12.5": 0.13912359014875814,
+            "QC_R41": 0.5469603579453897,
+            "QC_R18.3": 0.023723192337069706,
+            "QC_R24.6": 0.010767514413318344,
+            "QC_R29.8": 0.12308150118019374
+          },
+          "n_homes": 6,
+          "level": "shrunk:Type_Logement"
+        },
+        "Collective|[1980 - 1990)": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": "[1980 - 1990)"
+          },
+          "shares": {
+            "QC_R30.9": 0.06888342463418506,
+            "QC_R19.6": 0.11914633629913307,
+            "QC_R12.5": 0.09148852898726562,
+            "QC_R41": 0.5890245641081787,
+            "QC_R18.3": 0.025547633978607518,
+            "QC_R24.6": 0.011595594436967603,
+            "QC_R29.8": 0.09431391755566251
+          },
+          "n_homes": 2,
+          "level": "shrunk:Type_Logement"
+        },
+        "Collective|[1990 - 2000)": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": "[1990 - 2000)"
+          },
+          "shares": {
+            "QC_R30.9": 0.03466585350490595,
+            "QC_R19.6": 0.09751299400908556,
+            "QC_R12.5": 0.06429462716813134,
+            "QC_R41": 0.6978455857040702,
+            "QC_R18.3": 0.017953896732901736,
+            "QC_R24.6": 0.02144684105526193,
+            "QC_R29.8": 0.06628020182564347
+          },
+          "n_homes": 24,
+          "level": "shrunk:Type_Logement"
+        },
+        "Collective|[2000 - 2010)": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": "[2000 - 2010)"
+          },
+          "shares": {
+            "QC_R30.9": 0.04839677381196293,
+            "QC_R19.6": 0.09835843522303475,
+            "QC_R12.5": 0.08976131304368938,
+            "QC_R41": 0.5967722681066774,
+            "QC_R18.3": 0.02506531907840136,
+            "QC_R24.6": 0.011376680702005681,
+            "QC_R29.8": 0.1302692100342285
+          },
+          "n_homes": 3,
+          "level": "shrunk:Type_Logement"
+        },
+        "Collective|[2010 - 2020)": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": "[2010 - 2020)"
+          },
+          "shares": {
+            "QC_R30.9": 0.027290963091781216,
+            "QC_R19.6": 0.09824519208074119,
+            "QC_R12.5": 0.05061644585779446,
+            "QC_R41": 0.7511181335051625,
+            "QC_R18.3": 0.014134344998080903,
+            "QC_R24.6": 0.006415315499163928,
+            "QC_R29.8": 0.05217960496727581
+          },
+          "n_homes": 44,
+          "level": "shrunk:Type_Logement"
+        },
+        "Collective|>= 2020": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": ">= 2020"
+          },
+          "shares": {
+            "QC_R30.9": 0.07371009599558549,
+            "QC_R19.6": 0.06859803757641102,
+            "QC_R12.5": 0.06260215416315379,
+            "QC_R41": 0.7051385390518112,
+            "QC_R18.3": 0.01748128359409109,
+            "QC_R24.6": 0.007934428486193,
+            "QC_R29.8": 0.06453546113275446
+          },
+          "n_homes": 26,
+          "level": "shrunk:Type_Logement"
+        },
+        "Triplex|< 1950": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": "< 1950"
+          },
+          "shares": {
+            "QC_R30.9": 0.11400129618499294,
+            "QC_R41": 0.06288151279855465,
+            "QC_R24.6": 0.7335497789332854,
+            "QC_R12.5": 0.06511542790060548,
+            "QC_R18.3": 0.024451984182561514
+          },
+          "n_homes": 2,
+          "level": "shrunk:Type_Logement"
+        },
+        "Triplex|[1950 - 1960)": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": "[1950 - 1960)"
+          },
+          "shares": {
+            "QC_R12.5": 0.047125915129289146,
+            "QC_R30.9": 0.09629670085903555,
+            "QC_R41": 0.06411375702333509,
+            "QC_R18.3": 0.044538995440181306,
+            "QC_R24.6": 0.747924631548159
+          },
+          "n_homes": 1,
+          "level": "shrunk:Type_Logement"
+        },
+        "Triplex|[1960 - 1970)": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": "[1960 - 1970)"
+          },
+          "shares": {
+            "QC_R12.5": 0.04806843343187493,
+            "QC_R18.3": 0.02542977534898493,
+            "QC_R24.6": 0.7628831241791222,
+            "QC_R30.9": 0.09822263487621627,
+            "QC_R41": 0.0653960321638018
+          },
+          "n_homes": 0,
+          "level": "fallback:Type_Logement"
+        },
+        "Triplex|[1970 - 1980)": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": "[1970 - 1980)"
+          },
+          "shares": {
+            "QC_R12.5": 0.04622017134742929,
+            "QC_R30.9": 0.13289655273816914,
+            "QC_R41": 0.06288151279855465,
+            "QC_R18.3": 0.024451984182561514,
+            "QC_R24.6": 0.7335497789332854
+          },
+          "n_homes": 2,
+          "level": "shrunk:Type_Logement"
+        },
+        "Triplex|[1980 - 1990)": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": "[1980 - 1990)"
+          },
+          "shares": {
+            "QC_R12.5": 0.030046083737742257,
+            "QC_R30.9": 0.06139591623294897,
+            "QC_R41": 0.06633069137895554,
+            "QC_R18.3": 0.015895362195450943,
+            "QC_R24.6": 0.8263319464549024
+          },
+          "n_homes": 30,
+          "level": "shrunk:Type_Logement"
+        },
+        "Triplex|[1990 - 2000)": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": "[1990 - 2000)"
+          },
+          "shares": {
+            "QC_R12.5": 0.04806843343187493,
+            "QC_R18.3": 0.02542977534898493,
+            "QC_R24.6": 0.7628831241791222,
+            "QC_R30.9": 0.09822263487621627,
+            "QC_R41": 0.0653960321638018
+          },
+          "n_homes": 0,
+          "level": "fallback:Type_Logement"
+        },
+        "Triplex|[2000 - 2010)": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": "[2000 - 2010)"
+          },
+          "shares": {
+            "QC_R12.5": 0.04806843343187493,
+            "QC_R18.3": 0.02542977534898493,
+            "QC_R24.6": 0.7628831241791222,
+            "QC_R30.9": 0.09822263487621627,
+            "QC_R41": 0.0653960321638018
+          },
+          "n_homes": 0,
+          "level": "fallback:Type_Logement"
+        },
+        "Triplex|[2010 - 2020)": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": "[2010 - 2020)"
+          },
+          "shares": {
+            "QC_R12.5": 0.04806843343187493,
+            "QC_R18.3": 0.02542977534898493,
+            "QC_R24.6": 0.7628831241791222,
+            "QC_R30.9": 0.09822263487621627,
+            "QC_R41": 0.0653960321638018
+          },
+          "n_homes": 0,
+          "level": "fallback:Type_Logement"
+        },
+        "Triplex|>= 2020": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": ">= 2020"
+          },
+          "shares": {
+            "QC_R12.5": 0.04143989731728145,
+            "QC_R30.9": 0.08467793961440245,
+            "QC_R41": 0.19427595837201836,
+            "QC_R18.3": 0.02192306268430779,
+            "QC_R24.6": 0.6576831420119901
+          },
+          "n_homes": 8,
+          "level": "shrunk:Type_Logement"
+        },
+        "Duplex|< 1950": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": "< 1950"
+          },
+          "shares": {
+            "QC_R30.9": 0.1289292782194621,
+            "QC_R19.6": 0.09509674289362281,
+            "QC_R27.3": 0.0578692498415498,
+            "QC_R12.5": 0.14048262543925377,
+            "QC_R41": 0.3077079040618725,
+            "QC_R18.3": 0.05943662496952105,
+            "QC_R24.6": 0.17118835193110313,
+            "QC_R29.8": 0.03928922264361492
+          },
+          "n_homes": 15,
+          "level": "shrunk:Type_Logement"
+        },
+        "Duplex|[1950 - 1960)": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": "[1950 - 1960)"
+          },
+          "shares": {
+            "QC_R30.9": 0.11415653145749738,
+            "QC_R19.6": 0.18149199922910525,
+            "QC_R27.3": 0.06727914622295847,
+            "QC_R12.5": 0.16110836707369117,
+            "QC_R41": 0.2600301579772377,
+            "QC_R18.3": 0.05852922379376771,
+            "QC_R24.6": 0.12174998246152133,
+            "QC_R29.8": 0.03565459178422107
+          },
+          "n_homes": 50,
+          "level": "shrunk:Type_Logement"
+        },
+        "Duplex|[1960 - 1970)": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": "[1960 - 1970)"
+          },
+          "shares": {
+            "QC_R30.9": 0.11603761292052389,
+            "QC_R19.6": 0.09456815746508047,
+            "QC_R27.3": 0.044333403500931304,
+            "QC_R12.5": 0.2529355961728154,
+            "QC_R41": 0.27144894794473473,
+            "QC_R18.3": 0.07386507988069584,
+            "QC_R24.6": 0.09541423294014499,
+            "QC_R29.8": 0.05139696917507346
+          },
+          "n_homes": 57,
+          "level": "shrunk:Type_Logement"
+        },
+        "Duplex|[1970 - 1980)": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": "[1970 - 1980)"
+          },
+          "shares": {
+            "QC_R12.5": 0.27230955924231787,
+            "QC_R18.3": 0.07981620606661985,
+            "QC_R19.6": 0.16343540958143937,
+            "QC_R24.6": 0.12334102891294688,
+            "QC_R27.3": 0.09134938350134064,
+            "QC_R29.8": 0.04364900793644875,
+            "QC_R30.9": 0.10594044784353078,
+            "QC_R41": 0.12015895691535579
+          },
+          "n_homes": 275,
+          "level": "cell"
+        },
+        "Duplex|[1980 - 1990)": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": "[1980 - 1990)"
+          },
+          "shares": {
+            "QC_R30.9": 0.11205051174213457,
+            "QC_R19.6": 0.120906846018291,
+            "QC_R27.3": 0.12358498012155064,
+            "QC_R12.5": 0.08349063280432983,
+            "QC_R41": 0.19780255545967637,
+            "QC_R18.3": 0.04519456137742976,
+            "QC_R24.6": 0.24499540350539337,
+            "QC_R29.8": 0.07197450897119445
+          },
+          "n_homes": 167,
+          "level": "shrunk:Type_Logement"
+        },
+        "Duplex|[1990 - 2000)": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": "[1990 - 2000)"
+          },
+          "shares": {
+            "QC_R30.9": 0.16404593566516026,
+            "QC_R19.6": 0.17145818719684028,
+            "QC_R27.3": 0.12484015887207253,
+            "QC_R12.5": 0.07717094194768041,
+            "QC_R41": 0.1984637650248541,
+            "QC_R18.3": 0.044156161665950724,
+            "QC_R24.6": 0.15395080279025067,
+            "QC_R29.8": 0.06591404683719111
+          },
+          "n_homes": 172,
+          "level": "shrunk:Type_Logement"
+        },
+        "Duplex|[2000 - 2010)": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": "[2000 - 2010)"
+          },
+          "shares": {
+            "QC_R12.5": 0.011452869036137864,
+            "QC_R18.3": 0.0038610688432540283,
+            "QC_R19.6": 0.02663646942190554,
+            "QC_R24.6": 0.06923856419132407,
+            "QC_R27.3": 0.11079795901174885,
+            "QC_R29.8": 0.08377047710897065,
+            "QC_R30.9": 0.28193930708569576,
+            "QC_R41": 0.41230328530096316
+          },
+          "n_homes": 262,
+          "level": "cell"
+        },
+        "Duplex|[2010 - 2020)": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": "[2010 - 2020)"
+          },
+          "shares": {
+            "QC_R12.5": 0.003230161034839625,
+            "QC_R18.3": 0.005274561686760016,
+            "QC_R19.6": 0.004234188021137705,
+            "QC_R24.6": 0.004234188021137705,
+            "QC_R27.3": 0.013779284408359656,
+            "QC_R29.8": 0.02127998014366122,
+            "QC_R30.9": 0.11059774206011956,
+            "QC_R41": 0.8373698946239845
+          },
+          "n_homes": 941,
+          "level": "cell"
+        },
+        "Duplex|>= 2020": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": ">= 2020"
+          },
+          "shares": {
+            "QC_R19.6": 0.0004821172208743434,
+            "QC_R24.6": 0.0014463516626230302,
+            "QC_R27.3": 0.0018959193731141943,
+            "QC_R29.8": 0.003325996280545635,
+            "QC_R30.9": 0.052750098023047406,
+            "QC_R41": 0.9400995174397954
+          },
+          "n_homes": 2102,
+          "level": "cell"
+        },
+        "Maison en rangee|< 1950": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": "< 1950"
+          },
+          "shares": {
+            "QC_R30.9": 0.09426646089152454,
+            "QC_R19.6": 0.08144808654323567,
+            "QC_R27.3": 0.06190159689923018,
+            "QC_R12.5": 0.2953446240349108,
+            "QC_R41": 0.2614232757421795,
+            "QC_R18.3": 0.08394038615466559,
+            "QC_R24.6": 0.08349935796267854,
+            "QC_R29.8": 0.03817621177157517
+          },
+          "n_homes": 10,
+          "level": "shrunk:Type_Logement"
+        },
+        "Maison en rangee|[1950 - 1960)": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": "[1950 - 1960)"
+          },
+          "shares": {
+            "QC_R30.9": 0.0854646948451413,
+            "QC_R19.6": 0.10673510756619439,
+            "QC_R27.3": 0.05933927620610426,
+            "QC_R12.5": 0.3164469199653359,
+            "QC_R41": 0.1264033005483613,
+            "QC_R18.3": 0.1289358489700907,
+            "QC_R24.6": 0.11418376138540956,
+            "QC_R29.8": 0.06249109051336269
+          },
+          "n_homes": 98,
+          "level": "shrunk:Type_Logement"
+        },
+        "Maison en rangee|[1960 - 1970)": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": "[1960 - 1970)"
+          },
+          "shares": {
+            "QC_R12.5": 0.42479655110586045,
+            "QC_R18.3": 0.16552478892662845,
+            "QC_R19.6": 0.13884330880258022,
+            "QC_R24.6": 0.12779439554702315,
+            "QC_R27.3": 0.03404742229441961,
+            "QC_R29.8": 0.030107113344162946,
+            "QC_R30.9": 0.030107113344162946,
+            "QC_R41": 0.048779306635162355
+          },
+          "n_homes": 266,
+          "level": "cell"
+        },
+        "Maison en rangee|[1970 - 1980)": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": "[1970 - 1980)"
+          },
+          "shares": {
+            "QC_R12.5": 0.4781669034697444,
+            "QC_R18.3": 0.12576745116806234,
+            "QC_R19.6": 0.11467530024667293,
+            "QC_R24.6": 0.09575045600781275,
+            "QC_R27.3": 0.0585564470491218,
+            "QC_R29.8": 0.035491661280789226,
+            "QC_R30.9": 0.0494780657908375,
+            "QC_R41": 0.04211371498695916
+          },
+          "n_homes": 1826,
+          "level": "cell"
+        },
+        "Maison en rangee|[1980 - 1990)": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": "[1980 - 1990)"
+          },
+          "shares": {
+            "QC_R12.5": 0.11175405985598395,
+            "QC_R18.3": 0.08097929895422863,
+            "QC_R19.6": 0.18725110453915025,
+            "QC_R24.6": 0.18814759705181283,
+            "QC_R27.3": 0.18162208186831633,
+            "QC_R29.8": 0.06244601431617325,
+            "QC_R30.9": 0.11166712144661445,
+            "QC_R41": 0.07613272196772032
+          },
+          "n_homes": 787,
+          "level": "cell"
+        },
+        "Maison en rangee|[1990 - 2000)": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": "[1990 - 2000)"
+          },
+          "shares": {
+            "QC_R12.5": 0.06440955015400346,
+            "QC_R18.3": 0.08013348134197429,
+            "QC_R19.6": 0.15095808516878764,
+            "QC_R24.6": 0.19752765740419853,
+            "QC_R27.3": 0.1349665000570383,
+            "QC_R29.8": 0.11567961021727022,
+            "QC_R30.9": 0.15267265101374167,
+            "QC_R41": 0.10365246464298591
+          },
+          "n_homes": 511,
+          "level": "cell"
+        },
+        "Maison en rangee|[2000 - 2010)": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": "[2000 - 2010)"
+          },
+          "shares": {
+            "QC_R12.5": 0.017988146532614695,
+            "QC_R18.3": 0.012432751446591126,
+            "QC_R19.6": 0.032170804593624466,
+            "QC_R24.6": 0.06253056752427676,
+            "QC_R27.3": 0.0733968175021098,
+            "QC_R29.8": 0.07889107753957986,
+            "QC_R30.9": 0.35532308190152023,
+            "QC_R41": 0.36726675295968314
+          },
+          "n_homes": 560,
+          "level": "cell"
+        },
+        "Maison en rangee|[2010 - 2020)": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": "[2010 - 2020)"
+          },
+          "shares": {
+            "QC_R12.5": 0.0016330618219444364,
+            "QC_R18.3": 0.0012458239072982277,
+            "QC_R19.6": 0.003266123643888873,
+            "QC_R24.6": 0.01850511992219428,
+            "QC_R27.3": 0.01112830500232445,
+            "QC_R29.8": 0.006159027733691471,
+            "QC_R30.9": 0.060661599541463024,
+            "QC_R41": 0.8974009384271953
+          },
+          "n_homes": 2439,
+          "level": "cell"
+        },
+        "Maison en rangee|>= 2020": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": ">= 2020"
+          },
+          "shares": {
+            "QC_R12.5": 0.0013945342543523354,
+            "QC_R19.6": 0.000924399413611503,
+            "QC_R24.6": 0.0004542645728706704,
+            "QC_R27.3": 0.000924399413611503,
+            "QC_R29.8": 0.0013945342543523354,
+            "QC_R30.9": 0.03633724195251154,
+            "QC_R41": 0.95857062613869
+          },
+          "n_homes": 2155,
+          "level": "cell"
+        },
+        "Maison individuelle|< 1950": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": "< 1950"
+          },
+          "shares": {
+            "QC_R12.5": 0.372894650825475,
+            "QC_R18.3": 0.13090336469540917,
+            "QC_R19.6": 0.13696015511332396,
+            "QC_R24.6": 0.12365067275472995,
+            "QC_R27.3": 0.06477361912940162,
+            "QC_R29.8": 0.03584579347643344,
+            "QC_R30.9": 0.06961161875114612,
+            "QC_R41": 0.06536012525408084
+          },
+          "n_homes": 1481,
+          "level": "cell"
+        },
+        "Maison individuelle|[1950 - 1960)": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": "[1950 - 1960)"
+          },
+          "shares": {
+            "QC_R12.5": 0.250700218296588,
+            "QC_R18.3": 0.11526665909086935,
+            "QC_R19.6": 0.14451269467210254,
+            "QC_R24.6": 0.15305082180366242,
+            "QC_R27.3": 0.0871678230639796,
+            "QC_R29.8": 0.049500644621620134,
+            "QC_R30.9": 0.1072881807053536,
+            "QC_R41": 0.09251295774582431
+          },
+          "n_homes": 3189,
+          "level": "cell"
+        },
+        "Maison individuelle|[1960 - 1970)": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": "[1960 - 1970)"
+          },
+          "shares": {
+            "QC_R12.5": 0.2551796278503534,
+            "QC_R18.3": 0.11008667512612484,
+            "QC_R19.6": 0.13224889109881408,
+            "QC_R24.6": 0.14820446142234225,
+            "QC_R27.3": 0.08064960207855956,
+            "QC_R29.8": 0.0540815424932788,
+            "QC_R30.9": 0.11077323146594653,
+            "QC_R41": 0.10877596846458064
+          },
+          "n_homes": 4143,
+          "level": "cell"
+        },
+        "Maison individuelle|[1970 - 1980)": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": "[1970 - 1980)"
+          },
+          "shares": {
+            "QC_R12.5": 0.26230596918986293,
+            "QC_R18.3": 0.09167026672294752,
+            "QC_R19.6": 0.14035015574752757,
+            "QC_R24.6": 0.13445223656701483,
+            "QC_R27.3": 0.08672727635863135,
+            "QC_R29.8": 0.05765510437384891,
+            "QC_R30.9": 0.11267327866277753,
+            "QC_R41": 0.11416571237738939
+          },
+          "n_homes": 7198,
+          "level": "cell"
+        },
+        "Maison individuelle|[1980 - 1990)": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": "[1980 - 1990)"
+          },
+          "shares": {
+            "QC_R12.5": 0.06523008133028842,
+            "QC_R18.3": 0.07141240627018632,
+            "QC_R19.6": 0.17292105597611618,
+            "QC_R24.6": 0.22113783117152863,
+            "QC_R27.3": 0.14732754661492933,
+            "QC_R29.8": 0.0810396833018952,
+            "QC_R30.9": 0.1553621812796479,
+            "QC_R41": 0.0855692140554079
+          },
+          "n_homes": 7116,
+          "level": "cell"
+        },
+        "Maison individuelle|[1990 - 2000)": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": "[1990 - 2000)"
+          },
+          "shares": {
+            "QC_R12.5": 0.02113038023519765,
+            "QC_R18.3": 0.0423401037354058,
+            "QC_R19.6": 0.14185045663729062,
+            "QC_R24.6": 0.21089801517783802,
+            "QC_R27.3": 0.16529782653496922,
+            "QC_R29.8": 0.12070143148064304,
+            "QC_R30.9": 0.18617418891190088,
+            "QC_R41": 0.11160759728675472
+          },
+          "n_homes": 7957,
+          "level": "cell"
+        },
+        "Maison individuelle|[2000 - 2010)": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": "[2000 - 2010)"
+          },
+          "shares": {
+            "QC_R12.5": 0.003835804231994177,
+            "QC_R18.3": 0.006684196664794183,
+            "QC_R19.6": 0.026201029230727736,
+            "QC_R24.6": 0.05187373600977615,
+            "QC_R27.3": 0.07500612185490856,
+            "QC_R29.8": 0.07210568458472086,
+            "QC_R30.9": 0.23077463024448303,
+            "QC_R41": 0.5335187971785954
+          },
+          "n_homes": 9119,
+          "level": "cell"
+        },
+        "Maison individuelle|[2010 - 2020)": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": "[2010 - 2020)"
+          },
+          "shares": {
+            "QC_R12.5": 0.0016575933132318113,
+            "QC_R18.3": 0.000415274475504829,
+            "QC_R19.6": 0.003927584573358352,
+            "QC_R24.6": 0.00837426224109774,
+            "QC_R27.3": 0.013053109268102076,
+            "QC_R29.8": 0.016021794150062028,
+            "QC_R30.9": 0.11084014843695711,
+            "QC_R41": 0.8457102335416862
+          },
+          "n_homes": 9676,
+          "level": "cell"
+        },
+        "Maison individuelle|>= 2020": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": ">= 2020"
+          },
+          "shares": {
+            "QC_R12.5": 0.0001796188373463413,
+            "QC_R18.3": 0.00026639657359971787,
+            "QC_R19.6": 0.0008920308218921184,
+            "QC_R24.6": 0.001520696752604313,
+            "QC_R27.3": 0.00276893356676932,
+            "QC_R29.8": 0.003038361822788832,
+            "QC_R30.9": 0.0578580959231183,
+            "QC_R41": 0.933475865701881
+          },
+          "n_homes": 11186,
+          "level": "cell"
+        }
+      },
+      "source": "EnerGuide CEILINS (nominal insulation RSI) x 5.678, snapped to the table's own R ladder, Calgary-raked POND_AB-weighted",
+      "n_homes": 73909,
+      "weighted_mean_r": 29.4
+    },
+    "Insulation Wall.csv": {
+      "rewrites": {
+        "Collective|< 1950": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": "< 1950"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.14391389759180895,
+            "QC_WoodStud-R12.6": 0.11499219797919333,
+            "QC_WoodStud-R14": 0.022170724558934818,
+            "QC_WoodStud-R14.5": 0.044596663833765475,
+            "QC_WoodStud-R17.2": 0.46112109439313204,
+            "QC_WoodStud-R18.9": 0.10549153781352033,
+            "QC_WoodStud-R20.7": 0.05835655584067775,
+            "QC_WoodStud-R24.5": 0.04935732798896722
+          },
+          "n_homes": 0,
+          "level": "fallback:Type_Logement"
+        },
+        "Collective|[1950 - 1960)": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": "[1950 - 1960)"
+          },
+          "shares": {
+            "QC_WoodStud-R20.7": 0.05721230964772329,
+            "QC_WoodStud-R24.5": 0.04838953724408551,
+            "QC_WoodStud-R12.2": 0.1606998995998127,
+            "QC_WoodStud-R14.5": 0.04372221944486812,
+            "QC_WoodStud-R12.6": 0.11273744899920915,
+            "QC_WoodStud-R17.2": 0.45207950430699223,
+            "QC_WoodStud-R14": 0.02173600446954394,
+            "QC_WoodStud-R18.9": 0.10342307628776504
+          },
+          "n_homes": 1,
+          "level": "shrunk:Type_Logement"
+        },
+        "Collective|[1960 - 1970)": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": "[1960 - 1970)"
+          },
+          "shares": {
+            "QC_WoodStud-R20.7": 0.05611207292372905,
+            "QC_WoodStud-R24.5": 0.04745896922016117,
+            "QC_WoodStud-R12.2": 0.17684028614596373,
+            "QC_WoodStud-R14.5": 0.04288140753246714,
+            "QC_WoodStud-R12.6": 0.11056942113384062,
+            "QC_WoodStud-R17.2": 0.4433856676857074,
+            "QC_WoodStud-R14": 0.02131800438359134,
+            "QC_WoodStud-R18.9": 0.10143417097453959
+          },
+          "n_homes": 2,
+          "level": "shrunk:Type_Logement"
+        },
+        "Collective|[1970 - 1980)": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": "[1970 - 1980)"
+          },
+          "shares": {
+            "QC_WoodStud-R20.7": 0.05210551340284289,
+            "QC_WoodStud-R24.5": 0.0440702655941351,
+            "QC_WoodStud-R12.2": 0.18266667841662515,
+            "QC_WoodStud-R14.5": 0.03981955466077345,
+            "QC_WoodStud-R12.6": 0.15562397610014697,
+            "QC_WoodStud-R17.2": 0.4117266863697739,
+            "QC_WoodStud-R14": 0.01979583902809881,
+            "QC_WoodStud-R18.9": 0.09419148642760362
+          },
+          "n_homes": 6,
+          "level": "shrunk:Type_Logement"
+        },
+        "Collective|[1980 - 1990)": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": "[1980 - 1990)"
+          },
+          "shares": {
+            "QC_WoodStud-R20.7": 0.05611270885340239,
+            "QC_WoodStud-R24.5": 0.04745950708242896,
+            "QC_WoodStud-R12.2": 0.1383803159592661,
+            "QC_WoodStud-R14.5": 0.04288189351628601,
+            "QC_WoodStud-R12.6": 0.14902131538806138,
+            "QC_WoodStud-R17.2": 0.44339069266675196,
+            "QC_WoodStud-R14": 0.021318245984923413,
+            "QC_WoodStud-R18.9": 0.10143532054887987
+          },
+          "n_homes": 2,
+          "level": "shrunk:Type_Logement"
+        },
+        "Collective|[1990 - 2000)": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": "[1990 - 2000)"
+          },
+          "shares": {
+            "QC_WoodStud-R20.7": 0.039973953352918694,
+            "QC_WoodStud-R24.5": 0.03380952659444628,
+            "QC_WoodStud-R12.2": 0.09858031109439916,
+            "QC_WoodStud-R14.5": 0.03054849509374392,
+            "QC_WoodStud-R12.6": 0.07876908929511765,
+            "QC_WoodStud-R17.2": 0.6308706035631826,
+            "QC_WoodStud-R14": 0.015186837135126178,
+            "QC_WoodStud-R18.9": 0.07226118387106557
+          },
+          "n_homes": 23,
+          "level": "shrunk:Type_Logement"
+        },
+        "Collective|[2000 - 2010)": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": "[2000 - 2010)"
+          },
+          "shares": {
+            "QC_WoodStud-R20.7": 0.07255236651914607,
+            "QC_WoodStud-R24.5": 0.04570122961941409,
+            "QC_WoodStud-R12.2": 0.13325360888130458,
+            "QC_WoodStud-R14.5": 0.04129320725348655,
+            "QC_WoodStud-R12.6": 0.10647425738814197,
+            "QC_WoodStud-R17.2": 0.4825195318454926,
+            "QC_WoodStud-R14": 0.020528448665680387,
+            "QC_WoodStud-R18.9": 0.09767734982733364
+          },
+          "n_homes": 4,
+          "level": "shrunk:Type_Logement"
+        },
+        "Collective|[2010 - 2020)": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": "[2010 - 2020)"
+          },
+          "shares": {
+            "QC_WoodStud-R20.7": 0.06263133163490887,
+            "QC_WoodStud-R24.5": 0.07868562770382456,
+            "QC_WoodStud-R12.2": 0.07575394468396264,
+            "QC_WoodStud-R14.5": 0.08693854816816123,
+            "QC_WoodStud-R12.6": 0.06053003045967741,
+            "QC_WoodStud-R17.2": 0.38971882229902555,
+            "QC_WoodStud-R14": 0.0432205111165878,
+            "QC_WoodStud-R18.9": 0.20252118393385202
+          },
+          "n_homes": 45,
+          "level": "shrunk:Type_Logement"
+        },
+        "Collective|>= 2020": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": ">= 2020"
+          },
+          "shares": {
+            "QC_WoodStud-R20.7": 0.15431197743335895,
+            "QC_WoodStud-R24.5": 0.1759320586472316,
+            "QC_WoodStud-R12.2": 0.10674298846456509,
+            "QC_WoodStud-R14.5": 0.028961563296568644,
+            "QC_WoodStud-R12.6": 0.07467719632122906,
+            "QC_WoodStud-R17.2": 0.3507983280856825,
+            "QC_WoodStud-R14": 0.014397912028527733,
+            "QC_WoodStud-R18.9": 0.0941779757228364
+          },
+          "n_homes": 27,
+          "level": "shrunk:Type_Logement"
+        },
+        "Triplex|< 1950": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": "< 1950"
+          },
+          "shares": {
+            "QC_WoodStud-R20.7": 0.005885355657898539,
+            "QC_WoodStud-R24.5": 0.02658337152513636,
+            "QC_WoodStud-R12.2": 0.8450402501057802,
+            "QC_WoodStud-R14.5": 0.06715729598360369,
+            "QC_WoodStud-R12.6": 0.022793800947848854,
+            "QC_WoodStud-R14": 0.024332872357006034,
+            "QC_WoodStud-R18.9": 0.00820705342272648
+          },
+          "n_homes": 2,
+          "level": "shrunk:Type_Logement"
+        },
+        "Triplex|[1950 - 1960)": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": "[1950 - 1960)"
+          },
+          "shares": {
+            "QC_WoodStud-R20.7": 0.006000686781426963,
+            "QC_WoodStud-R24.5": 0.027104306925370473,
+            "QC_WoodStud-R12.2": 0.8423343686460076,
+            "QC_WoodStud-R14.5": 0.04853473214599971,
+            "QC_WoodStud-R12.6": 0.023240474832250488,
+            "QC_WoodStud-R14": 0.04441754946500677,
+            "QC_WoodStud-R18.9": 0.00836788120393806
+          },
+          "n_homes": 1,
+          "level": "shrunk:Type_Logement"
+        },
+        "Triplex|[1960 - 1970)": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": "[1960 - 1970)"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.8591810560189278,
+            "QC_WoodStud-R12.6": 0.023705284328895498,
+            "QC_WoodStud-R14": 0.02530590045430691,
+            "QC_WoodStud-R14.5": 0.049505426788919706,
+            "QC_WoodStud-R18.9": 0.00853523882801682,
+            "QC_WoodStud-R20.7": 0.006120700517055502,
+            "QC_WoodStud-R24.5": 0.027646393063877884
+          },
+          "n_homes": 0,
+          "level": "fallback:Type_Logement"
+        },
+        "Triplex|[1970 - 1980)": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": "[1970 - 1980)"
+          },
+          "shares": {
+            "QC_WoodStud-R20.7": 0.005885355657898538,
+            "QC_WoodStud-R24.5": 0.026583371525136356,
+            "QC_WoodStud-R12.2": 0.8457003781476377,
+            "QC_WoodStud-R14.5": 0.04760191138856997,
+            "QC_WoodStud-R12.6": 0.041689057501025056,
+            "QC_WoodStud-R14": 0.02433287235700603,
+            "QC_WoodStud-R18.9": 0.008207053422726478
+          },
+          "n_homes": 2,
+          "level": "shrunk:Type_Logement"
+        },
+        "Triplex|[1980 - 1990)": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": "[1980 - 1990)"
+          },
+          "shares": {
+            "QC_WoodStud-R20.7": 0.003825859657559444,
+            "QC_WoodStud-R24.5": 0.030007733148887317,
+            "QC_WoodStud-R12.2": 0.8992516227547925,
+            "QC_WoodStud-R14.5": 0.030944303622472594,
+            "QC_WoodStud-R12.6": 0.014817436457179789,
+            "QC_WoodStud-R14": 0.01581793184890606,
+            "QC_WoodStud-R18.9": 0.005335112510202301
+          },
+          "n_homes": 30,
+          "level": "shrunk:Type_Logement"
+        },
+        "Triplex|[1990 - 2000)": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": "[1990 - 2000)"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.8591810560189278,
+            "QC_WoodStud-R12.6": 0.023705284328895498,
+            "QC_WoodStud-R14": 0.02530590045430691,
+            "QC_WoodStud-R14.5": 0.049505426788919706,
+            "QC_WoodStud-R18.9": 0.00853523882801682,
+            "QC_WoodStud-R20.7": 0.006120700517055502,
+            "QC_WoodStud-R24.5": 0.027646393063877884
+          },
+          "n_homes": 0,
+          "level": "fallback:Type_Logement"
+        },
+        "Triplex|[2000 - 2010)": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": "[2000 - 2010)"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.8591810560189278,
+            "QC_WoodStud-R12.6": 0.023705284328895498,
+            "QC_WoodStud-R14": 0.02530590045430691,
+            "QC_WoodStud-R14.5": 0.049505426788919706,
+            "QC_WoodStud-R18.9": 0.00853523882801682,
+            "QC_WoodStud-R20.7": 0.006120700517055502,
+            "QC_WoodStud-R24.5": 0.027646393063877884
+          },
+          "n_homes": 0,
+          "level": "fallback:Type_Logement"
+        },
+        "Triplex|[2010 - 2020)": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": "[2010 - 2020)"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.8591810560189278,
+            "QC_WoodStud-R12.6": 0.023705284328895498,
+            "QC_WoodStud-R14": 0.02530590045430691,
+            "QC_WoodStud-R14.5": 0.049505426788919706,
+            "QC_WoodStud-R18.9": 0.00853523882801682,
+            "QC_WoodStud-R20.7": 0.006120700517055502,
+            "QC_WoodStud-R24.5": 0.027646393063877884
+          },
+          "n_homes": 0,
+          "level": "fallback:Type_Logement"
+        },
+        "Triplex|>= 2020": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": ">= 2020"
+          },
+          "shares": {
+            "QC_WoodStud-R20.7": 0.08574985792154,
+            "QC_WoodStud-R24.5": 0.022296621669419956,
+            "QC_WoodStud-R12.2": 0.6929234821817175,
+            "QC_WoodStud-R14.5": 0.039925778713531854,
+            "QC_WoodStud-R12.6": 0.019118145178149856,
+            "QC_WoodStud-R14": 0.020409030831978626,
+            "QC_WoodStud-R18.9": 0.11957708350366214
+          },
+          "n_homes": 12,
+          "level": "shrunk:Type_Logement"
+        },
+        "Duplex|< 1950": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": "< 1950"
+          },
+          "shares": {
+            "QC_WoodStud-R20.7": 0.012433335369015154,
+            "QC_WoodStud-R24.5": 0.03637141684997516,
+            "QC_WoodStud-R12.2": 0.4865572768624711,
+            "QC_WoodStud-R14.5": 0.062168587200546604,
+            "QC_WoodStud-R12.6": 0.016980383460697898,
+            "QC_WoodStud-R17.2": 0.3417457459505212,
+            "QC_WoodStud-R14": 0.023950763650271118,
+            "QC_WoodStud-R18.9": 0.01979249065650179
+          },
+          "n_homes": 15,
+          "level": "shrunk:Type_Logement"
+        },
+        "Duplex|[1950 - 1960)": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": "[1950 - 1960)"
+          },
+          "shares": {
+            "QC_WoodStud-R20.7": 0.02831180709269189,
+            "QC_WoodStud-R24.5": 0.013530593732070861,
+            "QC_WoodStud-R12.2": 0.6463458433222572,
+            "QC_WoodStud-R14.5": 0.04041245304652992,
+            "QC_WoodStud-R12.6": 0.011038033518501664,
+            "QC_WoodStud-R17.2": 0.22215051899965568,
+            "QC_WoodStud-R14": 0.025344717210373208,
+            "QC_WoodStud-R18.9": 0.012866033077919585
+          },
+          "n_homes": 50,
+          "level": "shrunk:Type_Logement"
+        },
+        "Duplex|[1960 - 1970)": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": "[1960 - 1970)"
+          },
+          "shares": {
+            "QC_WoodStud-R20.7": 0.017050050487925305,
+            "QC_WoodStud-R24.5": 0.012645736512323352,
+            "QC_WoodStud-R12.2": 0.66994406262063,
+            "QC_WoodStud-R14.5": 0.03776960887028576,
+            "QC_WoodStud-R12.6": 0.0378435627325112,
+            "QC_WoodStud-R17.2": 0.20762259106833528,
+            "QC_WoodStud-R14": 0.005099751724974665,
+            "QC_WoodStud-R18.9": 0.01202463598301435
+          },
+          "n_homes": 57,
+          "level": "shrunk:Type_Logement"
+        },
+        "Duplex|[1970 - 1980)": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": "[1970 - 1980)"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.8943079223367127,
+            "QC_WoodStud-R12.6": 0.05431288974031751,
+            "QC_WoodStud-R14": 0.014591064342190159,
+            "QC_WoodStud-R17.2": 0.036788123580779694
+          },
+          "n_homes": 275,
+          "level": "cell"
+        },
+        "Duplex|[1980 - 1990)": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": "[1980 - 1990)"
+          },
+          "shares": {
+            "QC_WoodStud-R20.7": 0.0037248355239215404,
+            "QC_WoodStud-R24.5": 0.00623579876257138,
+            "QC_WoodStud-R12.2": 0.6528125785984478,
+            "QC_WoodStud-R14.5": 0.032311957930272805,
+            "QC_WoodStud-R12.6": 0.04709403350730604,
+            "QC_WoodStud-R17.2": 0.2308643006331978,
+            "QC_WoodStud-R14": 0.021026970092518905,
+            "QC_WoodStud-R18.9": 0.005929524951763825
+          },
+          "n_homes": 167,
+          "level": "shrunk:Type_Logement"
+        },
+        "Duplex|[1990 - 2000)": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": "[1990 - 2000)"
+          },
+          "shares": {
+            "QC_WoodStud-R20.7": 0.012452519015100598,
+            "QC_WoodStud-R24.5": 0.006095335780945695,
+            "QC_WoodStud-R12.2": 0.2239944401215055,
+            "QC_WoodStud-R14.5": 0.08142554298860574,
+            "QC_WoodStud-R12.6": 0.013937981589038188,
+            "QC_WoodStud-R17.2": 0.6266357356986523,
+            "QC_WoodStud-R14": 0.011423624891607996,
+            "QC_WoodStud-R18.9": 0.02403481991454405
+          },
+          "n_homes": 172,
+          "level": "shrunk:Type_Logement"
+        },
+        "Duplex|[2000 - 2010)": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": "[2000 - 2010)"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.030236863277911138,
+            "QC_WoodStud-R12.6": 0.007591800192883838,
+            "QC_WoodStud-R14": 0.0038610688432540287,
+            "QC_WoodStud-R14.5": 0.06858687672320299,
+            "QC_WoodStud-R17.2": 0.7751947006013693,
+            "QC_WoodStud-R18.9": 0.03049753826515957,
+            "QC_WoodStud-R20.7": 0.03422826961478938,
+            "QC_WoodStud-R24.5": 0.04980288248142972
+          },
+          "n_homes": 262,
+          "level": "cell"
+        },
+        "Duplex|[2010 - 2020)": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": "[2010 - 2020)"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.001076720344946542,
+            "QC_WoodStud-R14": 0.005310908366084248,
+            "QC_WoodStud-R14.5": 0.2589397095172362,
+            "QC_WoodStud-R17.2": 0.6082512346513335,
+            "QC_WoodStud-R18.9": 0.047761828615434,
+            "QC_WoodStud-R20.7": 0.01812251246747006,
+            "QC_WoodStud-R24.5": 0.06053708603749558
+          },
+          "n_homes": 941,
+          "level": "cell"
+        },
+        "Duplex|>= 2020": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": ">= 2020"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.00046561798323468755,
+            "QC_WoodStud-R14.5": 0.05179344258108519,
+            "QC_WoodStud-R17.2": 0.8269526002359732,
+            "QC_WoodStud-R18.9": 0.09989447512155865,
+            "QC_WoodStud-R20.7": 0.009025677720420731,
+            "QC_WoodStud-R24.5": 0.011868186357727493
+          },
+          "n_homes": 2103,
+          "level": "cell"
+        },
+        "Maison en rangee|< 1950": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": "< 1950"
+          },
+          "shares": {
+            "QC_WoodStud-R20.7": 0.042473662931104134,
+            "QC_WoodStud-R24.5": 0.017568810009653296,
+            "QC_WoodStud-R12.2": 0.6111841936362438,
+            "QC_WoodStud-R14.5": 0.09919973610738833,
+            "QC_WoodStud-R12.6": 0.018959767360839878,
+            "QC_WoodStud-R17.2": 0.1684601878464048,
+            "QC_WoodStud-R14": 0.015707572943512296,
+            "QC_WoodStud-R18.9": 0.02644606916485375
+          },
+          "n_homes": 10,
+          "level": "shrunk:Type_Logement"
+        },
+        "Maison en rangee|[1950 - 1960)": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": "[1950 - 1960)"
+          },
+          "shares": {
+            "QC_WoodStud-R20.7": 0.017175400045564043,
+            "QC_WoodStud-R24.5": 0.0071234751559041305,
+            "QC_WoodStud-R12.2": 0.8017698760587507,
+            "QC_WoodStud-R14.5": 0.053686724048390914,
+            "QC_WoodStud-R12.6": 0.028000623100289095,
+            "QC_WoodStud-R17.2": 0.07515222479996804,
+            "QC_WoodStud-R14": 0.006368815278962074,
+            "QC_WoodStud-R18.9": 0.010722861512171116
+          },
+          "n_homes": 98,
+          "level": "shrunk:Type_Logement"
+        },
+        "Maison en rangee|[1960 - 1970)": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": "[1960 - 1970)"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.9283508532585106,
+            "QC_WoodStud-R12.6": 0.03404742229441961,
+            "QC_WoodStud-R14": 0.007494611102906864,
+            "QC_WoodStud-R14.5": 0.015246560070884705,
+            "QC_WoodStud-R17.2": 0.0073659421703713744,
+            "QC_WoodStud-R18.9": 0.007494611102906864
+          },
+          "n_homes": 266,
+          "level": "cell"
+        },
+        "Maison en rangee|[1970 - 1980)": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": "[1970 - 1980)"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.9327140610788847,
+            "QC_WoodStud-R12.6": 0.023507343657341834,
+            "QC_WoodStud-R14": 0.013611730499174331,
+            "QC_WoodStud-R14.5": 0.019753758915247607,
+            "QC_WoodStud-R17.2": 0.009876879457623803,
+            "QC_WoodStud-R20.7": 0.0005362263917277465
+          },
+          "n_homes": 1826,
+          "level": "cell"
+        },
+        "Maison en rangee|[1980 - 1990)": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": "[1980 - 1990)"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.6924155201679356,
+            "QC_WoodStud-R12.6": 0.052100822272885296,
+            "QC_WoodStud-R14": 0.03810983018854492,
+            "QC_WoodStud-R14.5": 0.10055584450471818,
+            "QC_WoodStud-R17.2": 0.10535895228654173,
+            "QC_WoodStud-R20.7": 0.01145903057937433
+          },
+          "n_homes": 787,
+          "level": "cell"
+        },
+        "Maison en rangee|[1990 - 2000)": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": "[1990 - 2000)"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.2384182242571903,
+            "QC_WoodStud-R12.6": 0.01942071680165735,
+            "QC_WoodStud-R14": 0.02556811655068875,
+            "QC_WoodStud-R14.5": 0.2442310566014986,
+            "QC_WoodStud-R17.2": 0.44890981596889784,
+            "QC_WoodStud-R18.9": 0.023452069820066992
+          },
+          "n_homes": 511,
+          "level": "cell"
+        },
+        "Maison en rangee|[2000 - 2010)": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": "[2000 - 2010)"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.03567409003725434,
+            "QC_WoodStud-R12.6": 0.009071637428194708,
+            "QC_WoodStud-R14": 0.023157535540439093,
+            "QC_WoodStud-R14.5": 0.26890308656556144,
+            "QC_WoodStud-R17.2": 0.43989373487417244,
+            "QC_WoodStud-R18.9": 0.016145209468093124,
+            "QC_WoodStud-R20.7": 0.11434082602187122,
+            "QC_WoodStud-R24.5": 0.09281388006441371
+          },
+          "n_homes": 559,
+          "level": "cell"
+        },
+        "Maison en rangee|[2010 - 2020)": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": "[2010 - 2020)"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.0028788857292426644,
+            "QC_WoodStud-R12.6": 0.0008025125504122847,
+            "QC_WoodStud-R14": 0.014753629839739662,
+            "QC_WoodStud-R14.5": 0.24755960199224533,
+            "QC_WoodStud-R17.2": 0.4687571788848927,
+            "QC_WoodStud-R18.9": 0.15538446139527226,
+            "QC_WoodStud-R20.7": 0.06803841446133285,
+            "QC_WoodStud-R24.5": 0.04182531514686227
+          },
+          "n_homes": 2439,
+          "level": "cell"
+        },
+        "Maison en rangee|>= 2020": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": ">= 2020"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.00047035597147057135,
+            "QC_WoodStud-R14": 0.0004544782389251476,
+            "QC_WoodStud-R14.5": 0.04415985211570529,
+            "QC_WoodStud-R17.2": 0.7757395685680719,
+            "QC_WoodStud-R18.9": 0.1638921640354795,
+            "QC_WoodStud-R20.7": 0.010236687244534604,
+            "QC_WoodStud-R24.5": 0.005046893825812895
+          },
+          "n_homes": 2154,
+          "level": "cell"
+        },
+        "Maison individuelle|< 1950": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": "< 1950"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.8737116678129427,
+            "QC_WoodStud-R12.6": 0.03580140126958024,
+            "QC_WoodStud-R14": 0.021575316773986962,
+            "QC_WoodStud-R14.5": 0.02094260308261403,
+            "QC_WoodStud-R17.2": 0.035145782773896045,
+            "QC_WoodStud-R18.9": 0.005428186399963632,
+            "QC_WoodStud-R20.7": 0.0033697116956660097,
+            "QC_WoodStud-R24.5": 0.004025330191350203
+          },
+          "n_homes": 1480,
+          "level": "cell"
+        },
+        "Maison individuelle|[1950 - 1960)": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": "[1950 - 1960)"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.8716463258387688,
+            "QC_WoodStud-R12.6": 0.031029957873482613,
+            "QC_WoodStud-R14": 0.02073981325070064,
+            "QC_WoodStud-R14.5": 0.028562770369851873,
+            "QC_WoodStud-R17.2": 0.03138754287968694,
+            "QC_WoodStud-R18.9": 0.005019454476667723,
+            "QC_WoodStud-R20.7": 0.007529181715001583,
+            "QC_WoodStud-R24.5": 0.0040849535958398875
+          },
+          "n_homes": 3189,
+          "level": "cell"
+        },
+        "Maison individuelle|[1960 - 1970)": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": "[1960 - 1970)"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.8732035131992176,
+            "QC_WoodStud-R12.6": 0.03934251184335977,
+            "QC_WoodStud-R14": 0.014980115453033615,
+            "QC_WoodStud-R14.5": 0.023424476617912877,
+            "QC_WoodStud-R17.2": 0.03021928634809432,
+            "QC_WoodStud-R18.9": 0.009916775487295894,
+            "QC_WoodStud-R20.7": 0.005540491684918948,
+            "QC_WoodStud-R24.5": 0.0033728293661669504
+          },
+          "n_homes": 4140,
+          "level": "cell"
+        },
+        "Maison individuelle|[1970 - 1980)": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": "[1970 - 1980)"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.87723220837714,
+            "QC_WoodStud-R12.6": 0.047548661535260314,
+            "QC_WoodStud-R14": 0.014165309811531641,
+            "QC_WoodStud-R14.5": 0.022279124764832705,
+            "QC_WoodStud-R17.2": 0.028089173865826742,
+            "QC_WoodStud-R18.9": 0.0045774901095453555,
+            "QC_WoodStud-R20.7": 0.0029120916352010956,
+            "QC_WoodStud-R24.5": 0.0031959399006620953
+          },
+          "n_homes": 7196,
+          "level": "cell"
+        },
+        "Maison individuelle|[1980 - 1990)": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": "[1980 - 1990)"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.5203339137781946,
+            "QC_WoodStud-R12.6": 0.03503503545564021,
+            "QC_WoodStud-R14": 0.014934530639843395,
+            "QC_WoodStud-R14.5": 0.18618499111100079,
+            "QC_WoodStud-R17.2": 0.22704181277357746,
+            "QC_WoodStud-R18.9": 0.011538638287069863,
+            "QC_WoodStud-R20.7": 0.003376813420627533,
+            "QC_WoodStud-R24.5": 0.0015542645340461405
+          },
+          "n_homes": 7109,
+          "level": "cell"
+        },
+        "Maison individuelle|[1990 - 2000)": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": "[1990 - 2000)"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.15995335081620357,
+            "QC_WoodStud-R12.6": 0.013381821524851737,
+            "QC_WoodStud-R14": 0.01408073380681409,
+            "QC_WoodStud-R14.5": 0.1826478074200886,
+            "QC_WoodStud-R17.2": 0.6013442634216135,
+            "QC_WoodStud-R18.9": 0.022548276274896927,
+            "QC_WoodStud-R20.7": 0.003527653120002647,
+            "QC_WoodStud-R24.5": 0.00251609361552885
+          },
+          "n_homes": 7942,
+          "level": "cell"
+        },
+        "Maison individuelle|[2000 - 2010)": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": "[2000 - 2010)"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.02919108263472879,
+            "QC_WoodStud-R12.6": 0.0034031296477040666,
+            "QC_WoodStud-R14": 0.004501993980820498,
+            "QC_WoodStud-R14.5": 0.06380717011953908,
+            "QC_WoodStud-R17.2": 0.7151936312429131,
+            "QC_WoodStud-R18.9": 0.025939153434804442,
+            "QC_WoodStud-R20.7": 0.11700485858554477,
+            "QC_WoodStud-R24.5": 0.04095898035394521
+          },
+          "n_homes": 9108,
+          "level": "cell"
+        },
+        "Maison individuelle|[2010 - 2020)": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": "[2010 - 2020)"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.004537891284282809,
+            "QC_WoodStud-R12.6": 0.0014504078134874071,
+            "QC_WoodStud-R14": 0.0011353492412337711,
+            "QC_WoodStud-R14.5": 0.06546772271766187,
+            "QC_WoodStud-R17.2": 0.8443598616619596,
+            "QC_WoodStud-R18.9": 0.04426942282186139,
+            "QC_WoodStud-R20.7": 0.025227453402704512,
+            "QC_WoodStud-R24.5": 0.013551891056808612
+          },
+          "n_homes": 9673,
+          "level": "cell"
+        },
+        "Maison individuelle|>= 2020": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": ">= 2020"
+          },
+          "shares": {
+            "QC_WoodStud-R12.2": 0.0010687139573979075,
+            "QC_WoodStud-R14": 8.981748512929681e-05,
+            "QC_WoodStud-R14.5": 0.005631213970684737,
+            "QC_WoodStud-R17.2": 0.8941230186334669,
+            "QC_WoodStud-R18.9": 0.08037298870093801,
+            "QC_WoodStud-R20.7": 0.014421199694484287,
+            "QC_WoodStud-R24.5": 0.004293047557898938
+          },
+          "n_homes": 11185,
+          "level": "cell"
+        }
+      },
+      "source": "EnerGuide MAINWALLINS (nominal insulation RSI) x 5.678, snapped to the table's own R ladder, Calgary-raked POND_AB-weighted",
+      "n_homes": 73871,
+      "weighted_mean_r": 14.6
+    },
+    "Insulation Foundation Wall.csv": {
+      "rewrites": {
+        "< 1950": {
+          "where": {
+            "An_Construction": "< 1950"
+          },
+          "shares": {
+            "QC_Wall-R10.1, interior": 0.8912604689251755,
+            "QC_Wall-R12, interior": 0.07204802690994067,
+            "QC_Wall-R14.4, interior": 0.01582153399551472,
+            "QC_Wall-R17, interior": 0.00566833303776871,
+            "QC_Wall-R17.1, interior": 0.015201637131600425
+          },
+          "n_homes": 1498,
+          "level": "cell"
+        },
+        "[1950 - 1960)": {
+          "where": {
+            "An_Construction": "[1950 - 1960)"
+          },
+          "shares": {
+            "QC_Wall-R12, interior": 0.060929789875953155,
+            "QC_Wall-R17.1, interior": 0.018097566346524218,
+            "QC_Wall-R14.4, interior": 0.009293141259245866,
+            "QC_Wall-R10.1, interior": 0.9072917397544531,
+            "QC_Wall-R17, interior": 0.004387762763823665
+          },
+          "n_homes": 3331,
+          "level": "cell"
+        },
+        "[1960 - 1970)": {
+          "where": {
+            "An_Construction": "[1960 - 1970)"
+          },
+          "shares": {
+            "QC_Wall-R12, interior": 0.065397132653316,
+            "QC_Wall-R17.1, interior": 0.013046016493224906,
+            "QC_Wall-R14.4, interior": 0.006988147019599543,
+            "QC_Wall-R10.1, interior": 0.9093241246100181,
+            "QC_Wall-R17, interior": 0.00524457922384151
+          },
+          "n_homes": 4440,
+          "level": "cell"
+        },
+        "[1970 - 1980)": {
+          "where": {
+            "An_Construction": "[1970 - 1980)"
+          },
+          "shares": {
+            "QC_Wall-R12, interior": 0.06336043002504246,
+            "QC_Wall-R17.1, interior": 0.0077030088827581954,
+            "QC_Wall-R14.4, interior": 0.005296346620844369,
+            "QC_Wall-R10.1, interior": 0.9197739329866356,
+            "QC_Wall-R17, interior": 0.003866281484719327
+          },
+          "n_homes": 9226,
+          "level": "shrunk:An_Construction"
+        },
+        "[1980 - 1990)": {
+          "where": {
+            "An_Construction": "[1980 - 1990)"
+          },
+          "shares": {
+            "QC_Wall-R10.1, interior": 0.7660260396545869,
+            "QC_Wall-R12, interior": 0.1582354994143311,
+            "QC_Wall-R14.4, interior": 0.02555284999591817,
+            "QC_Wall-R17, interior": 0.013232087102588797,
+            "QC_Wall-R17.1, interior": 0.03695352383257509
+          },
+          "n_homes": 8052,
+          "level": "cell"
+        },
+        "[1990 - 2000)": {
+          "where": {
+            "An_Construction": "[1990 - 2000)"
+          },
+          "shares": {
+            "QC_Wall-R12, interior": 0.32096655816849456,
+            "QC_Wall-R17.1, interior": 0.09326174814330358,
+            "QC_Wall-R14.4, interior": 0.10910368026612746,
+            "QC_Wall-R10.1, interior": 0.4448350314217173,
+            "QC_Wall-R17, interior": 0.031832982000357155
+          },
+          "n_homes": 8589,
+          "level": "shrunk:An_Construction"
+        },
+        "[2000 - 2010)": {
+          "where": {
+            "An_Construction": "[2000 - 2010)"
+          },
+          "shares": {
+            "QC_Wall-R10.1, interior": 0.2758377944306428,
+            "QC_Wall-R12, interior": 0.43369198081581234,
+            "QC_Wall-R14.4, interior": 0.08730396988174464,
+            "QC_Wall-R17, interior": 0.08928593081663753,
+            "QC_Wall-R17.1, interior": 0.11388032405516264
+          },
+          "n_homes": 9906,
+          "level": "cell"
+        },
+        "[2010 - 2020)": {
+          "where": {
+            "An_Construction": "[2010 - 2020)"
+          },
+          "shares": {
+            "QC_Wall-R12, interior": 0.20223642253508628,
+            "QC_Wall-R17.1, interior": 0.24464593322664285,
+            "QC_Wall-R14.4, interior": 0.30382814617797704,
+            "QC_Wall-R10.1, interior": 0.17853070068262983,
+            "QC_Wall-R17, interior": 0.07075879737766405
+          },
+          "n_homes": 12161,
+          "level": "cell"
+        },
+        ">= 2020": {
+          "where": {
+            "An_Construction": ">= 2020"
+          },
+          "shares": {
+            "QC_Wall-R12, interior": 0.14572526273411845,
+            "QC_Wall-R17.1, interior": 0.5419786562587924,
+            "QC_Wall-R14.4, interior": 0.04459433211101768,
+            "QC_Wall-R10.1, interior": 0.1362393018084464,
+            "QC_Wall-R17, interior": 0.13146244708762508
+          },
+          "n_homes": 14628,
+          "level": "cell"
+        }
+      },
+      "source": "EnerGuide FNDWALLINS (nominal insulation RSI) x 5.678, snapped to the table's own R ladder, Calgary-raked POND_AB-weighted",
+      "n_homes": 71831,
+      "weighted_mean_r": 10.3
+    },
+    "Windows.csv": {
+      "rewrites": {
+        "Collective|< 1950": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": "< 1950"
+          },
+          "group_shares": {
+            "Double": 0.9580455574745138,
+            "Triple": 0.04195444252548613
+          },
+          "n_homes": 0,
+          "level": "fallback:Type_Logement"
+        },
+        "Collective|[1950 - 1960)": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": "[1950 - 1960)"
+          },
+          "group_shares": {
+            "Triple": 0.04113180639753542,
+            "Double": 0.9588681936024646
+          },
+          "n_homes": 1,
+          "level": "shrunk:Type_Logement"
+        },
+        "Collective|[1960 - 1970)": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": "[1960 - 1970)"
+          },
+          "group_shares": {
+            "Triple": 0.040340810120660056,
+            "Double": 0.95965918987934
+          },
+          "n_homes": 2,
+          "level": "shrunk:Type_Logement"
+        },
+        "Collective|[1970 - 1980)": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": "[1970 - 1980)"
+          },
+          "group_shares": {
+            "Triple": 0.03814137644348404,
+            "Double": 0.961858623556516
+          },
+          "n_homes": 5,
+          "level": "shrunk:Type_Logement"
+        },
+        "Collective|[1980 - 1990)": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": "[1980 - 1990)"
+          },
+          "group_shares": {
+            "Triple": 0.04034126731136547,
+            "Double": 0.9596587326886346
+          },
+          "n_homes": 2,
+          "level": "shrunk:Type_Logement"
+        },
+        "Collective|[1990 - 2000)": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": "[1990 - 2000)"
+          },
+          "group_shares": {
+            "Triple": 0.02873858651014613,
+            "Double": 0.9712614134898538
+          },
+          "n_homes": 23,
+          "level": "shrunk:Type_Logement"
+        },
+        "Collective|[2000 - 2010)": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": "[2000 - 2010)"
+          },
+          "group_shares": {
+            "Triple": 0.040340810120659744,
+            "Double": 0.9596591898793403
+          },
+          "n_homes": 2,
+          "level": "shrunk:Type_Logement"
+        },
+        "Collective|[2010 - 2020)": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": "[2010 - 2020)"
+          },
+          "group_shares": {
+            "Triple": 0.06762413094730048,
+            "Double": 0.9323758690526995
+          },
+          "n_homes": 41,
+          "level": "shrunk:Type_Logement"
+        },
+        "Collective|>= 2020": {
+          "where": {
+            "Type_Logement": "Collective",
+            "An_Construction": ">= 2020"
+          },
+          "group_shares": {
+            "Triple": 0.14221721197943357,
+            "Double": 0.8577827880205664
+          },
+          "n_homes": 7,
+          "level": "shrunk:Type_Logement"
+        },
+        "Triplex|< 1950": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": "< 1950"
+          },
+          "group_shares": {
+            "Double": 0.8673092731261596,
+            "Triple": 0.041698796202500665,
+            "Single": 0.09099193067133976
+          },
+          "n_homes": 2,
+          "level": "shrunk:Type_Logement"
+        },
+        "Triplex|[1950 - 1960)": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": "[1950 - 1960)"
+          },
+          "group_shares": {
+            "Triple": 0.04251593781557599,
+            "Double": 0.8643667177504898,
+            "Single": 0.09311734443393421
+          },
+          "n_homes": 1,
+          "level": "shrunk:Type_Logement"
+        },
+        "Triplex|[1960 - 1970)": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": "[1960 - 1970)"
+          },
+          "group_shares": {
+            "Double": 0.8816540521054996,
+            "Single": 0.0749796913226129,
+            "Triple": 0.043366256571887515
+          },
+          "n_homes": 0,
+          "level": "fallback:Type_Logement"
+        },
+        "Triplex|[1970 - 1980)": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": "[1970 - 1980)"
+          },
+          "group_shares": {
+            "Triple": 0.04251593781557599,
+            "Double": 0.8839745608877447,
+            "Single": 0.07350950129667931
+          },
+          "n_homes": 1,
+          "level": "shrunk:Type_Logement"
+        },
+        "Triplex|[1980 - 1990)": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": "[1980 - 1990)"
+          },
+          "group_shares": {
+            "Double": 0.913298794132076,
+            "Triple": 0.039833731243394246,
+            "Single": 0.0468674746245297
+          },
+          "n_homes": 30,
+          "level": "shrunk:Type_Logement"
+        },
+        "Triplex|[1990 - 2000)": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": "[1990 - 2000)"
+          },
+          "group_shares": {
+            "Double": 0.8816540521054996,
+            "Single": 0.0749796913226129,
+            "Triple": 0.043366256571887515
+          },
+          "n_homes": 0,
+          "level": "fallback:Type_Logement"
+        },
+        "Triplex|[2000 - 2010)": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": "[2000 - 2010)"
+          },
+          "group_shares": {
+            "Double": 0.8816540521054996,
+            "Single": 0.0749796913226129,
+            "Triple": 0.043366256571887515
+          },
+          "n_homes": 0,
+          "level": "fallback:Type_Logement"
+        },
+        "Triplex|[2010 - 2020)": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": "[2010 - 2020)"
+          },
+          "group_shares": {
+            "Double": 0.8816540521054996,
+            "Single": 0.0749796913226129,
+            "Triple": 0.043366256571887515
+          },
+          "n_homes": 0,
+          "level": "fallback:Type_Logement"
+        },
+        "Triplex|>= 2020": {
+          "where": {
+            "Type_Logement": "Triplex",
+            "An_Construction": ">= 2020"
+          },
+          "group_shares": {
+            "Triple": 0.22848161045331944,
+            "Double": 0.7110477955546377,
+            "Single": 0.060470593992042895
+          },
+          "n_homes": 12,
+          "level": "shrunk:Type_Logement"
+        },
+        "Duplex|< 1950": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": "< 1950"
+          },
+          "group_shares": {
+            "Double": 0.8191988629403468,
+            "Triple": 0.10172965965186793,
+            "Single": 0.0790714774077852
+          },
+          "n_homes": 14,
+          "level": "shrunk:Type_Logement"
+        },
+        "Duplex|[1950 - 1960)": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": "[1950 - 1960)"
+          },
+          "group_shares": {
+            "Double": 0.8446793874330742,
+            "Triple": 0.10150980024144043,
+            "Single": 0.05381081232548537
+          },
+          "n_homes": 44,
+          "level": "shrunk:Type_Logement"
+        },
+        "Duplex|[1960 - 1970)": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": "[1960 - 1970)"
+          },
+          "group_shares": {
+            "Double": 0.8109450939773436,
+            "Triple": 0.09689507548239466,
+            "Single": 0.09215983054026182
+          },
+          "n_homes": 48,
+          "level": "shrunk:Type_Logement"
+        },
+        "Duplex|[1970 - 1980)": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": "[1970 - 1980)"
+          },
+          "group_shares": {
+            "Double": 0.7930295373314965,
+            "Triple": 0.043442017130284664,
+            "Single": 0.1635284455382189
+          },
+          "n_homes": 238,
+          "level": "shrunk:Type_Logement"
+        },
+        "Duplex|[1980 - 1990)": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": "[1980 - 1990)"
+          },
+          "group_shares": {
+            "Double": 0.8735236353877832,
+            "Triple": 0.056799360202238004,
+            "Single": 0.06967700440997882
+          },
+          "n_homes": 152,
+          "level": "shrunk:Type_Logement"
+        },
+        "Duplex|[1990 - 2000)": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": "[1990 - 2000)"
+          },
+          "group_shares": {
+            "Double": 0.8980702922985851,
+            "Triple": 0.08094846910425842,
+            "Single": 0.020981238597156397
+          },
+          "n_homes": 143,
+          "level": "shrunk:Type_Logement"
+        },
+        "Duplex|[2000 - 2010)": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": "[2000 - 2010)"
+          },
+          "group_shares": {
+            "Double": 0.8800086832389915,
+            "Triple": 0.108742970756491,
+            "Single": 0.011248346004517573
+          },
+          "n_homes": 220,
+          "level": "shrunk:Type_Logement"
+        },
+        "Duplex|[2010 - 2020)": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": "[2010 - 2020)"
+          },
+          "group_shares": {
+            "Double": 0.726865072564783,
+            "Single": 0.0015095261999087005,
+            "Triple": 0.2716254012353083
+          },
+          "n_homes": 671,
+          "level": "cell"
+        },
+        "Duplex|>= 2020": {
+          "where": {
+            "Type_Logement": "Duplex",
+            "An_Construction": ">= 2020"
+          },
+          "group_shares": {
+            "Double": 0.7592825798587829,
+            "Single": 0.0056828437802325365,
+            "Triple": 0.2350345763609846
+          },
+          "n_homes": 357,
+          "level": "cell"
+        },
+        "Maison en rangee|< 1950": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": "< 1950"
+          },
+          "group_shares": {
+            "Double": 0.9013913901607484,
+            "Triple": 0.0476643773999642,
+            "Single": 0.050944232439287446
+          },
+          "n_homes": 10,
+          "level": "shrunk:Type_Logement"
+        },
+        "Maison en rangee|[1950 - 1960)": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": "[1950 - 1960)"
+          },
+          "group_shares": {
+            "Double": 0.8991832763020721,
+            "Triple": 0.06406491977103164,
+            "Single": 0.0367518039268963
+          },
+          "n_homes": 88,
+          "level": "shrunk:Type_Logement"
+        },
+        "Maison en rangee|[1960 - 1970)": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": "[1960 - 1970)"
+          },
+          "group_shares": {
+            "Double": 0.9414177879249815,
+            "Triple": 0.030682102877134076,
+            "Single": 0.027900109197884423
+          },
+          "n_homes": 236,
+          "level": "shrunk:Type_Logement"
+        },
+        "Maison en rangee|[1970 - 1980)": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": "[1970 - 1980)"
+          },
+          "group_shares": {
+            "Double": 0.9505470984867316,
+            "Single": 0.028641916597691584,
+            "Triple": 0.020810984915576945
+          },
+          "n_homes": 1634,
+          "level": "cell"
+        },
+        "Maison en rangee|[1980 - 1990)": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": "[1980 - 1990)"
+          },
+          "group_shares": {
+            "Double": 0.9411641973678316,
+            "Single": 0.021943779461527122,
+            "Triple": 0.036892023170641323
+          },
+          "n_homes": 594,
+          "level": "cell"
+        },
+        "Maison en rangee|[1990 - 2000)": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": "[1990 - 2000)"
+          },
+          "group_shares": {
+            "Double": 0.9275230740646284,
+            "Single": 0.007509400544848651,
+            "Triple": 0.06496752539052283
+          },
+          "n_homes": 400,
+          "level": "cell"
+        },
+        "Maison en rangee|[2000 - 2010)": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": "[2000 - 2010)"
+          },
+          "group_shares": {
+            "Double": 0.916187636016081,
+            "Single": 0.0035572255469304916,
+            "Triple": 0.0802551384369885
+          },
+          "n_homes": 285,
+          "level": "cell"
+        },
+        "Maison en rangee|[2010 - 2020)": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": "[2010 - 2020)"
+          },
+          "group_shares": {
+            "Double": 0.821538814548685,
+            "Single": 0.0011229359399917867,
+            "Triple": 0.1773382495113233
+          },
+          "n_homes": 1743,
+          "level": "cell"
+        },
+        "Maison en rangee|>= 2020": {
+          "where": {
+            "Type_Logement": "Maison en rangee",
+            "An_Construction": ">= 2020"
+          },
+          "group_shares": {
+            "Double": 0.6888505049667706,
+            "Triple": 0.3111494950332295
+          },
+          "n_homes": 302,
+          "level": "cell"
+        },
+        "Maison individuelle|< 1950": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": "< 1950"
+          },
+          "group_shares": {
+            "Double": 0.8888068480561826,
+            "Single": 0.08282104116188906,
+            "Triple": 0.028372110781928476
+          },
+          "n_homes": 1268,
+          "level": "cell"
+        },
+        "Maison individuelle|[1950 - 1960)": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": "[1950 - 1960)"
+          },
+          "group_shares": {
+            "Double": 0.9066217685893108,
+            "Single": 0.039736173522506205,
+            "Triple": 0.053642057888182916
+          },
+          "n_homes": 2741,
+          "level": "cell"
+        },
+        "Maison individuelle|[1960 - 1970)": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": "[1960 - 1970)"
+          },
+          "group_shares": {
+            "Double": 0.9048901908381818,
+            "Single": 0.03215834024739643,
+            "Triple": 0.06295146891442173
+          },
+          "n_homes": 3605,
+          "level": "cell"
+        },
+        "Maison individuelle|[1970 - 1980)": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": "[1970 - 1980)"
+          },
+          "group_shares": {
+            "Double": 0.8940362191858123,
+            "Single": 0.036245553716554205,
+            "Triple": 0.0697182270976333
+          },
+          "n_homes": 6312,
+          "level": "cell"
+        },
+        "Maison individuelle|[1980 - 1990)": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": "[1980 - 1990)"
+          },
+          "group_shares": {
+            "Double": 0.893912131981536,
+            "Single": 0.030188559765042564,
+            "Triple": 0.0758993082534215
+          },
+          "n_homes": 6161,
+          "level": "cell"
+        },
+        "Maison individuelle|[1990 - 2000)": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": "[1990 - 2000)"
+          },
+          "group_shares": {
+            "Double": 0.9103530498711523,
+            "Single": 0.011277393345757183,
+            "Triple": 0.07836955678309052
+          },
+          "n_homes": 6569,
+          "level": "cell"
+        },
+        "Maison individuelle|[2000 - 2010)": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": "[2000 - 2010)"
+          },
+          "group_shares": {
+            "Double": 0.9236656507139425,
+            "Single": 0.004211023630329705,
+            "Triple": 0.0721233256557278
+          },
+          "n_homes": 5938,
+          "level": "cell"
+        },
+        "Maison individuelle|[2010 - 2020)": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": "[2010 - 2020)"
+          },
+          "group_shares": {
+            "Double": 0.7293130053462221,
+            "Single": 0.001797020462089587,
+            "Triple": 0.26888997419168825
+          },
+          "n_homes": 7229,
+          "level": "cell"
+        },
+        "Maison individuelle|>= 2020": {
+          "where": {
+            "Type_Logement": "Maison individuelle",
+            "An_Construction": ">= 2020"
+          },
+          "group_shares": {
+            "Double": 0.5660233411310744,
+            "Single": 0.02315723114863554,
+            "Triple": 0.41081942772029006
+          },
+          "n_homes": 1378,
+          "level": "cell"
+        }
+      },
+      "grouped_by": "glazing count (first field of the option label)",
+      "source": "EnerGuide WINDOWCODE leading digit (HOT2000 glazing count), Calgary-raked POND_AB-weighted; 66% of homes carry a well-formed code",
+      "note": "Only the glazing-count margin is Calgary. Coating, fill gas, spacer and frame keep their Quebec proportions within each glazing count -- the remaining WINDOWCODE digits need a HOT2000 codebook the repo does not have."
+    }
+  },
+  "stage2_not_derived": {
+    "ModeConsigne.csv": "EnerGuide records no occupant setpoint (TMAIN is a HOT2000 default)",
+    "Heating Setpoint.csv": "same -- ThermostatHeatingNighttime is 18.0 C for 100% of homes",
+    "Cooling Setpoint.csv": "same -- ThermostatCooling is 25.0 C for 100% of homes"
+  }
+}

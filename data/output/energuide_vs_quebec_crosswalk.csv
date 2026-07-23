@@ -1,0 +1,98 @@
+quebec_column,provenance,spatial_dependency,tier,status,energuide_field,pct_populated,note
+Geometry Stories,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,A/B,direct,STOREYS,100.0,storeys
+Geometry Building Number Units,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,B,resstock,NUMDWELLINGUNITS,62.8,MURB unit count from census/BenchmarkYYC
+Geometry Building Horizontal Location,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Geometry Building Level,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Geometry Foundation Type,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,A/B,direct,FNDTYPE,82.8,foundation type
+Windows,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,A/B,direct,WINDOWCODE,66.6,glazing shares by type/vintage
+Insulation Wall,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,A,direct,MAINWALLINS,100.0,wall RSI -> nearest QC_R* label
+Insulation Ceiling,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,A,direct,CEILINS,100.0,ceiling RSI -> nearest QC_R* label
+Insulation Foundation Wall,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,A,direct,FNDWALLINS,100.0,foundation-wall RSI -> nearest QC_R* label
+Insulation Floor,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Geometry Wall Exterior Finish,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+geometry attic type,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+HVAC Has Shared System,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+HVAC Heating Efficiency,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,A,direct,FURSSEFF,100.0,AFUE/HSPF from FURSSEFF/HEATAFUE
+Spa ChaufType,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Usage Level,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Cooking Range Usage Level,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Clothes Washer Usage Level,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Clothes Dryer Usage Level,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Refrigerator Efficiency,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Refrigerator Extra Efficiency,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Refrigerator Usage Level,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Freezer Efficiency,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Dishwasher Energy,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Diswasher Usage Level,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Lighting Usage Level,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Door Area,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Door Rvalue,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Plug Load,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+ModeConsigne,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,A/B,direct,ThermostatHeatingNighttime,50.9,setback mode from day/night pair
+Heating Setpoint,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,A/B,direct,TMAIN,100.0,daytime heating setpoint
+Cooling Setpoint,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,B,direct,ThermostatCooling,50.9,sparse; else shift QC
+Garage Heating Setpoint,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Basement Heating Setpoint,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,A/B,direct,TBSMNT,100.0,basement setpoint
+Mechanical Ventilation,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,B,direct,CENVENTSYSTYPE,100.0,ventilation system type/HRV
+Bathroom Spot Vent Hour,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Natural Ventilation,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Range Spot Vent Hour,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Orientation,Tech-Hardcoded (ResStock / Buildstock sampling),Location Dependent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Overhangs,Tech-Hardcoded (ResStock / Buildstock sampling),Location Dependent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Vacancy Status,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,B,imputed,,,CMHC vacancy + census unoccupied share
+Has PV,Tech-Hardcoded (ResStock / Buildstock sampling),Location Dependent,B,direct,KWPV,56.5,PV presence from KWPV>0 (retrofit-biased)
+PV Orientation,Tech-Hardcoded (ResStock / Buildstock sampling),Location Dependent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+PV System Size,Tech-Hardcoded (ResStock / Buildstock sampling),Location Dependent,B,direct,KWPV,56.5,system size from KWPV
+Battery,Tech-Hardcoded (ResStock / Buildstock sampling),Location Dependent,B,direct,BATTERYSTORAGE,56.1,battery presence
+Ceiling Fan,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Dehumidifier,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Insulation Roof,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Insulation Slab,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,A,direct,SLABINSUL,56.1,slab RSI
+Interior Shading,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Radiant Barrier,Tech-Hardcoded (ResStock / Buildstock sampling),Location Independent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Roof Material,Tech-Hardcoded (ResStock / Buildstock sampling),Location Dependent,D,resstock,,,ResStock-generic behavioural/physical default; not Alberta-specific
+Tconsignes_chauffage_H1,Tech-Hardcoded (Code-generated),Location Independent,-,derived,,,code-generated schedule column
+Tconsignes_chauffage_H2,Tech-Hardcoded (Code-generated),Location Independent,-,derived,,,code-generated schedule column
+Tconsignes_chauffage_H3,Tech-Hardcoded (Code-generated),Location Independent,-,derived,,,code-generated schedule column
+Tconsignes_chauffage_H4,Tech-Hardcoded (Code-generated),Location Independent,-,derived,,,code-generated schedule column
+Territoire_HQ,Survey-Derived (EUEMR),Location Dependent,done,set-calgary,,,collapsed to Calgary
+Region_Administrative,Survey-Derived (EUEMR),Location Dependent,done,set-calgary,,,collapsed to Alberta
+Type_Logement,Survey-Derived (EUEMR),Location Independent,A,direct,TYPEOFHOUSE,100.0,dwelling typology; EnerGuideToBN.TYPE_LOGEMENT
+ChaufEau_Presence,Survey-Derived (EUEMR),Location Independent,A,direct,PDHWFUEL,100.0,DHW presence
+ChaufEau_Type,Survey-Derived (EUEMR),Location Independent,A,direct,PRIMARYDHWTANKVOLUME,56.5,tank capacity class
+Presence_Garage,Survey-Derived (EUEMR),Location Independent,B/C,keep-qc,,,no EnerGuide field; city assessment or keep QC
+Nombre_Etages,Survey-Derived (EUEMR),Location Independent,A,direct,STOREYS,100.0,raked to census type margins
+Presence_SousSol,Survey-Derived (EUEMR),Location Independent,A,direct,FNDTYPE,82.8,basement/crawlspace from foundation code
+Nombre_Pieces,Survey-Derived (EUEMR),Location Independent,B,keep-qc,,,no census cross at needed grain; rescale QC CPT
+Nombre_Personnes,Survey-Derived (EUEMR),Location Independent,A,direct,TOTALOCCUPANTS,100.0,household size (also census-checkable)
+Refrigerateur_Nombre,Survey-Derived (EUEMR),Location Independent,B,keep-qc,,,SHEU appliance stock
+Cuisiniere_Presence,Survey-Derived (EUEMR),Location Independent,B,keep-qc,,,SHEU/CEUD range stock
+LaveLinge_Type,Survey-Derived (EUEMR),Location Independent,B/D,keep-qc,,,near-universal; rescale SHEU
+SecheLinge_Presence,Survey-Derived (EUEMR),Location Independent,B/D,keep-qc,,,near-universal; rescale SHEU
+Congelateur_Nombre,Survey-Derived (EUEMR),Location Independent,B,keep-qc,,,SHEU appliance stock (AB freezer share higher)
+LaveVaisselle_Presence,Survey-Derived (EUEMR),Location Independent,B/D,keep-qc,,,near-universal; rescale SHEU
+Superficie_Totale,Survey-Derived (EUEMR),Location Independent,A,direct,HEATEDFLOORAREA,66.4,binned to existing area states
+Spa_Presence,Survey-Derived (EUEMR),Location Independent,C,keep-qc,,,no AB microdata; permit counts or keep QC +-MC
+Spa_Logement,Survey-Derived (EUEMR),Location Independent,C,keep-qc,,,keep QC conditional
+Spa_Saison,Survey-Derived (EUEMR),Location Independent,C,keep-qc,,,keep QC conditional
+Spa_Utilisation_SaisonChaude,Survey-Derived (EUEMR),Location Independent,C,keep-qc,,,keep QC conditional
+Spa_Utilisation_SaisonFroide,Survey-Derived (EUEMR),Location Independent,C,keep-qc,,,keep QC conditional
+Piscine_Presence,Survey-Derived (EUEMR),Location Independent,C,keep-qc,,,AB pool prevalence << QC; permit anchor or keep QC
+Piscine_Type,Survey-Derived (EUEMR),Location Independent,C,keep-qc,,,keep QC conditional
+Piscine_Chauffee,Survey-Derived (EUEMR),Location Independent,C,keep-qc,,,keep QC conditional
+Piscine_ChaufType,Survey-Derived (EUEMR),Location Independent,C,keep-qc,,,keep QC conditional
+Piscine_Toile,Survey-Derived (EUEMR),Location Independent,C,keep-qc,,,keep QC conditional
+Piscine_Minuterie,Survey-Derived (EUEMR),Location Independent,C,keep-qc,,,keep QC conditional
+Vehicule_Presence,Survey-Derived (EUEMR),Location Independent,B,imputed,,,StatCan ZEV registrations; EnerGuide EVCharger biased
+Vehicule_BornePresence,Survey-Derived (EUEMR),Location Independent,B,keep-qc,,,charger conditional kept from QC
+Mode_Occupation,Survey-Derived (EUEMR),Location Independent,A,imputed,,,no tenure field; imputed from census P(tenure|type)
+Eclairage_LED,Survey-Derived (EUEMR),Location Independent,B/C,keep-qc,,,HES lighting tables or keep QC
+Type_Batiment,Survey-Derived (EUEMR),Location Independent,-,derived,,,deterministic child of Type_Logement
+An_Construction,Survey-Derived (EUEMR),Location Independent,A,direct,YEARBUILT,100.0,binned to 9 BN vintages
+Infiltration,Mixed (Survey + program logic),Location Independent,A,direct,AIR50P,100.0,measured blower-door ACH50 - best AB data
+An_ConstructionCode,Survey-Derived (EUEMR),Location Independent,A,direct,YEARBUILT,100.0,code-era bins from YEARBUILT
+Source_Energie_Chauf,Survey-Derived (EUEMR),Location Dependent,A,direct,FURNACEFUEL,100.0,primary heating fuel; Bi-energie->0
+Cuisiniere_Energie,Survey-Derived (EUEMR),Location Independent,B,keep-qc,,,"gas-range share (AB >> QC), SHEU/CEUD"
+Chauffage_Logement,Survey-Derived (EUEMR),Location Independent,A,direct,FURNACETYPE,100.0,heating system; blend with HPEquipType
+Climatisation,Survey-Derived (EUEMR),Location Dependent,A/B,direct,AIRCONDTYPE,84.4,AC type; blend with HES saturation
+ChaufEau_ChaufType,Survey-Derived (EUEMR),Location Independent,A,direct,PDHWFUEL,100.0,DHW fuel

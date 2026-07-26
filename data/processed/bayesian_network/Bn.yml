@@ -11,6 +11,7 @@
   Cuisiniere_Energie: Quelle est la source d'énergie de votre cuisinière?
   Cuisiniere_Presence: Avez-vous une cuisinière?
   Eclairage_LED: Quel pourcentage de votre éclairage est à DEL?
+  Infiltration: Étanchéité à l'air de l'enveloppe (renouvellements d'air à 50 Pa)
   LaveLinge_Type: Quel type de machine à laver le linge avez-vous?
   LaveVaisselle_Presence: Avez-vous un lave-vaisselle?
   Mode_Occupation: Quel est votre lien avec ce logement ? En êtes-vous...
@@ -136,6 +137,20 @@
     '2': 1 à 24 %
     '3': 25 à 50 %
     '4': Plus de 50 %
+  Infiltration:
+    '0': 1 ACH50
+    '1': 2 ACH50
+    '10': 20 ACH50
+    '11': 25 ACH50
+    '12': 30 ACH50
+    '2': 3 ACH50
+    '3': 4 ACH50
+    '4': 5 ACH50
+    '5': 6 ACH50
+    '6': 7 ACH50
+    '7': 8 ACH50
+    '8': 10 ACH50
+    '9': 15 ACH50
   LaveLinge_Type:
     '0': Aucun
     '1': Frontale
@@ -505,6 +520,30 @@
     - 25 à 50 %
     - Plus de 50 %
     id: 39
+    Échantillonneur: Réseau Bayesien
+  Infiltration:
+    Description: Étanchéité à l'air de l'enveloppe (renouvellements d'air à 50 Pa)
+    Dépendance (enfants): []
+    Dépendance (parents):
+    - Type_Logement
+    - An_Construction
+    Nom: Infiltration
+    Source: EnerGuide AIR50P
+    Valeurs:
+    - 1 ACH50
+    - 2 ACH50
+    - 3 ACH50
+    - 4 ACH50
+    - 5 ACH50
+    - 6 ACH50
+    - 7 ACH50
+    - 8 ACH50
+    - 10 ACH50
+    - 15 ACH50
+    - 20 ACH50
+    - 25 ACH50
+    - 30 ACH50
+    id: 40
     Échantillonneur: Réseau Bayesien
   LaveLinge_Type:
     Description: Quel type de machine à laver le linge avez-vous?

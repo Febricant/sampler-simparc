@@ -56,7 +56,10 @@ with suppress_stdout():
     import pyagrum as gum
     import warnings
     warnings.filterwarnings('ignore', category=UserWarning, module='pyagrum.lib.notebook')
-    import pyagrum.lib.notebook as gnb
+    # pyagrum.lib.notebook is NOT imported here. It needs matplotlib_inline, and it
+    # is used by one Jupyter-only method (Plot_BN), so importing it at module level
+    # made matplotlib_inline a hard requirement of `import Sampler` -- enough to stop
+    # the dashboard booting on an interpreter that lacks it. Plot_BN imports it.
 
 class bayesian_network(object):
     """
@@ -130,6 +133,16 @@ class bayesian_network(object):
         Returns:
             None
         """
+        # Imported here rather than at module level: this is the only user, and it
+        # is a Jupyter convenience, so its dependencies must not gate the sampler.
+        try:
+            import pyagrum.lib.notebook as gnb
+        except ImportError as exc:
+            raise ImportError(
+                "Plot_BN needs pyagrum.lib.notebook, which requires matplotlib_inline. "
+                "Install it, or use the Streamlit dashboard, which renders the network "
+                "without it."
+            ) from exc
         gnb.showInference(self.bn,evs={},size = '30')
     
     def Load_csv(self, stFileName, sep = ','):
@@ -160,6 +173,9 @@ class bayesian_network(object):
 
     def getBNStructure(self):
         file_path = str(Path(__file__).parents[3] / "data/processed/bayesian_network/Bn.yml")
-        with open(file_path, 'r') as file:
+        # Explicit encoding: the file is UTF-8, but open() defaults to the platform
+        # codepage (cp1252 on Windows), which turns every accented state label into
+        # mojibake and makes pyAgrum reject it as evidence.
+        with open(file_path, 'r', encoding='utf-8') as file:
             lst_NOEUD, LIST_Dict, dict_info = yaml.safe_load(file)
         return lst_NOEUD, LIST_Dict

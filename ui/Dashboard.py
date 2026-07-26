@@ -17,7 +17,7 @@ Features:
 
 Usage:
 ------
-python -m streamlit run "ui/Dashboard_v2.py"
+uv run streamlit run "ui/Dashboard.py"
 
 Author: cv1751 - Brice Le Lostec
 Version: 2.0
@@ -28,10 +28,17 @@ import os
 import sys
 import time
 import json
+import shutil
 import numpy as np
 import pandas as pd
 import pyagrum as gum
-import pyagrum.lib.notebook as gnb
+# Imported for their side effect of registering the submodule on `gum`; the code
+# below reaches them as gum.lib.image / gum.lib._colors / gum.lib.bn2graph.
+# pyagrum.lib.notebook is deliberately NOT imported: it is unused here and drags in
+# matplotlib_inline, which is not needed to render the network.
+import pyagrum.lib.image
+import pyagrum.lib._colors
+import pyagrum.lib.bn2graph
 import streamlit as st
 import streamlit.components.v1 as components
 from io import BytesIO
@@ -43,6 +50,11 @@ PROJECT_DIR = os.path.abspath(FILE_DIR + "/../")
 sys.path.append(os.path.join(PROJECT_DIR))
 from src.utils.sampler.Sampler import Sampler
 from src.utils.sampler.Mapping import BuildstockBatchArguments, MapHPXML
+from src.utils.hpxml.hpxml_columns import stabilize_export
+# Same rule the calibration pipeline uses: the Calgary network once it has been
+# built, the Quebec original otherwise. Imported rather than repeated so the two
+# cannot drift apart.
+from calgary_adaptation.apply_to_sampler import default_bn
 
 import warnings
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
@@ -133,15 +145,92 @@ def load_sampler(path):
     ins = Sampler(path)
     return ins
 
+def node_states(LIST_Dict, node):
+    """States of `node` in the network's own order.
+
+    Bn.yml keys states by stringified index and is written with sorted keys, so
+    '10' sorts between '1' and '2'. Any node with more than ten states would
+    otherwise be listed scrambled -- Superficie_Totale offers '>= 5000' third,
+    between '[500 - 1000)' and '[1000 - 1500)'."""
+    return [v for _, v in sorted(LIST_Dict[node].items(), key=lambda kv: int(kv[0]))]
+
+
+def bn_banner(path):
+    """Say which network the page is showing.
+
+    Québec and Calgary differ on 12 of 41 nodes and are otherwise identical in the
+    UI -- same node names, same state labels, same layout. Without this, falling
+    back to the Québec network is invisible, and that is how someone ends up
+    quoting Québec numbers as Calgary ones."""
+    name = os.path.basename(path)
+    if name == "BN_Calgary.XDSL":
+        st.caption(f"Network: **{name}** - Calgary probabilities "
+                   f"(12 of 41 nodes recalibrated from 73,927 audited homes).")
+    else:
+        st.warning(f"Network: **{name}** - these are QUÉBEC probabilities. Build the "
+                   f"Calgary network with "
+                   f"`uv run python calgary_adaptation/apply_to_sampler.py bn`.")
+
+
+def graphviz_available():
+    """Check that the Graphviz `dot` executable can be found on PATH."""
+    return shutil.which("dot") is not None
+
+GRAPHVIZ_MISSING_MSG = (
+    "Graphviz is required to draw the network but `dot` was not found on PATH.\n\n"
+    "Install it with `winget install --id Graphviz.Graphviz -e`, add "
+    "`C:\\Program Files\\Graphviz\\bin` to PATH, then restart the terminal and this app."
+)
+
+def histogram_targets(bn):
+    """Nodes worth drawing a posterior histogram for.
+
+    Single-state variables (Territoire_HQ='Calgary', Region_Administrative='Alberta'
+    after the Calgary collapse) carry no information, so they are drawn as plain
+    boxes instead of a degenerate 100% bar.
+    """
+    return {n for n in bn.names() if bn.variable(n).domainSize() > 1}
+
+class MarginalisingInference:
+    """Inference engine wrapper that forces posteriors to be one-dimensional.
+
+    pyAgrum does not marginalise out variables whose domain has a single state, so
+    with Territoire_HQ='Calgary' in the network `posterior(name)` returns a joint
+    tensor (e.g. shape (1, 4) for Piscine_Type). pyagrum.lib.proba_histogram then
+    hands that nested list to matplotlib's barh, which raises
+    "TypeError: float() argument must be ... not 'NoneType'". Summing the extra
+    single-state dimensions out restores the expected marginal.
+    """
+
+    def __init__(self, bn, engine):
+        self._bn = bn
+        self._engine = engine
+
+    def __getattr__(self, item):
+        return getattr(self._engine, item)
+
+    def posterior(self, target):
+        p = self._engine.posterior(target)
+        if p.nbrDim() > 1:
+            keep = target if isinstance(target, str) else self._bn.variable(target).name()
+            p = p.sumOut([p.variable(i).name() for i in range(p.nbrDim())
+                          if p.variable(i).name() != keep])
+        return p
+
 @st.cache_data(hash_funcs={gum.BayesNet: lambda b: id(b)})
 def bn_svg(bn, evs=None, Inference=True, size=15):
     """Generate and cache SVG visualization of Bayesian Network."""
-    if Inference:
+    targets = histogram_targets(bn) if Inference else set()
+    if Inference and targets:
+        engine = MarginalisingInference(bn, gum.LazyPropagation(bn))
         svgtxt = gum.lib.image.dot_as_svg_string(
-            gum.lib._colors.prepareDot(gum.lib.image.prepareShowInference(bn, evs=evs)),
+            gum.lib._colors.prepareDot(
+                gum.lib.image.prepareShowInference(bn, engine=engine, evs=evs, targets=targets)
+            ),
             size=size
         )
     else:
+        # No renderable node (or statistics disabled): show the structure only.
         fig = gum.lib.bn2graph.BN2dot(bn)
         svgtxt = gum.lib.image.dot_as_svg_string(gum.lib._colors.prepareDot(fig), size=size)
     return svgtxt
@@ -264,12 +353,13 @@ def render_sidebar():
 def Page_Echantilloneur():
     """Enhanced sampling page with advanced features."""
     st.title("🏠 ResStock-QC - Sampler")
-    st.markdown("Residential sample generation based on a Bayesian network (EUEMr 2022)")
+    st.markdown("Residential sample generation based on a Bayesian network")
     
     # Load sampler
-    path = PROJECT_DIR + "/data/processed/bayesian_network/BN_EUEMr.XDSL"
+    path = default_bn()
     with st.spinner("🔄 Loading Bayesian network..."):
         InsClsSampler = load_sampler(path)
+    bn_banner(path)
     
     lst_NOEUD = InsClsSampler.lst_NOEUD
     LIST_Dict = InsClsSampler.LIST_Dict
@@ -340,7 +430,7 @@ def Page_Echantilloneur():
                 default_idx = 0
                 if input_var in st.session_state.settings:
                     try:
-                        default_idx = list(LIST_Dict[input_var].values()).index(
+                        default_idx = node_states(LIST_Dict, input_var).index(
                             st.session_state.settings[input_var]
                         )
                     except ValueError:
@@ -348,7 +438,7 @@ def Page_Echantilloneur():
                 
                 settings[input_var] = st.selectbox(
                     f"Value for {input_var}",
-                    options=list(LIST_Dict[input_var].values()),
+                    options=node_states(LIST_Dict, input_var),
                     index=default_idx,
                     key=f"select_{input_var}"
                 )
@@ -445,7 +535,16 @@ def Page_Echantilloneur():
             progress_bar.progress(40)
 
             lst_dct_args2 = InsClsSampler.resstock_args_sampling(lst_dct_args)
-            lst_dct_args = [d1 | d2 for d1, d2 in zip(lst_dct_args, lst_dct_args2)]
+            # BN values win, matching Sampler.run() (Sampler.py:185), which
+            # merges `d2 | d1` and calls lst_dct_args "prioritaire". This page
+            # merged the other way round. Today the two agree by luck: the CSV
+            # sampler's attribute list and the BN's node list share no key, so
+            # neither dict can shadow the other. That is a property of the
+            # current configuration, not a guarantee -- Infiltration already
+            # exists as both a BN node and a housing_characteristics table, and
+            # the day it joins BuildstockBatchArguments.listAttributs the two
+            # code paths would silently disagree about a calibrated value.
+            lst_dct_args = [d2 | d1 for d1, d2 in zip(lst_dct_args, lst_dct_args2)]
             
             # Step 3: HPXML Mapping
             status_text.text("🗺️ Mapping to HPXML...")
@@ -460,7 +559,7 @@ def Page_Echantilloneur():
             
             dfargs = pd.DataFrame(lst_dct_args)
             dfHPXML = pd.DataFrame(lst_dct_HPXML)
-            dfAll = pd.concat([dfargs, dfHPXML], axis=1)
+            dfAll = stabilize_export(dfargs, dfHPXML)
             
             # Data validation
             if validate_data:
@@ -765,13 +864,14 @@ def Page_Echantilloneur():
 
 def BaysianNetwork():
     """Enhanced Bayesian Network visualization and exploration page."""
-    st.title("🕸️ Bayesian Network - EUEMr 2022")
+    st.title("🕸️ Bayesian Network")
     st.markdown("Exploration and analysis of the Bayesian network")
     
     # Load sampler
-    path = PROJECT_DIR + "/data/processed/bayesian_network/BN_EUEMr.XDSL"
+    path = default_bn()
     with st.spinner("🔄 Loading Bayesian network..."):
         InsClsSampler = load_sampler(path)
+    bn_banner(path)
     
     lst_NOEUD = InsClsSampler.lst_NOEUD
     LIST_Dict = InsClsSampler.LIST_Dict
@@ -866,18 +966,23 @@ def BaysianNetwork():
     elif selected_tab == "🕸️ Network":
         st.subheader("Network visualization")
         
-        col_v1, col_v2, col_v3 = st.columns(3)
+        col_v1, col_v2 = st.columns(2)
         with col_v1:
             check_stats = st.checkbox("📊 Show statistics", value=False)
         with col_v2:
             selected_size = st.slider("📏 Size", 5, 50, 15, 1)
-        with col_v3:
-            show_labels = st.checkbox("🏷️ Show labels", value=True)
-        
+
         if st.button("🎨 Generate visualization", type="primary"):
-            with st.spinner("Generating..."):
-                svgtxt = bn_svg(InsClsSampler.bn, evs=None, Inference=check_stats, size=selected_size)
-                components.html(svgtxt, height=900, scrolling=True)
+            if not graphviz_available():
+                st.error(GRAPHVIZ_MISSING_MSG)
+            else:
+                with st.spinner("Generating..."):
+                    try:
+                        svgtxt = bn_svg(InsClsSampler.bn, evs=None, Inference=check_stats, size=selected_size)
+                    except Exception as exc:
+                        st.error(f"Could not render the network: {exc}")
+                    else:
+                        components.html(svgtxt, height=900, scrolling=True)
     
     # Tab 3: Nodes
     elif selected_tab == "📋 Nodes":
@@ -890,7 +995,7 @@ def BaysianNetwork():
         # Display as expandable cards
         for node in filtered_nodes:
             with st.expander(f"📌 {node} ({len(LIST_Dict[node])} possible values)"):
-                values_list = list(LIST_Dict[node].values())
+                values_list = node_states(LIST_Dict, node)
                 
                 # Display as columns for better readability
                 n_cols = 3
@@ -968,7 +1073,7 @@ def BaysianNetwork():
             for input_var in Noeuds_contraints:
                 settings[input_var] = st.selectbox(
                     f"Observed value for **{input_var}**",
-                    options=list(LIST_Dict[input_var].values()),
+                    options=node_states(LIST_Dict, input_var),
                     key=f"inf_{input_var}"
                 )
         
@@ -979,10 +1084,17 @@ def BaysianNetwork():
             num_vars_to_show = st.slider("Number of variables to show", 1, min(20, len(lst_NOEUD)), 5, 1, key="num_vars_inference")
         
         if st.button("🔍 Run inference", type="primary"):
-            with st.spinner("Computing inferences..."):
-                svgtxt_inf = bn_svg(InsClsSampler.bn, evs=settings, Inference=True, size=selected_size2)
-                components.html(svgtxt_inf, height=900, scrolling=True)
-            
+            if not graphviz_available():
+                st.error(GRAPHVIZ_MISSING_MSG)
+            else:
+                with st.spinner("Computing inferences..."):
+                    try:
+                        svgtxt_inf = bn_svg(InsClsSampler.bn, evs=settings, Inference=True, size=selected_size2)
+                    except Exception as exc:
+                        st.error(f"Could not render the network: {exc}")
+                    else:
+                        components.html(svgtxt_inf, height=900, scrolling=True)
+
             # Show marginal distributions
             if show_probs and settings:
                 st.markdown("#### 📊 Marginal distributions after observation")

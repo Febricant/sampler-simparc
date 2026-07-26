@@ -38,6 +38,26 @@ class Sampler():
         self.randGenerator = np.random.default_rng(self._seed)
         self._parallel = {'prefer': 'threads', 'n_jobs': int(max((os.cpu_count() - 8) / 1,1)), 'verbose': 10,'inner_max_num_threads': 1}
 
+    def __getstate__(self):
+        """Exclude the Bayesian network from the pickle sent to loky workers.
+
+        run_parallel() forces the loky (process) backend, so `self` is pickled to
+        each worker. pyAgrum cannot *un*pickle a discrete variable that has only
+        one label, and Territoire_HQ is degenerate at {Calgary} since the Alberta
+        re-calibration -- the worker died with
+        "Invalid argument: Not enough labels in var_description Territoire_HQ{Calgary}",
+        surfacing as BrokenProcessPool. The workers only run run_hors_bn
+        (resstock sampling + HPXML mapping), which never reads self.bn: BN
+        sampling has already finished in the parent. Dropping it fixes the crash
+        and shrinks the payload.
+        """
+        state = self.__dict__.copy()
+        state["bn"] = None
+        return state
+
+    def __setstate__(self, state):
+        self.__dict__.update(state)
+
     def draw_GUM_Sample(self, number, Multiplicateur=1, evs={}):
         """
         Generates samples from a Bayesian network using the PyAgrum library.

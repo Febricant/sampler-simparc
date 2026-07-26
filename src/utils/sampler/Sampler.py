@@ -11,6 +11,7 @@ import time
 from datetime import date
 from datetime import timedelta
 from src.utils.sampler.Mapping import BuildstockBatchArguments, MapHPXML
+from src.utils.hpxml.hpxml_columns import stabilize_export
 import argparse, os, json
 from joblib import Parallel, delayed, parallel_backend
 from itertools import chain
@@ -195,9 +196,8 @@ class Sampler():
         return self
 
     def to_df(self):
-        dfargs = pd.DataFrame(self.lst_dct_args)
-        dfHPXML = pd.DataFrame(self.lst_dct_HPXML)
-        dfAll = pd.concat([dfargs, dfHPXML], axis=1)
+        dfAll = stabilize_export(pd.DataFrame(self.lst_dct_args),
+                                 pd.DataFrame(self.lst_dct_HPXML))
         return dfAll
 
     def to_csv(self,output_path):

@@ -1,5 +1,9 @@
 # Alberta/Calgary Probability Re-calibration Plan — LTE-Sampler-Residential
 
+> **Note (historical plan):** the script names below predate the 2026-07 cleanup. For the
+> current file layout and a plain-language runtime walkthrough, see
+> [`calgary_adaptation/PIPELINE.md`](calgary_adaptation/PIPELINE.md).
+
 **Goal:** replace the Québec (EUEMr 2022 / Hydro-Québec) probabilities in the sampler with
 probabilities that reflect Albertan (specifically Calgary) energy-use patterns, **without renaming
 any parameter, node, or option label**. Only the probability *values* change; where a state is
@@ -19,7 +23,7 @@ The sampler draws a dwelling in three layers. Each layer has its own probability
 
 Supporting facts about the current `calgary` branch:
 
-- Geography is **already collapsed**: `Territoire_HQ = {Calgary}`, `Region_Administrative = {Alberta}` in `Bn.yml`/XDSL; `Mapping.py:17-31` forces the Calgary EPW (`CAN_AB_Calgary.Intl.AP.718770_CWEC2020.epw`), UTC −7, DST on.
+- Geography is **already collapsed**: `Territoire_HQ = {Calgary}`, `Region_Administrative = {Alberta}` in `Bn.yml`/XDSL; `Mapping.py:17-31` forces the Calgary EPW (`CAN_AB_Calgary.Intl.AP.718770_CWEC2016.epw`), UTC −7, DST on.
 - **Every CPT number downstream is still Québec**: `Source_Energie_Chauf` is still electricity-dominant with `Bi-energie` mass, envelope CSVs still carry `QC_*` R-value weights by Québec code eras, setpoints come from the HQ "Sondage Sensibilisation intégrée".
 - `Bn.csv` and `data/processed/Data_description.csv` are **stale documentation** (still list 5 QC territories / 15 regions); the sampler never reads them, but they should be regenerated at the end.
 - `res_ab_e.xlsx` (repo root, untracked) is **NRCan CEUD — Residential Sector, Alberta** (Tables 1–41, 2000–2017): heating-system stock by type, housing stock by type/vintage, water-heater and appliance stock. It is the aggregate backbone for several Tier-B parameters below.

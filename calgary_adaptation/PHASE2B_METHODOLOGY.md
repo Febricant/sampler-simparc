@@ -1,6 +1,6 @@
 # Phase 2b Methodology — Correcting Selection Bias in the EnerGuide Sample via Iterative Proportional Fitting
 
-*Technical companion to `calgary_adaptation/build_alberta_weights.py` (commit `f24f2a5`).
+*Technical companion to `calgary_adaptation/calibrate_stock.py` (commit `f24f2a5`).
 Prepared for review; academic audience.*
 
 ---
@@ -150,7 +150,7 @@ margin) and **Kish effective sample sizes**, n_eff = (Σw)²/Σw², overall and 
 dwelling type. Current values: overall n_eff = 1,883 (1.0 % of the nominal
 191,618), n_eff[Collective] = 140, n_eff[Triplex] = 58. This follows the
 codebase's established fail-loudly philosophy (cf. the KeyError-on-unknown-state
-convention in `make_calgary_bn.py`): the cost of the correction is quantified
+convention in `apply_to_sampler.py`): the cost of the correction is quantified
 on every execution, so nobody can mistake margin-perfect output for
 information-rich output. The design effect n/n_eff directly scales the
 uncertainty that Phase 6's Dirichlet resampling will attach to each CPT row.

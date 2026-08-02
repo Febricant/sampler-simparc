@@ -77,3 +77,50 @@ A graphical user interface (GUI) application has been developed to create CSV fi
 ## Step 3 - Launch Your First Simulation
 Once steps 1 and 2 are completed, you can now perform a building stock simulation by running the main.py file. Note that you must first specify the correct path to the CSV file describing the list of buildings to simulate (CSV file generated during step 2).
   
+
+## Running without a dev container
+
+`config.OPENSTUDIO_RUNNER` decides how OpenStudio is invoked, so VS Code and the
+Dev Containers extension are no longer required:
+
+| setting | what it does |
+| --- | --- |
+| `"auto"` (default) | uses an installed binary if there is one, else Docker. Inside the dev container `openstudio` is on `PATH` and `docker` is not, so it picks native there and Docker on a bare host — no configuration either way. |
+| `"docker"` | always shells out to `config.DOCKER_IMAGE`, which already carries OpenStudio 3.9.0. Runs from an ordinary Windows/macOS/Linux shell with only Docker installed. |
+| `"native"` | always calls an installed binary — `config.OPENSTUDIO_EXE` if it points at one, otherwise `openstudio` on `PATH`. |
+
+`main.py` prints which runner it resolved, and how, before starting.
+
+Under the docker runner the project is bind-mounted at `config.CONTAINER_WORKSPACE`
+and every path written into an `in.osw` is translated to it, so the OSW files
+contain `/workspace/...` rather than host paths. See `osrunner.py`. The old manual
+edit to `parallelization.py` described under Method 2 is no longer needed.
+
+```powershell
+python main.py buildings.csv
+```
+
+## Checking a sample before simulating it
+
+`main.py` refuses to start when the CSV carries something OpenStudio will reject —
+an invalid choice, a required blank, or a combination that is legal field by field
+but fails inside `BuildResidentialHPXML` (an apartment unit on a conditioned
+basement). It exits non-zero and names the buildings, rather than failing part-way
+through a batch.
+
+```powershell
+python main.py buildings.csv --repair    # correct the findings and continue
+python validate_sampler_csv.py buildings.csv -o fixed.csv   # or do it separately
+```
+
+## Testing
+
+```powershell
+python main.py buildings.csv --dry-run   # write every in.osw, run nothing (~seconds)
+python -m pytest                         # ~30 tests, no Docker, no dask (~2 s)
+python -m pytest -m slow                 # one building end to end through Docker
+```
+
+`--dry-run` produces exactly the inputs OpenStudio would be given without running
+it, which is how the test suite asserts on them. Other useful flags: `--limit N`
+to process only the first N buildings, and `--serial` to run without dask.

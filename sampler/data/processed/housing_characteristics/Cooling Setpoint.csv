@@ -1,0 +1,81 @@
+Dependency=Chauffage_Logement;Dependency=Climatisation;Option=18;Option=19;Option=20;Option=21;Option=22;Option=23;Option=24;Option=25;Option=26
+Plinthes électriques;Centrale;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Plinthes électriques;Murale;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Plinthes électriques;Fenêtre, mobile, portable;0.1206;0.0789;0.1543;0.1833;0.1984;0.1299;0.0824;0.0418;0.0104
+Plinthes électriques;Aucune;0.1206;0.0789;0.1543;0.1833;0.1984;0.1299;0.0824;0.0418;0.0104
+Unités convecteurs, plancher ou plafond radiant;Centrale;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Unités convecteurs, plancher ou plafond radiant;Murale;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Unités convecteurs, plancher ou plafond radiant;Fenêtre, mobile, portable;0.1206;0.0789;0.1543;0.1833;0.1984;0.1299;0.0824;0.0418;0.0104
+Unités convecteurs, plancher ou plafond radiant;Aucune;0.1206;0.0789;0.1543;0.1833;0.1984;0.1299;0.0824;0.0418;0.0104
+Thermopompe murale;Centrale;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Thermopompe murale;Murale;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Thermopompe murale;Fenêtre, mobile, portable;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Thermopompe murale;Aucune;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Thermopompe murale et Plinthes électriques;Centrale;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Thermopompe murale et Plinthes électriques;Murale;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Thermopompe murale et Plinthes électriques;Fenêtre, mobile, portable;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Thermopompe murale et Plinthes électriques;Aucune;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Fournaise murale ou de plancher;Centrale;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Fournaise murale ou de plancher;Murale;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Fournaise murale ou de plancher;Fenêtre, mobile, portable;0.1206;0.0789;0.1543;0.1833;0.1984;0.1299;0.0824;0.0418;0.0104
+Fournaise murale ou de plancher;Aucune;0.1206;0.0789;0.1543;0.1833;0.1984;0.1299;0.0824;0.0418;0.0104
+Fournaise ou poêle à bois et Plinthes électriques;Centrale;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Fournaise ou poêle à bois et Plinthes électriques;Murale;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Fournaise ou poêle à bois et Plinthes électriques;Fenêtre, mobile, portable;0.1206;0.0789;0.1543;0.1833;0.1984;0.1299;0.0824;0.0418;0.0104
+Fournaise ou poêle à bois et Plinthes électriques;Aucune;0.1206;0.0789;0.1543;0.1833;0.1984;0.1299;0.0824;0.0418;0.0104
+Fournaise ou poêle à bois et Unités convecteurs, plancher ou plafond radiant;Centrale;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Fournaise ou poêle à bois et Unités convecteurs, plancher ou plafond radiant;Murale;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Fournaise ou poêle à bois et Unités convecteurs, plancher ou plafond radiant;Fenêtre, mobile, portable;0.1206;0.0789;0.1543;0.1833;0.1984;0.1299;0.0824;0.0418;0.0104
+Fournaise ou poêle à bois et Unités convecteurs, plancher ou plafond radiant;Aucune;0.1206;0.0789;0.1543;0.1833;0.1984;0.1299;0.0824;0.0418;0.0104
+Fournaise ou poêle à bois et Thermopompe murale;Centrale;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Fournaise ou poêle à bois et Thermopompe murale;Murale;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Fournaise ou poêle à bois et Thermopompe murale;Fenêtre, mobile, portable;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Fournaise ou poêle à bois et Thermopompe murale;Aucune;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Fournaise ou poêle à bois et Fournaise murale ou de plancher;Centrale;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Fournaise ou poêle à bois et Fournaise murale ou de plancher;Murale;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Fournaise ou poêle à bois et Fournaise murale ou de plancher;Fenêtre, mobile, portable;0.1206;0.0789;0.1543;0.1833;0.1984;0.1299;0.0824;0.0418;0.0104
+Fournaise ou poêle à bois et Fournaise murale ou de plancher;Aucune;0.1206;0.0789;0.1543;0.1833;0.1984;0.1299;0.0824;0.0418;0.0104
+Thermopompe et Système central à air chaud;Centrale;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Thermopompe et Système central à air chaud;Murale;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Thermopompe et Système central à air chaud;Fenêtre, mobile, portable;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Thermopompe et Système central à air chaud;Aucune;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Thermopompe et Système central à eau chaude;Centrale;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Thermopompe et Système central à eau chaude;Murale;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Thermopompe et Système central à eau chaude;Fenêtre, mobile, portable;0.1206;0.0789;0.1543;0.1833;0.1984;0.1299;0.0824;0.0418;0.0104
+Thermopompe et Système central à eau chaude;Aucune;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Thermopompe géothermique seule;Centrale;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Thermopompe géothermique seule;Murale;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Thermopompe géothermique seule;Fenêtre, mobile, portable;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Thermopompe géothermique seule;Aucune;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Thermopompe géothermique et Plinthes électriques;Centrale;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Thermopompe géothermique et Plinthes électriques;Murale;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Thermopompe géothermique et Plinthes électriques;Fenêtre, mobile, portable;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Thermopompe géothermique et Plinthes électriques;Aucune;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Thermopompe géothermique et Fournaise;Centrale;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Thermopompe géothermique et Fournaise;Murale;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Thermopompe géothermique et Fournaise;Fenêtre, mobile, portable;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Thermopompe géothermique et Fournaise;Aucune;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Thermopompe murale et Fournaise;Centrale;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Thermopompe murale et Fournaise;Murale;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Thermopompe murale et Fournaise;Fenêtre, mobile, portable;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Thermopompe murale et Fournaise;Aucune;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Système central à air chaud;Centrale;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Système central à air chaud;Murale;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Système central à air chaud;Fenêtre, mobile, portable;0.1206;0.0789;0.1543;0.1833;0.1984;0.1299;0.0824;0.0418;0.0104
+Système central à air chaud;Aucune;0.1206;0.0789;0.1543;0.1833;0.1984;0.1299;0.0824;0.0418;0.0104
+Système central à eau chaude;Centrale;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Système central à eau chaude;Murale;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Système central à eau chaude;Fenêtre, mobile, portable;0.1206;0.0789;0.1543;0.1833;0.1984;0.1299;0.0824;0.0418;0.0104
+Système central à eau chaude;Aucune;0.1206;0.0789;0.1543;0.1833;0.1984;0.1299;0.0824;0.0418;0.0104
+Fournaise ou poêle à bois;Centrale;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Fournaise ou poêle à bois;Murale;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Fournaise ou poêle à bois;Fenêtre, mobile, portable;0.1206;0.0789;0.1543;0.1833;0.1984;0.1299;0.0824;0.0418;0.0104
+Fournaise ou poêle à bois;Aucune;0.1206;0.0789;0.1543;0.1833;0.1984;0.1299;0.0824;0.0418;0.0104
+Fournaise ou poêle à bois et Système central à air chaud;Centrale;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Fournaise ou poêle à bois et Système central à air chaud;Murale;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Fournaise ou poêle à bois et Système central à air chaud;Fenêtre, mobile, portable;0.1206;0.0789;0.1543;0.1833;0.1984;0.1299;0.0824;0.0418;0.0104
+Fournaise ou poêle à bois et Système central à air chaud;Aucune;0.1206;0.0789;0.1543;0.1833;0.1984;0.1299;0.0824;0.0418;0.0104
+Fournaise ou poêle à bois et Système central à eau chaude;Centrale;0.0197;0.0247;0.0755;0.1379;0.2583;0.2525;0.1577;0.0596;0.0141
+Fournaise ou poêle à bois et Système central à eau chaude;Murale;0.0176;0.0329;0.1008;0.1983;0.288;0.2275;0.0972;0.0293;0.0084
+Fournaise ou poêle à bois et Système central à eau chaude;Fenêtre, mobile, portable;0.1206;0.0789;0.1543;0.1833;0.1984;0.1299;0.0824;0.0418;0.0104
+Fournaise ou poêle à bois et Système central à eau chaude;Aucune;0.1206;0.0789;0.1543;0.1833;0.1984;0.1299;0.0824;0.0418;0.0104

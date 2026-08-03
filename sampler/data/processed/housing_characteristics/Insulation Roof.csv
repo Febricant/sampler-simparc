@@ -1,0 +1,4 @@
+Dependency=geometry attic type;Option=Unfinished, Uninsulated;Option=Finished, Uninsulated;Option=Finished, R-7;Option=Finished, R-13;Option=Finished, R-19;Option=Finished, R-30;Option=Finished, R-38;Option=Finished, R-49
+Finished Attic or Cathedral Ceilings;0;0.0330746489283074;0.0642665947543996;0.125763568446495;0.186611334172309;0.330743492938614;0.195570404106989;0.0639699566528834
+Unvented Attic;1;0.0;0.0;0.0;0.0;0.0;0.0;0.0
+Vented Attic;1;0.0;0.0;0.0;0.0;0.0;0.0;0.0

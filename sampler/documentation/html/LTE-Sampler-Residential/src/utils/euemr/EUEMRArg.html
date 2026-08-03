@@ -1,0 +1,1777 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>LTE-Sampler-Residential.src.utils.euemr.EUEMRArg API documentation</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>LTE-Sampler-Residential.src.utils.euemr.EUEMRArg</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr"><code class="flex name class">
+<span>class <span class="ident">Attributs_EUEMr</span></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Attributs_EUEMr(object):
+
+    # Attributs de l&#39;enquête EUEMr
+
+    # QA1 : Quel est votre lien avec ce logement ? En êtes-vous...
+    QA1 = {}
+    QA1[&#34;Label&#34;] = [&#34;Le propriétaire / Co-propriétaire&#34;,
+                     &#34;Le locataire / Co-locataire&#34;]
+    QA1[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QA1[&#34;Description&#34;] = &#34;Quel est votre lien avec ce logement ? En êtes-vous...&#34;
+    QA1[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QA4 : De quel genre d&#39;habitation s&#39;agit-il ?
+    QA4 = {}
+    QA4[&#34;Label&#34;] = [&#39;Immeuble de 4 à 8 appartements&#39;,
+                    &#39;Immeuble de 9 à 19 appartements&#39;,
+                    &#39;Immeuble de 20 à 49 appartements&#39;,
+                    &#39;Immeuble de 50 appartements ou plus&#39;,
+                    &#39;Immeuble à appartement (sans précision)&#39;, # trop peu
+                    &#39;Maison mobile/roulotte&#39;,
+                    &#39;Maison individuelle détachée/unifamiliale&#39;,
+                    &#39;Maison individuelle en rangée attachée des 2 côtés&#39;,
+                    &#39;Maison individuelle en rangée (sans précisions)&#39;, # trop peu
+                    &#39;Maison jumelée/bout de rangée attachée 1 côté/semi-détaché&#39;,
+                    &#39;Duplex détaché&#39;,
+                    &#39;Duplex en milieu de rangée attaché 2 côtés&#39;,
+                    &#39;Duplex jumelé/en bout de rangée attaché 1 seul côté&#39;,
+                    &#39;Duplex (sans précision)&#39;, # trop peu
+                    &#39;Triplex milieu de rangée attaché 2 côtés&#39;,
+                    &#39;Triplex jumelé/en bout de rangée attaché 1 seul côté&#39;,
+                    &#39;Triplex (sans précision)&#39;, # trop peu
+                    &#39;Triplex détaché&#39;]
+    QA4[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;, &#34;9&#34;, &#34;10&#34;, &#34;11&#34;, &#34;12&#34;, &#34;13&#34;]#, &#34;14&#34;, &#34;15&#34;, &#34;16&#34;, &#34;17&#34;]
+    QA4[&#34;Description&#34;] = &#34;De quel genre d&#39;habitation s&#39;agit-il?&#34;
+    QA4[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QC1R : Principale source d&#39;énergie utilisée pour le chauffage du domicile
+    QC1R = {}
+    QC1R[&#34;Label&#34;] = [&#39;Électricité&#39;,
+                        &#39;Bois seul ou en combinaison&#39;,
+                        &#39;Bi-énergie&#39;,
+                        &#39;Gaz naturel&#39;,
+                        &#39;Mazout&#39;]
+    QC1R[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;]
+    QC1R[&#34;Description&#34;] = &#34;Principale source d&#39;énergie utilisée pour le chauffage du domicile&#34;
+    QC1R[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # CONS_AN : Consommation annuelle d&#39;électricité en kWh
+    CONS_AN = {}
+    CONS_AN[&#34;Label&#34;] = None
+    CONS_AN[&#34;IdLabel&#34;] = None
+    CONS_AN[&#34;Description&#34;] = &#34;Consommation annuelle d&#39;électricité en kWh&#34;
+    CONS_AN[&#34;Type&#34;] = &#34;Double&#34;
+
+    # QA6M : Année de construction de l&#39;habitation
+    QA6M = {}
+    QA6M[&#34;Label&#34;] = None
+    QA6M[&#34;IdLabel&#34;] = None
+    QA6M[&#34;Description&#34;] = &#34;Année de construction de l&#39;habitation&#34;
+    QA6M[&#34;Type&#34;] = &#34;Entier&#34;
+
+    # TERR_HQ : Territoire de l&#39;habitation
+    TERR_HQ = {}
+    TERR_HQ[&#34;Label&#34;] = [&#34;Est et nord du Québec&#34;,
+                        &#34;Laurentides&#34;,
+                        &#34;Montmorency&#34;,
+                        &#34;Montréal&#34;,
+                        &#34;Richelieu&#34;]
+    TERR_HQ[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;]
+    TERR_HQ[&#34;Description&#34;] = &#34;Territoire HQ&#34;
+    TERR_HQ[&#34;Type&#34;] = &#34;discrete&#34;
+
+    ZONE = {}
+    ZONE[&#34;Label&#34;] = [&#34;Outaouais rural&#34;,
+                     &#34;Milles-Îles&#34;,
+                     &#34;IDM Est&#34;,
+                     &#34;IDM Nord&#34;,
+                     &#34;CUQ&#34;,
+                     &#34;CUO&#34;,
+                     &#34;St-Maurice&#34;,
+                     &#34;Côte-Nord&#34;,
+                     &#34;Le Noroit&#34;,
+                     &#34;IDM Ouest&#34;,
+                     &#34;Chateauguay-Vaudreuil&#34;,
+                     &#34;Des Cantons&#34;,
+                     &#34;Sorel-Victoriaville&#34;,
+                     &#34;Drummonville&#34;,
+                     &#34;Lévis&#34;,
+                     &#34;IDM Sud&#34;,
+                     &#34;Laval&#34;,
+                     &#34;Montmorency-nord&#34;,
+                     &#34;Saguenay&#34;,
+                     &#34;Le Haut St-Laurent&#34;,
+                     &#34;Bas St-Laurent&#34;,
+                     &#34;Gaspésie&#34;,
+                     &#34;Appalaches&#34;,
+                     &#34;Antoine-Labelle&#34;,
+                     &#34;Des Seigneuries&#34;,
+                     &#34;Lanaudière&#34;,
+                     &#34;Ozias-Leduc&#34;]
+    ZONE[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;, &#34;9&#34;, &#34;10&#34;,
+                        &#34;11&#34;, &#34;12&#34;, &#34;13&#34;, &#34;14&#34;, &#34;15&#34;, &#34;16&#34;, &#34;17&#34;, &#34;18&#34;, &#34;19&#34;, &#34;20&#34;,
+                          &#34;21&#34;, &#34;22&#34;, &#34;23&#34;, &#34;24&#34;, &#34;25&#34;, &#34;26&#34;]
+    ZONE[&#34;Description&#34;] = &#34;Zone du Québec&#34;
+    ZONE[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QA4R : Type d&#39;habitation (code : Multi, Uni, Plex)
+    QA4R = {}
+    QA4R[&#34;Label&#34;] = [&#34;Uni&#34;, &#34;Plex&#34;, &#34;Multi&#34;]
+    QA4R[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;]
+    QA4R[&#34;Description&#34;] = &#34;Type d&#39;habitation&#34;
+    QA4R[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QA4M : Nombre de logements dans l&#39;immeuble
+    QA4M = {}
+    QA4M[&#34;Label&#34;] = None
+    QA4M[&#34;IdLabel&#34;] = None
+    QA4M[&#34;Description&#34;] = &#34;Nombre de logements dans l&#39;immeuble&#34;
+    QA4M[&#34;Type&#34;] = &#34;Entier&#34;
+
+    # QA6RR : Décennie de construction de l&#39;habitation
+    QA6RR = {}
+    QA6RR[&#34;Label&#34;] = [&#34;Avant 1900&#34;,
+                        &#34;Entre 1900 et 1950&#34;,
+                        &#34;Dans les années 50&#34;,
+                        &#34;Dans les années 60&#34;,
+                        &#34;Dans les années 70&#34;,
+                        &#34;Dans les années 80&#34;,
+                        &#34;Dans les années 90&#34;,
+                        &#34;Entre 2000 et 2009&#34;,
+                        &#34;Entre 2010 et 2013&#34;,
+                        &#34;Entre 2014 et 2017&#34;,
+                        &#34;Entre 2018 et aujourd&#39;hui&#34;]
+    QA6RR[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;, &#34;9&#34;, &#34;10&#34;]
+    QA6RR[&#34;Description&#34;] = &#34;Décennie de construction de l&#39;habitation&#34;
+    QA6RR[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QA2 : Résidence principale ou secondaire
+    QA2 = {}
+    QA2[&#34;Label&#34;] = [&#34;Résidence principale&#34;,
+                    &#34;Résidence secondaire&#34;]
+    QA2[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QA2[&#34;Description&#34;] = &#34;est-ce votre résidence principale ou secondaire?&#34;
+    QA2[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QH1 : Nombre de pièces dans la résidence (incluant les pièces du sous-sol et le garage, excluant les salles de bain et les couloirs)
+    QH1 = {}
+    QH1[&#34;Label&#34;] = [&#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;, &#34;9&#34;, &#34;10&#34;, &#34;11&#34;, &#34;12&#34;] 
+    QH1[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;, &#34;9&#34;, &#34;10&#34;, &#34;11&#34;]
+    QH1[&#34;Description&#34;] = &#34;Nombre de pièces dans la résidence (incluant les pièces du sous-sol et le garage, excluant les salles de bain et les couloirs)&#34;
+    QH1[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QH2 : Nombre d&#39;étages habitables dans la résidence (incluant le sous-sol et le garage)
+    QH2 = {}
+    QH2[&#34;Label&#34;] = [&#34;Un étage&#34;,
+                    &#34;1½ étages&#34;,
+                    &#34;Deux étages&#34;,
+                    &#34;2 ½étages&#34;,
+                    &#34;Trois étages&#34;,
+                    &#34;3½ étages&#34;,
+                    &#34;Quatre étages&#34;,
+                    &#34;4½ étages&#34;,
+                    &#34;5 étages&#34;]
+    QH2[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;]
+    QH2[&#34;Description&#34;] = &#34;Nombre d&#39;étages habitables dans la résidence (incluant le sous-sol et le garage)&#34;
+    QH2[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # ETAGE : Nombre d&#39;étages habitables dans la résidence (incluant le sous-sol et le garage) (MÉTRIQUE)
+    ETAGE = {}
+    ETAGE[&#34;Label&#34;] = [&#34;1.0&#34;, &#34;1.5&#34;, &#34;2.0&#34;, &#34;2.5&#34;, &#34;3.0&#34;, &#34;3.5&#34;, &#34;4.0&#34;, &#34;4.5&#34;, &#34;5.0&#34;]
+    ETAGE[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;]
+    ETAGE[&#34;Description&#34;] = &#34;Nombre d&#39;étages habitables dans la résidence (incluant le sous-sol et le garage) (MÉTRIQUE)&#34;
+    ETAGE[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # SUPERTOT : Superficie totale de la résidence incluant le sous-sol et le garage
+    SUPERTOT = {}
+    SUPERTOT[&#34;Label&#34;] = None,
+    SUPERTOT[&#34;IdLabel&#34;] = None
+    SUPERTOT[&#34;Description&#34;] = &#34;Quelle est la superficie TOTALE habitable de votre résidence incluant le sous-sol et le garage?&#34;
+    SUPERTOT[&#34;Type&#34;] = &#34;Double&#34;
+
+    # QH4 : Présence d&#39;un sous-sol ou vide sanitaire dans la résidence
+    QH4 = {}
+    QH4[&#34;Label&#34;] = [&#34;Un sous-sol d&#39;une hauteur de 6 ou 7 pied&#34;,
+                    &#34;Un vide sanitaire d&#39;une hauteur inférieure à 6 pieds&#34;,
+                    &#34;Ne comporte ni sous-sol, ni vide sanitaire&#34;,
+                    &#34;Un sous-sol et un vide sanitaire&#34;]
+    QH4[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;]
+    QH4[&#34;Description&#34;] = &#34;Votre résidence comporte-elle un sous-sol ou vide sanitaire?&#34;
+    QH4[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QM1A : Présence d&#39;un garage dans la résidence #Question seulement pour les propriétaire
+    QM1A = {}
+    QM1A[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QM1A[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QM1A[&#34;Description&#34;] = &#34;Avez-vous un garage?&#34;
+    QM1A[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QM1AA : Garage chauffé (Oui/Non)
+    QM1AA = {}
+    QM1AA[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QM1AA[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QM1AA[&#34;Description&#34;] = &#34;Est-ce que votre garage est chauffé?&#34;
+    QM1AA[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QM1B : Garage chauffé à l&#39;électricité (Oui/Non)
+    QM1B = {}
+    QM1B[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QM1B[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QM1B[&#34;Description&#34;] = &#34;Est-ce que votre garage est chauffé à l&#39;électricité?&#34;
+    QM1B[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QL1 : Nombre de personnes habitant le logement (incluant l&#39;interviewé)
+    QL1 = {}
+    QL1[&#34;Label&#34;] = [&#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;, &#34;9&#34;, &#34;10&#34;, &#34;11&#34;, &#34;12&#34;, &#34;15&#34;, &#34;25&#34;]
+    QL1[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;, &#34;9&#34;, &#34;10&#34;, &#34;11&#34;, &#34;12&#34;, &#34;13&#34;]
+    QL1[&#34;Description&#34;] = &#34;En vous incluant, combien de personnes habitent ce logement?&#34;
+    QL1[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QL3A : Catégorie d&#39;âge de l&#39;interviewé
+    QL3A = {}
+    QL3A[&#34;Label&#34;] = [&#34;18-24 ans&#34;, &#34;25-34 ans&#34;, &#34;35-44 ans&#34;, &#34;45-54 ans&#34;, &#34;55-64 ans&#34;, &#34;65 ans et plus&#34;]
+    QL3A[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;]
+    QL3A[&#34;Description&#34;] = &#34;Quel est votre âge?&#34;
+    QL3A[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QL4A : Dernier niveau de scolarité complété par l&#39;interviewé
+    QL4A = {}
+    QL4A[&#34;Label&#34;] = [&#34;Primaire (0 à 7 ans)&#34;, &#34;Secondaire (8 à 12 ans)&#34;, &#34;CEGEP/techniques (13 à 15 ans)&#34;, &#34;Université (16 ans et plus)&#34;]
+    QL4A[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;]
+    QL4A[&#34;Description&#34;] = &#34;Quel est le dernier niveau de scolarité que vous avez complété?&#34;
+    QL4A[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QL5A : Valeur approximative de la résidence incluant le terrain
+    QL5A = {}
+    QL5A[&#34;Label&#34;] = [&#34;Moins de 100  000 $&#34;,
+                     &#34;100 000 à 199 999 $&#34;, 
+                     &#34;200 000 $ à 299 999 $&#34;,
+                     &#34;300 000 $ à 399 999 $&#34;,
+                     &#34;400 000 $ à 499 999 $&#34;,
+                     &#34;500 000 $ à 599 999 $&#34;,
+                     &#34;600 000 $ à 699 999 $&#34;,
+                     &#34;700 000 $ à 799 999 $&#34;,
+                     &#34;800 000 $ à 899 999 $&#34;,
+                     &#34;900 000 $ à 999 999 $&#34;,
+                     &#34;1 million $ ou plus&#34;]
+    QL5A[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;]
+    QL5A[&#34;Description&#34;] = &#34;Quelle est la valeur approximative de votre résidence incluant le terrain?&#34;
+    QL5A[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QL5BA : Revenu total du ménage (avant impôts incluant les revenus de toutes provenances et de tous les membres du ménage)
+    QL5BA = {}
+    QL5BA[&#34;Label&#34;] = [&#34;Moins de 20 000 $&#34;,
+                        &#34;20 000 $ à 39 999 $&#34;, 
+                        &#34;40 000 $ à 59 999 $&#34;,
+                        &#34;60 000 $ à 79 999 $&#34;,
+                        &#34;80 000 $ à 99 999 $&#34;,
+                        &#34;100 000 $ à 119 999 $&#34;,
+                        &#34;120 000 $ à 199 999 $&#34;,
+                        &#34;200 000 $ à 299 999 $&#34;,
+                        &#34;300 000 $ ou plus&#34;]
+    QL5BA[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;]
+    QL5BA[&#34;Description&#34;] = &#34;Quel est le revenu total de votre ménage (avant impôts incluant les revenus de toutes provenances et de tous les membres du ménage)?&#34;
+    QL5BA[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QB2I1 : Nombre de réfrigérateurs dans la résidence
+    QB2I1 = {}
+    QB2I1[&#34;Label&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;,
+                      &#34;7&#34;]
+    QB2I1[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;]
+    QB2I1[&#34;Description&#34;] = &#34;Combien de réfrigérateurs avez-vous dans votre résidence?&#34;
+    QB2I1[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QB2I2 : Âge du réfrigérateur principal
+    QB2I2 = {}
+    QB2I2[&#34;Label&#34;] = [&#34;Moins de 1 an&#34;,
+                        &#34;1 à 5 ans&#34;,
+                        &#34;6 à 10 ans&#34;,
+                        &#34;11 à 15 ans&#34;,
+                        &#34;16 à 20 ans&#34;,
+                        &#34;21 à 25 ans&#34;,
+                        &#34;Plus de 25 ans&#34;]
+    QB2I2[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;]
+    QB2I2[&#34;Description&#34;] = &#34;Quel est l&#39;âge de votre réfrigérateur principal?&#34;
+    QB2I2[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QBM1 : Présence de congélateurs distincts (Oui/Non)
+    QBM1 = {}
+    QBM1[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QBM1[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QBM1[&#34;Description&#34;] = &#34;Avez-vous un congélateur distinct de votre réfrigérateur?&#34;
+    QBM1[&#34;Type&#34;] = &#34;discrete&#34;
+    
+    # QB2M2R : Nombre de congélateurs distinct dans la résidence
+    QB2M2R = {}
+    QB2M2R[&#34;Label&#34;] = [&#34;Aucun&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;]
+    QB2M2R[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;]
+    QB2M2R[&#34;Description&#34;] = &#34;Combien de congélateurs distincts avez-vous dans votre résidence?&#34;
+    QB2M2R[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QB1A1 : Présence de cuisinières (Oui/Non)
+    QB1A1 = {}
+    QB1A1[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QB1A1[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QB1A1[&#34;Description&#34;] = &#34;Avez-vous une cuisinière?&#34;
+    QB1A1[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QB1RR : Nombre d&#39;appareils de cuisson dans la résidence
+    QB1RR = {}
+    QB1RR[&#34;Label&#34;] = [&#34;Aucun&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;]
+    QB1RR[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;]
+    QB1RR[&#34;Description&#34;] = &#34;Combien d&#39;appareils de cuisson avez-vous dans votre résidence?&#34;
+    QB1RR[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QB1A3 : Source d&#39;énergie de la cuisinière
+    QB1A3 = {}
+    QB1A3[&#34;Label&#34;] = [&#34;Électricité&#34;,
+                      &#34;Gaz propane ou gaz naturel&#34;,
+                      &#34;Autre&#34;]
+    QB1A3[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;]
+    QB1A3[&#34;Description&#34;] = &#34;Quelle est la source d&#39;énergie de votre cuisinière?&#34;
+    QB1A3[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QB1C1 : Présence de four encastré électrique (Oui/Non)
+    QB1C1 = {}
+    QB1C1[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QB1C1[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QB1C1[&#34;Description&#34;] = &#34;Possédez-vous un four encastré électrique?&#34;
+    QB1C1[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QB1D1 : Présence de plaque avec des ronds de cuisson indépendante de la cuisinière (de type Jen Air) (Oui/Non)
+    QB1D1 = {}
+    QB1D1[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QB1D1[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QB1D1[&#34;Description&#34;] = &#34;Avez-vous une plaque de cuisson avec des ronds de cuisson indépendante de la cuisinière (de type Jen Air)?&#34;
+    QB1D1[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QB1D2 : Source d&#39;énergie de la plaque de cuisson
+    QB1D2 = {}
+    QB1D2[&#34;Label&#34;] = [&#34;Électricité&#34;,
+                        &#34;Gaz propane ou gaz naturel&#34;]
+    QB1D2[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QB1D2[&#34;Description&#34;] = &#34;Quelle est la source d&#39;énergie de votre plaque de cuisson?&#34;
+    QB1D2[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QB1E1 : Présence de hotte ou ventilateur de cuisine (Oui/Non)
+    QB1E1 = {}
+    QB1E1[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QB1E1[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QB1E1[&#34;Description&#34;] = &#34;Avez-vous une hotte ou un ventilateur de cuisine?&#34;
+    QB1E1[&#34;Type&#34;] = &#34;discrete&#34;
+    
+    # QB1F : Présence de micro-ondes (Oui/Non)
+    QB1F = {}
+    QB1F[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QB1F[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QB1F[&#34;Description&#34;] = &#34;Avez-vous un micro-ondes?&#34;
+    QB1F[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QB1G : Présence de lave-vaisselle (Oui/Non)
+    QB1G = {}
+    QB1G[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QB1G[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QB1G[&#34;Description&#34;] = &#34;Avez-vous un lave-vaisselle?&#34;
+    QB1G[&#34;Type&#34;] = &#34;discrete&#34;
+    
+    # QB1H : Présence de sécheuse à linge électrique (Oui/Non)
+    QB1H = {}
+    QB1H[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QB1H[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QB1H[&#34;Description&#34;] = &#34;Avez-vous une sécheuse à linge électrique?&#34;
+    QB1H[&#34;Type&#34;] = &#34;discrete&#34;
+    
+    # QB1I : Présence de machine à laver le linge (Oui/Non)
+    QB1I = {}
+    QB1I[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QB1I[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QB1I[&#34;Description&#34;] = &#34;Avez-vous une machine à laver le linge?&#34;
+    QB1I[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QB1I1 : S&#39;agit-il d&#39;une machine à chargement frontal (Oui/Non)
+    QB1I1 = {}
+    QB1I1[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QB1I1[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QB1I1[&#34;Description&#34;] = &#34;Votre machine à laver le linge est-elle à chargement frontal?&#34;
+    QB1I1[&#34;Type&#34;] = &#34;discrete&#34;
+
+    #QB1I1R : Type de machines à laver (Base totale)
+    QB1I1R = {}
+    QB1I1R[&#34;Label&#34;] = [&#34;N&#39;a pas de machine à laver le linge&#34;,
+                       &#34;Machine traditionnelle&#34;,
+                       &#34;Machine à chargement frontal&#34;]
+    QB1I1R[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;]
+    QB1I1R[&#34;Description&#34;] = &#34;Quel type de machine à laver le linge avez-vous?&#34;
+    QB1I1R[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QB1S : Présence de cellier avec système de réfrigération (Oui/Non)
+    QB1S = {}
+    QB1S[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QB1S[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QB1S[&#34;Description&#34;] = &#34;Avez-vous un cellier avec système de réfrigération?&#34;
+    QB1S[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QB1N : Présence de sauna (Oui/Non)
+    QB1N = {}
+    QB1N[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QB1N[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QB1N[&#34;Description&#34;] = &#34;Avez-vous un sauna?&#34;
+    QB1N[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QB2 : Nombre de téléviseurs dans la résidence
+
+    QB2 = {}
+    QB2[&#34;Label&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;,
+                    &#34;10&#34;]
+    QB2[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;, &#34;9&#34;]
+    QB2[&#34;Description&#34;] = &#34;Combien de téléviseurs avez-vous dans votre résidence?&#34;
+    QB2[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # B2A3 : Type du téléviseur principal
+    B2A3 = {}
+    B2A3[&#34;Label&#34;] = [&#34;Conventionnel&#34;,
+                     &#34;Écran 3D ACL&#34;,
+                    &#34;Écran 3D DEL&#34;,
+                    &#34;Écran 3D sans précision&#34;,
+                    &#34;Écran DEL&#34;,
+                    &#34;Écran DLP&#34;,
+                    &#34;Écran OLED&#34;,
+                    &#34;Écran plat ACL&#34;,
+                    &#34;Écran plat plasma&#34;,
+                    &#34;Écran plat sans précision (plasma /ACL)&#34;,
+                    &#34;Projecteur&#34;,
+                    &#34;Télévision 4K, 8K ou 16k (Utra HD)&#34;]
+    B2A3[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;, &#34;9&#34;, &#34;10&#34;]
+    B2A3[&#34;Description&#34;] = &#34;Quel est le type de votre téléviseur principal?&#34;
+    B2A3[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # B3A2R : Taille du téléviseur principal (Base possède un téléviseur) [catégorie de taille]
+    B3A2R = {}
+    B3A2R[&#34;Label&#34;] = [&#34;Moins de 30 pouces&#34;,
+                        &#34;De 30 à 45 pouces&#34;,
+                        &#34;De 46 à 65 pouces&#34;,
+                        &#34;Plus de 65 pouces&#34;]
+    B3A2R[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;]
+    B3A2R[&#34;Description&#34;] = &#34;Quelle est la taille de votre téléviseur principal?&#34;
+    B3A2R[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # B2A4 : Type du 2nd téléviseur
+
+    # QB2C1 : Présence d&#39;ordinateur (Oui/Non)
+    QB2C1 = {}
+    QB2C1[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QB2C1[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QB2C1[&#34;Description&#34;] = &#34;Avez-vous un ordinateur?&#34;
+    QB2C1[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # B2C2R : Nombre d&#39;ordinateur total
+    B2C2R = {}
+    B2C2R[&#34;Label&#34;] = [&#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;, &#34;9&#34;, &#34;10&#34;, &#34;11&#34;]
+    B2C2R[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;, &#34;9&#34;, &#34;10&#34;]
+    B2C2R[&#34;Description&#34;] = &#34;Combien d&#39;ordinateurs avez-vous dans votre résidence?&#34;
+    B2C2R[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # B2C2BR : Nombre d&#39;ordinateur portable (Base possède un ordinateur)
+    B2C2BR = {}
+    B2C2BR[&#34;Label&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;]
+    B2C2BR[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;]
+    B2C2BR[&#34;Description&#34;] = &#34;Combien d&#39;ordinateurs portables avez-vous dans votre résidence?&#34;
+    B2C2BR[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # B2C2AR : Nombre d&#39;ordinateur de bureau
+    B2C2AR = {}
+    B2C2AR[&#34;Label&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;]
+    B2C2AR[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;]
+    B2C2AR[&#34;Description&#34;] = &#34;Combien d&#39;ordinateurs de bureau avez-vous dans votre résidence?&#34;
+    B2C2AR[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QB2D1 : Accès à Internet (Oui/Non)
+    QB2D1 = {}
+    QB2D1[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QB2D1[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QB2D1[&#34;Description&#34;] = &#34;Avez-vous accès à Internet?&#34;
+    QB2D1[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QB2D1R : Accès à internet avec un ordinateur (Oui/Non)
+    QB2D1R = {}
+    QB2D1R[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QB2D1R[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QB2D1R[&#34;Description&#34;] = &#34;Avez-vous accès à Internet avec un ordinateur?&#34;
+    QB2D1R[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QB2X6 : Présence d&#39;éclairage à LED (Oui/Non)
+    QB2X6 = {}
+    QB2X6[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QB2X6[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QB2X6[&#34;Description&#34;] = &#34;Avez-vous de l&#39;éclairage à DEL dans votre résidence?&#34;
+    QB2X6[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QB2X8R : Pourcentage d&#39;éclairage à LED (Base possède de l&#39;éclairage à LED)
+    QB2X8R = {}
+    QB2X8R[&#34;Label&#34;] = [&#34;0%&#34;,
+                        &#34;1 à 24 %&#34;,
+                        &#34;25 à 50 %&#34;,
+                        &#34;Plus de 50 %&#34;]
+    QB2X8R[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;]
+    QB2X8R[&#34;Description&#34;] = &#34;Quel pourcentage de votre éclairage est à DEL?&#34;
+    QB2X8R[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # SOURC : Principale source d&#39;énergie utilisée pour le chauffage de l&#39;habitation - détail
+    SOURC = {}
+    SOURC[&#34;Label&#34;] = [&#34;L&#39;électricité&#34;,
+                      &#34;Le gaz naturel&#34;,
+                      &#34;Le propane&#34;,
+                      &#34;Le mazout (huile)&#34;,
+                      &#34;Le bois (ou granule)&#34;,
+                      &#34;L&#39;électricité et le gaz naturel&#34;,
+                    &#34;L&#39;électricité et le propane&#34;,
+                    &#34;L&#39;électricité et le mazout&#34;,
+                    &#34;Le bois (ou granules) ET électricité&#34;,
+                    &#34;Le bois ET mazout (huile)&#34;,
+                    &#34;Bi-énergie (sans précision)&#34;]
+    SOURC[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;, &#34;9&#34;, &#34;10&#34;]
+    SOURC[&#34;Description&#34;] = &#34;Principale source d&#39;énergie utilisée pour le chauffage de l&#39;habitation - détail&#34;
+    SOURC[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QC1R : Principale source d&#39;énergie utilisée pour le chauffage de l&#39;habitation
+    QC1R = {}
+    QC1R[&#34;Label&#34;] = [&#34;Électricité&#34;,
+                     &#34;Gaz naturel&#34;,
+                     &#34;Mazout&#34;,
+                     &#34;Bois seul ou en combinaison&#34;,
+                     &#34;Bi-énergie&#34;,
+                     &#34;Autres&#34;]
+    QC1R[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;]
+    QC1R[&#34;Description&#34;] = &#34;Principale source d&#39;énergie utilisée pour le chauffage de l&#39;habitation&#34;
+    QC1R[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # CENTRAL2 : Possède un système central
+    CENTRAL2 = {}
+    CENTRAL2[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    CENTRAL2[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    CENTRAL2[&#34;Description&#34;] = &#34;Possédez-vous un système central?&#34;
+    CENTRAL2[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # SYSTEM1 : Système principal de chauffage - détail
+
+    # SYSTEM1R : Système principal de chauffage
+    SYSTEM1R = {}
+    SYSTEM1R[&#34;Label&#34;] = [&#34;Plinthes électriques&#34;,
+                        &#34;Unités convecteurs, plancher ou plafond radiant&#34;,
+                        &#34;Thermopompe&#34;,
+                        &#34;Autres&#34;,
+                        &#34;Système central à air chaud&#34;,
+                        &#34;Système central à eau chaude&#34;,
+                        &#34;Fournaise ou poêle à bois&#34;,
+                        &#34;Fournaise murale ou de plancher&#34;]
+    SYSTEM1R[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;]
+    SYSTEM1R[&#34;Description&#34;] = &#34;Système principal de chauffage&#34;
+    SYSTEM1R[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # SYSTEM2 : Système principal de chauffage en combinaison - détail
+    SYSTEM2 = {}
+    SYSTEM2[&#34;Label&#34;] = [&#34;Thermopompe (pompe à chaleur) murale&#34;,
+                        &#34;Plinthes électriques&#34;,
+                        &#34;Fournaise centrale (système central à air chaud)&#34;,
+                        &#34;Unités convecteurs&#34;,
+                        &#34;Fournaise murale ou de plancher&#34;,
+                        &#34;Chaudière centrale (système central à eau chaude)&#34;,
+                        &#34;Système radiant à rayonnement dans le plancher&#34;,
+                        &#34;Poêle au mazout&#34;,
+                        &#34;Système radiant à rayonnement dans le plafond&#34;]
+    SYSTEM2[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;]
+    SYSTEM2[&#34;Description&#34;] = &#34;Système principal de chauffage en combinaison&#34;
+    SYSTEM2[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # SYSTEM2R : Système principal de chauffage en combinaison
+    SYSTEM2R = {}
+    SYSTEM2[&#34;Label&#34;] = [&#34;Thermopompe&#34;,
+                &#34;Plinthes électriques&#34;,
+                &#34;Système central à air chaud&#34;,
+                &#34;Unités convecteurs, plancher ou plafond radiant&#34;,
+                &#34;Fournaise murale ou de plancher&#34;,
+                &#34;Système central à eau chaude&#34;]
+    SYSTEM2R[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;]
+    SYSTEM2R[&#34;Description&#34;] = &#34;Système principal de chauffage en combinaison&#34;
+    SYSTEM2R[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QC9A : Avec quel autre système votre thermopompe (pompe à chaleur) est-elle combinée?
+    QC9A = {}
+    QC9A[&#34;Label&#34;] = [&#34;Plinthes&#34;,
+                     &#34;Convecteurs&#34;,
+                    &#34;Plinthes et convecteurs&#34;,
+                    &#34;Radiants de plancher&#34;,
+                    &#34;Bouilloire électrique&#34;,
+                    &#34;Fournaise électrique à air chaud&#34;,
+                    &#34;Fournaise au gaz naturel à air chaud&#34;,
+                    &#34;Fournaise au propane à air chaud&#34;,
+                    &#34;Fournaise au mazout à air chaud&#34;,
+                    &#34;Pas de système de relève&#34;]
+    QC9A[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;, &#34;9&#34;]
+    QC9A[&#34;Description&#34;] = &#34;Avec quel autre système votre thermopompe (pompe à chaleur) est-elle combinée?&#34;
+    QC9A[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QC7A : Votre thermopompe est-elle de type « climat froid » ou « basse température »?
+    QC7A = {}
+    QC7A[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QC7A[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QC7A[&#34;Description&#34;] = &#34;Votre thermopompe est-elle de type « climat froid » ou « basse température »?&#34;
+    QC7A[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QC21A : Année installation thermopompe
+    QC21A = {}
+    QC21A[&#34;Label&#34;] = None
+    QC21A[&#34;IdLabel&#34;] = None
+    QC21A[&#34;Description&#34;] = &#34;En quelle année votre thermopompe a-t-elle été installée?&#34;
+    QC21A[&#34;Type&#34;] = &#34;Entier&#34;
+
+    # APPOINT : Nombre de systèmes d&#39;appoint possédés
+    APPOINT = {}
+    APPOINT[&#34;Label&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;]
+    APPOINT[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;]
+    APPOINT[&#34;Description&#34;] = &#34;Combien de systèmes d&#39;appoint possédez-vous?&#34;
+    APPOINT[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QD1A : Utilisez-vous comme chauffage d&#39;appoint des chaufferettes (radiateurs électriques portatifs)?
+    QD1A = {}
+    QD1A[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QD1A[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QD1A[&#34;Description&#34;] = &#34;Utilisez-vous comme chauffage d&#39;appoint des chaufferettes (radiateurs électriques portatifs)?&#34;
+    QD1A[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QD1B : Utilisez-vous comme chauffage d&#39;appoint des plinthes électriques fixes?
+    QD1B = {}
+    QD1B[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QD1B[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QD1B[&#34;Description&#34;] = &#34;Utilisez-vous comme chauffage d&#39;appoint des plinthes électriques fixes?&#34;
+    QD1B[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QD1C : Utilisez-vous comme chauffage d&#39;appoint des unités convecteurs?
+    QD1C = {}
+    QD1C[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QD1C[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QD1C[&#34;Description&#34;] = &#34;Utilisez-vous comme chauffage d&#39;appoint des unités convecteurs?&#34;
+    QD1C[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QD1D : Utilisez-vous comme chauffage d&#39;appoint un poêle à combustion lente (hermétique)?
+    QD1D = {}
+    QD1D[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QD1D[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QD1D[&#34;Description&#34;] = &#34;Utilisez-vous comme chauffage d&#39;appoint un poêle à combustion lente (hermétique)?&#34;
+    QD1D[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QD1E : Utilisez-vous un poêle à bois à combustion lente ou conventionnel comme chauffage d&#39;appoint (Base totale)
+    QD1E = {}
+    QD1E[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QD1E[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QD1E[&#34;Description&#34;] = &#34;Utilisez-vous un poêle à bois à combustion lente ou conventionnel comme chauffage d&#39;appoint?&#34;
+    QD1E[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QD1F : Utilisez-vous comme chauffage d&#39;appoint un foyer?
+    QD1F = {}
+    QD1F[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QD1F[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QD1F[&#34;Description&#34;] = &#34;Utilisez-vous comme chauffage d&#39;appoint un foyer?&#34;
+    QD1F[&#34;Type&#34;] = &#34;discrete&#34;
+    #   QD2F2 : Quelle source d&#39;énergie utilisez-vous pour ce foyer?
+    QD2F2 = {}
+    QD2F2[&#34;Label&#34;] = [&#34;Électricité&#34;,
+                        &#34;Gaz naturel&#34;,
+                        &#34;Gaz propane&#34;,
+                        &#34;Mazout&#34;,
+                        &#34;Bois&#34;]
+    QD2F2[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;]   
+    QD2F2[&#34;Description&#34;] = &#34;Quelle source d&#39;énergie utilisez-vous pour ce foyer?&#34;
+    QD2F2[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QD1J : Utilisez-vous comme chauffage d&#39;appoint un système radiant à rayonnement dans le plancher ou le plafond?
+    QD1J = {}           
+    QD1J[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QD1J[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QD1J[&#34;Description&#34;] = &#34;Utilisez-vous comme chauffage d&#39;appoint un système radiant à rayonnement dans le plancher ou le plafond?&#34;
+    QD1J[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QD1G : Utilisez-vous comme chauffage d&#39;appoint une fournaise individuelle murale ou de plancher?
+    QD1G = {}
+    QD1G[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QD1G[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QD1G[&#34;Description&#34;] = &#34;Utilisez-vous comme chauffage d&#39;appoint une fournaise individuelle murale ou de plancher?&#34;
+    QD1G[&#34;Type&#34;] = &#34;discrete&#34;
+    
+    #   QD2G : Quelle source d&#39;énergie utilisez-vous pour cette fournaise?
+    QD2G = {}
+    QD2G[&#34;Label&#34;] = [&#34;Électricité&#34;,
+                    &#34;Gaz naturel&#34;,
+                    &#34;Gaz propane&#34;,
+                    &#34;Mazout&#34;,
+                    &#34;Bois&#34;]
+    QD2G[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;]
+    QD2G[&#34;Description&#34;] = &#34;Quelle source d&#39;énergie utilisez-vous pour cette fournaise?&#34;
+    QD2G[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QD1H : Utilisez-vous comme chauffage d&#39;appoint une fournaise centrale à air chaud (avec bouches de chaleur)?
+    QD1H = {}
+    QD1H[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QD1H[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QD1H[&#34;Description&#34;] = &#34;Utilisez-vous comme chauffage d&#39;appoint une fournaise centrale à air chaud (avec bouches de chaleur)?&#34;
+    QD1H[&#34;Type&#34;] = &#34;discrete&#34;
+    #   QD2H : Quelle source d&#39;énergie utilisez-vous pour cette fournaise?
+    QD2H = {}
+    QD2H[&#34;Label&#34;] = [&#34;Électricité&#34;,
+                    &#34;Gaz naturel&#34;,
+                    &#34;Gaz propane&#34;,
+                    &#34;Mazout&#34;,
+                    &#34;Bois&#34;]
+    QD2H[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;]
+    QD2H[&#34;Description&#34;] = &#34;Quelle source d&#39;énergie utilisez-vous pour cette fournaise?&#34;
+    QD2H[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QD1I : Utilisez-vous comme chauffage d&#39;appoint une chaudière centrale à eau chaude (avec calorifères)?
+    QD1I = {}
+    QD1I[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QD1I[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QD1I[&#34;Description&#34;] = &#34;Utilisez-vous comme chauffage d&#39;appoint une chaudière centrale à eau chaude (avec calorifères)?&#34;
+    QD1I[&#34;Type&#34;] = &#34;discrete&#34;
+    #   QD2I : Quelle source d&#39;énergie utilisez-vous pour cette chaudière?
+    QD2I = {}
+    QD2I[&#34;Label&#34;] = [&#34;Électricité&#34;,
+                    &#34;Gaz naturel&#34;,
+                    &#34;Gaz propane&#34;,
+                    &#34;Mazout&#34;,
+                    &#34;Bois&#34;]
+    QD2I[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;]
+    QD2I[&#34;Description&#34;] = &#34;Quelle source d&#39;énergie utilisez-vous pour cette chaudière?&#34;
+    QD2I[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QD4A : Utilisez-vous un thermostat central, c&#39;est-à-dire celui de votre système central qui contrôle la température de plusieurs pièces en même temps?
+    QD4A = {}
+    QD4A[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QD4A[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QD4A[&#34;Description&#34;] = &#34;Utilisez-vous un thermostat central, c&#39;est-à-dire celui de votre système central qui contrôle la température de plusieurs pièces en même temps?&#34;
+    QD4A[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QD4C : Votre thermostat central est-il programmable, c&#39;est-à-dire qui vous permet de programmer à l&#39;avance des hausses et des baisses automatiques de la température à heures fixes sans autre intervention de votre part?
+    QD4C = {}
+    QD4C[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QD4C[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QD4C[&#34;Description&#34;] = &#34;Votre thermostat central est-il programmable, c&#39;est-à-dire qui vous permet de programmer à l&#39;avance des hausses et des baisses automatiques de la température à heures fixes sans autre intervention de votre part?&#34;
+    QD4C[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QD4C1 : Habituellement, programmez-vous à l&#39;avance des hausses et des baisses automatiques de la température à heures fixes à l&#39;aide de votre thermostat central programmable?
+    QD4C1 = {}
+    QD4C1[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QD4C1[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QD4C1[&#34;Description&#34;] = &#34;Habituellement, programmez-vous à l&#39;avance des hausses et des baisses automatiques de la température à heures fixes à l&#39;aide de votre thermostat central programmable?&#34;
+    QD4C1[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # Plus de détails disponible dans le sondage sur les thermostats
+
+    # QD6A : Utilisez-vous un ou des thermostat(s) placé(s) sur le mur et qui contrôle(nt) le chauffage d&#39;une seule ou plusieurs pièces à la fois? (thermostats muraux)
+    QD6A = {}
+    QD6A[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QD6A[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QD6A[&#34;Description&#34;] = &#34;Utilisez-vous un ou des thermostat(s) placé(s) sur le mur et qui contrôle(nt) le chauffage d&#39;une seule ou plusieurs pièces à la fois? (thermostats muraux)&#34;
+    QD6A[&#34;Type&#34;] = &#34;discrete&#34;
+    # QD6 : Combien avez-vous de thermostats muraux? (thermostats placé(s) sur le mur et qui contrôle(nt) le chauffage d&#39;une seule pièce à la fois)
+    QD6 = {}
+    QD6[&#34;Label&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;, &#34;9&#34;, &#34;10&#34;, &#34;11&#34;, &#34;12&#34;, &#34;13&#34;, &#34;14&#34;, &#34;15&#34;, &#34;16&#34;, &#34;17&#34;, &#34;18&#34;]
+    QD6[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;, &#34;9&#34;, &#34;10&#34;, &#34;11&#34;, &#34;12&#34;, &#34;13&#34;, &#34;14&#34;, &#34;15&#34;, &#34;16&#34;, &#34;17&#34;]
+    QD6[&#34;Description&#34;] = &#34;Combien avez-vous de thermostats muraux? (thermostats placé(s) sur le mur et qui contrôle(nt) le chauffage d&#39;une seule pièce à la fois)&#34;
+    QD6[&#34;Type&#34;] = &#34;discrete&#34;
+    # QD6B : En avez-vous qui sont électroniques, c est-à-dire qu il y a un écran qui affiche la température?
+    QD6B = {}
+    QD6B[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QD6B[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QD6B[&#34;Description&#34;] = &#34;En avez-vous qui sont électroniques, c est-à-dire qu il y a un écran qui affiche la température?&#34;
+    QD6B[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QD6C : Combien avez-vous de thermostats électroniques programmables, c&#39;est-à-dire qui vous permet de programmer à l&#39;avance des hausses et des baisses automatiques de la température à heures fixes sans autre intervention de votre part?
+    QD6C = {}
+    QD6C[&#34;Label&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;, &#34;9&#34;, &#34;10&#34;, &#34;11&#34;, &#34;12&#34;, &#34;13&#34;, &#34;14&#34;, &#34;15&#34;, &#34;16&#34;, &#34;17&#34;, &#34;18&#34;]
+    QD6C[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;, &#34;8&#34;, &#34;9&#34;, &#34;10&#34;, &#34;11&#34;, &#34;12&#34;, &#34;13&#34;, &#34;14&#34;, &#34;15&#34;, &#34;16&#34;, &#34;17&#34;]
+    QD6C[&#34;Description&#34;] = &#34;Combien avez-vous de thermostats électroniques programmables, c&#39;est-à-dire qui vous permet de programmer à l&#39;avance des hausses et des baisses automatiques de la température à heures fixes sans autre intervention de votre part?&#34;
+    QD6C[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QD6C1 : Habituellement, programmez-vous à l&#39;avance des hausses et des baisses automatiques de la température à heures fixes à l&#39;aide de votre ou vos thermostats muraux programmables?
+    QD6C1 = {}
+    QD6C1[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QD6C1[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QD6C1[&#34;Description&#34;] = &#34;Habituellement, programmez-vous à l&#39;avance des hausses et des baisses automatiques de la température à heures fixes à l&#39;aide de votre ou vos thermostats muraux programmables?&#34;
+    QD6C1[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QD11A : Climatisez-vous votre habitation, que ce soit une seule pièce ou l&#39;ensemble des pièces?
+    QD11A = {}
+    QD11A[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QD11A[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QD11A[&#34;Description&#34;] = &#34;Climatisez-vous votre habitation, que ce soit une seule pièce ou l&#39;ensemble des pièces?&#34;
+    QD11A[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QD11BM1 : Parmi les appareils suivants, lesquels utilisez-vous pour climatiser votre habitation? (Ensemble des mentions)
+    QD11BM1 = {}
+    QD11BM1[&#34;Label&#34;] = [&#34;Climatiseur central autre qu&#39;une thermopompe&#34;,
+                        &#34;Climatiseur de fenêtre&#34;,
+                        &#34;Climatiseur mobile / portable&#34;,
+                        &#34;Climatiseur mural ou bibloc (mini-split)&#34;,
+                        &#34;Thermopompe murale&#34;,
+                        &#34;Thermopompe centrale&#34;,
+                        &#34;Thermopompe géothermique&#34;]
+    QD11BM1[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;]
+    QD11BM1[&#34;Description&#34;] = &#34;Parmi les appareils suivants, lesquels utilisez-vous pour climatiser votre habitation? (Ensemble des mentions)&#34;
+    QD11BM1[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QD11BM1R : Parmi les appareils suivants, lesquels utilisez-vous pour climatiser votre habitation? (Ensemble des mentions) (Base totale)
+    QD11BM1R = {}
+    QD11BM1R[&#34;Label&#34;] = [&#34;Central autre que thermopompe&#34;,
+                        &#34;Climatiseur de fenêtre&#34;,
+                        &#34;Climatiseur mobile&#34;,
+                        &#34;Climatiseur mural ou bibloc&#34;,
+                        &#34;Thermopompe murale&#34;,
+                        &#34;Thermopompe centrale&#34;,
+                        &#34;Thermopompe géothermique&#34;]
+    QD11BM1R[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;]
+    QD11BM1R[&#34;Description&#34;] = &#34;Parmi les appareils suivants, lesquels utilisez-vous pour climatiser votre habitation? (Ensemble des mentions) (Base totale)&#34;
+    QD11BM1R[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # D11B8 : En quelle année votre climatiseur a-t-il été installé?
+    D11B8 = {}
+    D11B8[&#34;Label&#34;] = None
+    D11B8[&#34;IdLabel&#34;] = None
+    D11B8[&#34;Description&#34;] = &#34;En quelle année votre climatiseur a-t-il été installé?&#34;
+    D11B8[&#34;Type&#34;] = &#34;Entier&#34;
+
+    # QD7F1 : Utilisez-vous un échangeur d&#39;air?
+    QD7F1 = {}
+    QD7F1[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QD7F1[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QD7F1[&#34;Description&#34;] = &#34;Utilisez-vous un échangeur d&#39;air?&#34;
+    QD7F1[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QD7G1 : S&#39;agit-il d&#39;un échangeur d&#39;air avec ou sans récupérateur de chaleur?
+    QD7G1 = {}
+    QD7G1[&#34;Label&#34;] = [&#34;Avec récupérateur de chaleur&#34;,
+                        &#34;Sans récupérateur de chaleur&#34;]
+    QD7G1[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QD7G1[&#34;Description&#34;] = &#34;S&#39;agit-il d&#39;un échangeur d&#39;air avec ou sans récupérateur de chaleur?&#34;
+    QD7G1[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QD7H3 : Arrêtez-vous votre échangeur d&#39;air en période de grands froids (-20 et plus froid)?
+    QD7H3 = {}
+    QD7H3[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QD7H3[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QD7H3[&#34;Description&#34;] = &#34;Arrêtez-vous votre échangeur d&#39;air en période de grands froids (-20 et plus froid)?&#34;
+    QD7H3[&#34;Type&#34;] = &#34;discrete&#34;
+    
+    # QF1 : À quelle source d&#39;énergie votre chauffe-eau fonctionne-t-il?
+    QF1 = {}
+    QF1[&#34;Label&#34;] = [&#34;À l&#39;électricité&#34;,
+                    &#34;Au gaz naturel&#34;,
+                    &#34;À l&#39;huile/au mazout&#34;,
+                    &#34;Au propane&#34;,
+                    &#34;Au bois&#34;,
+                    &#34;Pas de chauffe-eau&#34;]
+    QF1[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;]
+    QF1[&#34;Description&#34;] = &#34;À quelle source d&#39;énergie votre chauffe-eau fonctionne-t-il?&#34;
+    QF1[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QF2 : Est-ce que votre chauffe-eau est central, c&#39;est-à-dire commun à deux ou plusieurs logements ou est-ce un chauffe-eau uniquement pour votre résidence?
+    QF2 = {}
+    QF2[&#34;Label&#34;] = [&#34;Central, soit pour plusieurs logements&#34;,
+                    &#34;Uniquement pour la résidence&#34;]
+    QF2[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QF2[&#34;Description&#34;] = &#34;Est-ce que votre chauffe-eau est central, c&#39;est-à-dire commun à deux ou plusieurs logements ou est-ce un chauffe-eau uniquement pour votre résidence?&#34;
+    QF2[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QF2R : Le chauffe-eau est central ou uniquement pour le lieu de résidence (Base totale)
+    QF2R = {}
+    QF2R[&#34;Label&#34;] = [&#34;Central, soit pour plusieurs logements&#34;,
+                    &#34;Uniquement pour la résidence&#34;,
+                    &#34;Pas de chauffe-eau&#34;]
+    QF2R[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;]
+    QF2R[&#34;Description&#34;] = &#34;Le chauffe-eau est central ou uniquement pour le lieu de résidence (Base totale)&#34;
+    QF2R[&#34;Type&#34;] = &#34;discrete&#34;
+
+
+    # QF3 : Quelle est la capacité du chauffe-eau?
+    QF3 = {}
+    QF3[&#34;Label&#34;] = [&#34;Chauffe-eau sans réservoir&#34;,
+                    &#34;Moins de 22 gallons (97 litres)&#34;,
+                    &#34;22 gallons (97 litres)&#34;, 
+                    &#34;Entre 23 et 39 gallons (100 et 172 litres)&#34;,
+                    &#34;40 gallons (176 litres)&#34;,
+                    &#34;41 à 59 gallons (180 à 260 litres)&#34;,
+                    &#34;60 gallons (264 litres)&#34;,
+                    &#34;Plus de 60 gallons (264 litres)&#34;]
+    QF3[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;, &#34;7&#34;]
+    QF3[&#34;Description&#34;] = &#34;Quelle est la capacité du chauffe-eau?&#34;
+    QF3[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QG1 : Avez-vous une piscine installée en permanence, qu&#39;elle soit creusée ou hors-terre?
+    QG1 = {}
+    QG1[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QG1[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QG1[&#34;Description&#34;] = &#34;Avez-vous une piscine installée en permanence, qu&#39;elle soit creusée ou hors-terre?&#34;
+    QG1[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QG1A : Avez-vous une piscine gonflable?
+    QG1A = {}
+    QG1A[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QG1A[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QG1A[&#34;Description&#34;] = &#34;Avez-vous une piscine gonflable?&#34;
+    QG1A[&#34;Type&#34;] = &#34;discrete&#34;
+    # QG2 : De quel type de piscine s&#39;agit-il?
+    QG2 = {}
+    QG2[&#34;Label&#34;] = [&#34;Une piscine hors-terre / semi-creusée&#34;,
+                    &#34;Une piscine creusée extérieure&#34;,
+                    &#34;Une piscine creusée intérieure&#34;,
+                    &#34;Une piscine hors-terre gonflable&#34;]
+    QG2[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;]
+    QG2[&#34;Description&#34;] = &#34;De quel type de piscine s&#39;agit-il?&#34;
+    QG2[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QG2R : Type de piscine (Base possède une piscine)
+
+    # QG3 : Votre filtreur est-il équipé d&#39;une minuterie?
+    QG3 = {}
+    QG3[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QG3[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QG3[&#34;Description&#34;] = &#34;Votre filtreur est-il équipé d&#39;une minuterie?&#34;
+    QG3[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QG5 : Possédez-vous une toile solaire?
+    QG5 = {}
+    QG5[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QG5[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QG5[&#34;Description&#34;] = &#34;Possédez-vous une toile solaire?&#34;
+    QG5[&#34;Type&#34;] = &#34;discrete&#34;
+    
+    # QG7 : Votre piscine est-elle chauffée (autrement que par une toile solaire)?
+    QG7 = {}
+    QG7[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QG7[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QG7[&#34;Description&#34;] = &#34;Votre piscine est-elle chauffée (autrement que par une toile solaire)?&#34;
+    QG7[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QG8M1 : De quelle façon est-elle chauffée? (Ensemble des mentions)
+    QG8M1 = {}
+    QG8M1[&#34;Label&#34;] = [&#34;Une thermopompe de piscine&#34;,
+                    &#34;Un chauffe-piscine électrique (qui n’est pas une thermopompe)&#34;,
+                    &#34;Un capteur solaire&#34;,
+                    &#34;Un chauffe-piscine au propane&#34;,
+                    &#34;Un chauffe-piscine au gaz naturel&#34;,
+                    &#34;Un chauffe-piscine au bois&#34;,
+                    &#34;Un chauffe-piscine à l’huile/mazout&#34;]
+    QG8M1[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;]
+    QG8M1[&#34;Description&#34;] = &#34;De quelle façon est-elle chauffée? (Ensemble des mentions)&#34;
+    QG8M1[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QB1M : Avez-vous un spa à votre résidence?
+    QB1M = {}
+    QB1M[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QB1M[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QB1M[&#34;Description&#34;] = &#34;Avez-vous un spa à votre résidence?&#34;
+    QB1M[&#34;Type&#34;] = &#34;discrete&#34;
+    # QB1M3 : Le spa est-il à l&#39;intérieur ou à l&#39;extérieur de la résidence?
+    QB1M3 = {}
+    QB1M3[&#34;Label&#34;] = [&#34;Intérieur&#34;,
+                    &#34;Extérieur&#34;]
+    QB1M3[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QB1M3[&#34;Description&#34;] = &#34;Le spa est-il à l&#39;intérieur ou à l&#39;extérieur de la résidence?&#34;
+    QB1M3[&#34;Type&#34;] = &#34;discrete&#34;
+    # QS1 : Au cours des 12 derniers mois, avez-vous utilisé votre spa…?
+    QS1 = {}
+    QS1[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QS1[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QS1[&#34;Description&#34;] = &#34;Au cours des 12 derniers mois, avez-vous utilisé votre spa…?&#34;
+    QS1[&#34;Type&#34;] = &#34;discrete&#34;
+    #   QS2M1R : avez-vous utilisé votre spa…?
+    QS2M1R = {}
+    QS2M1R[&#34;Label&#34;] = [&#34;Le printemps&#34;,
+                    &#34;L&#39;été&#34;,
+                    &#34;L&#39;automne&#34;,
+                    &#34;L&#39;hiver&#34;,
+                    &#34;Pas utilisé&#34;]
+    QS2M1R[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;]
+    QS2M1R[&#34;Description&#34;] = &#34;Avez-vous utilisé votre spa…? (Printemps, été, automne, hiver, pas utilisé)&#34;
+    QS2M1R[&#34;Type&#34;] = &#34;discrete&#34;
+    #   QS2M2R : avez-vous utilisé votre spa…?
+    QS2M2R = {}
+    QS2M2R[&#34;Label&#34;] = [&#34;Le printemps&#34;,
+                    &#34;L&#39;été&#34;,
+                    &#34;L&#39;automne&#34;,
+                    &#34;L&#39;hiver&#34;]
+    QS2M2R[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;]
+    QS2M2R[&#34;Description&#34;] = &#34;Avez-vous utilisé votre spa…? (Printemps, été, automne, hiver)&#34;
+    QS2M2R[&#34;Type&#34;] = &#34;discrete&#34;
+    #   QS2M3R : avez-vous utilisé votre spa…?
+    QS2M3R = {}
+    QS2M3R[&#34;Label&#34;] = [&#34;Le printemps&#34;,
+                    &#34;L&#39;été&#34;,
+                    &#34;L&#39;automne&#34;,
+                    &#34;L&#39;hiver&#34;]
+    QS2M3R[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;]
+    QS2M3R[&#34;Description&#34;] = &#34;Avez-vous utilisé votre spa…? (Printemps, été, automne, hiver)&#34;
+    QS2M3R[&#34;Type&#34;] = &#34;discrete&#34;
+
+    #   QS2M4R : avez-vous utilisé votre spa…?
+    QS2M4R = {}
+    QS2M4R[&#34;Label&#34;] = [&#34;Le printemps&#34;,
+                    &#34;L&#39;été&#34;,
+                    &#34;L&#39;automne&#34;,
+                    &#34;L&#39;hiver&#34;]
+    QS2M4R[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;]
+    QS2M4R[&#34;Description&#34;] = &#34;Avez-vous utilisé votre spa…? (Printemps, été, automne, hiver)&#34;
+    QS2M4R[&#34;Type&#34;] = &#34;discrete&#34;
+   
+    # QS3AA : Lequel des deux énoncés suivants correspond le mieux à vos habitudes durant les mois froids de la dernière année?
+    QS3AA = {}
+    QS3AA[&#34;Label&#34;] = [&#34;Je maintenais la température de mon spa constante&#34;,
+                    &#34;J’augmentais la température pour les périodes de baignade&#34;]
+    QS3AA[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QS3AA[&#34;Description&#34;] = &#34;Lequel des deux énoncés suivants correspond le mieux à vos habitudes durant les mois froids de la dernière année?&#34;
+    QS3AA[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QS3BB : Lequel des deux énoncés suivants correspond le mieux à vos habitudes durant les mois chauds de la dernière année?
+    QS3BB = {}
+    QS3BB[&#34;Label&#34;] = [&#34;Je maintenais la température de mon spa constante&#34;,
+                    &#34;J’augmentais la température pour les périodes de baignade&#34;]
+    QS3BB[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QS3BB[&#34;Description&#34;] = &#34;Lequel des deux énoncés suivants correspond le mieux à vos habitudes durant les mois chauds de la dernière année?&#34;
+    QS3BB[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QT1 : Utilisez-vous une ou des voiture(s) électrique(s) rechargeable(s), qu&#39;elle soit 100 % électrique ou hybride rechargeable, qu&#39;elle soit achetée ou louée?
+    QT1 = {}
+    QT1[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QT1[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QT1[&#34;Description&#34;] = &#34;Utilisez-vous une ou des voiture(s) électrique(s) rechargeable(s), qu&#39;elle soit 100 % électrique ou hybride rechargeable, qu&#39;elle soit achetée ou louée?&#34;
+    QT1[&#34;Type&#34;] = &#34;discrete&#34;
+    # QT2 : Combien avez-vous de voiture(s) 100 % électrique?
+    QT2 = {}
+    QT2[&#34;Label&#34;] = [&#34;Aucune&#34;,
+                    &#34;Une&#34;,
+                    &#34;Deux&#34;,
+                    &#34;Trois&#34;]
+    QT2[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;]
+    QT2[&#34;Description&#34;] = &#34;Combien avez-vous de voiture(s) 100 % électrique?&#34;
+    QT2[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QT2R : Combien avez-vous de voiture(s) 100 % électrique? (Base totale)
+    QT2R = {}
+    QT2R[&#34;Label&#34;] = [&#34;Aucune&#34;,
+                    &#34;Une&#34;,
+                    &#34;Deux&#34;,
+                    &#34;Trois&#34;]
+    QT2R[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;]
+    QT2R[&#34;Description&#34;] = &#34;Combien avez-vous de voiture(s) 100 % électrique? (Base totale)&#34;
+    QT2R[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QT3 : Combien avez-vous de voiture(s) électrique(s) hybride rechargeable?
+    QT3 = {}
+    QT3[&#34;Label&#34;] = [&#34;Aucune&#34;,
+                    &#34;Une&#34;,
+                    &#34;Deux&#34;]
+    QT3[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;]
+    QT3[&#34;Description&#34;] = &#34;Combien avez-vous de voiture(s) électrique(s) hybride rechargeable?&#34;
+    QT3[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QT3R : Combien avez-vous de voiture(s) électrique(s) hybride rechargeable? (Base totale)
+    QT3R = {}
+    QT3R[&#34;Label&#34;] = [&#34;Aucune&#34;,
+                    &#34;Une&#34;,
+                    &#34;Deux&#34;]
+    QT3R[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;]
+    QT3R[&#34;Description&#34;] = &#34;Combien avez-vous de voiture(s) électrique(s) hybride rechargeable? (Base totale)&#34;
+    QT3R[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QT2T3 : Voiture(s) électrique? (Base totale)
+    QT2T3 = {}
+    QT2T3[&#34;Label&#34;] = [&#34;Ne possède aucune voiture électrique&#34;,
+                    &#34;Possède une ou plusieurs voitures 100 % électriques&#34;,
+                    &#34;Possède une ou plusieurs voitures électriques hybrides&#34;,
+                    &#34;Possède les deux types de voitures&#34;]
+    QT2T3[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;, &#34;2&#34;, &#34;3&#34;]
+    QT2T3[&#34;Description&#34;] = &#34;Voiture(s) électrique? (Base totale)&#34;
+    QT2T3[&#34;Type&#34;] = &#34;discrete&#34;
+
+    # QT4 : Disposez-vous d&#39;une borne de recharge reliée à votre compteur d&#39;électricité?
+    QT4 = {}
+    QT4[&#34;Label&#34;] = [&#34;Oui&#34;, &#34;Non&#34;]
+    QT4[&#34;IdLabel&#34;] = [&#34;0&#34;, &#34;1&#34;]
+    QT4[&#34;Description&#34;] = &#34;Disposez-vous d&#39;une borne de recharge reliée à votre compteur d&#39;électricité?&#34;
+    QT4[&#34;Type&#34;] = &#34;discrete&#34;</code></pre>
+</details>
+<div class="desc"></div>
+<h3>Class variables</h3>
+<dl>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.APPOINT"><code class="name">var <span class="ident">APPOINT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.B2A3"><code class="name">var <span class="ident">B2A3</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.B2C2AR"><code class="name">var <span class="ident">B2C2AR</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.B2C2BR"><code class="name">var <span class="ident">B2C2BR</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.B2C2R"><code class="name">var <span class="ident">B2C2R</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.B3A2R"><code class="name">var <span class="ident">B3A2R</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.CENTRAL2"><code class="name">var <span class="ident">CENTRAL2</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.CONS_AN"><code class="name">var <span class="ident">CONS_AN</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.D11B8"><code class="name">var <span class="ident">D11B8</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.ETAGE"><code class="name">var <span class="ident">ETAGE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QA1"><code class="name">var <span class="ident">QA1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QA2"><code class="name">var <span class="ident">QA2</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QA4"><code class="name">var <span class="ident">QA4</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QA4M"><code class="name">var <span class="ident">QA4M</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QA4R"><code class="name">var <span class="ident">QA4R</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QA6M"><code class="name">var <span class="ident">QA6M</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QA6RR"><code class="name">var <span class="ident">QA6RR</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1A1"><code class="name">var <span class="ident">QB1A1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1A3"><code class="name">var <span class="ident">QB1A3</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1C1"><code class="name">var <span class="ident">QB1C1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1D1"><code class="name">var <span class="ident">QB1D1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1D2"><code class="name">var <span class="ident">QB1D2</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1E1"><code class="name">var <span class="ident">QB1E1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1F"><code class="name">var <span class="ident">QB1F</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1G"><code class="name">var <span class="ident">QB1G</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1H"><code class="name">var <span class="ident">QB1H</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1I"><code class="name">var <span class="ident">QB1I</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1I1"><code class="name">var <span class="ident">QB1I1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1I1R"><code class="name">var <span class="ident">QB1I1R</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1M"><code class="name">var <span class="ident">QB1M</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1M3"><code class="name">var <span class="ident">QB1M3</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1N"><code class="name">var <span class="ident">QB1N</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1RR"><code class="name">var <span class="ident">QB1RR</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1S"><code class="name">var <span class="ident">QB1S</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB2"><code class="name">var <span class="ident">QB2</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB2C1"><code class="name">var <span class="ident">QB2C1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB2D1"><code class="name">var <span class="ident">QB2D1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB2D1R"><code class="name">var <span class="ident">QB2D1R</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB2I1"><code class="name">var <span class="ident">QB2I1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB2I2"><code class="name">var <span class="ident">QB2I2</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB2M2R"><code class="name">var <span class="ident">QB2M2R</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB2X6"><code class="name">var <span class="ident">QB2X6</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB2X8R"><code class="name">var <span class="ident">QB2X8R</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QBM1"><code class="name">var <span class="ident">QBM1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QC1R"><code class="name">var <span class="ident">QC1R</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QC21A"><code class="name">var <span class="ident">QC21A</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QC7A"><code class="name">var <span class="ident">QC7A</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QC9A"><code class="name">var <span class="ident">QC9A</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD11A"><code class="name">var <span class="ident">QD11A</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD11BM1"><code class="name">var <span class="ident">QD11BM1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD11BM1R"><code class="name">var <span class="ident">QD11BM1R</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD1A"><code class="name">var <span class="ident">QD1A</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD1B"><code class="name">var <span class="ident">QD1B</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD1C"><code class="name">var <span class="ident">QD1C</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD1D"><code class="name">var <span class="ident">QD1D</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD1E"><code class="name">var <span class="ident">QD1E</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD1F"><code class="name">var <span class="ident">QD1F</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD1G"><code class="name">var <span class="ident">QD1G</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD1H"><code class="name">var <span class="ident">QD1H</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD1I"><code class="name">var <span class="ident">QD1I</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD1J"><code class="name">var <span class="ident">QD1J</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD2F2"><code class="name">var <span class="ident">QD2F2</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD2G"><code class="name">var <span class="ident">QD2G</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD2H"><code class="name">var <span class="ident">QD2H</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD2I"><code class="name">var <span class="ident">QD2I</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD4A"><code class="name">var <span class="ident">QD4A</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD4C"><code class="name">var <span class="ident">QD4C</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD4C1"><code class="name">var <span class="ident">QD4C1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD6"><code class="name">var <span class="ident">QD6</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD6A"><code class="name">var <span class="ident">QD6A</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD6B"><code class="name">var <span class="ident">QD6B</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD6C"><code class="name">var <span class="ident">QD6C</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD6C1"><code class="name">var <span class="ident">QD6C1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD7F1"><code class="name">var <span class="ident">QD7F1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD7G1"><code class="name">var <span class="ident">QD7G1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD7H3"><code class="name">var <span class="ident">QD7H3</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QF1"><code class="name">var <span class="ident">QF1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QF2"><code class="name">var <span class="ident">QF2</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QF2R"><code class="name">var <span class="ident">QF2R</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QF3"><code class="name">var <span class="ident">QF3</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QG1"><code class="name">var <span class="ident">QG1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QG1A"><code class="name">var <span class="ident">QG1A</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QG2"><code class="name">var <span class="ident">QG2</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QG3"><code class="name">var <span class="ident">QG3</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QG5"><code class="name">var <span class="ident">QG5</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QG7"><code class="name">var <span class="ident">QG7</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QG8M1"><code class="name">var <span class="ident">QG8M1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QH1"><code class="name">var <span class="ident">QH1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QH2"><code class="name">var <span class="ident">QH2</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QH4"><code class="name">var <span class="ident">QH4</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QL1"><code class="name">var <span class="ident">QL1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QL3A"><code class="name">var <span class="ident">QL3A</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QL4A"><code class="name">var <span class="ident">QL4A</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QL5A"><code class="name">var <span class="ident">QL5A</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QL5BA"><code class="name">var <span class="ident">QL5BA</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QM1A"><code class="name">var <span class="ident">QM1A</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QM1AA"><code class="name">var <span class="ident">QM1AA</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QM1B"><code class="name">var <span class="ident">QM1B</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QS1"><code class="name">var <span class="ident">QS1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QS2M1R"><code class="name">var <span class="ident">QS2M1R</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QS2M2R"><code class="name">var <span class="ident">QS2M2R</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QS2M3R"><code class="name">var <span class="ident">QS2M3R</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QS2M4R"><code class="name">var <span class="ident">QS2M4R</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QS3AA"><code class="name">var <span class="ident">QS3AA</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QS3BB"><code class="name">var <span class="ident">QS3BB</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QT1"><code class="name">var <span class="ident">QT1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QT2"><code class="name">var <span class="ident">QT2</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QT2R"><code class="name">var <span class="ident">QT2R</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QT2T3"><code class="name">var <span class="ident">QT2T3</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QT3"><code class="name">var <span class="ident">QT3</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QT3R"><code class="name">var <span class="ident">QT3R</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QT4"><code class="name">var <span class="ident">QT4</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.SOURC"><code class="name">var <span class="ident">SOURC</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.SUPERTOT"><code class="name">var <span class="ident">SUPERTOT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.SYSTEM1R"><code class="name">var <span class="ident">SYSTEM1R</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.SYSTEM2"><code class="name">var <span class="ident">SYSTEM2</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.SYSTEM2R"><code class="name">var <span class="ident">SYSTEM2R</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.TERR_HQ"><code class="name">var <span class="ident">TERR_HQ</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.ZONE"><code class="name">var <span class="ident">ZONE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr" href="index.html">LTE-Sampler-Residential.src.utils.euemr</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr">Attributs_EUEMr</a></code></h4>
+<ul class="two-column">
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.APPOINT" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.APPOINT">APPOINT</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.B2A3" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.B2A3">B2A3</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.B2C2AR" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.B2C2AR">B2C2AR</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.B2C2BR" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.B2C2BR">B2C2BR</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.B2C2R" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.B2C2R">B2C2R</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.B3A2R" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.B3A2R">B3A2R</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.CENTRAL2" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.CENTRAL2">CENTRAL2</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.CONS_AN" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.CONS_AN">CONS_AN</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.D11B8" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.D11B8">D11B8</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.ETAGE" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.ETAGE">ETAGE</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QA1" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QA1">QA1</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QA2" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QA2">QA2</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QA4" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QA4">QA4</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QA4M" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QA4M">QA4M</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QA4R" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QA4R">QA4R</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QA6M" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QA6M">QA6M</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QA6RR" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QA6RR">QA6RR</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB1A1" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1A1">QB1A1</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB1A3" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1A3">QB1A3</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB1C1" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1C1">QB1C1</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB1D1" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1D1">QB1D1</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB1D2" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1D2">QB1D2</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB1E1" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1E1">QB1E1</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB1F" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1F">QB1F</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB1G" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1G">QB1G</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB1H" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1H">QB1H</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB1I" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1I">QB1I</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB1I1" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1I1">QB1I1</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB1I1R" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1I1R">QB1I1R</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB1M" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1M">QB1M</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB1M3" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1M3">QB1M3</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB1N" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1N">QB1N</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB1RR" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1RR">QB1RR</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB1S" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB1S">QB1S</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB2" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB2">QB2</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB2C1" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB2C1">QB2C1</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB2D1" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB2D1">QB2D1</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB2D1R" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB2D1R">QB2D1R</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB2I1" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB2I1">QB2I1</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB2I2" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB2I2">QB2I2</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB2M2R" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB2M2R">QB2M2R</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB2X6" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB2X6">QB2X6</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QB2X8R" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QB2X8R">QB2X8R</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QBM1" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QBM1">QBM1</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QC1R" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QC1R">QC1R</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QC21A" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QC21A">QC21A</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QC7A" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QC7A">QC7A</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QC9A" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QC9A">QC9A</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD11A" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD11A">QD11A</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD11BM1" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD11BM1">QD11BM1</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD11BM1R" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD11BM1R">QD11BM1R</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD1A" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD1A">QD1A</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD1B" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD1B">QD1B</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD1C" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD1C">QD1C</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD1D" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD1D">QD1D</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD1E" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD1E">QD1E</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD1F" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD1F">QD1F</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD1G" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD1G">QD1G</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD1H" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD1H">QD1H</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD1I" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD1I">QD1I</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD1J" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD1J">QD1J</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD2F2" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD2F2">QD2F2</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD2G" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD2G">QD2G</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD2H" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD2H">QD2H</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD2I" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD2I">QD2I</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD4A" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD4A">QD4A</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD4C" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD4C">QD4C</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD4C1" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD4C1">QD4C1</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD6" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD6">QD6</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD6A" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD6A">QD6A</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD6B" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD6B">QD6B</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD6C" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD6C">QD6C</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD6C1" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD6C1">QD6C1</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD7F1" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD7F1">QD7F1</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD7G1" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD7G1">QD7G1</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QD7H3" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QD7H3">QD7H3</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QF1" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QF1">QF1</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QF2" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QF2">QF2</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QF2R" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QF2R">QF2R</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QF3" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QF3">QF3</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QG1" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QG1">QG1</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QG1A" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QG1A">QG1A</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QG2" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QG2">QG2</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QG3" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QG3">QG3</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QG5" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QG5">QG5</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QG7" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QG7">QG7</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QG8M1" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QG8M1">QG8M1</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QH1" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QH1">QH1</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QH2" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QH2">QH2</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QH4" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QH4">QH4</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QL1" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QL1">QL1</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QL3A" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QL3A">QL3A</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QL4A" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QL4A">QL4A</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QL5A" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QL5A">QL5A</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QL5BA" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QL5BA">QL5BA</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QM1A" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QM1A">QM1A</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QM1AA" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QM1AA">QM1AA</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QM1B" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QM1B">QM1B</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QS1" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QS1">QS1</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QS2M1R" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QS2M1R">QS2M1R</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QS2M2R" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QS2M2R">QS2M2R</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QS2M3R" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QS2M3R">QS2M3R</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QS2M4R" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QS2M4R">QS2M4R</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QS3AA" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QS3AA">QS3AA</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QS3BB" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QS3BB">QS3BB</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QT1" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QT1">QT1</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QT2" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QT2">QT2</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QT2R" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QT2R">QT2R</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QT2T3" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QT2T3">QT2T3</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QT3" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QT3">QT3</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QT3R" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QT3R">QT3R</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.QT4" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.QT4">QT4</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.SOURC" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.SOURC">SOURC</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.SUPERTOT" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.SUPERTOT">SUPERTOT</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.SYSTEM1R" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.SYSTEM1R">SYSTEM1R</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.SYSTEM2" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.SYSTEM2">SYSTEM2</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.SYSTEM2R" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.SYSTEM2R">SYSTEM2R</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.TERR_HQ" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.TERR_HQ">TERR_HQ</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attributs_EUEMr.ZONE" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMRArg.Attribut_EUEMr.ZONE">ZONE</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

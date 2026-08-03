@@ -1,0 +1,247 @@
+# -*- coding: utf-8 -*-
+import functools
+
+import pyagrum as gum
+from src.utils.sampler.utils import HConsignes, chunks
+from src.utils.sampler.bayesian_network import bayesian_network
+from pathlib import Path
+import pandas as pd
+import numpy as np
+import time
+from datetime import date
+from datetime import timedelta
+from src.utils.sampler.Mapping import BuildstockBatchArguments, MapHPXML
+from src.utils.hpxml.hpxml_columns import stabilize_export
+import argparse, os, json
+from joblib import Parallel, delayed, parallel_backend
+from itertools import chain
+
+class Sampler():
+    LOGO = "   _____ _           ____                       _____                       __\n"\
+           "  / ___/(_)___ ___  / __ \____ ___________     / ___/____ _____ ___  ____  / /__  _____\n"\
+           "  \__ \/ / __ `__ \/ /_/ / __ `/ ___/ ___/     \__ \/ __ `/ __ `__ \/ __ \/ / _ \/ ___/\n"\
+           " ___/ / / / / / / / ____/ /_/ / /  / /__      ___/ / /_/ / / / / / / /_/ / /  __/ /    \n"\
+           "/____/_/_/ /_/ /_/_/    \__,_/_/   \___/     /____/\__,_/_/ /_/ /_/ .___/_/\___/_/     \n"\
+           "                                                                 /_/                   "
+    def __init__(self, bayesian_network_path, **kwargs):
+        model = bayesian_network()
+        model.Load_BN(bayesian_network_path)
+        self.bn_filename = Path(bayesian_network_path).name
+        self.bn = model.bn
+        self.lst_NOEUD, self.LIST_Dict = model.getBNStructure()
+
+        if "seed" in kwargs:
+            self._seed = np.random.default_rng(seed=kwargs["seed"])
+        else:
+            self._seed = None
+
+        self.randGenerator = np.random.default_rng(self._seed)
+        self._parallel = {'prefer': 'threads', 'n_jobs': int(max((os.cpu_count() - 8) / 1,1)), 'verbose': 10,'inner_max_num_threads': 1}
+
+    def __getstate__(self):
+        """Exclude the Bayesian network from the pickle sent to loky workers.
+
+        run_parallel() forces the loky (process) backend, so `self` is pickled to
+        each worker. pyAgrum cannot *un*pickle a discrete variable that has only
+        one label, and Territoire_HQ is degenerate at {Calgary} since the Alberta
+        re-calibration -- the worker died with
+        "Invalid argument: Not enough labels in var_description Territoire_HQ{Calgary}",
+        surfacing as BrokenProcessPool. The workers only run run_hors_bn
+        (resstock sampling + HPXML mapping), which never reads self.bn: BN
+        sampling has already finished in the parent. Dropping it fixes the crash
+        and shrinks the payload.
+        """
+        state = self.__dict__.copy()
+        state["bn"] = None
+        return state
+
+    def __setstate__(self, state):
+        self.__dict__.update(state)
+
+    def draw_GUM_Sample(self, number, Multiplicateur=1, evs={}):
+        """
+        Generates samples from a Bayesian network using the PyAgrum library.
+
+        Parameters:
+            number (int): The base number of samples to generate.
+            Multiplicateur (float, optional): A multiplier to adjust the number of samples. Default is 1.
+            evs (dict, optional): A dictionary of evidence variables to condition the sampling on. Default is an empty dictionary.
+
+        Returns:
+            pandas.DataFrame: A DataFrame containing the generated samples.
+        """
+
+        g = gum.BNDatabaseGenerator(self.bn)
+        g.setTopologicalVarOrder()
+
+        if int(number * Multiplicateur) == 0:
+            number = 1
+        else:
+            number = int(number * Multiplicateur)
+        g.drawSamples(number, evs)
+        return g.to_pandas()
+
+    def GUM_Sampling(self, numberOfSamples, evs={}):
+        """
+        Perform sampling to generate a specified number of samples.
+        Parameters:
+            numberOfSamples (int): The total number of samples to generate.
+            evs (dict, optional): A dictionary of environmental variables to influence the sampling process. Defaults to an empty dictionary.
+        Returns:
+            pd.DataFrame: A DataFrame containing the sampled data, reset to a new index.
+        Notes:
+            The function first attempts to generate samples using the draw_GUM_Sample method.
+            If the initial sample size is insufficient, it continues to sample until the desired number of samples is reached.
+        """
+
+        dfSampling = pd.DataFrame()
+        boSampling = False  # boolean flag for sampling completion
+
+        dfTemp = self.draw_GUM_Sample(numberOfSamples, 1, evs=evs)
+
+        if len(dfTemp) >= numberOfSamples:
+            dfSampling = dfTemp.sample(n=numberOfSamples, random_state=self._seed)
+            boSampling = True
+
+        else:
+            dfSampling = pd.concat([dfSampling, dfTemp])
+            numberOfSamples_restant = numberOfSamples - len(dfSampling)
+            if len(dfSampling) > 0:
+                Fact = len(dfSampling) / numberOfSamples
+            else:
+                Fact = 5
+
+        while not boSampling:
+            dfTemp = self.draw_GUM_Sample(numberOfSamples_restant, min(1, max(5, Fact)), evs=evs)
+            if len(dfTemp) >= numberOfSamples_restant:
+                dfSampling = pd.concat([dfSampling, dfTemp.sample(numberOfSamples_restant, random_state=self._seed)])
+                boSampling = True
+
+            else:
+                dfSampling = pd.concat([dfSampling, dfTemp])
+                numberOfSamples_restant = numberOfSamples - len(dfSampling)
+        return dfSampling.reset_index(drop=True)
+    
+    def resstock_args_sampling(self, lst_dct_args={}):
+
+        BBA = BuildstockBatchArguments()
+
+        lst_dct_args2 = []
+        for dctSampler in lst_dct_args:
+            dct_args2 = {}
+            for Attributs in BBA.listAttributs:
+                # For CSV tables: load once and reuse a structured cache
+                dct_dependancy = BBA.dct_housing_characteristics[Attributs]["Dependency"]
+                dct_option = BBA.dct_housing_characteristics[Attributs]["Option"]
+                df = BBA.dct_housing_characteristics[Attributs]["Table"]
+
+
+                if len(dct_dependancy) == 0:
+                    # If there are no dependencies, sample directly from the options
+                    filtered_df = df
+                else:
+                    filter_dict = {key:{**dctSampler, **dct_args2}[value] for key, value in dct_dependancy.items()}
+                    # Dynamic filtering based on the dictionary
+                    
+                    # Initialize a boolean index
+                    filtered_index = pd.Series([True] * len(df), index=df.index)
+                    # Loop through filters and update the index
+                    for col, values in filter_dict.items():
+                        if isinstance(values, list):
+                            filtered_index = filtered_index & (df[col].isin(values))
+                        else:
+                            filtered_index = filtered_index & (df[col] == values)
+
+                    # Apply the filtered index to the DataFrame
+                    filtered_df = df[filtered_index]
+                
+                try:
+                    sumlst = sum(filtered_df[dct_option.keys()].values.tolist()[0])
+                    listProb = [k/sumlst for k in filtered_df[dct_option.keys()].values.tolist()[0]]
+                except:
+                    raise Exception("Error in sampling for attribute:" + Attributs)
+                
+
+                choiceStr = self.randGenerator.choice(list(dct_option.keys()),p=listProb) #TODO send to stochastic profile generator
+                if "Option=" in str(choiceStr):
+                    dct_args2[Attributs] = choiceStr.split("Option=")[-1]
+                    if Attributs in ["Geometry Stories",
+                                     "Geometry Building Number Units"]:
+                        dct_args2[Attributs] = int(dct_args2[Attributs])
+            
+
+            # Add temperature schedule change hours (h1 to h4)
+            h1, h2, h3, h4= HConsignes()
+            dct_args2["Tconsignes_chauffage_H1"] = h1
+            dct_args2["Tconsignes_chauffage_H2"] = h2
+            dct_args2["Tconsignes_chauffage_H3"] = h3
+            dct_args2["Tconsignes_chauffage_H4"] = h4
+
+            lst_dct_args2.append(dct_args2)
+        return lst_dct_args2
+
+    def run_hors_bn(self, lst_dct_args):
+        # Add variables that are not part of the BN
+        lst_dct_args2 = self.resstock_args_sampling(lst_dct_args)
+        lst_dct_args = [d2 | d1 for d1, d2 in zip(lst_dct_args, lst_dct_args2)]  # lst_dct_args prioritaire
+        # Map to HPXML arguments
+        lst_dct_HPXML = MapHPXML().run(lst_dct_args)
+        return lst_dct_args, lst_dct_HPXML
+
+        return self
+
+    def run_parallel(self, Nombre_de_Samples,**kwargs):
+        start_time = time.perf_counter()
+        print(self.LOGO)
+        print("------------------------------------------------------")
+        print("Sampling {} with {} target samples".format(self.bn_filename, Nombre_de_Samples))
+
+        # Load the Bayesian Network from file
+        Evidence = kwargs["ev"]
+
+        # Perform sampling (before any persistence/export)
+        df = self.GUM_Sampling(Nombre_de_Samples, evs=Evidence)
+        lst_dct_args = df.to_dict(orient='records')
+        chunk_size = int(len(lst_dct_args) / self._parallel['n_jobs'])
+
+        with parallel_backend("loky", inner_max_num_threads=self._parallel['n_jobs']):
+            sampling_function = map(delayed(functools.partial(self.run_hors_bn)), list(chunks(lst_dct_args, chunk_size)))
+            results = Parallel(**self._parallel)(sampling_function)
+
+        self.lst_dct_args = list(chain(*[r[0] for r in results]))
+        self.lst_dct_HPXML = list(chain(*[r[1] for r in results]))
+        duration = timedelta(seconds=time.perf_counter() - start_time)
+        print("Sampling Terminé ! - Nombre d'attributs HPXML: {}\nDurée Sampling : {}".format(len(self.lst_dct_HPXML[0].keys()), duration))
+        print("------------------------------------------------------\n")
+        return self
+
+    def to_df(self):
+        dfAll = stabilize_export(pd.DataFrame(self.lst_dct_args),
+                                 pd.DataFrame(self.lst_dct_HPXML))
+        return dfAll
+
+    def to_csv(self,output_path):
+        dfAll = self.to_df()
+        dfAll.to_csv(output_path, index=False)
+
+def main():
+
+    parser = argparse.ArgumentParser(description="Bayesian network sampler for SimParc")
+    parser.add_argument("bayesian_network_filepath", type=str, help="Path to the Bayesian network file. (.XDSL)")
+    parser.add_argument("samples_number", type=int, help="Number of samples to generate. (Integer)")
+    parser.add_argument("output_file",type=str,help="Path for the outputfile (.csv)")
+    parser.add_argument('-ev','--evidence',type=json.loads,default={}, nargs='?',help='Evidences passed to the Bayesian network.')
+    args = parser.parse_args()
+
+    today = date.today()
+    if args.output_file is None:
+        args.output_file = str(args.samples_number) + "_sample_buildings_{}.csv".format(today.isoformat())
+    file_path = args.bayesian_network_filepath
+
+    results = Sampler(file_path).run_parallel(args.samples_number,ev=args.evidence).to_df()
+    results.to_csv(args.output_file, index=False)
+
+    return 0
+
+if __name__ == "__main__":
+    main()

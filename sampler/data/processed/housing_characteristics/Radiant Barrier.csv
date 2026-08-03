@@ -1,0 +1,6 @@
+Dependency=Type_Logement;Option=None;Option=Yes;Option=No
+Collective;1;0;0
+Duplex;1;0;0
+Maison en rangee;0;0;1
+Maison individuelle;0;0;1
+Triplex;1;0;0

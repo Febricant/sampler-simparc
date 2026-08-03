@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>LTE-Sampler-Residential - Présentation</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+:root {
+  --bg:#0f172a;
+  --panel:#1e293b;
+  --panel-alt:#24324a;
+  --accent:#38bdf8;
+  --accent2:#fbbf24;
+  --text:#f1f5f9;
+  --muted:#94a3b8;
+  --code:#0d1117;
+  --ok:#16a34a;
+  --warn:#d97706;
+  --danger:#dc2626;
+  --border:#334155;
+}
+[data-theme="light"] {
+  --bg:#f1f5f9;
+  --panel:#ffffff;
+  --panel-alt:#f8fafc;
+  --text:#0f172a;
+  --muted:#64748b;
+  --code:#1e293b;
+  --border:#cbd5e1;
+}
+*{box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif;}
+body{margin:0;background:var(--bg);color:var(--text);line-height:1.5;scroll-behavior:smooth;}
+header{padding:3rem 1.5rem 2rem;text-align:center;background:linear-gradient(135deg,#0f172a,#1e293b 55%,#0f172a);}
+h1{margin:0;font-size:2.2rem;color:var(--accent);}
+h2{color:var(--accent2);margin-top:2.2rem;border-left:6px solid var(--accent2);padding-left:.6rem;scroll-margin-top:90px;position:relative;}
+p,li{max-width:1100px;}
+a{color:var(--accent);}
+.container{max-width:1250px;margin:0 auto;padding:0 1.5rem 3rem;}
+.grid{display:grid;gap:1.2rem;}
+@media(min-width:900px){
+  .cols-3{grid-template-columns:repeat(3,1fr);}
+  .cols-2{grid-template-columns:repeat(2,1fr);}
+}
+.panel{background:var(--panel);padding:1rem 1.1rem;border:1px solid var(--border);border-radius:10px;box-shadow:0 4px 18px -6px #0002;position:relative;}
+.panel.alt{background:var(--panel-alt);}
+.small{font-size:.85rem;color:var(--muted);}
+code,pre{font-family:ui-monospace,Consolas,Menlo,monospace;font-size:.85rem;border-radius:6px;}
+pre{background:var(--code);color:var(--text);padding:1rem;overflow:auto;border:1px solid #1f2937;max-height:360px;}
+hr{border:none;border-top:1px solid var(--border);margin:3rem 0;}
+#toc a{text-decoration:none;display:block;padding:.4rem .6rem;border-radius:6px;font-size:.85rem;color:var(--text);border:1px solid transparent;}
+#toc a.active{background:var(--accent);color:#00263a;font-weight:600;}
+#toc a:hover{background:var(--panel-alt);}
+footer{padding:2.5rem 1.5rem;text-align:center;font-size:.75rem;color:var(--muted);}
+.highlight{color:var(--accent2);font-weight:600;}
+.warning{color:var(--warn);font-weight:600;}
+.success{color:var(--ok);font-weight:600;}
+table{border-collapse:collapse;width:100%;font-size:.8rem;}
+th,td{border:1px solid var(--border);padding:.55rem .6rem;text-align:left;vertical-align:top;}
+th{background:var(--panel-alt);}
+tr:nth-child(even) td{background:rgba(255,255,255,0.02);}
+.note{border-left:4px solid var(--accent);background:var(--panel-alt);padding:.7rem 1rem;border-radius:4px;margin:1rem 0;font-size:.85rem;}
+kbd{background:var(--panel-alt);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:.65rem;}
+.anchor{visibility:hidden;margin-left:.3rem;font-size:.75rem;}
+h2:hover .anchor{visibility:visible;}
+#topbar{position:sticky;top:0;z-index:50;background:var(--panel);display:flex;gap:.8rem;align-items:center;padding:.6rem 1rem;border-bottom:1px solid var(--border);}
+#topbar button,#topbar select{background:var(--panel-alt);color:var(--text);border:1px solid var(--border);padding:.45rem .8rem;border-radius:6px;font-size:.75rem;cursor:pointer;}
+#topbar button:hover{background:var(--accent);color:#06202c;}
+#searchSections{flex:1;min-width:140px;}
+.flex-row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;}
+.badge{padding:.2rem .6rem;border-radius:1rem;background:var(--accent);color:#042c3a;font-size:.65rem;font-weight:600;margin-left:.4rem;}
+.inline-actions{position:absolute;top:.6rem;right:.6rem;display:flex;gap:.4rem;}
+.inline-actions button{background:var(--panel-alt);border:1px solid var(--border);color:var(--text);font-size:.6rem;padding:.25rem .5rem;border-radius:4px;cursor:pointer;}
+.inline-actions button:hover{background:var(--accent);color:#042c3a;}
+.collapsible{cursor:pointer;user-select:none;}
+.collapsible::before{content:"▸";display:inline-block;margin-right:.4rem;transition:.2s;}
+.collapsible.open::before{content:"▾";}
+.hidden{display:none !important;}
+.tag{display:inline-block;background:var(--panel-alt);color:var(--accent2);padding:.25rem .55rem;border-radius:4px;font-size:.55rem;letter-spacing:.5px;margin:0 .35rem .35rem 0;font-weight:600;}
+#evidenceForm input,#evidenceForm select,#evidenceForm textarea{width:100%;padding:.5rem .6rem;margin:.2rem 0 .7rem;background:var(--panel-alt);border:1px solid var(--border);color:var(--text);border-radius:6px;font-size:.8rem;}
+#evidenceItems{margin-top:.5rem;display:flex;flex-direction:column;gap:.5rem;}
+.evidence-row{display:grid;grid-template-columns:repeat(5,1fr) auto;gap:.4rem;}
+@media(max-width:1000px){.evidence-row{grid-template-columns:repeat(2,1fr) auto;}}
+.evidence-row input{margin:0;}
+.evidence-row button{background:var(--danger);color:#fff;border:none;padding:.4rem .6rem;border-radius:4px;font-size:.6rem;cursor:pointer;}
+.evidence-row button:hover{opacity:.85;}
+#sampleOutput{font-family:ui-monospace,Consolas,monospace;font-size:.75rem;white-space:pre;max-height:250px;overflow:auto;background:var(--code);padding:.7rem;border:1px solid var(--border);border-radius:6px;}
+.button-primary{background:var(--accent);color:#06202c !important;font-weight:600;border:1px solid var(--accent);}
+.button-primary:hover{filter:brightness(1.1);}
+.filter-box{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.6rem;}
+.filter-box input{padding:.45rem .6rem;border:1px solid var(--border);border-radius:6px;background:var(--panel-alt);color:var(--text);font-size:.75rem;}
+.fade-in{animation:fade .5s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+#scrollTop{position:fixed;bottom:18px;right:18px;background:var(--accent2);color:#3a2600;border:none;padding:.6rem .8rem;font-size:.8rem;border-radius:8px;cursor:pointer;display:none;box-shadow:0 4px 12px -4px #0008;}
+#scrollTop:hover{filter:brightness(1.15);}
+</style>
+</head>
+<body>
+<header>
+  <h1>LTE-Sampler-Residential</h1>
+  <p>Réseau bayésien → Échantillonnage → Enrichissement → Mapping HPXML → Export & Tableau de bord</p>
+  <p class="small">Version 1.0 · Python 3.11 · Dernière génération: <script>document.write(new Date().toISOString().substring(0,10));</script></p>
+</header>
+
+<div id="topbar">
+  <button id="themeToggle" title="Basculer thème">🌗 Thème</button>
+  <input id="searchSections" placeholder="Rechercher une section (titre / mot-clé)..." />
+  <select id="quickJump" title="Aller à la section"></select>
+  <button id="collapseAll" title="Réduire tout">Réduire</button>
+  <button id="expandAll" title="Déplier tout">Déplier</button>
+  <button id="exportEvidence" title="Exporter Evidence JSON">Exporter Evidence</button>
+</div>
+
+<div class="container">
+  <nav id="toc" class="panel">
+    <strong>Navigation</strong>
+    <a href="#objectifs">1. Objectifs</a>
+    <a href="#donnees">2. Données & BN</a>
+    <a href="#architecture">3. Architecture</a>
+    <a href="#pipeline">4. Pipeline</a>
+    <a href="#mapping">5. Mapping HPXML</a>
+    <a href="#dashboard">6. Dashboard Streamlit</a>
+    <a href="#exemples">7. Exemples Code</a>
+    <a href="#sorties">8. Sorties Générées</a>
+    <a href="#qualite">9. Qualité & Caching</a>
+    <a href="#ameliorations">10. Améliorations Futures</a>
+    <a href="#resume">11. Résumé</a>
+  </nav>
+
+  <!-- INTERACTIVE DASHBOARD SECTION -->
+  <section id="dashboard-interactif">
+    <h2>Dashboard Interactif (Client-Side)<span class="anchor">#</span></h2>
+    <div class="grid cols-2">
+      <div class="panel alt fade-in">
+        <h3 class="collapsible">Formulaire Evidence (Scénario de Référence) <span class="badge">Simulation</span></h3>
+        <div class="collapsible-content">
+          <form id="evidenceForm" onsubmit="return false;">
+            <div id="evidenceItems"></div>
+            <button type="button" class="button-primary" id="addEvidence">Ajouter un attribut</button>
+            <button type="button" id="generateSample">Générer échantillon (pseudo)</button>
+            <textarea id="evidenceJSON" rows="5" placeholder="Evidence JSON généré ici..."></textarea>
+          </form>
+          <div class="note">Cette simulation ne remplace pas l'échantillonnage serveur réel (pyAgrum). Elle génère un exemple pseudo-aléatoire local pour visualiser le format.</div>
+        </div>
+        <div class="inline-actions">
+          <button data-action="clear-evidence">Reset</button>
+        </div>
+      </div>
+      <div class="panel fade-in">
+        <h3 class="collapsible">Résultat Échantillon (Pseudo) & Statistiques</h3>
+        <div class="collapsible-content">
+          <div class="filter-box">
+            <input id="sampleFilter" placeholder="Filtrer clé..." />
+            <input id="sampleValueFilter" placeholder="Filtrer valeur..." />
+            <button id="downloadSample" class="button-primary" type="button">Télécharger JSON</button>
+          </div>
+          <pre id="sampleOutput">Aucun échantillon généré.</pre>
+          <div id="sampleStats" class="small muted"></div>
+        </div>
+        <div class="inline-actions">
+          <button data-action="clear-sample">Effacer</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- END INTERACTIVE DASHBOARD SECTION -->
+
+  <section id="objectifs">
+    <h2>1. Objectifs<span class="anchor">#</span></h2>
+    <div class="grid cols-2">
+      <div class="panel">
+        <ul>
+          <li>Échantillonner des caractéristiques résidentielles cohérentes (EUEMr 2022).</li>
+          <li>Utiliser un <span class="highlight">réseau bayésien</span> pour capturer dépendances entre variables.</li>
+          <li>Ajouter variables exogènes (hors BN).</li>
+          <li>Mapper vers un format <span class="highlight">HPXML</span> standard.</li>
+          <li>Fournir une UI pour inspection & export CSV.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <p class="status">Bénéfices</p>
+        <ul>
+          <li>Génération reproductible & contrôlable.</li>
+          <li>Intégration prête pour pipeline simulation énergie.</li>
+          <li>Extensible (ajout de noeuds, mappings, validations).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="donnees">
+    <h2>2. Données & Réseau Bayésien<span class="anchor">#</span></h2>
+    <div class="panel">
+      <p>Le réseau (XDSL) encode distributions conditionnelles (CPT) pour les attributs résidences: type logement, occupation, enveloppe, systèmes, etc.</p>
+      <table>
+        <thead><tr><th>Élément</th><th>Description</th><th>Format</th></tr></thead>
+        <tbody>
+          <tr><td>BN_EUEMr.XDSL</td><td>Réseau bayésien sérialisé</td><td>.XDSL</td></tr>
+          <tr><td>Data_description.csv</td><td>Métadonnées variables</td><td>.csv</td></tr>
+        </tbody>
+      </table>
+      <div class="note">Extensions possibles: ajout de nouvelles variables climatiques, segmentation régionale, distributions temporelles.</div>
+    </div>
+  </section>
+
+  <section id="architecture">
+    <h2>3. Architecture<span class="anchor">#</span></h2>
+    <div class="grid cols-3">
+      <div class="panel">
+        <strong>Sampler</strong>
+        <ul><li>Chargement BN</li><li>Échantillonnage conditionnel (Evidence)</li></ul>
+      </div>
+      <div class="panel">
+        <strong>BuildstockBatchArguments</strong>
+        <ul><li>Variables additionnelles</li><li>Distribution pseudo-aléatoire</li></ul>
+      </div>
+      <div class="panel">
+        <strong>MapHPXML</strong>
+        <ul><li>Transformation attribut → HPXML args</li><li>Normalisation / fusion</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="pipeline">
+    <h2>4. Pipeline<span class="anchor">#</span></h2>
+    <ol class="panel">
+      <li>Charger BN (.XDSL)</li>
+      <li>Définir Evidence (optionnel)</li>
+      <li>Échantillonner → DataFrame</li>
+      <li>Ajouter variables hors BN</li>
+      <li>Mapper vers HPXML</li>
+      <li>Fusionner & exporter CSV</li>
+    </ol>
+  </section>
+
+  <section id="mapping">
+    <h2>5. Mapping HPXML<span class="anchor">#</span></h2>
+    <div class="panel">
+      <p>Le mapping normalise les champs internes vers les paramètres attendus par moteurs ou pipelines HPXML.</p>
+      <ul>
+        <li>Correspondance clé interne → balise HPXML</li>
+        <li>Contrôle de complétude (nombre d'attributs attendus)</li>
+        <li>Préparation export batch</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="dashboard">
+    <h2>6. Dashboard Streamlit<span class="anchor">#</span></h2>
+    <div class="grid cols-2">
+      <div class="panel">
+        <ul>
+          <li>Sélecteur de pages (Échantillonneur / BN)</li>
+          <li>Tables (data/output) explorables</li>
+          <li>Visualisation BN différée (checkbox + cache)</li>
+          <li>Colorisation DataFrame (gradient numeric)</li>
+          <li>Téléchargement CSV</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <p class="warning">Performance</p>
+        <ul>
+          <li>Caching: <code>@st.cache_resource</code> & <code>@st.cache_data</code></li>
+          <li>SVG BN généré sur demande</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="exemples">
+    <h2>7. Exemples Code<span class="anchor">#</span></h2>
+    <div class="panel">
+      <pre><code># Chargement BN
+sampler = Sampler()
+sampler.Load_BN("data/processed/bayesian_network/BN_EUEMr.XDSL")
+
+# Evidence (optionnel)
+evidence = {
+    # "Type_Logement": "Maison en rangee",
+    # "Nombre_Pieces": "1"
+}
+
+# Échantillonnage
+df_bn = sampler.do_Sampling(200, evs=evidence)
+
+# Variables hors BN
+bba = BuildstockBatchArguments()
+ext_vars = bba.sampling(df_bn.to_dict("records"))
+merged = [{**e, **b} for e, b in zip(ext_vars, df_bn.to_dict("records"))]
+
+# Mapping HPXML
+mapper = MapHPXML()
+mapped = mapper.run(merged)</code></pre>
+    </div>
+  </section>
+
+  <section id="sorties">
+    <h2>8. Sorties Générées<span class="anchor">#</span></h2>
+    <div class="panel">
+      <div class="filter-box">
+        <input id="outputFilter" placeholder="Filtrer fichiers..." />
+        <input id="outputContentFilter" placeholder="Filtrer contenu..." />
+        <button id="resetOutputFilters" type="button">Reset</button>
+      </div>
+      <table id="outputsTable">
+        <thead><tr><th>Fichier</th><th>Contenu</th></tr></thead>
+        <tbody>
+          <tr><td>building-input.csv</td><td>Variables BN + ajoutées</td></tr>
+            <tr><td>building-mapping.csv</td><td>Arguments HPXML</td></tr>
+            <tr><td>building-test.csv</td><td>Fusion globale</td></tr>
+            <tr><td>project_overview.pptx</td><td>Présentation PPT</td></tr>
+            <tr><td>project_overview.html</td><td>Cette présentation HTML</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="qualite">
+    <h2>9. Qualité & Caching<span class="anchor">#</span></h2>
+    <div class="grid cols-2">
+      <div class="panel">
+        <strong>Optimisations</strong>
+        <ul>
+          <li>Cache BN (objet lourd)</li>
+          <li>Cache SVG (taille paramétrée)</li>
+          <li>Rendu conditionnel (expander)</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <strong>Tests (à étendre)</strong>
+        <ul>
+          <li>Distribution marginale vs données source</li>
+          <li>Validation mapping (complet / types)</li>
+          <li>Performance sur N échantillons</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="ameliorations">
+    <h2>10. Améliorations Futures<span class="anchor">#</span></h2>
+    <div class="panel">
+      <ul>
+        <li>Éditeur CPT interactif UI</li>
+        <li>Statistiques & tests automatiques (KS/chi2)</li>
+        <li>Export direct simulateur énergétique</li>
+        <li>Gestion incertitudes scénarios</li>
+        <li>CI + couverture tests</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="resume">
+    <h2>11. Résumé<span class="anchor">#</span></h2>
+    <div class="panel">
+      <p>Chaîne complète et modulaire pour construire des échantillons cohérents via un réseau bayésien, enrichir les données et produire des sorties HPXML exploitables. Interface Streamlit pour l’analyse rapide et export direct.</p>
+      <p class="success">Base solide pour scénarios énergétiques résidentiels et extensions analytiques.</p>
+    </div>
+  </section>
+
+  <hr>
+  <footer>
+    LTE-Sampler-Residential · Présentation statique HTML interactive · Généré automatiquement.
+  </footer>
+</div>
+
+<button id="scrollTop" title="Haut">↑</button>
+
+<script>
+(function(){
+  const root=document.documentElement;
+  const themeBtn=document.getElementById('themeToggle');
+  const stored=localStorage.getItem('themeMode');
+  if(stored){root.setAttribute('data-theme',stored);}
+  themeBtn.addEventListener('click',()=>{
+    const cur=root.getAttribute('data-theme');
+    const next=cur==='light'?'dark':'light';
+    root.setAttribute('data-theme',next);
+    localStorage.setItem('themeMode',next);
+  });
+
+  // Build quick jump
+  const jump=document.getElementById('quickJump');
+  const sectionIds=['dashboard-interactif','objectifs','donnees','architecture','pipeline','mapping','dashboard','exemples','sorties','qualite','ameliorations','resume'];
+  sectionIds.forEach(id=>{
+    const s=document.getElementById(id);
+    if(!s) return;
+    const h=s.querySelector('h2');
+    const opt=document.createElement('option');
+    opt.value="#"+id;
+    opt.textContent=h? h.textContent.replace('#','').trim():id;
+    jump.appendChild(opt);
+  });
+  jump.addEventListener('change',e=>{
+    if(e.target.value){location.hash=e.target.value;}
+  });
+
+  // TOC active highlight on scroll
+  const tocLinks=[...document.querySelectorAll('#toc a')];
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(ent=>{
+      if(ent.isIntersecting){
+        tocLinks.forEach(l=>l.classList.toggle('active', l.getAttribute('href')==='#'+ent.target.id));
+      }
+    });
+  },{rootMargin:'-60% 0px -35% 0px',threshold:0});
+  sectionIds.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) obs.observe(el);
+  });
+
+  // Collapsibles
+  document.querySelectorAll('.collapsible').forEach(h=>{
+    h.addEventListener('click',()=>{
+      h.classList.toggle('open');
+      const content=h.nextElementSibling;
+      if(content){
+        content.classList.toggle('hidden');
+      }
+    });
+    // start open
+    h.classList.add('open');
+  });
+
+  // Global collapse / expand
+  document.getElementById('collapseAll').addEventListener('click',()=>{
+    document.querySelectorAll('.collapsible').forEach(h=>{
+      h.classList.remove('open');
+      const c=h.nextElementSibling; if(c) c.classList.add('hidden');
+    });
+  });
+  document.getElementById('expandAll').addEventListener('click',()=>{
+    document.querySelectorAll('.collapsible').forEach(h=>{
+      h.classList.add('open');
+      const c=h.nextElementSibling; if(c) c.classList.remove('hidden');
+    });
+  });
+
+  // Evidence builder
+  const evidenceItems=document.getElementById('evidenceItems');
+  const addBtn=document.getElementById('addEvidence');
+  const evidenceJSON=document.getElementById('evidenceJSON');
+  function addEvidenceRow(k='',v=''){
+    const div=document.createElement('div');
+    div.className='evidence-row';
+    div.innerHTML=`
+      <input placeholder="Attribut" value="${k}">
+      <input placeholder="Valeur" value="${v}">
+      <input placeholder="Poids (opt)">
+      <input placeholder="Min (opt)">
+      <input placeholder="Max (opt)">
+      <button title="Supprimer">✕</button>
+    `;
+    div.querySelector('button').addEventListener('click',()=>div.remove());
+    evidenceItems.appendChild(div);
+  }
+  addBtn.addEventListener('click',()=>addEvidenceRow());
+  // seed one row
+  addEvidenceRow('Type_Logement','Maison en rangee');
+
+  function buildEvidence(){
+    const rows=[...evidenceItems.querySelectorAll('.evidence-row')];
+    const ev={};
+    rows.forEach(r=>{
+      const [k,v]=[r.children[0].value.trim(), r.children[1].value.trim()];
+      if(k && v){ ev[k]=v; }
+    });
+    return ev;
+  }
+
+  document.getElementById('generateSample').addEventListener('click',()=>{
+    const ev=buildEvidence();
+    evidenceJSON.value=JSON.stringify(ev,null,2);
+    generatePseudoSample(ev);
+  });
+
+  document.querySelector('[data-action="clear-evidence"]').addEventListener('click',()=>{
+    evidenceItems.innerHTML='';
+    addEvidenceRow();
+    evidenceJSON.value='';
+  });
+
+  // Pseudo sampling (client-side illustrative)
+  let lastSample=[];
+  function randomInt(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
+  function generatePseudoSample(evidence){
+    // simple synthetic sample list
+    const n=50;
+    const out=[];
+    const keys=Object.keys(evidence);
+    for(let i=0;i<n;i++){
+      const row={id:i+1};
+      keys.forEach(k=>{
+        row[k]=evidence[k];
+      });
+      row.SurfaceHabitable=randomInt(40,250)+' m²';
+      row.AnnéeConstruction= randomInt(1950,2022);
+      row.Zones='Z'+randomInt(1,6);
+      row.Consommation_kWh=Math.round(randomInt(1200,12000)/12)*12;
+      out.push(row);
+    }
+    lastSample=out;
+    renderSample(out);
+  }
+
+  const sampleOutput=document.getElementById('sampleOutput');
+  const sampleStats=document.getElementById('sampleStats');
+  function renderSample(data){
+    sampleOutput.textContent=JSON.stringify(data.slice(0,25),null,2)+(data.length>25?`\n... (${data.length-25} de plus)`:'');
+    // simple stats
+    if(!data.length){ sampleStats.textContent=''; return; }
+    const cons=data.map(r=>r.Consommation_kWh);
+    const avg=(cons.reduce((a,b)=>a+b,0)/cons.length).toFixed(1);
+    sampleStats.textContent=`Taille: ${data.length} | Conso moyenne (kWh): ${avg}`;
+  }
+
+  // Filters for sample
+  document.getElementById('sampleFilter').addEventListener('input',applySampleFilters);
+  document.getElementById('sampleValueFilter').addEventListener('input',applySampleFilters);
+  function applySampleFilters(){
+    const kf=this.form?this.form.sampleFilter.value:'';
+    const keyFilter=document.getElementById('sampleFilter').value.trim().toLowerCase();
+    const valFilter=document.getElementById('sampleValueFilter').value.trim().toLowerCase();
+    if(!lastSample.length){return;}
+    const filtered=lastSample.filter(row=>{
+      let keyMatch=true;
+      if(keyFilter){
+        keyMatch=Object.keys(row).some(k=>k.toLowerCase().includes(keyFilter));
+      }
+      let valMatch=true;
+      if(valFilter){
+        valMatch=Object.values(row).some(v=>String(v).toLowerCase().includes(valFilter));
+      }
+      return keyMatch && valMatch;
+    });
+    renderSample(filtered);
+  }
+
+  document.querySelector('[data-action="clear-sample"]').addEventListener('click',()=>{
+    lastSample=[];
+    sampleOutput.textContent='Aucun échantillon généré.';
+    sampleStats.textContent='';
+  });
+
+  // Export evidence JSON
+  document.getElementById('exportEvidence').addEventListener('click',()=>{
+    const ev=buildEvidence();
+    const blob=new Blob([JSON.stringify(ev,null,2)],{type:'application/json'});
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download='evidence.json';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+  // Download sample
+  document.getElementById('downloadSample').addEventListener('click',()=>{
+    if(!lastSample.length){alert('Aucun échantillon.');return;}
+    const blob=new Blob([JSON.stringify(lastSample,null,2)],{type:'application/json'});
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download='sample_pseudo.json';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+  // Outputs table filters
+  const outputFilter=document.getElementById('outputFilter');
+  const outputContentFilter=document.getElementById('outputContentFilter');
+  const resetOutputFilters=document.getElementById('resetOutputFilters');
+  const outputsTable=document.getElementById('outputsTable').querySelector('tbody');
+  function filterOutputs(){
+    const f1=outputFilter.value.toLowerCase();
+    const f2=outputContentFilter.value.toLowerCase();
+    [...outputsTable.rows].forEach(r=>{
+      const t1=r.cells[0].textContent.toLowerCase();
+      const t2=r.cells[1].textContent.toLowerCase();
+      const show=(!f1 || t1.includes(f1)) && (!f2 || t2.includes(f2));
+      r.style.display=show?'':'none';
+    });
+  }
+  outputFilter.addEventListener('input',filterOutputs);
+  outputContentFilter.addEventListener('input',filterOutputs);
+  resetOutputFilters.addEventListener('click',()=>{
+    outputFilter.value=''; outputContentFilter.value=''; filterOutputs();
+  });
+
+  // Section search (filter section panels)
+  const searchBox=document.getElementById('searchSections');
+  searchBox.addEventListener('input',()=>{
+    const q=searchBox.value.toLowerCase();
+    sectionIds.concat(['dashboard-interactif']).forEach(id=>{
+      const s=document.getElementById(id);
+      if(!s)return;
+      if(!q){s.style.display='';return;}
+      const text=s.textContent.toLowerCase();
+      s.style.display=text.includes(q)?'':'none';
+    });
+  });
+
+  // Scroll top button
+  const scrollBtn=document.getElementById('scrollTop');
+  window.addEventListener('scroll',()=>{
+    scrollBtn.style.display=window.scrollY>400?'block':'none';
+  });
+  scrollBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+})();
+</script>
+</body>
+</html>

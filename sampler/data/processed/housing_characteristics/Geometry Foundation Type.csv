@@ -1,0 +1,21 @@
+Dependency=Type_Logement;Dependency=Presence_SousSol;Option=Ambient;Option=Heated Basement;Option=Slab;Option=Unheated Basement;Option=Unvented Crawlspace;Option=Vented Crawlspace
+Maison individuelle;Sous sol 6 pied;0;1;0;0;0;0
+Maison individuelle;Vide sanitaire moins 6 pieds;0;0;0;0;1;0
+Maison individuelle;Aucun Sous-sol ou vide sanitaire;0;0;1;0;0;0
+Maison individuelle;Sous-sol et vide sanitaire;0;0;0;1;0;0
+Collective;Sous sol 6 pied;0;1;0;0;0;0
+Collective;Vide sanitaire moins 6 pieds;0;0;0;0;1;0
+Collective;Aucun Sous-sol ou vide sanitaire;0;0;1;0;0;0
+Collective;Sous-sol et vide sanitaire;0;0;0;1;0;0
+Maison en rangee;Sous sol 6 pied;0;1;0;0;0;0
+Maison en rangee;Vide sanitaire moins 6 pieds;0;0;0;0;1;0
+Maison en rangee;Aucun Sous-sol ou vide sanitaire;0;0;1;0;0;0
+Maison en rangee;Sous-sol et vide sanitaire;0;0;0;1;0;0
+Duplex;Sous sol 6 pied;0;1;0;0;0;0
+Duplex;Vide sanitaire moins 6 pieds;0;0;0;0;1;0
+Duplex;Aucun Sous-sol ou vide sanitaire;0;0;1;0;0;0
+Duplex;Sous-sol et vide sanitaire;0;0;0;1;0;0
+Triplex;Sous sol 6 pied;0;1;0;0;0;0
+Triplex;Vide sanitaire moins 6 pieds;0;0;0;0;1;0
+Triplex;Aucun Sous-sol ou vide sanitaire;0;0;1;0;0;0
+Triplex;Sous-sol et vide sanitaire;0;0;0;1;0;0

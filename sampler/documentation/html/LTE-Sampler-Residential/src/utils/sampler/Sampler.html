@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>LTE-Sampler-Residential.src.utils.sampler.Sampler API documentation</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>LTE-Sampler-Residential.src.utils.sampler.Sampler</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="LTE-Sampler-Residential.src.utils.sampler.Sampler.main"><code class="name flex">
+<span>def <span class="ident">main</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def main():
+
+    parser = argparse.ArgumentParser(description=&#34;Bayesian network sampler for SimParc&#34;)
+    parser.add_argument(&#34;bayesian_network_filepath&#34;, type=str, help=&#34;Path to the Bayesian network file. (.XDSL)&#34;)
+    parser.add_argument(&#34;samples_number&#34;, type=int, help=&#34;Number of samples to generate. (Integer)&#34;)
+    parser.add_argument(&#34;output_file&#34;,type=str,help=&#34;Path for the outputfile (.csv)&#34;)
+    parser.add_argument(&#39;-ev&#39;,&#39;--evidence&#39;,type=json.loads,default={}, nargs=&#39;?&#39;,help=&#39;Evidences passed to the Bayesian network.&#39;)
+    args = parser.parse_args()
+
+    today = date.today()
+    if args.output_file is None:
+        args.output_file = str(args.samples_number) + &#34;_sample_buildings_{}.csv&#34;.format(today.isoformat())
+    file_path = args.bayesian_network_filepath
+
+    results = Sampler(file_path).run_parallel(args.samples_number,ev=args.evidence).to_df()
+    results.to_csv(args.output_file, index=False)
+
+    return 0</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler"><code class="flex name class">
+<span>class <span class="ident">Sampler</span></span>
+<span>(</span><span>bayesian_network_path, **kwargs)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Sampler():
+    LOGO = &#34;   _____ _           ____                       _____                       __\n&#34;\
+           &#34;  / ___/(_)___ ___  / __ \____ ___________     / ___/____ _____ ___  ____  / /__  _____\n&#34;\
+           &#34;  \__ \/ / __ `__ \/ /_/ / __ `/ ___/ ___/     \__ \/ __ `/ __ `__ \/ __ \/ / _ \/ ___/\n&#34;\
+           &#34; ___/ / / / / / / / ____/ /_/ / /  / /__      ___/ / /_/ / / / / / / /_/ / /  __/ /    \n&#34;\
+           &#34;/____/_/_/ /_/ /_/_/    \__,_/_/   \___/     /____/\__,_/_/ /_/ /_/ .___/_/\___/_/     \n&#34;\
+           &#34;                                                                 /_/                   &#34;
+    def __init__(self, bayesian_network_path, **kwargs):
+        model = bayesian_network()
+        model.Load_BN(bayesian_network_path)
+        self.bn_filename = Path(bayesian_network_path).name
+        self.bn = model.bn
+        self.lst_NOEUD, self.LIST_Dict = model.getBNStructure()
+
+        if &#34;seed&#34; in kwargs:
+            self._seed = np.random.default_rng(seed=kwargs[&#34;seed&#34;])
+        else:
+            self._seed = None
+
+        self.randGenerator = np.random.default_rng(self._seed)
+        self._parallel = {&#39;prefer&#39;: &#39;threads&#39;, &#39;n_jobs&#39;: int(max((os.cpu_count() - 8) / 1,1)), &#39;verbose&#39;: 10,&#39;inner_max_num_threads&#39;: 1}
+
+    def draw_GUM_Sample(self, number, Multiplicateur=1, evs={}):
+        &#34;&#34;&#34;
+        Generates samples from a Bayesian network using the PyAgrum library.
+
+        Parameters:
+            number (int): The base number of samples to generate.
+            Multiplicateur (float, optional): A multiplier to adjust the number of samples. Default is 1.
+            evs (dict, optional): A dictionary of evidence variables to condition the sampling on. Default is an empty dictionary.
+
+        Returns:
+            pandas.DataFrame: A DataFrame containing the generated samples.
+        &#34;&#34;&#34;
+
+        g = gum.BNDatabaseGenerator(self.bn)
+        g.setTopologicalVarOrder()
+
+        if int(number * Multiplicateur) == 0:
+            number = 1
+        else:
+            number = int(number * Multiplicateur)
+        g.drawSamples(number, evs)
+        return g.to_pandas()
+
+    def GUM_Sampling(self, numberOfSamples, evs={}):
+        &#34;&#34;&#34;
+        Perform sampling to generate a specified number of samples.
+        Parameters:
+            numberOfSamples (int): The total number of samples to generate.
+            evs (dict, optional): A dictionary of environmental variables to influence the sampling process. Defaults to an empty dictionary.
+        Returns:
+            pd.DataFrame: A DataFrame containing the sampled data, reset to a new index.
+        Notes:
+            The function first attempts to generate samples using the draw_GUM_Sample method.
+            If the initial sample size is insufficient, it continues to sample until the desired number of samples is reached.
+        &#34;&#34;&#34;
+
+        dfSampling = pd.DataFrame()
+        boSampling = False  # boolean flag for sampling completion
+
+        dfTemp = self.draw_GUM_Sample(numberOfSamples, 1, evs=evs)
+
+        if len(dfTemp) &gt;= numberOfSamples:
+            dfSampling = dfTemp.sample(n=numberOfSamples, random_state=self._seed)
+            boSampling = True
+
+        else:
+            dfSampling = pd.concat([dfSampling, dfTemp])
+            numberOfSamples_restant = numberOfSamples - len(dfSampling)
+            if len(dfSampling) &gt; 0:
+                Fact = len(dfSampling) / numberOfSamples
+            else:
+                Fact = 5
+
+        while not boSampling:
+            dfTemp = self.draw_GUM_Sample(numberOfSamples_restant, min(1, max(5, Fact)), evs=evs)
+            if len(dfTemp) &gt;= numberOfSamples_restant:
+                dfSampling = pd.concat([dfSampling, dfTemp.sample(numberOfSamples_restant, random_state=self._seed)])
+                boSampling = True
+
+            else:
+                dfSampling = pd.concat([dfSampling, dfTemp])
+                numberOfSamples_restant = numberOfSamples - len(dfSampling)
+        return dfSampling.reset_index(drop=True)
+    
+    def resstock_args_sampling(self, lst_dct_args={}):
+
+        BBA = BuildstockBatchArguments()
+
+        lst_dct_args2 = []
+        for dctSampler in lst_dct_args:
+            dct_args2 = {}
+            for Attributs in BBA.listAttributs:
+                #for csv file (ne charger qu&#39;une fois) et creer une structure
+                dct_dependancy = BBA.dct_housing_characteristics[Attributs][&#34;Dependency&#34;]
+                dct_option = BBA.dct_housing_characteristics[Attributs][&#34;Option&#34;]
+                df = BBA.dct_housing_characteristics[Attributs][&#34;Table&#34;]
+
+
+                if len(dct_dependancy) == 0:
+                    # If there are no dependencies, sample directly from the options
+                    filtered_df = df
+                else:
+                    filter_dict = {key:{**dctSampler, **dct_args2}[value] for key, value in dct_dependancy.items()}
+                    # Dynamic filtering based on the dictionary
+                    
+                    # Initialize a boolean index
+                    filtered_index = pd.Series([True] * len(df), index=df.index)
+                    # Loop through filters and update the index
+                    for col, values in filter_dict.items():
+                        if isinstance(values, list):
+                            filtered_index = filtered_index &amp; (df[col].isin(values))
+                        else:
+                            filtered_index = filtered_index &amp; (df[col] == values)
+
+                    # Apply the filtered index to the DataFrame
+                    filtered_df = df[filtered_index]
+                
+                try:
+                    sumlst = sum(filtered_df[dct_option.keys()].values.tolist()[0])
+                    listProb = [k/sumlst for k in filtered_df[dct_option.keys()].values.tolist()[0]]
+                except:
+                    raise Exception(&#34;Error in sampling for attribute:&#34; + Attributs)
+                
+
+                choiceStr = self.randGenerator.choice(list(dct_option.keys()),p=listProb) #TODO send to stochastic profile generator
+                if &#34;Option=&#34; in str(choiceStr):
+                    dct_args2[Attributs] = choiceStr.split(&#34;Option=&#34;)[-1]
+                    if Attributs in [&#34;Geometry Stories&#34;,
+                                     &#34;Geometry Building Number Units&#34;]:
+                        dct_args2[Attributs] = int(dct_args2[Attributs])
+            
+
+            #ajout des Heures de changement de température (h1 à h4)
+            h1, h2, h3, h4= HConsignes()
+            dct_args2[&#34;Tconsignes_chauffage_H1&#34;] = h1
+            dct_args2[&#34;Tconsignes_chauffage_H2&#34;] = h2
+            dct_args2[&#34;Tconsignes_chauffage_H3&#34;] = h3
+            dct_args2[&#34;Tconsignes_chauffage_H4&#34;] = h4
+
+            lst_dct_args2.append(dct_args2)
+        return lst_dct_args2
+
+    def run_hors_bn(self, lst_dct_args):
+        # Ajout des variables hors BN
+        lst_dct_args2 = self.resstock_args_sampling(lst_dct_args)
+        lst_dct_args = [d2 | d1 for d1, d2 in zip(lst_dct_args, lst_dct_args2)]  # lst_dct_args prioritaire
+        # Mapping vers HPXML
+        lst_dct_HPXML = MapHPXML().run(lst_dct_args)
+        return lst_dct_args, lst_dct_HPXML
+
+        return self
+
+    def run_parallel(self, Nombre_de_Samples,**kwargs):
+        start_time = time.perf_counter()
+        print(self.LOGO)
+        print(&#34;------------------------------------------------------&#34;)
+        print(&#34;Sampling {} with {} target samples&#34;.format(self.bn_filename, Nombre_de_Samples))
+
+        # Load the Bayesian Network from file
+        Evidence = kwargs[&#34;ev&#34;]
+
+        # Fait un échantillonage - Avant enregistrement
+        df = self.GUM_Sampling(Nombre_de_Samples, evs=Evidence)
+        lst_dct_args = df.to_dict(orient=&#39;records&#39;)
+        chunk_size = int(len(lst_dct_args) / self._parallel[&#39;n_jobs&#39;])
+
+        with parallel_backend(&#34;loky&#34;, inner_max_num_threads=self._parallel[&#39;n_jobs&#39;]):
+            sampling_function = map(delayed(functools.partial(self.run_hors_bn)), list(chunks(lst_dct_args, chunk_size)))
+            results = Parallel(**self._parallel)(sampling_function)
+
+        self.lst_dct_args = list(chain(*[r[0] for r in results]))
+        self.lst_dct_HPXML = list(chain(*[r[1] for r in results]))
+        duration = timedelta(seconds=time.perf_counter() - start_time)
+        print(&#34;Sampling Terminé ! - Nombre d&#39;attributs HPXML: {}\nDurée Sampling : {}&#34;.format(len(self.lst_dct_HPXML[0].keys()), duration))
+        print(&#34;------------------------------------------------------\n&#34;)
+        return self
+
+    def to_df(self):
+        dfargs = pd.DataFrame(self.lst_dct_args)
+        dfHPXML = pd.DataFrame(self.lst_dct_HPXML)
+        dfAll = pd.concat([dfargs, dfHPXML], axis=1)
+        return dfAll
+
+    def to_csv(self,output_path):
+        dfAll = self.to_df()
+        dfAll.to_csv(output_path, index=False)</code></pre>
+</details>
+<div class="desc"></div>
+<h3>Class variables</h3>
+<dl>
+<dt id="LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler.LOGO"><code class="name">var <span class="ident">LOGO</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler.GUM_Sampling"><code class="name flex">
+<span>def <span class="ident">GUM_Sampling</span></span>(<span>self, numberOfSamples, evs={})</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def GUM_Sampling(self, numberOfSamples, evs={}):
+    &#34;&#34;&#34;
+    Perform sampling to generate a specified number of samples.
+    Parameters:
+        numberOfSamples (int): The total number of samples to generate.
+        evs (dict, optional): A dictionary of environmental variables to influence the sampling process. Defaults to an empty dictionary.
+    Returns:
+        pd.DataFrame: A DataFrame containing the sampled data, reset to a new index.
+    Notes:
+        The function first attempts to generate samples using the draw_GUM_Sample method.
+        If the initial sample size is insufficient, it continues to sample until the desired number of samples is reached.
+    &#34;&#34;&#34;
+
+    dfSampling = pd.DataFrame()
+    boSampling = False  # boolean flag for sampling completion
+
+    dfTemp = self.draw_GUM_Sample(numberOfSamples, 1, evs=evs)
+
+    if len(dfTemp) &gt;= numberOfSamples:
+        dfSampling = dfTemp.sample(n=numberOfSamples, random_state=self._seed)
+        boSampling = True
+
+    else:
+        dfSampling = pd.concat([dfSampling, dfTemp])
+        numberOfSamples_restant = numberOfSamples - len(dfSampling)
+        if len(dfSampling) &gt; 0:
+            Fact = len(dfSampling) / numberOfSamples
+        else:
+            Fact = 5
+
+    while not boSampling:
+        dfTemp = self.draw_GUM_Sample(numberOfSamples_restant, min(1, max(5, Fact)), evs=evs)
+        if len(dfTemp) &gt;= numberOfSamples_restant:
+            dfSampling = pd.concat([dfSampling, dfTemp.sample(numberOfSamples_restant, random_state=self._seed)])
+            boSampling = True
+
+        else:
+            dfSampling = pd.concat([dfSampling, dfTemp])
+            numberOfSamples_restant = numberOfSamples - len(dfSampling)
+    return dfSampling.reset_index(drop=True)</code></pre>
+</details>
+<div class="desc"><p>Perform sampling to generate a specified number of samples.</p>
+<h2 id="parameters">Parameters</h2>
+<p>numberOfSamples (int): The total number of samples to generate.
+evs (dict, optional): A dictionary of environmental variables to influence the sampling process. Defaults to an empty dictionary.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>pd.DataFrame</code></dt>
+<dd>A DataFrame containing the sampled data, reset to a new index.</dd>
+</dl>
+<h2 id="notes">Notes</h2>
+<p>The function first attempts to generate samples using the draw_GUM_Sample method.
+If the initial sample size is insufficient, it continues to sample until the desired number of samples is reached.</p></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler.draw_GUM_Sample"><code class="name flex">
+<span>def <span class="ident">draw_GUM_Sample</span></span>(<span>self, number, Multiplicateur=1, evs={})</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def draw_GUM_Sample(self, number, Multiplicateur=1, evs={}):
+    &#34;&#34;&#34;
+    Generates samples from a Bayesian network using the PyAgrum library.
+
+    Parameters:
+        number (int): The base number of samples to generate.
+        Multiplicateur (float, optional): A multiplier to adjust the number of samples. Default is 1.
+        evs (dict, optional): A dictionary of evidence variables to condition the sampling on. Default is an empty dictionary.
+
+    Returns:
+        pandas.DataFrame: A DataFrame containing the generated samples.
+    &#34;&#34;&#34;
+
+    g = gum.BNDatabaseGenerator(self.bn)
+    g.setTopologicalVarOrder()
+
+    if int(number * Multiplicateur) == 0:
+        number = 1
+    else:
+        number = int(number * Multiplicateur)
+    g.drawSamples(number, evs)
+    return g.to_pandas()</code></pre>
+</details>
+<div class="desc"><p>Generates samples from a Bayesian network using the PyAgrum library.</p>
+<h2 id="parameters">Parameters</h2>
+<p>number (int): The base number of samples to generate.
+Multiplicateur (float, optional): A multiplier to adjust the number of samples. Default is 1.
+evs (dict, optional): A dictionary of evidence variables to condition the sampling on. Default is an empty dictionary.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>pandas.DataFrame</code></dt>
+<dd>A DataFrame containing the generated samples.</dd>
+</dl></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler.resstock_args_sampling"><code class="name flex">
+<span>def <span class="ident">resstock_args_sampling</span></span>(<span>self, lst_dct_args={})</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def resstock_args_sampling(self, lst_dct_args={}):
+
+    BBA = BuildstockBatchArguments()
+
+    lst_dct_args2 = []
+    for dctSampler in lst_dct_args:
+        dct_args2 = {}
+        for Attributs in BBA.listAttributs:
+            #for csv file (ne charger qu&#39;une fois) et creer une structure
+            dct_dependancy = BBA.dct_housing_characteristics[Attributs][&#34;Dependency&#34;]
+            dct_option = BBA.dct_housing_characteristics[Attributs][&#34;Option&#34;]
+            df = BBA.dct_housing_characteristics[Attributs][&#34;Table&#34;]
+
+
+            if len(dct_dependancy) == 0:
+                # If there are no dependencies, sample directly from the options
+                filtered_df = df
+            else:
+                filter_dict = {key:{**dctSampler, **dct_args2}[value] for key, value in dct_dependancy.items()}
+                # Dynamic filtering based on the dictionary
+                
+                # Initialize a boolean index
+                filtered_index = pd.Series([True] * len(df), index=df.index)
+                # Loop through filters and update the index
+                for col, values in filter_dict.items():
+                    if isinstance(values, list):
+                        filtered_index = filtered_index &amp; (df[col].isin(values))
+                    else:
+                        filtered_index = filtered_index &amp; (df[col] == values)
+
+                # Apply the filtered index to the DataFrame
+                filtered_df = df[filtered_index]
+            
+            try:
+                sumlst = sum(filtered_df[dct_option.keys()].values.tolist()[0])
+                listProb = [k/sumlst for k in filtered_df[dct_option.keys()].values.tolist()[0]]
+            except:
+                raise Exception(&#34;Error in sampling for attribute:&#34; + Attributs)
+            
+
+            choiceStr = self.randGenerator.choice(list(dct_option.keys()),p=listProb) #TODO send to stochastic profile generator
+            if &#34;Option=&#34; in str(choiceStr):
+                dct_args2[Attributs] = choiceStr.split(&#34;Option=&#34;)[-1]
+                if Attributs in [&#34;Geometry Stories&#34;,
+                                 &#34;Geometry Building Number Units&#34;]:
+                    dct_args2[Attributs] = int(dct_args2[Attributs])
+        
+
+        #ajout des Heures de changement de température (h1 à h4)
+        h1, h2, h3, h4= HConsignes()
+        dct_args2[&#34;Tconsignes_chauffage_H1&#34;] = h1
+        dct_args2[&#34;Tconsignes_chauffage_H2&#34;] = h2
+        dct_args2[&#34;Tconsignes_chauffage_H3&#34;] = h3
+        dct_args2[&#34;Tconsignes_chauffage_H4&#34;] = h4
+
+        lst_dct_args2.append(dct_args2)
+    return lst_dct_args2</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler.run_hors_bn"><code class="name flex">
+<span>def <span class="ident">run_hors_bn</span></span>(<span>self, lst_dct_args)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run_hors_bn(self, lst_dct_args):
+    # Ajout des variables hors BN
+    lst_dct_args2 = self.resstock_args_sampling(lst_dct_args)
+    lst_dct_args = [d2 | d1 for d1, d2 in zip(lst_dct_args, lst_dct_args2)]  # lst_dct_args prioritaire
+    # Mapping vers HPXML
+    lst_dct_HPXML = MapHPXML().run(lst_dct_args)
+    return lst_dct_args, lst_dct_HPXML
+
+    return self</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler.run_parallel"><code class="name flex">
+<span>def <span class="ident">run_parallel</span></span>(<span>self, Nombre_de_Samples, **kwargs)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run_parallel(self, Nombre_de_Samples,**kwargs):
+    start_time = time.perf_counter()
+    print(self.LOGO)
+    print(&#34;------------------------------------------------------&#34;)
+    print(&#34;Sampling {} with {} target samples&#34;.format(self.bn_filename, Nombre_de_Samples))
+
+    # Load the Bayesian Network from file
+    Evidence = kwargs[&#34;ev&#34;]
+
+    # Fait un échantillonage - Avant enregistrement
+    df = self.GUM_Sampling(Nombre_de_Samples, evs=Evidence)
+    lst_dct_args = df.to_dict(orient=&#39;records&#39;)
+    chunk_size = int(len(lst_dct_args) / self._parallel[&#39;n_jobs&#39;])
+
+    with parallel_backend(&#34;loky&#34;, inner_max_num_threads=self._parallel[&#39;n_jobs&#39;]):
+        sampling_function = map(delayed(functools.partial(self.run_hors_bn)), list(chunks(lst_dct_args, chunk_size)))
+        results = Parallel(**self._parallel)(sampling_function)
+
+    self.lst_dct_args = list(chain(*[r[0] for r in results]))
+    self.lst_dct_HPXML = list(chain(*[r[1] for r in results]))
+    duration = timedelta(seconds=time.perf_counter() - start_time)
+    print(&#34;Sampling Terminé ! - Nombre d&#39;attributs HPXML: {}\nDurée Sampling : {}&#34;.format(len(self.lst_dct_HPXML[0].keys()), duration))
+    print(&#34;------------------------------------------------------\n&#34;)
+    return self</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler.to_csv"><code class="name flex">
+<span>def <span class="ident">to_csv</span></span>(<span>self, output_path)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def to_csv(self,output_path):
+    dfAll = self.to_df()
+    dfAll.to_csv(output_path, index=False)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler.to_df"><code class="name flex">
+<span>def <span class="ident">to_df</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def to_df(self):
+    dfargs = pd.DataFrame(self.lst_dct_args)
+    dfHPXML = pd.DataFrame(self.lst_dct_HPXML)
+    dfAll = pd.concat([dfargs, dfHPXML], axis=1)
+    return dfAll</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="LTE-Sampler-Residential.src.utils.sampler" href="index.html">LTE-Sampler-Residential.src.utils.sampler</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.Sampler.main" href="#LTE-Sampler-Residential.src.utils.sampler.Sampler.main">main</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler" href="#LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler">Sampler</a></code></h4>
+<ul class="">
+<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler.GUM_Sampling" href="#LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler.GUM_Sampling">GUM_Sampling</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler.LOGO" href="#LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler.LOGO">LOGO</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler.draw_GUM_Sample" href="#LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler.draw_GUM_Sample">draw_GUM_Sample</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler.resstock_args_sampling" href="#LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler.resstock_args_sampling">resstock_args_sampling</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler.run_hors_bn" href="#LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler.run_hors_bn">run_hors_bn</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler.run_parallel" href="#LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler.run_parallel">run_parallel</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler.to_csv" href="#LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler.to_csv">to_csv</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler.to_df" href="#LTE-Sampler-Residential.src.utils.sampler.Sampler.Sampler.to_df">to_df</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

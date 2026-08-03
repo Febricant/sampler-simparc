@@ -1,0 +1,1206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>LTE-Sampler-Residential.ui.Dashboard API documentation</title>
+<meta name="description" content="Dashboard.py
+…">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>LTE-Sampler-Residential.ui.Dashboard</code></h1>
+</header>
+<section id="section-intro">
+<h1 id="dashboardpy">Dashboard.py</h1>
+<p>Enhanced Streamlit dashboard for exploring and downloading HPXML data with advanced features.</p>
+<h2 id="features">Features:</h2>
+<ul>
+<li>Theme customization (dark/light mode)</li>
+<li>Advanced data filtering and visualization</li>
+<li>Interactive Bayesian Network exploration</li>
+<li>Export options (CSV, JSON, Excel)</li>
+<li>Data validation and statistics</li>
+<li>Session state management</li>
+<li>Performance monitoring</li>
+</ul>
+<h2 id="usage">Usage:</h2>
+<p>python -m streamlit run "ui/Dashboard_v2.py"</p>
+<p>Author: cv1751 - Brice Le Lostec
+Version: 2.0
+Python: 3.11</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="LTE-Sampler-Residential.ui.Dashboard.BaysianNetwork"><code class="name flex">
+<span>def <span class="ident">BaysianNetwork</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def BaysianNetwork():
+    &#34;&#34;&#34;Enhanced Bayesian Network visualization and exploration page.&#34;&#34;&#34;
+    st.title(&#34;🕸️ Réseau Bayésien - EUEMr 2022&#34;)
+    st.markdown(&#34;Exploration et analyse du réseau bayésien&#34;)
+    
+    # Load sampler
+    path = PROJECT_DIR + &#34;/data/processed/bayesian_network/BN_EUEMr.XDSL&#34;
+    with st.spinner(&#34;🔄 Chargement du réseau bayésien...&#34;):
+        InsClsSampler = load_sampler(path)
+    
+    lst_NOEUD = InsClsSampler.lst_NOEUD
+    LIST_Dict = InsClsSampler.LIST_Dict
+    pdfDataDescription = load_data_description()
+    
+    # Initialize selected tab in session state
+    if &#39;selected_bn_tab&#39; not in st.session_state:
+        st.session_state.selected_bn_tab = &#34;📊 Description&#34;
+    
+    # Tab configuration
+    tab_names = [
+        &#34;📊 Description&#34;,
+        &#34;🕸️ Réseau&#34;,
+        &#34;📋 Nœuds&#34;,
+        &#34;🎲 CPT&#34;,
+        &#34;🔍 Inférence&#34;,
+        &#34;📈 Analyse&#34;
+    ]
+    
+    # Custom CSS for tab-like buttons
+    st.markdown(&#34;&#34;&#34;
+    &lt;style&gt;
+    div[data-testid=&#34;column&#34;] button[kind=&#34;secondary&#34;] {
+        width: 100%;
+        border-radius: 8px 8px 0px 0px;
+        border: none;
+        background-color: #f0f2f6;
+        color: #31333F;
+        padding: 12px 24px;
+        font-size: 14px;
+        font-weight: 400;
+        height: 50px;
+    }
+    div[data-testid=&#34;column&#34;] button[kind=&#34;secondary&#34;]:hover {
+        background-color: #e0e2e6;
+        border-color: transparent;
+        color: #31333F;
+    }
+    div[data-testid=&#34;column&#34;] button[kind=&#34;primary&#34;] {
+        width: 100%;
+        border-radius: 8px 8px 0px 0px;
+        border: none;
+        background-color: #ff4b4b !important;
+        color: white !important;
+        padding: 12px 24px;
+        font-size: 14px;
+        font-weight: 600;
+        height: 50px;
+    }
+    div[data-testid=&#34;column&#34;] button[kind=&#34;primary&#34;]:hover {
+        background-color: #ff3333 !important;
+        border-color: transparent !important;
+        color: white !important;
+    }
+    &lt;/style&gt;
+    &#34;&#34;&#34;, unsafe_allow_html=True)
+    
+    # Create tab buttons
+    cols = st.columns(6)
+    for idx, tab_name in enumerate(tab_names):
+        with cols[idx]:
+            is_selected = (st.session_state.selected_bn_tab == tab_name)
+            btn_type = &#34;primary&#34; if is_selected else &#34;secondary&#34;
+            if st.button(tab_name, key=f&#34;bn_tab_{idx}&#34;, type=btn_type, use_container_width=True):
+                st.session_state.selected_bn_tab = tab_name
+                st.rerun()
+    
+    st.markdown(&#34;---&#34;)
+    
+    selected_tab = st.session_state.selected_bn_tab
+    
+    # Tab 1: Description
+    if selected_tab == &#34;📊 Description&#34;:
+        st.subheader(&#34;Description des données&#34;)
+        
+        # Search functionality
+        search_desc = st.text_input(&#34;🔍 Rechercher dans les descriptions&#34;, &#34;&#34;)
+        if search_desc:
+            mask = pdfDataDescription.apply(lambda row: row.astype(str).str.contains(search_desc, case=False).any(), axis=1)
+            st.dataframe(pdfDataDescription[mask], use_container_width=True)
+        else:
+            st.dataframe(pdfDataDescription, use_container_width=True)
+        
+        # Summary statistics
+        st.markdown(&#34;#### Statistiques du réseau&#34;)
+        col_s1, col_s2, col_s3 = st.columns(3)
+        col_s1.metric(&#34;Nombre de nœuds&#34;, len(lst_NOEUD))
+        col_s2.metric(&#34;Nombre d&#39;arcs&#34;, InsClsSampler.bn.sizeArcs())
+        col_s3.metric(&#34;Complexité max&#34;, max([InsClsSampler.bn.variable(i).domainSize() for i in InsClsSampler.bn.nodes()]))
+    
+    # Tab 2: Réseau
+    elif selected_tab == &#34;🕸️ Réseau&#34;:
+        st.subheader(&#34;Visualisation du réseau&#34;)
+        
+        col_v1, col_v2, col_v3 = st.columns(3)
+        with col_v1:
+            check_stats = st.checkbox(&#34;📊 Afficher statistiques&#34;, value=False)
+        with col_v2:
+            selected_size = st.slider(&#34;📏 Taille&#34;, 5, 50, 15, 1)
+        with col_v3:
+            show_labels = st.checkbox(&#34;🏷️ Afficher étiquettes&#34;, value=True)
+        
+        if st.button(&#34;🎨 Générer la visualisation&#34;, type=&#34;primary&#34;):
+            with st.spinner(&#34;Génération en cours...&#34;):
+                svgtxt = bn_svg(InsClsSampler.bn, evs=None, Inference=check_stats, size=selected_size)
+                components.html(svgtxt, height=900, scrolling=True)
+    
+    # Tab 3: Nœuds
+    elif selected_tab == &#34;📋 Nœuds&#34;:
+        st.subheader(&#34;Liste des nœuds et valeurs possibles&#34;)
+        
+        # Node search
+        search_node = st.text_input(&#34;🔍 Rechercher un nœud&#34;, &#34;&#34;)
+        filtered_nodes = [n for n in lst_NOEUD if search_node.lower() in n.lower()]
+        
+        # Display as expandable cards
+        for node in filtered_nodes:
+            with st.expander(f&#34;📌 {node} ({len(LIST_Dict[node])} valeurs possibles)&#34;):
+                values_list = list(LIST_Dict[node].values())
+                
+                # Display as columns for better readability
+                n_cols = 3
+                cols_node = st.columns(n_cols)
+                for idx, val in enumerate(values_list):
+                    cols_node[idx % n_cols].markdown(f&#34;• {val}&#34;)
+                
+                # Node statistics
+                node_id = InsClsSampler.bn.idFromName(node)
+                n_parents = len(InsClsSampler.bn.parents(node_id))
+                n_children = len(InsClsSampler.bn.children(node_id))
+                
+                st.markdown(f&#34;**Parents:** {n_parents} | **Enfants:** {n_children}&#34;)
+    
+    # Tab 4: CPT
+    elif selected_tab == &#34;🎲 CPT&#34;:
+        st.subheader(&#34;Tables de Probabilités Conditionnelles (CPT)&#34;)
+        
+        col_cpt1, col_cpt2 = st.columns([2, 1])
+        
+        with col_cpt1:
+            selected_node = st.selectbox(&#34;🎯 Sélectionner un nœud&#34;, lst_NOEUD)
+        
+        with col_cpt2:
+            cpt_display = st.radio(&#34;Format d&#39;affichage&#34;, [&#34;Tableau&#34;, &#34;Heatmap&#34;], horizontal=True)
+        
+        if selected_node:
+            cpt = InsClsSampler.bn.cpt(selected_node)
+            cpt_df = cpt.topandas()
+            
+            if cpt_display == &#34;Heatmap&#34;:
+                st.dataframe(
+                    cpt_df.style.background_gradient(axis=None, cmap=&#39;RdYlGn&#39;, low=0.0, high=1.0),
+                    use_container_width=True
+                )
+            else:
+                st.dataframe(cpt_df, use_container_width=True)
+            
+            # Export CPT
+            st.download_button(
+                &#34;📥 Exporter cette CPT (CSV)&#34;,
+                cpt_df.to_csv(index=True).encode(&#39;utf-8&#39;),
+                f&#34;cpt_{selected_node}.csv&#34;,
+                &#34;text/csv&#34;
+            )
+    
+    # Tab 5: Inférence
+    elif selected_tab == &#34;🔍 Inférence&#34;:
+        st.subheader(&#34;Moteur d&#39;inférence&#34;)
+        
+        st.markdown(&#34;&#34;&#34;
+        Configurez des observations (evidence) et observez l&#39;impact sur les distributions conditionnelles.
+        &#34;&#34;&#34;)
+        
+        col_inf1, col_inf2 = st.columns([2, 1])
+        
+        with col_inf1:
+            st.markdown(&#34;#### 🎯 Configuration des observations&#34;)
+            
+            # Initialize inference constraint nodes in session state
+            if &#39;inference_constraint_nodes&#39; not in st.session_state:
+                st.session_state.inference_constraint_nodes = []
+            
+            settings = {}
+            Noeuds_contraints = st.multiselect(
+                &#34;Variables à observer:&#34;, 
+                lst_NOEUD,
+                #default=st.session_state.inference_constraint_nodes,
+                key=&#34;inference_multiselect&#34;
+            )
+            
+            # Update session state
+            st.session_state.inference_constraint_nodes = Noeuds_contraints
+            
+            for input_var in Noeuds_contraints:
+                settings[input_var] = st.selectbox(
+                    f&#34;Valeur observée pour **{input_var}**&#34;,
+                    options=list(LIST_Dict[input_var].values()),
+                    key=f&#34;inf_{input_var}&#34;
+                )
+        
+        with col_inf2:
+            st.markdown(&#34;#### ⚙️ Paramètres de visualisation&#34;)
+            selected_size2 = st.slider(&#34;Taille du graphique&#34;, 5, 50, 15, 1, key=&#34;inf_size&#34;)
+            show_probs = st.checkbox(&#34;Afficher probabilités&#34;, value=True)
+            num_vars_to_show = st.slider(&#34;Nombre de variables à afficher&#34;, 1, min(20, len(lst_NOEUD)), 5, 1, key=&#34;num_vars_inference&#34;)
+        
+        if st.button(&#34;🔍 Effectuer l&#39;inférence&#34;, type=&#34;primary&#34;):
+            with st.spinner(&#34;Calcul des inférences...&#34;):
+                svgtxt_inf = bn_svg(InsClsSampler.bn, evs=settings, Inference=True, size=selected_size2)
+                components.html(svgtxt_inf, height=900, scrolling=True)
+            
+            # Show marginal distributions
+            if show_probs and settings:
+                st.markdown(&#34;#### 📊 Distributions marginales après observation&#34;)
+                ie = gum.LazyPropagation(InsClsSampler.bn)
+                ie.setEvidence(settings)
+                ie.makeInference()
+                
+                all_nodes = list(lst_NOEUD)
+                unobserved_nodes = [n for n in all_nodes if n not in settings]
+                nodes_to_display = unobserved_nodes[:num_vars_to_show]
+                
+                st.markdown(f&#34;**Affichage des {len(nodes_to_display)} premières variables non observées:**&#34;)
+                
+                for node_name in nodes_to_display:
+                    try:
+                        posterior = ie.posterior(node_name)
+                        posterior_df = posterior.topandas()
+                        
+                        with st.expander(f&#34;📊 {node_name}&#34;, expanded=False):
+                            col_p1, col_p2 = st.columns([2, 1])
+                            with col_p1:
+                                if isinstance(posterior_df, pd.Series):
+                                    x_vals = [str(x) for x in posterior_df.index.tolist()]
+                                    y_vals = posterior_df.values.tolist()
+                                elif isinstance(posterior_df, pd.DataFrame):
+                                    if posterior_df.shape[1] == 1:
+                                        x_vals = [str(idx) for idx in posterior_df.index]
+                                        y_vals = posterior_df.iloc[:, 0].values.tolist()
+                                    else:
+                                        posterior_df = posterior_df.reset_index(drop=False)
+                                        prob_col = posterior_df.columns[-1]
+                                        label_cols = [c for c in posterior_df.columns if c != prob_col]
+                                        if label_cols:
+                                            x_vals = posterior_df[label_cols].astype(str).agg(&#39; | &#39;.join, axis=1).tolist()
+                                        else:
+                                            x_vals = [str(i) for i in range(len(posterior_df))]
+                                        y_vals = posterior_df[prob_col].tolist()
+                                else:
+                                    x_vals = [str(i) for i in range(len(posterior_df))]
+                                    y_vals = list(posterior_df)
+                                
+                                if len(x_vals) != len(y_vals):
+                                    st.warning(f&#34;Incohérence de données pour {node_name}: {len(x_vals)} labels vs {len(y_vals)} valeurs&#34;)
+                                    min_len = min(len(x_vals), len(y_vals))
+                                    x_vals = x_vals[:min_len]
+                                    y_vals = y_vals[:min_len]
+                                
+                                fig = px.bar(
+                                    x=x_vals,
+                                    y=y_vals,
+                                    labels={&#39;x&#39;: &#39;État&#39;, &#39;y&#39;: &#39;Probabilité&#39;},
+                                    title=f&#34;Distribution posterieure - {node_name}&#34;,
+                                    color_discrete_sequence=[&#39;#ff4b4b&#39;]
+                                )
+                                fig.update_layout(
+                                    xaxis_title=&#34;État&#34;,
+                                    yaxis_title=&#34;Probabilité&#34;,
+                                    showlegend=False,
+                                    xaxis={&#39;tickangle&#39;: -45} if len(x_vals) &gt; 5 else {}
+                                )
+                                st.plotly_chart(fig, use_container_width=True)
+                            with col_p2:
+                                st.dataframe(posterior_df, use_container_width=True)
+                    except Exception as e:
+                        st.error(f&#34;Erreur pour {node_name}: {e}&#34;)
+                        import traceback
+                        st.code(traceback.format_exc())
+            elif show_probs and not settings:
+                st.info(&#34;Configurez au moins une observation pour voir les distributions marginales.&#34;)
+    
+    # Tab 6: Analyse
+    elif selected_tab == &#34;📈 Analyse&#34;:
+        st.subheader(&#34;Analyse structurelle du réseau&#34;)
+        
+        # Network metrics
+        st.markdown(&#34;#### Métriques du réseau&#34;)
+        
+        metrics_col1, metrics_col2, metrics_col3, metrics_col4 = st.columns(4)
+        
+        metrics_col1.metric(&#34;🔢 Nœuds&#34;, InsClsSampler.bn.size())
+        metrics_col2.metric(&#34;🔗 Arcs&#34;, InsClsSampler.bn.sizeArcs())
+        metrics_col3.metric(&#34;📊 États totaux&#34;, sum([InsClsSampler.bn.variable(i).domainSize() for i in InsClsSampler.bn.nodes()]))
+        metrics_col4.metric(&#34;🎯 Paramètres&#34;, InsClsSampler.bn.log10DomainSize())
+        
+        # Node degree distribution
+        st.markdown(&#34;#### Distribution des degrés des nœuds&#34;)
+        
+        degrees = []
+        for node_id in InsClsSampler.bn.nodes():
+            in_degree = len(InsClsSampler.bn.parents(node_id))
+            out_degree = len(InsClsSampler.bn.children(node_id))
+            degrees.append({
+                &#39;Node&#39;: InsClsSampler.bn.variable(node_id).name(),
+                &#39;In-Degree&#39;: in_degree,
+                &#39;Out-Degree&#39;: out_degree,
+                &#39;Total&#39;: in_degree + out_degree
+            })
+        
+        df_degrees = pd.DataFrame(degrees).sort_values(&#39;Total&#39;, ascending=False)
+        
+        col_deg1, col_deg2 = st.columns(2)
+        
+        with col_deg1:
+            st.dataframe(df_degrees.head(10), use_container_width=True)
+        
+        with col_deg2:
+            fig = px.histogram(df_degrees, x=&#39;Total&#39;, nbins=20,
+                             title=&#34;Distribution des degrés totaux&#34;)
+            st.plotly_chart(fig, use_container_width=True)</code></pre>
+</details>
+<div class="desc"><p>Enhanced Bayesian Network visualization and exploration page.</p></div>
+</dd>
+<dt id="LTE-Sampler-Residential.ui.Dashboard.Page_Echantilloneur"><code class="name flex">
+<span>def <span class="ident">Page_Echantilloneur</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def Page_Echantilloneur():
+    &#34;&#34;&#34;Enhanced sampling page with advanced features.&#34;&#34;&#34;
+    st.title(&#34;🏠 ResStock-QC - Échantillonneur&#34;)
+    st.markdown(&#34;Génération d&#39;échantillons résidentiels basée sur un réseau bayésien (EUEMr 2022)&#34;)
+    
+    # Load sampler
+    path = PROJECT_DIR + &#34;/data/processed/bayesian_network/BN_EUEMr.XDSL&#34;
+    with st.spinner(&#34;🔄 Chargement du réseau bayésien...&#34;):
+        InsClsSampler = load_sampler(path)
+    
+    lst_NOEUD = InsClsSampler.lst_NOEUD
+    LIST_Dict = InsClsSampler.LIST_Dict
+    
+    # ===== STEP 1: Parameter Selection =====
+    st.header(&#34;📝 Étape 1 - Configuration des paramètres&#34;)
+    
+    col1, col2 = st.columns([2, 1])
+    
+    with col1:
+        st.subheader(&#34;Variables imposées&#34;)
+        
+        # Quick preset selection
+        presets = {
+            &#34;Aucun&#34;: {},
+            &#34;Maison unifamiliale&#34;: {&#34;Type_Logement&#34;: &#34;Maison individuelle&#34;},
+            &#34;Appartement récent&#34;: {&#34;Type_Logement&#34;: &#34;Appartement&#34;, &#34;An_Construction&#34;: &#34;[2000 - 2010)&#34;},
+        }
+        
+        selected_preset = st.selectbox(&#34;🎯 Préréglages rapides&#34;, list(presets.keys()))
+        
+        # Initialize last_preset tracker ONCE here
+        if &#39;last_preset&#39; not in st.session_state:
+            st.session_state.last_preset = &#34;Aucun&#34;
+        
+        # Initialize selected nodes in session state if not exists
+        if &#39;selected_constraint_nodes&#39; not in st.session_state:
+            st.session_state.selected_constraint_nodes = []
+        
+        # If preset changed, update the constraint nodes and force rerun
+        if selected_preset != st.session_state.last_preset:
+            st.session_state.last_preset = selected_preset
+            if selected_preset != &#34;Aucun&#34;:
+                st.session_state.settings = presets[selected_preset]
+                st.session_state.selected_constraint_nodes = list(presets[selected_preset].keys())
+            else:
+                st.session_state.settings = {}
+                st.session_state.selected_constraint_nodes = []
+            st.rerun()  # Force rerun to update multiselect
+        
+        # Update settings if preset selected (for non-preset-change case)
+        if selected_preset != &#34;Aucun&#34; and not st.session_state.selected_constraint_nodes:
+            st.session_state.settings = presets[selected_preset]
+        
+        # Advanced parameter selection
+        with st.expander(&#34;⚙️ Sélection avancée des variables&#34;, expanded=True):
+            # Search filter
+            search = st.text_input(&#34;🔍 Rechercher une variable&#34;, &#34;&#34;)
+            filtered_nodes = [n for n in lst_NOEUD if search.lower() in n.lower()]
+            
+        # Multiselect with default from session_state
+        Noeuds_contraints = st.multiselect(
+            &#34;Sélectionner les variables à contraindre:&#34;,
+            filtered_nodes if search else lst_NOEUD,
+            default=st.session_state.selected_constraint_nodes,
+            key=&#34;multiselect_constraints&#34;
+        )
+        
+        # Update session_state after user interaction
+        #st.session_state.selected_constraint_nodes = Noeuds_contraints
+        
+        settings = {}
+        for input_var in Noeuds_contraints:
+            col_a, col_b = st.columns([1, 2])
+            with col_a:
+                st.markdown(f&#34;**{input_var}**&#34;)
+            with col_b:
+                default_idx = 0
+                if input_var in st.session_state.settings:
+                    try:
+                        default_idx = list(LIST_Dict[input_var].values()).index(
+                            st.session_state.settings[input_var]
+                        )
+                    except ValueError:
+                        pass
+                
+                settings[input_var] = st.selectbox(
+                    f&#34;Valeur pour {input_var}&#34;,
+                    options=list(LIST_Dict[input_var].values()),
+                    index=default_idx,
+                    key=f&#34;select_{input_var}&#34;
+                )
+        
+        st.session_state.settings = settings
+    
+    with col2:
+        st.subheader(&#34;📊 Résumé de la configuration&#34;)
+        if st.session_state.settings:
+            for key, value in st.session_state.settings.items():
+                st.markdown(f&#34;**{key}:** `{value}`&#34;)
+            
+            # Save/Load configuration
+            if st.button(&#34;💾 Sauvegarder la configuration&#34;):
+                config_json = json.dumps(st.session_state.settings, indent=2)
+                st.download_button(
+                    &#34;📥 Télécharger config.json&#34;,
+                    config_json,
+                    &#34;configuration.json&#34;,
+                    &#34;application/json&#34;
+                )
+            
+            uploaded_config = st.file_uploader(&#34;📤 Charger une configuration&#34;, type=[&#39;json&#39;])
+            if uploaded_config:
+                try:
+                    config = json.load(uploaded_config)
+                    st.session_state.settings = config
+                    st.success(&#34;Configuration chargée!&#34;)
+                    st.rerun()
+                except Exception as e:
+                    st.error(f&#34;Erreur lors du chargement: {e}&#34;)
+        else:
+            st.info(&#34;Aucune variable contrainte sélectionnée&#34;)
+    
+    st.markdown(&#34;---&#34;)
+    
+    # ===== STEP 2: Simulation =====
+    st.header(&#34;🚀 Étape 2 - Simulation&#34;)
+    
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        Nombre_de_Samples = st.number_input(
+            &#34;Nombre d&#39;échantillons:&#34;,
+            min_value=1,
+            max_value=10000,
+            value=100,
+            step=10
+        )
+    
+    with col2:
+        seed = st.number_input(&#34;🎲 Graine aléatoire (0 = aléatoire)&#34;, 
+                              min_value=0, max_value=99999, value=0)
+    
+    with col3:
+        export_format = st.multiselect(
+            &#34;📦 Formats d&#39;export&#34;,
+            [&#34;CSV&#34;, &#34;Excel&#34;, &#34;JSON&#34;],
+            default=[&#34;CSV&#34;]
+        )
+    
+    # Advanced options
+    with st.expander(&#34;⚙️ Options avancées&#34;):
+        col_a, col_b = st.columns(2)
+        with col_a:
+            add_statistics = st.checkbox(&#34;📈 Ajouter statistiques descriptives&#34;, value=True)
+            add_visualizations = st.checkbox(&#34;📊 Générer visualisations&#34;, value=True)
+        with col_b:
+            validate_data = st.checkbox(&#34;✅ Valider les données&#34;, value=True)
+            save_history = st.checkbox(&#34;💾 Sauvegarder dans l&#39;historique&#34;, value=True)
+    
+    # Simulation button
+    simulate_btn = st.button(&#34;▶️ Lancer la simulation&#34;, type=&#34;primary&#34;, use_container_width=True)
+    
+    if simulate_btn:
+        start_time = time.time()
+        
+        progress_bar = st.progress(0)
+        status_text = st.empty()
+        
+        try:
+            # Step 1: BN Sampling
+            status_text.text(&#34;🔄 Échantillonnage du réseau bayésien...&#34;)
+            progress_bar.progress(20)
+            
+            if seed &gt; 0:
+                np.random.seed(seed)
+            
+            df = InsClsSampler.GUM_Sampling(Nombre_de_Samples, evs=st.session_state.settings)
+            lst_dct_args = df.to_dict(orient=&#39;records&#39;)
+            
+            # Step 2: Add external variables
+            status_text.text(&#34;➕ Ajout de variables additionnelles...&#34;)
+            progress_bar.progress(40)
+
+            lst_dct_args2 = InsClsSampler.resstock_args_sampling(lst_dct_args)
+            lst_dct_args = [d1 | d2 for d1, d2 in zip(lst_dct_args, lst_dct_args2)]
+            
+            # Step 3: HPXML Mapping
+            status_text.text(&#34;🗺️ Mapping vers HPXML...&#34;)
+            progress_bar.progress(60)
+            
+            MapSample = MapHPXML()
+            lst_dct_HPXML = MapSample.run(lst_dct_args)
+            
+            # Step 4: Create DataFrames
+            status_text.text(&#34;📊 Génération des tableaux...&#34;)
+            progress_bar.progress(80)
+            
+            dfargs = pd.DataFrame(lst_dct_args)
+            dfHPXML = pd.DataFrame(lst_dct_HPXML)
+            dfAll = pd.concat([dfargs, dfHPXML], axis=1)
+            
+            # Data validation
+            if validate_data:
+                status_text.text(&#34;✅ Validation des données...&#34;)
+                null_counts = dfAll.isnull().sum()
+                if null_counts.sum() &gt; 0:
+                    st.warning(f&#34;⚠️ {null_counts.sum()} valeurs manquantes détectées&#34;)
+            
+            progress_bar.progress(100)
+            status_text.text(&#34;✅ Simulation terminée!&#34;)
+            
+            elapsed_time = time.time() - start_time
+            
+            # Save to session state
+            st.session_state.last_simulation = {
+                &#39;dfargs&#39;: dfargs,
+                &#39;dfHPXML&#39;: dfHPXML,
+                &#39;dfAll&#39;: dfAll,
+                &#39;settings&#39;: st.session_state.settings.copy(),
+                &#39;n_samples&#39;: Nombre_de_Samples,
+                &#39;timestamp&#39;: time.strftime(&#34;%Y-%m-%d %H:%M:%S&#34;),
+                &#39;elapsed_time&#39;: elapsed_time
+            }
+            
+            if save_history:
+                st.session_state.simulation_history.append(st.session_state.last_simulation)
+            
+            st.markdown(f&#34;&#34;&#34;
+            &lt;div class=&#34;success-box&#34;&gt;
+                ✅ &lt;strong&gt;Simulation réussie!&lt;/strong&gt;&lt;br&gt;
+                📊 {Nombre_de_Samples} échantillons générés en {elapsed_time:.2f} secondes&lt;br&gt;
+                📈 Vitesse: {Nombre_de_Samples/elapsed_time:.1f} échantillons/seconde
+            &lt;/div&gt;
+            &#34;&#34;&#34;, unsafe_allow_html=True)
+            
+        except Exception as e:
+            st.error(f&#34;❌ Erreur lors de la simulation: {str(e)}&#34;)
+            st.exception(e)
+            return
+    
+    # ===== STEP 3: Results Display =====
+    if st.session_state.last_simulation:
+        st.markdown(&#34;---&#34;)
+        st.header(&#34;📊 Étape 3 - Résultats&#34;)
+        
+        sim = st.session_state.last_simulation
+        dfargs = sim[&#39;dfargs&#39;]
+        dfHPXML = sim[&#39;dfHPXML&#39;]
+        dfAll = sim[&#39;dfAll&#39;]
+        
+        # Initialize selected results tab in session state
+        if &#39;selected_results_tab&#39; not in st.session_state:
+            st.session_state.selected_results_tab = &#34;📋 Échantillons&#34;
+        
+        # Results tab configuration
+        results_tab_names = [
+            &#34;📋 Échantillons&#34;, 
+            &#34;🗺️ Mapping HPXML&#34;, 
+            &#34;📊 Statistiques&#34;, 
+            &#34;📈 Visualisations&#34;,
+            &#34;💾 Export&#34;
+        ]
+        
+        # Custom CSS for tab-like buttons (same as BaysianNetwork)
+        st.markdown(&#34;&#34;&#34;
+        &lt;style&gt;
+        div[data-testid=&#34;column&#34;] button[kind=&#34;secondary&#34;] {
+            width: 100%;
+            border-radius: 8px 8px 0px 0px;
+            border: none;
+            background-color: #f0f2f6;
+            color: #31333F;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 400;
+            height: 50px;
+        }
+        div[data-testid=&#34;column&#34;] button[kind=&#34;secondary&#34;]:hover {
+            background-color: #e0e2e6;
+            border-color: transparent;
+            color: #31333F;
+        }
+        div[data-testid=&#34;column&#34;] button[kind=&#34;primary&#34;] {
+            width: 100%;
+            border-radius: 8px 8px 0px 0px;
+            border: none;
+            background-color: #ff4b4b !important;
+            color: white !important;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            height: 50px;
+        }
+        div[data-testid=&#34;column&#34;] button[kind=&#34;primary&#34;]:hover {
+            background-color: #ff3333 !important;
+            border-color: transparent !important;
+            color: white !important;
+        }
+        &lt;/style&gt;
+        &#34;&#34;&#34;, unsafe_allow_html=True)
+        
+        # Create results tab buttons
+        cols = st.columns(5)
+        for idx, tab_name in enumerate(results_tab_names):
+            with cols[idx]:
+                is_selected = (st.session_state.selected_results_tab == tab_name)
+                btn_type = &#34;primary&#34; if is_selected else &#34;secondary&#34;
+                if st.button(tab_name, key=f&#34;results_tab_{idx}&#34;, type=btn_type, use_container_width=True):
+                    st.session_state.selected_results_tab = tab_name
+                    st.rerun()
+        
+        st.markdown(&#34;---&#34;)
+        
+        selected_results_tab = st.session_state.selected_results_tab
+        
+        # Tab 1: Échantillons
+        if selected_results_tab == &#34;📋 Échantillons&#34;:
+            st.subheader(&#34;Données d&#39;échantillonnage&#34;)
+            
+            # Filters
+            col_f1, col_f2 = st.columns(2)
+            with col_f1:
+                search_col = st.text_input(&#34;🔍 Rechercher dans les colonnes&#34;, &#34;&#34;, key=&#34;search_col_tab1&#34;)
+            with col_f2:
+                display_mode = st.radio(&#34;Mode d&#39;affichage&#34;, [&#34;Aperçu (50 lignes)&#34;, &#34;Complet&#34;], horizontal=True, key=&#34;display_mode_tab1&#34;)
+            
+            # Filter columns
+            if search_col:
+                filtered_cols = [c for c in dfargs.columns if search_col.lower() in c.lower()]
+                df_display = dfargs[filtered_cols]
+            else:
+                df_display = dfargs
+            
+            # Display
+            if display_mode == &#34;Aperçu (50 lignes)&#34;:
+                st.dataframe(style_dataframe(df_display.head(50)), use_container_width=True)
+            else:
+                st.dataframe(style_dataframe(df_display), use_container_width=True)
+        
+        # Tab 2: Mapping HPXML
+        elif selected_results_tab == &#34;🗺️ Mapping HPXML&#34;:
+            st.subheader(&#34;Mapping HPXML&#34;)
+            st.dataframe(style_dataframe(dfHPXML), use_container_width=True)
+        
+        # Tab 3: Statistiques
+        elif selected_results_tab == &#34;📊 Statistiques&#34;:
+            st.subheader(&#34;Statistiques descriptives&#34;)
+            
+            if add_statistics:
+                # Numeric statistics
+                numeric_cols = dfAll.select_dtypes(include=[np.number]).columns
+                if len(numeric_cols) &gt; 0:
+                    st.markdown(&#34;#### Variables numériques&#34;)
+                    st.dataframe(dfAll[numeric_cols].describe().T, use_container_width=True)
+                
+                # Categorical statistics
+                cat_cols = dfAll.select_dtypes(include=[&#39;object&#39;]).columns
+                if len(cat_cols) &gt; 0:
+                    st.markdown(&#34;#### Variables catégorielles&#34;)
+                    selected_cat = st.selectbox(&#34;Sélectionner une variable&#34;, cat_cols, key=&#34;selected_cat_tab3&#34;)
+                    value_counts = dfAll[selected_cat].value_counts()
+                    
+                    col_stat1, col_stat2 = st.columns(2)
+                    with col_stat1:
+                        st.dataframe(value_counts.reset_index(name=&#39;Fréquence&#39;), use_container_width=True)
+                    with col_stat2:
+                        fig = px.pie(values=value_counts.values, names=value_counts.index,
+                                    title=f&#34;Distribution de {selected_cat}&#34;)
+                        st.plotly_chart(fig, use_container_width=True)
+        
+        # Tab 4: Visualisations
+        elif selected_results_tab == &#34;📈 Visualisations&#34;:
+            if add_visualizations:
+                st.subheader(&#34;Visualisations interactives&#34;)
+                
+                # Initialize viz_type in session state to prevent reset
+                if &#39;viz_type&#39; not in st.session_state:
+                    st.session_state.viz_type = &#34;Distribution&#34;
+                
+                viz_type = st.selectbox(
+                    &#34;Type de visualisation&#34;, 
+                    [&#34;Distribution&#34;, &#34;Corrélation&#34;, &#34;Box Plot&#34;, &#34;Comparaison BN vs Échantillon&#34;],
+                    index=[&#34;Distribution&#34;, &#34;Corrélation&#34;, &#34;Box Plot&#34;, &#34;Comparaison BN vs Échantillon&#34;].index(st.session_state.viz_type),
+                    key=&#34;viz_type_selector&#34;
+                )
+                
+                # Update session state
+                st.session_state.viz_type = viz_type
+                   
+                if viz_type == &#34;Distribution&#34;:
+                    selected_col = st.selectbox(&#34;Sélectionner une colonne&#34;, dfAll.columns, key=&#34;dist_col&#34;)
+                    fig = create_distribution_plot(dfAll, selected_col)
+                    st.plotly_chart(fig, use_container_width=True)
+                
+                elif viz_type == &#34;Corrélation&#34;:
+                    fig = create_correlation_heatmap(dfAll)
+                    if fig:
+                        st.plotly_chart(fig, use_container_width=True)
+                    else:
+                        st.info(&#34;Pas assez de colonnes numériques pour la corrélation&#34;)
+                
+                elif viz_type == &#34;Box Plot&#34;:
+                    numeric_cols = dfAll.select_dtypes(include=[np.number]).columns
+                    if len(numeric_cols) &gt; 0:
+                        selected_col = st.selectbox(&#34;Sélectionner une variable&#34;, numeric_cols, key=&#34;box_col&#34;)
+                        fig = px.box(dfAll, y=selected_col, title=f&#34;Box Plot: {selected_col}&#34;)
+                        st.plotly_chart(fig, use_container_width=True)
+
+                elif viz_type == &#34;Comparaison BN vs Échantillon&#34;:
+                    st.markdown(&#34;Comparer la distribution théorique (posterior BN) avec la distribution empirique des échantillons.&#34;)
+                    
+                    bn_vars = [c for c in dfAll.columns if c in lst_NOEUD]
+                    
+                    if not bn_vars:
+                        st.warning(&#34;Aucune variable du réseau bayésien trouvée dans les données.&#34;)
+                    else:
+                        compare_var = st.selectbox(
+                            &#34;Variable catégorielle du réseau bayésien&#34;,
+                            bn_vars,
+                            key=&#34;compare_var_selector&#34;
+                        )
+                        
+                        if compare_var:
+                            # Théorique (posterior)
+                            posterior_dict = bn_posterior(InsClsSampler.bn, st.session_state.settings, compare_var)
+                            if posterior_dict is None:
+                                st.warning(&#34;Variable non présente dans le BN.&#34;)
+                            else:
+                                # Empirique
+                                emp_counts = dfAll[compare_var].value_counts(normalize=True)
+                                states = list(posterior_dict.keys())
+                                posterior_vals = [posterior_dict.get(s, 0) for s in states]
+                                empirical_vals = [emp_counts.get(s, 0) for s in states]
+
+                                df_compare = pd.DataFrame({
+                                    &#34;État&#34;: states,
+                                    &#34;Posterior_BN&#34;: posterior_vals,
+                                    &#34;Empirique_Échantillon&#34;: empirical_vals,
+                                    &#34;Diff&#34;: np.array(empirical_vals) - np.array(posterior_vals)
+                                })
+
+                                colc1, colc2 = st.columns([2.5,1.5])
+                                with colc1:
+                                    fig = go.Figure()
+                                    fig.add_trace(go.Bar(name=&#39;Posterior BN&#39;, x=states, y=posterior_vals, marker_color=&#34;#1f77b4&#34;))
+                                    fig.add_trace(go.Bar(name=&#39;Empirique&#39;, x=states, y=empirical_vals, marker_color=&#34;#ff4b4b&#34;))
+                                    fig.update_layout(barmode=&#39;group&#39;, title=f&#34;Distribution - {compare_var}&#34;)
+                                    st.plotly_chart(fig, use_container_width=True)
+                                with colc2:
+                                    st.dataframe(df_compare, use_container_width=True)
+
+                                show_diff = st.checkbox(&#34;Afficher graphique des différences (Empirique - BN)&#34;, key=&#34;show_diff_checkbox&#34;)
+                                if show_diff:
+                                    fig_diff = go.Figure()
+                                    fig_diff.add_trace(go.Bar(name=&#39;Différence&#39;, x=states, y=df_compare[&#34;Diff&#34;], marker_color=&#34;#ff9f0a&#34;))
+                                    fig_diff.update_layout(title=f&#34;Différences Empirique - Posterior BN ({compare_var})&#34;)
+                                    st.plotly_chart(fig_diff, use_container_width=True)
+        
+        # Tab 5: Export
+        elif selected_results_tab == &#34;💾 Export&#34;:
+            st.subheader(&#34;Export des données&#34;)
+            
+            col_e1, col_e2, col_e3 = st.columns(3)
+            
+            with col_e1:
+                if &#34;CSV&#34; in export_format:
+                    st.download_button(
+                        label=&#34;📥 Télécharger CSV&#34;,
+                        data=dfAll.to_csv(index=False).encode(&#39;utf-8&#39;),
+                        file_name=f&#39;resultats_{time.strftime(&#34;%Y%m%d_%H%M%S&#34;)}.csv&#39;,
+                        mime=&#39;text/csv&#39;,
+                        use_container_width=True
+                    )
+            
+            with col_e2:
+                if &#34;Excel&#34; in export_format:
+                    excel_data = export_to_excel({
+                        &#39;Echantillons&#39;: dfargs,
+                        &#39;HPXML&#39;: dfHPXML,
+                        &#39;Complet&#39;: dfAll
+                    })
+                    st.download_button(
+                        label=&#34;📥 Télécharger Excel&#34;,
+                        data=excel_data,
+                        file_name=f&#39;resultats_{time.strftime(&#34;%Y%m%d_%H%M%S&#34;)}.xlsx&#39;,
+                        mime=&#39;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&#39;,
+                        use_container_width=True
+                    )
+            
+            with col_e3:
+                if &#34;JSON&#34; in export_format:
+                    json_data = dfAll.to_json(orient=&#39;records&#39;, indent=2)
+                    st.download_button(
+                        label=&#34;📥 Télécharger JSON&#34;,
+                        data=json_data,
+                        file_name=f&#39;resultats_{time.strftime(&#34;%Y%m%d_%H%M%S&#34;)}.json&#39;,
+                        mime=&#39;application/json&#39;,
+                        use_container_width=True
+                    )</code></pre>
+</details>
+<div class="desc"><p>Enhanced sampling page with advanced features.</p></div>
+</dd>
+<dt id="LTE-Sampler-Residential.ui.Dashboard.bn_posterior"><code class="name flex">
+<span>def <span class="ident">bn_posterior</span></span>(<span>bn, evidence: dict, varname: str)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def bn_posterior(bn, evidence: dict, varname: str):
+    &#34;&#34;&#34;
+    Return posterior distribution (dict state-&gt;prob) for varname given evidence.
+    Uses bn.variable(...) to get labels instead of post.var().
+    &#34;&#34;&#34;
+    if varname not in [bn.variable(i).name() for i in bn.nodes()]:
+        return None
+    ie = gum.LazyPropagation(bn)
+    if evidence:
+        ie.setEvidence(evidence)
+    ie.makeInference()
+    pot = ie.posterior(varname)
+    var = bn.variable(bn.idFromName(varname))
+    states = [var.label(i) for i in range(var.domainSize())]
+    probs = [float(pot[i]) for i in range(var.domainSize())]
+    return dict(zip(states, probs))</code></pre>
+</details>
+<div class="desc"><p>Return posterior distribution (dict state-&gt;prob) for varname given evidence.
+Uses bn.variable(&hellip;) to get labels instead of post.var().</p></div>
+</dd>
+<dt id="LTE-Sampler-Residential.ui.Dashboard.bn_svg"><code class="name flex">
+<span>def <span class="ident">bn_svg</span></span>(<span>bn, evs=None, Inference=True, size=15)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@st.cache_data(hash_funcs={gum.BayesNet: lambda b: id(b)})
+def bn_svg(bn, evs=None, Inference=True, size=15):
+    &#34;&#34;&#34;Generate and cache SVG visualization of Bayesian Network.&#34;&#34;&#34;
+    if Inference:
+        svgtxt = gum.lib.image.dot_as_svg_string(
+            gum.lib._colors.prepareDot(gum.lib.image.prepareShowInference(bn, evs=evs)),
+            size=size
+        )
+    else:
+        fig = gum.lib.bn2graph.BN2dot(bn)
+        svgtxt = gum.lib.image.dot_as_svg_string(gum.lib._colors.prepareDot(fig), size=size)
+    return svgtxt</code></pre>
+</details>
+<div class="desc"><p>Generate and cache SVG visualization of Bayesian Network.</p></div>
+</dd>
+<dt id="LTE-Sampler-Residential.ui.Dashboard.create_correlation_heatmap"><code class="name flex">
+<span>def <span class="ident">create_correlation_heatmap</span></span>(<span>df)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_correlation_heatmap(df):
+    &#34;&#34;&#34;Create correlation heatmap for numerical columns.&#34;&#34;&#34;
+    numeric_cols = df.select_dtypes(include=[np.number]).columns
+    if len(numeric_cols) &gt; 1:
+        corr = df[numeric_cols].corr()
+        fig = px.imshow(corr, 
+                       labels=dict(color=&#34;Corrélation&#34;),
+                       x=corr.columns,
+                       y=corr.columns,
+                       color_continuous_scale=&#39;RdBu_r&#39;,
+                       aspect=&#34;auto&#34;)
+        fig.update_layout(title=&#34;Matrice de corrélation&#34;)
+        return fig
+    return None</code></pre>
+</details>
+<div class="desc"><p>Create correlation heatmap for numerical columns.</p></div>
+</dd>
+<dt id="LTE-Sampler-Residential.ui.Dashboard.create_distribution_plot"><code class="name flex">
+<span>def <span class="ident">create_distribution_plot</span></span>(<span>df, column)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_distribution_plot(df, column):
+    &#34;&#34;&#34;Create interactive distribution plot.&#34;&#34;&#34;
+    if df[column].dtype in [&#39;int64&#39;, &#39;float64&#39;]:
+        fig = px.histogram(df, x=column, title=f&#39;Distribution de {column}&#39;,
+                          color_discrete_sequence=[&#39;#ff4b4b&#39;])
+    else:
+        value_counts = df[column].value_counts()
+        fig = px.bar(x=value_counts.index, y=value_counts.values,
+                    title=f&#39;Distribution de {column}&#39;,
+                    labels={&#39;x&#39;: column, &#39;y&#39;: &#39;Fréquence&#39;},
+                    color_discrete_sequence=[&#39;#ff4b4b&#39;])
+    fig.update_layout(showlegend=False)
+    return fig</code></pre>
+</details>
+<div class="desc"><p>Create interactive distribution plot.</p></div>
+</dd>
+<dt id="LTE-Sampler-Residential.ui.Dashboard.export_to_excel"><code class="name flex">
+<span>def <span class="ident">export_to_excel</span></span>(<span>dataframes_dict)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def export_to_excel(dataframes_dict):
+    &#34;&#34;&#34;Export multiple dataframes to Excel with multiple sheets.&#34;&#34;&#34;
+    output = BytesIO()
+    with pd.ExcelWriter(output, engine=&#39;xlsxwriter&#39;) as writer:
+        for sheet_name, df in dataframes_dict.items():
+            df.to_excel(writer, sheet_name=sheet_name, index=False)
+    return output.getvalue()</code></pre>
+</details>
+<div class="desc"><p>Export multiple dataframes to Excel with multiple sheets.</p></div>
+</dd>
+<dt id="LTE-Sampler-Residential.ui.Dashboard.load_data_description"><code class="name flex">
+<span>def <span class="ident">load_data_description</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@st.cache_data
+def load_data_description():
+    &#34;&#34;&#34;Load and cache data description.&#34;&#34;&#34;
+    return pd.read_csv(PROJECT_DIR + &#34;/data/processed/Data_description.csv&#34;, index_col=0)</code></pre>
+</details>
+<div class="desc"><p>Load and cache data description.</p></div>
+</dd>
+<dt id="LTE-Sampler-Residential.ui.Dashboard.load_sampler"><code class="name flex">
+<span>def <span class="ident">load_sampler</span></span>(<span>path)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@st.cache_resource
+def load_sampler(path):
+    &#34;&#34;&#34;Load and cache the Bayesian Network sampler.&#34;&#34;&#34;
+    ins = Sampler(path)
+    return ins</code></pre>
+</details>
+<div class="desc"><p>Load and cache the Bayesian Network sampler.</p></div>
+</dd>
+<dt id="LTE-Sampler-Residential.ui.Dashboard.main"><code class="name flex">
+<span>def <span class="ident">main</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def main():
+    &#34;&#34;&#34;Main application entry point.&#34;&#34;&#34;
+    
+    # Render sidebar
+    render_sidebar()
+    
+    # Page navigation
+    pages = {
+        &#34;Échantillonneur&#34;: [
+            st.Page(Page_Echantilloneur, title=&#34;Échantillonneur&#34;, icon=&#34;🏠&#34;),
+            st.Page(BaysianNetwork, title=&#34;Réseau Bayésien&#34;, icon=&#34;🕸️&#34;)
+        ]
+    }
+    
+    pg = st.navigation(pages)
+    pg.run()</code></pre>
+</details>
+<div class="desc"><p>Main application entry point.</p></div>
+</dd>
+<dt id="LTE-Sampler-Residential.ui.Dashboard.render_sidebar"><code class="name flex">
+<span>def <span class="ident">render_sidebar</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def render_sidebar():
+    &#34;&#34;&#34;Render enhanced sidebar with settings and controls.&#34;&#34;&#34;
+    with st.sidebar:
+        #st.image(&#34;https://via.placeholder.com/150x50/ff4b4b/ffffff?text=ResStock-QC&#34;, use_container_width=True)
+                
+        # Data folder selector
+        st.subheader(&#34;📁 Dossiers de données&#34;)
+        data_output_dir = os.path.join(PROJECT_DIR, &#34;data&#34;, &#34;output&#34;)
+        
+        if os.path.isdir(data_output_dir):
+            csv_files = [&#34;&lt;Aucun&gt;&#34;] + sorted([f for f in os.listdir(data_output_dir) 
+                                             if f.lower().endswith(&#34;.csv&#34;)])
+            selected_file = st.selectbox(&#34;📊 Fichiers CSV disponibles&#34;, csv_files)
+            
+            if selected_file != &#34;&lt;Aucun&gt;&#34;:
+                file_path = os.path.join(data_output_dir, selected_file)
+                try:
+                    df_preview = pd.read_csv(file_path)
+                    st.info(f&#34;📋 {len(df_preview)} lignes × {len(df_preview.columns)} colonnes&#34;)
+                    
+                    if st.button(&#34;📥 Charger le fichier&#34;):
+                        st.session_state.loaded_file = df_preview
+                        st.success(&#34;Fichier chargé avec succès!&#34;)
+                except Exception as e:
+                    st.error(f&#34;Erreur: {e}&#34;)
+        
+        # Simulation history
+        st.markdown(&#34;---&#34;)
+        st.subheader(&#34;📜 Historique&#34;)
+        if st.session_state.simulation_history:
+            st.metric(&#34;Simulations effectuées&#34;, len(st.session_state.simulation_history))
+            if st.button(&#34;🗑️ Effacer l&#39;historique&#34;):
+                st.session_state.simulation_history = []
+                st.rerun()
+        else:
+            st.info(&#34;Aucune simulation effectuée&#34;)
+        
+        # System info
+        st.markdown(&#34;---&#34;)
+        st.subheader(&#34;ℹ️ Informations système&#34;)
+        st.text(f&#34;Python: {sys.version.split()[0]}&#34;)
+        st.text(f&#34;Streamlit: {st.__version__}&#34;)
+        st.text(f&#34;PyAgrum: {gum.__version__}&#34;)</code></pre>
+</details>
+<div class="desc"><p>Render enhanced sidebar with settings and controls.</p></div>
+</dd>
+<dt id="LTE-Sampler-Residential.ui.Dashboard.style_dataframe"><code class="name flex">
+<span>def <span class="ident">style_dataframe</span></span>(<span>df)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def style_dataframe(df):
+    &#34;&#34;&#34;Apply styling to dataframe for better visualization.&#34;&#34;&#34;
+    numeric_cols = df.select_dtypes(include=[np.number]).columns.tolist()
+    if numeric_cols:
+        return df.style.background_gradient(subset=numeric_cols, cmap=&#34;RdYlGn&#34;).format(&#34;{:.3f}&#34;, subset=numeric_cols)
+    return df</code></pre>
+</details>
+<div class="desc"><p>Apply styling to dataframe for better visualization.</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul>
+<li><a href="#dashboardpy">Dashboard.py</a><ul>
+<li><a href="#features">Features:</a></li>
+<li><a href="#usage">Usage:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="LTE-Sampler-Residential.ui" href="index.html">LTE-Sampler-Residential.ui</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="LTE-Sampler-Residential.ui.Dashboard.BaysianNetwork" href="#LTE-Sampler-Residential.ui.Dashboard.BaysianNetwork">BaysianNetwork</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.ui.Dashboard.Page_Echantilloneur" href="#LTE-Sampler-Residential.ui.Dashboard.Page_Echantilloneur">Page_Echantilloneur</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.ui.Dashboard.bn_posterior" href="#LTE-Sampler-Residential.ui.Dashboard.bn_posterior">bn_posterior</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.ui.Dashboard.bn_svg" href="#LTE-Sampler-Residential.ui.Dashboard.bn_svg">bn_svg</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.ui.Dashboard.create_correlation_heatmap" href="#LTE-Sampler-Residential.ui.Dashboard.create_correlation_heatmap">create_correlation_heatmap</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.ui.Dashboard.create_distribution_plot" href="#LTE-Sampler-Residential.ui.Dashboard.create_distribution_plot">create_distribution_plot</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.ui.Dashboard.export_to_excel" href="#LTE-Sampler-Residential.ui.Dashboard.export_to_excel">export_to_excel</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.ui.Dashboard.load_data_description" href="#LTE-Sampler-Residential.ui.Dashboard.load_data_description">load_data_description</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.ui.Dashboard.load_sampler" href="#LTE-Sampler-Residential.ui.Dashboard.load_sampler">load_sampler</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.ui.Dashboard.main" href="#LTE-Sampler-Residential.ui.Dashboard.main">main</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.ui.Dashboard.render_sidebar" href="#LTE-Sampler-Residential.ui.Dashboard.render_sidebar">render_sidebar</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.ui.Dashboard.style_dataframe" href="#LTE-Sampler-Residential.ui.Dashboard.style_dataframe">style_dataframe</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

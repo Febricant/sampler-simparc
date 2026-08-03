@@ -1,0 +1,32 @@
+[project]
+name = "lte-sampler-residential"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "coverage>=7.12.0",
+    "dask[complete]>=2025.5.1",
+    "dtale[streamlit]>=3.18.2",
+    "ipykernel>=6.29.5",
+    "notebook>=7.4.5",
+    "openpyxl>=3.1.5",
+    "pandas>=2.2.3",
+    "plotly>=6.2.0",
+    "pyagrum>=2.1.1",
+    "pyarrow>=20.0.0",
+    "pyshp>=3.1.4",
+    "python-pptx>=1.0.2",
+    "streamlit>=1.47.1",
+    "uv>=0.8.3",
+]
+[project.scripts]
+test = "scripts.test:main"
+
+[build-system]
+requires = ["uv_build"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-root = ""
+module-name = "src"

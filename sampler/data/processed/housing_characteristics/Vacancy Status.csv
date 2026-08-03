@@ -1,0 +1,6 @@
+Dependency=Type_Logement;Option=Occupied;Option=Vacant
+Collective;0.98;0.02
+Duplex;0.98;0.02
+Maison en rangee;0.98;0.02
+Maison individuelle;0.98;0.02
+Triplex;0.98;0.02

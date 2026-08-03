@@ -1,0 +1,5 @@
+Dependency=Usage Level;Option=95% Usage;Option=100% Usage;Option=105% Usage
+Average;0;1;0
+Medium;0;1;0
+Low;1;0;0
+High;0;0;1

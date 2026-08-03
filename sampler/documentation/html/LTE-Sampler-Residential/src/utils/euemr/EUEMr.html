@@ -1,0 +1,1740 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>LTE-Sampler-Residential.src.utils.euemr.EUEMr API documentation</title>
+<meta name="description" content="Created on 26-06-2025 …">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>LTE-Sampler-Residential.src.utils.euemr.EUEMr</code></h1>
+</header>
+<section id="section-intro">
+<p>Created on 26-06-2025</p>
+<p>@author: cv1751 - Brice Le Lostec
+@description: Class for generating Bayesian Networks (BN) using pyAgrum.
+@note: This class provides methods to save, load, plot Bayesian Networks and load CSV files.
+@version: 1.0
+python 3.11</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMr.FormatageEUEMr"><code class="flex name class">
+<span>class <span class="ident">EUEMR_formatage</span></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class EUEMR_formatage:
+    &#34;&#34;&#34;
+    Classe pour transformet les données EUEMr en données pour le BN.
+    &#34;&#34;&#34;
+    def __init__(self):
+        self.set_Mapping()
+    def set_Mapping(self):
+        &#34;&#34;&#34;
+        Définit le mapping direct pour les colonnes du DataFrame EUEMr.
+        &#34;&#34;&#34;
+        self.Mapping = {}
+        self.Mapping[&#34;Type_Logement&#34;] = {
+                                &#34;ColSrc&#34; : &#34;QA4&#34;,
+                                &#34;typeMapping&#34; : &#34;list&#34;,
+                                &#34;Mapping&#34; : {&#34;Collective&#34; :[&#34;Immeuble de 4 à 8 appartements&#34;,
+                                                            &#34;Immeuble de 9 à 19 appartements&#34;,
+                                                            &#34;Immeuble de 50 appartements ou plus&#34;,
+                                                            &#34;Immeuble de 20 à 49 appartements&#34;,
+                                                            &#34;Immeuble à appartement (sans précision)&#34;],
+                                            &#34;Triplex&#34; : [&#34;Triplex détaché&#34;, 
+                                                        &#34;Triplex jumelé/en bout de rangée attaché 1 seul côté&#34;,
+                                                        &#34;Triplex (sans précision)&#34;,
+                                                        &#34;Triplex milieu de rangée attaché 2 côtés&#34;],
+                                            &#34;Duplex&#34; : [&#34;Duplex jumelé/en bout de rangée attaché 1 seul côté&#34;,
+                                                        &#34;Duplex (sans précision)&#34;,
+                                                        &#34;Duplex détaché&#34;,
+                                                        &#34;Duplex en milieu de rangée attaché 2 côtés&#34;],
+                                            &#34;Maison en rangee&#34; : [&#34;Maison individuelle en rangée attachée des 2 côtés&#34;,
+                                                                  &#34;Maison individuelle en rangée (sans précisions)&#34;],
+                                            &#34;Maison individuelle&#34; : [&#39;Maison individuelle détachée/unifamiliale&#39;,
+                                                                    &#34;Maison jumelée/bout de rangée attachée 1 côté/semi-détaché&#34;,
+                                                                    &#34;Maison mobile/roulotte&#34;]}}
+        
+        self.Mapping[&#34;Type_Batiment&#34;] = {
+                                &#34;ColSrc&#34; : &#34;Type_Logement&#34;,
+                                &#34;typeMapping&#34; : &#34;list&#34;,
+                                &#34;Mapping&#34; : {&#34;Collective&#34; :[&#34;Collective&#34;],
+                                            &#34;Plex&#34; : [&#34;Triplex&#34;, &#34;Duplex&#34;],
+                                            &#34;Maison&#34; : [&#34;Maison en rangee&#34;, &#34;Maison individuelle&#34;]}}
+        
+        self.Mapping[&#34;Mode_Occupation&#34;] = {
+                                &#34;ColSrc&#34; : &#34;QA1&#34;,
+                                &#34;typeMapping&#34; : &#34;list&#34;,
+                                &#34;Mapping&#34; : {&#34;Locataire&#34; :[&#34;Le locataire / Co-locataire&#34;],
+                                            &#34;Proprietaire&#34; : [&#34;Le propriétaire / Co-propriétaire&#34;]}}
+        
+        ConsoElecAn_kmax = 45000
+        ConsoElecAn_kstep = 5000
+        ConsoElecAn_kmin = 0
+        ConsoElecAn_bins = [ConsoElecAn_kmin-50000]+[i for i in range(ConsoElecAn_kmin,ConsoElecAn_kmax+ConsoElecAn_kstep, ConsoElecAn_kstep)]+[ConsoElecAn_kmax+ConsoElecAn_kstep+50000]
+        ConsoElecAn_labels = [&#39;&lt; &#39;+str(ConsoElecAn_kstep)] + [f&#34;[{ConsoElecAn_bins[i+1]} - {ConsoElecAn_bins[i+2]})&#34; for i in range(len(ConsoElecAn_bins)-3)] + [&#39;&gt;= &#39;+str(ConsoElecAn_kmax)]
+        self.Mapping[&#34;Consommation_Elec_An&#34;] = {
+                                &#34;ColSrc&#34; : &#34;CONS_AN&#34;,
+                                &#34;typeMapping&#34; : &#34;bin&#34;,
+                                &#34;Mapping&#34; : {&#34;labels&#34; : ConsoElecAn_labels,
+                                              &#34;bins&#34; : ConsoElecAn_bins}}
+        
+        AnConstruction_kmax = 2020
+        AnConstruction_kstep = 10
+        AnConstruction_kmin = 1950
+        AnConstruction_bins = [AnConstruction_kmin-1000]+[i for i in range(AnConstruction_kmin,AnConstruction_kmax+AnConstruction_kstep, AnConstruction_kstep)]+[AnConstruction_kmax+AnConstruction_kstep+1000]
+        AnConstruction_labels = [&#39;&lt; &#39;+str(AnConstruction_kmin)] + [f&#34;[{AnConstruction_bins[i+1]} - {AnConstruction_bins[i+2]})&#34; for i in range(len(AnConstruction_bins)-3)] + [&#39;&gt;= &#39;+str(AnConstruction_kmax)]
+        self.Mapping[&#34;An_Construction&#34;] = {
+                                &#34;ColSrc&#34; : &#34;QA6M&#34;,
+                                &#34;typeMapping&#34; : &#34;bin&#34;,
+                                &#34;Mapping&#34; : {&#34;labels&#34; : AnConstruction_labels,
+                                            &#34;bins&#34; : AnConstruction_bins}}
+
+        AnConstructionCode_bins = [1946-1000, 1946, 1971, 1986, 2013, 2013+1000]
+        AnConstructionCode_labels = [&#34;&lt; 1946&#34;, &#34;[1946 - 1971)&#34;, &#34;[1971 - 1986)&#34;, &#34;[1986 - 2013)&#34;, &#34;&gt;= 2013&#34;]
+        self.Mapping[&#34;An_ConstructionCode&#34;] = {
+                                &#34;ColSrc&#34; : &#34;QA6M&#34;,
+                                &#34;typeMapping&#34; : &#34;bin&#34;,
+                                &#34;Mapping&#34; : {&#34;labels&#34; : AnConstructionCode_labels,
+                                            &#34;bins&#34; : AnConstructionCode_bins}}
+        AnConstruction_bins = [1946 - 1000]+[1960, 1983, 2011]+[2011+1000]; 
+
+        self.Mapping[&#34;Source_Energie_Chauf&#34;] = {
+                                &#34;ColSrc&#34; : &#34;QC1R&#34;,
+                                &#34;typeMapping&#34; : &#34;list&#34;,
+                                &#34;Mapping&#34; : {&#34;Electricite&#34; :[&#34;Électricité&#34;],
+                                            &#34;Mazout&#34; : [&#34;Mazout&#34;],
+                                            &#34;Gaz naturel&#34; : [&#34;Gaz naturel&#34;],
+                                            &#34;Bi-energie&#34; : [&#34;Bi-énergie&#34;],
+                                            &#34;Bois&#34; : [&#34;Bois seul ou en combinaison&#34;]}}
+        
+        self.Mapping[&#34;Territoire_HQ&#34;] = {}
+        self.Mapping[&#34;Territoire_HQ&#34;][&#34;ColSrc&#34;] = &#34;TERR_HQ&#34;
+        self.Mapping[&#34;Territoire_HQ&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;Territoire_HQ&#34;][&#34;Mapping&#34;] = {&#34;Est et Nord du Québec&#34; : [&#34;Est et nord du Québec&#34;],
+                                                     &#34;Laurentides&#34;: [&#34;Laurentides&#34;],
+                                                     &#34;Montmorency&#34;: [&#34;Montmorency&#34;],
+                                                     &#34;Montréal&#34;: [&#34;Montréal&#34;],
+                                                     &#34;Richelieu&#34;: [&#34;Richelieu&#34;]}
+        self.Mapping[&#34;Region_Administrative&#34;] = {}
+        self.Mapping[&#34;Region_Administrative&#34;][&#34;ColSrc&#34;] = &#34;ZONE&#34;
+        self.Mapping[&#34;Region_Administrative&#34;][&#34;typeMapping&#34;] = &#34;custom&#34;
+        self.Mapping[&#34;Region_Administrative&#34;][&#34;Mapping&#34;] = {&#34;Bas-Saint-Laurent&#34;:None,
+                                                            &#34;Capitale-Nationale&#34;:None,
+                                                            &#34;Centre-du-Québec&#34;:None,
+                                                            &#34;Chaudière-Appalaches&#34;:None,
+                                                            &#34;Côte-Nord&#34;:None,
+                                                            &#34;Estrie&#34;:None,
+                                                            &#34;Gaspésie-Îles-de-la-Madeleine&#34;:None,
+                                                            &#34;Lanaudière&#34;:None,
+                                                            &#34;Laurentides&#34;:None,
+                                                            &#34;Laval&#34;:None,
+                                                            &#34;Mauricie&#34;:None,
+                                                            &#34;Montérégie&#34;:None,
+                                                            &#34;Montréal&#34;:None,
+                                                            &#34;Outaouais&#34;:None,
+                                                            &#34;Saguenay-Lac-Saint-Jean&#34;:None}
+        #&#34;Abitibi-Témiscamingue&#34;:None,
+        #Nord-du-Québec&#34;:None,
+
+        self.Mapping[&#34;Nombre_Pieces&#34;] = {}
+        self.Mapping[&#34;Nombre_Pieces&#34;][&#34;ColSrc&#34;] = &#34;QH1&#34;
+        self.Mapping[&#34;Nombre_Pieces&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;Nombre_Pieces&#34;][&#34;Mapping&#34;] = {str(i): [i] for i in range(1,14+1)}
+        self.Mapping[&#34;Nombre_Pieces&#34;][&#34;Mapping&#34;][&#34;15 et plus&#34;] = [str(i) for i in range(15,20+1)]
+
+        self.Mapping[&#34;Nombre_Etages&#34;] = {}
+        self.Mapping[&#34;Nombre_Etages&#34;][&#34;ColSrc&#34;] = &#34;QH2&#34;
+        self.Mapping[&#34;Nombre_Etages&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;Nombre_Etages&#34;][&#34;Mapping&#34;] = {&#34;Un étage&#34;: [&#34;Un étage&#34;, &#34;1.5 étages&#34;],#trop peu de &#34;1.5 étages&#34;
+                                                     &#34;Deux étages&#34;: [&#34;Deux étages&#34;, &#34;2 ½étages&#34;],#trop peu de &#34;2 ½étages&#34;
+                                                        &#34;Trois étages et plus&#34;: [&#34;Trois étages&#34;, &#34;3½ étages&#34;, &#34;Quatre étages&#34;, &#34;4½ étages&#34;, &#34;5 étages&#34;]}
+
+        Superficie_Totale_kmax = 5000
+        Superficie_Totale_kstep = 500
+        Superficie_Totale_kmin = 0
+        Superficie_Totale_bins = [1 if i==0 else i for i in range(Superficie_Totale_kmin,Superficie_Totale_kmax+Superficie_Totale_kstep, Superficie_Totale_kstep)]+[Superficie_Totale_kmax+Superficie_Totale_kstep+10000]
+        Superficie_Totale_labels = [f&#34;[{Superficie_Totale_bins[i]} - {Superficie_Totale_bins[i+1]})&#34; for i in range(len(Superficie_Totale_bins)-2)] + [&#39;&gt;= &#39;+str(Superficie_Totale_kmax)]
+        self.Mapping[&#34;Superficie_Totale&#34;] = {}
+        self.Mapping[&#34;Superficie_Totale&#34;][&#34;ColSrc&#34;] = &#34;SUPERTOT&#34;
+        self.Mapping[&#34;Superficie_Totale&#34;][&#34;typeMapping&#34;] = &#34;bin&#34;
+        self.Mapping[&#34;Superficie_Totale&#34;][&#34;Mapping&#34;] = {&#34;labels&#34; : Superficie_Totale_labels,
+                                    &#34;bins&#34; : Superficie_Totale_bins}
+
+
+        self.Mapping[&#34;Presence_SousSol&#34;] = {}
+        self.Mapping[&#34;Presence_SousSol&#34;][&#34;ColSrc&#34;] = &#34;QH4&#34;
+        self.Mapping[&#34;Presence_SousSol&#34;][&#34;typeMapping&#34;] = &#34;list&#34;# ne s&#39;applique qu&#39;au maison
+        self.Mapping[&#34;Presence_SousSol&#34;][&#34;Mapping&#34;] = {&#34;Sous sol 6 pied&#34;:[&#34;Un sous-sol d&#39;une hauteur de 6 ou 7 pieds avec murs &amp; planchers en béton (inclus les demis sous-sol)&#34;],
+                                                        &#34;Vide sanitaire moins 6 pieds&#34; :[&#34;Un vide sanitaire d&#39;une hauteur inférieure à 7 pieds avec plancher en terre&#34;],
+                                                        &#34;Aucun Sous-sol ou vide sanitaire&#34; :[&#34;.&#34;, &#34;Ne comporte ni sous-sol, ni vide sanitaire&#34;],
+                                                        &#34;Sous-sol et vide sanitaire&#34; :[&#34;Un sous-sol et un vide sanitaire&#34;]}
+        
+        self.Mapping[&#34;Nombre_Personnes&#34;] = {}
+        self.Mapping[&#34;Nombre_Personnes&#34;][&#34;ColSrc&#34;] = &#34;QL1&#34;
+        self.Mapping[&#34;Nombre_Personnes&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;Nombre_Personnes&#34;][&#34;Mapping&#34;] = {&#34;1&#34;:[1],
+                                                        &#34;2&#34; :[2],
+                                                        &#34;3&#34; :[3],
+                                                        &#34;4&#34; :[4],
+                                                        &#34;5 et plus&#34; :[5, 6, 7, 8, 9, 10, 11, 12, 15, 25]}
+
+
+        #presence garage et chauffé et type chauffage
+        self.Mapping[&#34;Presence_Garage&#34;] = {}
+        self.Mapping[&#34;Presence_Garage&#34;][&#34;ColSrc&#34;] = &#34;QM1A&#34; # seulement pour la méthode get_Mettadata
+        self.Mapping[&#34;Presence_Garage&#34;][&#34;typeMapping&#34;] = &#34;custom&#34;
+        self.Mapping[&#34;Presence_Garage&#34;][&#34;Mapping&#34;] = {&#34;Pas de Garage&#34;:None,
+                                                        &#34;Garage non chauffé&#34;:None,
+                                                        &#34;Garage chauffé à électricité&#34;:None,
+                                                        &#34;Garage chauffé à autre source&#34;:None}
+                                        
+        #Type de chauffage
+        self.Mapping[&#34;Chauffage_Logement&#34;] = {}
+        self.Mapping[&#34;Chauffage_Logement&#34;][&#34;ColSrc&#34;] = &#34;SYSTEM1R&#34; # seulement pour la méthode get_Mettadata
+        self.Mapping[&#34;Chauffage_Logement&#34;][&#34;typeMapping&#34;] = &#34;custom&#34;
+        self.Mapping[&#34;Chauffage_Logement&#34;][&#34;Mapping&#34;] = {&#34;Plinthes électriques&#34;:None,
+                                                        &#34;Unités convecteurs, plancher ou plafond radiant&#34;:None,
+                                                        &#34;Thermopompe et Système central à air chaud&#34;:None,
+                                                        &#34;Thermopompe et Système central à eau chaude&#34;: None,
+                                                        &#34;Thermopompe géothermique seule&#34;: None,
+                                                        &#34;Thermopompe géothermique et Plinthes électriques&#34;: None,
+                                                        &#34;Thermopompe géothermique et Fournaise&#34;: None,
+                                                        &#34;Thermopompe murale&#34; : None,
+                                                        &#34;Thermopompe murale et Plinthes électriques&#34;: None,
+                                                        &#34;Thermopompe murale et Fournaise&#34;: None,
+                                                        &#34;Système central à air chaud&#34;:None,
+                                                        &#34;Système central à eau chaude&#34;:None,
+                                                        &#34;Fournaise ou poêle à bois&#34;:None,
+                                                        &#34;Fournaise murale ou de plancher&#34;:None,
+                                                        &#34;Fournaise ou poêle à bois et Plinthes électriques&#34;:None,
+                                                        &#34;Fournaise ou poêle à bois et Unités convecteurs, plancher ou plafond radiant&#34;:None,
+                                                        &#34;Fournaise ou poêle à bois et Thermopompe murale&#34;:None,
+                                                        &#34;Fournaise ou poêle à bois et Système central à air chaud&#34;:None,
+                                                        &#34;Fournaise ou poêle à bois et Système central à eau chaude&#34;:None,
+                                                        &#34;Fournaise ou poêle à bois et Fournaise murale ou de plancher&#34;:None}#,
+                                                        #&#34;Autres&#34;:None,
+                                                        #&#34;Pas de système principal (chalet)&#34;:None,}
+
+        # QB2I1 : Nombre de réfrigérateurs dans la résidence
+        self.Mapping[&#34;Nombre_Refrigerateur&#34;] = {}
+        self.Mapping[&#34;Nombre_Refrigerateur&#34;][&#34;ColSrc&#34;] = &#34;QB2I1&#34;
+        self.Mapping[&#34;Nombre_Refrigerateur&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;Nombre_Refrigerateur&#34;][&#34;Mapping&#34;] = {&#34;1&#34;:[1],
+                                                        &#34;2&#34; :[2],
+                                                        &#34;3 et plus&#34; :[3, 4, 5,
+                                                                       7]}
+
+        # no MAPPING ; fOR CSV STATS
+        self.Mapping[&#34;Nombre_Logement&#34;] = {}
+        self.Mapping[&#34;Nombre_Logement&#34;][&#34;ColSrc&#34;] = &#34;QA4M&#34;
+        self.Mapping[&#34;Nombre_Logement&#34;][&#34;typeMapping&#34;] = &#34;no&#34;
+        self.Mapping[&#34;Nombre_Logement&#34;][&#34;Mapping&#34;] = {}
+
+        #QD11BM1 type de climatisation
+        #Ne sait pas/Ne répond pas ; Aucune de ces réponses
+
+        self.Mapping[&#34;Climatisation&#34;] = {}
+        self.Mapping[&#34;Climatisation&#34;][&#34;ColSrc&#34;] = &#34;QD11BM1&#34;
+        self.Mapping[&#34;Climatisation&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;Climatisation&#34;][&#34;Mapping&#34;] = {&#34;Aucune&#34;: [&#34;.&#34;],
+                                                     &#34;Fenêtre, mobile, portable&#34;: [&#34;Climatiseur de fenêtre&#34;,
+                                                                                   &#34;Climatiseur mobile / portable&#34;],
+                                                     &#34;Murale&#34;: [&#34;Climatiseur mural ou bibloc (mini-split)&#34;,&#34;Thermopompe murale&#34;],
+                                                     &#34;Centrale&#34;: [&#34;Thermopompe centrale&#34;, &#34;Thermopompe géothermique&#34;,&#34;Climatiseur central autre qu&#39;une thermopompe&#34;]}
+
+        #presence spa
+        # spa (oui, non, oui+type)
+        # spa utilisation (saison)
+        # spa utilisation (habitude Temperature)
+        self.Mapping[&#34;Spa_Presence&#34;] = {}
+        self.Mapping[&#34;Spa_Presence&#34;][&#34;ColSrc&#34;] = &#34;QB1M&#34;
+        self.Mapping[&#34;Spa_Presence&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;Spa_Presence&#34;][&#34;Mapping&#34;] = {&#34;Oui&#34;:[&#34;Oui&#34;],
+                                                   &#34;Non&#34;:[&#34;Non&#34;, &#34;Ne sait pas/Ne répond pas&#34;]}
+
+        self.Mapping[&#34;Spa_Logement&#34;] = {}
+        self.Mapping[&#34;Spa_Logement&#34;][&#34;ColSrc&#34;] = &#34;QB1M3&#34;
+        self.Mapping[&#34;Spa_Logement&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;Spa_Logement&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;: [&#34;.&#34;],
+                                                    &#34;Exterieur&#34;:[&#34;Extérieur&#34;, &#34;Ne sait pas/Ne répond pas&#34;],
+                                                   &#34;Interieur&#34;:[&#34;Intérieur&#34;]}
+
+                #Spa_Saison
+        self.Mapping[&#34;Spa_Saison&#34;] = {}
+        self.Mapping[&#34;Spa_Saison&#34;][&#34;ColSrc&#34;] = &#34;QS2M1R&#34; # seulement pour la méthode get_Mettadata
+        self.Mapping[&#34;Spa_Saison&#34;][&#34;typeMapping&#34;] = &#34;custom&#34;
+        self.Mapping[&#34;Spa_Saison&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;: None,
+                                                 &#34;Pas utilisé&#34;:None,
+                                                 &#34;Ne sait pas&#34;: None,
+                                                 &#34;Toute_Saison&#34;: None,
+                                                 &#34;Printemps&#34;: None,
+                                                 &#34;Ete&#34;: None,
+                                                 &#34;Automne&#34;: None,
+                                                 &#34;Hiver&#34;: None,
+                                                 &#34;Printemps_Ete&#34;: None,
+                                                 &#34;Printemps_Automne&#34;: None,
+                                                 &#34;Printemps_Hiver&#34;:None,
+                                                 &#34;Ete_Automne&#34;:None,
+                                                 &#34;Ete_Hiver&#34;:None,
+                                                &#34;Automne_Hiver&#34;:None,
+                                                &#34;Printemps_Ete_Automne&#34;:None,
+                                                #&#34;Printemps_Ete_Hiver&#34;:None,
+                                                &#34;Printemps_Automne_Hiver&#34;:None,
+                                                &#34;Ete_Automne_Hiver&#34;:None,
+                                                    }
+        self.Mapping[&#34;Spa_Utilisation_SaisonChaude&#34;] = {}
+        self.Mapping[&#34;Spa_Utilisation_SaisonChaude&#34;][&#34;ColSrc&#34;] = &#34;QS3BB&#34;
+        self.Mapping[&#34;Spa_Utilisation_SaisonChaude&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;Spa_Utilisation_SaisonChaude&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;: [&#34;.&#34;],
+                                                            &#34;Ne sais pas&#34;:[&#34;Ne sait pas/Ne répond pas&#34;],
+                                                    &#34;Constant&#34;:[&#34;Je maintenais la température de mon spa constante&#34;],
+                                                   &#34;Augmentation&#34;:[&#34;J’augmentais la température pour les périodes de baignade&#34;]}
+        
+        self.Mapping[&#34;Spa_Utilisation_SaisonFroide&#34;] = {}
+        self.Mapping[&#34;Spa_Utilisation_SaisonFroide&#34;][&#34;ColSrc&#34;] = &#34;QS3AA&#34;
+        self.Mapping[&#34;Spa_Utilisation_SaisonFroide&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;Spa_Utilisation_SaisonFroide&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;: [&#34;.&#34;],
+                                                            &#34;Ne sais pas&#34;:[&#34;Ne sait pas/Ne répond pas&#34;],
+                                                    &#34;Constant&#34;:[&#34;Je maintenais la température de mon spa constante&#34;],
+                                                   &#34;Augmentation&#34;:[&#34;J’augmentais la température pour les périodes de baignade&#34;]}
+
+
+        # piscine
+        self.Mapping[&#34;Piscine_Presence&#34;] = {}
+        self.Mapping[&#34;Piscine_Presence&#34;][&#34;ColSrc&#34;] = &#34;QG1&#34;
+        self.Mapping[&#34;Piscine_Presence&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;Piscine_Presence&#34;][&#34;Mapping&#34;] = {&#34;Oui&#34;:[&#34;Oui&#34;],
+                                                       &#34;Non&#34;:[&#34;Non&#34;, &#34;Ne sait pas/Ne répond pas&#34;]}
+        self.Mapping[&#34;Piscine_Type&#34;] = {}
+        self.Mapping[&#34;Piscine_Type&#34;][&#34;ColSrc&#34;] = &#34;QG2&#34;
+        self.Mapping[&#34;Piscine_Type&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;Piscine_Type&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;:[&#34;.&#34;],
+                                                    &#34;Hors_Terre&#34;:[&#34;Une piscine hors-terre / semi-creusée&#34;,
+                                                                  &#34;Une piscine hors-terre gonflable&#34;],
+                                                    &#34;Creusee_Exterieur&#34;:[&#34;Une piscine creusée extérieure&#34;],
+                                                    &#34;Creusee_Interieur&#34;:[&#34;Une piscine creusée intérieure&#34;]}
+        
+        self.Mapping[&#34;Piscine_Minuterie&#34;] = {}
+        self.Mapping[&#34;Piscine_Minuterie&#34;][&#34;ColSrc&#34;] = &#34;QG3&#34;
+        self.Mapping[&#34;Piscine_Minuterie&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;Piscine_Minuterie&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;: [&#34;.&#34;],
+                                                        &#34;Oui&#34;:[&#34;Oui&#34;],
+                                                       &#34;Non&#34;:[&#34;Non&#34;, &#34;Ne sait pas/Ne répond pas&#34;]}
+        
+        self.Mapping[&#34;Piscine_Toile&#34;] = {}
+        self.Mapping[&#34;Piscine_Toile&#34;][&#34;ColSrc&#34;] = &#34;QG5&#34;
+        self.Mapping[&#34;Piscine_Toile&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;Piscine_Toile&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;: [&#34;.&#34;],
+                                                    &#34;Oui&#34;:[&#34;Oui&#34;],
+                                                       &#34;Non&#34;:[&#34;Non&#34;, &#34;Ne sait pas/Ne répond pas&#34;]}
+
+        self.Mapping[&#34;Piscine_Chauffee&#34;] = {}
+        self.Mapping[&#34;Piscine_Chauffee&#34;][&#34;ColSrc&#34;] = &#34;QG7&#34;
+        self.Mapping[&#34;Piscine_Chauffee&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;Piscine_Chauffee&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;: [&#34;.&#34;],
+                                                       &#34;Oui&#34;:[&#34;Oui&#34;],
+                                                       &#34;Non&#34;:[&#34;Non&#34;, &#34;Ne sait pas/Ne répond pas&#34;]}
+        
+        self.Mapping[&#34;Piscine_ChaufType&#34;] = {}
+        self.Mapping[&#34;Piscine_ChaufType&#34;][&#34;ColSrc&#34;] = &#34;QG8M1&#34;
+        self.Mapping[&#34;Piscine_ChaufType&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;Piscine_ChaufType&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;:[&#34;.&#34;],
+                                                       &#34;Ne sait pas&#34;:[&#34;Ne sait pas/Ne répond pas&#34;],
+                                                       &#34;Thermopompe&#34;: [&#34;Une thermopompe de piscine&#34;],
+                                                       &#34;Electrique&#34;: [&#34;Un chauffe-piscine électrique (qui n’est pas une thermopompe)&#34;],
+                                                       &#34;Capteur Solaire&#34;: [&#34;Un capteur solaire&#34;],
+                                                       &#34;Propane&#34;: [&#34;Un chauffe-piscine au propane&#34;],
+                                                        &#34;Gaz Naturel&#34;: [&#34;Un chauffe-piscine au gaz naturel&#34;],
+                                                        &#34;Bois&#34;: [&#34;Un chauffe-piscine au bois&#34;],
+                                                        &#34;Mazout&#34;: [&#34;Un chauffe-piscine à l’huile/mazout&#34;]}
+    
+        #Nombre de VE et Hybride en 1 variable
+        self.Mapping[&#34;Vehicule_Presence&#34;] = {}
+        self.Mapping[&#34;Vehicule_Presence&#34;][&#34;ColSrc&#34;] = &#34;QT2T3&#34; # seulement pour la méthode get_Mettadata
+        self.Mapping[&#34;Vehicule_Presence&#34;][&#34;typeMapping&#34;] = &#34;custom&#34;
+        self.Mapping[&#34;Vehicule_Presence&#34;][&#34;Mapping&#34;] = {&#34;Aucune_VE_Aucune_VHR&#34;: None,
+                                                 &#34;Une_VE_Aucune_VHR&#34;:None,
+                                                 &#34;Aucune_VE_Une_VHR&#34;:None,
+                                                &#34;Deux_VE_Aucune_VHR&#34;:None,
+                                                &#34;Une_VE_Une_VHR&#34;:None,
+                                                &#34;Deux_VE_Une_VHR&#34;:None,
+                                                &#34;Trois_VE_Aucune_VHR&#34;:None,
+                                                &#34;Deux_VE_Deux_VHR&#34;:None,
+                                                &#34;Aucune_VE_Deux_VHR&#34;:None,
+                                                    }
+        
+        self.Mapping[&#34;Vehicule_BornePresence&#34;] = {}
+        self.Mapping[&#34;Vehicule_BornePresence&#34;][&#34;ColSrc&#34;] = &#34;QT4&#34;
+        self.Mapping[&#34;Vehicule_BornePresence&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;Vehicule_BornePresence&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;: [&#34;.&#34;],
+                                                       &#34;Oui&#34;:[&#34;Oui&#34;],
+                                                       &#34;Non&#34;:[&#34;Non&#34;, &#34;Ne sait pas/Ne répond pas&#34;]}
+        
+
+        # Chauffe eau
+        self.Mapping[&#34;ChaufEau_Presence&#34;] = {}
+        self.Mapping[&#34;ChaufEau_Presence&#34;][&#34;ColSrc&#34;] = &#34;QF2R&#34;
+        self.Mapping[&#34;ChaufEau_Presence&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;ChaufEau_Presence&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;:[&#34;Pas de chauffe-eau&#34;],
+                                                       &#34;Logement&#34;:[&#34;Uniquement pour la résidence&#34;, &#34;NSP/NRP&#34;],
+                                                       &#34;Central&#34;: [&#34;Central, soit pour plusieurs logements&#34;]}
+
+                # Chauffe eau
+        self.Mapping[&#34;ChaufEau_ChaufType&#34;] = {}
+        self.Mapping[&#34;ChaufEau_ChaufType&#34;][&#34;ColSrc&#34;] = &#34;QF1&#34;
+        self.Mapping[&#34;ChaufEau_ChaufType&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;ChaufEau_ChaufType&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;:[&#34;Pas de chauffe-eau&#34;],
+                                                       &#34;Ne sait pas&#34;:[&#34;Ne sait pas/Ne répond pas&#34;],
+                                                       &#34;Electrique&#34;: [&#34;À l&#39;électricité&#34;],
+                                                        &#34;Propane&#34;: [&#34;Au propane&#34;],
+                                                        &#34;Gaz Naturel&#34;: [&#34;Au gaz naturel&#34;],
+                                                        &#34;Bois&#34;: [&#34;Au bois&#34;],
+                                                        &#34;Mazout&#34;: [&#34;À l&#39;huile/au mazout&#34;]}
+        # Chauffe eau
+        self.Mapping[&#34;ChaufEau_Type&#34;] = {}
+        self.Mapping[&#34;ChaufEau_Type&#34;][&#34;ColSrc&#34;] = &#34;QF3&#34;
+        self.Mapping[&#34;ChaufEau_Type&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;ChaufEau_Type&#34;][&#34;Mapping&#34;] = {&#34;Non definit&#34;:[&#34;.&#34;],
+                                                       &#34;Ne sait pas&#34;:[&#34;Ne sait pas/Ne répond pas&#34;],
+                                                       &#34;Chauffe-eau sans réservoir&#34;: [&#34;Chauffe-eau sans réservoir&#34;],
+                                                       &#34;Moins de 22 gallons&#34;: [&#34;Moins de 22 gallons (97 litres)&#34;],
+                                                       &#34;22 gallons&#34; : [&#34;22 gallons (97 litres)&#34;],
+                                                       &#34;23-40 gallons&#34;: [&#34;Entre 23 et 39 gallons (100 et 172 litres)&#34;],
+                                                       &#34;40 gallons&#34;: [&#34;40 gallons (176 litres)&#34;],
+                                                       &#34;41-59 gallons&#34;: [&#34;41 à 59 gallons (180 à 260 litres)&#34;],
+                                                       &#34;60 gallons&#34;: [&#34;60 gallons (264 litres)&#34;],
+                                                       &#34;60 et plus gallons&#34;: [&#34;Plus de 60 gallons (264 litres)&#34;]}
+
+        # QB2M2R : Nombre de congélateurs distinct dans la résidence
+        self.Mapping[&#34;Congelateur_Nombre&#34;] = {}
+        self.Mapping[&#34;Congelateur_Nombre&#34;][&#34;ColSrc&#34;] = &#34;QB2M2R&#34;
+        self.Mapping[&#34;Congelateur_Nombre&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;Congelateur_Nombre&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;:[&#34;Aucun&#34;, &#34;NSP/NRP&#34;],
+                                                       &#34;1&#34;:[1],
+                                                       &#34;2&#34;: [2],
+                                                       &#34;3&#34;: [3],
+                                                       &#34;4&#34;: [4],
+                                                       &#34;5&#34;: [5],
+                                                       &#34;6&#34;: [6]}
+
+        # QB2I1 : Nombre de réfrigérateurs dans la résidence
+        self.Mapping[&#34;Refrigerateur_Nombre&#34;] = {}
+        self.Mapping[&#34;Refrigerateur_Nombre&#34;][&#34;ColSrc&#34;] = &#34;QB2I1&#34;
+        self.Mapping[&#34;Refrigerateur_Nombre&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;Refrigerateur_Nombre&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;:[&#34;Aucun&#34;, &#34;NSP/NRP&#34;],
+                                                         &#34;1&#34;:[1],
+                                                         &#34;2&#34;: [2],
+                                                         &#34;3&#34;: [3],
+                                                         &#34;4 et plus&#34;: [4,5,6,7]}
+
+        #QB1I : Presence machine a laver
+        self.Mapping[&#34;LaveLinge_Type&#34;] = {}
+        self.Mapping[&#34;LaveLinge_Type&#34;][&#34;ColSrc&#34;] = &#34;QB1I1R&#34;
+        self.Mapping[&#34;LaveLinge_Type&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;LaveLinge_Type&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;:[&#34;N&#39;a pas de machine à laver le linge&#34;, &#34;NSP/NRP&#34;],
+                                                      &#34;Frontale&#34;:[&#34;Machine à chargement frontal&#34;],
+                                                      &#34;Traditionnelle&#34;: [&#34;Machine traditionnelle&#34;]}
+
+        #QB1H : Type de machines à laver (Base totale)
+        self.Mapping[&#34;SecheLinge_Presence&#34;] = {}
+        self.Mapping[&#34;SecheLinge_Presence&#34;][&#34;ColSrc&#34;] = &#34;QB1H&#34;
+        self.Mapping[&#34;SecheLinge_Presence&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;SecheLinge_Presence&#34;][&#34;Mapping&#34;] = {&#34;Oui&#34;:[&#34;Oui&#34;],
+                                                            &#34;Non&#34;:[&#34;Non&#34;, &#34;Ne sait pas/Ne répond pas&#34;]}
+
+        #QB1G : Type de lave-vaisselle (Base totale)
+        self.Mapping[&#34;LaveVaisselle_Presence&#34;] = {}
+        self.Mapping[&#34;LaveVaisselle_Presence&#34;][&#34;ColSrc&#34;] = &#34;QB1G&#34;
+        self.Mapping[&#34;LaveVaisselle_Presence&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;LaveVaisselle_Presence&#34;][&#34;Mapping&#34;] = {&#34;Oui&#34;:[&#34;Oui&#34;],
+                                                            &#34;Non&#34;:[&#34;Non&#34;]}
+        
+        #QB1A1 : Présence de cuisinières (Oui/Non)
+        self.Mapping[&#34;Cuisiniere_Presence&#34;] = {}
+        self.Mapping[&#34;Cuisiniere_Presence&#34;][&#34;ColSrc&#34;] = &#34;QB1A1&#34;
+        self.Mapping[&#34;Cuisiniere_Presence&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;Cuisiniere_Presence&#34;][&#34;Mapping&#34;] = {&#34;Oui&#34;:[&#34;Oui&#34;],
+                                                            &#34;Non&#34;:[&#34;Non&#34;, &#34;Ne sait pas/Ne répond pas&#34;]}
+        #QB1A3 : Source d&#39;énergie de la cuisinière
+        self.Mapping[&#34;Cuisiniere_Energie&#34;] = {}
+        self.Mapping[&#34;Cuisiniere_Energie&#34;][&#34;ColSrc&#34;] = &#34;QB1A3&#34;
+        self.Mapping[&#34;Cuisiniere_Energie&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;Cuisiniere_Energie&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;:[&#34;.&#34;],
+                                                        &#34;Ne sait pas&#34;:[&#34;Ne sait pas/Ne répond pas&#34;],
+                                                        &#34;Electrique&#34;: [&#34;Électricité&#34;],
+                                                        &#34;Gaz&#34;: [&#34;Gaz propane ou gaz naturel&#34;],
+                                                        &#34;Autre&#34;: [&#34;Autre&#34;]}        
+
+        #QB2X8R : % d&#39;éclairage à LED
+        self.Mapping[&#34;Eclairage_LED&#34;] = {}
+        self.Mapping[&#34;Eclairage_LED&#34;][&#34;ColSrc&#34;] = &#34;QB2X8R&#34;
+        self.Mapping[&#34;Eclairage_LED&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Mapping[&#34;Eclairage_LED&#34;][&#34;Mapping&#34;] = {&#34;Ne sait pas&#34;:[&#34;Ne sait pas&#34;],
+                                                    &#34;0%&#34;: [0],
+                                                    &#34;1 à 24 %&#34;: [&#34;1 à 24 %&#34;],
+                                                    &#34;25 à 50 %&#34;:[&#34;25 à 50 %&#34;],
+                                                    &#34;Plus de 50 %&#34;:[&#34;Plus de 50 %&#34;]}
+
+        #_____________________________________________________
+        # Mapping pour la pondération
+        # NE PAS UTILISER LES CLEFS self.Mapping - sinon revoir la ligne {**self.Mapping, **self.Pond_Mapping}
+        self.Pond_Mapping = {}
+        
+        #Vintage
+        self.Pond_Mapping[&#34;Vintage&#34;] = {}
+        self.Pond_Mapping[&#34;Vintage&#34;][&#34;ColSrc&#34;] = &#34;QA6M&#34; # seulement pour la méthode get_Mettadata
+        self.Pond_Mapping[&#34;Vintage&#34;][&#34;typeMapping&#34;] = &#34;custom&#34;
+        self.Pond_Mapping[&#34;Vintage&#34;][&#34;Mapping&#34;] = {&#34;1946-70&#34;:None,
+                                                    &#34;1986-2012&#34;: None,
+                                                    &#34;pre-1945&#34;: None,
+                                                    &#34;1971-85&#34;: None,
+                                                    &#34;post-2012&#34;: None}
+
+        self.Pond_Mapping[&#34;Territoire&#34;] = {}
+        self.Pond_Mapping[&#34;Territoire&#34;][&#34;ColSrc&#34;] = &#34;TERR_HQ&#34; # seulement pour la méthode get_Mettadata
+        self.Pond_Mapping[&#34;Territoire&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Pond_Mapping[&#34;Territoire&#34;][&#34;Mapping&#34;] = {&#34;0_Montreal&#34;: [&#34;Montréal&#34;],
+                                                        &#34;1_Laurentides&#34;: [&#34;Laurentides&#34;],
+                                                        &#34;2_Montmorency&#34;: [&#34;Montmorency&#34;],
+                                                        &#34;3_Nord-Est&#34;: [&#34;Est et nord du Québec&#34;],
+                                                        &#34;4_Richelieu&#34;: [&#34;Richelieu&#34;]}
+        
+        self.Pond_Mapping[&#34;Typo&#34;] = {}
+        self.Pond_Mapping[&#34;Typo&#34;][&#34;ColSrc&#34;] = &#34;Type_Logement&#34; # seulement pour la méthode get_Mettadata
+        self.Pond_Mapping[&#34;Typo&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Pond_Mapping[&#34;Typo&#34;][&#34;Mapping&#34;] = {&#34;individuelle&#34; :[&#34;Maison individuelle&#34;],
+                                    &#34;en rangee&#34;: [&#34;Maison en rangee&#34;], 
+                                     &#34;duplex&#34;: [&#34;Duplex&#34;],
+                                     &#34;triplex&#34;: [&#34;Triplex&#34;],
+                                     &#34;immeuble&#34;: [&#34;Collective&#34;]}
+
+        self.Pond_Mapping[&#34;Source&#34;] = {}
+        self.Pond_Mapping[&#34;Source&#34;][&#34;ColSrc&#34;] = &#34;QC1R&#34; # seulement pour la méthode get_Mettadata
+        self.Pond_Mapping[&#34;Source&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+        self.Pond_Mapping[&#34;Source&#34;][&#34;Mapping&#34;] = {&#34;elec&#34;: [&#34;Électricité&#34;],
+                                        &#34;combustible&#34;: [&#34;Gaz naturel&#34;, &#34;Mazout&#34;, &#34;Bois seul ou en combinaison&#34;],
+                                        &#34;bi-energie&#34;: [&#34;Bi-énergie&#34;]}
+
+        #______________________________________________________
+        # QB1A1 : Présence de cuisinières (Oui/Non)
+        # QB1A3 : Source d&#39;énergie de la cuisinière
+        # Faire 1 Variable : 1 = Non ; 2+=Oui+source
+
+        # QB1F : Présence de micro-ondes (Oui/Non)
+
+        # QB1G : Présence de lave-vaisselle (Oui/Non)
+
+        # QB1H : Présence de sécheuse à linge électrique (Oui/Non)
+
+        # QB1I : Présence de machine à laver le linge (Oui/Non)
+        # QB1I1 : S&#39;agit-il d&#39;une machine à chargement frontal (Oui/Non)
+        #   Faire 2 variable : Non ; Oui Frontale ; Oui Autre
+
+        # QB1S : Présence de cellier avec système de réfrigération (Oui/Non)
+    
+        # QB1N : Présence de sauna (Oui/Non)
+
+        # QB2 : Nombre de téléviseurs dans la résidence
+
+        # B2C2R : Nombre d&#39;ordinateur total
+
+        # QB2X6 : Présence d&#39;éclairage à LED (Oui/Non)
+        # QB2X8R : Pourcentage d&#39;éclairage à LED (Base possède de l&#39;éclairage à LED)
+        # Faire 2 variable : 1 = Non ; 2+=Oui+pourcentage
+
+        #chauffage
+
+        #chauffageappoint
+
+        #thermostat setback
+
+
+        #clim  (non, oui+system)
+
+        # QD7F1 : Utilisez-vous un échangeur d&#39;air?
+        # QD7G1 : S&#39;agit-il d&#39;un échangeur d&#39;air avec ou sans récupérateur de chaleur?
+        # Faire une variable
+
+        ## QF1 : À quelle source d&#39;énergie votre chauffe-eau fonctionne-t-il?
+        ## a voir si pertinent # # QF3 : Quelle est la capacité du chauffe-eau?
+
+    def get_Mapping_Colsrc(self, colName):
+        if colName in Attributs_EUEMr.__dict__.keys():
+            return colName
+        elif colName in self.Mapping.keys():
+            return self.get_Mapping_Colsrc(self.Mapping[colName][&#34;ColSrc&#34;])#recursif
+
+    def get_Mettadata(self):
+        Metadata = {}
+        for keyMap, dictMap in self.Mapping.items():
+            try:
+                ColSrc = self.get_Mapping_Colsrc(dictMap[&#34;ColSrc&#34;])
+                if dictMap[&#34;typeMapping&#34;] == &#34;list&#34;:
+                    Metadata[keyMap] = {&#34;Label&#34;: list(dictMap[&#34;Mapping&#34;].keys()),
+                                        &#34;IdLabel&#34;: [str(i) for i in range(len(dictMap[&#34;Mapping&#34;]))],
+                                        &#34;Description&#34;: Attributs_EUEMr.__dict__[ColSrc][&#34;Description&#34;],
+                                        &#34;Type&#34;: &#34;discrete&#34;}
+                elif dictMap[&#34;typeMapping&#34;] == &#34;bin&#34;:
+                    Metadata[keyMap] = {&#34;Label&#34;: dictMap[&#34;Mapping&#34;][&#34;labels&#34;],
+                                        &#34;IdLabel&#34;: [str(i) for i in range(len(dictMap[&#34;Mapping&#34;][&#34;labels&#34;]))],
+                                        &#34;Description&#34;: Attributs_EUEMr.__dict__[ColSrc][&#34;Description&#34;],
+                                        &#34;Type&#34;: &#34;discrete&#34;}
+                elif dictMap[&#34;typeMapping&#34;] == &#34;custom&#34;:
+                    Metadata[keyMap] = {&#34;Label&#34;: dictMap[&#34;Mapping&#34;].keys(),
+                                        &#34;IdLabel&#34;: [str(i) for i in range(len(dictMap[&#34;Mapping&#34;]))],
+                                        &#34;Description&#34;: Attributs_EUEMr.__dict__[ColSrc][&#34;Description&#34;],
+                                        &#34;Type&#34;: &#34;discrete&#34;}
+                elif dictMap[&#34;typeMapping&#34;] == &#34;no&#34;:
+                    Metadata[keyMap] = {&#34;Label&#34;: [],
+                                        &#34;IdLabel&#34;: [],
+                                        &#34;Description&#34;: Attributs_EUEMr.__dict__[ColSrc][&#34;Description&#34;],
+                                        &#34;Type&#34;: &#34;&#34;}
+            except KeyError as e:
+                print(f&#34;Error processing mapping for key: {keyMap} : {e}&#34;)
+                
+            #Metadata[keyMap] = {&#34;Label&#34;: list(dictMap[&#34;Mapping&#34;].keys()),
+            #                    &#34;IdLabel&#34;: [str(i) for i in range(len(dictMap[&#34;Mapping&#34;]))],
+            #                    &#34;Description&#34;: Attributs_EUEMr.__dict__[dictMap[&#34;ColSrc&#34;]][&#34;Description&#34;],
+            #                   &#34;Type&#34;: &#34;discrete&#34;}
+        return Metadata
+
+    def Load_excel(self, stFileName, sheet_name=None):
+        self.dfEUEMrSrc = pd.read_excel(stFileName, sheet_name=sheet_name)
+        
+        for col in [&#34;POND1&#34;, &#34;POND2x&#34;, &#34;POND1_POP&#34;, &#34;POND2x_POP&#34;, &#34;CONS_AN&#34;, &#34;QA6M&#34;, 
+                &#34;LIVRE_202012_202111&#34;, &#34;LIVRE_202012&#34;, &#34;LIVRE_202101&#34;, &#34;LIVRE_202102&#34;,
+                &#34;LIVRE_202103&#34;, &#34;LIVRE_202104&#34;, &#34;LIVRE_202105&#34;, &#34;LIVRE_202106&#34;, &#34;LIVRE_202107&#34;, &#34;LIVRE_202108&#34;, &#34;LIVRE_202109&#34;, &#34;LIVRE_202110&#34;, &#34;LIVRE_202111&#34;]:
+            self.dfEUEMrSrc[col] = pd.to_numeric(self.dfEUEMrSrc[col], errors=&#39;coerce&#39;)  # Convert to numeric, coercing errors to NaN
+
+    def SaveToCSV(self, dfEUEMr, stFileName):
+        &#34;&#34;&#34; Sauvegarde le DataFrame formaté en CSV.
+        &#34;&#34;&#34;
+        dfEUEMr.to_csv(stFileName, index=False)
+        print(f&#34;DataFrame saved to {stFileName}.&#34;)
+
+    def DoMapping(self, ColName):
+        &#34;&#34;&#34;
+        Retourne le mapping pour la colonne donnée.
+        &#34;&#34;&#34;
+        try:
+            dct_map_concat = {**self.Mapping, **self.Pond_Mapping}
+            if ColName in dct_map_concat:
+                if dct_map_concat[ColName][&#34;ColSrc&#34;] in self.dfEUEMrSrc.columns:
+                    dfEUEMrSrc_ColName = self.dfEUEMrSrc
+                elif dct_map_concat[ColName][&#34;ColSrc&#34;] in  self.dfEUEMr_new.columns:
+                    dfEUEMrSrc_ColName = self.dfEUEMr_new
+                else:
+                    raise ValueError(f&#34;Unknown mapping source for column &#39;{ColName}&#39;.&#34;)
+                
+                if dct_map_concat[ColName][&#34;typeMapping&#34;] == &#34;no&#34;:
+                    return dfEUEMrSrc_ColName[dct_map_concat[ColName][&#34;ColSrc&#34;]].rename(ColName)
+                
+                elif dct_map_concat[ColName][&#34;typeMapping&#34;] == &#34;list&#34;:
+                    dct_replace = {}
+                    for k, v in dct_map_concat[ColName][&#34;Mapping&#34;].items():
+                        for val in v:
+                            dct_replace[val] = k
+                    tempoSeries = dfEUEMrSrc_ColName[dct_map_concat[ColName][&#34;ColSrc&#34;]].replace(dct_replace).rename(ColName)
+                    tempoSeries[~tempoSeries.isin(list(set(dct_replace.values())))] = None
+                    return tempoSeries
+
+                elif dct_map_concat[ColName][&#34;typeMapping&#34;] == &#34;bin&#34;:
+
+                    return pd.cut(dfEUEMrSrc_ColName[dct_map_concat[ColName][&#34;ColSrc&#34;]],
+                                bins=dct_map_concat[ColName][&#34;Mapping&#34;][&#34;bins&#34;],
+                                labels=dct_map_concat[ColName][&#34;Mapping&#34;][&#34;labels&#34;],
+                                right=False).rename(ColName)             
+                
+                elif dct_map_concat[ColName][&#34;typeMapping&#34;] == &#34;custom&#34;:#type de Mapping (plus complexe)
+                    if ColName == &#34;Presence_Garage&#34;:
+                        return dfEUEMrSrc_ColName.apply(lambda row: &#34;Pas de Garage&#34; if row[&#34;QM1A&#34;] in [&#34;Non&#34;, &#34;.&#34;]\
+                                                                 else (&#34;Garage non chauffé&#34; if row[&#34;QM1AA&#34;]==&#34;Non&#34; \
+                                                                 else (&#34;Garage chauffé à électricité&#34; if row[&#34;QM1B&#34;]==&#34;Oui&#34;\
+                                                                 else (&#34;Garage chauffé à autre source&#34; if row[&#34;QM1A&#34;]==&#34;Oui&#34; else &#34;&#34;))), axis=1).rename(ColName)
+                    
+                    elif ColName == &#34;Chauffage_Logement&#34;:
+                        return dfEUEMrSrc_ColName.apply(lambda row: &#34;Plinthes électriques&#34; if row[&#34;SYSTEM1R&#34;] in [&#34;Plinthes électriques&#34;]\
+                                                                else (&#34;Fournaise ou poêle à bois et Plinthes électriques&#34; if (((row[&#34;SYSTEM1R&#34;] in [&#34;Fournaise ou poêle à bois&#34;]) or (row[&#34;SYSTEM1&#34;] in [&#34;Chaudière à eau chaude chauffée au bois&#34;])) and (row[&#34;SYSTEM2R&#34;] in [&#34;Plinthes électriques&#34;]))\
+                                                                else (&#34;Fournaise ou poêle à bois et Unités convecteurs, plancher ou plafond radiant&#34; if (((row[&#34;SYSTEM1R&#34;] in [&#34;Fournaise ou poêle à bois&#34;])or (row[&#34;SYSTEM1&#34;] in [&#34;Chaudière à eau chaude chauffée au bois&#34;])) and (row[&#34;SYSTEM2R&#34;] in [&#34;Unités convecteurs, plancher ou plafond radiant&#34;]))\
+                                                                else (&#34;Fournaise ou poêle à bois et Thermopompe murale&#34; if (((row[&#34;SYSTEM1R&#34;] in [&#34;Fournaise ou poêle à bois&#34;]) or (row[&#34;SYSTEM1&#34;] in [&#34;Chaudière à eau chaude chauffée au bois&#34;, &#34;Foyer&#34;])) and (row[&#34;SYSTEM2R&#34;] in [&#34;Thermopompe&#34;]))\
+                                                                else (&#34;Fournaise ou poêle à bois et Système central à air chaud&#34; if (((row[&#34;SYSTEM1R&#34;] in [&#34;Fournaise ou poêle à bois&#34;]) or (row[&#34;SYSTEM1&#34;] in [&#34;Chaudière à eau chaude chauffée au bois&#34;])) and (row[&#34;SYSTEM2R&#34;] in [&#34;Système central à air chaud&#34;]))\
+                                                                else (&#34;Fournaise ou poêle à bois et Système central à eau chaude&#34; if (((row[&#34;SYSTEM1R&#34;] in [&#34;Fournaise ou poêle à bois&#34;]) or (row[&#34;SYSTEM1&#34;] in [&#34;Chaudière à eau chaude chauffée au bois&#34;])) and (row[&#34;SYSTEM2R&#34;] in [&#34;Système central à eau chaude&#34;]))\
+                                                                else (&#34;Fournaise ou poêle à bois et Fournaise murale ou de plancher&#34; if (((row[&#34;SYSTEM1R&#34;] in [&#34;Fournaise ou poêle à bois&#34;]) or (row[&#34;SYSTEM1&#34;] in [&#34;Chaudière à eau chaude chauffée au bois&#34;])) and (row[&#34;SYSTEM2R&#34;] in [&#34;Fournaise murale ou de plancher&#34;]))\
+                                                                else (&#34;Fournaise ou poêle à bois&#34; if ((row[&#34;SYSTEM1R&#34;] in [&#34;Fournaise ou poêle à bois&#34;]) or (row[&#34;SYSTEM1&#34;] in [&#34;Chaudière à eau chaude chauffée au bois&#34;]))\
+                                                                else (&#34;Unités convecteurs, plancher ou plafond radiant&#34; if row[&#34;SYSTEM1R&#34;] in [&#34;Unités convecteurs, plancher ou plafond radiant&#34;]\
+                                                                else (&#34;Thermopompe et Système central à air chaud&#34; if row[&#34;SYSTEM1&#34;] in [&#34;Thermopompe (pompe à chaleur) et fournaise&#34;]\
+                                                                else (&#34;Thermopompe et Système central à eau chaude&#34; if row[&#34;SYSTEM1&#34;] in [&#34;Thermopompe et chaudière&#34;]\
+                                                                else (&#34;Thermopompe géothermique seule&#34; if ((row[&#34;SYSTEM1&#34;] in [&#34;Thermopompe géothermique&#34;]) and (row[&#34;QC9A&#34;] in [&#34;Pas de système de relève&#34;]))\
+                                                                else (&#34;Thermopompe géothermique et Plinthes électriques&#34; if ((row[&#34;SYSTEM1&#34;] in [&#34;Thermopompe géothermique&#34;]) and (row[&#34;QC9A&#34;] in [&#34;Ne sait pas/Ne répond pas&#34;, &#34;Convecteurs&#34;, &#34;Plinthes&#34;, &#34;Plinthes et convecteurs&#34;, &#34;Radiants de plancher&#34;]))\
+                                                                else (&#34;Thermopompe géothermique et Fournaise&#34; if ((row[&#34;SYSTEM1&#34;] in [&#34;Thermopompe géothermique&#34;]) and (row[&#34;QC9A&#34;] in [&#34;Bouilloire électrique&#34;, &#34;Fournaise au gaz naturel à air chaud&#34;, &#34;Fournaise au mazout à air chaud&#34;,&#34;Fournaise au propane à air chaud&#34;, &#34;Fournaise électrique à air chaud&#34;]))\
+                                                                else (&#34;Thermopompe murale&#34; if ((row[&#34;SYSTEM1&#34;] in [&#34;Thermopompe (pompe à chaleur) murale&#34;]) and (row[&#34;QC9A&#34;] in [&#34;Pas de système de relève&#34;]))\
+                                                                else (&#34;Thermopompe murale et Plinthes électriques&#34; if ((row[&#34;SYSTEM1&#34;] in [&#34;Thermopompe (pompe à chaleur) murale&#34;]) and (row[&#34;QC9A&#34;] in [&#34;Ne sait pas/Ne répond pas&#34;, &#34;Convecteurs&#34;, &#34;Plinthes&#34;, &#34;Plinthes et convecteurs&#34;, &#34;Radiants de plancher&#34;]))\
+                                                                else (&#34;Thermopompe murale et Fournaise&#34; if ((row[&#34;SYSTEM1&#34;] in [&#34;Thermopompe (pompe à chaleur) murale&#34;]) and (row[&#34;QC9A&#34;] in [&#34;Bouilloire électrique&#34;, &#34;Fournaise au gaz naturel à air chaud&#34;, &#34;Fournaise au mazout à air chaud&#34;,&#34;Fournaise au propane à air chaud&#34;, &#34;Fournaise électrique à air chaud&#34;]))\
+                                                                else (&#34;Système central à air chaud&#34; if row[&#34;SYSTEM1R&#34;] in [&#34;Système central à air chaud&#34;]\
+                                                                else (&#34;Système central à eau chaude&#34; if row[&#34;SYSTEM1R&#34;] in [&#34;Système central à eau chaude&#34;]\
+                                                                else (&#34;Fournaise murale ou de plancher&#34; if row[&#34;SYSTEM1R&#34;] in [&#34;Fournaise murale ou de plancher&#34;]\
+                                                                else None))))))))))))))))))), axis=1).rename(ColName)
+                    elif ColName == &#34;Spa_Saison&#34;:
+                        return dfEUEMrSrc_ColName.apply(lambda row: &#34;Aucun&#34; if row[&#34;QB1M&#34;] in [&#34;Non&#34;]\
+                                                                else (&#34;Pas utilisé&#34; if row[&#34;QS1&#34;] in [&#34;Pas du tout&#34;]\
+                                                                else (&#34;Ne sait pas&#34; if row[&#34;QS2M1R&#34;] in [&#34;Ne sait pas&#34;]\
+                                                                else (&#34;Toute_Saison&#34; if row[&#34;QS1&#34;] in [&#34;Toute l’année&#34;]\
+                                                                else (&#34;Printemps&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;Le printemps&#34;,&#34;.&#34;,&#34;.&#34;, &#34;.&#34;])\
+                                                                else (&#34;Ete&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;L&#39;été&#34;,&#34;.&#34;,&#34;.&#34;, &#34;.&#34;])\
+                                                                else (&#34;Automne&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;L&#39;automne&#34;,&#34;.&#34;,&#34;.&#34;, &#34;.&#34;])\
+                                                                else (&#34;Hiver&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;L&#39;hiver&#34;,&#34;.&#34;,&#34;.&#34;, &#34;.&#34;])\
+                                                                else (&#34;Printemps_Ete&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;Le printemps&#34;,&#34;L&#39;été&#34;,&#34;.&#34;, &#34;.&#34;])\
+                                                                else (&#34;Printemps_Automne&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;Le printemps&#34;,&#34;L&#39;automne&#34;,&#34;.&#34;, &#34;.&#34;])\
+                                                                else (&#34;Printemps_Hiver&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;Le printemps&#34;,&#34;L&#39;hiver&#34;,&#34;.&#34;, &#34;.&#34;])\
+                                                                else (&#34;Ete_Automne&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;L&#39;été&#34;,&#34;L&#39;automne&#34;,&#34;.&#34;, &#34;.&#34;])\
+                                                                else (&#34;Ete_Hiver&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;L&#39;été&#34;,&#34;L&#39;hiver&#34;,&#34;.&#34;, &#34;.&#34;])\
+                                                                else (&#34;Automne_Hiver&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;L&#39;automne&#34;,&#34;L&#39;hiver&#34;,&#34;.&#34;, &#34;.&#34;])\
+                                                                else (&#34;Printemps_Ete_Automne&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;Le printemps&#34;,&#34;L&#39;été&#34;,&#34;L&#39;automne&#34;, &#34;.&#34;])\
+                                                                else (&#34;Printemps_Automne_Hiver&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;Le printemps&#34;,&#34;L&#39;automne&#34;,&#34;L&#39;hiver&#34;, &#34;.&#34;])\
+                                                                else (&#34;Ete_Automne_Hiver&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;L&#39;été&#34;,&#34;L&#39;automne&#34;,&#34;L&#39;hiver&#34;, &#34;.&#34;])\
+                                                                else None)))))))))))))))), axis=1).rename(ColName)
+                        #else (&#34;Printemps_Ete_Hiver&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;Le printemps&#34;,&#34;L&#39;été&#34;,&#34;L&#39;hiver&#34;, &#34;.&#34;])\
+                    elif ColName == &#34;Vehicule_Presence&#34;:
+                        return dfEUEMrSrc_ColName.apply(lambda row: &#34;Aucune_VE_Aucune_VHR&#34; if ((row[&#34;QT2R&#34;] in [&#34;Aucune&#34;]) and (row[&#34;QT3R&#34;] in [&#34;Aucune&#34;]))\
+                                                                else (&#34;Une_VE_Aucune_VHR&#34; if ((row[&#34;QT2R&#34;] in [&#34;Une&#34;]) and (row[&#34;QT3R&#34;] in [&#34;Aucune&#34;]))\
+                                                                else (&#34;Deux_VE_Aucune_VHR&#34; if ((row[&#34;QT2R&#34;] in [&#34;Deux&#34;]) and (row[&#34;QT3R&#34;] in [&#34;Aucune&#34;]))\
+                                                                else (&#34;Trois_VE_Aucune_VHR&#34; if ((row[&#34;QT2R&#34;] in [&#34;Trois&#34;]) and (row[&#34;QT3R&#34;] in [&#34;Aucune&#34;]))\
+                                                                else (&#34;Aucune_VE_Une_VHR&#34; if ((row[&#34;QT2R&#34;] in [&#34;Aucune&#34;]) and (row[&#34;QT3R&#34;] in [&#34;Une&#34;]))\
+                                                                else (&#34;Une_VE_Une_VHR&#34; if ((row[&#34;QT2R&#34;] in [&#34;Une&#34;]) and (row[&#34;QT3R&#34;] in [&#34;Une&#34;]))\
+                                                                else (&#34;Deux_VE_Une_VHR&#34; if ((row[&#34;QT2R&#34;] in [&#34;Deux&#34;]) and (row[&#34;QT3R&#34;] in [&#34;Une&#34;]))\
+                                                                else (&#34;Trois_VE_Une_VHR&#34; if ((row[&#34;QT2R&#34;] in [&#34;Trois&#34;]) and (row[&#34;QT3R&#34;] in [&#34;Une&#34;]))\
+                                                                else (&#34;Aucune_VE_Deux_VHR&#34; if ((row[&#34;QT2R&#34;] in [&#34;Aucune&#34;]) and (row[&#34;QT3R&#34;] in [&#34;Deux&#34;]))\
+                                                                else (&#34;Une_VE_Deux_VHR&#34; if ((row[&#34;QT2R&#34;] in [&#34;Une&#34;]) and (row[&#34;QT3R&#34;] in [&#34;Deux&#34;]))\
+                                                                else (&#34;Deux_VE_Deux_VHR&#34; if ((row[&#34;QT2R&#34;] in [&#34;Deux&#34;]) and (row[&#34;QT3R&#34;] in [&#34;Deux&#34;]))\
+                                                                else (&#34;Trois_VE_Deux_VHR&#34; if ((row[&#34;QT2R&#34;] in [&#34;Trois&#34;]) and (row[&#34;QT3R&#34;] in [&#34;Deux&#34;]))\
+                                                                else None))))))))))), axis=1).rename(ColName)
+                    elif ColName == &#34;Region_Administrative&#34;:
+                        return dfEUEMrSrc_ColName.apply(lambda row: &#34;Outaouais&#34; if ((row[&#34;ZONE&#34;] in [&#34;Outaouais rural&#34;, &#34;CUO&#34;]))\
+                                                                else(&#34;Laurentides&#34; if ((row[&#34;ZONE&#34;] in [&#34;Milles-Îles&#34;, &#34;Antoine-Labelle&#34;, &#34;Le Noroit&#34;]))\
+                                                                else(&#34;Montréal&#34; if ((row[&#34;ZONE&#34;] in [&#34;IDM Est&#34;, &#34;IDM Nord&#34;, &#34;IDM Ouest&#34;, &#34;IDM Sud&#34;]))\
+                                                                else(&#34;Capitale-Nationale&#34; if ((row[&#34;ZONE&#34;] in [&#34;CUQ&#34;, &#34;Montmorency-nord&#34;, &#34;Appalaches&#34;]))\
+                                                                else(&#34;Mauricie&#34; if ((row[&#34;ZONE&#34;] in [&#34;St-Maurice&#34;]))\
+                                                                else(&#34;Côte-Nord&#34; if ((row[&#34;ZONE&#34;] in [&#34;Côte-Nord&#34;]))\
+                                                                else(&#34;Chaudière-Appalaches&#34; if ((row[&#34;ZONE&#34;] in [&#34;Lévis&#34;, &#34;Appalaches&#34;]))\
+                                                                else(&#34;Montérégie&#34; if ((row[&#34;ZONE&#34;] in [&#34;Chateauguay-Vaudreuil&#34;, &#34;Le Haut St-Laurent&#34;, &#34;Des Seigneuries&#34;, &#34;Drummonville&#34;, &#34;Ozias-Leduc&#34;]) or ((row[&#34;ZONE&#34;] in [&#34;Sorel-Victoriaville&#34;]) and (row[&#34;MONTREAL_RMR&#34;] in [&#34;Montréal RMR&#34;])))\
+                                                                else(&#34;Estrie&#34; if ((row[&#34;ZONE&#34;] in [&#34;Des Cantons&#34;]))\
+                                                                else(&#34;Centre-du-Québec&#34; if ((row[&#34;ZONE&#34;] in [&#34;Drummonville&#34;]) or ((row[&#34;ZONE&#34;] in [&#34;Sorel-Victoriaville&#34;]) and (row[&#34;MONTREAL_RMR&#34;] in [&#34;Pas Montréal RMR&#34;])))\
+                                                                else(&#34;Laval&#34; if ((row[&#34;ZONE&#34;] in [&#34;Laval&#34;]))\
+                                                                else(&#34;Lanaudière&#34; if ((row[&#34;ZONE&#34;] in [&#34;Lanaudière&#34;]))\
+                                                                else(&#34;Saguenay-Lac-Saint-Jean&#34; if ((row[&#34;ZONE&#34;] in [&#34;Saguenay&#34;]))\
+                                                                else(&#34;Bas-Saint-Laurent&#34; if ((row[&#34;ZONE&#34;] in [&#34;Bas St-Laurent&#34;]))\
+                                                                else(&#34;Gaspésie-Îles-de-la-Madeleine&#34; if ((row[&#34;ZONE&#34;] in [&#34;Gaspésie&#34;]))\
+                                                                else None)))))))))))))), axis=1).rename(ColName)
+                    
+                    elif ColName == &#34;Vintage&#34;:
+                        return dfEUEMrSrc_ColName.apply(lambda row: &#34;pre-1945&#34; if row[&#34;QA6M&#34;] in [i for i in range(1500, 1945+1)]\
+                                                                else (&#34;pre-1945&#34; if ((row[&#34;QA6RR&#34;] in [&#34;Avant 1900&#34;, &#34;Entre 1900 et 1950&#34;]) and (pd.isnull(row[&#34;QA6M&#34;])))\
+                                                                else (&#34;1946-70&#34; if row[&#34;QA6M&#34;] in [i for i in range(1946, 1970+1)]\
+                                                                else (&#34;1946-70&#34; if ((row[&#34;QA6RR&#34;] in [&#34;Dans les années 50&#34;, &#34;Dans les années 60&#34;]) and (pd.isnull(row[&#34;QA6M&#34;])))\
+                                                                else (&#34;1971-85&#34; if row[&#34;QA6M&#34;] in [i for i in range(1971, 1985+1)]\
+                                                                else (&#34;1971-85&#34; if ((row[&#34;QA6RR&#34;] in [&#34;Dans les années 70&#34;, &#34;Dans les années 80&#34;]) and (pd.isnull(row[&#34;QA6M&#34;])))\
+                                                                else (&#34;1986-2012&#34; if row[&#34;QA6M&#34;] in [i for i in range(1986, 2012+1)]\
+                                                                else (&#34;1986-2012&#34; if ((row[&#34;QA6RR&#34;] in [&#34;Dans les années 90&#34;, &#34;Entre 2000 et 2009&#34;, &#34;Entre 2010 et 2013&#34;]) and (pd.isnull(row[&#34;QA6M&#34;])))\
+                                                                else (&#34;post-2012&#34; if row[&#34;QA6M&#34;] in [i for i in range(2013, 2050+1)]\
+                                                                else (&#34;post-2012&#34; if ((row[&#34;QA6RR&#34;] in [&#34;Entre 2014 et 2017&#34;, &#34;Entre 2018 et aujourd&#39;hui&#34;]) and (pd.isnull(row[&#34;QA6M&#34;])))\
+                                                                else None))))))))), axis=1).rename(ColName)
+                else:
+                    raise ValueError(f&#34;Unknown mapping type for column &#39;{ColName}&#39;.&#34;)
+            else:
+                raise ValueError(f&#34;Mapping for column &#39;{ColName}&#39; not found.&#34;)
+        except Exception as e:
+            print(f&#34;Error in DoMapping for column &#39;{ColName}&#39;: {e}&#34;)
+
+    def DoAllMapping(self):
+        &#34;&#34;&#34;
+        Applique tous les mappings définis dans la classe.
+        &#34;&#34;&#34;
+        self.dfEUEMr_new = pd.DataFrame()
+        for c in [&#34;POND1&#34;,&#34;POND2x&#34;,&#34;POND1_POP&#34;,&#34;POND2x_POP&#34;]:
+            self.dfEUEMr_new[c] = self.dfEUEMrSrc[c]
+
+        for ColName in {**self.Mapping, **self.Pond_Mapping}:
+            self.dfEUEMr_new = pd.concat([self.dfEUEMr_new, self.DoMapping(ColName)], axis=1)
+        
+        return self.dfEUEMr_new
+
+    def Create_Pond(self, df_toPond_src):
+        
+        df_toPond = df_toPond_src[~pd.isnull(df_toPond_src[&#34;POND1&#34;])]
+        
+        dataStats = pd.read_csv(PROJECT_DIR+&#34;/data/input/euemr/2022/raked_data.csv&#34;)
+        dataStats[&#34;Typo&#34;] = dataStats[&#34;Typo-Source&#34;].str.split(&#34;_&#34;).str[0]
+        dataStats[&#34;Source&#34;] = dataStats[&#34;Typo-Source&#34;].str.split(&#34;_&#34;).str[1]
+
+        df_toPond_grp = df_toPond[[&#39;Vintage&#39;, &#39;Territoire&#39;, &#34;Typo&#34;, &#34;Source&#34;]].groupby([&#39;Vintage&#39;, &#39;Territoire&#39;, &#34;Typo&#34;, &#34;Source&#34;]).value_counts().reset_index(name=&#39;Nombre&#39;)
+
+        df_Pond = pd.merge(df_toPond_grp,dataStats, on=[&#39;Vintage&#39;, &#39;Territoire&#39;, &#34;Typo&#34;, &#34;Source&#34;], how=&#39;left&#39;)
+        sum_df_Pond = df_Pond[&#39;Nombre&#39;].sum()
+        df_Pond[&#34;Nombre_rel&#34;] = df_Pond[&#34;Nombre&#34;]/sum_df_Pond
+        df_Pond[&#34;PONDNew&#34;] = df_Pond[&#34;count_pound_rel&#34;]/df_Pond[&#34;Nombre_rel&#34;]
+        
+        df_toPond_weight = df_toPond_src.merge(df_Pond[[&#34;Vintage&#34;,&#34;Territoire&#34;,&#34;Typo&#34;,&#34;Source&#34;, &#34;PONDNew&#34;]], on=[&#39;Vintage&#39;, &#39;Territoire&#39;, &#34;Typo&#34;, &#34;Source&#34;], how=&#39;left&#39;)#[&#34;Weighted&#34;].sum()
+        df_toPond_weight.loc[pd.isnull(df_toPond_weight[&#34;POND1&#34;]), &#34;PONDNew&#34;] = None#ne s&#39;applique pas sur le sous-groupe des logements récents
+        df_toPond_weight.insert(0, &#34;PONDNew&#34;, df_toPond_weight.pop(&#34;PONDNew&#34;))
+
+        return df_toPond_weight
+
+    def Main(self):
+        &#34;&#34;&#34;
+        Fonction principale pour exécuter le formatage des données EUEMr.
+        &#34;&#34;&#34;
+        stFileName = PROJECT_DIR+&#34;//data//input//euemr//2022//sondage_residentiel_version_finale.xlsx&#34;
+        sheet_name = &#34;Data&#34;
+
+        self.Load_excel(stFileName, sheet_name)
+        #dfEUEMr_new = self.DoAllMapping()
+        self.DoAllMapping()
+
+        #add new ponderation column
+        self.dfEUEMr_new = self.Create_Pond(self.dfEUEMr_new)
+
+        output_file = PROJECT_DIR+&#34;//data//processed//euemr//2022//sondage_residentiel_version_finale_formatted.csv&#34;
+        self.SaveToCSV(self.dfEUEMr_new, output_file)</code></pre>
+</details>
+<div class="desc"><p>Classe pour transformet les données EUEMr en données pour le BN.</p></div>
+<h3>Methods</h3>
+<dl>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMr.FormatageEUEMr.Create_Pond"><code class="name flex">
+<span>def <span class="ident">Create_Pond</span></span>(<span>self, df_toPond_src)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def Create_Pond(self, df_toPond_src):
+    
+    df_toPond = df_toPond_src[~pd.isnull(df_toPond_src[&#34;POND1&#34;])]
+    
+    dataStats = pd.read_csv(PROJECT_DIR+&#34;/data/input/euemr/2022/raked_data.csv&#34;)
+    dataStats[&#34;Typo&#34;] = dataStats[&#34;Typo-Source&#34;].str.split(&#34;_&#34;).str[0]
+    dataStats[&#34;Source&#34;] = dataStats[&#34;Typo-Source&#34;].str.split(&#34;_&#34;).str[1]
+
+    df_toPond_grp = df_toPond[[&#39;Vintage&#39;, &#39;Territoire&#39;, &#34;Typo&#34;, &#34;Source&#34;]].groupby([&#39;Vintage&#39;, &#39;Territoire&#39;, &#34;Typo&#34;, &#34;Source&#34;]).value_counts().reset_index(name=&#39;Nombre&#39;)
+
+    df_Pond = pd.merge(df_toPond_grp,dataStats, on=[&#39;Vintage&#39;, &#39;Territoire&#39;, &#34;Typo&#34;, &#34;Source&#34;], how=&#39;left&#39;)
+    sum_df_Pond = df_Pond[&#39;Nombre&#39;].sum()
+    df_Pond[&#34;Nombre_rel&#34;] = df_Pond[&#34;Nombre&#34;]/sum_df_Pond
+    df_Pond[&#34;PONDNew&#34;] = df_Pond[&#34;count_pound_rel&#34;]/df_Pond[&#34;Nombre_rel&#34;]
+    
+    df_toPond_weight = df_toPond_src.merge(df_Pond[[&#34;Vintage&#34;,&#34;Territoire&#34;,&#34;Typo&#34;,&#34;Source&#34;, &#34;PONDNew&#34;]], on=[&#39;Vintage&#39;, &#39;Territoire&#39;, &#34;Typo&#34;, &#34;Source&#34;], how=&#39;left&#39;)#[&#34;Weighted&#34;].sum()
+    df_toPond_weight.loc[pd.isnull(df_toPond_weight[&#34;POND1&#34;]), &#34;PONDNew&#34;] = None#ne s&#39;applique pas sur le sous-groupe des logements récents
+    df_toPond_weight.insert(0, &#34;PONDNew&#34;, df_toPond_weight.pop(&#34;PONDNew&#34;))
+
+    return df_toPond_weight</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMr.FormatageEUEMr.DoAllMapping"><code class="name flex">
+<span>def <span class="ident">DoAllMapping</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def DoAllMapping(self):
+    &#34;&#34;&#34;
+    Applique tous les mappings définis dans la classe.
+    &#34;&#34;&#34;
+    self.dfEUEMr_new = pd.DataFrame()
+    for c in [&#34;POND1&#34;,&#34;POND2x&#34;,&#34;POND1_POP&#34;,&#34;POND2x_POP&#34;]:
+        self.dfEUEMr_new[c] = self.dfEUEMrSrc[c]
+
+    for ColName in {**self.Mapping, **self.Pond_Mapping}:
+        self.dfEUEMr_new = pd.concat([self.dfEUEMr_new, self.DoMapping(ColName)], axis=1)
+    
+    return self.dfEUEMr_new</code></pre>
+</details>
+<div class="desc"><p>Applique tous les mappings définis dans la classe.</p></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMr.FormatageEUEMr.DoMapping"><code class="name flex">
+<span>def <span class="ident">DoMapping</span></span>(<span>self, ColName)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def DoMapping(self, ColName):
+    &#34;&#34;&#34;
+    Retourne le mapping pour la colonne donnée.
+    &#34;&#34;&#34;
+    try:
+        dct_map_concat = {**self.Mapping, **self.Pond_Mapping}
+        if ColName in dct_map_concat:
+            if dct_map_concat[ColName][&#34;ColSrc&#34;] in self.dfEUEMrSrc.columns:
+                dfEUEMrSrc_ColName = self.dfEUEMrSrc
+            elif dct_map_concat[ColName][&#34;ColSrc&#34;] in  self.dfEUEMr_new.columns:
+                dfEUEMrSrc_ColName = self.dfEUEMr_new
+            else:
+                raise ValueError(f&#34;Unknown mapping source for column &#39;{ColName}&#39;.&#34;)
+            
+            if dct_map_concat[ColName][&#34;typeMapping&#34;] == &#34;no&#34;:
+                return dfEUEMrSrc_ColName[dct_map_concat[ColName][&#34;ColSrc&#34;]].rename(ColName)
+            
+            elif dct_map_concat[ColName][&#34;typeMapping&#34;] == &#34;list&#34;:
+                dct_replace = {}
+                for k, v in dct_map_concat[ColName][&#34;Mapping&#34;].items():
+                    for val in v:
+                        dct_replace[val] = k
+                tempoSeries = dfEUEMrSrc_ColName[dct_map_concat[ColName][&#34;ColSrc&#34;]].replace(dct_replace).rename(ColName)
+                tempoSeries[~tempoSeries.isin(list(set(dct_replace.values())))] = None
+                return tempoSeries
+
+            elif dct_map_concat[ColName][&#34;typeMapping&#34;] == &#34;bin&#34;:
+
+                return pd.cut(dfEUEMrSrc_ColName[dct_map_concat[ColName][&#34;ColSrc&#34;]],
+                            bins=dct_map_concat[ColName][&#34;Mapping&#34;][&#34;bins&#34;],
+                            labels=dct_map_concat[ColName][&#34;Mapping&#34;][&#34;labels&#34;],
+                            right=False).rename(ColName)             
+            
+            elif dct_map_concat[ColName][&#34;typeMapping&#34;] == &#34;custom&#34;:#type de Mapping (plus complexe)
+                if ColName == &#34;Presence_Garage&#34;:
+                    return dfEUEMrSrc_ColName.apply(lambda row: &#34;Pas de Garage&#34; if row[&#34;QM1A&#34;] in [&#34;Non&#34;, &#34;.&#34;]\
+                                                             else (&#34;Garage non chauffé&#34; if row[&#34;QM1AA&#34;]==&#34;Non&#34; \
+                                                             else (&#34;Garage chauffé à électricité&#34; if row[&#34;QM1B&#34;]==&#34;Oui&#34;\
+                                                             else (&#34;Garage chauffé à autre source&#34; if row[&#34;QM1A&#34;]==&#34;Oui&#34; else &#34;&#34;))), axis=1).rename(ColName)
+                
+                elif ColName == &#34;Chauffage_Logement&#34;:
+                    return dfEUEMrSrc_ColName.apply(lambda row: &#34;Plinthes électriques&#34; if row[&#34;SYSTEM1R&#34;] in [&#34;Plinthes électriques&#34;]\
+                                                            else (&#34;Fournaise ou poêle à bois et Plinthes électriques&#34; if (((row[&#34;SYSTEM1R&#34;] in [&#34;Fournaise ou poêle à bois&#34;]) or (row[&#34;SYSTEM1&#34;] in [&#34;Chaudière à eau chaude chauffée au bois&#34;])) and (row[&#34;SYSTEM2R&#34;] in [&#34;Plinthes électriques&#34;]))\
+                                                            else (&#34;Fournaise ou poêle à bois et Unités convecteurs, plancher ou plafond radiant&#34; if (((row[&#34;SYSTEM1R&#34;] in [&#34;Fournaise ou poêle à bois&#34;])or (row[&#34;SYSTEM1&#34;] in [&#34;Chaudière à eau chaude chauffée au bois&#34;])) and (row[&#34;SYSTEM2R&#34;] in [&#34;Unités convecteurs, plancher ou plafond radiant&#34;]))\
+                                                            else (&#34;Fournaise ou poêle à bois et Thermopompe murale&#34; if (((row[&#34;SYSTEM1R&#34;] in [&#34;Fournaise ou poêle à bois&#34;]) or (row[&#34;SYSTEM1&#34;] in [&#34;Chaudière à eau chaude chauffée au bois&#34;, &#34;Foyer&#34;])) and (row[&#34;SYSTEM2R&#34;] in [&#34;Thermopompe&#34;]))\
+                                                            else (&#34;Fournaise ou poêle à bois et Système central à air chaud&#34; if (((row[&#34;SYSTEM1R&#34;] in [&#34;Fournaise ou poêle à bois&#34;]) or (row[&#34;SYSTEM1&#34;] in [&#34;Chaudière à eau chaude chauffée au bois&#34;])) and (row[&#34;SYSTEM2R&#34;] in [&#34;Système central à air chaud&#34;]))\
+                                                            else (&#34;Fournaise ou poêle à bois et Système central à eau chaude&#34; if (((row[&#34;SYSTEM1R&#34;] in [&#34;Fournaise ou poêle à bois&#34;]) or (row[&#34;SYSTEM1&#34;] in [&#34;Chaudière à eau chaude chauffée au bois&#34;])) and (row[&#34;SYSTEM2R&#34;] in [&#34;Système central à eau chaude&#34;]))\
+                                                            else (&#34;Fournaise ou poêle à bois et Fournaise murale ou de plancher&#34; if (((row[&#34;SYSTEM1R&#34;] in [&#34;Fournaise ou poêle à bois&#34;]) or (row[&#34;SYSTEM1&#34;] in [&#34;Chaudière à eau chaude chauffée au bois&#34;])) and (row[&#34;SYSTEM2R&#34;] in [&#34;Fournaise murale ou de plancher&#34;]))\
+                                                            else (&#34;Fournaise ou poêle à bois&#34; if ((row[&#34;SYSTEM1R&#34;] in [&#34;Fournaise ou poêle à bois&#34;]) or (row[&#34;SYSTEM1&#34;] in [&#34;Chaudière à eau chaude chauffée au bois&#34;]))\
+                                                            else (&#34;Unités convecteurs, plancher ou plafond radiant&#34; if row[&#34;SYSTEM1R&#34;] in [&#34;Unités convecteurs, plancher ou plafond radiant&#34;]\
+                                                            else (&#34;Thermopompe et Système central à air chaud&#34; if row[&#34;SYSTEM1&#34;] in [&#34;Thermopompe (pompe à chaleur) et fournaise&#34;]\
+                                                            else (&#34;Thermopompe et Système central à eau chaude&#34; if row[&#34;SYSTEM1&#34;] in [&#34;Thermopompe et chaudière&#34;]\
+                                                            else (&#34;Thermopompe géothermique seule&#34; if ((row[&#34;SYSTEM1&#34;] in [&#34;Thermopompe géothermique&#34;]) and (row[&#34;QC9A&#34;] in [&#34;Pas de système de relève&#34;]))\
+                                                            else (&#34;Thermopompe géothermique et Plinthes électriques&#34; if ((row[&#34;SYSTEM1&#34;] in [&#34;Thermopompe géothermique&#34;]) and (row[&#34;QC9A&#34;] in [&#34;Ne sait pas/Ne répond pas&#34;, &#34;Convecteurs&#34;, &#34;Plinthes&#34;, &#34;Plinthes et convecteurs&#34;, &#34;Radiants de plancher&#34;]))\
+                                                            else (&#34;Thermopompe géothermique et Fournaise&#34; if ((row[&#34;SYSTEM1&#34;] in [&#34;Thermopompe géothermique&#34;]) and (row[&#34;QC9A&#34;] in [&#34;Bouilloire électrique&#34;, &#34;Fournaise au gaz naturel à air chaud&#34;, &#34;Fournaise au mazout à air chaud&#34;,&#34;Fournaise au propane à air chaud&#34;, &#34;Fournaise électrique à air chaud&#34;]))\
+                                                            else (&#34;Thermopompe murale&#34; if ((row[&#34;SYSTEM1&#34;] in [&#34;Thermopompe (pompe à chaleur) murale&#34;]) and (row[&#34;QC9A&#34;] in [&#34;Pas de système de relève&#34;]))\
+                                                            else (&#34;Thermopompe murale et Plinthes électriques&#34; if ((row[&#34;SYSTEM1&#34;] in [&#34;Thermopompe (pompe à chaleur) murale&#34;]) and (row[&#34;QC9A&#34;] in [&#34;Ne sait pas/Ne répond pas&#34;, &#34;Convecteurs&#34;, &#34;Plinthes&#34;, &#34;Plinthes et convecteurs&#34;, &#34;Radiants de plancher&#34;]))\
+                                                            else (&#34;Thermopompe murale et Fournaise&#34; if ((row[&#34;SYSTEM1&#34;] in [&#34;Thermopompe (pompe à chaleur) murale&#34;]) and (row[&#34;QC9A&#34;] in [&#34;Bouilloire électrique&#34;, &#34;Fournaise au gaz naturel à air chaud&#34;, &#34;Fournaise au mazout à air chaud&#34;,&#34;Fournaise au propane à air chaud&#34;, &#34;Fournaise électrique à air chaud&#34;]))\
+                                                            else (&#34;Système central à air chaud&#34; if row[&#34;SYSTEM1R&#34;] in [&#34;Système central à air chaud&#34;]\
+                                                            else (&#34;Système central à eau chaude&#34; if row[&#34;SYSTEM1R&#34;] in [&#34;Système central à eau chaude&#34;]\
+                                                            else (&#34;Fournaise murale ou de plancher&#34; if row[&#34;SYSTEM1R&#34;] in [&#34;Fournaise murale ou de plancher&#34;]\
+                                                            else None))))))))))))))))))), axis=1).rename(ColName)
+                elif ColName == &#34;Spa_Saison&#34;:
+                    return dfEUEMrSrc_ColName.apply(lambda row: &#34;Aucun&#34; if row[&#34;QB1M&#34;] in [&#34;Non&#34;]\
+                                                            else (&#34;Pas utilisé&#34; if row[&#34;QS1&#34;] in [&#34;Pas du tout&#34;]\
+                                                            else (&#34;Ne sait pas&#34; if row[&#34;QS2M1R&#34;] in [&#34;Ne sait pas&#34;]\
+                                                            else (&#34;Toute_Saison&#34; if row[&#34;QS1&#34;] in [&#34;Toute l’année&#34;]\
+                                                            else (&#34;Printemps&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;Le printemps&#34;,&#34;.&#34;,&#34;.&#34;, &#34;.&#34;])\
+                                                            else (&#34;Ete&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;L&#39;été&#34;,&#34;.&#34;,&#34;.&#34;, &#34;.&#34;])\
+                                                            else (&#34;Automne&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;L&#39;automne&#34;,&#34;.&#34;,&#34;.&#34;, &#34;.&#34;])\
+                                                            else (&#34;Hiver&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;L&#39;hiver&#34;,&#34;.&#34;,&#34;.&#34;, &#34;.&#34;])\
+                                                            else (&#34;Printemps_Ete&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;Le printemps&#34;,&#34;L&#39;été&#34;,&#34;.&#34;, &#34;.&#34;])\
+                                                            else (&#34;Printemps_Automne&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;Le printemps&#34;,&#34;L&#39;automne&#34;,&#34;.&#34;, &#34;.&#34;])\
+                                                            else (&#34;Printemps_Hiver&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;Le printemps&#34;,&#34;L&#39;hiver&#34;,&#34;.&#34;, &#34;.&#34;])\
+                                                            else (&#34;Ete_Automne&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;L&#39;été&#34;,&#34;L&#39;automne&#34;,&#34;.&#34;, &#34;.&#34;])\
+                                                            else (&#34;Ete_Hiver&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;L&#39;été&#34;,&#34;L&#39;hiver&#34;,&#34;.&#34;, &#34;.&#34;])\
+                                                            else (&#34;Automne_Hiver&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;L&#39;automne&#34;,&#34;L&#39;hiver&#34;,&#34;.&#34;, &#34;.&#34;])\
+                                                            else (&#34;Printemps_Ete_Automne&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;Le printemps&#34;,&#34;L&#39;été&#34;,&#34;L&#39;automne&#34;, &#34;.&#34;])\
+                                                            else (&#34;Printemps_Automne_Hiver&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;Le printemps&#34;,&#34;L&#39;automne&#34;,&#34;L&#39;hiver&#34;, &#34;.&#34;])\
+                                                            else (&#34;Ete_Automne_Hiver&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;L&#39;été&#34;,&#34;L&#39;automne&#34;,&#34;L&#39;hiver&#34;, &#34;.&#34;])\
+                                                            else None)))))))))))))))), axis=1).rename(ColName)
+                    #else (&#34;Printemps_Ete_Hiver&#34; if sorted([row[&#34;QS2M1R&#34;], row[&#34;QS2M2R&#34;], row[&#34;QS2M3R&#34;], row[&#34;QS2M4R&#34;]])== sorted([&#34;Le printemps&#34;,&#34;L&#39;été&#34;,&#34;L&#39;hiver&#34;, &#34;.&#34;])\
+                elif ColName == &#34;Vehicule_Presence&#34;:
+                    return dfEUEMrSrc_ColName.apply(lambda row: &#34;Aucune_VE_Aucune_VHR&#34; if ((row[&#34;QT2R&#34;] in [&#34;Aucune&#34;]) and (row[&#34;QT3R&#34;] in [&#34;Aucune&#34;]))\
+                                                            else (&#34;Une_VE_Aucune_VHR&#34; if ((row[&#34;QT2R&#34;] in [&#34;Une&#34;]) and (row[&#34;QT3R&#34;] in [&#34;Aucune&#34;]))\
+                                                            else (&#34;Deux_VE_Aucune_VHR&#34; if ((row[&#34;QT2R&#34;] in [&#34;Deux&#34;]) and (row[&#34;QT3R&#34;] in [&#34;Aucune&#34;]))\
+                                                            else (&#34;Trois_VE_Aucune_VHR&#34; if ((row[&#34;QT2R&#34;] in [&#34;Trois&#34;]) and (row[&#34;QT3R&#34;] in [&#34;Aucune&#34;]))\
+                                                            else (&#34;Aucune_VE_Une_VHR&#34; if ((row[&#34;QT2R&#34;] in [&#34;Aucune&#34;]) and (row[&#34;QT3R&#34;] in [&#34;Une&#34;]))\
+                                                            else (&#34;Une_VE_Une_VHR&#34; if ((row[&#34;QT2R&#34;] in [&#34;Une&#34;]) and (row[&#34;QT3R&#34;] in [&#34;Une&#34;]))\
+                                                            else (&#34;Deux_VE_Une_VHR&#34; if ((row[&#34;QT2R&#34;] in [&#34;Deux&#34;]) and (row[&#34;QT3R&#34;] in [&#34;Une&#34;]))\
+                                                            else (&#34;Trois_VE_Une_VHR&#34; if ((row[&#34;QT2R&#34;] in [&#34;Trois&#34;]) and (row[&#34;QT3R&#34;] in [&#34;Une&#34;]))\
+                                                            else (&#34;Aucune_VE_Deux_VHR&#34; if ((row[&#34;QT2R&#34;] in [&#34;Aucune&#34;]) and (row[&#34;QT3R&#34;] in [&#34;Deux&#34;]))\
+                                                            else (&#34;Une_VE_Deux_VHR&#34; if ((row[&#34;QT2R&#34;] in [&#34;Une&#34;]) and (row[&#34;QT3R&#34;] in [&#34;Deux&#34;]))\
+                                                            else (&#34;Deux_VE_Deux_VHR&#34; if ((row[&#34;QT2R&#34;] in [&#34;Deux&#34;]) and (row[&#34;QT3R&#34;] in [&#34;Deux&#34;]))\
+                                                            else (&#34;Trois_VE_Deux_VHR&#34; if ((row[&#34;QT2R&#34;] in [&#34;Trois&#34;]) and (row[&#34;QT3R&#34;] in [&#34;Deux&#34;]))\
+                                                            else None))))))))))), axis=1).rename(ColName)
+                elif ColName == &#34;Region_Administrative&#34;:
+                    return dfEUEMrSrc_ColName.apply(lambda row: &#34;Outaouais&#34; if ((row[&#34;ZONE&#34;] in [&#34;Outaouais rural&#34;, &#34;CUO&#34;]))\
+                                                            else(&#34;Laurentides&#34; if ((row[&#34;ZONE&#34;] in [&#34;Milles-Îles&#34;, &#34;Antoine-Labelle&#34;, &#34;Le Noroit&#34;]))\
+                                                            else(&#34;Montréal&#34; if ((row[&#34;ZONE&#34;] in [&#34;IDM Est&#34;, &#34;IDM Nord&#34;, &#34;IDM Ouest&#34;, &#34;IDM Sud&#34;]))\
+                                                            else(&#34;Capitale-Nationale&#34; if ((row[&#34;ZONE&#34;] in [&#34;CUQ&#34;, &#34;Montmorency-nord&#34;, &#34;Appalaches&#34;]))\
+                                                            else(&#34;Mauricie&#34; if ((row[&#34;ZONE&#34;] in [&#34;St-Maurice&#34;]))\
+                                                            else(&#34;Côte-Nord&#34; if ((row[&#34;ZONE&#34;] in [&#34;Côte-Nord&#34;]))\
+                                                            else(&#34;Chaudière-Appalaches&#34; if ((row[&#34;ZONE&#34;] in [&#34;Lévis&#34;, &#34;Appalaches&#34;]))\
+                                                            else(&#34;Montérégie&#34; if ((row[&#34;ZONE&#34;] in [&#34;Chateauguay-Vaudreuil&#34;, &#34;Le Haut St-Laurent&#34;, &#34;Des Seigneuries&#34;, &#34;Drummonville&#34;, &#34;Ozias-Leduc&#34;]) or ((row[&#34;ZONE&#34;] in [&#34;Sorel-Victoriaville&#34;]) and (row[&#34;MONTREAL_RMR&#34;] in [&#34;Montréal RMR&#34;])))\
+                                                            else(&#34;Estrie&#34; if ((row[&#34;ZONE&#34;] in [&#34;Des Cantons&#34;]))\
+                                                            else(&#34;Centre-du-Québec&#34; if ((row[&#34;ZONE&#34;] in [&#34;Drummonville&#34;]) or ((row[&#34;ZONE&#34;] in [&#34;Sorel-Victoriaville&#34;]) and (row[&#34;MONTREAL_RMR&#34;] in [&#34;Pas Montréal RMR&#34;])))\
+                                                            else(&#34;Laval&#34; if ((row[&#34;ZONE&#34;] in [&#34;Laval&#34;]))\
+                                                            else(&#34;Lanaudière&#34; if ((row[&#34;ZONE&#34;] in [&#34;Lanaudière&#34;]))\
+                                                            else(&#34;Saguenay-Lac-Saint-Jean&#34; if ((row[&#34;ZONE&#34;] in [&#34;Saguenay&#34;]))\
+                                                            else(&#34;Bas-Saint-Laurent&#34; if ((row[&#34;ZONE&#34;] in [&#34;Bas St-Laurent&#34;]))\
+                                                            else(&#34;Gaspésie-Îles-de-la-Madeleine&#34; if ((row[&#34;ZONE&#34;] in [&#34;Gaspésie&#34;]))\
+                                                            else None)))))))))))))), axis=1).rename(ColName)
+                
+                elif ColName == &#34;Vintage&#34;:
+                    return dfEUEMrSrc_ColName.apply(lambda row: &#34;pre-1945&#34; if row[&#34;QA6M&#34;] in [i for i in range(1500, 1945+1)]\
+                                                            else (&#34;pre-1945&#34; if ((row[&#34;QA6RR&#34;] in [&#34;Avant 1900&#34;, &#34;Entre 1900 et 1950&#34;]) and (pd.isnull(row[&#34;QA6M&#34;])))\
+                                                            else (&#34;1946-70&#34; if row[&#34;QA6M&#34;] in [i for i in range(1946, 1970+1)]\
+                                                            else (&#34;1946-70&#34; if ((row[&#34;QA6RR&#34;] in [&#34;Dans les années 50&#34;, &#34;Dans les années 60&#34;]) and (pd.isnull(row[&#34;QA6M&#34;])))\
+                                                            else (&#34;1971-85&#34; if row[&#34;QA6M&#34;] in [i for i in range(1971, 1985+1)]\
+                                                            else (&#34;1971-85&#34; if ((row[&#34;QA6RR&#34;] in [&#34;Dans les années 70&#34;, &#34;Dans les années 80&#34;]) and (pd.isnull(row[&#34;QA6M&#34;])))\
+                                                            else (&#34;1986-2012&#34; if row[&#34;QA6M&#34;] in [i for i in range(1986, 2012+1)]\
+                                                            else (&#34;1986-2012&#34; if ((row[&#34;QA6RR&#34;] in [&#34;Dans les années 90&#34;, &#34;Entre 2000 et 2009&#34;, &#34;Entre 2010 et 2013&#34;]) and (pd.isnull(row[&#34;QA6M&#34;])))\
+                                                            else (&#34;post-2012&#34; if row[&#34;QA6M&#34;] in [i for i in range(2013, 2050+1)]\
+                                                            else (&#34;post-2012&#34; if ((row[&#34;QA6RR&#34;] in [&#34;Entre 2014 et 2017&#34;, &#34;Entre 2018 et aujourd&#39;hui&#34;]) and (pd.isnull(row[&#34;QA6M&#34;])))\
+                                                            else None))))))))), axis=1).rename(ColName)
+            else:
+                raise ValueError(f&#34;Unknown mapping type for column &#39;{ColName}&#39;.&#34;)
+        else:
+            raise ValueError(f&#34;Mapping for column &#39;{ColName}&#39; not found.&#34;)
+    except Exception as e:
+        print(f&#34;Error in DoMapping for column &#39;{ColName}&#39;: {e}&#34;)</code></pre>
+</details>
+<div class="desc"><p>Retourne le mapping pour la colonne donnée.</p></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMr.FormatageEUEMr.Load_excel"><code class="name flex">
+<span>def <span class="ident">Load_excel</span></span>(<span>self, stFileName, sheet_name=None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def Load_excel(self, stFileName, sheet_name=None):
+    self.dfEUEMrSrc = pd.read_excel(stFileName, sheet_name=sheet_name)
+    
+    for col in [&#34;POND1&#34;, &#34;POND2x&#34;, &#34;POND1_POP&#34;, &#34;POND2x_POP&#34;, &#34;CONS_AN&#34;, &#34;QA6M&#34;, 
+            &#34;LIVRE_202012_202111&#34;, &#34;LIVRE_202012&#34;, &#34;LIVRE_202101&#34;, &#34;LIVRE_202102&#34;,
+            &#34;LIVRE_202103&#34;, &#34;LIVRE_202104&#34;, &#34;LIVRE_202105&#34;, &#34;LIVRE_202106&#34;, &#34;LIVRE_202107&#34;, &#34;LIVRE_202108&#34;, &#34;LIVRE_202109&#34;, &#34;LIVRE_202110&#34;, &#34;LIVRE_202111&#34;]:
+        self.dfEUEMrSrc[col] = pd.to_numeric(self.dfEUEMrSrc[col], errors=&#39;coerce&#39;)  # Convert to numeric, coercing errors to NaN</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMr.FormatageEUEMr.Main"><code class="name flex">
+<span>def <span class="ident">Main</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def Main(self):
+    &#34;&#34;&#34;
+    Fonction principale pour exécuter le formatage des données EUEMr.
+    &#34;&#34;&#34;
+    stFileName = PROJECT_DIR+&#34;//data//input//euemr//2022//sondage_residentiel_version_finale.xlsx&#34;
+    sheet_name = &#34;Data&#34;
+
+    self.Load_excel(stFileName, sheet_name)
+    #dfEUEMr_new = self.DoAllMapping()
+    self.DoAllMapping()
+
+    #add new ponderation column
+    self.dfEUEMr_new = self.Create_Pond(self.dfEUEMr_new)
+
+    output_file = PROJECT_DIR+&#34;//data//processed//euemr//2022//sondage_residentiel_version_finale_formatted.csv&#34;
+    self.SaveToCSV(self.dfEUEMr_new, output_file)</code></pre>
+</details>
+<div class="desc"><p>Fonction principale pour exécuter le formatage des données EUEMr.</p></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMr.FormatageEUEMr.SaveToCSV"><code class="name flex">
+<span>def <span class="ident">SaveToCSV</span></span>(<span>self, dfEUEMr, stFileName)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def SaveToCSV(self, dfEUEMr, stFileName):
+    &#34;&#34;&#34; Sauvegarde le DataFrame formaté en CSV.
+    &#34;&#34;&#34;
+    dfEUEMr.to_csv(stFileName, index=False)
+    print(f&#34;DataFrame saved to {stFileName}.&#34;)</code></pre>
+</details>
+<div class="desc"><p>Sauvegarde le DataFrame formaté en CSV.</p></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMr.FormatageEUEMr.get_Mapping_Colsrc"><code class="name flex">
+<span>def <span class="ident">get_Mapping_Colsrc</span></span>(<span>self, colName)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_Mapping_Colsrc(self, colName):
+    if colName in Attributs_EUEMr.__dict__.keys():
+        return colName
+    elif colName in self.Mapping.keys():
+        return self.get_Mapping_Colsrc(self.Mapping[colName][&#34;ColSrc&#34;])#recursif</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMr.FormatageEUEMr.get_Mettadata"><code class="name flex">
+<span>def <span class="ident">get_Mettadata</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_Mettadata(self):
+    Metadata = {}
+    for keyMap, dictMap in self.Mapping.items():
+        try:
+            ColSrc = self.get_Mapping_Colsrc(dictMap[&#34;ColSrc&#34;])
+            if dictMap[&#34;typeMapping&#34;] == &#34;list&#34;:
+                Metadata[keyMap] = {&#34;Label&#34;: list(dictMap[&#34;Mapping&#34;].keys()),
+                                    &#34;IdLabel&#34;: [str(i) for i in range(len(dictMap[&#34;Mapping&#34;]))],
+                                    &#34;Description&#34;: Attributs_EUEMr.__dict__[ColSrc][&#34;Description&#34;],
+                                    &#34;Type&#34;: &#34;discrete&#34;}
+            elif dictMap[&#34;typeMapping&#34;] == &#34;bin&#34;:
+                Metadata[keyMap] = {&#34;Label&#34;: dictMap[&#34;Mapping&#34;][&#34;labels&#34;],
+                                    &#34;IdLabel&#34;: [str(i) for i in range(len(dictMap[&#34;Mapping&#34;][&#34;labels&#34;]))],
+                                    &#34;Description&#34;: Attributs_EUEMr.__dict__[ColSrc][&#34;Description&#34;],
+                                    &#34;Type&#34;: &#34;discrete&#34;}
+            elif dictMap[&#34;typeMapping&#34;] == &#34;custom&#34;:
+                Metadata[keyMap] = {&#34;Label&#34;: dictMap[&#34;Mapping&#34;].keys(),
+                                    &#34;IdLabel&#34;: [str(i) for i in range(len(dictMap[&#34;Mapping&#34;]))],
+                                    &#34;Description&#34;: Attributs_EUEMr.__dict__[ColSrc][&#34;Description&#34;],
+                                    &#34;Type&#34;: &#34;discrete&#34;}
+            elif dictMap[&#34;typeMapping&#34;] == &#34;no&#34;:
+                Metadata[keyMap] = {&#34;Label&#34;: [],
+                                    &#34;IdLabel&#34;: [],
+                                    &#34;Description&#34;: Attributs_EUEMr.__dict__[ColSrc][&#34;Description&#34;],
+                                    &#34;Type&#34;: &#34;&#34;}
+        except KeyError as e:
+            print(f&#34;Error processing mapping for key: {keyMap} : {e}&#34;)
+            
+        #Metadata[keyMap] = {&#34;Label&#34;: list(dictMap[&#34;Mapping&#34;].keys()),
+        #                    &#34;IdLabel&#34;: [str(i) for i in range(len(dictMap[&#34;Mapping&#34;]))],
+        #                    &#34;Description&#34;: Attributs_EUEMr.__dict__[dictMap[&#34;ColSrc&#34;]][&#34;Description&#34;],
+        #                   &#34;Type&#34;: &#34;discrete&#34;}
+    return Metadata</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="LTE-Sampler-Residential.src.utils.euemr.EUEMr.FormatageEUEMr.set_Mapping"><code class="name flex">
+<span>def <span class="ident">set_Mapping</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_Mapping(self):
+    &#34;&#34;&#34;
+    Définit le mapping direct pour les colonnes du DataFrame EUEMr.
+    &#34;&#34;&#34;
+    self.Mapping = {}
+    self.Mapping[&#34;Type_Logement&#34;] = {
+                            &#34;ColSrc&#34; : &#34;QA4&#34;,
+                            &#34;typeMapping&#34; : &#34;list&#34;,
+                            &#34;Mapping&#34; : {&#34;Collective&#34; :[&#34;Immeuble de 4 à 8 appartements&#34;,
+                                                        &#34;Immeuble de 9 à 19 appartements&#34;,
+                                                        &#34;Immeuble de 50 appartements ou plus&#34;,
+                                                        &#34;Immeuble de 20 à 49 appartements&#34;,
+                                                        &#34;Immeuble à appartement (sans précision)&#34;],
+                                        &#34;Triplex&#34; : [&#34;Triplex détaché&#34;, 
+                                                    &#34;Triplex jumelé/en bout de rangée attaché 1 seul côté&#34;,
+                                                    &#34;Triplex (sans précision)&#34;,
+                                                    &#34;Triplex milieu de rangée attaché 2 côtés&#34;],
+                                        &#34;Duplex&#34; : [&#34;Duplex jumelé/en bout de rangée attaché 1 seul côté&#34;,
+                                                    &#34;Duplex (sans précision)&#34;,
+                                                    &#34;Duplex détaché&#34;,
+                                                    &#34;Duplex en milieu de rangée attaché 2 côtés&#34;],
+                                        &#34;Maison en rangee&#34; : [&#34;Maison individuelle en rangée attachée des 2 côtés&#34;,
+                                                              &#34;Maison individuelle en rangée (sans précisions)&#34;],
+                                        &#34;Maison individuelle&#34; : [&#39;Maison individuelle détachée/unifamiliale&#39;,
+                                                                &#34;Maison jumelée/bout de rangée attachée 1 côté/semi-détaché&#34;,
+                                                                &#34;Maison mobile/roulotte&#34;]}}
+    
+    self.Mapping[&#34;Type_Batiment&#34;] = {
+                            &#34;ColSrc&#34; : &#34;Type_Logement&#34;,
+                            &#34;typeMapping&#34; : &#34;list&#34;,
+                            &#34;Mapping&#34; : {&#34;Collective&#34; :[&#34;Collective&#34;],
+                                        &#34;Plex&#34; : [&#34;Triplex&#34;, &#34;Duplex&#34;],
+                                        &#34;Maison&#34; : [&#34;Maison en rangee&#34;, &#34;Maison individuelle&#34;]}}
+    
+    self.Mapping[&#34;Mode_Occupation&#34;] = {
+                            &#34;ColSrc&#34; : &#34;QA1&#34;,
+                            &#34;typeMapping&#34; : &#34;list&#34;,
+                            &#34;Mapping&#34; : {&#34;Locataire&#34; :[&#34;Le locataire / Co-locataire&#34;],
+                                        &#34;Proprietaire&#34; : [&#34;Le propriétaire / Co-propriétaire&#34;]}}
+    
+    ConsoElecAn_kmax = 45000
+    ConsoElecAn_kstep = 5000
+    ConsoElecAn_kmin = 0
+    ConsoElecAn_bins = [ConsoElecAn_kmin-50000]+[i for i in range(ConsoElecAn_kmin,ConsoElecAn_kmax+ConsoElecAn_kstep, ConsoElecAn_kstep)]+[ConsoElecAn_kmax+ConsoElecAn_kstep+50000]
+    ConsoElecAn_labels = [&#39;&lt; &#39;+str(ConsoElecAn_kstep)] + [f&#34;[{ConsoElecAn_bins[i+1]} - {ConsoElecAn_bins[i+2]})&#34; for i in range(len(ConsoElecAn_bins)-3)] + [&#39;&gt;= &#39;+str(ConsoElecAn_kmax)]
+    self.Mapping[&#34;Consommation_Elec_An&#34;] = {
+                            &#34;ColSrc&#34; : &#34;CONS_AN&#34;,
+                            &#34;typeMapping&#34; : &#34;bin&#34;,
+                            &#34;Mapping&#34; : {&#34;labels&#34; : ConsoElecAn_labels,
+                                          &#34;bins&#34; : ConsoElecAn_bins}}
+    
+    AnConstruction_kmax = 2020
+    AnConstruction_kstep = 10
+    AnConstruction_kmin = 1950
+    AnConstruction_bins = [AnConstruction_kmin-1000]+[i for i in range(AnConstruction_kmin,AnConstruction_kmax+AnConstruction_kstep, AnConstruction_kstep)]+[AnConstruction_kmax+AnConstruction_kstep+1000]
+    AnConstruction_labels = [&#39;&lt; &#39;+str(AnConstruction_kmin)] + [f&#34;[{AnConstruction_bins[i+1]} - {AnConstruction_bins[i+2]})&#34; for i in range(len(AnConstruction_bins)-3)] + [&#39;&gt;= &#39;+str(AnConstruction_kmax)]
+    self.Mapping[&#34;An_Construction&#34;] = {
+                            &#34;ColSrc&#34; : &#34;QA6M&#34;,
+                            &#34;typeMapping&#34; : &#34;bin&#34;,
+                            &#34;Mapping&#34; : {&#34;labels&#34; : AnConstruction_labels,
+                                        &#34;bins&#34; : AnConstruction_bins}}
+
+    AnConstructionCode_bins = [1946-1000, 1946, 1971, 1986, 2013, 2013+1000]
+    AnConstructionCode_labels = [&#34;&lt; 1946&#34;, &#34;[1946 - 1971)&#34;, &#34;[1971 - 1986)&#34;, &#34;[1986 - 2013)&#34;, &#34;&gt;= 2013&#34;]
+    self.Mapping[&#34;An_ConstructionCode&#34;] = {
+                            &#34;ColSrc&#34; : &#34;QA6M&#34;,
+                            &#34;typeMapping&#34; : &#34;bin&#34;,
+                            &#34;Mapping&#34; : {&#34;labels&#34; : AnConstructionCode_labels,
+                                        &#34;bins&#34; : AnConstructionCode_bins}}
+    AnConstruction_bins = [1946 - 1000]+[1960, 1983, 2011]+[2011+1000]; 
+
+    self.Mapping[&#34;Source_Energie_Chauf&#34;] = {
+                            &#34;ColSrc&#34; : &#34;QC1R&#34;,
+                            &#34;typeMapping&#34; : &#34;list&#34;,
+                            &#34;Mapping&#34; : {&#34;Electricite&#34; :[&#34;Électricité&#34;],
+                                        &#34;Mazout&#34; : [&#34;Mazout&#34;],
+                                        &#34;Gaz naturel&#34; : [&#34;Gaz naturel&#34;],
+                                        &#34;Bi-energie&#34; : [&#34;Bi-énergie&#34;],
+                                        &#34;Bois&#34; : [&#34;Bois seul ou en combinaison&#34;]}}
+    
+    self.Mapping[&#34;Territoire_HQ&#34;] = {}
+    self.Mapping[&#34;Territoire_HQ&#34;][&#34;ColSrc&#34;] = &#34;TERR_HQ&#34;
+    self.Mapping[&#34;Territoire_HQ&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;Territoire_HQ&#34;][&#34;Mapping&#34;] = {&#34;Est et Nord du Québec&#34; : [&#34;Est et nord du Québec&#34;],
+                                                 &#34;Laurentides&#34;: [&#34;Laurentides&#34;],
+                                                 &#34;Montmorency&#34;: [&#34;Montmorency&#34;],
+                                                 &#34;Montréal&#34;: [&#34;Montréal&#34;],
+                                                 &#34;Richelieu&#34;: [&#34;Richelieu&#34;]}
+    self.Mapping[&#34;Region_Administrative&#34;] = {}
+    self.Mapping[&#34;Region_Administrative&#34;][&#34;ColSrc&#34;] = &#34;ZONE&#34;
+    self.Mapping[&#34;Region_Administrative&#34;][&#34;typeMapping&#34;] = &#34;custom&#34;
+    self.Mapping[&#34;Region_Administrative&#34;][&#34;Mapping&#34;] = {&#34;Bas-Saint-Laurent&#34;:None,
+                                                        &#34;Capitale-Nationale&#34;:None,
+                                                        &#34;Centre-du-Québec&#34;:None,
+                                                        &#34;Chaudière-Appalaches&#34;:None,
+                                                        &#34;Côte-Nord&#34;:None,
+                                                        &#34;Estrie&#34;:None,
+                                                        &#34;Gaspésie-Îles-de-la-Madeleine&#34;:None,
+                                                        &#34;Lanaudière&#34;:None,
+                                                        &#34;Laurentides&#34;:None,
+                                                        &#34;Laval&#34;:None,
+                                                        &#34;Mauricie&#34;:None,
+                                                        &#34;Montérégie&#34;:None,
+                                                        &#34;Montréal&#34;:None,
+                                                        &#34;Outaouais&#34;:None,
+                                                        &#34;Saguenay-Lac-Saint-Jean&#34;:None}
+    #&#34;Abitibi-Témiscamingue&#34;:None,
+    #Nord-du-Québec&#34;:None,
+
+    self.Mapping[&#34;Nombre_Pieces&#34;] = {}
+    self.Mapping[&#34;Nombre_Pieces&#34;][&#34;ColSrc&#34;] = &#34;QH1&#34;
+    self.Mapping[&#34;Nombre_Pieces&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;Nombre_Pieces&#34;][&#34;Mapping&#34;] = {str(i): [i] for i in range(1,14+1)}
+    self.Mapping[&#34;Nombre_Pieces&#34;][&#34;Mapping&#34;][&#34;15 et plus&#34;] = [str(i) for i in range(15,20+1)]
+
+    self.Mapping[&#34;Nombre_Etages&#34;] = {}
+    self.Mapping[&#34;Nombre_Etages&#34;][&#34;ColSrc&#34;] = &#34;QH2&#34;
+    self.Mapping[&#34;Nombre_Etages&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;Nombre_Etages&#34;][&#34;Mapping&#34;] = {&#34;Un étage&#34;: [&#34;Un étage&#34;, &#34;1.5 étages&#34;],#trop peu de &#34;1.5 étages&#34;
+                                                 &#34;Deux étages&#34;: [&#34;Deux étages&#34;, &#34;2 ½étages&#34;],#trop peu de &#34;2 ½étages&#34;
+                                                    &#34;Trois étages et plus&#34;: [&#34;Trois étages&#34;, &#34;3½ étages&#34;, &#34;Quatre étages&#34;, &#34;4½ étages&#34;, &#34;5 étages&#34;]}
+
+    Superficie_Totale_kmax = 5000
+    Superficie_Totale_kstep = 500
+    Superficie_Totale_kmin = 0
+    Superficie_Totale_bins = [1 if i==0 else i for i in range(Superficie_Totale_kmin,Superficie_Totale_kmax+Superficie_Totale_kstep, Superficie_Totale_kstep)]+[Superficie_Totale_kmax+Superficie_Totale_kstep+10000]
+    Superficie_Totale_labels = [f&#34;[{Superficie_Totale_bins[i]} - {Superficie_Totale_bins[i+1]})&#34; for i in range(len(Superficie_Totale_bins)-2)] + [&#39;&gt;= &#39;+str(Superficie_Totale_kmax)]
+    self.Mapping[&#34;Superficie_Totale&#34;] = {}
+    self.Mapping[&#34;Superficie_Totale&#34;][&#34;ColSrc&#34;] = &#34;SUPERTOT&#34;
+    self.Mapping[&#34;Superficie_Totale&#34;][&#34;typeMapping&#34;] = &#34;bin&#34;
+    self.Mapping[&#34;Superficie_Totale&#34;][&#34;Mapping&#34;] = {&#34;labels&#34; : Superficie_Totale_labels,
+                                &#34;bins&#34; : Superficie_Totale_bins}
+
+
+    self.Mapping[&#34;Presence_SousSol&#34;] = {}
+    self.Mapping[&#34;Presence_SousSol&#34;][&#34;ColSrc&#34;] = &#34;QH4&#34;
+    self.Mapping[&#34;Presence_SousSol&#34;][&#34;typeMapping&#34;] = &#34;list&#34;# ne s&#39;applique qu&#39;au maison
+    self.Mapping[&#34;Presence_SousSol&#34;][&#34;Mapping&#34;] = {&#34;Sous sol 6 pied&#34;:[&#34;Un sous-sol d&#39;une hauteur de 6 ou 7 pieds avec murs &amp; planchers en béton (inclus les demis sous-sol)&#34;],
+                                                    &#34;Vide sanitaire moins 6 pieds&#34; :[&#34;Un vide sanitaire d&#39;une hauteur inférieure à 7 pieds avec plancher en terre&#34;],
+                                                    &#34;Aucun Sous-sol ou vide sanitaire&#34; :[&#34;.&#34;, &#34;Ne comporte ni sous-sol, ni vide sanitaire&#34;],
+                                                    &#34;Sous-sol et vide sanitaire&#34; :[&#34;Un sous-sol et un vide sanitaire&#34;]}
+    
+    self.Mapping[&#34;Nombre_Personnes&#34;] = {}
+    self.Mapping[&#34;Nombre_Personnes&#34;][&#34;ColSrc&#34;] = &#34;QL1&#34;
+    self.Mapping[&#34;Nombre_Personnes&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;Nombre_Personnes&#34;][&#34;Mapping&#34;] = {&#34;1&#34;:[1],
+                                                    &#34;2&#34; :[2],
+                                                    &#34;3&#34; :[3],
+                                                    &#34;4&#34; :[4],
+                                                    &#34;5 et plus&#34; :[5, 6, 7, 8, 9, 10, 11, 12, 15, 25]}
+
+
+    #presence garage et chauffé et type chauffage
+    self.Mapping[&#34;Presence_Garage&#34;] = {}
+    self.Mapping[&#34;Presence_Garage&#34;][&#34;ColSrc&#34;] = &#34;QM1A&#34; # seulement pour la méthode get_Mettadata
+    self.Mapping[&#34;Presence_Garage&#34;][&#34;typeMapping&#34;] = &#34;custom&#34;
+    self.Mapping[&#34;Presence_Garage&#34;][&#34;Mapping&#34;] = {&#34;Pas de Garage&#34;:None,
+                                                    &#34;Garage non chauffé&#34;:None,
+                                                    &#34;Garage chauffé à électricité&#34;:None,
+                                                    &#34;Garage chauffé à autre source&#34;:None}
+                                    
+    #Type de chauffage
+    self.Mapping[&#34;Chauffage_Logement&#34;] = {}
+    self.Mapping[&#34;Chauffage_Logement&#34;][&#34;ColSrc&#34;] = &#34;SYSTEM1R&#34; # seulement pour la méthode get_Mettadata
+    self.Mapping[&#34;Chauffage_Logement&#34;][&#34;typeMapping&#34;] = &#34;custom&#34;
+    self.Mapping[&#34;Chauffage_Logement&#34;][&#34;Mapping&#34;] = {&#34;Plinthes électriques&#34;:None,
+                                                    &#34;Unités convecteurs, plancher ou plafond radiant&#34;:None,
+                                                    &#34;Thermopompe et Système central à air chaud&#34;:None,
+                                                    &#34;Thermopompe et Système central à eau chaude&#34;: None,
+                                                    &#34;Thermopompe géothermique seule&#34;: None,
+                                                    &#34;Thermopompe géothermique et Plinthes électriques&#34;: None,
+                                                    &#34;Thermopompe géothermique et Fournaise&#34;: None,
+                                                    &#34;Thermopompe murale&#34; : None,
+                                                    &#34;Thermopompe murale et Plinthes électriques&#34;: None,
+                                                    &#34;Thermopompe murale et Fournaise&#34;: None,
+                                                    &#34;Système central à air chaud&#34;:None,
+                                                    &#34;Système central à eau chaude&#34;:None,
+                                                    &#34;Fournaise ou poêle à bois&#34;:None,
+                                                    &#34;Fournaise murale ou de plancher&#34;:None,
+                                                    &#34;Fournaise ou poêle à bois et Plinthes électriques&#34;:None,
+                                                    &#34;Fournaise ou poêle à bois et Unités convecteurs, plancher ou plafond radiant&#34;:None,
+                                                    &#34;Fournaise ou poêle à bois et Thermopompe murale&#34;:None,
+                                                    &#34;Fournaise ou poêle à bois et Système central à air chaud&#34;:None,
+                                                    &#34;Fournaise ou poêle à bois et Système central à eau chaude&#34;:None,
+                                                    &#34;Fournaise ou poêle à bois et Fournaise murale ou de plancher&#34;:None}#,
+                                                    #&#34;Autres&#34;:None,
+                                                    #&#34;Pas de système principal (chalet)&#34;:None,}
+
+    # QB2I1 : Nombre de réfrigérateurs dans la résidence
+    self.Mapping[&#34;Nombre_Refrigerateur&#34;] = {}
+    self.Mapping[&#34;Nombre_Refrigerateur&#34;][&#34;ColSrc&#34;] = &#34;QB2I1&#34;
+    self.Mapping[&#34;Nombre_Refrigerateur&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;Nombre_Refrigerateur&#34;][&#34;Mapping&#34;] = {&#34;1&#34;:[1],
+                                                    &#34;2&#34; :[2],
+                                                    &#34;3 et plus&#34; :[3, 4, 5,
+                                                                   7]}
+
+    # no MAPPING ; fOR CSV STATS
+    self.Mapping[&#34;Nombre_Logement&#34;] = {}
+    self.Mapping[&#34;Nombre_Logement&#34;][&#34;ColSrc&#34;] = &#34;QA4M&#34;
+    self.Mapping[&#34;Nombre_Logement&#34;][&#34;typeMapping&#34;] = &#34;no&#34;
+    self.Mapping[&#34;Nombre_Logement&#34;][&#34;Mapping&#34;] = {}
+
+    #QD11BM1 type de climatisation
+    #Ne sait pas/Ne répond pas ; Aucune de ces réponses
+
+    self.Mapping[&#34;Climatisation&#34;] = {}
+    self.Mapping[&#34;Climatisation&#34;][&#34;ColSrc&#34;] = &#34;QD11BM1&#34;
+    self.Mapping[&#34;Climatisation&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;Climatisation&#34;][&#34;Mapping&#34;] = {&#34;Aucune&#34;: [&#34;.&#34;],
+                                                 &#34;Fenêtre, mobile, portable&#34;: [&#34;Climatiseur de fenêtre&#34;,
+                                                                               &#34;Climatiseur mobile / portable&#34;],
+                                                 &#34;Murale&#34;: [&#34;Climatiseur mural ou bibloc (mini-split)&#34;,&#34;Thermopompe murale&#34;],
+                                                 &#34;Centrale&#34;: [&#34;Thermopompe centrale&#34;, &#34;Thermopompe géothermique&#34;,&#34;Climatiseur central autre qu&#39;une thermopompe&#34;]}
+
+    #presence spa
+    # spa (oui, non, oui+type)
+    # spa utilisation (saison)
+    # spa utilisation (habitude Temperature)
+    self.Mapping[&#34;Spa_Presence&#34;] = {}
+    self.Mapping[&#34;Spa_Presence&#34;][&#34;ColSrc&#34;] = &#34;QB1M&#34;
+    self.Mapping[&#34;Spa_Presence&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;Spa_Presence&#34;][&#34;Mapping&#34;] = {&#34;Oui&#34;:[&#34;Oui&#34;],
+                                               &#34;Non&#34;:[&#34;Non&#34;, &#34;Ne sait pas/Ne répond pas&#34;]}
+
+    self.Mapping[&#34;Spa_Logement&#34;] = {}
+    self.Mapping[&#34;Spa_Logement&#34;][&#34;ColSrc&#34;] = &#34;QB1M3&#34;
+    self.Mapping[&#34;Spa_Logement&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;Spa_Logement&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;: [&#34;.&#34;],
+                                                &#34;Exterieur&#34;:[&#34;Extérieur&#34;, &#34;Ne sait pas/Ne répond pas&#34;],
+                                               &#34;Interieur&#34;:[&#34;Intérieur&#34;]}
+
+            #Spa_Saison
+    self.Mapping[&#34;Spa_Saison&#34;] = {}
+    self.Mapping[&#34;Spa_Saison&#34;][&#34;ColSrc&#34;] = &#34;QS2M1R&#34; # seulement pour la méthode get_Mettadata
+    self.Mapping[&#34;Spa_Saison&#34;][&#34;typeMapping&#34;] = &#34;custom&#34;
+    self.Mapping[&#34;Spa_Saison&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;: None,
+                                             &#34;Pas utilisé&#34;:None,
+                                             &#34;Ne sait pas&#34;: None,
+                                             &#34;Toute_Saison&#34;: None,
+                                             &#34;Printemps&#34;: None,
+                                             &#34;Ete&#34;: None,
+                                             &#34;Automne&#34;: None,
+                                             &#34;Hiver&#34;: None,
+                                             &#34;Printemps_Ete&#34;: None,
+                                             &#34;Printemps_Automne&#34;: None,
+                                             &#34;Printemps_Hiver&#34;:None,
+                                             &#34;Ete_Automne&#34;:None,
+                                             &#34;Ete_Hiver&#34;:None,
+                                            &#34;Automne_Hiver&#34;:None,
+                                            &#34;Printemps_Ete_Automne&#34;:None,
+                                            #&#34;Printemps_Ete_Hiver&#34;:None,
+                                            &#34;Printemps_Automne_Hiver&#34;:None,
+                                            &#34;Ete_Automne_Hiver&#34;:None,
+                                                }
+    self.Mapping[&#34;Spa_Utilisation_SaisonChaude&#34;] = {}
+    self.Mapping[&#34;Spa_Utilisation_SaisonChaude&#34;][&#34;ColSrc&#34;] = &#34;QS3BB&#34;
+    self.Mapping[&#34;Spa_Utilisation_SaisonChaude&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;Spa_Utilisation_SaisonChaude&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;: [&#34;.&#34;],
+                                                        &#34;Ne sais pas&#34;:[&#34;Ne sait pas/Ne répond pas&#34;],
+                                                &#34;Constant&#34;:[&#34;Je maintenais la température de mon spa constante&#34;],
+                                               &#34;Augmentation&#34;:[&#34;J’augmentais la température pour les périodes de baignade&#34;]}
+    
+    self.Mapping[&#34;Spa_Utilisation_SaisonFroide&#34;] = {}
+    self.Mapping[&#34;Spa_Utilisation_SaisonFroide&#34;][&#34;ColSrc&#34;] = &#34;QS3AA&#34;
+    self.Mapping[&#34;Spa_Utilisation_SaisonFroide&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;Spa_Utilisation_SaisonFroide&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;: [&#34;.&#34;],
+                                                        &#34;Ne sais pas&#34;:[&#34;Ne sait pas/Ne répond pas&#34;],
+                                                &#34;Constant&#34;:[&#34;Je maintenais la température de mon spa constante&#34;],
+                                               &#34;Augmentation&#34;:[&#34;J’augmentais la température pour les périodes de baignade&#34;]}
+
+
+    # piscine
+    self.Mapping[&#34;Piscine_Presence&#34;] = {}
+    self.Mapping[&#34;Piscine_Presence&#34;][&#34;ColSrc&#34;] = &#34;QG1&#34;
+    self.Mapping[&#34;Piscine_Presence&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;Piscine_Presence&#34;][&#34;Mapping&#34;] = {&#34;Oui&#34;:[&#34;Oui&#34;],
+                                                   &#34;Non&#34;:[&#34;Non&#34;, &#34;Ne sait pas/Ne répond pas&#34;]}
+    self.Mapping[&#34;Piscine_Type&#34;] = {}
+    self.Mapping[&#34;Piscine_Type&#34;][&#34;ColSrc&#34;] = &#34;QG2&#34;
+    self.Mapping[&#34;Piscine_Type&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;Piscine_Type&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;:[&#34;.&#34;],
+                                                &#34;Hors_Terre&#34;:[&#34;Une piscine hors-terre / semi-creusée&#34;,
+                                                              &#34;Une piscine hors-terre gonflable&#34;],
+                                                &#34;Creusee_Exterieur&#34;:[&#34;Une piscine creusée extérieure&#34;],
+                                                &#34;Creusee_Interieur&#34;:[&#34;Une piscine creusée intérieure&#34;]}
+    
+    self.Mapping[&#34;Piscine_Minuterie&#34;] = {}
+    self.Mapping[&#34;Piscine_Minuterie&#34;][&#34;ColSrc&#34;] = &#34;QG3&#34;
+    self.Mapping[&#34;Piscine_Minuterie&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;Piscine_Minuterie&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;: [&#34;.&#34;],
+                                                    &#34;Oui&#34;:[&#34;Oui&#34;],
+                                                   &#34;Non&#34;:[&#34;Non&#34;, &#34;Ne sait pas/Ne répond pas&#34;]}
+    
+    self.Mapping[&#34;Piscine_Toile&#34;] = {}
+    self.Mapping[&#34;Piscine_Toile&#34;][&#34;ColSrc&#34;] = &#34;QG5&#34;
+    self.Mapping[&#34;Piscine_Toile&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;Piscine_Toile&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;: [&#34;.&#34;],
+                                                &#34;Oui&#34;:[&#34;Oui&#34;],
+                                                   &#34;Non&#34;:[&#34;Non&#34;, &#34;Ne sait pas/Ne répond pas&#34;]}
+
+    self.Mapping[&#34;Piscine_Chauffee&#34;] = {}
+    self.Mapping[&#34;Piscine_Chauffee&#34;][&#34;ColSrc&#34;] = &#34;QG7&#34;
+    self.Mapping[&#34;Piscine_Chauffee&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;Piscine_Chauffee&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;: [&#34;.&#34;],
+                                                   &#34;Oui&#34;:[&#34;Oui&#34;],
+                                                   &#34;Non&#34;:[&#34;Non&#34;, &#34;Ne sait pas/Ne répond pas&#34;]}
+    
+    self.Mapping[&#34;Piscine_ChaufType&#34;] = {}
+    self.Mapping[&#34;Piscine_ChaufType&#34;][&#34;ColSrc&#34;] = &#34;QG8M1&#34;
+    self.Mapping[&#34;Piscine_ChaufType&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;Piscine_ChaufType&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;:[&#34;.&#34;],
+                                                   &#34;Ne sait pas&#34;:[&#34;Ne sait pas/Ne répond pas&#34;],
+                                                   &#34;Thermopompe&#34;: [&#34;Une thermopompe de piscine&#34;],
+                                                   &#34;Electrique&#34;: [&#34;Un chauffe-piscine électrique (qui n’est pas une thermopompe)&#34;],
+                                                   &#34;Capteur Solaire&#34;: [&#34;Un capteur solaire&#34;],
+                                                   &#34;Propane&#34;: [&#34;Un chauffe-piscine au propane&#34;],
+                                                    &#34;Gaz Naturel&#34;: [&#34;Un chauffe-piscine au gaz naturel&#34;],
+                                                    &#34;Bois&#34;: [&#34;Un chauffe-piscine au bois&#34;],
+                                                    &#34;Mazout&#34;: [&#34;Un chauffe-piscine à l’huile/mazout&#34;]}
+
+    #Nombre de VE et Hybride en 1 variable
+    self.Mapping[&#34;Vehicule_Presence&#34;] = {}
+    self.Mapping[&#34;Vehicule_Presence&#34;][&#34;ColSrc&#34;] = &#34;QT2T3&#34; # seulement pour la méthode get_Mettadata
+    self.Mapping[&#34;Vehicule_Presence&#34;][&#34;typeMapping&#34;] = &#34;custom&#34;
+    self.Mapping[&#34;Vehicule_Presence&#34;][&#34;Mapping&#34;] = {&#34;Aucune_VE_Aucune_VHR&#34;: None,
+                                             &#34;Une_VE_Aucune_VHR&#34;:None,
+                                             &#34;Aucune_VE_Une_VHR&#34;:None,
+                                            &#34;Deux_VE_Aucune_VHR&#34;:None,
+                                            &#34;Une_VE_Une_VHR&#34;:None,
+                                            &#34;Deux_VE_Une_VHR&#34;:None,
+                                            &#34;Trois_VE_Aucune_VHR&#34;:None,
+                                            &#34;Deux_VE_Deux_VHR&#34;:None,
+                                            &#34;Aucune_VE_Deux_VHR&#34;:None,
+                                                }
+    
+    self.Mapping[&#34;Vehicule_BornePresence&#34;] = {}
+    self.Mapping[&#34;Vehicule_BornePresence&#34;][&#34;ColSrc&#34;] = &#34;QT4&#34;
+    self.Mapping[&#34;Vehicule_BornePresence&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;Vehicule_BornePresence&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;: [&#34;.&#34;],
+                                                   &#34;Oui&#34;:[&#34;Oui&#34;],
+                                                   &#34;Non&#34;:[&#34;Non&#34;, &#34;Ne sait pas/Ne répond pas&#34;]}
+    
+
+    # Chauffe eau
+    self.Mapping[&#34;ChaufEau_Presence&#34;] = {}
+    self.Mapping[&#34;ChaufEau_Presence&#34;][&#34;ColSrc&#34;] = &#34;QF2R&#34;
+    self.Mapping[&#34;ChaufEau_Presence&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;ChaufEau_Presence&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;:[&#34;Pas de chauffe-eau&#34;],
+                                                   &#34;Logement&#34;:[&#34;Uniquement pour la résidence&#34;, &#34;NSP/NRP&#34;],
+                                                   &#34;Central&#34;: [&#34;Central, soit pour plusieurs logements&#34;]}
+
+            # Chauffe eau
+    self.Mapping[&#34;ChaufEau_ChaufType&#34;] = {}
+    self.Mapping[&#34;ChaufEau_ChaufType&#34;][&#34;ColSrc&#34;] = &#34;QF1&#34;
+    self.Mapping[&#34;ChaufEau_ChaufType&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;ChaufEau_ChaufType&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;:[&#34;Pas de chauffe-eau&#34;],
+                                                   &#34;Ne sait pas&#34;:[&#34;Ne sait pas/Ne répond pas&#34;],
+                                                   &#34;Electrique&#34;: [&#34;À l&#39;électricité&#34;],
+                                                    &#34;Propane&#34;: [&#34;Au propane&#34;],
+                                                    &#34;Gaz Naturel&#34;: [&#34;Au gaz naturel&#34;],
+                                                    &#34;Bois&#34;: [&#34;Au bois&#34;],
+                                                    &#34;Mazout&#34;: [&#34;À l&#39;huile/au mazout&#34;]}
+    # Chauffe eau
+    self.Mapping[&#34;ChaufEau_Type&#34;] = {}
+    self.Mapping[&#34;ChaufEau_Type&#34;][&#34;ColSrc&#34;] = &#34;QF3&#34;
+    self.Mapping[&#34;ChaufEau_Type&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;ChaufEau_Type&#34;][&#34;Mapping&#34;] = {&#34;Non definit&#34;:[&#34;.&#34;],
+                                                   &#34;Ne sait pas&#34;:[&#34;Ne sait pas/Ne répond pas&#34;],
+                                                   &#34;Chauffe-eau sans réservoir&#34;: [&#34;Chauffe-eau sans réservoir&#34;],
+                                                   &#34;Moins de 22 gallons&#34;: [&#34;Moins de 22 gallons (97 litres)&#34;],
+                                                   &#34;22 gallons&#34; : [&#34;22 gallons (97 litres)&#34;],
+                                                   &#34;23-40 gallons&#34;: [&#34;Entre 23 et 39 gallons (100 et 172 litres)&#34;],
+                                                   &#34;40 gallons&#34;: [&#34;40 gallons (176 litres)&#34;],
+                                                   &#34;41-59 gallons&#34;: [&#34;41 à 59 gallons (180 à 260 litres)&#34;],
+                                                   &#34;60 gallons&#34;: [&#34;60 gallons (264 litres)&#34;],
+                                                   &#34;60 et plus gallons&#34;: [&#34;Plus de 60 gallons (264 litres)&#34;]}
+
+    # QB2M2R : Nombre de congélateurs distinct dans la résidence
+    self.Mapping[&#34;Congelateur_Nombre&#34;] = {}
+    self.Mapping[&#34;Congelateur_Nombre&#34;][&#34;ColSrc&#34;] = &#34;QB2M2R&#34;
+    self.Mapping[&#34;Congelateur_Nombre&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;Congelateur_Nombre&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;:[&#34;Aucun&#34;, &#34;NSP/NRP&#34;],
+                                                   &#34;1&#34;:[1],
+                                                   &#34;2&#34;: [2],
+                                                   &#34;3&#34;: [3],
+                                                   &#34;4&#34;: [4],
+                                                   &#34;5&#34;: [5],
+                                                   &#34;6&#34;: [6]}
+
+    # QB2I1 : Nombre de réfrigérateurs dans la résidence
+    self.Mapping[&#34;Refrigerateur_Nombre&#34;] = {}
+    self.Mapping[&#34;Refrigerateur_Nombre&#34;][&#34;ColSrc&#34;] = &#34;QB2I1&#34;
+    self.Mapping[&#34;Refrigerateur_Nombre&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;Refrigerateur_Nombre&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;:[&#34;Aucun&#34;, &#34;NSP/NRP&#34;],
+                                                     &#34;1&#34;:[1],
+                                                     &#34;2&#34;: [2],
+                                                     &#34;3&#34;: [3],
+                                                     &#34;4 et plus&#34;: [4,5,6,7]}
+
+    #QB1I : Presence machine a laver
+    self.Mapping[&#34;LaveLinge_Type&#34;] = {}
+    self.Mapping[&#34;LaveLinge_Type&#34;][&#34;ColSrc&#34;] = &#34;QB1I1R&#34;
+    self.Mapping[&#34;LaveLinge_Type&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;LaveLinge_Type&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;:[&#34;N&#39;a pas de machine à laver le linge&#34;, &#34;NSP/NRP&#34;],
+                                                  &#34;Frontale&#34;:[&#34;Machine à chargement frontal&#34;],
+                                                  &#34;Traditionnelle&#34;: [&#34;Machine traditionnelle&#34;]}
+
+    #QB1H : Type de machines à laver (Base totale)
+    self.Mapping[&#34;SecheLinge_Presence&#34;] = {}
+    self.Mapping[&#34;SecheLinge_Presence&#34;][&#34;ColSrc&#34;] = &#34;QB1H&#34;
+    self.Mapping[&#34;SecheLinge_Presence&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;SecheLinge_Presence&#34;][&#34;Mapping&#34;] = {&#34;Oui&#34;:[&#34;Oui&#34;],
+                                                        &#34;Non&#34;:[&#34;Non&#34;, &#34;Ne sait pas/Ne répond pas&#34;]}
+
+    #QB1G : Type de lave-vaisselle (Base totale)
+    self.Mapping[&#34;LaveVaisselle_Presence&#34;] = {}
+    self.Mapping[&#34;LaveVaisselle_Presence&#34;][&#34;ColSrc&#34;] = &#34;QB1G&#34;
+    self.Mapping[&#34;LaveVaisselle_Presence&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;LaveVaisselle_Presence&#34;][&#34;Mapping&#34;] = {&#34;Oui&#34;:[&#34;Oui&#34;],
+                                                        &#34;Non&#34;:[&#34;Non&#34;]}
+    
+    #QB1A1 : Présence de cuisinières (Oui/Non)
+    self.Mapping[&#34;Cuisiniere_Presence&#34;] = {}
+    self.Mapping[&#34;Cuisiniere_Presence&#34;][&#34;ColSrc&#34;] = &#34;QB1A1&#34;
+    self.Mapping[&#34;Cuisiniere_Presence&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;Cuisiniere_Presence&#34;][&#34;Mapping&#34;] = {&#34;Oui&#34;:[&#34;Oui&#34;],
+                                                        &#34;Non&#34;:[&#34;Non&#34;, &#34;Ne sait pas/Ne répond pas&#34;]}
+    #QB1A3 : Source d&#39;énergie de la cuisinière
+    self.Mapping[&#34;Cuisiniere_Energie&#34;] = {}
+    self.Mapping[&#34;Cuisiniere_Energie&#34;][&#34;ColSrc&#34;] = &#34;QB1A3&#34;
+    self.Mapping[&#34;Cuisiniere_Energie&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;Cuisiniere_Energie&#34;][&#34;Mapping&#34;] = {&#34;Aucun&#34;:[&#34;.&#34;],
+                                                    &#34;Ne sait pas&#34;:[&#34;Ne sait pas/Ne répond pas&#34;],
+                                                    &#34;Electrique&#34;: [&#34;Électricité&#34;],
+                                                    &#34;Gaz&#34;: [&#34;Gaz propane ou gaz naturel&#34;],
+                                                    &#34;Autre&#34;: [&#34;Autre&#34;]}        
+
+    #QB2X8R : % d&#39;éclairage à LED
+    self.Mapping[&#34;Eclairage_LED&#34;] = {}
+    self.Mapping[&#34;Eclairage_LED&#34;][&#34;ColSrc&#34;] = &#34;QB2X8R&#34;
+    self.Mapping[&#34;Eclairage_LED&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Mapping[&#34;Eclairage_LED&#34;][&#34;Mapping&#34;] = {&#34;Ne sait pas&#34;:[&#34;Ne sait pas&#34;],
+                                                &#34;0%&#34;: [0],
+                                                &#34;1 à 24 %&#34;: [&#34;1 à 24 %&#34;],
+                                                &#34;25 à 50 %&#34;:[&#34;25 à 50 %&#34;],
+                                                &#34;Plus de 50 %&#34;:[&#34;Plus de 50 %&#34;]}
+
+    #_____________________________________________________
+    # Mapping pour la pondération
+    # NE PAS UTILISER LES CLEFS self.Mapping - sinon revoir la ligne {**self.Mapping, **self.Pond_Mapping}
+    self.Pond_Mapping = {}
+    
+    #Vintage
+    self.Pond_Mapping[&#34;Vintage&#34;] = {}
+    self.Pond_Mapping[&#34;Vintage&#34;][&#34;ColSrc&#34;] = &#34;QA6M&#34; # seulement pour la méthode get_Mettadata
+    self.Pond_Mapping[&#34;Vintage&#34;][&#34;typeMapping&#34;] = &#34;custom&#34;
+    self.Pond_Mapping[&#34;Vintage&#34;][&#34;Mapping&#34;] = {&#34;1946-70&#34;:None,
+                                                &#34;1986-2012&#34;: None,
+                                                &#34;pre-1945&#34;: None,
+                                                &#34;1971-85&#34;: None,
+                                                &#34;post-2012&#34;: None}
+
+    self.Pond_Mapping[&#34;Territoire&#34;] = {}
+    self.Pond_Mapping[&#34;Territoire&#34;][&#34;ColSrc&#34;] = &#34;TERR_HQ&#34; # seulement pour la méthode get_Mettadata
+    self.Pond_Mapping[&#34;Territoire&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Pond_Mapping[&#34;Territoire&#34;][&#34;Mapping&#34;] = {&#34;0_Montreal&#34;: [&#34;Montréal&#34;],
+                                                    &#34;1_Laurentides&#34;: [&#34;Laurentides&#34;],
+                                                    &#34;2_Montmorency&#34;: [&#34;Montmorency&#34;],
+                                                    &#34;3_Nord-Est&#34;: [&#34;Est et nord du Québec&#34;],
+                                                    &#34;4_Richelieu&#34;: [&#34;Richelieu&#34;]}
+    
+    self.Pond_Mapping[&#34;Typo&#34;] = {}
+    self.Pond_Mapping[&#34;Typo&#34;][&#34;ColSrc&#34;] = &#34;Type_Logement&#34; # seulement pour la méthode get_Mettadata
+    self.Pond_Mapping[&#34;Typo&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Pond_Mapping[&#34;Typo&#34;][&#34;Mapping&#34;] = {&#34;individuelle&#34; :[&#34;Maison individuelle&#34;],
+                                &#34;en rangee&#34;: [&#34;Maison en rangee&#34;], 
+                                 &#34;duplex&#34;: [&#34;Duplex&#34;],
+                                 &#34;triplex&#34;: [&#34;Triplex&#34;],
+                                 &#34;immeuble&#34;: [&#34;Collective&#34;]}
+
+    self.Pond_Mapping[&#34;Source&#34;] = {}
+    self.Pond_Mapping[&#34;Source&#34;][&#34;ColSrc&#34;] = &#34;QC1R&#34; # seulement pour la méthode get_Mettadata
+    self.Pond_Mapping[&#34;Source&#34;][&#34;typeMapping&#34;] = &#34;list&#34;
+    self.Pond_Mapping[&#34;Source&#34;][&#34;Mapping&#34;] = {&#34;elec&#34;: [&#34;Électricité&#34;],
+                                    &#34;combustible&#34;: [&#34;Gaz naturel&#34;, &#34;Mazout&#34;, &#34;Bois seul ou en combinaison&#34;],
+                                    &#34;bi-energie&#34;: [&#34;Bi-énergie&#34;]}
+
+    #______________________________________________________
+    # QB1A1 : Présence de cuisinières (Oui/Non)
+    # QB1A3 : Source d&#39;énergie de la cuisinière
+    # Faire 1 Variable : 1 = Non ; 2+=Oui+source
+
+    # QB1F : Présence de micro-ondes (Oui/Non)
+
+    # QB1G : Présence de lave-vaisselle (Oui/Non)
+
+    # QB1H : Présence de sécheuse à linge électrique (Oui/Non)
+
+    # QB1I : Présence de machine à laver le linge (Oui/Non)
+    # QB1I1 : S&#39;agit-il d&#39;une machine à chargement frontal (Oui/Non)
+    #   Faire 2 variable : Non ; Oui Frontale ; Oui Autre
+
+    # QB1S : Présence de cellier avec système de réfrigération (Oui/Non)
+
+    # QB1N : Présence de sauna (Oui/Non)
+
+    # QB2 : Nombre de téléviseurs dans la résidence
+
+    # B2C2R : Nombre d&#39;ordinateur total
+
+    # QB2X6 : Présence d&#39;éclairage à LED (Oui/Non)
+    # QB2X8R : Pourcentage d&#39;éclairage à LED (Base possède de l&#39;éclairage à LED)
+    # Faire 2 variable : 1 = Non ; 2+=Oui+pourcentage
+
+    #chauffage
+
+    #chauffageappoint
+
+    #thermostat setback
+
+
+    #clim  (non, oui+system)
+
+    # QD7F1 : Utilisez-vous un échangeur d&#39;air?
+    # QD7G1 : S&#39;agit-il d&#39;un échangeur d&#39;air avec ou sans récupérateur de chaleur?
+    # Faire une variable
+
+    ## QF1 : À quelle source d&#39;énergie votre chauffe-eau fonctionne-t-il?
+    ## a voir si pertinent # # QF3 : Quelle est la capacité du chauffe-eau?</code></pre>
+</details>
+<div class="desc"><p>Définit le mapping direct pour les colonnes du DataFrame EUEMr.</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr" href="index.html">LTE-Sampler-Residential.src.utils.euemr</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMr.EUEMR_formatage" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMr.FormatageEUEMr">EUEMR_formatage</a></code></h4>
+<ul class="two-column">
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMr.EUEMR_formatage.Create_Pond" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMr.FormatageEUEMr.Create_Pond">Create_Pond</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMr.EUEMR_formatage.DoAllMapping" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMr.FormatageEUEMr.DoAllMapping">DoAllMapping</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMr.EUEMR_formatage.DoMapping" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMr.FormatageEUEMr.DoMapping">DoMapping</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMr.EUEMR_formatage.Load_excel" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMr.FormatageEUEMr.Load_excel">Load_excel</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMr.EUEMR_formatage.Main" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMr.FormatageEUEMr.Main">Main</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMr.EUEMR_formatage.SaveToCSV" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMr.FormatageEUEMr.SaveToCSV">SaveToCSV</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMr.EUEMR_formatage.get_Mapping_Colsrc" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMr.FormatageEUEMr.get_Mapping_Colsrc">get_Mapping_Colsrc</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMr.EUEMR_formatage.get_Mettadata" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMr.FormatageEUEMr.get_Mettadata">get_Mettadata</a></code></li>
+<li><code><a title="LTE-Sampler-Residential.src.utils.euemr.EUEMr.EUEMR_formatage.set_Mapping" href="#LTE-Sampler-Residential.src.utils.euemr.EUEMr.FormatageEUEMr.set_Mapping">set_Mapping</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

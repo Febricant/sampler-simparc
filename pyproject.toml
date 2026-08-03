@@ -1,0 +1,25 @@
+# Root of the sampler -> SimParc workspace.
+#
+# This file exists to make `uv sync` at the repository root provision both
+# subprojects at once. It is not itself a distributable package.
+
+[project]
+name = "sampler-simparc"
+version = "0.1.0"
+description = "Residential building-stock pipeline: sample dwellings from a Bayesian network, then simulate them with OpenStudio-HPXML."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "lte-sampler-residential",
+    "simparc",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.workspace]
+members = ["sampler", "simparc"]
+
+[tool.uv.sources]
+lte-sampler-residential = { workspace = true }
+simparc = { workspace = true }

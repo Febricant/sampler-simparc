@@ -1,0 +1,36 @@
+# Root-level ignores. Each subproject keeps its own .gitignore; git reads
+# those relative to their own directory, so sampler/.gitignore and
+# simparc/.gitignore continue to cover their own trees unchanged.
+
+# Virtual environments
+.venv/
+.venv-*/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+wheels/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Test / tooling caches
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Editor state
+.vscode/
+.idea/
+.claude/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Output of the combined pipeline driver
+/out/

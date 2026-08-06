@@ -1,0 +1,22 @@
+# Dockerfile does `COPY . /app`. Without this file that pulls in the 1.1 GB
+# virtualenv and the 517 MB Alberta data tree.
+
+.venv/
+.venv-*/
+.git/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Large inputs fetched at runtime, not needed to build the dashboard image
+data/input/alberta/
+22e393a6216edb1d2f9c7f83062bd235/
+
+# Generated outputs
+Simulations/
+documentation/html/
+
+# Decks and figures are build artefacts of the analysis, not the app
+calgary_adaptation/figures/
+*.pptx
+*.pdf

@@ -1,7 +1,7 @@
 [project]
-name = "openstudiocli-test"
+name = "simparc"
 version = "0.1.0"
-description = "Add your description here"
+description = "Simulateur de parc de batiments: runs a CSV of dwellings through OpenStudio-HPXML / EnergyPlus in parallel with Dask."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
@@ -16,3 +16,9 @@ dependencies = [
 dev = [
     "pytest>=8.0",
 ]
+
+# SimParc runs as loose scripts on sys.path (config.py, main.py and their
+# siblings import each other by bare module name) and declares no
+# [build-system]. Tell uv not to try to build it as a distribution.
+[tool.uv]
+package = false

@@ -202,7 +202,11 @@ class Sampler():
         # Perform sampling (before any persistence/export)
         df = self.GUM_Sampling(Nombre_de_Samples, evs=Evidence)
         lst_dct_args = df.to_dict(orient='records')
-        chunk_size = int(len(lst_dct_args) / self._parallel['n_jobs'])
+        # Integer division floors to 0 whenever the batch is smaller than the
+        # worker count, and chunks() then raises "range() arg 3 must not be
+        # zero". Sampling a handful of dwellings is the normal way to try the
+        # pipeline out, so keep at least one row per chunk.
+        chunk_size = max(1, int(len(lst_dct_args) / self._parallel['n_jobs']))
 
         with parallel_backend("loky", inner_max_num_threads=self._parallel['n_jobs']):
             sampling_function = map(delayed(functools.partial(self.run_hors_bn)), list(chunks(lst_dct_args, chunk_size)))

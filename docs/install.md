@@ -86,6 +86,29 @@ set `OPENSTUDIO_EXE` in `config.py` (a relative path is resolved against the pro
 > `parallelization.py` and a path in `config.py`. That advice predates `osrunner.py` and no longer
 > applies.
 
+## Data that is not in git
+
+A clone gives you everything needed to **sample and simulate**: the Bayesian networks, the
+conditional probability tables, and the weather file are all committed. Two large directories are
+deliberately not, because they are bulk source data rather than code:
+
+| Directory | Size | Needed for |
+|---|---|---|
+| `sampler/data/input/alberta/{energuide,census,benchmarkyyc}` | 517 MB | Re-deriving the Calgary targets — `fetch_data.py`, `calibrate_stock.py`, `derive_targets.py`, `energy_profile.py` |
+| `sampler/22e393a6216edb1d2f9c7f83062bd235/` | 100 MB | `weather_profile.py` only |
+
+Without them you can still sample from `BN_Calgary.XDSL` and run the full pipeline. What you cannot
+do is re-run the re-calibration from its raw sources.
+
+To obtain them:
+
+- **The Alberta data is re-fetchable.** `uv run python calgary_adaptation/fetch_data.py` pulls it from
+  open.canada.ca and data.calgary.ca. No API key; it takes a while.
+- **The NSRDB export is not.** The directory is named after an NREL request hash and was downloaded
+  out of band. If you have a copy, keep it — treat re-obtaining it as a manual task, not a command.
+
+Both are gitignored, so dropping them into place is all that is required.
+
 ## Verifying the installation
 
 Fastest meaningful check, needing neither Docker nor OpenStudio:

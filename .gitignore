@@ -34,3 +34,7 @@ Thumbs.db
 
 # Output of the combined pipeline driver
 /out/
+
+# Archived results from earlier runs. Analysis output, kept for reference,
+# far too large for git. See archive/*/README.md for provenance.
+/archive/

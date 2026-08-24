@@ -174,5 +174,5 @@ cd ../simparc && uv run python main.py ../out/sample.csv
 Reading an input CSV from outside `simparc/` is fine — only the paths handed *to OpenStudio* must
 live under the project directory, and those are all inside `results/`.
 
-Before launching a real batch, size it: roughly **130–140 MB of output per building** at the default
-settings.
+Before launching a real batch, size it: about **156 MB of output per building** at the default
+settings, and roughly 27 seconds of wall clock each on a 12-core host.

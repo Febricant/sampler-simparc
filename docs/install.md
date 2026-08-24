@@ -62,14 +62,29 @@ OpenStudio is already present, and `postCreateCommand` runs `uv sync`.
 
 ### Option B — Docker without VS Code
 
-Build the same image once and point SimParc at it:
+**This is the path that is known to work on Windows**, and it needs no configuration change at all.
+Build the image once:
 
 ```bash
 cd simparc
-docker build -t simparc-dev:latest -f .devcontainer/Dockerfile .
+docker build -t simparc-dev:latest -f .devcontainer/Dockerfile .devcontainer
 ```
 
-Then set `OPENSTUDIO_RUNNER = "docker"` in `config.py`. Runs fine from PowerShell or Git Bash.
+The image is about **4.4 GB** — it is `nrel/openstudio:3.9.0` with Python, pip and uv layered on. The
+build context above is `.devcontainer` rather than `.`, because the Dockerfile has no `COPY` step and
+`simparc/` has no `.dockerignore`; using `.` uploads the weather files, the vendored measures and any
+existing `results/` for nothing.
+
+Leave `OPENSTUDIO_RUNNER` at its default `"auto"`. With no native `openstudio` on `PATH` it falls
+through to Docker on its own. Confirm before running a batch:
+
+```bash
+uv run python -c "import osrunner; print(osrunner.resolve())"
+# docker (auto-detected) image simparc-dev:latest, OpenStudio 3.9.0+c77fbb9569
+```
+
+Docker Desktop must actually be **running**, not merely installed — if the daemon is down, `docker`
+commands fail with a named-pipe error and `resolve()` reports no runner.
 
 Because the container only sees what is bind-mounted, **simulation inputs must live under the project
 directory**. `osrunner.to_container_path()` raises `ValueError` for anything outside it rather than
@@ -119,7 +134,18 @@ uv run python main.py smoke-test.csv --dry-run   # writes 3 in.osw files
 uv run python -m pytest                          # 34 fast tests
 ```
 
-`pytest -m slow` adds two tests that run one building end-to-end through Docker; they take minutes.
+`pytest -m slow` adds two tests that run one building end-to-end through Docker. They **skip** rather
+than fail when the image is missing, so read the result: "2 skipped" means Docker is not set up, not
+that everything is fine. On a 12-core host with the image already built they take about 30 seconds.
+
+To confirm the whole chain including post-processing and the parquet output:
+
+```bash
+uv run python main.py smoke-test.csv --limit 1 --serial
+```
+
+That writes `results/1/out.osw` with `completed_status: Success`, plus `results/metadata.parquet` and
+`results/timeseries.parquet` (35,040 rows — a full year at the 15-minute timestep).
 
 ## Platform notes
 

@@ -2,8 +2,12 @@
 
 The headline, before anything else:
 
-> At default settings a batch produces roughly **130–140 MB per building**. Eighty buildings is about
-> **12 GB**. A thousand-building run is not something you start without checking free space first.
+> At default settings a batch produces about **156 MB per building**, measured. Eighty buildings is
+> roughly **12 GB**; a thousand-building run needs about **150 GB**. This is not something you start
+> without checking free space first.
+>
+> On a 12-core Windows host with the Docker runner, one building takes about **27 seconds** wall
+> clock, so the batch is disk-bound long before it is CPU-bound.
 
 This is not accidental bloat — it is `TIMESERIES_FREQUENCY = "timestep"` at a 15-minute timestep
 (35,040 rows per variable per building) plus `DEBUG_MODE = True` (a full OSM and IDF per building).

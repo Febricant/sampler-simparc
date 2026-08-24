@@ -81,7 +81,7 @@ analysis, not as simulation input.
 
 ## Output size surprises people
 
-Roughly **130–140 MB per building** at default settings; 80 buildings is about 12 GB. Driven by
+About **156 MB per building** at default settings, measured; 80 buildings is roughly 12 GB. Driven by
 `TIMESERIES_FREQUENCY = "timestep"` and `DEBUG_MODE = True`. See [outputs.md](outputs.md) before a
 large run, and use `--limit N` to measure before committing.
 
